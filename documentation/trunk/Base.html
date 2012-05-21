@@ -1,0 +1,254 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="PHP, apache, components, framework, quality" />
+	<meta name="author" content="jerome" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Sun, 10 Jul 2011 11:10:41 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="Base" />
+	<meta name="DC.creator" content="jerome" />
+	<meta name="DC.date" content="Sun, 10 Jul 2011 11:10:41 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/Base/tutorial.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/Base/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Base/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+
+</ul>
+
+		<h2>eZ Components - Base</h2><div class="toc"><h3>Table of Contents</h3><ul><li><p><a href="#introduction">Introduction</a></p></li><li><p><a href="#installation">Installation</a></p></li><li><p><a href="#usage">Usage</a></p><ul><li><p><a href="#debugging">Debugging</a></p></li><li><p><a href="#preloading">Preloading</a></p></li><li><p><a href="#adding-class-repositories-located-outside-ez-components-to-autoload-system">Adding class repositories located outside eZ Components to autoload system</a></p></li><li><p><a href="#lazy-initialization">Lazy initialization</a></p></li><li><p><a href="#file-operations">File Operations</a></p><ul><li><p><a href="#finding-files-recursively">Finding files recursively</a></p></li><li><p><a href="#removing-directories-recursively">Removing directories recursively</a></p></li><li><p><a href="#overloading-the-callback">Overloading the callback</a></p></li></ul></li></ul></li></ul></div><a name="introduction"></a><a name="id1"></a><h3>Introduction</h3><p>The Base component provides the basic functionality, such as autoloading, that all eZ Components need to function properly. The Base component needs to be loaded specifically. Base can also autoload external class repositories from outside the eZ Components.</p><p>Aside from the autoload functionality, the Base component also contains a number of generic Exception classes that all inherit from the <a href='/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseException.html'>ezcBaseException</a> class.</p><a name="installation"></a><a name="id2"></a><h3>Installation</h3><p>The installation and configuration of the eZ Components environment is described in a separate article. Please refer to the <a href="../../../../zetacomponents/documentation/install.html">Components Introduction</a> for instructions on installation and configuration of the eZ Components library and the Base component.</p><a name="usage"></a><a name="id3"></a><h3>Usage</h3><a name="debugging"></a><a name="id4"></a><h4>Debugging</h4><p>By default the <a href='/zetacomponents/documentation/trunk/Base/phpdoc/ezcBase.html'>ezcBase</a> component's autoload mechanism will not throw an exception when an autoload class can not be found. In some cases (during development) it is useful to have an exception with detailed information about which autoload files were searched for, and in which directories. <a href='/zetacomponents/documentation/trunk/Base/phpdoc/ezcBase.html'>ezcBase</a> supports an option that enables this behavior:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #000000">$options&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000">ezcBaseAutoloadOptions</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000">$options</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">debug&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">true</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Base/phpdoc/ezcBase.html#setOptions'>ezcBase::setOptions</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$options&nbsp;</span><span style="color: #0000FF">);</span></li>
+<span style="color: #000000">?&gt;</span>
+</ol><p><strong>Warning</strong>: Exceptions are ignored when they are thrown from an autoload() handler in PHP. In order to see the exception message that is thrown when a class can not be found, you need to catch the exception <em>in</em> the autoload() handler. Your autoload() function could then look like:</p><code class="block">function __autoload( $className )
+{
+    try
+    {
+        <a href='/zetacomponents/documentation/trunk/Base/phpdoc/ezcBase.html#autoload'>ezcBase::autoload</a>( $className );
+    }
+    catch ( Exception $e )
+    {
+        echo $e-&gt;getMessage();
+    }
+}</code><a name="preloading"></a><a name="id5"></a><h4>Preloading</h4><p>The default autoload policy of the eZ Components is to load every class file on demand only. It is also possible to load all classes of one component at the same time, when one of the component's classes is requested for the first time. You can change this behavior with the "preload" option that is available through the <a href='/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseAutoloadOptions.html'>ezcBaseAutoloadOptions</a> option class. You can turn preloading on with:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #000000">$options&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000">ezcBaseAutoloadOptions</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000">$options</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">preload&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">true</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Base/phpdoc/ezcBase.html#setOptions'>ezcBase::setOptions</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$options&nbsp;</span><span style="color: #0000FF">);</span></li>
+<span style="color: #000000">?&gt;</span>
+</ol><p>Please note that preloading will <em>not</em> be done for Exception classes.</p><a name="adding-class-repositories-located-outside-ez-components-to-autoload-system"></a><a name="id6"></a><h4>Adding class repositories located outside eZ Components to autoload system</h4><p>It can be useful to add repositories of user-defined classes to the eZ Components autoload system.  The <a href='/zetacomponents/documentation/trunk/Base/phpdoc/ezcBase.html#addClassRepository'>ezcBase::addClassRepository</a>() method can be used to perform this task.  You need to arrange the desired external classes in a class repository. That is, make sure that classes and corresponding *_autoload.php files are named and placed according to the explanations below. After they are in the proper structure, you can call addClassRepository() with the proper parameters before you use the external classes. External classes will then be loaded by autoload system.</p><p><a href='/zetacomponents/documentation/trunk/Base/phpdoc/ezcBase.html#addClassRepository'>ezcBase::addClassRepository</a>() takes two arguments:</p><ul><li><p>$basePath is the base path for the whole class repository.</p></li><li><p>$autoloadDirPath is the path where autoload files for this repository are found.</p></li></ul><p>The paths in the autoload files are <em>not</em> relative to the package directory as specified by the $basePath argument. In other words, class definition files will only be searched for in the location $autoloadDirPath.</p><p>Consider the following example:</p><ul><li><p>There is a class repository stored in the directory "./repos".</p></li><li><p>Autoload files for this repository are stored in "./repos/autoloads".</p></li><li><p>There are two components in this repository: "Me" and "You".</p></li><li><p>The "Me" component has the classes "erMyClass1" and "erMyClass2".</p></li><li><p>The "You" component has the classes "erYourClass1" and "erYourClass2".</p></li></ul><p>In this case, you need to create the following files in "./repos/autoloads". Note that the prefix to _autoload.php ("my" and "your") in the filename is the first part of the classname (excluding the lowercase classname prefix - "er").</p><p>Content of my_autoload.php:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000FF">return&nbsp;array&nbsp;(</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #335533">'erMyClass1'&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #335533">'Me/myclass1.php'</span><span style="color: #0000FF">,</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #335533">'erMyClass2'&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #335533">'Me/myclass2.php'</span><span style="color: #0000FF">,</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;);</span></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><p>Content of your_autoload.php:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000FF">return&nbsp;array&nbsp;(</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #335533">'erYourClass1'&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #335533">'You/yourclass1.php'</span><span style="color: #0000FF">,</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #335533">'erYourClass2'&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #335533">'You/yourclass2.php'</span><span style="color: #0000FF">,</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);</span></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><p>The directory structure for the external repository is then:</p><code class="block">./repos/autoloads/my_autoload.php
+./repos/autoloads/your_autoload.php
+./repos/Me/myclass1.php
+./repos/Me/myclass2.php
+./repos/You/yourclass1.php
+./repos/You/yourclass2.php</code><p>To use this repository with the autoload mechanism, use the following code:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #0000FF">require_once&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Base/phpdoc/ezcBase.html#addClassRepository'>ezcBase::addClassRepository</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'./repos'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'./repos/autoloads'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$myVar1&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000">erMyClass2</span><span style="color: #0000FF">();</span></li>
+<li><span style="color: #000000">$myVar1</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">toString</span><span style="color: #0000FF">();</span></li>
+<li><span style="color: #000000">$yourVar1&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000">erYourClass1</span><span style="color: #0000FF">();</span></li>
+<li><span style="color: #000000">$yourVar1</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">toString</span><span style="color: #0000FF">();</span></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><p>The above code will output:</p><code class="block">Class 'erMyClass2'
+Class 'erYourClass1'</code><a name="lazy-initialization"></a><a name="id7"></a><h4>Lazy initialization</h4><p>Lazy initialization is a mechanism to load and configure a component, only when it is really used in your application. This mechanism saves time for parsing the classes and configuration, when the component is not used at all during one request. The implementation in <a href='/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseInit.html'>ezcBaseInit</a> may be reused by other applications and components, like the following example will show.</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #0000FF">require_once&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Create&nbsp;a&nbsp;custom&nbsp;class&nbsp;implementing&nbsp;the&nbsp;singleton&nbsp;pattern</span></li>
+<li><span style="color: #0000FF">class&nbsp;</span><span style="color: #000000">customSingleton</span></li>
+<li><span style="color: #0000FF">{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;protected&nbsp;static&nbsp;</span><span style="color: #000000">$instance</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;static&nbsp;function&nbsp;</span><span style="color: #000000">getInstance</span><span style="color: #0000FF">()</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(&nbsp;</span><span style="color: #000000">self</span><span style="color: #0000FF">::</span><span style="color: #000000">$instance&nbsp;</span><span style="color: #0000FF">===&nbsp;</span><span style="color: #000000">null&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">self</span><span style="color: #0000FF">::</span><span style="color: #000000">$instance&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000">customSingleton</span><span style="color: #0000FF">();</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseInit.html#fetchConfig'>ezcBaseInit::fetchConfig</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'customKey'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">self</span><span style="color: #0000FF">::</span><span style="color: #000000">$instance&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</span></li>
+<li></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;</span><span style="color: #000000">self</span><span style="color: #0000FF">::</span><span style="color: #000000">$instance</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;}</span></li>
+<li><span style="color: #0000FF">}</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Implement&nbsp;your&nbsp;configuration&nbsp;class</span></li>
+<li><span style="color: #0000FF">class&nbsp;</span><span style="color: #000000">customSingletonConfiguration&nbsp;</span><span style="color: #0000FF">implements&nbsp;</span><span style="color: #000000">ezcBaseConfigurationInitializer</span></li>
+<li><span style="color: #0000FF">{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;static&nbsp;function&nbsp;</span><span style="color: #000000">configureObject</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$object&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #335533">"Configure&nbsp;customSingleton.\n"</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$object</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">value&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">42</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;}</span></li>
+<li><span style="color: #0000FF">}</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Register&nbsp;for&nbsp;lazy&nbsp;initilization</span></li>
+<li><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseInit.html#setCallback'>ezcBaseInit::setCallback</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'customKey'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'customSingletonConfiguration'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Configure&nbsp;on&nbsp;first&nbsp;initilization</span></li>
+<li><span style="color: #000000">$object&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">customSingleton</span><span style="color: #0000FF">::</span><span style="color: #000000">getInstance</span><span style="color: #0000FF">();</span></li>
+<li><span style="color: #000000">var_dump</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$object</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">value&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><p>The example shows a random class implementing the singleton pattern, which may be some database connection handler, or anything similar in your case. The getInstance() method shows a typical PHP 5 implementation except the additional line 14, which checks, if a configuration callback was provided earlier and configures the newly created instance. If no configuration callback was provided, nothing will happen. The customKey is used to receive the right callback from <a href='/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseInit.html'>ezcBaseInit</a> and needs to be known by the user, who wants to define a configuration callback for your class.</p><p>In line 32 the class used to configure your instance on creation is defined. The first parameter is the key used earlier in the getInstance method, to reference the right class, and the second parameter is the name of your configuration class.</p><p>The configuration class beginning in line 22 just needs to implement the <a href='/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseConfigurationInitializer.html'>ezcBaseConfigurationInitializer</a> interface, which defines one method: configureObject(). This method will be called with the object to configure as a single parameter. In the example, a new public property on the customSingleton instance is created, which will be echo'd later to show the success of the configuration.</p><p>The configuration itself will not happen before the actual instance is created in line 35 performing the static call on customSingleton::getInstance(). The var_dump() in the following line shows, that the property value is set and contains the earlier set value (int) 42.</p><a name="file-operations"></a><a name="id8"></a><h4>File Operations</h4><a name="finding-files-recursively"></a><a name="id9"></a><h5>Finding files recursively</h5><p>This example shows how to use the <a href='/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseFile.html#findRecursive'>ezcBaseFile::findRecursive</a>() method:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #0000FF">require&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #000000">$data&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseFile.html#findRecursive'>ezcBaseFile::findRecursive</a></span><span style="color: #0000FF">(</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #335533">"/dat/dev/ezcomponents"</span><span style="color: #0000FF">,</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array(&nbsp;</span><span style="color: #335533">'@src/.*_autoload.php$@'&nbsp;</span><span style="color: #0000FF">),</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array(&nbsp;</span><span style="color: #335533">'@/autoload/@'&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">var_dump</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$data&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><p>The code in this example searches for files in the <code class="inline">/dat/dev/ezcomponents</code> directory. It will only include files that match <em>all</em> patterns in the $includeFilters array (the second parameter). Files that match <em>any</em> of the patterns in the $excludeFilters array (the third parameter) will not be returned.</p><p>In other words, the code above searches for files in the <code class="inline">dat/dev/ezcomponents</code> directory, which are in the <code class="inline">src/</code> directory and end with <code class="inline">_autoload.php</code>, except for files that are in the <code class="inline">/autoload/</code> directory.</p><a name="removing-directories-recursively"></a><a name="id10"></a><h5>Removing directories recursively</h5><p>This example shows how to use the <a href='/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseFile.html#removeRecursive'>ezcBaseFile::removeRecursive</a>() method:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #0000FF">require&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseFile.html#removeRecursive'>ezcBaseFile::removeRecursive</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'/dat/dev/ezcomponents/trash'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><p>This code simply removes the directory <code class="inline">/dat/dev/ezcomponents/trash</code> and all of its files and sub-directories.</p><p><strong>Warning: Use this function with care, as it has the potential to erase
+everything that the current user has access to.</strong></p><a name="overloading-the-callback"></a><a name="id11"></a><h5>Overloading the callback</h5><p>The <a href='/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseFile.html#findRecursive'>ezcBaseFile::findRecursive</a>() method internally uses the <a href='/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseFile.html#walkRecursive'>ezcBaseFile::walkRecursive</a>() method to do the actual recursing. The callback method <a href='/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseFile.html#findRecursiveCallback'>ezcBaseFile::findRecursiveCallback</a>() is then responsible for collecting the data. In case you want to do additional things, such as printing progress, you can either call walkRecursive() yourself with a callback function of your choice, or overload the <a href='/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseFile.html'>ezcBaseFile</a> class and provide a new findRecursiveCallback() method. The code below uses <a href='/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseFile.html#walkRecursive'>ezcBaseFile::walkRecursive</a>() directly in order to display dots for when ever it finds a new directory:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #0000FF">require&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #0000FF">class&nbsp;</span><span style="color: #000000">myProgressFinder</span></li>
+<li><span style="color: #0000FF">{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;static&nbsp;public&nbsp;function&nbsp;</span><span style="color: #000000">findRecursiveCallback</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">ezcBaseFileFindContext&nbsp;$context</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">$sourceDir</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">$fileName</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">$fileInfo&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">//&nbsp;ignore&nbsp;if&nbsp;we&nbsp;have&nbsp;a&nbsp;directory,&nbsp;but&nbsp;do&nbsp;print&nbsp;a&nbsp;"."&nbsp;and&nbsp;sleep&nbsp;for</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;extra&nbsp;demo&nbsp;time</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000FF">if&nbsp;(&nbsp;</span><span style="color: #000000">$fileInfo</span><span style="color: #0000FF">[</span><span style="color: #335533">'mode'</span><span style="color: #0000FF">]&nbsp;&amp;&nbsp;</span><span style="color: #000000">0x4000&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #335533">"."</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">usleep</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">100000&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</span></li>
+<li></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">//&nbsp;update&nbsp;the&nbsp;statistics</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$context</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">elements</span><span style="color: #0000FF">[]&nbsp;=&nbsp;</span><span style="color: #000000">$sourceDir&nbsp;</span><span style="color: #0000FF">.&nbsp;</span><span style="color: #000000">DIRECTORY_SEPARATOR&nbsp;</span><span style="color: #0000FF">.&nbsp;</span><span style="color: #000000">$fileName</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$context</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">count</span><span style="color: #0000FF">++;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$context</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">size&nbsp;</span><span style="color: #0000FF">+=&nbsp;</span><span style="color: #000000">$fileInfo</span><span style="color: #0000FF">[</span><span style="color: #335533">'size'</span><span style="color: #0000FF">];</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;}</span></li>
+<li></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;static&nbsp;public&nbsp;function&nbsp;</span><span style="color: #000000">findRecursive</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$sourceDir</span><span style="color: #0000FF">,&nbsp;array&nbsp;</span><span style="color: #000000">$includeFilters&nbsp;</span><span style="color: #0000FF">=&nbsp;array(),&nbsp;array&nbsp;</span><span style="color: #000000">$excludeFilters&nbsp;</span><span style="color: #0000FF">=&nbsp;array()&nbsp;)</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">//&nbsp;create&nbsp;the&nbsp;context,&nbsp;and&nbsp;then&nbsp;start&nbsp;walking&nbsp;over&nbsp;the&nbsp;array</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$context&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000">ezcBaseFileFindContext</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseFile.html#walkRecursive'>ezcBaseFile::walkRecursive</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$sourceDir</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">$includeFilters</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">$excludeFilters</span><span style="color: #0000FF">,</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array(&nbsp;</span><span style="color: #335533">'myProgressFinder'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'findRecursiveCallback'&nbsp;</span><span style="color: #0000FF">),&nbsp;</span><span style="color: #000000">$context&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">//&nbsp;collect&nbsp;the&nbsp;statistics&nbsp;(which&nbsp;we&nbsp;don't&nbsp;do&nbsp;anything&nbsp;with&nbsp;in&nbsp;this&nbsp;example)</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$statistics</span><span style="color: #0000FF">[</span><span style="color: #335533">'size'</span><span style="color: #0000FF">]&nbsp;=&nbsp;</span><span style="color: #000000">$context</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">size</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$statistics</span><span style="color: #0000FF">[</span><span style="color: #335533">'count'</span><span style="color: #0000FF">]&nbsp;=&nbsp;</span><span style="color: #000000">$context</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">count</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">//&nbsp;return&nbsp;the&nbsp;found&nbsp;and&nbsp;pattern-matched&nbsp;files</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">sort</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$context</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">elements&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;</span><span style="color: #000000">$context</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">elements</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;}</span></li>
+<li><span style="color: #0000FF">}</span></li>
+<li></li>
+<li><span style="color: #000000">$files&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">myProgressFinder</span><span style="color: #0000FF">::</span><span style="color: #000000">findRecursive</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">dirname</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">__FILE__&nbsp;</span><span style="color: #0000FF">)&nbsp;);</span></li>
+<li><span style="color: #000000">var_dump</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$files&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><!--Local Variables:
+mode: rst
+fill-column: 79
+End:
+vim: et syn=rst tw=79-->
+
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

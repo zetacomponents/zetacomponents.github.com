@@ -1,0 +1,565 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="PHP, apache, components, framework, quality" />
+	<meta name="author" content="dotxp" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Wed, 04 Aug 2010 13:07:34 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="ezcDocumentWikiVisitor.html" />
+	<meta name="DC.creator" content="dotxp" />
+	<meta name="DC.date" content="Wed, 04 Aug 2010 13:07:34 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/Document/phpdoc/ezcDocumentWikiVisitor.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/Document/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/trunk/Document/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Document/conversion.html" title="Conversion ">Conversion </a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Document/styles.html" title="Styles ">Styles </a>
+	</li>
+
+</ul>
+
+		
+  <div class="phpdoc">
+    <h2>Apache Zeta Components Manual :: Docs For Class ezcDocumentWikiVisitor</h2>
+
+                  <h3>Document::ezcDocumentWikiVisitor</h3>
+    
+<a name="sec-description"></a>
+<h3>Class ezcDocumentWikiVisitor</h3>
+
+<p>Abstract visitor base for Wiki documents represented by the parser AST.</p>
+<p>Source for this file: <a href="http://fisheye6.atlassian.com/browse/zetacomponents/trunk/Document/src/document/wiki/visitor.php?r=HEAD">/Document/src/document/wiki/visitor.php</a></p>
+       
+  <h3>Implements interfaces:</h3>
+  <ul><li><a href="ezcDocumentErrorReporting.html">ezcDocumentErrorReporting</a></li>  </ul><table><tr><td>
+            <strong>Version:</strong>&#8192;&#8192;
+          </td>
+          <td>//autogen//</td>
+        </tr></table><a name="sec-descendants"></a>
+  <h3>Descendants</h3>
+  <table class="detail"><thead><tr><th>Child Class</th>
+        <th>Description</th>
+      </tr></thead><tbody><tr><td><a href="ezcDocumentWikiDocbookVisitor.html">ezcDocumentWikiDocbookVisitor</a></td>          <td>
+                          Docbook visitor for the Wiki AST.
+                      </td>
+        </tr></tbody></table><a name="sec-var-summary"></a>
+  <h3>Member Variables</h3>
+  <table class="summary"><tr><td class="right">
+            <em>protected</em>            <em><a href="ezcDocumentWikiDocumentNode.html">ezcDocumentWikiDocumentNode</a></em>          </td>
+          <td>
+            <code>
+              $ast
+                          </code>
+            <br><div style="margin-left: 20px">Reference to the AST root node.</div>                      </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            <em>array</em>          </td>
+          <td>
+            <code>
+              $errors
+               = <span class="var-default">array()</span>            </code>
+            <br><div style="margin-left: 20px">Aggregated minor errors during document processing.</div>                      </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            <em>array</em>          </td>
+          <td>
+            <code>
+              $footnoteCounter
+               = <span class="var-default"> 0</span>            </code>
+            <br><div style="margin-left: 20px">Label dependant foot note counters for footnote auto enumeration.</div>                      </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            <em>array</em>          </td>
+          <td>
+            <code>
+              $footnotes
+               = <span class="var-default">array()</span>            </code>
+            <br><div style="margin-left: 20px">List with footnotes for later rendering.</div>                      </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            <em><a href="ezcDocumentWiki.html">ezcDocumentWiki</a></em>          </td>
+          <td>
+            <code>
+              $wiki
+                          </code>
+            <br><div style="margin-left: 20px">Wiki document handler</div>                      </td>
+        </tr></table><a name="sec-method-summary"></a>
+  <h3>Method Summary</h3>
+  <table class="summary"><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#__construct"><b>__construct</b></a>(
+                                                                                    $document
+                                                    ,                                     $path
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Create visitor from Wiki document handler.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#addFootnote"><b>addFootnote</b></a>(
+                                                                                    $node
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Add footnote</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>array</em>          </td>
+          <td>
+            <code>
+              <a href="#getErrors"><b>getErrors</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Return list of errors occured during visiting the document.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em><a href="ezcDocumentWikiFootnoteNode.html">ezcDocumentWikiFootnoteNode</a></em>          </td>
+          <td>
+            <code>
+              <a href="#hasFootnoteTarget"><b>hasFootnoteTarget</b></a>(
+                                                                                    $number
+                                                    ,                                     $node
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Check for internal footnote reference target</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#nodeListToString"><b>nodeListToString</b></a>(
+                                                                                    $nodes
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Node list to string</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#nodeToString"><b>nodeToString</b></a>(
+                                                                                    $node
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Transform a node tree into a string</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#preProcessAst"><b>preProcessAst</b></a>(
+                                                                                    $node
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Pre process AST</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#triggerError"><b>triggerError</b></a>(
+                                                                                    $level
+                                                    ,                                     $message
+                                                    ,                   [                  $file
+                   = null]                                  ,                   [                  $line
+                   = null]                                  ,                   [                  $position
+                   = null]                               )
+            </code>
+            <br><div style="margin-left: 20px">Trigger visitor error</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>mixed</em>          </td>
+          <td>
+            <code>
+              <a href="#visit"><b>visit</b></a>(
+                                                                                    $ast
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Docarate Wiki AST</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#visitChildren"><b>visitChildren</b></a>(
+                                                                                    $root
+                                                    ,                                     $node
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Visit children</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#visitText"><b>visitText</b></a>(
+                                                                                    $root
+                                                    ,                                     $node
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Visit text node</div>          </td>
+        </tr></table><a name="sec-methods"></a>
+  <h3>Methods</h3>
+  <a name="method_detail"></a>
+                      
+      <a name="method__construct" id="__construct"><!-- --></a>
+
+    <h4>__construct</h4>
+
+    <div class="method-signature">
+      void
+      __construct(
+                                  <a href="ezcDocumentWiki.html">ezcDocumentWiki</a>
+          $document
+                            ,           string
+          $path
+                        )
+    </div>
+
+    <p>Create visitor from Wiki document handler.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$document</code></td>
+              <td><em><a href="ezcDocumentWiki.html">ezcDocumentWiki</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$path</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodaddFootnote" id="addFootnote"><!-- --></a>
+
+    <h4>addFootnote</h4>
+
+    <div class="method-signature">
+      void
+      addFootnote(
+                                  <a href="ezcDocumentWikiNode.html">ezcDocumentWikiNode</a>
+          $node
+                        )
+    </div>
+
+    <p>Add footnote</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$node</code></td>
+              <td><em><a href="ezcDocumentWikiNode.html">ezcDocumentWikiNode</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodgetErrors" id="getErrors"><!-- --></a>
+
+    <h4>getErrors</h4>
+
+    <div class="method-signature">
+      array
+      getErrors(
+      )
+    </div>
+
+    <p>Return list of errors occured during visiting the document.</p><div><p>May be an empty array, if on errors occured, or a list of  ezcDocumentVisitException objects.</p></div>
+    
+        
+
+    
+          <h5>Implementation of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcDocumentErrorReporting.html#methodgetErrors">ezcDocumentErrorReporting::getErrors()</a></code></td>
+              <td>
+                                  Return list of errors occured during visiting the document.
+                              </td>
+            </tr></tbody></table><a name="methodhasFootnoteTarget" id="hasFootnoteTarget"><!-- --></a>
+
+    <h4>hasFootnoteTarget</h4>
+
+    <div class="method-signature">
+      <a href="ezcDocumentWikiFootnoteNode.html">ezcDocumentWikiFootnoteNode</a>
+      hasFootnoteTarget(
+                                  int
+          $number
+                            ,           <a href="ezcDocumentWikiNode.html">ezcDocumentWikiNode</a>
+          $node
+                        )
+    </div>
+
+    <p>Check for internal footnote reference target</p><div><p>Returns the target name, when an internal reference target exists and  sets it to used, and false otherwise.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$number</code></td>
+              <td><em>int</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$node</code></td>
+              <td><em><a href="ezcDocumentWikiNode.html">ezcDocumentWikiNode</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodnodeListToString" id="nodeListToString"><!-- --></a>
+
+    <h4>nodeListToString</h4>
+
+    <div class="method-signature">
+      string
+      nodeListToString(
+                                  
+          $nodes
+                        )
+    </div>
+
+    <p>Node list to string</p><div><p>Extract the contents of a node list and return a single string for the  array of nodes.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$nodes</code></td>
+              <td><em>array</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodnodeToString" id="nodeToString"><!-- --></a>
+
+    <h4>nodeToString</h4>
+
+    <div class="method-signature">
+      string
+      nodeToString(
+                                  <a href="ezcDocumentWikiNode.html">ezcDocumentWikiNode</a>
+          $node
+                        )
+    </div>
+
+    <p>Transform a node tree into a string</p><div><p>Transform a node tree, with all its subnodes into a string by only  getting the textuual contents from ezcDocumentWikiTextLineNode objects.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$node</code></td>
+              <td><em><a href="ezcDocumentWikiNode.html">ezcDocumentWikiNode</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodpreProcessAst" id="preProcessAst"><!-- --></a>
+
+    <h4>preProcessAst</h4>
+
+    <div class="method-signature">
+      void
+      preProcessAst(
+                                  <a href="ezcDocumentWikiNode.html">ezcDocumentWikiNode</a>
+          $node
+                        )
+    </div>
+
+    <p>Pre process AST</p><div><p>Performs multiple preprocessing steps on the AST:</p><p>Collect all possible reference targets in the AST to know the actual  destianation for references while decorating. The references are stored  in an internal structure and you may request the actual link by using  the getReferenceTarget() method.</p><p>Aggregate list items into lists. In Wiki there are only list items, which  are aggregated to lists depending on their bullet type. The related list  items are aggregated into one list.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$node</code></td>
+              <td><em><a href="ezcDocumentWikiNode.html">ezcDocumentWikiNode</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodtriggerError" id="triggerError"><!-- --></a>
+
+    <h4>triggerError</h4>
+
+    <div class="method-signature">
+      void
+      triggerError(
+                                  int
+          $level
+                            ,           string
+          $message
+                            ,           [string
+          $file
+           = null]                  ,           [int
+          $line
+           = null]                  ,           [int
+          $position
+           = null]              )
+    </div>
+
+    <p>Trigger visitor error</p><div><p>Emit a vistitor error, and convert it to an exception depending on the  error reporting settings.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$level</code></td>
+              <td><em>int</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$message</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$file</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$line</code></td>
+              <td><em>int</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$position</code></td>
+              <td><em>int</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Implementation of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcDocumentErrorReporting.html#methodtriggerError">ezcDocumentErrorReporting::triggerError()</a></code></td>
+              <td>
+                                  Trigger parser error.
+                              </td>
+            </tr></tbody></table><a name="methodvisit" id="visit"><!-- --></a>
+
+    <h4>visit</h4>
+
+    <div class="method-signature">
+      mixed
+      visit(
+                                  <a href="ezcDocumentWikiDocumentNode.html">ezcDocumentWikiDocumentNode</a>
+          $ast
+                        )
+    </div>
+
+    <p>Docarate Wiki AST</p><div><p>Visit the Wiki abstract syntax tree.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$ast</code></td>
+              <td><em><a href="ezcDocumentWikiDocumentNode.html">ezcDocumentWikiDocumentNode</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefined in descendants as:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcDocumentWikiDocbookVisitor.html#methodvisit">ezcDocumentWikiDocbookVisitor::visit()</a></code></td>
+              <td>
+                Docarate Wiki AST&#8192;
+              </td>
+            </tr></tbody></table><a name="methodvisitChildren" id="visitChildren"><!-- --></a>
+
+    <h4>visitChildren</h4>
+
+    <div class="method-signature">
+      void
+      visitChildren(
+                                  
+          $root
+                            ,           <a href="ezcDocumentWikiNode.html">ezcDocumentWikiNode</a>
+          $node
+                        )
+    </div>
+
+    <p>Visit children</p><div><p>Just recurse into node and visit its children, ignoring the actual  node.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$root</code></td>
+              <td><em>DOMNode</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$node</code></td>
+              <td><em><a href="ezcDocumentWikiNode.html">ezcDocumentWikiNode</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodvisitText" id="visitText"><!-- --></a>
+
+    <h4>visitText</h4>
+
+    <div class="method-signature">
+      void
+      visitText(
+                                  
+          $root
+                            ,           <a href="ezcDocumentWikiNode.html">ezcDocumentWikiNode</a>
+          $node
+                        )
+    </div>
+
+    <p>Visit text node</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$root</code></td>
+              <td><em>DOMNode</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$node</code></td>
+              <td><em><a href="ezcDocumentWikiNode.html">ezcDocumentWikiNode</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><div class="credit">
+      Documentation generated by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+    </div>
+  </div>
+  
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

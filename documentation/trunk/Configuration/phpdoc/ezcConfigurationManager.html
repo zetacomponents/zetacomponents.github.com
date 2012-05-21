@@ -1,0 +1,865 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="PHP, apache, components, framework, quality" />
+	<meta name="author" content="dotxp" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Wed, 04 Aug 2010 13:07:19 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="ezcConfigurationManager.html" />
+	<meta name="DC.creator" content="dotxp" />
+	<meta name="DC.date" content="Wed, 04 Aug 2010 13:07:19 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/Configuration/phpdoc/ezcConfigurationManager.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/Configuration/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/trunk/Configuration/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+
+</ul>
+
+		
+  <div class="phpdoc">
+    <h2>Apache Zeta Components Manual :: Docs For Class ezcConfigurationManager</h2>
+
+                  <h3>Configuration::ezcConfigurationManager</h3>
+    
+<a name="sec-description"></a>
+<h3>Class ezcConfigurationManager</h3>
+
+<p>ezcConfigurationManager provides easy access to application settings.</p><div><p>Using this class removes the need to work with specific readers and writers  and also handles caching to speed up the process. This can be useful for  smaller applications which don't have too many settings and does not have  high memory or speed requirements.</p><p>Many of the methods of this class that fetch settings accept one to three  parameters with the following names: $name - the configuration's name. For  the ini file reader, this is the name of the configuration file without the  path or the extension (.ini); $group - the name of the group in which the  setting is located; and $setting - the name of the setting itself.</p><p>Before the manager can be used it must be configured so it knows where to  fetch the settings, this is usually at the start of the program.  </p><ol><li><div class="src-line">&#8192;<span class="src-var">$man&#8192;</span>=&#8192;<span class="src-id"><a href="ezcConfigurationManager.html">ezcConfigurationManager</a></span><span class="src-sym">::</span><a href="ezcConfigurationManager.html#methodgetInstance">getInstance</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$man</span><span class="src-sym">-&gt;</span><a href="ezcConfigurationManager.html#methodinit">init</a><span class="src-sym">(&#8192;</span><span class="src-str">'ezcConfigurationIniReader'</span><span class="src-sym">,&#8192;</span><span class="src-str">'settings'</span><span class="src-sym">,&#8192;</span><span class="src-var">$options&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol><p>After it is configured the rest of the code can simply access the global  instance and fetch the settings using getSetting().  </p><ol><li><div class="src-line">&#8192;<span class="src-var">$color&#8192;</span>=&#8192;<span class="src-id"><a href="ezcConfigurationManager.html">ezcConfigurationManager</a></span><span class="src-sym">::</span><a href="ezcConfigurationManager.html#methodgetInstance">getInstance</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">-&gt;</span><a href="ezcConfigurationManager.html#methodgetSetting">getSetting</a><span class="src-sym">(&#8192;</span><span class="src-str">'site'</span><span class="src-sym">,&#8192;</span><span class="src-str">'Colors'</span><span class="src-sym">,&#8192;</span><span class="src-str">'Background'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol></div>
+<p>Source for this file: <a href="http://fisheye6.atlassian.com/browse/zetacomponents/trunk/Configuration/src/configuration_manager.php?r=HEAD">/Configuration/src/configuration_manager.php</a></p>
+       
+
+
+
+
+  <table><tr><td>
+            <strong>Version:</strong>&#8192;&#8192;
+          </td>
+          <td>//autogen//</td>
+        </tr></table><a name="sec-method-summary"></a>
+  <h3>Method Summary</h3>
+  <table class="summary"><tr><td class="right">
+            <em>public</em>            static
+                        <em><a href="ezcConfigurationManager.html">ezcConfigurationManager</a></em>          </td>
+          <td>
+            <code>
+              <a href="#getInstance"><b>getInstance</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns the instance of the class ezcConfigurationManager.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>bool</em>          </td>
+          <td>
+            <code>
+              <a href="#exists"><b>exists</b></a>(
+                                                                                    $name
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns true if the configuration named $name exists.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>array</em>          </td>
+          <td>
+            <code>
+              <a href="#getArraySetting"><b>getArraySetting</b></a>(
+                                                                                    $name
+                                                    ,                                     $group
+                                                    ,                                     $setting
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns the value of the setting $setting in group $group in the configuration  named $name.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>bool</em>          </td>
+          <td>
+            <code>
+              <a href="#getBoolSetting"><b>getBoolSetting</b></a>(
+                                                                                    $name
+                                                    ,                                     $group
+                                                    ,                                     $setting
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns the value of the setting $setting in group $group in the configuration  named $name.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>int</em>          </td>
+          <td>
+            <code>
+              <a href="#getNumberSetting"><b>getNumberSetting</b></a>(
+                                                                                    $name
+                                                    ,                                     $group
+                                                    ,                                     $setting
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns the value of the setting $setting in group $group in the configuration  named $name.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>mixed</em>          </td>
+          <td>
+            <code>
+              <a href="#getSetting"><b>getSetting</b></a>(
+                                                                                    $name
+                                                    ,                                     $group
+                                                    ,                                     $setting
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns the value of the setting $setting in group $group in the configuration  named $name.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>array</em>          </td>
+          <td>
+            <code>
+              <a href="#getSettings"><b>getSettings</b></a>(
+                                                                                    $name
+                                                    ,                                     $group
+                                                    ,                                     $settings
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns the values of the settings $settings in group $group in the configuration  named $name.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>array</em>          </td>
+          <td>
+            <code>
+              <a href="#getSettingsAsList"><b>getSettingsAsList</b></a>(
+                                                                                    $name
+                                                    ,                                     $group
+                                                    ,                                     $settings
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns the values of the settings $settings in group $group as an array.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>array</em>          </td>
+          <td>
+            <code>
+              <a href="#getSettingsInGroup"><b>getSettingsInGroup</b></a>(
+                                                                                    $name
+                                                    ,                                     $group
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns all settings in group $group in the configuration named $name.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#getStringSetting"><b>getStringSetting</b></a>(
+                                                                                    $name
+                                                    ,                                     $group
+                                                    ,                                     $setting
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns the value of the setting $setting in group $group in the configuration  named $name.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>bool</em>          </td>
+          <td>
+            <code>
+              <a href="#hasConfigFile"><b>hasConfigFile</b></a>(
+                                                                                    $name
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns if the requested configuration file exists.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>bool</em>          </td>
+          <td>
+            <code>
+              <a href="#hasGroup"><b>hasGroup</b></a>(
+                                                                                    $name
+                                                    ,                                     $group
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns whether the setting $group group exists in the  configuration named $name.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>bool</em>          </td>
+          <td>
+            <code>
+              <a href="#hasSetting"><b>hasSetting</b></a>(
+                                                                                    $name
+                                                    ,                                     $group
+                                                    ,                                     $setting
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns whether the setting $setting exists in group $group in the  configuration named $name.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#init"><b>init</b></a>(
+                                                                                    $readerClass
+                                                    ,                                     $location
+                                                    ,                   [                  $options
+                   = array()]                               )
+            </code>
+            <br><div style="margin-left: 20px">Initializes the manager.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#reset"><b>reset</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Resets the manager to the uninitialized state.</div>          </td>
+        </tr></table><a name="sec-methods"></a>
+  <h3>Methods</h3>
+  <a name="method_detail"></a>
+            <a name="methodgetInstance" id="getInstance"><!-- --></a>
+
+    <h4>getInstance</h4>
+
+    <div class="method-signature">
+      static <a href="ezcConfigurationManager.html">ezcConfigurationManager</a>
+      getInstance(
+      )
+    </div>
+
+      <p>Returns the instance of the class ezcConfigurationManager.</p>      
+      
+      
+      
+      
+      
+                        
+      <a name="methodexists" id="exists"><!-- --></a>
+
+    <h4>exists</h4>
+
+    <div class="method-signature">
+      bool
+      exists(
+                                  string
+          $name
+                        )
+    </div>
+
+    <p>Returns true if the configuration named $name exists.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$name</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcConfigurationManagerNotInitializedException.html">ezcConfigurationManagerNotInitializedException</a></code></td>
+              <td>
+                                  if the manager has not been initialized with the init() method.
+                              </td>
+            </tr></tbody></table><a name="methodgetArraySetting" id="getArraySetting"><!-- --></a>
+
+    <h4>getArraySetting</h4>
+
+    <div class="method-signature">
+      array
+      getArraySetting(
+                                  string
+          $name
+                            ,           string
+          $group
+                            ,           string
+          $setting
+                        )
+    </div>
+
+    <p>Returns the value of the setting $setting in group $group in the configuration  named $name.</p><div><p>Uses the fetchSetting() method to fetch the value, this method can throw  exceptions. This method also validates whether the value is actually an  array value.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$name</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$group</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$setting</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcConfigurationUnknownConfigException.html">ezcConfigurationUnknownConfigException</a></code></td>
+              <td>
+                                  if the configuration does not exist.
+                              </td>
+            </tr><tr><td><code><a href="ezcConfigurationUnknownGroupException.html">ezcConfigurationUnknownGroupException</a></code></td>
+              <td>
+                                  if the group does not exist.
+                              </td>
+            </tr><tr><td><code><a href="ezcConfigurationUnknownSettingException.html">ezcConfigurationUnknownSettingException</a></code></td>
+              <td>
+                                  if the setting does not exist.
+                              </td>
+            </tr><tr><td><code><a href="ezcConfigurationSettingWrongTypeException.html">ezcConfigurationSettingWrongTypeException</a></code></td>
+              <td>
+                                  if the setting value is not an array.
+                              </td>
+            </tr></tbody></table><a name="methodgetBoolSetting" id="getBoolSetting"><!-- --></a>
+
+    <h4>getBoolSetting</h4>
+
+    <div class="method-signature">
+      bool
+      getBoolSetting(
+                                  string
+          $name
+                            ,           string
+          $group
+                            ,           string
+          $setting
+                        )
+    </div>
+
+    <p>Returns the value of the setting $setting in group $group in the configuration  named $name.</p><div><p>Uses the fetchSetting() method to fetch the value, this method can throw  exceptions. This method also validates whether the value is actually a  boolean value.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$name</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$group</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$setting</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcConfigurationUnknownConfigException.html">ezcConfigurationUnknownConfigException</a></code></td>
+              <td>
+                                  if the configuration does not exist.
+                              </td>
+            </tr><tr><td><code><a href="ezcConfigurationUnknownGroupException.html">ezcConfigurationUnknownGroupException</a></code></td>
+              <td>
+                                  if the group does not exist.
+                              </td>
+            </tr><tr><td><code><a href="ezcConfigurationUnknownSettingException.html">ezcConfigurationUnknownSettingException</a></code></td>
+              <td>
+                                  if the setting does not exist.
+                              </td>
+            </tr><tr><td><code><a href="ezcConfigurationSettingWrongTypeException.html">ezcConfigurationSettingWrongTypeException</a></code></td>
+              <td>
+                                  if the setting value is not a boolean.
+                              </td>
+            </tr></tbody></table><a name="methodgetNumberSetting" id="getNumberSetting"><!-- --></a>
+
+    <h4>getNumberSetting</h4>
+
+    <div class="method-signature">
+      int
+      getNumberSetting(
+                                  string
+          $name
+                            ,           string
+          $group
+                            ,           string
+          $setting
+                        )
+    </div>
+
+    <p>Returns the value of the setting $setting in group $group in the configuration  named $name.</p><div><p>Uses the fetchSetting() method to fetch the value, this method can throw  exceptions. This method also validates whether the value is actually an  integer value.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$name</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$group</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$setting</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcConfigurationUnknownConfigException.html">ezcConfigurationUnknownConfigException</a></code></td>
+              <td>
+                                  if the configuration does not exist.
+                              </td>
+            </tr><tr><td><code><a href="ezcConfigurationUnknownGroupException.html">ezcConfigurationUnknownGroupException</a></code></td>
+              <td>
+                                  if the group does not exist.
+                              </td>
+            </tr><tr><td><code><a href="ezcConfigurationUnknownSettingException.html">ezcConfigurationUnknownSettingException</a></code></td>
+              <td>
+                                  if the setting does not exist.
+                              </td>
+            </tr><tr><td><code><a href="ezcConfigurationSettingWrongTypeException.html">ezcConfigurationSettingWrongTypeException</a></code></td>
+              <td>
+                                  if the setting value is not a number.
+                              </td>
+            </tr></tbody></table><a name="methodgetSetting" id="getSetting"><!-- --></a>
+
+    <h4>getSetting</h4>
+
+    <div class="method-signature">
+      mixed
+      getSetting(
+                                  string
+          $name
+                            ,           string
+          $group
+                            ,           string
+          $setting
+                        )
+    </div>
+
+    <p>Returns the value of the setting $setting in group $group in the configuration  named $name.</p><div><p>Uses the fetchSetting() method to fetch the value, this method can throw  exceptions.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$name</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$group</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$setting</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcConfigurationUnknownConfigException.html">ezcConfigurationUnknownConfigException</a></code></td>
+              <td>
+                                  if the configuration does not exist.
+                              </td>
+            </tr><tr><td><code><a href="ezcConfigurationUnknownGroupException.html">ezcConfigurationUnknownGroupException</a></code></td>
+              <td>
+                                  if the group does not exist.
+                              </td>
+            </tr><tr><td><code><a href="ezcConfigurationUnknownSettingException.html">ezcConfigurationUnknownSettingException</a></code></td>
+              <td>
+                                  if the setting does not exist.
+                              </td>
+            </tr></tbody></table><a name="methodgetSettings" id="getSettings"><!-- --></a>
+
+    <h4>getSettings</h4>
+
+    <div class="method-signature">
+      array
+      getSettings(
+                                  string
+          $name
+                            ,           string
+          $group
+                            ,           
+          $settings
+                        )
+    </div>
+
+    <p>Returns the values of the settings $settings in group $group in the configuration  named $name.</p><div><p>For each of the setting names passed in the $settings array it will  return the setting in the returned array with the name of the setting as  key.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$name</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$group</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$settings</code></td>
+              <td><em>array</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcConfigurationUnknownConfigException.html">ezcConfigurationUnknownConfigException</a></code></td>
+              <td>
+                                  if the configuration does not exist.
+                              </td>
+            </tr><tr><td><code><a href="ezcConfigurationUnknownGroupException.html">ezcConfigurationUnknownGroupException</a></code></td>
+              <td>
+                                  if the group does not exist.
+                              </td>
+            </tr><tr><td><code><a href="ezcConfigurationUnknownSettingException.html">ezcConfigurationUnknownSettingException</a></code></td>
+              <td>
+                                  if one or more of the settings do not exist.
+                              </td>
+            </tr></tbody></table><a name="methodgetSettingsAsList" id="getSettingsAsList"><!-- --></a>
+
+    <h4>getSettingsAsList</h4>
+
+    <div class="method-signature">
+      array
+      getSettingsAsList(
+                                  string
+          $name
+                            ,           string
+          $group
+                            ,           
+          $settings
+                        )
+    </div>
+
+    <p>Returns the values of the settings $settings in group $group as an array.</p><div><p>For each of the setting names passed in the $settings array it will only  return the values of the settings in the returned array, and not include  the name of the setting as the array's key.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$name</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$group</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$settings</code></td>
+              <td><em>array</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcConfigurationUnknownConfigException.html">ezcConfigurationUnknownConfigException</a></code></td>
+              <td>
+                                  if the configuration does not exist.
+                              </td>
+            </tr><tr><td><code><a href="ezcConfigurationUnknownGroupException.html">ezcConfigurationUnknownGroupException</a></code></td>
+              <td>
+                                  if the group does not exist.
+                              </td>
+            </tr><tr><td><code><a href="ezcConfigurationUnknownSettingException.html">ezcConfigurationUnknownSettingException</a></code></td>
+              <td>
+                                  if one or more of the settings do not exist.
+                              </td>
+            </tr></tbody></table><a name="methodgetSettingsInGroup" id="getSettingsInGroup"><!-- --></a>
+
+    <h4>getSettingsInGroup</h4>
+
+    <div class="method-signature">
+      array
+      getSettingsInGroup(
+                                  string
+          $name
+                            ,           string
+          $group
+                        )
+    </div>
+
+    <p>Returns all settings in group $group in the configuration named $name.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$name</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$group</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcConfigurationUnknownGroupException.html">ezcConfigurationUnknownGroupException</a></code></td>
+              <td>
+                                  if the group does not exist.
+                              </td>
+            </tr></tbody></table><a name="methodgetStringSetting" id="getStringSetting"><!-- --></a>
+
+    <h4>getStringSetting</h4>
+
+    <div class="method-signature">
+      string
+      getStringSetting(
+                                  string
+          $name
+                            ,           string
+          $group
+                            ,           string
+          $setting
+                        )
+    </div>
+
+    <p>Returns the value of the setting $setting in group $group in the configuration  named $name.</p><div><p>Uses the fetchSetting() method to fetch the value, this method can throw  exceptions. This method also validates whether the value is actually a  string value.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$name</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$group</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$setting</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcConfigurationUnknownConfigException.html">ezcConfigurationUnknownConfigException</a></code></td>
+              <td>
+                                  if the configuration does not exist.
+                              </td>
+            </tr><tr><td><code><a href="ezcConfigurationUnknownGroupException.html">ezcConfigurationUnknownGroupException</a></code></td>
+              <td>
+                                  if the group does not exist.
+                              </td>
+            </tr><tr><td><code><a href="ezcConfigurationUnknownSettingException.html">ezcConfigurationUnknownSettingException</a></code></td>
+              <td>
+                                  if the setting does not exist.
+                              </td>
+            </tr><tr><td><code><a href="ezcConfigurationSettingWrongTypeException.html">ezcConfigurationSettingWrongTypeException</a></code></td>
+              <td>
+                                  if the setting value is not a string.
+                              </td>
+            </tr></tbody></table><a name="methodhasConfigFile" id="hasConfigFile"><!-- --></a>
+
+    <h4>hasConfigFile</h4>
+
+    <div class="method-signature">
+      bool
+      hasConfigFile(
+                                  string
+          $name
+                        )
+    </div>
+
+    <p>Returns if the requested configuration file exists.</p><div><p>Returns a boolean value indicating whether the configuration file exists  or not.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$name</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcConfigurationManagerNotInitializedException.html">ezcConfigurationManagerNotInitializedException</a></code></td>
+              <td>
+                                  if the manager has not been initialized with the init() method.
+                              </td>
+            </tr></tbody></table><a name="methodhasGroup" id="hasGroup"><!-- --></a>
+
+    <h4>hasGroup</h4>
+
+    <div class="method-signature">
+      bool
+      hasGroup(
+                                  string
+          $name
+                            ,           string
+          $group
+                        )
+    </div>
+
+    <p>Returns whether the setting $group group exists in the  configuration named $name.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$name</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$group</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodhasSetting" id="hasSetting"><!-- --></a>
+
+    <h4>hasSetting</h4>
+
+    <div class="method-signature">
+      bool
+      hasSetting(
+                                  string
+          $name
+                            ,           string
+          $group
+                            ,           string
+          $setting
+                        )
+    </div>
+
+    <p>Returns whether the setting $setting exists in group $group in the  configuration named $name.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$name</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$group</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$setting</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcConfigurationManagerNotInitializedException.html">ezcConfigurationManagerNotInitializedException</a></code></td>
+              <td>
+                                  if the manager has not been initialized with the init() method.
+                              </td>
+            </tr><tr><td><code><a href="ezcConfigurationUnknownConfigException.html">ezcConfigurationUnknownConfigException</a></code></td>
+              <td>
+                                  if the configuration does not exist.
+                              </td>
+            </tr></tbody></table><a name="methodinit" id="init"><!-- --></a>
+
+    <h4>init</h4>
+
+    <div class="method-signature">
+      void
+      init(
+                                  string
+          $readerClass
+                            ,           string
+          $location
+                            ,           [
+          $options
+           = array()]              )
+    </div>
+
+    <p>Initializes the manager.</p><div><p>Initializes the manager with the values which will be used by the configuration  reader. It sets the default location and reader options and which reader to  use by specifying the class name.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$readerClass</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  The name of the class to use as a                configuration reader. This class must implement the                ezcConfigurationReader interface.
+                              </td>
+            </tr><tr><td><code>$location</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  The main placement for the configuration. It is                up to the specific reader to interpret this value.  This                can for instance be used to determine the directory                location for an INI file.
+                              </td>
+            </tr><tr><td><code>$options</code></td>
+              <td><em>array</em></td>
+              <td>
+                                  Options for the configuration reader, this is                passed on the reader specified in $readerClass when it is                created. Check the documentation for the specific reader                to see which options it supports.
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcConfigurationInvalidReaderClassException.html">ezcConfigurationInvalidReaderClassException</a></code></td>
+              <td>
+                                  if the $readerClass does not exist or does not implement the ezcConfigurationReader interface.
+                              </td>
+            </tr></tbody></table><a name="methodreset" id="reset"><!-- --></a>
+
+    <h4>reset</h4>
+
+    <div class="method-signature">
+      void
+      reset(
+      )
+    </div>
+
+    <p>Resets the manager to the uninitialized state.</p>
+    
+        
+
+    
+    
+    
+  
+    <div class="credit">
+      Documentation generated by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+    </div>
+  </div>
+  
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,556 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="PHP, apache, components, framework, quality" />
+	<meta name="author" content="dotxp" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Wed, 04 Aug 2010 13:07:50 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="ezcMvcHttpRequestParser.html" />
+	<meta name="DC.creator" content="dotxp" />
+	<meta name="DC.date" content="Wed, 04 Aug 2010 13:07:50 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/MvcTools/phpdoc/ezcMvcHttpRequestParser.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/MvcTools/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/trunk/MvcTools/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+
+</ul>
+
+		
+  <div class="phpdoc">
+    <h2>Apache Zeta Components Manual :: Docs For Class ezcMvcHttpRequestParser</h2>
+
+                  <h3>MvcTools::ezcMvcHttpRequestParser</h3>
+    
+<a name="sec-description"></a>
+<h3>Class ezcMvcHttpRequestParser</h3>
+
+<p>Request parser that uses HTTP headers to populate an ezcMvcRequest object.</p>
+<p>Source for this file: <a href="http://fisheye6.atlassian.com/browse/zetacomponents/trunk/MvcTools/src/request_parsers/http.php?r=HEAD">/MvcTools/src/request_parsers/http.php</a></p>
+       
+
+
+<pre><a href="ezcMvcRequestParser.html">ezcMvcRequestParser</a>
+   |
+   --ezcMvcHttpRequestParser</pre>
+
+
+  <table><tr><td>
+            <strong>Version:</strong>&#8192;&#8192;
+          </td>
+          <td>//autogentag//</td>
+        </tr></table><h3>Inherited Member Variables</h3>
+  <table class="summary"><thead><tr><th colspan="2">
+            From <span class="classname"><a href="ezcMvcRequestParser.html">ezcMvcRequestParser</a></span>         
+          </th>
+        </tr></thead><tbody><tr><td class="right">
+              <em>protected</em>                          </td>
+            <td>
+              <code><a href="ezcMvcRequestParser.html#var%24properties">ezcMvcRequestParser::$properties</a></code>
+              
+            </td>
+          </tr><tr><td class="right">
+              <em>protected</em>                          </td>
+            <td>
+              <code><a href="ezcMvcRequestParser.html#var%24request">ezcMvcRequestParser::$request</a></code>
+              
+            </td>
+          </tr></tbody></table><a name="sec-method-summary"></a>
+  <h3>Method Summary</h3>
+  <table class="summary"><tr><td class="right">
+            <em>public</em>                        <em><a href="ezcMvcRequest.html">ezcMvcRequest</a></em>          </td>
+          <td>
+            <code>
+              <a href="#createRequest"><b>createRequest</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Uses the data from the superglobals.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em><a href="ezcMvcRequest.html">ezcMvcRequest</a></em>          </td>
+          <td>
+            <code>
+              <a href="#createRequestObject"><b>createRequestObject</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Creates and returns an ezcMvcRequest object.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#processAcceptHeaders"><b>processAcceptHeaders</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Proccesses the HTTP Accept headers into the ezcMvcRequestAccept struct.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#processAuthVars"><b>processAuthVars</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Processes the basic HTTP auth variables is set</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#processBody"><b>processBody</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Processes the request body for PUT requests.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#processCookies"><b>processCookies</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Process cookies</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#processDate"><b>processDate</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Processes the request date.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#processFiles"><b>processFiles</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Processes uploaded files.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#processHost"><b>processHost</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Processes the request host.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#processProtocol"><b>processProtocol</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Processes the request protocol.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#processReferrer"><b>processReferrer</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Processes the referrer.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#processRequestId"><b>processRequestId</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Processes the request ID from host and URI.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#processStandardHeaders"><b>processStandardHeaders</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Processes the standard headers that are not subdivided into other structs.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#processUri"><b>processUri</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Processes the request URI.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#processUserAgentHeaders"><b>processUserAgentHeaders</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Proccesses the User Agent header into the ezcMvcRequestUserAgent struct.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#processVariables"><b>processVariables</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Processes the request variables.</div>          </td>
+        </tr></table><h3>Inherited Methods</h3>
+  <table class="summary"><thead><tr><th colspan="2">
+            From <span class="classname"><a href="ezcMvcRequestParser.html">ezcMvcRequestParser</a></span>
+          </th>
+        </tr></thead><tbody><tr><td class="right">
+              <em>public</em>                                          <em>ezcMvcRequestParser</em>            </td>
+            <td>
+              <code><b><a href="ezcMvcRequestParser.html#method__construct">ezcMvcRequestParser::__construct()</a></b></code>
+              <br><div style="margin-left: 20px">Constructs a new request parser</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>              abstract                            <em><a href="ezcMvcRequest.html">ezcMvcRequest</a></em>            </td>
+            <td>
+              <code><b><a href="ezcMvcRequestParser.html#methodcreateRequest">ezcMvcRequestParser::createRequest()</a></b></code>
+              <br><div style="margin-left: 20px">Reads the raw request data with what ever means necessary and  constructs an ezcMvcRequest object.</div>                          </td>
+          </tr></tbody></table><a name="sec-methods"></a>
+  <h3>Methods</h3>
+  <a name="method_detail"></a>
+                                
+      <a name="methodcreateRequest" id="createRequest"><!-- --></a>
+
+    <h4>createRequest</h4>
+
+    <div class="method-signature">
+      <a href="ezcMvcRequest.html">ezcMvcRequest</a>
+      createRequest(
+      )
+    </div>
+
+    <p>Uses the data from the superglobals.</p>
+    
+        
+
+          <h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcMvcRequestParser.html#methodcreateRequest">ezcMvcRequestParser::createRequest()</a></code></td>
+            <td>
+                              Reads the raw request data with what ever means necessary and  constructs an ezcMvcRequest object.
+                          </td>
+          </tr></tbody></table><a name="methodcreateRequestObject" id="createRequestObject"><!-- --></a>
+
+    <h4>createRequestObject</h4>
+
+    <div class="method-signature">
+      <a href="ezcMvcRequest.html">ezcMvcRequest</a>
+      createRequestObject(
+      )
+    </div>
+
+    <p>Creates and returns an ezcMvcRequest object.</p>
+    
+        
+
+    
+    
+    
+        <a name="methodprocessAcceptHeaders" id="processAcceptHeaders"><!-- --></a>
+
+    <h4>processAcceptHeaders</h4>
+
+    <div class="method-signature">
+      void
+      processAcceptHeaders(
+      )
+    </div>
+
+    <p>Proccesses the HTTP Accept headers into the ezcMvcRequestAccept struct.</p>
+    
+        
+
+    
+    
+    
+        <a name="methodprocessAuthVars" id="processAuthVars"><!-- --></a>
+
+    <h4>processAuthVars</h4>
+
+    <div class="method-signature">
+      void
+      processAuthVars(
+      )
+    </div>
+
+    <p>Processes the basic HTTP auth variables is set</p>
+    
+        
+
+    
+    
+    
+        <a name="methodprocessBody" id="processBody"><!-- --></a>
+
+    <h4>processBody</h4>
+
+    <div class="method-signature">
+      void
+      processBody(
+      )
+    </div>
+
+    <p>Processes the request body for PUT requests.</p>
+    
+        
+
+    
+    
+    
+        <a name="methodprocessCookies" id="processCookies"><!-- --></a>
+
+    <h4>processCookies</h4>
+
+    <div class="method-signature">
+      void
+      processCookies(
+      )
+    </div>
+
+    <p>Process cookies</p>
+    
+        
+
+    
+    
+    
+        <a name="methodprocessDate" id="processDate"><!-- --></a>
+
+    <h4>processDate</h4>
+
+    <div class="method-signature">
+      void
+      processDate(
+      )
+    </div>
+
+    <p>Processes the request date.</p>
+    
+        
+
+    
+    
+    
+        <a name="methodprocessFiles" id="processFiles"><!-- --></a>
+
+    <h4>processFiles</h4>
+
+    <div class="method-signature">
+      void
+      processFiles(
+      )
+    </div>
+
+    <p>Processes uploaded files.</p>
+    
+        
+
+    
+    
+    
+        <a name="methodprocessHost" id="processHost"><!-- --></a>
+
+    <h4>processHost</h4>
+
+    <div class="method-signature">
+      void
+      processHost(
+      )
+    </div>
+
+    <p>Processes the request host.</p>
+    
+        
+
+    
+    
+    
+        <a name="methodprocessProtocol" id="processProtocol"><!-- --></a>
+
+    <h4>processProtocol</h4>
+
+    <div class="method-signature">
+      void
+      processProtocol(
+      )
+    </div>
+
+    <p>Processes the request protocol.</p>
+    
+        
+
+    
+    
+    
+        <a name="methodprocessReferrer" id="processReferrer"><!-- --></a>
+
+    <h4>processReferrer</h4>
+
+    <div class="method-signature">
+      void
+      processReferrer(
+      )
+    </div>
+
+    <p>Processes the referrer.</p>
+    
+        
+
+    
+    
+    
+        <a name="methodprocessRequestId" id="processRequestId"><!-- --></a>
+
+    <h4>processRequestId</h4>
+
+    <div class="method-signature">
+      void
+      processRequestId(
+      )
+    </div>
+
+    <p>Processes the request ID from host and URI.</p>
+    
+        
+
+    
+    
+    
+        <a name="methodprocessStandardHeaders" id="processStandardHeaders"><!-- --></a>
+
+    <h4>processStandardHeaders</h4>
+
+    <div class="method-signature">
+      void
+      processStandardHeaders(
+      )
+    </div>
+
+    <p>Processes the standard headers that are not subdivided into other structs.</p>
+    
+        
+
+    
+    
+    
+        <a name="methodprocessUri" id="processUri"><!-- --></a>
+
+    <h4>processUri</h4>
+
+    <div class="method-signature">
+      void
+      processUri(
+      )
+    </div>
+
+    <p>Processes the request URI.</p>
+    
+        
+
+    
+    
+    
+        <a name="methodprocessUserAgentHeaders" id="processUserAgentHeaders"><!-- --></a>
+
+    <h4>processUserAgentHeaders</h4>
+
+    <div class="method-signature">
+      void
+      processUserAgentHeaders(
+      )
+    </div>
+
+    <p>Proccesses the User Agent header into the ezcMvcRequestUserAgent struct.</p>
+    
+        
+
+    
+    
+    
+        <a name="methodprocessVariables" id="processVariables"><!-- --></a>
+
+    <h4>processVariables</h4>
+
+    <div class="method-signature">
+      void
+      processVariables(
+      )
+    </div>
+
+    <p>Processes the request variables.</p>
+    
+        
+
+    
+    
+    
+  
+    <div class="credit">
+      Documentation generated by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+    </div>
+  </div>
+  
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,282 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="PHP, apache, components, framework, quality" />
+	<meta name="author" content="dotxp" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Wed, 04 Aug 2010 13:07:23 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="ezcDbFactory.html" />
+	<meta name="DC.creator" content="dotxp" />
+	<meta name="DC.date" content="Wed, 04 Aug 2010 13:07:23 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/Database/phpdoc/ezcDbFactory.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/Database/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/trunk/Database/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Database/oracle_setup.html" title="Oracle_setup ">Oracle_setup </a>
+	</li>
+
+</ul>
+
+		
+  <div class="phpdoc">
+    <h2>Apache Zeta Components Manual :: Docs For Class ezcDbFactory</h2>
+
+                  <h3>Database::ezcDbFactory</h3>
+    
+<a name="sec-description"></a>
+<h3>Class ezcDbFactory</h3>
+
+<p>ezcDbFactory manages the list of known database drivers  and is used to create their instances.</p><div><p>Example:  </p><ol><li><div class="src-line">&#8192;<span class="src-var">$dbparams&#8192;</span>=&#8192;<span class="src-key">array</span><span class="src-sym">(</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'type'&#8192;&#8192;&#8192;</span>=&gt;&#8192;<span class="src-str">'mysql'</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'dbname'&#8192;</span>=&gt;&#8192;<span class="src-str">'test'</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'user'&#8192;&#8192;&#8192;</span>=&gt;&#8192;<span class="src-str">'john'</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'pass'&#8192;&#8192;&#8192;</span>=&gt;&#8192;<span class="src-str">'topsecret'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$db&#8192;</span>=&#8192;<span class="src-id"><a href="ezcDbFactory.html">ezcDbFactory</a></span><span class="src-sym">::</span><a href="ezcDbFactory.html#methodcreate">create</a><span class="src-sym">(&#8192;</span><span class="src-var">$dbparams&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$db</span><span class="src-sym">-&gt;</span><span class="src-id">query</span><span class="src-sym">(&#8192;</span><span class="src-str">'SELECT&#8192;*&#8192;FROM&#8192;tbl'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol><p>Instead of passing an array with those parameters, you can also pass a DSN:</p><p></p><ol><li><div class="src-line">&#8192;<span class="src-var">$dsn&#8192;</span>=&#8192;<span class="src-str">"mysql://root@localhost/geolocation"</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$db&#8192;</span>=&#8192;<span class="src-id"><a href="ezcDbFactory.html">ezcDbFactory</a></span><span class="src-sym">::</span><a href="ezcDbFactory.html#methodcreate">create</a><span class="src-sym">(&#8192;</span><span class="src-var">$dsn&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol><p>Other examples of DSNs are:  </p><ol><li><div class="src-line">&#8192;<span class="src-var">$dsn&#8192;</span>=&#8192;<span class="src-str">"sqlite:///tmp/ezc.sqlite"</span><span class="src-sym">;&#8192;</span><span class="src-comm">//&#8192;Disk&#8192;based&#8192;databases&#8192;for&#8192;SQLite.</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$dsn&#8192;</span>=&#8192;<span class="src-str">"sqlite://:memory:"</span><span class="src-sym">;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;</span><span class="src-comm">//&#8192;In&#8192;memory&#8192;databases&#8192;for&#8192;SQLite.</span></div></li>
+</ol><p>Note that this class does not deal with character sets automatically, you  have to make sure that you do that yourself. For MySQL that means running  a query "SET NAMES" for example. See the tutorial for some hints on this.</p></div>
+<p>Source for this file: <a href="http://fisheye6.atlassian.com/browse/zetacomponents/trunk/Database/src/factory.php?r=HEAD">/Database/src/factory.php</a></p>
+       
+
+
+
+
+  <table><tr><td>
+            <strong>Version:</strong>&#8192;&#8192;
+          </td>
+          <td>//autogentag//</td>
+        </tr></table><a name="sec-method-summary"></a>
+  <h3>Method Summary</h3>
+  <table class="summary"><tr><td class="right">
+            <em>public</em>            static
+                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#addImplementation"><b>addImplementation</b></a>(
+                                                                                    $implementationName
+                                                    ,                                     $className
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Adds a database implementation to the list of known implementations.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>            static
+                        <em><a href="ezcDbHandler.html">ezcDbHandler</a></em>          </td>
+          <td>
+            <code>
+              <a href="#create"><b>create</b></a>(
+                                                                                    $dbParams
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Creates and returns an instance of the specified ezcDbHandler implementation.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>            static
+                        <em>array(string)</em>          </td>
+          <td>
+            <code>
+              <a href="#getImplementations"><b>getImplementations</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns a list with supported database implementations.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>            static
+                        <em>array</em>          </td>
+          <td>
+            <code>
+              <a href="#parseDSN"><b>parseDSN</b></a>(
+                                                                                    $dsn
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns the Data Source Name as a structure containing the various parts of the DSN.</div>          </td>
+        </tr></table><a name="sec-methods"></a>
+  <h3>Methods</h3>
+  <a name="method_detail"></a>
+      <a name="methodaddImplementation" id="addImplementation"><!-- --></a>
+
+    <h4>addImplementation</h4>
+
+    <div class="method-signature">
+      static void
+      addImplementation(
+                                  string
+          $implementationName
+                            ,           string
+          $className
+                        )
+    </div>
+
+      <p>Adds a database implementation to the list of known implementations.</p><div><p>$implementationName is the name of the implemenation. This name should  be short and uniquely identify the database. $className is the class name  of the class that implements the handler for this database.</p><p>Example:  </p><ol><li><div class="src-line">&#8192;<span class="src-key">class&#8192;</span><span class="src-id">DB2Handler</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">{</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">}</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-id"><a href="ezcDbFactory.html">ezcDbFactory</a></span><span class="src-sym">::</span><a href="ezcDbFactory.html#methodaddImplementation">addImplementation</a><span class="src-sym">(&#8192;</span><span class="src-str">'db2'</span><span class="src-sym">,&#8192;</span><span class="src-str">'DB2Handler'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;...</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$dbparams&#8192;</span>=&#8192;<span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-str">'handler'&#8192;</span>=&gt;&#8192;<span class="src-str">'db2'</span><span class="src-sym">,&#8192;</span>...&#8192;<span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$db&#8192;</span>=&#8192;<span class="src-id"><a href="ezcDbFactory.html">ezcDbFactory</a></span><span class="src-sym">::</span><a href="ezcDbFactory.html#methodcreate">create</a><span class="src-sym">(&#8192;</span><span class="src-var">$dbparams&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol></div>      
+              <h5>Parameters:</h5>
+        <table class="detail"><thead><tr><th>Name</th>
+              <th>Type</th>
+              <th class="desc">Description</th>
+            </tr></thead><tbody><tr><td><code>$implementationName</code></td>
+                <td><em>string</em></td>
+                <td>
+                                  </td>
+              </tr><tr><td><code>$className</code></td>
+                <td><em>string</em></td>
+                <td>
+                                  </td>
+              </tr></tbody></table><a name="methodcreate" id="create"><!-- --></a>
+
+    <h4>create</h4>
+
+    <div class="method-signature">
+      static <a href="ezcDbHandler.html">ezcDbHandler</a>
+      create(
+                                  mixed
+          $dbParams
+                        )
+    </div>
+
+      <p>Creates and returns an instance of the specified ezcDbHandler implementation.</p><div><p>Supported database parameters are: </p><ul><li>phptype|type|handler|driver: Database implementation</li><li>user|username:               Database user name</li><li>pass|password:               Database user password</li><li>dbname|database:             Database name</li><li>host|hostspec:               Name of the host database is running on</li><li>port:                        TCP port</li><li>charset:                     Client character set</li><li>socket:                      UNIX socket path</li></ul>  The list above is actually driver-dependent and may be extended in the future.  You can specify any parameters your database handler supports.</div>      
+              <h5>Parameters:</h5>
+        <table class="detail"><thead><tr><th>Name</th>
+              <th>Type</th>
+              <th class="desc">Description</th>
+            </tr></thead><tbody><tr><td><code>$dbParams</code></td>
+                <td><em>mixed</em></td>
+                <td>
+                                      Database parameters                  (driver, host, port, user, pass, etc).                  May be specified either as array (key =&gt; val ....) or as DSN string.                  Format of the DSN is the same as accepted by PEAR::DB::parseDSN().
+                                  </td>
+              </tr></tbody></table><h5>Exceptions:</h5>
+        <table class="detail"><thead><tr><th>Type</th>
+              <th class="desc">Description</th>
+            </tr></thead><tbody><tr><td><code><a href="ezcDbHandlerNotFoundException.html">ezcDbHandlerNotFoundException</a></code></td>
+                <td>
+                                      if the requested database handler could not be found.
+                                  </td>
+              </tr></tbody></table><a name="methodgetImplementations" id="getImplementations"><!-- --></a>
+
+    <h4>getImplementations</h4>
+
+    <div class="method-signature">
+      static array(string)
+      getImplementations(
+      )
+    </div>
+
+      <p>Returns a list with supported database implementations.</p><div><p>Example:  </p><ol><li><div class="src-line">&#8192;<span class="src-id"><a href="ezcDbFactory.html">ezcDbFactory</a></span><span class="src-sym">::</span><a href="ezcDbFactory.html#methodgetImplementations">getImplementations</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol></div>      
+      
+      
+      
+      
+      
+        <a name="methodparseDSN" id="parseDSN"><!-- --></a>
+
+    <h4>parseDSN</h4>
+
+    <div class="method-signature">
+      static array
+      parseDSN(
+                                  string
+          $dsn
+                        )
+    </div>
+
+      <p>Returns the Data Source Name as a structure containing the various parts of the DSN.</p><div><p>Additional keys can be added by appending a URI query string to the  end of the DSN.</p><p>The format of the supplied DSN is in its fullest form:  </p><ol><li><div class="src-line">&#8192;&#8192;<span class="src-id">phptype</span><span class="src-sym">(</span><span class="src-id">dbsyntax</span><span class="src-sym">)</span>:<span class="src-comm">//username:password@protocol+hostspec/database?option=8&amp;another=true</span></div></li>
+</ol><p>Most variations are allowed:  </p><ol><li><div class="src-line">&#8192;&#8192;<span class="src-id">phptype</span>:<span class="src-comm">//username:password@protocol+hostspec:110//usr/db_file.db?mode=0644</span></div></li>
+<li><div class="src-line">&#8192;&#8192;<span class="src-id">phptype</span>:<span class="src-comm">//username:password@hostspec/database_name</span></div></li>
+<li><div class="src-line">&#8192;&#8192;<span class="src-id">phptype</span>:<span class="src-comm">//username:password@hostspec</span></div></li>
+<li><div class="src-line">&#8192;&#8192;<span class="src-id">phptype</span>:<span class="src-comm">//username@hostspec</span></div></li>
+<li><div class="src-line">&#8192;&#8192;<span class="src-id">phptype</span>:<span class="src-comm">//hostspec/database</span></div></li>
+<li><div class="src-line">&#8192;&#8192;<span class="src-id">phptype</span>:<span class="src-comm">//hostspec</span></div></li>
+<li><div class="src-line">&#8192;&#8192;<span class="src-id">phptype</span><span class="src-sym">(</span><span class="src-id">dbsyntax</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line">&#8192;&#8192;<span class="src-id">phptype</span></div></li>
+</ol><p>This function is 'borrowed' from PEAR /DB.php .</p></div>      
+              <h5>Parameters:</h5>
+        <table class="detail"><thead><tr><th>Name</th>
+              <th>Type</th>
+              <th class="desc">Description</th>
+            </tr></thead><tbody><tr><td><code>$dsn</code></td>
+                <td><em>string</em></td>
+                <td>
+                                      Data Source Name to be parsed
+                                  </td>
+              </tr></tbody></table><div class="credit">
+      Documentation generated by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+    </div>
+  </div>
+  
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

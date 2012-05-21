@@ -1,0 +1,571 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="PHP, apache, components, framework, quality" />
+	<meta name="author" content="dotxp" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Wed, 04 Aug 2010 13:07:57 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="ezcSignalCollection.html" />
+	<meta name="DC.creator" content="dotxp" />
+	<meta name="DC.date" content="Wed, 04 Aug 2010 13:07:57 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/SignalSlot/phpdoc/ezcSignalCollection.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/SignalSlot/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/trunk/SignalSlot/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+
+</ul>
+
+		
+  <div class="phpdoc">
+    <h2>Apache Zeta Components Manual :: Docs For Class ezcSignalCollection</h2>
+
+                  <h3>SignalSlot::ezcSignalCollection</h3>
+    
+<a name="sec-description"></a>
+<h3>Class ezcSignalCollection</h3>
+
+<p>ezcSignalCollection implements a mechanism for inter and intra object communication.</p><div><p>See the tutorial for extensive examples on how to use this class.</p></div>
+<p>Source for this file: <a href="http://fisheye6.atlassian.com/browse/zetacomponents/trunk/SignalSlot/src/signal_collection.php?r=HEAD">/SignalSlot/src/signal_collection.php</a></p>
+       
+
+
+
+
+  <table><tr><td>
+            <strong>Version:</strong>&#8192;&#8192;
+          </td>
+          <td>//autogen//</td>
+        </tr></table><a name="sec-prop-summary"></a>
+  <h3>Properties</h3>
+  <table class="summary"><tr><td class="right">
+          <a name="prop%24identifier" id="$identifier"></a>
+          <a name="prop-%24identifier" id="$identifier"></a>
+          <em>string</em>        </td>
+        <td class="right">
+          <em>read</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24identifier" title="details" class="var-name-summary">$identifier</a>
+                      </code>
+          <br><div style="margin-left: 20px">The identifier of this signal collection.                                     Usually the class name of the object containing the collection.</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24signalsBlocked" id="$signalsBlocked"></a>
+          <a name="prop-%24signalsBlocked" id="$signalsBlocked"></a>
+          <em>bool</em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24signalsBlocked" title="details" class="var-name-summary">$signalsBlocked</a>
+                      </code>
+          <br><div style="margin-left: 20px">If set to true emits will not cause any slots to be called.</div>        </td>
+      </tr></table><a name="sec-method-summary"></a>
+  <h3>Method Summary</h3>
+  <table class="summary"><tr><td class="right">
+            <em>public</em>            static
+                        <em><a href="ezcSignalStaticConnectionsBase.html">ezcSignalStaticConnectionsBase</a></em>          </td>
+          <td>
+            <code>
+              <a href="#getStaticConnectionsHolder"><b>getStaticConnectionsHolder</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns the current provider of static connections or null if there is none.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>            static
+                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#setStaticConnectionsHolder"><b>setStaticConnectionsHolder</b></a>(
+                                                                                    $holder
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">If set, $holder will be used to fetch static connections instead of ezcSignalStaticConnections.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>ezcSignalCollection</em>          </td>
+          <td>
+            <code>
+              <a href="#__construct"><b>__construct</b></a>(
+                                                                  [                  $identifier
+                   = "default"]                                  ,                   [                  $options
+                   = array()]                               )
+            </code>
+            <br><div style="margin-left: 20px">Constructs a new signal collection with the identifier $identifier.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#connect"><b>connect</b></a>(
+                                                                                    $signal
+                                                    ,                                     $slot
+                                                    ,                   [                  $priority
+                   = 1000]                               )
+            </code>
+            <br><div style="margin-left: 20px">Connects the signal $signal to the slot $slot.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#disconnect"><b>disconnect</b></a>(
+                                                                                    $signal
+                                                    ,                                     $slot
+                                                    ,                   [                  $priority
+                   = null]                               )
+            </code>
+            <br><div style="margin-left: 20px">Disconnects the $slot from the $signal.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#emit"><b>emit</b></a>(
+                                                                                    $signal
+                                                    ,                                     $signal_parameters
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Emits the signal with the name $signal</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em><a href="ezcSignalCollectionOptions.html">ezcSignalCollectionOptions</a></em>          </td>
+          <td>
+            <code>
+              <a href="#getOptions"><b>getOptions</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns the options for this class.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>bool</em>          </td>
+          <td>
+            <code>
+              <a href="#isConnected"><b>isConnected</b></a>(
+                                                                                    $signal
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns true if any slots have been connected to the signal $signal.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#setOptions"><b>setOptions</b></a>(
+                                                                                    $options
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Sets the options of this class.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>mixed</em>          </td>
+          <td>
+            <code>
+              <a href="#__get"><b>__get</b></a>(
+                                                                                    $name
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns the property $name.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#__set"><b>__set</b></a>(
+                                                                                    $name
+                                                    ,                                     $value
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Sets the property $name to $value.</div>          </td>
+        </tr></table><a name="sec-methods"></a>
+  <h3>Methods</h3>
+  <a name="method_detail"></a>
+                <a name="methodgetStaticConnectionsHolder" id="getStaticConnectionsHolder"><!-- --></a>
+
+    <h4>getStaticConnectionsHolder</h4>
+
+    <div class="method-signature">
+      static <a href="ezcSignalStaticConnectionsBase.html">ezcSignalStaticConnectionsBase</a>
+      getStaticConnectionsHolder(
+      )
+    </div>
+
+      <p>Returns the current provider of static connections or null if there is none.</p>      
+      
+      
+      
+      
+      
+            <a name="methodsetStaticConnectionsHolder" id="setStaticConnectionsHolder"><!-- --></a>
+
+    <h4>setStaticConnectionsHolder</h4>
+
+    <div class="method-signature">
+      static void
+      setStaticConnectionsHolder(
+                                  <a href="ezcSignalStaticConnectionsBase.html">ezcSignalStaticConnectionsBase</a>
+          $holder
+                        )
+    </div>
+
+      <p>If set, $holder will be used to fetch static connections instead of ezcSignalStaticConnections.</p>      
+              <h5>Parameters:</h5>
+        <table class="detail"><thead><tr><th>Name</th>
+              <th>Type</th>
+              <th class="desc">Description</th>
+            </tr></thead><tbody><tr><td><code>$holder</code></td>
+                <td><em><a href="ezcSignalStaticConnectionsBase.html">ezcSignalStaticConnectionsBase</a></em></td>
+                <td>
+                                  </td>
+              </tr></tbody></table><a name="method__construct" id="__construct"><!-- --></a>
+
+    <h4>__construct</h4>
+
+    <div class="method-signature">
+      ezcSignalCollection
+      __construct(
+                                  [string
+          $identifier
+           = "default"]                  ,           [
+          $options
+           = array()]              )
+    </div>
+
+    <p>Constructs a new signal collection with the identifier $identifier.</p><div><p>The identifier can be used to connect to signals statically using  ezcSignalStaticConnections.</p><p>Through the associative array options you can specify the options for this class in the  format array( 'optionName' =&gt; value ). See the documentation of ezcSignalCollectionOptions  for information on the available options.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$identifier</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$options</code></td>
+              <td><em>array</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodconnect" id="connect"><!-- --></a>
+
+    <h4>connect</h4>
+
+    <div class="method-signature">
+      void
+      connect(
+                                  string
+          $signal
+                            ,           callback
+          $slot
+                            ,           [int
+          $priority
+           = 1000]              )
+    </div>
+
+    <p>Connects the signal $signal to the slot $slot.</p><div><p>To control the order in which slots are called you can set a priority  from 1 - 65 536. The lower the number the higher the priority. The default  priority is 1000.  Slots with the same priority may be called with in any order.</p><p>A slot will be called once for every time it is connected. It is possible  to connect a slot more than once.</p><p>See the PHP documentation for examples on the callback type.  http://php.net/callback.</p><p>We recommend avoiding excessive usage of the $priority parameter  since it makes it much harder to track how your program works.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$signal</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$slot</code></td>
+              <td><em>callback</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$priority</code></td>
+              <td><em>int</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcSignalSlotException.html">ezcSignalSlotException</a></code></td>
+              <td>
+                                  if the signals options has been set and $signal is not in the list of signals.
+                              </td>
+            </tr></tbody></table><a name="methoddisconnect" id="disconnect"><!-- --></a>
+
+    <h4>disconnect</h4>
+
+    <div class="method-signature">
+      void
+      disconnect(
+                                  string
+          $signal
+                            ,           callback
+          $slot
+                            ,           [int
+          $priority
+           = null]              )
+    </div>
+
+    <p>Disconnects the $slot from the $signal.</p><div><p>If the priority is given it will try to disconnect a slot with that priority.  If no such slot is found no slot will be disconnected.</p><p>If no priority is given it will disconnect the matching slot with the lowest priority.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$signal</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$slot</code></td>
+              <td><em>callback</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$priority</code></td>
+              <td><em>int</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcSignalSlotException.html">ezcSignalSlotException</a></code></td>
+              <td>
+                                  if the signals options has been set and $signal is not in the list of signals.
+                              </td>
+            </tr></tbody></table><a name="methodemit" id="emit"><!-- --></a>
+
+    <h4>emit</h4>
+
+    <div class="method-signature">
+      void
+      emit(
+                                  string
+          $signal
+                            ,           ...
+          $signal_parameters
+                        )
+    </div>
+
+    <p>Emits the signal with the name $signal</p><div><p>Any additional parameters are sent as parameters to the slot.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$signal</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$signal_parameters</code></td>
+              <td><em>...</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcSignalSlotException.html">ezcSignalSlotException</a></code></td>
+              <td>
+                                  if the signals options has been set and $signal is not in the list of signals.
+                              </td>
+            </tr></tbody></table><a name="methodgetOptions" id="getOptions"><!-- --></a>
+
+    <h4>getOptions</h4>
+
+    <div class="method-signature">
+      <a href="ezcSignalCollectionOptions.html">ezcSignalCollectionOptions</a>
+      getOptions(
+      )
+    </div>
+
+    <p>Returns the options for this class.</p>
+    
+        
+
+    
+    
+    
+          <a name="methodisConnected" id="isConnected"><!-- --></a>
+
+    <h4>isConnected</h4>
+
+    <div class="method-signature">
+      bool
+      isConnected(
+                                  string
+          $signal
+                        )
+    </div>
+
+    <p>Returns true if any slots have been connected to the signal $signal.</p><div><p>False is returned if no slots have been connected to the $signal.</p><p>Note: Emitting the signal $signal may still not call any slots if  the property signalsBlocked has been set.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$signal</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcSignalSlotException.html">ezcSignalSlotException</a></code></td>
+              <td>
+                                  if the signals options has been set and $signal is not in the list of signals.
+                              </td>
+            </tr></tbody></table><a name="methodsetOptions" id="setOptions"><!-- --></a>
+
+    <h4>setOptions</h4>
+
+    <div class="method-signature">
+      void
+      setOptions(
+                                  <a href="ezcSignalCollectionOptions.html">ezcSignalCollectionOptions</a>|array(string=&gt;value)
+          $options
+                        )
+    </div>
+
+    <p>Sets the options of this class.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$options</code></td>
+              <td><em><a href="ezcSignalCollectionOptions.html">ezcSignalCollectionOptions</a>|array(string=&gt;value)</em></td>
+              <td>
+                                  The options to set         either as an associative array in the form array(optionName=&gt;value) or a         ezcSignalCollectionOptions object.
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseSettingNotFoundException.html">ezcBaseSettingNotFoundException</a></code></td>
+              <td>
+                                  If you tried to set a non-existent option value.
+                              </td>
+            </tr><tr><td><code><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseSettingValueException.html">ezcBaseSettingValueException</a></code></td>
+              <td>
+                                  If the value is not valid for the desired option.
+                              </td>
+            </tr><tr><td><code><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseValueException.html">ezcBaseValueException</a></code></td>
+              <td>
+                                  If you submit neither an array nor an instance of ezcSignalCollectionOptions.
+                              </td>
+            </tr></tbody></table><a name="method__get" id="__get"><!-- --></a>
+
+    <h4>__get</h4>
+
+    <div class="method-signature">
+      mixed
+      __get(
+                                  string
+          $name
+                        )
+    </div>
+
+    <p>Returns the property $name.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$name</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBasePropertyNotFoundException.html">ezcBasePropertyNotFoundException</a></code></td>
+              <td>
+                                  if the property does not exist.
+                              </td>
+            </tr></tbody></table><a name="method__set" id="__set"><!-- --></a>
+
+    <h4>__set</h4>
+
+    <div class="method-signature">
+      void
+      __set(
+                                  string
+          $name
+                            ,           mixed
+          $value
+                        )
+    </div>
+
+    <p>Sets the property $name to $value.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$name</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$value</code></td>
+              <td><em>mixed</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBasePropertyNotFoundException.html">ezcBasePropertyNotFoundException</a></code></td>
+              <td>
+                                  if the property does not exist.
+                              </td>
+            </tr></tbody></table><div class="credit">
+      Documentation generated by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+    </div>
+  </div>
+  
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

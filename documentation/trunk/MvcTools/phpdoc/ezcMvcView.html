@@ -1,0 +1,257 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="PHP, apache, components, framework, quality" />
+	<meta name="author" content="dotxp" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Wed, 04 Aug 2010 13:07:51 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="ezcMvcView.html" />
+	<meta name="DC.creator" content="dotxp" />
+	<meta name="DC.date" content="Wed, 04 Aug 2010 13:07:51 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/MvcTools/phpdoc/ezcMvcView.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/MvcTools/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/trunk/MvcTools/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+
+</ul>
+
+		
+  <div class="phpdoc">
+    <h2>Apache Zeta Components Manual :: Docs For Class ezcMvcView</h2>
+
+                  <h3>MvcTools::ezcMvcView</h3>
+    
+<a name="sec-description"></a>
+<h3>Class ezcMvcView</h3>
+
+<p>The abstract view that you need to inherit from to supply your view zones.</p>
+<p>Source for this file: <a href="http://fisheye6.atlassian.com/browse/zetacomponents/trunk/MvcTools/src/view.php?r=HEAD">/MvcTools/src/view.php</a></p>
+       
+
+
+
+
+  <table><tr><td>
+            <strong>Version:</strong>&#8192;&#8192;
+          </td>
+          <td>//autogentag//</td>
+        </tr></table><a name="sec-var-summary"></a>
+  <h3>Member Variables</h3>
+  <table class="summary"><tr><td class="right">
+            <em>protected</em>            <em><a href="ezcMvcRequest.html">ezcMvcRequest</a></em>          </td>
+          <td>
+            <code>
+              $request
+                          </code>
+            <br><div style="margin-left: 20px">Holds the request object</div>                      </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            <em><a href="ezcMvcResult.html">ezcMvcResult</a></em>          </td>
+          <td>
+            <code>
+              $result
+                          </code>
+            <br><div style="margin-left: 20px">Holds the result object, that's the result of all the views.</div>                      </td>
+        </tr></table><a name="sec-method-summary"></a>
+  <h3>Method Summary</h3>
+  <table class="summary"><tr><td class="right">
+            <em>public</em>                        <em>ezcMvcView</em>          </td>
+          <td>
+            <code>
+              <a href="#__construct"><b>__construct</b></a>(
+                                                                                    $request
+                                                    ,                                     $result
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Creates the view object</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em><a href="ezcMvcResponse.html">ezcMvcResponse</a></em>          </td>
+          <td>
+            <code>
+              <a href="#createResponse"><b>createResponse</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">This method is called from the dispatched to create the rendered response from  the controller's result.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>mixed</em>          </td>
+          <td>
+            <code>
+              <a href="#createResponseBody"><b>createResponseBody</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Creates a controller from the set of routes.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>            abstract            <em>array(ezcMvcViewHandler)</em>          </td>
+          <td>
+            <code>
+              <a href="#createZones"><b>createZones</b></a>(
+                                                                                    $layout
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">The user-implemented that returns the zones.</div>          </td>
+        </tr></table><a name="sec-methods"></a>
+  <h3>Methods</h3>
+  <a name="method_detail"></a>
+        
+      <a name="method__construct" id="__construct"><!-- --></a>
+
+    <h4>__construct</h4>
+
+    <div class="method-signature">
+      ezcMvcView
+      __construct(
+                                  <a href="ezcMvcRequest.html">ezcMvcRequest</a>
+          $request
+                            ,           <a href="ezcMvcResult.html">ezcMvcResult</a>
+          $result
+                        )
+    </div>
+
+    <p>Creates the view object</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$request</code></td>
+              <td><em><a href="ezcMvcRequest.html">ezcMvcRequest</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$result</code></td>
+              <td><em><a href="ezcMvcResult.html">ezcMvcResult</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodcreateResponse" id="createResponse"><!-- --></a>
+
+    <h4>createResponse</h4>
+
+    <div class="method-signature">
+      <a href="ezcMvcResponse.html">ezcMvcResponse</a>
+      createResponse(
+      )
+    </div>
+
+    <p>This method is called from the dispatched to create the rendered response from  the controller's result.</p><div><p>It calls the createResponseBody() to do the actual rendering. If any exception  is thrown in any of the view handlers, this method catches it and returns that  exception object to the dispatcher. The dispatcher must therefore check whether  an exception object was returned. In case there was an exception, the dispatcher  can take appropriate actions such as rendering a fatal error template.</p><p>If everything goes well, this method returns an ezcMvcResponse object with the  headers from the $result, and the response body from the processed views.</p></div>
+    
+        
+
+    
+    
+    
+        <a name="methodcreateResponseBody" id="createResponseBody"><!-- --></a>
+
+    <h4>createResponseBody</h4>
+
+    <div class="method-signature">
+      mixed
+      createResponseBody(
+      )
+    </div>
+
+    <p>Creates a controller from the set of routes.</p><div><p>This method is run by the createResponse() method to obtain a rendered  result from data from the controller. It uses the user implemented  createZones() method from the inherited class to fetch the different  zones of the view, and then loops over these zones in order. Each zone's  results are made available to subsequent zones. Each zone will be  processed by a view handler of the ezcMvcViewHandler class.</p></div>
+    
+          <h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseValueException.html">ezcBaseValueException</a></code></td>
+              <td>
+                                  when one of the returned zones was not actually an object implementing the ezcMvcViewHandler interface.
+                              </td>
+            </tr><tr><td><code><a href="ezcMvcNoZonesException.html">ezcMvcNoZonesException</a></code></td>
+              <td>
+                                  when there are no zones defined.
+                              </td>
+            </tr></tbody></table><a name="methodcreateZones" id="createZones"><!-- --></a>
+
+    <h4>createZones</h4>
+
+    <div class="method-signature">
+      array(ezcMvcViewHandler)
+      createZones(
+                                  bool
+          $layout
+                        )
+    </div>
+
+    <p>The user-implemented that returns the zones.</p><div><p>This method creates all the zones that are needed to render a view. A  zone is an array of elements that implement a view handler. The view  handlers do not have to be of the same type, as long as they implement  the ezcMvcViewHandler interface.</p><p>The $layout parameter can be used to determine whether a "page layout" should  be added to the list of zones. This can be useful in case you're incorporating  many different applications. The $layout parameter will be set to true automatically  for the top level createZones() method, which can then chose to add zones from  other views as well. The createZones() methods from those other views should  have the $layout parameter set to false.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$layout</code></td>
+              <td><em>bool</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><div class="credit">
+      Documentation generated by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+    </div>
+  </div>
+  
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

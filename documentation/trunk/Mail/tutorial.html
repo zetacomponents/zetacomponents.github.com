@@ -1,0 +1,835 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="PHP, apache, components, framework, quality" />
+	<meta name="author" content="jerome" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Fri, 05 Aug 2011 09:14:15 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="Tutorial" />
+	<meta name="DC.creator" content="jerome" />
+	<meta name="DC.date" content="Fri, 05 Aug 2011 09:14:15 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/Mail/tutorial.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li class="requested">
+	<a href="/zetacomponents/documentation/trunk/Mail/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Mail/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Mail/mail-listing-example.html" title="Mail-listing-example ">Mail-listing-example </a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Mail/display-example.html" title="Display-example ">Display-example </a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Mail/rfcs.html" title="Rfcs ">Rfcs </a>
+	</li>
+
+</ul>
+
+		<h2>eZ Components - Mail</h2><div class="toc"><h3>Table of Contents</h3><ul><li><p><a href="#introduction">Introduction</a></p></li><li><p><a href="#class-overview">Class overview</a></p></li><li><p><a href="#usage">Usage</a></p><ul><li><p><a href="#transport-protocols">Transport protocols</a></p></li><li><p><a href="#mail-parsers">Mail parsers</a></p></li><li><p><a href="#mail-parts">Mail parts</a></p></li><li><p><a href="#mail-tools">Mail tools</a></p></li></ul></li><li><p><a href="#building-and-sending-mail">Building and sending mail</a></p><ul><li><p><a href="#sending-a-mail-with-the-composer">Sending a mail with the composer</a></p></li><li><p><a href="#sending-a-mail-with-html-inline-images-and-attachments">Sending a mail with HTML, inline images and attachments</a></p></li><li><p><a href="#securing-html-mails-which-include-file-in-image-tags">Securing HTML mails which include file:// in image tags</a></p></li><li><p><a href="#building-a-mail-from-scratch">Building a mail from scratch</a></p></li><li><p><a href="#building-mime-structures-that-work">Building MIME structures that work</a></p></li><li><p><a href="#sending-a-mail-using-smtp">Sending a mail using SMTP</a></p></li><li><p><a href="#using-stronger-authentication-methods-with-the-smtp-transports">Using stronger authentication methods with the SMTP transports</a></p></li><li><p><a href="#avoid-bcc-headers-appearing-in-the-sent-mails">Avoid Bcc headers appearing in the sent mails</a></p></li><li><p><a href="#character-encoding">Character encoding</a></p></li><li><p><a href="#extending-the-mail-component">Extending the Mail component</a></p></li><li><p><a href="#using-the-ezcmailtools-class">Using the <a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailTools.html'>ezcMailTools</a> class</a></p></li></ul></li><li><p><a href="#mail-retrieval-and-parsing">Mail retrieval and parsing</a></p><ul><li><p><a href="#retrieving-mail-using-pop3">Retrieving mail using POP3</a></p></li><li><p><a href="#retrieving-mail-using-imap">Retrieving mail using IMAP</a></p></li><li><p><a href="#additional-usage-of-the-imap-transport">Additional usage of the IMAP transport</a></p></li><li><p><a href="#refering-messages-by-their-unique-ids-in-imap">Refering messages by their unique IDs in IMAP</a></p></li><li><p><a href="#working-with-transport-options">Working with transport options</a></p></li><li><p><a href="#using-ssl-with-pop3-and-imap">Using SSL with POP3 and IMAP</a></p></li><li><p><a href="#retrieving-mail-from-mbox-files">Retrieving mail from mbox files</a></p></li><li><p><a href="#parsing-a-message-set">Parsing a message set</a></p></li><li><p><a href="#displaying-html-mail-with-inline-images">Displaying HTML mail with inline images</a></p></li><li><p><a href="#using-a-custom-mail-class">Using a custom mail class</a></p></li><li><p><a href="#using-a-custom-file-class">Using a custom file class</a></p></li></ul></li><li><p><a href="#troubleshooting">Troubleshooting</a></p><ul><li><p><a href="#mta-qmail">MTA: Qmail</a></p></li><li><p><a href="#mta-sendmail-relaying-denied">MTA: Sendmail relaying denied</a></p></li><li><p><a href="#imap-authentication-failed">IMAP: Authentication failed</a></p></li><li><p><a href="#imap-could-not-read-from-the-stream">IMAP: Could not read from the stream</a></p></li><li><p><a href="#parsing-iconv-notices">Parsing: iconv() notices</a></p></li><li><p><a href="#parsing-missing-characters">Parsing: missing characters</a></p></li><li><p><a href="#parsing-broken-headers">Parsing: broken headers</a></p></li><li><p><a href="#parsing-multiple-value-headers">Parsing: multiple-value headers</a></p></li><li><p><a href="#parsing-text-attachments-as-file-parts">Parsing: text attachments as file parts</a></p></li><li><p><a href="#parsing-attachment-file-names">Parsing: attachment file names</a></p></li></ul></li><li><p><a href="#security">Security</a></p><ul><li><p><a href="#excluding-the-user-agent-header">Excluding the User-Agent header</a></p></li></ul></li></ul></div><a name="introduction"></a><a name="id2"></a><h3>Introduction</h3><p>The Mail component provides functionality to send, retrieve and parse mail messages. If you require an easy way to send a mail, use the <a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailComposer.html'>ezcMailComposer</a> class, which allows you to send HTML mails with images, attachments and an optional text part. If you require more advanced mail messages, you can build the complete message yourself using the <a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailPart.html'>ezcMailPart</a> derived classes. You can retrieve mail messages from different sources using the supported transports.</p><a name="class-overview"></a><a name="id3"></a><h3>Class overview</h3><p>This section gives you an overview of the main classes in the Mail component.</p><dl><dt>ezcMailComposer</dt><dd>This is a convenience class that allows you to send plain text or HTML messages with attachments, without having to construct the parts of the message yourself. Most users will use this class.</dd><dt>ezcMail</dt><dd>If <a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailComposer.html'>ezcMailComposer</a> does not have the functionality you require, you can use the <a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMail.html'>ezcMail</a> class to build MIME-structured mail from scratch. This requires basic knowledge about how a mail is structured.</dd><dt>ezcMailAddress</dt><dd>This small class represents a mail address with an optional name. It is used by both <a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailComposer.html'>ezcMailComposer</a> and <a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMail.html'>ezcMail</a> to set recipient addresses.</dd><dt>ezcMailParser</dt><dd>This class parses mail messages from text into <a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMail.html'>ezcMail</a> structures. You can use it together with the mail retrieval transport classes.</dd><dt>ezcMailSmtpTransport</dt><dd>Sends mails using an SMTP server. After sending a mail, the connection can be kept alive so that the next mail sent uses the same connection, speeding up the process.</dd><dt>ezcMailMtaTransport</dt><dd>Sends mails using the PHP mail() function.</dd><dt>ezcMailPop3Transport</dt><dd>Connects to a POP3 server and allows the fetching and deleting of mails.</dd><dt>ezcMailImapTransport</dt><dd>Connects to an IMAP server and allows operations on mails in a mailbox (fetch, delete) and operations on mailboxes (create, delete, rename, append).</dd></dl><a name="usage"></a><a name="id4"></a><h3>Usage</h3><a name="transport-protocols"></a><a name="id5"></a><h4>Transport protocols</h4><p>The Mail component provides transport protocols for both sending and retrieving mail.</p><p>For sending mail, the following protocols are supported:</p><ul><li><p>SMTP (<a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailSmtpTransport.html'>ezcMailSmtpTransport</a>) - uses an SMTP server to send mail. Supports plain and TLS/SSL/SSLv2/SSLv3 connections.</p></li><li><p>MTA (<a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailMtaTransport.html'>ezcMailMtaTransport</a>) - wraps around the PHP mail() function.</p></li></ul><p>For mail retrieval we currently support the following protocols:</p><ul><li><p>POP3 (<a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailPop3Transport.html'>ezcMailPop3Transport</a>) - an old protocol but still used. SSL is supported.</p></li><li><p>IMAP (<a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailImapTransport.html'>ezcMailImapTransport</a>) - handles multiple mailboxes. SSL is supported.</p></li><li><p>MBOX (<a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailMboxTransport.html'>ezcMailMboxTransport</a>) - handles Unix mailbox file formats.</p></li></ul><p>Mail retrieval from other sources include:</p><ul><li><p>File (<a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailFileSet.html'>ezcMailFileSet</a>) - handles mails stored in files.</p></li><li><p>Variable (<a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailVariableSet.html'>ezcMailVariableSet</a>) - handles mails stored in memory.</p></li></ul><a name="mail-parsers"></a><a name="id6"></a><h4>Mail parsers</h4><p>After using a mail retrieval transport to fetch a set of mails, a mail parser can be used to go through the set and extract the needed information like subject, sender, date and attachments from each mail in the set. The <a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailParser.html'>ezcMailParser</a> class is used for this purpose.</p><a name="mail-parts"></a><a name="id7"></a><h4>Mail parts</h4><p>The <a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMail.html'>ezcMail</a> component supports a wide variety of mail parts that can be used when sending or retrieving mails:</p><ul><li><p>ezcMailFile - mail attachment from an existing file</p></li><li><p>ezcMailStreamFile - mail attachment from an open stream</p></li><li><p>ezcMailVirtualFile - mail attachment from a string in memory</p></li><li><p>ezcMailMultipartAlternative - used to bundle a group of mail parts where only one should be shown</p></li><li><p>ezcMailMultipartDigest - used to bundle a list of mail objects</p></li><li><p>ezcMailMultipartMixed - used to bundle an ordered list of mail parts</p></li><li><p>ezcMailMultipartRelated - intended for mail parts consisting of several inter-related body parts</p></li><li><p>ezcMailMultipartReport - used for sending delivery status notifications</p></li><li><p>ezcMailDeliveryStatus - used for sending delivery status notifications</p></li><li><p>ezcMailRfc822Digest - used to insert another mail into a mail</p></li><li><p>ezcMailText - used for plain text</p></li></ul><a name="mail-tools"></a><a name="id8"></a><h4>Mail tools</h4><p>In the <a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailTools.html'>ezcMailTools</a> class, you will find various useful static methods that can be used in your applications:</p><ul><li><p><a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailTools.html#lineBreak'>ezcMailTools::lineBreak</a>() - returns one end-of-line character (default \r\n). Use <a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailTools.html#setLineBreak'>ezcMailTools::setLineBreak</a>() to change the default</p></li><li><p><a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailTools.html#composeEmailAddress'>ezcMailTools::composeEmailAddress</a>() - returns the RFC822 representation of a mail address as a string. Use <a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailTools.html#composeEmailAddresses'>ezcMailTools::composeEmailAddresses</a>() for an array of mail address objects</p></li><li><p><a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailTools.html#parseEmailAddress'>ezcMailTools::parseEmailAddress</a>() - returns an <a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailAddress.html'>ezcMailAddress</a> object from a string mail address. Use <a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailTools.html#parseEmailAddresses'>ezcMailTools::parseEmailAddresses</a>() for a string of mail addresses</p></li><li><p><a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailTools.html#generateMessageId'>ezcMailTools::generateMessageId</a>() - returns a unique message ID to be used for a mail message</p></li><li><p><a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailTools.html#generateContentId'>ezcMailTools::generateContentId</a>() - returns a unique ID to be used for Content-ID headers</p></li><li><p><a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailTools.html#mimeDecode'>ezcMailTools::mimeDecode</a>() - decodes MIME-encoded fields and tries to recover from errors</p></li><li><p><a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailTools.html#replyToMail'>ezcMailTools::replyToMail</a>() - returns a new <a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMail.html'>ezcMail</a> object that is a reply to the specified <a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMail.html'>ezcMail</a> object</p></li></ul><p>See the <a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailTools.html'>ezcMailTools</a> example below for information on how to use these methods.</p><a name="building-and-sending-mail"></a><a name="id9"></a><h3>Building and sending mail</h3><p>eZ components provides two ways to create mail. The simplest is to use the composer class <a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailComposer.html'>ezcMailComposer</a>. Using the composer you can send plain text messages, HTML messages with images and messages with attachments. If you require more advanced messages you can also customize them entirely by building it from the scratch using the various part types in <a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMail.html'>ezcMail</a>. The part types are structured the same way as the underlying mail MIME types.</p><a name="sending-a-mail-with-the-composer"></a><a name="id10"></a><h4>Sending a mail with the composer</h4><p>Sending a mail using the composer is very straightforward. This small example displays how to send a normal text message.</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #0000FF">require_once&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Create&nbsp;a&nbsp;new&nbsp;mail&nbsp;composer&nbsp;object</span></li>
+<li><span style="color: #000000">$mail&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailComposer.html'>ezcMailComposer</a></span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Specify&nbsp;the&nbsp;"from"&nbsp;mail&nbsp;address</span></li>
+<li><span style="color: #000000">$mail</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">from&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailAddress.html'>ezcMailAddress</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'sender@example.com'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'Adrian&nbsp;Ripburger'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Add&nbsp;one&nbsp;"to"&nbsp;mail&nbsp;address&nbsp;(multiple&nbsp;can&nbsp;be&nbsp;added)</span></li>
+<li><span style="color: #000000">$mail</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">addTo</span><span style="color: #0000FF">(&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailAddress.html'>ezcMailAddress</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'receiver@example.com'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'Maureen&nbsp;Corley'&nbsp;</span><span style="color: #0000FF">)&nbsp;);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Specify&nbsp;the&nbsp;subject&nbsp;of&nbsp;the&nbsp;mail</span></li>
+<li><span style="color: #000000">$mail</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">subject&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">"This&nbsp;is&nbsp;the&nbsp;subject&nbsp;of&nbsp;the&nbsp;example&nbsp;mail"</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Specify&nbsp;the&nbsp;body&nbsp;text&nbsp;of&nbsp;the&nbsp;mail</span></li>
+<li><span style="color: #000000">$mail</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">plainText&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">"This&nbsp;is&nbsp;the&nbsp;body&nbsp;of&nbsp;the&nbsp;example&nbsp;mail."</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Generate&nbsp;the&nbsp;mail</span></li>
+<li><span style="color: #000000">$mail</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">build</span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Create&nbsp;a&nbsp;new&nbsp;MTA&nbsp;transport&nbsp;object</span></li>
+<li><span style="color: #000000">$transport&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailMtaTransport.html'>ezcMailMtaTransport</a></span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Use&nbsp;the&nbsp;MTA&nbsp;transport&nbsp;to&nbsp;send&nbsp;the&nbsp;created&nbsp;mail&nbsp;object</span></li>
+<li><span style="color: #000000">$transport</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">send</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$mail&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><a name="sending-a-mail-with-html-inline-images-and-attachments"></a><a name="id11"></a><h4>Sending a mail with HTML, inline images and attachments</h4><p>This example shows how to send a mail with HTML text, images and attachments using the <a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailComposer.html'>ezcMailComposer</a> class.</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #0000FF">require_once&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Create&nbsp;a&nbsp;new&nbsp;mail&nbsp;composer&nbsp;object</span></li>
+<li><span style="color: #000000">$mail&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailComposer.html'>ezcMailComposer</a></span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Specify&nbsp;the&nbsp;"from"&nbsp;mail&nbsp;address</span></li>
+<li><span style="color: #000000">$mail</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">from&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailAddress.html'>ezcMailAddress</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'john@example.com'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'John&nbsp;Doe'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Add&nbsp;one&nbsp;"to"&nbsp;mail&nbsp;address&nbsp;(multiple&nbsp;can&nbsp;be&nbsp;added)</span></li>
+<li><span style="color: #000000">$mail</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">addTo</span><span style="color: #0000FF">(&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailAddress.html'>ezcMailAddress</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'cindy@example.com'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'Cindy&nbsp;Doe'&nbsp;</span><span style="color: #0000FF">)&nbsp;);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Specify&nbsp;the&nbsp;subject&nbsp;of&nbsp;the&nbsp;mail</span></li>
+<li><span style="color: #000000">$mail</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">subject&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">"Example&nbsp;of&nbsp;an&nbsp;HTML&nbsp;email&nbsp;with&nbsp;attachments"</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Specify&nbsp;the&nbsp;plain&nbsp;text&nbsp;of&nbsp;the&nbsp;mail</span></li>
+<li><span style="color: #000000">$mail</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">plainText&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">"Here&nbsp;is&nbsp;the&nbsp;text&nbsp;version&nbsp;of&nbsp;the&nbsp;mail.&nbsp;This&nbsp;is&nbsp;displayed&nbsp;if&nbsp;the&nbsp;client&nbsp;can&nbsp;not&nbsp;understand&nbsp;HTML"</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Specify&nbsp;the&nbsp;html&nbsp;text&nbsp;of&nbsp;the&nbsp;mail</span></li>
+<li><span style="color: #000000">$mail</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">htmlText&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">"&lt;html&gt;Here&nbsp;is&nbsp;the&nbsp;HTML&nbsp;version&nbsp;of&nbsp;your&nbsp;mail&nbsp;with&nbsp;an&nbsp;image:&nbsp;&lt;img&nbsp;src='file://path_to_image.jpg'&nbsp;/&gt;&lt;/html&gt;"</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Add&nbsp;a&nbsp;file&nbsp;as&nbsp;an&nbsp;attachment&nbsp;to&nbsp;the&nbsp;mail</span></li>
+<li><span style="color: #000000">$mail</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">addFileAttachment</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'path_to_attachment.file'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Add&nbsp;a&nbsp;string&nbsp;as&nbsp;an&nbsp;attachment&nbsp;to&nbsp;the&nbsp;mail,&nbsp;with&nbsp;'filename'&nbsp;as&nbsp;the&nbsp;name&nbsp;of&nbsp;the&nbsp;attachment&nbsp;in&nbsp;the&nbsp;mail</span></li>
+<li><span style="color: #000000">$contents&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">'contents&nbsp;of&nbsp;the&nbsp;attachment'</span><span style="color: #0000FF">;&nbsp;</span><span style="color: #007700">//&nbsp;can&nbsp;be&nbsp;a&nbsp;binary&nbsp;string,&nbsp;eg.&nbsp;contents&nbsp;of&nbsp;an&nbsp;image&nbsp;file</span></li>
+<li><span style="color: #000000">$mail</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">addStringAttachment</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'filename'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">$contents&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Build&nbsp;the&nbsp;mail&nbsp;object</span></li>
+<li><span style="color: #000000">$mail</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">build</span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Create&nbsp;a&nbsp;new&nbsp;MTA&nbsp;transport&nbsp;object</span></li>
+<li><span style="color: #000000">$transport&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailMtaTransport.html'>ezcMailMtaTransport</a></span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Use&nbsp;the&nbsp;MTA&nbsp;transport&nbsp;to&nbsp;send&nbsp;the&nbsp;created&nbsp;mail&nbsp;object</span></li>
+<li><span style="color: #000000">$transport</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">send</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$mail&nbsp;</span><span style="color: #0000FF">);&nbsp;</span></li>
+<li></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><p>The mime-type of the attachment can be specified if needed. See the documentation for the functions addFileAttachment() and addStringAttachment() for more details.</p><a name="securing-html-mails-which-include-file-in-image-tags"></a><h4>Securing HTML mails which include <a href="file://">file://</a> in image tags</h4><p>By default, if the htmlText property contains an HTML image tag with <a href="file://">file://</a> in href, that file will be included in the created message.</p><p>Example:</p><code class="block">&lt;img src="file:///home/me/image.jpg" /&gt;</code><p>This can be a security risk if a user links to another file, for example logs or password files. With the automaticImageInclude option (default value true) from <a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailComposerOptions.html'>ezcMailComposerOptions</a>, the automatic inclusion of files can be turned off.</p><p>Example:</p><code class="block">$options = new <a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailComposerOptions.html'>ezcMailComposerOptions</a>();
+$options-&gt;automaticImageInclude = false; // default value is true
+
+$mail = new <a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailComposer.html'>ezcMailComposer</a>( $options );
+
+// ... add To, From, Subject, etc to $mail
+$mail-&gt;htmlText = "&lt;html&gt;Here is the image: &lt;img src="file:///etc/passwd" /&gt;&lt;/html&gt;";
+
+// ... send $mail</code><p>After running the above code, the sent mail will not contain the file specified in the htmlText property.</p><a name="building-a-mail-from-scratch"></a><a name="id13"></a><h4>Building a mail from scratch</h4><p>The class structure of the Mail component follows that of the mail MIME. This means that you can build advanced MIME messages part by part.</p><p>The first example displays how to build a similar message to the one above.</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #0000FF">require_once&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Create&nbsp;a&nbsp;new&nbsp;mail&nbsp;object</span></li>
+<li><span style="color: #000000">$mail&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMail.html'>ezcMail</a></span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Specify&nbsp;the&nbsp;"from"&nbsp;mail&nbsp;address</span></li>
+<li><span style="color: #000000">$mail</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">from&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailAddress.html'>ezcMailAddress</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'sender@example.com'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'Boston&nbsp;Low'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Add&nbsp;one&nbsp;"to"&nbsp;mail&nbsp;address&nbsp;(multiple&nbsp;can&nbsp;be&nbsp;added)</span></li>
+<li><span style="color: #000000">$mail</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">addTo</span><span style="color: #0000FF">(&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailAddress.html'>ezcMailAddress</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'receiver@example.com'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'Maggie&nbsp;Robbins'&nbsp;</span><span style="color: #0000FF">)&nbsp;);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Specify&nbsp;the&nbsp;subject&nbsp;of&nbsp;the&nbsp;mail</span></li>
+<li><span style="color: #000000">$mail</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">subject&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">"This&nbsp;is&nbsp;the&nbsp;subject&nbsp;of&nbsp;the&nbsp;example&nbsp;mail"</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Specify&nbsp;the&nbsp;body&nbsp;text&nbsp;of&nbsp;the&nbsp;mail&nbsp;as&nbsp;a&nbsp;<a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailText.html'>ezcMailText</a>&nbsp;object</span></li>
+<li><span style="color: #000000">$mail</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">body&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailText.html'>ezcMailText</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">"This&nbsp;is&nbsp;the&nbsp;body&nbsp;of&nbsp;the&nbsp;example&nbsp;mail."&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Create&nbsp;a&nbsp;new&nbsp;MTA&nbsp;transport&nbsp;object</span></li>
+<li><span style="color: #000000">$transport&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailMtaTransport.html'>ezcMailMtaTransport</a></span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Use&nbsp;the&nbsp;MTA&nbsp;transport&nbsp;to&nbsp;send&nbsp;the&nbsp;created&nbsp;mail&nbsp;object</span></li>
+<li><span style="color: #000000">$transport</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">send</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$mail&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><p>As you can see, there is not much difference compared to the composer version. In the next example we will add an attachment to our manually built mail:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #0000FF">require_once&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Create&nbsp;a&nbsp;new&nbsp;mail&nbsp;object</span></li>
+<li><span style="color: #000000">$mail&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMail.html'>ezcMail</a></span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Specify&nbsp;the&nbsp;"from"&nbsp;mail&nbsp;address</span></li>
+<li><span style="color: #000000">$mail</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">from&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailAddress.html'>ezcMailAddress</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'sender@example.com'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'Bernard&nbsp;Bernoulli'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Add&nbsp;one&nbsp;"to"&nbsp;mail&nbsp;address&nbsp;(multiple&nbsp;can&nbsp;be&nbsp;added)</span></li>
+<li><span style="color: #000000">$mail</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">addTo</span><span style="color: #0000FF">(&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailAddress.html'>ezcMailAddress</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'receiver@example.com'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'Wendy'&nbsp;</span><span style="color: #0000FF">)&nbsp;);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Specify&nbsp;the&nbsp;subject&nbsp;of&nbsp;the&nbsp;mail</span></li>
+<li><span style="color: #000000">$mail</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">subject&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">"This&nbsp;is&nbsp;the&nbsp;subject&nbsp;of&nbsp;the&nbsp;example&nbsp;mail"</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Create&nbsp;a&nbsp;text&nbsp;part&nbsp;to&nbsp;be&nbsp;added&nbsp;to&nbsp;the&nbsp;mail</span></li>
+<li><span style="color: #000000">$textPart&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailText.html'>ezcMailText</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">"This&nbsp;is&nbsp;the&nbsp;body&nbsp;of&nbsp;the&nbsp;example&nbsp;mail."&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Create&nbsp;a&nbsp;file&nbsp;attachment&nbsp;to&nbsp;be&nbsp;added&nbsp;to&nbsp;the&nbsp;mail</span></li>
+<li><span style="color: #000000">$fileAttachment&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailFile.html'>ezcMailFile</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">"~/myfile.jpg"&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Specify&nbsp;the&nbsp;body&nbsp;of&nbsp;the&nbsp;mail&nbsp;as&nbsp;a&nbsp;multipart-mixed&nbsp;of&nbsp;the&nbsp;text&nbsp;part&nbsp;and&nbsp;the&nbsp;file&nbsp;attachment</span></li>
+<li><span style="color: #000000">$mail</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">body&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailMultipartMixed.html'>ezcMailMultipartMixed</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$textPart</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">$fileAttachment&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Create&nbsp;a&nbsp;new&nbsp;MTA&nbsp;transport&nbsp;object</span></li>
+<li><span style="color: #000000">$transport&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailMtaTransport.html'>ezcMailMtaTransport</a></span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Use&nbsp;the&nbsp;MTA&nbsp;transport&nbsp;to&nbsp;send&nbsp;the&nbsp;created&nbsp;mail&nbsp;object</span></li>
+<li><span style="color: #000000">$transport</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">send</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$mail&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><p>By default the generated message will contain a text which is displayed by e-mail clients lacking MIME-support:</p><code class="block">This message is in MIME format. Since your mail reader does not understand
+this format, some or all of this message may not be legible.</code><p>This text can be changed or removed by setting the property <em>noMimeMessage</em> on the multipart, before generating the mail or sending it. Example:</p><code class="block">$part = new <a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailMultipartMixed.html'>ezcMailMultipartMixed</a>( $textPart, $fileAttachment );
+$part-&gt;noMimeMessage = 'Your e-mail client does not understand MIME.';
+
+$mail = new <a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMail.html'>ezcMail</a>();
+$mail-&gt;body = $part;</code><a name="building-mime-structures-that-work"></a><a name="id14"></a><h4>Building MIME structures that work</h4><p>When you build mail mail from scratch most combinations of MailParts will produce valid messages. Unfortunately, even though a message is valid structurally that does not mean that all mail clients will display it properly. This section gives a few hints on what to do and what not to do.</p><ol><li><p>Ommit Multipart/Mixed parts with only one part. Some mail clients like Mozilla Thunderbird do not display these correctly. Of course, they are not necessary either.</p></li><li><p>Mail with alternative text/HTML parts and common attachments can be implemented in many ways. However, we have only found one structure that seems to work across all clients: MultipartMixed( MultipartAlternative( TextPart, TextPart ), FilePart, ... )</p></li></ol><a name="sending-a-mail-using-smtp"></a><a name="id15"></a><h4>Sending a mail using SMTP</h4><p>This example shows how to send a mail with SMTP, by using an SSLv3 connection:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #0000FF">require_once&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Create&nbsp;a&nbsp;new&nbsp;mail&nbsp;composer&nbsp;object</span></li>
+<li><span style="color: #000000">$mail&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailComposer.html'>ezcMailComposer</a></span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Specify&nbsp;the&nbsp;"from"&nbsp;mail&nbsp;address</span></li>
+<li><span style="color: #000000">$mail</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">from&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailAddress.html'>ezcMailAddress</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'sender@example.com'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'Adrian&nbsp;Ripburger'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Add&nbsp;one&nbsp;"to"&nbsp;mail&nbsp;address&nbsp;(multiple&nbsp;can&nbsp;be&nbsp;added)</span></li>
+<li><span style="color: #000000">$mail</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">addTo</span><span style="color: #0000FF">(&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailAddress.html'>ezcMailAddress</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'receiver@example.com'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'Maureen&nbsp;Corley'&nbsp;</span><span style="color: #0000FF">)&nbsp;);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Specify&nbsp;the&nbsp;subject&nbsp;of&nbsp;the&nbsp;mail</span></li>
+<li><span style="color: #000000">$mail</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">subject&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">"This&nbsp;is&nbsp;the&nbsp;subject&nbsp;of&nbsp;the&nbsp;example&nbsp;mail"</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Specify&nbsp;the&nbsp;body&nbsp;text&nbsp;of&nbsp;the&nbsp;mail</span></li>
+<li><span style="color: #000000">$mail</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">plainText&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">"This&nbsp;is&nbsp;the&nbsp;body&nbsp;of&nbsp;the&nbsp;example&nbsp;mail."</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Generate&nbsp;the&nbsp;mail</span></li>
+<li><span style="color: #000000">$mail</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">build</span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Create&nbsp;a&nbsp;new&nbsp;SMTP&nbsp;transport&nbsp;object&nbsp;with&nbsp;an&nbsp;SSLv3&nbsp;connection.</span></li>
+<li><span style="color: #007700">//&nbsp;The&nbsp;port&nbsp;will&nbsp;be&nbsp;465&nbsp;by&nbsp;default,&nbsp;use&nbsp;the&nbsp;4th&nbsp;argument&nbsp;to&nbsp;change&nbsp;it.</span></li>
+<li><span style="color: #007700">//&nbsp;Username&nbsp;and&nbsp;password&nbsp;(2nd&nbsp;and&nbsp;3rd&nbsp;arguments)&nbsp;are&nbsp;left&nbsp;blank,&nbsp;which&nbsp;means</span></li>
+<li><span style="color: #007700">//&nbsp;the&nbsp;mail&nbsp;host&nbsp;does&nbsp;not&nbsp;need&nbsp;authentication.</span></li>
+<li><span style="color: #007700">//&nbsp;The&nbsp;5th&nbsp;parameter&nbsp;is&nbsp;the&nbsp;$options&nbsp;object&nbsp;which&nbsp;specifies&nbsp;a&nbsp;SSLV3&nbsp;connection</span></li>
+<li><span style="color: #007700">//&nbsp;(default&nbsp;is&nbsp;<a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailSmtpTransport.html#constCONNECTION_PLAIN'>ezcMailSmtpTransport::CONNECTION_PLAIN</a>).</span></li>
+<li><span style="color: #000000">$options&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailSmtpTransportOptions.html'>ezcMailSmtpTransportOptions</a></span><span style="color: #0000FF">();</span></li>
+<li><span style="color: #000000">$options</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">connectionType&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailSmtpTransport.html#constCONNECTION_SSLV'>ezcMailSmtpTransport::CONNECTION_SSLV</a>3</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #000000">$transport&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailSmtpTransport.html'>ezcMailSmtpTransport</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'mailhost.example.com'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">''</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">''</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">null</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">$options&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;The&nbsp;option&nbsp;can&nbsp;also&nbsp;be&nbsp;specified&nbsp;via&nbsp;the&nbsp;option&nbsp;property:</span></li>
+<li><span style="color: #000000">$transport</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">options</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">connectionType&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailSmtpTransport.html#constCONNECTION_SSLV'>ezcMailSmtpTransport::CONNECTION_SSLV</a>3</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Use&nbsp;the&nbsp;SMTP&nbsp;transport&nbsp;to&nbsp;send&nbsp;the&nbsp;created&nbsp;mail&nbsp;object</span></li>
+<li><span style="color: #000000">$transport</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">send</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$mail&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><a name="using-stronger-authentication-methods-with-the-smtp-transports"></a><a name="id16"></a><h4>Using stronger authentication methods with the SMTP transports</h4><p>The SMTP transports supports various authentication methods: DIGEST-MD5, CRAM-MD5, NTLM, LOGIN, PLAIN. Not all methods are supported by all servers, and some servers don't support authentication at all. NTLM authentication requires the mcrypt PHP extension.</p><p>By default, the SMTP transport tries to login anonymously to the SMTP server (if an empty username and password have been provided), or to authenticate with the strongest method supported by the server (if username and password have been provided). The preferred authentication method can be changed with the option preferredAuthMethod. See the <a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailSmtpTransport.html'>ezcMailSmtpTransport</a> class for a list of supported authentication methods.</p><p>If the preferred method is specified via options, only that authentication method will be attempted on the SMTP server. If it fails, an exception will be thrown.</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #0000FF">require_once&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Create&nbsp;an&nbsp;SMTP&nbsp;transport&nbsp;and&nbsp;demand&nbsp;NTLM&nbsp;authentication.</span></li>
+<li><span style="color: #007700">//&nbsp;Username&nbsp;and&nbsp;password&nbsp;must&nbsp;be&nbsp;specified,&nbsp;otherwise&nbsp;no&nbsp;authentication</span></li>
+<li><span style="color: #007700">//&nbsp;will&nbsp;be&nbsp;attempted.</span></li>
+<li><span style="color: #007700">//&nbsp;If&nbsp;NTLM&nbsp;authentication&nbsp;fails,&nbsp;an&nbsp;exception&nbsp;will&nbsp;be&nbsp;thrown.</span></li>
+<li><span style="color: #007700">//&nbsp;See&nbsp;the&nbsp;<a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailSmtpTransport.html'>ezcMailSmtpTransport</a>&nbsp;class&nbsp;for&nbsp;a&nbsp;list&nbsp;of&nbsp;supported&nbsp;methods.</span></li>
+<li><span style="color: #000000">$options&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailSmtpTransportOptions.html'>ezcMailSmtpTransportOptions</a></span><span style="color: #0000FF">();</span></li>
+<li><span style="color: #000000">$options</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">preferredAuthMethod&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailSmtpTransport.html#constAUTH_NTLM'>ezcMailSmtpTransport::AUTH_NTLM</a></span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #000000">$transport&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailSmtpTransport.html'>ezcMailSmtpTransport</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'mailhost.example.com'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'username'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'password'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">null</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">$options&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;The&nbsp;option&nbsp;can&nbsp;also&nbsp;be&nbsp;specified&nbsp;via&nbsp;the&nbsp;option&nbsp;property:</span></li>
+<li><span style="color: #000000">$transport</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">options</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">preferredAuthMethod&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailSmtpTransport.html#constAUTH_NTLM'>ezcMailSmtpTransport::AUTH_NTLM</a></span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Use&nbsp;the&nbsp;SMTP&nbsp;transport&nbsp;to&nbsp;send&nbsp;the&nbsp;created&nbsp;mail&nbsp;object</span></li>
+<li><span style="color: #000000">$transport</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">send</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$mail&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><a name="avoid-bcc-headers-appearing-in-the-sent-mails"></a><a name="id17"></a><h4>Avoid Bcc headers appearing in the sent mails</h4><p>By default the Mail component leaves it to the SMTP server to strip the Bcc header from the sent mails. Some SMTP servers will not strip the Bcc header. If you want to be sure that the Bcc header will not appear in sent mails, use the stripBccHeader option from <a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailOptions.html'>ezcMailOptions</a>:</p><code class="block">$options = new <a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailOptions.html'>ezcMailOptions</a>();
+$options-&gt;stripBccHeader = true; // default is false
+
+$mail = new <a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMail.html'>ezcMail</a>( $options );</code><a name="character-encoding"></a><a name="id18"></a><h4>Character encoding</h4><p>Most of the world does not speak and write US ASCII and thus requires more advanced character encoding to display mail correctly.</p><p>The following example shows how to send a mail with the body and subject encoded with iso-8859-1 and a custom header encoded with iso-8859-1:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #0000FF">require_once&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Create&nbsp;a&nbsp;new&nbsp;mail&nbsp;object</span></li>
+<li><span style="color: #000000">$mail&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMail.html'>ezcMail</a></span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Specify&nbsp;the&nbsp;"from"&nbsp;mail&nbsp;address</span></li>
+<li><span style="color: #000000">$mail</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">from&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailAddress.html'>ezcMailAddress</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'sender@example.com'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'Norwegian&nbsp;characters:&nbsp;æøå'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'iso-8859-1'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Add&nbsp;one&nbsp;"to"&nbsp;mail&nbsp;address&nbsp;(multiple&nbsp;can&nbsp;be&nbsp;added)</span></li>
+<li><span style="color: #000000">$mail</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">addTo</span><span style="color: #0000FF">(&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailAddress.html'>ezcMailAddress</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'reciever@example.com'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'More&nbsp;norwegian&nbsp;characters:&nbsp;æøå'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'iso-8859-1'&nbsp;</span><span style="color: #0000FF">)&nbsp;);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Specify&nbsp;the&nbsp;subject&nbsp;of&nbsp;the&nbsp;mail</span></li>
+<li><span style="color: #000000">$mail</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">subject&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">'Oslo&nbsp;ligger&nbsp;sør&nbsp;i&nbsp;Norge&nbsp;og&nbsp;har&nbsp;vært&nbsp;landets&nbsp;hovedstad&nbsp;i&nbsp;over&nbsp;600&nbsp;år.'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Specify&nbsp;the&nbsp;charset&nbsp;of&nbsp;the&nbsp;subject</span></li>
+<li><span style="color: #000000">$mail</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">subjectCharset&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">'iso-8859-1'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Add&nbsp;a&nbsp;header&nbsp;with&nbsp;the&nbsp;default&nbsp;charset&nbsp;(us-ascii)</span></li>
+<li><span style="color: #000000">$mail</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">setHeader</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'X-Related-City'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'Moscow'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Add&nbsp;a&nbsp;header&nbsp;with&nbsp;a&nbsp;custom&nbsp;charset&nbsp;(iso-8859-5)</span></li>
+<li><span style="color: #000000">$mail</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">setHeader</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'X-Related-Movie'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'James&nbsp;Bond&nbsp;-&nbsp;Å&nbsp;leve&nbsp;og&nbsp;la&nbsp;dø'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'iso-8859-1'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Specify&nbsp;the&nbsp;body&nbsp;as&nbsp;a&nbsp;text&nbsp;part,&nbsp;also&nbsp;specifying&nbsp;it's&nbsp;charset</span></li>
+<li><span style="color: #000000">$mail</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">body&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailText.html'>ezcMailText</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'Oslo&nbsp;be&nbsp;grunnlagt&nbsp;rundt&nbsp;1048&nbsp;av&nbsp;Harald&nbsp;Hardråde.'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'iso-8859-1'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Create&nbsp;a&nbsp;new&nbsp;MTA&nbsp;transport&nbsp;object</span></li>
+<li><span style="color: #000000">$transport&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailMtaTransport.html'>ezcMailMtaTransport</a></span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Use&nbsp;the&nbsp;MTA&nbsp;transport&nbsp;to&nbsp;send&nbsp;the&nbsp;created&nbsp;mail&nbsp;object</span></li>
+<li><span style="color: #000000">$transport</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">send</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$mail&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><p>You can of course choose and combine any available character sets. Make sure that the input text is encoded as specified, or you may get unexpected results.</p><a name="extending-the-mail-component"></a><a name="id19"></a><h4>Extending the Mail component</h4><p>It is possible to extend the Mail component if you require part types that are not supported by default. The following two examples shows how you can implement support for digest mail messages as attachments to your mail. This functionality is available through the <a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailRfc822Digest.html'>ezcMailRfc822Digest</a> class. For the sake of this example, we will recreate it in the MailRFC822Digest class.</p><p>The mail system already supports sending attachments through the <a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailMultipartMixed.html'>ezcMailMultipartMixed</a> type. Unfortunately directly inserting an <a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMail.html'>ezcMail</a> object as a part does not work. This is because mail digests are a special case: they require two extra headers that are separated by the normal mail headers.</p><p>To make it work, we create the class RFC822Digest to add these headers:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li></li>
+<li><span style="color: #0000FF">class&nbsp;</span><span style="color: #000000">RFC822Digest&nbsp;</span><span style="color: #0000FF">extends&nbsp;</span><span style="color: #000000">ezcMailPart</span></li>
+<li><span style="color: #0000FF">{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;private&nbsp;</span><span style="color: #000000">$mail&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">null</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;function&nbsp;</span><span style="color: #000000">__construct</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">ezcMail&nbsp;$mail&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$this</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">mail&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$mail</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$this</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">setHeader</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'Content-Type'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'message/rfc822'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$this</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">setHeader</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'Content-Disposition'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'inline'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;}</span></li>
+<li></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;function&nbsp;</span><span style="color: #000000">generateBody</span><span style="color: #0000FF">()</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;</span><span style="color: #000000">$this</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">mail</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">generate</span><span style="color: #0000FF">();</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;}</span></li>
+<li><span style="color: #0000FF">}</span></li>
+<li></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><p>Our new class extends the <a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailPart.html'>ezcMailPart</a> class. This is required for all parts of a mail. <a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailPart.html'>ezcMailPart</a> provides two important methods that we can override: <a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailPart.html#generateHeaders'>ezcMailPart::generateHeaders</a>() and <a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailPart.html#generateBody'>ezcMailPart::generateBody</a>(). These two methods are called in succession by the parent part and should return the headers and the body text of the part.</p><p>We do not need to override generateHeaders() since we can simply set the headers we want directly on the object. We do need to override generateBody(), since we want to include the full text of the mail digest.</p><p>The new class can be used directly when building a mail. The example assumes that a valid <a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMail.html'>ezcMail</a> object is available in the $digest variable.</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #0000FF">require_once&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Create&nbsp;a&nbsp;new&nbsp;mail&nbsp;object</span></li>
+<li><span style="color: #000000">$mail&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMail.html'>ezcMail</a></span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Specify&nbsp;the&nbsp;"from"&nbsp;mail&nbsp;address</span></li>
+<li><span style="color: #000000">$mail</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">from&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailAddress.html'>ezcMailAddress</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'sender@example.com'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'Largo&nbsp;LaGrande'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Add&nbsp;one&nbsp;"to"&nbsp;mail&nbsp;address&nbsp;(multiple&nbsp;can&nbsp;be&nbsp;added)</span></li>
+<li><span style="color: #000000">$mail</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">addTo</span><span style="color: #0000FF">(&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailAddress.html'>ezcMailAddress</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'receiver@example.com'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'Wally&nbsp;B.&nbsp;Feed'&nbsp;</span><span style="color: #0000FF">)&nbsp;);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Specify&nbsp;the&nbsp;subject&nbsp;of&nbsp;the&nbsp;mail</span></li>
+<li><span style="color: #000000">$mail</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">subject&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">"This&nbsp;is&nbsp;the&nbsp;subject&nbsp;of&nbsp;the&nbsp;mail&nbsp;with&nbsp;a&nbsp;mail&nbsp;digest."</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Create&nbsp;a&nbsp;text&nbsp;part&nbsp;to&nbsp;be&nbsp;added&nbsp;to&nbsp;the&nbsp;mail</span></li>
+<li><span style="color: #000000">$textPart&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailText.html'>ezcMailText</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">"This&nbsp;is&nbsp;the&nbsp;body&nbsp;of&nbsp;the&nbsp;mail&nbsp;with&nbsp;a&nbsp;mail&nbsp;digest."&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Specify&nbsp;the&nbsp;body&nbsp;of&nbsp;the&nbsp;mail&nbsp;as&nbsp;a&nbsp;multipart-mixed&nbsp;of&nbsp;the&nbsp;text&nbsp;part&nbsp;and&nbsp;a&nbsp;RFC822&nbsp;digest&nbsp;object</span></li>
+<li><span style="color: #007700">//&nbsp;where&nbsp;$digest&nbsp;is&nbsp;an&nbsp;<a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMail.html'>ezcMail</a>&nbsp;object</span></li>
+<li><span style="color: #007700">//&nbsp;and&nbsp;RFC822Digest&nbsp;is&nbsp;the&nbsp;class&nbsp;from&nbsp;the&nbsp;previous&nbsp;example</span></li>
+<li><span style="color: #000000">$mail</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">body&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailMultipartMixed.html'>ezcMailMultipartMixed</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$textPart</span><span style="color: #0000FF">,&nbsp;new&nbsp;</span><span style="color: #000000">RFC822Digest</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$digest&nbsp;</span><span style="color: #0000FF">)&nbsp;);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Create&nbsp;a&nbsp;new&nbsp;MTA&nbsp;transport&nbsp;object</span></li>
+<li><span style="color: #000000">$transport&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailMtaTransport.html'>ezcMailMtaTransport</a></span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Use&nbsp;the&nbsp;MTA&nbsp;transport&nbsp;to&nbsp;send&nbsp;the&nbsp;created&nbsp;mail&nbsp;object</span></li>
+<li><span style="color: #000000">$transport</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">send</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$mail&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><a name="using-the-ezcmailtools-class"></a><a name="id20"></a><h4>Using the <a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailTools.html'>ezcMailTools</a> class</h4><p>In this example, we use the various methods from the <a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailTools.html'>ezcMailTools</a> class.</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #0000FF">require_once&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #000000">$mailAddresses&nbsp;</span><span style="color: #0000FF">=&nbsp;array(</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailAddress.html'>ezcMailAddress</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'john@example.com'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'Jøhn&nbsp;Doe'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'ISO-8859-1'&nbsp;</span><span style="color: #0000FF">),</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailAddress.html'>ezcMailAddress</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'jane@example.com'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'Jane&nbsp;Doe'&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);</span></li>
+<li><span style="color: #000000">$addresses&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">'=?ISO-8859-1?B?SsO4aG4gRG9l?=&nbsp;&lt;john@example.com&gt;,&nbsp;Jane&nbsp;Doe&nbsp;&lt;jane@example.com'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Convert&nbsp;<a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailAddress.html'>ezcMailAddress</a>&nbsp;to&nbsp;string&nbsp;representation</span></li>
+<li><span style="color: #000000">var_dump</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailTools.html#composeEmailAddress'>ezcMailTools::composeEmailAddress</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$mailAddresses</span><span style="color: #0000FF">[</span><span style="color: #000000">0</span><span style="color: #0000FF">]&nbsp;)&nbsp;);</span></li>
+<li><span style="color: #000000">var_dump</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailTools.html#composeEmailAddresses'>ezcMailTools::composeEmailAddresses</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$mailAddresses&nbsp;</span><span style="color: #0000FF">)&nbsp;);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Convert&nbsp;string&nbsp;to&nbsp;<a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailAddress.html'>ezcMailAddress</a></span></li>
+<li><span style="color: #000000">var_dump</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailTools.html#parseEmailAddress'>ezcMailTools::parseEmailAddress</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$addresses&nbsp;</span><span style="color: #0000FF">)&nbsp;);</span></li>
+<li><span style="color: #000000">var_dump</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailTools.html#parseEmailAddresses'>ezcMailTools::parseEmailAddresses</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$addresses&nbsp;</span><span style="color: #0000FF">)&nbsp;);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Validate&nbsp;an&nbsp;email&nbsp;address&nbsp;(with&nbsp;a&nbsp;regular&nbsp;expression,&nbsp;without&nbsp;checking&nbsp;for&nbsp;MX&nbsp;records)</span></li>
+<li><span style="color: #000000">$isValid&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailTools.html#validateEmailAddress'>ezcMailTools::validateEmailAddress</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'john.doe@example.com'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Validate&nbsp;an&nbsp;email&nbsp;address&nbsp;with&nbsp;MX&nbsp;records&nbsp;check.</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;MX&nbsp;record&nbsp;checking&nbsp;does&nbsp;not&nbsp;work&nbsp;on&nbsp;Windows&nbsp;due&nbsp;to&nbsp;the&nbsp;lack&nbsp;of&nbsp;getmxrr()</span></li>
+<li><span style="color: #007700">//&nbsp;and&nbsp;checkdnsrr()&nbsp;PHP&nbsp;functions.&nbsp;The&nbsp;<a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcBaseFunctionalityNotSupportedException.html'>ezcBaseFunctionalityNotSupportedException</a></span></li>
+<li><span style="color: #007700">//&nbsp;is&nbsp;thrown&nbsp;in&nbsp;this&nbsp;case.</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;set&nbsp;this&nbsp;to&nbsp;your&nbsp;mail&nbsp;server,&nbsp;it&nbsp;is&nbsp;used&nbsp;in&nbsp;a</span></li>
+<li><span style="color: #007700">//&nbsp;'HELO&nbsp;SMTP'&nbsp;command&nbsp;to&nbsp;validate&nbsp;against&nbsp;MX&nbsp;records</span></li>
+<li><span style="color: #000000">ezcMailTools</span><span style="color: #0000FF">::</span><span style="color: #000000">$mxValidateServer&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">'your.mail.server'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;set&nbsp;this&nbsp;to&nbsp;a&nbsp;mail&nbsp;address&nbsp;such&nbsp;as&nbsp;'postmaster@example.com',&nbsp;it&nbsp;is&nbsp;used&nbsp;in&nbsp;a</span></li>
+<li><span style="color: #007700">//&nbsp;'MAIL&nbsp;FROM'&nbsp;SMTP&nbsp;command&nbsp;to&nbsp;validate&nbsp;against&nbsp;MX&nbsp;records</span></li>
+<li><span style="color: #000000">ezcMailTools</span><span style="color: #0000FF">::</span><span style="color: #000000">$mxValidateAddress&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">'email.address@mail.server'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #000000">$isValid&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailTools.html#validateEmailAddress'>ezcMailTools::validateEmailAddress</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'john.doe@example.com'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">true&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Create&nbsp;a&nbsp;new&nbsp;mail&nbsp;object</span></li>
+<li><span style="color: #000000">$mail&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMail.html'>ezcMail</a></span><span style="color: #0000FF">();</span></li>
+<li><span style="color: #000000">$mail</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">from&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$mailAddresses</span><span style="color: #0000FF">[</span><span style="color: #000000">1</span><span style="color: #0000FF">];</span></li>
+<li><span style="color: #000000">$mail</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">addTo</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$mailAddresses</span><span style="color: #0000FF">[</span><span style="color: #000000">0</span><span style="color: #0000FF">]&nbsp;);</span></li>
+<li><span style="color: #000000">$mail</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">subject&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">"Top&nbsp;secret"</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Use&nbsp;the&nbsp;lineBreak()&nbsp;method</span></li>
+<li><span style="color: #000000">$mail</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">body&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailText.html'>ezcMailText</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">"Confidential"&nbsp;</span><span style="color: #0000FF">.&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailTools.html#lineBreak'>ezcMailTools::lineBreak</a></span><span style="color: #0000FF">()&nbsp;.&nbsp;</span><span style="color: #335533">"DO&nbsp;NOT&nbsp;READ"&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$mail</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">generate</span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Create&nbsp;a&nbsp;reply&nbsp;message&nbsp;to&nbsp;the&nbsp;previous&nbsp;mail&nbsp;object</span></li>
+<li><span style="color: #000000">$reply&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailTools.html#replyToMail'>ezcMailTools::replyToMail</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$mail</span><span style="color: #0000FF">,&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailAddress.html'>ezcMailAddress</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'test@example.com'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'Reply&nbsp;Guy'&nbsp;</span><span style="color: #0000FF">)&nbsp;);</span></li>
+<li></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><a name="mail-retrieval-and-parsing"></a><a name="id21"></a><h3>Mail retrieval and parsing</h3><p>Many applications need to interact with a message store. The Mail component makes this easy through the class <a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailParser.html'>ezcMailParser</a> and the mail retrieval transport classes. Mail is fetched, parsed and returned to you in the same structure that is used to send mail.</p><p>The Mail component currently allows you to fetch and parse mail messages from POP3, IMAP, mbox files, single mail files and from variables. The parser fully supports mail in all character sets, multipart mail (attachments), HTML mail, HTML mail with images and digest messages.</p><a name="retrieving-mail-using-pop3"></a><a name="id22"></a><h4>Retrieving mail using POP3</h4><p>The following example shows how to fetch messages from a POP3 account using various methods and to parse the messages for use.</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #0000FF">require_once&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Create&nbsp;a&nbsp;new&nbsp;POP3&nbsp;transport&nbsp;object&nbsp;by&nbsp;specifying&nbsp;the&nbsp;server&nbsp;name</span></li>
+<li><span style="color: #000000">$pop3&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailPop3Transport.html'>ezcMailPop3Transport</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">"pop3.example.com"&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Authenticate&nbsp;to&nbsp;the&nbsp;POP3&nbsp;server</span></li>
+<li><span style="color: #000000">$pop3</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">authenticate</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">"user"</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">"password"&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Get&nbsp;the&nbsp;number&nbsp;of&nbsp;messages&nbsp;on&nbsp;the&nbsp;server&nbsp;and&nbsp;their&nbsp;combined&nbsp;size</span></li>
+<li><span style="color: #007700">//&nbsp;in&nbsp;the&nbsp;variables&nbsp;$num&nbsp;and&nbsp;$size</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$pop3</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">status</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$num</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">$size&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Get&nbsp;the&nbsp;list&nbsp;of&nbsp;message&nbsp;numbers&nbsp;on&nbsp;the&nbsp;server&nbsp;and&nbsp;their&nbsp;sizes</span></li>
+<li><span style="color: #007700">//&nbsp;the&nbsp;returned&nbsp;array&nbsp;is&nbsp;something&nbsp;like:&nbsp;array(&nbsp;1&nbsp;=&gt;&nbsp;1500,&nbsp;2&nbsp;=&gt;&nbsp;45200&nbsp;)</span></li>
+<li><span style="color: #007700">//&nbsp;where&nbsp;the&nbsp;key&nbsp;is&nbsp;a&nbsp;message&nbsp;number&nbsp;and&nbsp;the&nbsp;value&nbsp;is&nbsp;the&nbsp;message&nbsp;size</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$messages&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$pop3</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">listMessages</span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Get&nbsp;the&nbsp;list&nbsp;of&nbsp;message&nbsp;unique&nbsp;ids&nbsp;on&nbsp;the&nbsp;server&nbsp;and&nbsp;their&nbsp;sizes</span></li>
+<li><span style="color: #007700">//&nbsp;the&nbsp;returned&nbsp;array&nbsp;is&nbsp;something&nbsp;like:&nbsp;array(&nbsp;1&nbsp;=&gt;&nbsp;'00000f543d324',&nbsp;2&nbsp;=&gt;&nbsp;'000010543d324'&nbsp;)</span></li>
+<li><span style="color: #007700">//&nbsp;where&nbsp;the&nbsp;key&nbsp;is&nbsp;an&nbsp;message&nbsp;number&nbsp;and&nbsp;the&nbsp;value&nbsp;is&nbsp;the&nbsp;message&nbsp;unique&nbsp;id</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$messages&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$pop3</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">listUniqueIdentifiers</span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Usually&nbsp;you&nbsp;will&nbsp;call&nbsp;one&nbsp;of&nbsp;these&nbsp;3&nbsp;fetch&nbsp;functions:</span></li>
+<li></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;Fetch&nbsp;all&nbsp;messages&nbsp;on&nbsp;the&nbsp;server</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$set&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$pop3</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">fetchAll</span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">//&nbsp;Fetch&nbsp;one&nbsp;message&nbsp;from&nbsp;the&nbsp;server&nbsp;(here:&nbsp;get&nbsp;the&nbsp;message&nbsp;no.&nbsp;2)</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$set&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$pop3</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">fetchByMessageNr</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">2&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">//&nbsp;Fetch&nbsp;a&nbsp;range&nbsp;of&nbsp;messages&nbsp;from&nbsp;the&nbsp;server&nbsp;(here:&nbsp;get&nbsp;4&nbsp;messages&nbsp;starting&nbsp;from&nbsp;message&nbsp;no.&nbsp;2)</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$set&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$pop3</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">fetchFromOffset</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">2</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">4&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Delete&nbsp;a&nbsp;message&nbsp;from&nbsp;the&nbsp;server</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$pop3</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">delete</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">1&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Use&nbsp;this&nbsp;to&nbsp;keep&nbsp;the&nbsp;connection&nbsp;alive</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$pop3</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">noop</span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Create&nbsp;a&nbsp;new&nbsp;mail&nbsp;parser&nbsp;object</span></li>
+<li><span style="color: #000000">$parser&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailParser.html'>ezcMailParser</a></span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Parse&nbsp;the&nbsp;set&nbsp;of&nbsp;messages&nbsp;retrieved&nbsp;from&nbsp;the&nbsp;server&nbsp;earlier</span></li>
+<li><span style="color: #000000">$mail&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$parser</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">parseMail</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$set&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><p>The parser returns an array of <a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMail.html'>ezcMail</a> messages with parts organized according to the MIME structure of the mail.</p><a name="retrieving-mail-using-imap"></a><a name="id23"></a><h4>Retrieving mail using IMAP</h4><p>The following example shows how to fetch messages from an IMAP account using various functions and to parse the messages for use.</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #0000FF">require_once&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Create&nbsp;a&nbsp;new&nbsp;IMAP&nbsp;transport&nbsp;object&nbsp;by&nbsp;specifying&nbsp;the&nbsp;server&nbsp;name</span></li>
+<li><span style="color: #000000">$imap&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailImapTransport.html'>ezcMailImapTransport</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">"imap.example.com"&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Authenticate&nbsp;to&nbsp;the&nbsp;IMAP&nbsp;server</span></li>
+<li><span style="color: #000000">$imap</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">authenticate</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">"user"</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">"password"&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Select&nbsp;the&nbsp;Inbox&nbsp;mailbox</span></li>
+<li><span style="color: #000000">$imap</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">selectMailbox</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'Inbox'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Get&nbsp;the&nbsp;number&nbsp;of&nbsp;messages&nbsp;on&nbsp;the&nbsp;server,&nbsp;combined&nbsp;size,&nbsp;number&nbsp;of&nbsp;recent</span></li>
+<li><span style="color: #007700">//&nbsp;messages&nbsp;and&nbsp;number&nbsp;of&nbsp;unseen&nbsp;messages</span></li>
+<li><span style="color: #007700">//&nbsp;in&nbsp;the&nbsp;variables&nbsp;$num,&nbsp;$size,&nbsp;$recent,&nbsp;$unseen</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$imap</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">status</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$num</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">$size</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">$recent</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">$unseen&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Get&nbsp;the&nbsp;list&nbsp;of&nbsp;message&nbsp;numbers&nbsp;on&nbsp;the&nbsp;server&nbsp;and&nbsp;their&nbsp;sizes</span></li>
+<li><span style="color: #007700">//&nbsp;the&nbsp;returned&nbsp;array&nbsp;is&nbsp;something&nbsp;like:&nbsp;array(&nbsp;1&nbsp;=&gt;&nbsp;1500,&nbsp;2&nbsp;=&gt;&nbsp;45200&nbsp;)</span></li>
+<li><span style="color: #007700">//&nbsp;where&nbsp;the&nbsp;key&nbsp;is&nbsp;a&nbsp;message&nbsp;number&nbsp;and&nbsp;the&nbsp;value&nbsp;is&nbsp;the&nbsp;message&nbsp;size</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$messages&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$imap</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">listMessages</span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Get&nbsp;the&nbsp;list&nbsp;of&nbsp;message&nbsp;unique&nbsp;ids&nbsp;on&nbsp;the&nbsp;server&nbsp;and&nbsp;their&nbsp;sizes</span></li>
+<li><span style="color: #007700">//&nbsp;the&nbsp;returned&nbsp;array&nbsp;is&nbsp;something&nbsp;like:&nbsp;array(&nbsp;1&nbsp;=&gt;&nbsp;'15',&nbsp;2&nbsp;=&gt;&nbsp;'16'&nbsp;)</span></li>
+<li><span style="color: #007700">//&nbsp;where&nbsp;the&nbsp;key&nbsp;is&nbsp;an&nbsp;message&nbsp;number&nbsp;and&nbsp;the&nbsp;value&nbsp;is&nbsp;the&nbsp;message&nbsp;unique&nbsp;id</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$messages&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$imap</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">listUniqueIdentifiers</span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Usually&nbsp;you&nbsp;will&nbsp;call&nbsp;one&nbsp;of&nbsp;these&nbsp;fetch&nbsp;functions:</span></li>
+<li></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;Fetch&nbsp;all&nbsp;messages&nbsp;on&nbsp;the&nbsp;server</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$set&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$imap</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">fetchAll</span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">//&nbsp;Fetch&nbsp;one&nbsp;message&nbsp;from&nbsp;the&nbsp;server&nbsp;(here:&nbsp;get&nbsp;the&nbsp;message&nbsp;no.&nbsp;2)</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$set&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$imap</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">fetchByMessageNr</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">2&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">//&nbsp;Fetch&nbsp;a&nbsp;range&nbsp;of&nbsp;messages&nbsp;from&nbsp;the&nbsp;server&nbsp;(here:&nbsp;get&nbsp;4&nbsp;messages&nbsp;starting&nbsp;from&nbsp;message&nbsp;no.&nbsp;2)</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$set&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$imap</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">fetchFromOffset</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">2</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">4&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">//&nbsp;Fetch&nbsp;messages&nbsp;which&nbsp;have&nbsp;a&nbsp;certain&nbsp;flag</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;See&nbsp;the&nbsp;function&nbsp;description&nbsp;for&nbsp;a&nbsp;list&nbsp;of&nbsp;supported&nbsp;flags</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$set&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$imap</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">fetchByFlag</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">"DELETED"&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">//&nbsp;Fetch&nbsp;a&nbsp;range&nbsp;of&nbsp;messages&nbsp;sorted&nbsp;by&nbsp;Date</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;Use&nbsp;this&nbsp;to&nbsp;page&nbsp;through&nbsp;a&nbsp;mailbox</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;See&nbsp;the&nbsp;function&nbsp;description&nbsp;for&nbsp;a&nbsp;list&nbsp;of&nbsp;criterias&nbsp;and&nbsp;for&nbsp;how&nbsp;to&nbsp;sort&nbsp;ascending&nbsp;or&nbsp;descending</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$set&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$imap</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">sortFromOffset</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">1</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">10</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">"Date"&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">//&nbsp;Sort&nbsp;the&nbsp;specified&nbsp;messages&nbsp;by&nbsp;Date</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;See&nbsp;the&nbsp;function&nbsp;description&nbsp;for&nbsp;a&nbsp;list&nbsp;of&nbsp;criterias&nbsp;and&nbsp;for&nbsp;how&nbsp;to&nbsp;sort&nbsp;ascending&nbsp;or&nbsp;descending</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$set&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$imap</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">sortMessages</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">"1,2,3,4,5"</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">"Date"&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">//&nbsp;Fetch&nbsp;messages&nbsp;which&nbsp;match&nbsp;the&nbsp;specified&nbsp;criteria.</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;See&nbsp;the&nbsp;section&nbsp;6.4.4.&nbsp;of&nbsp;RFC&nbsp;1730&nbsp;or&nbsp;2060&nbsp;for&nbsp;a&nbsp;list&nbsp;of&nbsp;criterias</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;(http://www.faqs.org/rfcs/rfc1730.html)</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;The&nbsp;following&nbsp;example&nbsp;returns&nbsp;the&nbsp;messages&nbsp;flagged&nbsp;as&nbsp;SEEN&nbsp;and&nbsp;with</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;'release'&nbsp;in&nbsp;their&nbsp;Subject</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$set&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$imap</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">searchMailbox</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'SEEN&nbsp;SUBJECT&nbsp;"release"'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Delete&nbsp;a&nbsp;message&nbsp;from&nbsp;the&nbsp;server&nbsp;(message&nbsp;is&nbsp;not&nbsp;physically&nbsp;deleted,&nbsp;but&nbsp;it's</span></li>
+<li><span style="color: #007700">//&nbsp;list&nbsp;of&nbsp;flags&nbsp;get&nbsp;the&nbsp;"Deleted"&nbsp;flag.</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$imap</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">delete</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">1&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Use&nbsp;this&nbsp;to&nbsp;permanently&nbsp;delete&nbsp;the&nbsp;messages&nbsp;flagged&nbsp;with&nbsp;"Deleted"</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$imap</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">expunge</span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Use&nbsp;this&nbsp;to&nbsp;keep&nbsp;the&nbsp;connection&nbsp;alive</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$imap</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">noop</span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Create&nbsp;a&nbsp;new&nbsp;mail&nbsp;parser&nbsp;object</span></li>
+<li><span style="color: #000000">$parser&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailParser.html'>ezcMailParser</a></span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Parse&nbsp;the&nbsp;set&nbsp;of&nbsp;messages&nbsp;retrieved&nbsp;from&nbsp;the&nbsp;server&nbsp;earlier</span></li>
+<li><span style="color: #000000">$mail&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$parser</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">parseMail</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$set&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><p>The parser returns an array of <a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMail.html'>ezcMail</a> messages with parts organized according to the MIME structure of the mail.</p><a name="additional-usage-of-the-imap-transport"></a><a name="id24"></a><h4>Additional usage of the IMAP transport</h4><p>The IMAP transport supports multiple mailboxes. In the following example, we work with mailboxes and flags.</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #0000FF">require_once&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Create&nbsp;a&nbsp;new&nbsp;IMAP&nbsp;transport&nbsp;object&nbsp;by&nbsp;specifying&nbsp;the&nbsp;server&nbsp;name</span></li>
+<li><span style="color: #000000">$imap&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailImapTransport.html'>ezcMailImapTransport</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">"imap.example.com"&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Authenticate&nbsp;to&nbsp;the&nbsp;IMAP&nbsp;server</span></li>
+<li><span style="color: #000000">$imap</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">authenticate</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">"user"</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">"password"&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Select&nbsp;the&nbsp;Inbox&nbsp;mailbox</span></li>
+<li><span style="color: #000000">$imap</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">selectMailbox</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'Inbox'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;List&nbsp;the&nbsp;capabilities&nbsp;of&nbsp;the&nbsp;IMAP&nbsp;server</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$capabilities&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$imap</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">capability</span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;List&nbsp;existing&nbsp;mailboxes</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$mailboxes&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$imap</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">listMailboxes</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">""</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">"*"&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Fetch&nbsp;the&nbsp;hierarchy&nbsp;delimiter&nbsp;character&nbsp;(usually&nbsp;"/")</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$delimiter&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$imap</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">getHierarchyDelimiter</span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Create&nbsp;a&nbsp;new&nbsp;mailbox</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$imap</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">createMailbox</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">"Reports&nbsp;2006"&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Delete&nbsp;a&nbsp;mailbox</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$imap</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">deleteMailbox</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">"Reports&nbsp;2005"&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Rename&nbsp;a&nbsp;mailbox</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$imap</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">renameMailbox</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">"Reports&nbsp;2006"</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">"Reports"&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Copy&nbsp;messages&nbsp;from&nbsp;the&nbsp;selected&nbsp;mailbox&nbsp;(here:&nbsp;Inbox)&nbsp;to&nbsp;another&nbsp;mailbox</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$imap</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">copyMessages</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">"1,2,4"</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">"Reports"&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Set&nbsp;a&nbsp;flag&nbsp;to&nbsp;messages</span></li>
+<li><span style="color: #007700">//&nbsp;See&nbsp;the&nbsp;function&nbsp;description&nbsp;for&nbsp;a&nbsp;list&nbsp;of&nbsp;supported&nbsp;flags</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$imap</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">setFlag</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">"1,2,4"</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">"DELETED"&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Clears&nbsp;a&nbsp;flag&nbsp;from&nbsp;messages</span></li>
+<li><span style="color: #007700">//&nbsp;See&nbsp;the&nbsp;function&nbsp;description&nbsp;for&nbsp;a&nbsp;list&nbsp;of&nbsp;supported&nbsp;flags</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$imap</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">clearFlag</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">"1,2,4"</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">"SEEN"&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Append&nbsp;a&nbsp;message&nbsp;to&nbsp;a&nbsp;mailbox.&nbsp;$mail&nbsp;must&nbsp;contain&nbsp;the&nbsp;mail&nbsp;as&nbsp;text</span></li>
+<li><span style="color: #007700">//&nbsp;Use&nbsp;this&nbsp;with&nbsp;a&nbsp;"Sent"&nbsp;or&nbsp;"Drafts"&nbsp;mailbox</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$imap</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">append</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">"Sent"</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">$mail&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><a name="refering-messages-by-their-unique-ids-in-imap"></a><a name="id25"></a><h4>Refering messages by their unique IDs in IMAP</h4><p>With IMAP it is possible to refer to messages using their unique IDs, which usually never change, unlike message numbers. Unfortunately this is not possible yet in POP3.</p><p>The next example shows how to enable refering to messages by their unique IDs. To see the list of the methods which support unique IDs referencing, consult the documentation for the <a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailImapTransport.html'>ezcMailImapTransport</a> class.</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #0000FF">require_once&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Create&nbsp;a&nbsp;new&nbsp;IMAP&nbsp;transport&nbsp;object&nbsp;by&nbsp;specifying&nbsp;the&nbsp;server&nbsp;name,&nbsp;default&nbsp;port</span></li>
+<li><span style="color: #007700">//&nbsp;and&nbsp;that&nbsp;the&nbsp;IMAP&nbsp;commands&nbsp;will&nbsp;work&nbsp;with&nbsp;unique&nbsp;IDs&nbsp;instead&nbsp;of&nbsp;message&nbsp;numbers</span></li>
+<li><span style="color: #000000">$options&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailImapTransportOptions.html'>ezcMailImapTransportOptions</a></span><span style="color: #0000FF">();</span></li>
+<li><span style="color: #000000">$options</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">uidReferencing&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">true</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #000000">$imap&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailImapTransport.html'>ezcMailImapTransport</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">"imap.example.com"</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">null</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">$options&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Authenticate&nbsp;to&nbsp;the&nbsp;IMAP&nbsp;server</span></li>
+<li><span style="color: #000000">$imap</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">authenticate</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">"user"</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">"password"&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Select&nbsp;the&nbsp;Inbox&nbsp;mailbox</span></li>
+<li><span style="color: #000000">$imap</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">selectMailbox</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'Inbox'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;The&nbsp;other&nbsp;IMAP&nbsp;examples&nbsp;apply&nbsp;here,&nbsp;with&nbsp;the&nbsp;distinction&nbsp;that&nbsp;unique&nbsp;IDs&nbsp;are</span></li>
+<li><span style="color: #007700">//&nbsp;used&nbsp;to&nbsp;refer&nbsp;to&nbsp;messages&nbsp;instead&nbsp;of&nbsp;message&nbsp;numbers</span></li>
+<li></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><a name="working-with-transport-options"></a><a name="id26"></a><h4>Working with transport options</h4><p>The POP3, IMAP and SMTP transports allow options to be specified when calling the transport constructors. These options are implemented in the classes <a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailPop3TransportOptions.html'>ezcMailPop3TransportOptions</a>, <a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailImapTransportOptions.html'>ezcMailImapTransportOptions</a> and <a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailSmtpTransportOptions.html'>ezcMailSmtpTransportOptions</a>. In the following example, we specify options when calling the POP3 transport constructor.</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #0000FF">require_once&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Create&nbsp;a&nbsp;new&nbsp;POP3&nbsp;transport&nbsp;with&nbsp;a&nbsp;plain&nbsp;connection&nbsp;(default&nbsp;port&nbsp;is&nbsp;110,</span></li>
+<li><span style="color: #007700">//&nbsp;you&nbsp;can&nbsp;specify&nbsp;a&nbsp;different&nbsp;one&nbsp;using&nbsp;the&nbsp;second&nbsp;parameter&nbsp;of&nbsp;the&nbsp;constructor).</span></li>
+<li><span style="color: #007700">//&nbsp;A&nbsp;timeout&nbsp;option&nbsp;is&nbsp;specified&nbsp;to&nbsp;be&nbsp;10&nbsp;seconds&nbsp;(default&nbsp;is&nbsp;5).</span></li>
+<li><span style="color: #007700">//&nbsp;Another&nbsp;option&nbsp;to&nbsp;be&nbsp;specified&nbsp;is&nbsp;the&nbsp;authenticationMethod&nbsp;as&nbsp;APOP&nbsp;(default&nbsp;is&nbsp;plain&nbsp;text)</span></li>
+<li><span style="color: #000000">$options&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailPop3TransportOptions.html'>ezcMailPop3TransportOptions</a></span><span style="color: #0000FF">();</span></li>
+<li><span style="color: #000000">$options</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">timeout&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">10</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000">$options</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">authenticationMethod&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">ezcMailPop3Transport</span><span style="color: #0000FF">::</span><span style="color: #000000">AUTH_APOP</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #000000">$pop3&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailPop3Transport.html'>ezcMailPop3Transport</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">"pop3.example.com"</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">null</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">$options&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Authenticate&nbsp;to&nbsp;the&nbsp;POP3&nbsp;server</span></li>
+<li><span style="color: #000000">$pop3</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">authenticate</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">"user"</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">"password"&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><a name="using-ssl-with-pop3-and-imap"></a><a name="id27"></a><h4>Using SSL with POP3 and IMAP</h4><p>The POP3 and IMAP transports allow SSL connections (if the mail server supports them). In the following example, we connect to an IMAP server using an SSL connection.</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #0000FF">require_once&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Create&nbsp;a&nbsp;new&nbsp;IMAP&nbsp;transport&nbsp;with&nbsp;an&nbsp;SSL&nbsp;connection&nbsp;(default&nbsp;port&nbsp;is&nbsp;993,</span></li>
+<li><span style="color: #007700">//&nbsp;you&nbsp;can&nbsp;specify&nbsp;a&nbsp;different&nbsp;one&nbsp;using&nbsp;the&nbsp;second&nbsp;parameter&nbsp;of&nbsp;the&nbsp;constructor).</span></li>
+<li><span style="color: #000000">$options&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailImapTransportOptions.html'>ezcMailImapTransportOptions</a></span><span style="color: #0000FF">();</span></li>
+<li><span style="color: #000000">$options</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">ssl&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">true</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #000000">$imap&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailImapTransport.html'>ezcMailImapTransport</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">"imap.example.com"</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">null</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">$options&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Authenticate&nbsp;to&nbsp;the&nbsp;IMAP&nbsp;server</span></li>
+<li><span style="color: #000000">$imap</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">authenticate</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">"user"</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">"password"&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Select&nbsp;the&nbsp;Inbox&nbsp;mailbox</span></li>
+<li><span style="color: #000000">$imap</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">selectMailbox</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'Inbox'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><a name="retrieving-mail-from-mbox-files"></a><a name="id28"></a><h4>Retrieving mail from mbox files</h4><p>The following example shows how to fetch all messages from an mbox file and to parse the messages for use.</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #0000FF">require_once&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Create&nbsp;a&nbsp;new&nbsp;Mbox&nbsp;transport&nbsp;object&nbsp;by&nbsp;specifiying&nbsp;an&nbsp;existing&nbsp;mbox&nbsp;file&nbsp;name</span></li>
+<li><span style="color: #000000">$mbox&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailMboxTransport.html'>ezcMailMboxTransport</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">"/path/file.mbox"&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Fetch&nbsp;all&nbsp;messages&nbsp;from&nbsp;the&nbsp;mbox&nbsp;file</span></li>
+<li><span style="color: #000000">$set&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$mbox</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">fetchAll</span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Create&nbsp;a&nbsp;new&nbsp;mail&nbsp;parser&nbsp;object</span></li>
+<li><span style="color: #000000">$parser&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailParser.html'>ezcMailParser</a></span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Parse&nbsp;the&nbsp;set&nbsp;of&nbsp;messages&nbsp;retrieved&nbsp;from&nbsp;the&nbsp;mbox&nbsp;file&nbsp;earlier</span></li>
+<li><span style="color: #000000">$mail&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$parser</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">parseMail</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$set&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><p>The parser returns an array of <a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMail.html'>ezcMail</a> messages with parts organized according to the MIME structure of the mail.</p><a name="parsing-a-message-set"></a><a name="id29"></a><h4>Parsing a message set</h4><p>The following example shows how to parse a message set retrieved from an IMAP or POP3 account, an mbox file, a single mail file or a variable.</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #0000FF">require_once&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Create&nbsp;a&nbsp;new&nbsp;mail&nbsp;parser&nbsp;object</span></li>
+<li><span style="color: #000000">$parser&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailParser.html'>ezcMailParser</a></span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;$set&nbsp;is&nbsp;a&nbsp;message&nbsp;set&nbsp;got&nbsp;from&nbsp;an&nbsp;IMAP,&nbsp;POP3&nbsp;account&nbsp;or&nbsp;Mbox&nbsp;file</span></li>
+<li><span style="color: #007700">//&nbsp;like&nbsp;for&nbsp;example:</span></li>
+<li><span style="color: #007700">//&nbsp;$mbox&nbsp;=&nbsp;new&nbsp;<a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailMboxTransport.html'>ezcMailMboxTransport</a>(&nbsp;"/path/file.mbox"&nbsp;);</span></li>
+<li><span style="color: #007700">//&nbsp;$set&nbsp;=&nbsp;$mbox-&gt;fetchAll();</span></li>
+<li><span style="color: #000000">$mail&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$parser</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">parseMail</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$set&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #0000FF">for&nbsp;(&nbsp;</span><span style="color: #000000">$i&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">0</span><span style="color: #0000FF">;&nbsp;</span><span style="color: #000000">$i&nbsp;</span><span style="color: #0000FF">&lt;&nbsp;</span><span style="color: #000000">count</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$mail&nbsp;</span><span style="color: #0000FF">);&nbsp;</span><span style="color: #000000">$i</span><span style="color: #0000FF">++&nbsp;)</span></li>
+<li><span style="color: #0000FF">{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">//&nbsp;Process&nbsp;$mail[$i]&nbsp;such&nbsp;as&nbsp;use&nbsp;$mail[$i]-&gt;subject,&nbsp;$mail[$i]-&gt;body</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000FF">echo&nbsp;</span><span style="color: #335533">"From:&nbsp;</span><span style="color: #0000FF">{</span><span style="color: #000000">$mail</span><span style="color: #0000FF">[</span><span style="color: #000000">$i</span><span style="color: #0000FF">]-&gt;</span><span style="color: #000000">from</span><span style="color: #0000FF">}</span><span style="color: #335533">,&nbsp;Subject:&nbsp;</span><span style="color: #0000FF">{</span><span style="color: #000000">$mail</span><span style="color: #0000FF">[</span><span style="color: #000000">$i</span><span style="color: #0000FF">]-&gt;</span><span style="color: #000000">subject</span><span style="color: #0000FF">}</span><span style="color: #335533">\n"</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">//&nbsp;Save&nbsp;the&nbsp;attachments&nbsp;to&nbsp;another&nbsp;folder</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$parts&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$mail</span><span style="color: #0000FF">[</span><span style="color: #000000">$i</span><span style="color: #0000FF">]-&gt;</span><span style="color: #000000">fetchParts</span><span style="color: #0000FF">();</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;foreach&nbsp;(&nbsp;</span><span style="color: #000000">$parts&nbsp;</span><span style="color: #0000FF">as&nbsp;</span><span style="color: #000000">$part&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(&nbsp;</span><span style="color: #000000">$part&nbsp;</span><span style="color: #0000FF">instanceof&nbsp;</span><span style="color: #000000">ezcMailFile&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">rename</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$part</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">fileName</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'/path/to/save/to/'&nbsp;</span><span style="color: #0000FF">.&nbsp;</span><span style="color: #000000">basename</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$part</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">contentDisposition</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">displayFileName&nbsp;</span><span style="color: #0000FF">)&nbsp;);</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;}</span></li>
+<li><span style="color: #0000FF">}</span></li>
+<li></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><p>Because the parser will delete the temporary attachments after the script ends, it is needed to save those files to another directory. On lines 19-26 a way of how to do this is shown. The <em>contentDisposition-&gt;displayFileName</em> property of $part was used, as the <em>fileName</em> property of $part contains the raw file name from the mail.</p><p>For a more detailed example on how to use a mail object, please see the <a href="Mail_display-example.html">display example</a>.</p><p>For an example on how to display a listing of mails, please see the <a href="Mail_mail-listing-example.html">mail listing example</a>.</p><p>For a list of supported mail-related RFCs, please see the <a href="Mail_rfcs.html">RFCs list</a>.</p><a name="displaying-html-mail-with-inline-images"></a><a name="id30"></a><h4>Displaying HTML mail with inline images</h4><p>In order to display HTML mail with inline images, you need to make sure that the attached images are accessible by the web server. Besides this, you also need to replace the internal mail references to the images with references to the file in the document root. In the following example we use <a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailTools.html#replaceContentIdRefs'>ezcMailTools::replaceContentIdRefs</a>() to do exactly this.</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #0000FF">require&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Create&nbsp;a&nbsp;mail&nbsp;set&nbsp;from&nbsp;a&nbsp;file,&nbsp;a&nbsp;parser,&nbsp;and&nbsp;parse&nbsp;the&nbsp;e-mail.</span></li>
+<li><span style="color: #000000">$set&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailFileSet.html'>ezcMailFileSet</a></span><span style="color: #0000FF">(&nbsp;array(&nbsp;</span><span style="color: #335533">'test-mail.mail'&nbsp;</span><span style="color: #0000FF">)&nbsp;);</span></li>
+<li><span style="color: #000000">$parser&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailParser.html'>ezcMailParser</a></span><span style="color: #0000FF">();</span></li>
+<li><span style="color: #000000">$mail&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$parser</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">parseMail</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$set&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">/**</span></li>
+<li><span style="color: #007700">&nbsp;*&nbsp;This&nbsp;class&nbsp;is&nbsp;used&nbsp;in&nbsp;the&nbsp;callback&nbsp;for&nbsp;each&nbsp;part&nbsp;that&nbsp;is&nbsp;walked&nbsp;below.&nbsp;It</span></li>
+<li><span style="color: #007700">&nbsp;*&nbsp;takes&nbsp;care&nbsp;of&nbsp;copying&nbsp;the&nbsp;files&nbsp;and&nbsp;registering&nbsp;both&nbsp;file&nbsp;parts&nbsp;and&nbsp;the&nbsp;HTML</span></li>
+<li><span style="color: #007700">&nbsp;*&nbsp;text.</span></li>
+<li><span style="color: #007700">&nbsp;*/</span></li>
+<li><span style="color: #0000FF">class&nbsp;</span><span style="color: #000000">collector</span></li>
+<li><span style="color: #0000FF">{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;</span><span style="color: #000000">saveMailPart</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$context</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">$mailPart&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">//&nbsp;if&nbsp;it's&nbsp;a&nbsp;file,&nbsp;we&nbsp;copy&nbsp;the&nbsp;attachment&nbsp;to&nbsp;a&nbsp;new&nbsp;location,&nbsp;and</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;register&nbsp;its&nbsp;CID&nbsp;with&nbsp;the&nbsp;class&nbsp;-&nbsp;attaching&nbsp;it&nbsp;to&nbsp;the&nbsp;location&nbsp;in</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;which&nbsp;the&nbsp;*web&nbsp;server*&nbsp;can&nbsp;find&nbsp;the&nbsp;file.</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000FF">if&nbsp;(&nbsp;</span><span style="color: #000000">$mailPart&nbsp;</span><span style="color: #0000FF">instanceof&nbsp;</span><span style="color: #000000">ezcMailFile&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">//&nbsp;copy&nbsp;files&nbsp;to&nbsp;tmp&nbsp;with&nbsp;random&nbsp;name</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$newFile&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">tempnam</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$this</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">dir</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'mail'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">copy</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$mailPart</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">fileName</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">$newFile&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">//&nbsp;save&nbsp;location&nbsp;and&nbsp;setup&nbsp;ID&nbsp;array</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$this</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">cids</span><span style="color: #0000FF">[</span><span style="color: #000000">$mailPart</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">contentId</span><span style="color: #0000FF">]&nbsp;=</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$this</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">webDir&nbsp;</span><span style="color: #0000FF">.&nbsp;</span><span style="color: #335533">'/'&nbsp;</span><span style="color: #0000FF">.&nbsp;</span><span style="color: #000000">basename</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$newFile&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</span></li>
+<li></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">//&nbsp;if&nbsp;we&nbsp;find&nbsp;a&nbsp;text&nbsp;part&nbsp;and&nbsp;if&nbsp;the&nbsp;sub-type&nbsp;is&nbsp;HTML&nbsp;(no&nbsp;plain&nbsp;text)</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;we&nbsp;store&nbsp;that&nbsp;in&nbsp;the&nbsp;classes'&nbsp;htmlText&nbsp;property.</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000FF">if&nbsp;(&nbsp;</span><span style="color: #000000">$mailPart&nbsp;</span><span style="color: #0000FF">instanceof&nbsp;</span><span style="color: #000000">ezcMailText&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(&nbsp;</span><span style="color: #000000">$mailPart</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">subType&nbsp;</span><span style="color: #0000FF">==&nbsp;</span><span style="color: #335533">'html'&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$this</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">htmlText&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$mailPart</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">text</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;}</span></li>
+<li><span style="color: #0000FF">}</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;create&nbsp;the&nbsp;collector&nbsp;class&nbsp;and&nbsp;set&nbsp;the&nbsp;filesystem&nbsp;path,&nbsp;and&nbsp;the&nbsp;webserver's</span></li>
+<li><span style="color: #007700">//&nbsp;path&nbsp;to&nbsp;find&nbsp;the&nbsp;attached&nbsp;files&nbsp;(images)&nbsp;in.</span></li>
+<li><span style="color: #000000">$collector&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000">collector</span><span style="color: #0000FF">();</span></li>
+<li><span style="color: #000000">$collector</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">dir&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">"/home/httpd/html/test/ezc"</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000">$collector</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">webDir&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">'/test/ezc'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;We&nbsp;use&nbsp;the&nbsp;saveMailPart()&nbsp;method&nbsp;of&nbsp;the&nbsp;$collector&nbsp;object&nbsp;function&nbsp;as&nbsp;a</span></li>
+<li><span style="color: #007700">//&nbsp;callback&nbsp;in&nbsp;walkParts().</span></li>
+<li><span style="color: #000000">$context&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailPartWalkContext.html'>ezcMailPartWalkContext</a></span><span style="color: #0000FF">(&nbsp;array(&nbsp;</span><span style="color: #000000">$collector</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'saveMailPart'&nbsp;</span><span style="color: #0000FF">)&nbsp;);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;only&nbsp;call&nbsp;the&nbsp;callback&nbsp;for&nbsp;file&nbsp;and&nbsp;text&nbsp;parts.</span></li>
+<li><span style="color: #000000">$context</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">filter&nbsp;</span><span style="color: #0000FF">=&nbsp;array(&nbsp;</span><span style="color: #335533">'<a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailFile.html'>ezcMailFile</a>'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'<a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailText.html'>ezcMailText</a>'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;use&nbsp;walkParts()&nbsp;to&nbsp;iterate&nbsp;over&nbsp;all&nbsp;parts&nbsp;in&nbsp;the&nbsp;first&nbsp;parsed&nbsp;e-mail</span></li>
+<li><span style="color: #007700">//&nbsp;message.</span></li>
+<li><span style="color: #000000">$mail</span><span style="color: #0000FF">[</span><span style="color: #000000">0</span><span style="color: #0000FF">]-&gt;</span><span style="color: #000000">walkParts</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$context</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">$mail</span><span style="color: #0000FF">[</span><span style="color: #000000">0</span><span style="color: #0000FF">]&nbsp;);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;display&nbsp;the&nbsp;html&nbsp;text&nbsp;with&nbsp;the&nbsp;content&nbsp;IDs&nbsp;replaced&nbsp;with&nbsp;references&nbsp;to&nbsp;the</span></li>
+<li><span style="color: #007700">//&nbsp;file&nbsp;in&nbsp;the&nbsp;webroot.</span></li>
+<li><span style="color: #0000FF">echo&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailTools.html#replaceContentIdRefs'>ezcMailTools::replaceContentIdRefs</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$collector</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">htmlText</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">$collector</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">cids&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><a name="using-a-custom-mail-class"></a><a name="id31"></a><h4>Using a custom mail class</h4><p>When parsing a mail, an object of class <a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMail.html'>ezcMail</a> is created by default. You can change this by specifying a custom mail class to the parser before parsing. The custom mail class must extend <a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMail.html'>ezcMail</a>.</p><p>Example:</p><code class="block">$parser = new <a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailParser.html'>ezcMailParser</a>();
+$parser-&gt;options-&gt;mailClass = 'myCustomMailClass'; // extends <a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMail.html'>ezcMail</a>
+$parser-&gt;parseMail( $set );</code><a name="using-a-custom-file-class"></a><a name="id32"></a><h4>Using a custom file class</h4><p>When parsing a mail, an object of class <a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailFile.html'>ezcMailFile</a> is created by default for each file attachment. You can change this by specifying a custom file class to the parser before parsing. The custom file class must extend <a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailFile.html'>ezcMailFile</a>.</p><p>Example:</p><code class="block">$parser = new <a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailParser.html'>ezcMailParser</a>();
+$parser-&gt;options-&gt;fileClass = 'myCustomFileClass'; // extends <a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailFile.html'>ezcMailFile</a>
+$parser-&gt;parseMail( $set );</code><a name="troubleshooting"></a><a name="id33"></a><h3>Troubleshooting</h3><a name="mta-qmail"></a><a name="id34"></a><h4>MTA: Qmail</h4><p>Qmail insists on only using "\n" line breaks and will send garbled messages with the default "\r\n" setting. To fix this issue, use <a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailTools.html#setLineBreak'>ezcMailTools::setLineBreak</a>( "\n" ) before sending mail.</p><a name="mta-sendmail-relaying-denied"></a><a name="id35"></a><h4>MTA: Sendmail relaying denied</h4><p>This can happen when the SMTP server you try to use has disabled the sending of mail from computers not connected to its network, or if it requires authentication. Talk to the administrator of the SMTP server to see what the requirements are to send mail.</p><p>Check also that sendmail is installed and configured correctly.</p><p>For Windows, you need to specify a valid SMTP server in php.ini, or you can download a "fake" sendmail from the internet.</p><a name="imap-authentication-failed"></a><a name="id36"></a><h4>IMAP: Authentication failed</h4><p>Sometimes the IMAP transport fails to authenticate, in which case the authenticate() method will return false. The application should detect when this occurs and attempt authentication again (for example, for a preset number of times such as three).</p><a name="imap-could-not-read-from-the-stream"></a><a name="id37"></a><h4>IMAP: Could not read from the stream</h4><p>While using the IMAP methods, it is possible that an <a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailTransportException.html'>ezcMailTransportException</a> is thrown, in which case the connection to the IMAP server is closed. The application should catch this exception and decide how to handle this situation (show an error, reconnect).</p><a name="parsing-iconv-notices"></a><a name="id38"></a><h4>Parsing: iconv() notices</h4><p>If the mail that you try to parse is not encoded properly, the <a href="http://php.net/manual/en/function.iconv.php">iconv</a> () function will throw notices (from the function convertToUTF8Iconv() in <a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailCharsetConverter.html'>ezcMailCharsetConverter</a>).</p><p>To avoid the notices you can use your own conversion function:</p><p>1. Create a new function which is similar to convertToUTF8Iconv() from <a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailCharsetConverter.html'>ezcMailCharsetConverter</a>, but which supresses notices and errors (with @ in front of <a href="http://php.net/manual/en/function.iconv.php">iconv</a> ()):</p><code class="block">class myConverter
+{
+     public static function convertToUTF8IconvNoNotices( $text, $originalCharset )
+     {
+         if ( $originalCharset === 'unknown-8bit' || $originalCharset === 'x-user-defined' )
+         {
+             $originalCharset = "latin1";
+         }
+         return @iconv( $originalCharset, 'utf-8', $text );
+     }
+}</code><p>2. Use the created function instead of the normal one (set this before parsing mail):</p><code class="block"><a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailCharsetConverter.html#setConvertMethod'>ezcMailCharsetConverter::setConvertMethod</a>( array( 'myConverter', 'convertToUTF8IconvNoNotices' ) );</code><a name="parsing-missing-characters"></a><a name="id39"></a><h4>Parsing: missing characters</h4><p>If the mail that you try to parse is not encoded properly, the <a href="http://php.net/manual/en/function.iconv.php">iconv</a> () function will throw notices (from the function convertToUTF8Iconv() in <a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailCharsetConverter.html'>ezcMailCharsetConverter</a>).</p><p>To avoid the missing characters you can use your own conversion function:</p><p>1. Create a new function which is similar to convertToUTF8Iconv() from <a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailCharsetConverter.html'>ezcMailCharsetConverter</a>, but which uses one of the options //IGNORE or //TRANSLIT for <a href="http://php.net/manual/en/function.iconv.php">iconv</a> ():</p><code class="block">class myConverter
+{
+    public static function convertToUTF8IconvIgnore( $text, $originalCharset )
+    {
+        if ( $originalCharset === 'unknown-8bit' || $originalCharset === 'x-user-defined' )
+        {
+            $originalCharset = "latin1";
+        }
+        return iconv( $originalCharset, 'utf-8//TRANSLIT', $text );
+    }
+}</code><p>2. Use the created function instead of the normal one (set this before parsing mail):</p><code class="block"><a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailCharsetConverter.html#setConvertMethod'>ezcMailCharsetConverter::setConvertMethod</a>( array( 'myConverter', 'convertToUTF8IconvIgnore' ) );</code><p>See the other examples in <a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailCharsetConverter.html'>ezcMailCharsetConverter</a>, and see also the documentation for the <a href="http://php.net/manual/en/function.iconv.php">iconv</a> () function to find out how //IGNORE and //TRANSLIT work.</p><a name="parsing-broken-headers"></a><a name="id40"></a><h4>Parsing: broken headers</h4><p>If the mail contains headers with broken text (eg. 8-bit characters with no character set specified), then the parsed header will contain broken text or missing characters.</p><p>For example, when parsing a mail with this header:</p><code class="block">Subject: Un Fax a été émis</code><p>Then $mail-&gt;subject will contain 'Un Fax a t mis' (because the 8-bit characters could not be parsed correctly by <a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailTools.html#mimeDecode'>ezcMailTools::mimeDecode</a>() due to the missing character set).</p><p>In order to be able to get the correct value of the header, use $mail-&gt;getHeader( 'Subject' ), which is the raw value of the header (MIME-encoded). Other headers are available as raw through the getHeader() function.</p><p>The raw headers (obtained via the function getHeader of <a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailPart.html'>ezcMailPart</a>) are MIME-encoded for non-broken headers (eg. '=?iso-8859-1?Q?=E6=F8=E5?='), so if you want to decode them use <a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailTools.html#mimeDecode'>ezcMailTools::mimeDecode</a>() or implement your own MIME-decoding function.</p><a name="parsing-multiple-value-headers"></a><a name="id41"></a><h4>Parsing: multiple-value headers</h4><p>Mail headers such as <strong>Received</strong> can appear multiple times in a mail message. By default the mail parser will only recognize the first value of the header it encounters, and will disregard the others.</p><p>To retrieve all the values of a header from a mail in an array, use the second argument for the function $mail-&gt;getHeader() with the value <em>true</em>.</p><p>Example:</p><code class="block">$mail-&gt;getHeader( 'Received', true );</code><p>This will return an array which looks like this:</p><code class="block">array(
+    "from punisher.example.com (punisher.example.com...",
+    "from localhost (localhost [127.0.0.1])...",
+    "from punisher.example.com ([127.0.0.1])...",
+    "from www.example.com (unknown [216.198.224.130]) by...",
+    "from localhost (localhost) by www.example.com..."
+     );</code><p>instead of only the first value as a string if the second parameter to getHeader() was not specified.</p><a name="parsing-text-attachments-as-file-parts"></a><a name="id42"></a><h4>Parsing: text attachments as file parts</h4><p>By default, the mail parser creates <a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailTextPart.html'>ezcMailTextPart</a> objects for text attachments found in the mail.</p><p>To create <a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailFile.html'>ezcMailFile</a> objects instead (for example on servers where internal memory is limited), set this option to the mail parser before parsing:</p><code class="block">$parser = new <a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailParser.html'>ezcMailParser</a>();
+$parser-&gt;options-&gt;parseTextAttachmentsAsFiles = true;
+// call $parser-&gt;parseMail( $set );</code><a name="parsing-attachment-file-names"></a><a name="id43"></a><h4>Parsing: attachment file names</h4><p>When parsing a mail with attachments you can use a code similar to the one in section . The mail part that contains the attachment ($part) has the <em>fileName</em> property which contains the raw file name, <em>contentDisposition-&gt;displayFileName</em> which contain the MIME-decoded file name. Use the <em>contentDisposition-&gt;displayFileName</em> value to copy the temporary files saved during parsing which contain the attachments, and which will not be available on the next request.</p><a name="security"></a><a name="id44"></a><h3>Security</h3><a name="excluding-the-user-agent-header"></a><a name="id45"></a><h4>Excluding the User-Agent header</h4><p>By defaul the Mail component will add the "User-Agent" header containing the string "Apache Zeta Components". This can be considered a security issue. If you do not want to get this header sent along with the email you can use the following code:</p><code class="block">$mail = new <a href='/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailComposer.html'>ezcMailComposer</a>();
+// [...]
+$mail-&gt;appendExcludeHeaders(array('User-Agent'));</code><!--Local Variables:
+mode: rst
+fill-column: 79
+End:
+vim: et syn=rst tw=79-->
+
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

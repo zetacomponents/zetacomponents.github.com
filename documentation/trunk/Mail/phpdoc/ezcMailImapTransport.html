@@ -1,0 +1,1941 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="" />
+	<meta name="author" content="jerome" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Sun, 10 Jul 2011 11:11:01 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="ezcMailImapTransport.html" />
+	<meta name="DC.creator" content="jerome" />
+	<meta name="DC.date" content="Sun, 10 Jul 2011 11:11:01 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailImapTransport.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/Mail/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/trunk/Mail/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Mail/mail-listing-example.html" title="Mail-listing-example ">Mail-listing-example </a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Mail/display-example.html" title="Display-example ">Display-example </a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Mail/rfcs.html" title="Rfcs ">Rfcs </a>
+	</li>
+
+</ul>
+
+		
+  <div class="phpdoc">
+    <h2>Apache Zeta Components Manual :: Docs For Class ezcMailImapTransport</h2>
+
+                  <h3>Mail::ezcMailImapTransport</h3>
+    
+<a name="sec-description"></a>
+<h3>Class ezcMailImapTransport</h3>
+
+<p>The class ezcMailImapTransport implements functionality for handling IMAP  mail servers.</p><div><p>The implementation supports most of the commands specified in: </p><ul><li><a href="http://www.faqs.org/rfcs/rfc1730.html">http://www.faqs.org/rfcs/rfc1730.html</a> (IMAP4)</li><li><a href="http://www.faqs.org/rfcs/rfc2060.html">http://www.faqs.org/rfcs/rfc2060.html</a> (IMAP4rev1)</li></ul>  Each user account on the IMAP server has it's own folders (mailboxes).  Mailboxes can be created, renamed or deleted. All accounts have a special  mailbox called Inbox which cannot be deleted or renamed.<p>Messages are organized in mailboxes, and are identified by a message number  (which can change over time) and a unique ID (which does not change under  normal circumstances). The commands operating on messages can handle both  modes (message numbers or unique IDs).</p><p>Messages are marked by certain flags (SEEN, DRAFT, etc). Deleting a message  actually sets it's DELETED flag, and a later call to <a href="ezcMailImapTransport.html#methodexpunge">expunge()</a> will  delete all the messages marked with the DELETED flag.</p><p>The IMAP server can be in different states. Most IMAP commands require  that a connection is established and a user is authenticated. Certain  commands require in addition that a mailbox is selected.</p><p>The IMAP transport class allows developers to interface with an IMAP server.  The commands which support unique IDs to refer to messages are marked with  [*] (see <a href="ezcMailImapTransportOptions.html">ezcMailImapTransportOptions</a> to find out how to enable  unique IDs referencing):</p><p>Basic commands: </p><ul><li>connect to an IMAP server (<a href="ezcMailImapTransport.html#method__construct">__construct()</a>)</li><li>authenticate a user with a username and password (<a href="ezcMailImapTransport.html#methodauthenticate">authenticate()</a>)</li><li>select a mailbox (<a href="ezcMailImapTransport.html#methodselectMailbox">selectMailbox()</a>)</li><li>disconnect from the IMAP server (<a href="ezcMailImapTransport.html#methoddisconnect">disconnect()</a>)</li></ul>  Work with mailboxes: <ul><li>get the list of mailboxes of the user (<a href="ezcMailImapTransport.html#methodlistMailboxes">listMailboxes()</a>)</li><li>create a mailbox (<a href="ezcMailImapTransport.html#methodcreateMailbox">createMailbox()</a>)</li><li>rename a mailbox (<a href="ezcMailImapTransport.html#methodrenameMailbox">renameMailbox()</a>)</li><li>delete a mailbox (<a href="ezcMailImapTransport.html#methoddeleteMailbox">deleteMailbox()</a>)</li><li>append a message to a mailbox (<a href="ezcMailImapTransport.html#methodappend">append()</a>)</li><li>select a mailbox (<a href="ezcMailImapTransport.html#methodselectMailbox">selectMailbox()</a>)</li><li>get the status of messages in the current mailbox (<a href="ezcMailImapTransport.html#methodstatus">status()</a>)</li><li>get the number of messages with a certain flag (<a href="ezcMailImapTransport.html#methodcountByFlag">countByFlag()</a>)</li></ul>  Work with message numbers (on the currently selected mailbox): <ul><li>get the message numbers and sizes of all the messages (<a href="ezcMailImapTransport.html#methodlistMessages">listMessages()</a>)</li><li>get the message numbers and IDs of all the messages (<a href="ezcMailImapTransport.html#methodlistUniqueIdentifiers">listUniqueIdentifiers()</a>)</li><li>[*] get the headers of a certain message (<a href="ezcMailImapTransport.html#methodtop">top()</a>)</li><li>[*] delete a message (<a href="ezcMailImapTransport.html#methoddelete">delete()</a> and <a href="ezcMailImapTransport.html#methodexpunge">expunge()</a>)</li><li>[*] copy messages to another mailbox (<a href="ezcMailImapTransport.html#methodcopyMessages">copyMessages()</a>)</li><li>[*] get the sizes of the specified messages (<a href="ezcMailImapTransport.html#methodfetchSizes">fetchSizes()</a>)</li></ul>  Work with flags (on the currently selected mailbox): <ul><li>[*] get the flags of the specified messages (<a href="ezcMailImapTransport.html#methodfetchFlags">fetchFlags()</a>)</li><li>[*] set a flag on the specified messages (<a href="ezcMailImapTransport.html#methodsetFlag">setFlag()</a>)</li><li>[*] clear a flag from the specified messages (<a href="ezcMailImapTransport.html#methodclearFlag">clearFlag()</a>)</li></ul>  Work with <a href="ezcMailImapSet.html">ezcMailImapSet</a> sets (parseable with <a href="ezcMailParser.html">ezcMailParser</a>)  (on the currently selected mailbox): <ul><li>[*] create a set from all messages (<a href="ezcMailImapTransport.html#methodfetchAll">fetchAll()</a>)</li><li>[*] create a set from a certain message (<a href="ezcMailImapTransport.html#methodfetchByMessageNr">fetchByMessageNr()</a>)</li><li>[*] create a set from a range of messages (<a href="ezcMailImapTransport.html#methodfetchFromOffset">fetchFromOffset()</a>)</li><li>[*] create a set from messages with a certain flag (<a href="ezcMailImapTransport.html#methodfetchByFlag">fetchByFlag()</a>)</li><li>[*] create a set from a sorted range of messages (<a href="ezcMailImapTransport.html#methodsortFromOffset">sortFromOffset()</a>)</li><li>[*] create a set from a sorted list of messages (<a href="ezcMailImapTransport.html#methodsortMessages">sortMessages()</a>)</li><li>[*] create a set from a free-form search (<a href="ezcMailImapTransport.html#methodsearchMailbox">searchMailbox()</a>)</li></ul>  Miscellaneous commands: <ul><li>get the capabilities of the IMAP server (<a href="ezcMailImapTransport.html#methodcapability">capability()</a>)</li><li>get the hierarchy delimiter (useful for nested mailboxes) (<a href="ezcMailImapTransport.html#methodgetHierarchyDelimiter">getHierarchyDelimiter()</a>)</li><li>issue a NOOP command to keep the connection alive (<a href="ezcMailImapTransport.html#methodnoop">noop()</a>)</li></ul>  The usual operation with an IMAP server is illustrated by this example:  <ol><li><div class="src-line">&#8192;<span class="src-comm">//&#8192;create&#8192;a&#8192;new&#8192;IMAP&#8192;transport&#8192;object&#8192;by&#8192;specifying&#8192;the&#8192;server&#8192;name,&#8192;optional&#8192;port</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;and&#8192;optional&#8192;SSL&#8192;mode</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$options&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcMailImapTransportOptions.html">ezcMailImapTransportOptions</a></span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$options</span><span class="src-sym">-&gt;</span><span class="src-id">ssl&#8192;</span>=&#8192;<span class="src-id">true</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$imap&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcMailImapTransport.html">ezcMailImapTransport</a></span><span class="src-sym">(&#8192;</span><span class="src-str">'imap.example.com'</span><span class="src-sym">,&#8192;</span><span class="src-id">null</span><span class="src-sym">,&#8192;</span><span class="src-var">$options&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;Authenticate&#8192;to&#8192;the&#8192;IMAP&#8192;server</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$imap</span><span class="src-sym">-&gt;</span><a href="ezcMailImapTransport.html#methodauthenticate">authenticate</a><span class="src-sym">(&#8192;</span><span class="src-str">'username'</span><span class="src-sym">,&#8192;</span><span class="src-str">'password'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;Select&#8192;a&#8192;mailbox&#8192;(here&#8192;'Inbox')</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$imap</span><span class="src-sym">-&gt;</span><a href="ezcMailImapTransport.html#methodselectMailbox">selectMailbox</a><span class="src-sym">(&#8192;</span><span class="src-str">'Inbox'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;issue&#8192;commands&#8192;to&#8192;the&#8192;IMAP&#8192;server</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;for&#8192;example&#8192;get&#8192;the&#8192;number&#8192;of&#8192;RECENT&#8192;messages</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$recent&#8192;</span>=&#8192;<span class="src-var">$imap</span><span class="src-sym">-&gt;</span><a href="ezcMailImapTransport.html#methodcountByFlag">countByFlag</a><span class="src-sym">(&#8192;</span><span class="src-str">'RECENT'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;see&#8192;the&#8192;above&#8192;list&#8192;of&#8192;commands&#8192;or&#8192;consult&#8192;the&#8192;online&#8192;documentation&#8192;for</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;the&#8192;full&#8192;list&#8192;of&#8192;commands&#8192;you&#8192;can&#8192;issue&#8192;to&#8192;an&#8192;IMAP&#8192;server&#8192;and&#8192;examples</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;disconnect&#8192;from&#8192;the&#8192;IMAP&#8192;server</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$imap</span><span class="src-sym">-&gt;</span><a href="ezcMailImapTransport.html#methoddisconnect">disconnect</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol><p>See <a href="ezcMailImapTransportOptions.html">ezcMailImapTransportOptions</a> for other options you can specify  for IMAP.</p></div>
+<p>Source for this file: <a href="http://fisheye6.atlassian.com/browse/zetacomponents/trunk/Mail/src/transports/imap/imap_transport.php?r=HEAD">/Mail/src/transports/imap/imap_transport.php</a></p>
+       
+
+
+
+
+  <table><tr><td>
+            <strong>Version:</strong>&#8192;&#8192;
+          </td>
+          <td>//autogen//</td>
+        </tr><tr><td>
+            <strong>Todo:</strong>&#8192;&#8192;
+          </td>
+          <td>ignore messages of a certain size?</td>
+        </tr><tr><td>
+            <strong>Todo:</strong>&#8192;&#8192;
+          </td>
+          <td>// support for signing?</td>
+        </tr><tr><td>
+            <strong>Todo:</strong>&#8192;&#8192;
+          </td>
+          <td>listUniqueIdentifiers(): add UIVALIDITY value to UID (like in POP3).        (if necessary).</td>
+        </tr></table><a name="sec-prop-summary"></a>
+  <h3>Properties</h3>
+  <table class="summary"><tr><td class="right">
+          <a name="prop%24options" id="$options"></a>
+          <a name="prop-%24options" id="$options"></a>
+          <em><a href="ezcMailImapTransportOptions.html">ezcMailImapTransportOptions</a></em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24options" title="details" class="var-name-summary">$options</a>
+                      </code>
+          <br><div style="margin-left: 20px">Holds the options you can set to the IMAP transport.</div>        </td>
+      </tr></table><a name="sec-var-summary"></a>
+  <h3>Member Variables</h3>
+  <table class="summary"><tr><td class="right">
+            <em>protected</em>            static
+            <em>array(string)</em>          </td>
+          <td>
+            <code>
+              $basicFlags
+                          </code>
+            <br><div style="margin-left: 20px">Basic flags are used by setFlag() and clearFlag()</div>            <br><div style="margin-left: 20px"><p>Basic flags: </p><ul><li>ANSWERED   - message has been answered</li><li>DELETED    - message is marked to be deleted by later EXPUNGE</li><li>DRAFT      - message is marked as a draft</li><li>FLAGGED    - message is "flagged" for urgent/special attention</li><li>SEEN       - message has been read</li></ul></div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            static
+            <em>array(string)</em>          </td>
+          <td>
+            <code>
+              $extendedFlags
+                          </code>
+            <br><div style="margin-left: 20px">Extended flags are used by searchByFlag()</div>            <br><div style="margin-left: 20px"><p>Basic flags: </p><ul><li>ANSWERED   - message has been answered</li><li>DELETED    - message is marked to be deleted by later EXPUNGE</li><li>DRAFT      - message is marked as a draft</li><li>FLAGGED    - message is "flagged" for urgent/special attention</li><li>RECENT     - message is recent</li><li>SEEN       - message has been read</li></ul>  Opposites of the above flags: <ul><li>UNANSWERED</li><li>UNDELETED</li><li>UNDRAFT</li><li>UNFLAGGED</li><li>OLD</li><li>UNSEEN</li></ul>  Composite flags: <ul><li>NEW        - equivalent to RECENT + UNSEEN</li><li>ALL        - all the messages</li></ul></div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            <em>ezcMailTransportConnection</em>          </td>
+          <td>
+            <code>
+              $connection
+               = <span class="var-default"> null</span>            </code>
+            <br><div style="margin-left: 20px">Holds the connection to the IMAP server.</div>                      </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            <em>string</em>          </td>
+          <td>
+            <code>
+              $currentTag
+               = <span class="var-default"> 'A0000'</span>            </code>
+            <br><div style="margin-left: 20px">Used to generate a tag for sending commands to the IMAP server.</div>                      </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            <em>string</em>          </td>
+          <td>
+            <code>
+              $selectedMailbox
+               = <span class="var-default"> null</span>            </code>
+            <br><div style="margin-left: 20px">Holds the currently selected mailbox.</div>                      </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            <em>string</em>          </td>
+          <td>
+            <code>
+              $serverType
+               = <span class="var-default"> null</span>            </code>
+            <br><div style="margin-left: 20px">Holds the string which identifies the IMAP server type.</div>            <br><div style="margin-left: 20px"><p>Used for fixing problems with Google IMAP (see issue #14360). Possible  values are self::SERVER_GIMAP or null for all other servers.</p></div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            <em>int</em>          </td>
+          <td>
+            <code>
+              $state
+               = <span class="var-default"> self::STATE_NOT_CONNECTED</span>            </code>
+            <br><div style="margin-left: 20px">Holds the connection state.</div>                      </td>
+        </tr></table><a name="sec-method-summary"></a>
+  <h3>Method Summary</h3>
+  <table class="summary"><tr><td class="right">
+            <em>public</em>                        <em>ezcMailImapTransport</em>          </td>
+          <td>
+            <code>
+              <a href="#__construct"><b>__construct</b></a>(
+                                                                                    $server
+                                                    ,                   [                  $port
+                   = null]                                  ,                   [                  $options
+                   = array()]                               )
+            </code>
+            <br><div style="margin-left: 20px">Creates a new IMAP transport and connects to the $server at $port.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#__destruct"><b>__destruct</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Destructs the IMAP transport.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#append"><b>append</b></a>(
+                                                                                    $mailbox
+                                                    ,                                     $mail
+                                                    ,                   [                  $flags
+                   = null]                               )
+            </code>
+            <br><div style="margin-left: 20px">Appends $mail to the $mailbox mailbox.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>bool</em>          </td>
+          <td>
+            <code>
+              <a href="#authenticate"><b>authenticate</b></a>(
+                                                                                    $user
+                                                    ,                                     $password
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Authenticates the user to the IMAP server with $user and $password.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>array(string)</em>          </td>
+          <td>
+            <code>
+              <a href="#capability"><b>capability</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns an array with the capabilities of the IMAP server.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>bool</em>          </td>
+          <td>
+            <code>
+              <a href="#clearFlag"><b>clearFlag</b></a>(
+                                                                                    $messages
+                                                    ,                                     $flag
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Clears $flag from $messages.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>bool</em>          </td>
+          <td>
+            <code>
+              <a href="#copyMessages"><b>copyMessages</b></a>(
+                                                                                    $messages
+                                                    ,                                     $destination
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Copies message(s) from the currently selected mailbox to mailbox  $destination.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>int</em>          </td>
+          <td>
+            <code>
+              <a href="#countByFlag"><b>countByFlag</b></a>(
+                                                                                    $flag
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Wrapper function to fetch count of messages by a certain flag.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>bool</em>          </td>
+          <td>
+            <code>
+              <a href="#createMailbox"><b>createMailbox</b></a>(
+                                                                                    $mailbox
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Creates the mailbox $mailbox.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>bool</em>          </td>
+          <td>
+            <code>
+              <a href="#delete"><b>delete</b></a>(
+                                                                                    $msgNum
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Deletes the message with the message number $msgNum from the current mailbox.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>bool</em>          </td>
+          <td>
+            <code>
+              <a href="#deleteMailbox"><b>deleteMailbox</b></a>(
+                                                                                    $mailbox
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Deletes the mailbox $mailbox.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#disconnect"><b>disconnect</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Disconnects the transport from the IMAP server.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#expunge"><b>expunge</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Sends an EXPUNGE command to the server.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em><a href="ezcMailParserSet.html">ezcMailParserSet</a></em>          </td>
+          <td>
+            <code>
+              <a href="#fetchAll"><b>fetchAll</b></a>(
+                                                                  [                  $deleteFromServer
+                   = false]                               )
+            </code>
+            <br><div style="margin-left: 20px">Returns an <a href="ezcMailImapSet.html">ezcMailImapSet</a> with all the messages from the current mailbox.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em><a href="ezcMailImapSet.html">ezcMailImapSet</a></em>          </td>
+          <td>
+            <code>
+              <a href="#fetchByFlag"><b>fetchByFlag</b></a>(
+                                                                                    $flag
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns an <a href="ezcMailImapSet.html">ezcMailImapSet</a> containing messages with a certain flag from  the current mailbox.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em><a href="ezcMailImapSet.html">ezcMailImapSet</a></em>          </td>
+          <td>
+            <code>
+              <a href="#fetchByMessageNr"><b>fetchByMessageNr</b></a>(
+                                                                                    $number
+                                                    ,                   [                  $deleteFromServer
+                   = false]                               )
+            </code>
+            <br><div style="margin-left: 20px">Returns an <a href="ezcMailImapSet.html">ezcMailImapSet</a> containing only the $number -th message in  the current mailbox.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>array(mixed)</em>          </td>
+          <td>
+            <code>
+              <a href="#fetchFlags"><b>fetchFlags</b></a>(
+                                                                                    $messages
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Fetches IMAP flags for messages $messages.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em><a href="ezcMailImapSet.html">ezcMailImapSet</a></em>          </td>
+          <td>
+            <code>
+              <a href="#fetchFromOffset"><b>fetchFromOffset</b></a>(
+                                                                                    $offset
+                                                    ,                   [                  $count
+                   = 0]                                  ,                   [                  $deleteFromServer
+                   = false]                               )
+            </code>
+            <br><div style="margin-left: 20px">Returns an <a href="ezcMailImapSet.html">ezcMailImapSet</a> with $count messages starting from $offset from  the current mailbox.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>array(int)</em>          </td>
+          <td>
+            <code>
+              <a href="#fetchSizes"><b>fetchSizes</b></a>(
+                                                                                    $messages
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Fetches the sizes in bytes for messages $messages.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#getHierarchyDelimiter"><b>getHierarchyDelimiter</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns the hierarchy delimiter of the IMAP server, useful for handling  nested IMAP folders.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>int</em>          </td>
+          <td>
+            <code>
+              <a href="#getMessageSectionSize"><b>getMessageSectionSize</b></a>(
+                                                                                    $response
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns the size of a FETCH section in bytes.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#getNextTag"><b>getNextTag</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Generates the next IMAP tag to prepend to client commands.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#getResponse"><b>getResponse</b></a>(
+                                                                                    $tag
+                                                    ,                   [                  $response
+                   = null]                               )
+            </code>
+            <br><div style="margin-left: 20px">Reads the responses from the server until encountering $tag.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>array(string)</em>          </td>
+          <td>
+            <code>
+              <a href="#listMailboxes"><b>listMailboxes</b></a>(
+                                                                  [                  $reference
+                   = '']                                  ,                   [                  $mailbox
+                   = '*']                               )
+            </code>
+            <br><div style="margin-left: 20px">Returns an array with the names of the available mailboxes for the user  currently authenticated on the IMAP server.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>array(int)</em>          </td>
+          <td>
+            <code>
+              <a href="#listMessages"><b>listMessages</b></a>(
+                                                                  [                  $contentType
+                   = null]                               )
+            </code>
+            <br><div style="margin-left: 20px">Returns a list of the not deleted messages in the current mailbox.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>array(string)</em>          </td>
+          <td>
+            <code>
+              <a href="#listUniqueIdentifiers"><b>listUniqueIdentifiers</b></a>(
+                                                                  [                  $msgNum
+                   = null]                               )
+            </code>
+            <br><div style="margin-left: 20px">Returns the unique identifiers for the messages from the current mailbox.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#noop"><b>noop</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Sends a NOOP command to the server, use it to keep the connection alive.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#normalizeFlag"><b>normalizeFlag</b></a>(
+                                                                                    $flag
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Clears $flag of unwanted characters and makes it uppercase.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>bool</em>          </td>
+          <td>
+            <code>
+              <a href="#renameMailbox"><b>renameMailbox</b></a>(
+                                                                                    $mailbox
+                                                    ,                                     $newName
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Renames the mailbox $mailbox to $newName.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>int</em>          </td>
+          <td>
+            <code>
+              <a href="#responseType"><b>responseType</b></a>(
+                                                                                    $line
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Parses $line to return the response code.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>array(int)</em>          </td>
+          <td>
+            <code>
+              <a href="#searchByFlag"><b>searchByFlag</b></a>(
+                                                                                    $flag
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns an array of message numbers from the selected mailbox which have a  certain flag set.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em><a href="ezcMailImapSet.html">ezcMailImapSet</a></em>          </td>
+          <td>
+            <code>
+              <a href="#searchMailbox"><b>searchMailbox</b></a>(
+                                                                  [                  $criteria
+                   = null]                               )
+            </code>
+            <br><div style="margin-left: 20px">Returns an <a href="ezcMailImapSet.html">ezcMailImapSet</a> containing the messages which match the  provided $criteria from the current mailbox.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#selectMailbox"><b>selectMailbox</b></a>(
+                                                                                    $mailbox
+                                                    ,                   [                  $readOnly
+                   = false]                               )
+            </code>
+            <br><div style="margin-left: 20px">Selects the mailbox $mailbox, which will be the active mailbox for the  subsequent commands until it is changed.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>bool</em>          </td>
+          <td>
+            <code>
+              <a href="#setFlag"><b>setFlag</b></a>(
+                                                                                    $messages
+                                                    ,                                     $flag
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Sets $flag on $messages.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>array(string)</em>          </td>
+          <td>
+            <code>
+              <a href="#sort"><b>sort</b></a>(
+                                                                                    $messages
+                                                    ,                                     $sortCriteria
+                                                    ,                   [                  $reverse
+                   = false]                               )
+            </code>
+            <br><div style="margin-left: 20px">Sorts message numbers array $messages by the specified $sortCriteria.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em><a href="ezcMailImapSet.html">ezcMailImapSet</a></em>          </td>
+          <td>
+            <code>
+              <a href="#sortFromOffset"><b>sortFromOffset</b></a>(
+                                                                                    $offset
+                                                    ,                   [                  $count
+                   = 0]                                  ,                                     $sortCriteria
+                                                    ,                   [                  $reverse
+                   = false]                               )
+            </code>
+            <br><div style="margin-left: 20px">Returns an <a href="ezcMailImapSet.html">ezcMailImapSet</a> containing $count messages starting  from $offset sorted by $sortCriteria from the current mailbox.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em><a href="ezcMailImapSet.html">ezcMailImapSet</a></em>          </td>
+          <td>
+            <code>
+              <a href="#sortMessages"><b>sortMessages</b></a>(
+                                                                                    $messages
+                                                    ,                                     $sortCriteria
+                                                    ,                   [                  $reverse
+                   = false]                               )
+            </code>
+            <br><div style="margin-left: 20px">Returns an <a href="ezcMailImapSet.html">ezcMailImapSet</a> containing messages $messages sorted by  $sortCriteria from the current mailbox.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>bool</em>          </td>
+          <td>
+            <code>
+              <a href="#status"><b>status</b></a>(
+                                                                                    &amp;$numMessages
+                                                    ,                                     &amp;$sizeMessages
+                                                    ,                   [                  &amp;$recent
+                   = 0]                                  ,                   [                  &amp;$unseen
+                   = 0]                               )
+            </code>
+            <br><div style="margin-left: 20px">Returns information about the messages in the current mailbox.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#top"><b>top</b></a>(
+                                                                                    $msgNum
+                                                    ,                   [                  $chars
+                   = 0]                               )
+            </code>
+            <br><div style="margin-left: 20px">Returns the headers and the first characters from message $msgNum,  without setting the SEEN flag.</div>          </td>
+        </tr></table><a name="sec-methods"></a>
+  <h3>Methods</h3>
+  <a name="method_detail"></a>
+                                                                              
+      <a name="method__construct" id="__construct"><!-- --></a>
+
+    <h4>__construct</h4>
+
+    <div class="method-signature">
+      ezcMailImapTransport
+      __construct(
+                                  string
+          $server
+                            ,           [int
+          $port
+           = null]                  ,           [<a href="ezcMailImapTransportOptions.html">ezcMailImapTransportOptions</a>|array(string=&gt;mixed)
+          $options
+           = array()]              )
+    </div>
+
+    <p>Creates a new IMAP transport and connects to the $server at $port.</p><div><p>You can specify the $port if the IMAP server is not on the default port  993 (for SSL connections) or 143 (for plain connections). Use the $options  parameter to specify an SSL connection.</p><p>See <a href="ezcMailImapTransportOptions.html">ezcMailImapTransportOptions</a> for options you can specify for  IMAP.</p><p>Example of creating an IMAP transport:  </p><ol><li><div class="src-line">&#8192;<span class="src-comm">//&#8192;replace&#8192;with&#8192;your&#8192;IMAP&#8192;server&#8192;address</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$imap&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcMailImapTransport.html">ezcMailImapTransport</a></span><span class="src-sym">(&#8192;</span><span class="src-str">'imap.example.com'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;if&#8192;you&#8192;want&#8192;to&#8192;use&#8192;SSL:</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$options&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcMailImapTransportOptions.html">ezcMailImapTransportOptions</a></span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$options</span><span class="src-sym">-&gt;</span><span class="src-id">ssl&#8192;</span>=&#8192;<span class="src-id">true</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$imap&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcMailImapTransport.html">ezcMailImapTransport</a></span><span class="src-sym">(&#8192;</span><span class="src-str">'imap.example.com'</span><span class="src-sym">,&#8192;</span><span class="src-id">null</span><span class="src-sym">,&#8192;</span><span class="src-var">$options&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$server</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$port</code></td>
+              <td><em>int</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$options</code></td>
+              <td><em><a href="ezcMailImapTransportOptions.html">ezcMailImapTransportOptions</a>|array(string=&gt;mixed)</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcMailTransportException.html">ezcMailTransportException</a></code></td>
+              <td>
+                                  if it was not possible to connect to the server
+                              </td>
+            </tr><tr><td><code><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseValueException.html">ezcBaseValueException</a></code></td>
+              <td>
+                                  if $options contains a property with a value not allowed
+                              </td>
+            </tr><tr><td><code><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseExtensionNotFoundException.html">ezcBaseExtensionNotFoundException</a></code></td>
+              <td>
+                                  if trying to use SSL and the extension openssl is not installed
+                              </td>
+            </tr><tr><td><code><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBasePropertyNotFoundException.html">ezcBasePropertyNotFoundException</a></code></td>
+              <td>
+                                  if $options contains a property not defined
+                              </td>
+            </tr></tbody></table><a name="method__destruct" id="__destruct"><!-- --></a>
+
+    <h4>__destruct</h4>
+
+    <div class="method-signature">
+      void
+      __destruct(
+      )
+    </div>
+
+    <p>Destructs the IMAP transport.</p><div><p>If there is an open connection to the IMAP server it is closed.</p></div>
+    
+        
+
+    
+    
+    
+        <a name="methodappend" id="append"><!-- --></a>
+
+    <h4>append</h4>
+
+    <div class="method-signature">
+      void
+      append(
+                                  string
+          $mailbox
+                            ,           string
+          $mail
+                            ,           [array(string)
+          $flags
+           = null]              )
+    </div>
+
+    <p>Appends $mail to the $mailbox mailbox.</p><div><p>Use this method to create email messages in a mailbox such as Sent or  Draft.</p><p>$flags is an array of flags to be set to the $mail (if provided):</p><p>$flag can be one of: </p><ul><li>ANSWERED   - message has been answered</li><li>DELETED    - message is marked to be deleted by later EXPUNGE</li><li>DRAFT      - message is marked as a draft</li><li>FLAGGED    - message is "flagged" for urgent/special attention</li><li>SEEN       - message has been read</li></ul>  This function automatically adds the '\' in front of each flag when  calling the server command.<p>Before calling this method, a connection to the IMAP server must be  established and a user must be authenticated successfully.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$mailbox</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$mail</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$flags</code></td>
+              <td><em>array(string)</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcMailTransportException.html">ezcMailTransportException</a></code></td>
+              <td>
+                                  if user is not authenticated or if the server sent a negative response or if $mailbox does not exists
+                              </td>
+            </tr></tbody></table><a name="methodauthenticate" id="authenticate"><!-- --></a>
+
+    <h4>authenticate</h4>
+
+    <div class="method-signature">
+      bool
+      authenticate(
+                                  string
+          $user
+                            ,           string
+          $password
+                        )
+    </div>
+
+    <p>Authenticates the user to the IMAP server with $user and $password.</p><div><p>This method should be called directly after the construction of this  object.</p><p>If the server is waiting for the authentication process to respond, the  connection with the IMAP server will be closed, and false is returned,  and it is the application's task to reconnect and reauthenticate.</p><p>Example of creating an IMAP transport and authenticating:  </p><ol><li><div class="src-line">&#8192;<span class="src-comm">//&#8192;replace&#8192;with&#8192;your&#8192;IMAP&#8192;server&#8192;address</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$imap&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcMailImapTransport.html">ezcMailImapTransport</a></span><span class="src-sym">(&#8192;</span><span class="src-str">'imap.example.com'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;replace&#8192;the&#8192;values&#8192;with&#8192;your&#8192;username&#8192;and&#8192;password&#8192;for&#8192;the&#8192;IMAP&#8192;server</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$imap</span><span class="src-sym">-&gt;</span><a href="ezcMailImapTransport.html#methodauthenticate">authenticate</a><span class="src-sym">(&#8192;</span><span class="src-str">'username'</span><span class="src-sym">,&#8192;</span><span class="src-str">'password'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$user</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$password</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcMailTransportException.html">ezcMailTransportException</a></code></td>
+              <td>
+                                  if already authenticated or if the provided username/password combination did not work
+                              </td>
+            </tr></tbody></table><a name="methodcapability" id="capability"><!-- --></a>
+
+    <h4>capability</h4>
+
+    <div class="method-signature">
+      array(string)
+      capability(
+      )
+    </div>
+
+    <p>Returns an array with the capabilities of the IMAP server.</p><div><p>The returned array will be something like this:  </p><ol><li><div class="src-line">&#8192;&#8192;&#8192;<span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-str">'IMAP4rev1'</span><span class="src-sym">,&#8192;</span><span class="src-str">'SASL-IR&#8192;SORT'</span><span class="src-sym">,&#8192;</span><span class="src-str">'THREAD=REFERENCES'</span><span class="src-sym">,&#8192;</span><span class="src-str">'MULTIAPPEND'</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'UNSELECT'</span><span class="src-sym">,&#8192;</span><span class="src-str">'LITERAL+'</span><span class="src-sym">,&#8192;</span><span class="src-str">'IDLE'</span><span class="src-sym">,&#8192;</span><span class="src-str">'CHILDREN'</span><span class="src-sym">,&#8192;</span><span class="src-str">'NAMESPACE'</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'LOGIN-REFERRALS'</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol><p>Before calling this method, a connection to the IMAP server must be  established.</p></div>
+    
+          <h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcMailTransportException.html">ezcMailTransportException</a></code></td>
+              <td>
+                                  if there was no connection to the server or if the server sent a negative response
+                              </td>
+            </tr></tbody></table><a name="methodclearFlag" id="clearFlag"><!-- --></a>
+
+    <h4>clearFlag</h4>
+
+    <div class="method-signature">
+      bool
+      clearFlag(
+                                  string
+          $messages
+                            ,           string
+          $flag
+                        )
+    </div>
+
+    <p>Clears $flag from $messages.</p><div><p>This method supports unique IDs instead of message numbers. See  <a href="ezcMailImapTransportOptions.html">ezcMailImapTransportOptions</a> for how to enable unique IDs  referencing.</p><p>$messages can be: </p><ul><li>a single message number (eg. '1')</li><li>a message range (eg. '1:4')</li><li>a message list (eg. '1,2,4')</li></ul>  $flag can be one of: <ul><li>ANSWERED   - message has been answered</li><li>DELETED    - message is marked to be deleted by later EXPUNGE</li><li>DRAFT      - message is marked as a draft</li><li>FLAGGED    - message is "flagged" for urgent/special attention</li><li>SEEN       - message has been read</li></ul>  This function automatically adds the '\' in front of the flag when  calling the server command.<p>Before calling this method, a connection to the IMAP server must be  established and a user must be authenticated successfully, and a mailbox  must be selected.</p><p>Example:  </p><ol><li><div class="src-line">&#8192;<span class="src-var">$imap&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcMailImapTransport.html">ezcMailImapTransport</a></span><span class="src-sym">(&#8192;</span><span class="src-str">'imap.example.com'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$imap</span><span class="src-sym">-&gt;</span><a href="ezcMailImapTransport.html#methodauthenticate">authenticate</a><span class="src-sym">(&#8192;</span><span class="src-str">'username'</span><span class="src-sym">,&#8192;</span><span class="src-str">'password'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$imap</span><span class="src-sym">-&gt;</span><a href="ezcMailImapTransport.html#methodselectMailbox">selectMailbox</a><span class="src-sym">(&#8192;</span><span class="src-str">'mailbox'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;&#8192;</span><span class="src-comm">//&#8192;Inbox&#8192;or&#8192;another&#8192;mailbox</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$imap</span><span class="src-sym">-&gt;</span><a href="ezcMailImapTransport.html#methodclearFlag">clearFlag</a><span class="src-sym">(&#8192;</span><span class="src-str">'1:4'</span><span class="src-sym">,&#8192;</span><span class="src-str">'DRAFT'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$messages</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$flag</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcMailTransportException.html">ezcMailTransportException</a></code></td>
+              <td>
+                                  if a mailbox is not selected or if the server sent a negative response or if $flag is not valid
+                              </td>
+            </tr></tbody></table><a name="methodcopyMessages" id="copyMessages"><!-- --></a>
+
+    <h4>copyMessages</h4>
+
+    <div class="method-signature">
+      bool
+      copyMessages(
+                                  string
+          $messages
+                            ,           string
+          $destination
+                        )
+    </div>
+
+    <p>Copies message(s) from the currently selected mailbox to mailbox  $destination.</p><div><p>This method supports unique IDs instead of message numbers. See  <a href="ezcMailImapTransportOptions.html">ezcMailImapTransportOptions</a> for how to enable unique IDs  referencing.</p><p>Warning! When using unique IDs referencing and trying to copy a message  with an ID that does not exist, this method will not throw an exception.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$messages</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$destination</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcMailTransportException.html">ezcMailTransportException</a></code></td>
+              <td>
+                                  if the current server state is not accepted or if the server sent a negative response
+                              </td>
+            </tr></tbody></table><a name="methodcountByFlag" id="countByFlag"><!-- --></a>
+
+    <h4>countByFlag</h4>
+
+    <div class="method-signature">
+      int
+      countByFlag(
+                                  string
+          $flag
+                        )
+    </div>
+
+    <p>Wrapper function to fetch count of messages by a certain flag.</p><div><p>$flag can be one of:</p><p>Basic flags: </p><ul><li>ANSWERED   - message has been answered</li><li>DELETED    - message is marked to be deleted by later EXPUNGE</li><li>DRAFT      - message is marked as a draft</li><li>FLAGGED    - message is "flagged" for urgent/special attention</li><li>RECENT     - message is recent</li><li>SEEN       - message has been read</li></ul>  Opposites of the above flags: <ul><li>UNANSWERED</li><li>UNDELETED</li><li>UNDRAFT</li><li>UNFLAGGED</li><li>OLD</li><li>UNSEEN</li></ul>  Composite flags: <ul><li>NEW        - equivalent to RECENT + UNSEEN</li><li>ALL        - all the messages</li></ul>  Before calling this method, a connection to the IMAP server must be  established and a user must be authenticated successfully, and a mailbox  must be selected.</div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$flag</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcMailTransportException.html">ezcMailTransportException</a></code></td>
+              <td>
+                                  if a mailbox is not selected or if the server sent a negative response or if $flag is not valid
+                              </td>
+            </tr></tbody></table><a name="methodcreateMailbox" id="createMailbox"><!-- --></a>
+
+    <h4>createMailbox</h4>
+
+    <div class="method-signature">
+      bool
+      createMailbox(
+                                  string
+          $mailbox
+                        )
+    </div>
+
+    <p>Creates the mailbox $mailbox.</p><div><p>Inbox cannot be created.</p><p>Before calling this method, a connection to the IMAP server must be  established and a user must be authenticated successfully.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$mailbox</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcMailTransportException.html">ezcMailTransportException</a></code></td>
+              <td>
+                                  if the current server state is not accepted or if the server sent a negative response
+                              </td>
+            </tr></tbody></table><a name="methoddelete" id="delete"><!-- --></a>
+
+    <h4>delete</h4>
+
+    <div class="method-signature">
+      bool
+      delete(
+                                  int
+          $msgNum
+                        )
+    </div>
+
+    <p>Deletes the message with the message number $msgNum from the current mailbox.</p><div><p>This method supports unique IDs instead of message numbers. See  <a href="ezcMailImapTransportOptions.html">ezcMailImapTransportOptions</a> for how to enable unique IDs  referencing.</p><p>The message number $msgNum must be a valid identifier fetched with e.g.  <a href="ezcMailImapTransport.html#methodlistMessages">listMessages()</a>.</p><p>The message is not physically deleted, but has its DELETED flag set,  and can be later undeleted by clearing its DELETED flag with  <a href="ezcMailImapTransport.html#methodclearFlag">clearFlag()</a>.</p><p>Before calling this method, a connection to the IMAP server must be  established and a user must be authenticated successfully, and a mailbox  must be selected.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$msgNum</code></td>
+              <td><em>int</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcMailTransportException.html">ezcMailTransportException</a></code></td>
+              <td>
+                                  if a mailbox is not selected or if the server sent a negative response
+                              </td>
+            </tr></tbody></table><a name="methoddeleteMailbox" id="deleteMailbox"><!-- --></a>
+
+    <h4>deleteMailbox</h4>
+
+    <div class="method-signature">
+      bool
+      deleteMailbox(
+                                  string
+          $mailbox
+                        )
+    </div>
+
+    <p>Deletes the mailbox $mailbox.</p><div><p>Inbox and the the currently selected mailbox cannot be deleted.</p><p>Before calling this method, a connection to the IMAP server must be  established and a user must be authenticated successfully.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$mailbox</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcMailTransportException.html">ezcMailTransportException</a></code></td>
+              <td>
+                                  if the current server state is not accepted or if trying to delete the currently selected mailbox or if the server sent a negative response
+                              </td>
+            </tr></tbody></table><a name="methoddisconnect" id="disconnect"><!-- --></a>
+
+    <h4>disconnect</h4>
+
+    <div class="method-signature">
+      void
+      disconnect(
+      )
+    </div>
+
+    <p>Disconnects the transport from the IMAP server.</p>
+    
+        
+
+    
+    
+    
+        <a name="methodexpunge" id="expunge"><!-- --></a>
+
+    <h4>expunge</h4>
+
+    <div class="method-signature">
+      void
+      expunge(
+      )
+    </div>
+
+    <p>Sends an EXPUNGE command to the server.</p><div><p>This method permanently deletes the messages marked for deletion by  the method <a href="ezcMailImapTransport.html#methoddelete">delete()</a>.</p><p>Before calling this method, a connection to the IMAP server must be  established and a user must be authenticated successfully, and a mailbox  must be selected.</p></div>
+    
+          <h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcMailTransportException.html">ezcMailTransportException</a></code></td>
+              <td>
+                                  if a mailbox was not selected or if the server sent a negative response
+                              </td>
+            </tr></tbody></table><a name="methodfetchAll" id="fetchAll"><!-- --></a>
+
+    <h4>fetchAll</h4>
+
+    <div class="method-signature">
+      <a href="ezcMailParserSet.html">ezcMailParserSet</a>
+      fetchAll(
+                                  [bool
+          $deleteFromServer
+           = false]              )
+    </div>
+
+    <p>Returns an <a href="ezcMailImapSet.html">ezcMailImapSet</a> with all the messages from the current mailbox.</p><div><p>This method supports unique IDs instead of message numbers. See  <a href="ezcMailImapTransportOptions.html">ezcMailImapTransportOptions</a> for how to enable unique IDs  referencing.</p><p>If $deleteFromServer is set to true the mail will be marked for deletion  after retrieval. If not it will be left intact.</p><p>The set returned can be parsed with <a href="ezcMailParser.html">ezcMailParser</a>.</p><p>Before calling this method, a connection to the IMAP server must be  established and a user must be authenticated successfully, and a mailbox  must be selected.</p><p>Example:  </p><ol><li><div class="src-line">&#8192;<span class="src-var">$imap&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcMailImapTransport.html">ezcMailImapTransport</a></span><span class="src-sym">(&#8192;</span><span class="src-str">'imap.example.com'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$imap</span><span class="src-sym">-&gt;</span><a href="ezcMailImapTransport.html#methodauthenticate">authenticate</a><span class="src-sym">(&#8192;</span><span class="src-str">'username'</span><span class="src-sym">,&#8192;</span><span class="src-str">'password'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$imap</span><span class="src-sym">-&gt;</span><a href="ezcMailImapTransport.html#methodselectMailbox">selectMailbox</a><span class="src-sym">(&#8192;</span><span class="src-str">'Inbox'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$set&#8192;</span>=&#8192;<span class="src-var">$imap</span><span class="src-sym">-&gt;</span><a href="ezcMailImapTransport.html#methodfetchAll">fetchAll</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;parse&#8192;$set&#8192;with&#8192;ezcMailParser</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$parser&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcMailParser.html">ezcMailParser</a></span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$mails&#8192;</span>=&#8192;<span class="src-var">$parser</span><span class="src-sym">-&gt;</span><span class="src-id">parseMail</span><span class="src-sym">(&#8192;</span><span class="src-var">$set&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-key">foreach&#8192;</span><span class="src-sym">(&#8192;</span><span class="src-var">$mails&#8192;</span><span class="src-key">as&#8192;</span><span class="src-var">$mail&#8192;</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">{</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-comm">//&#8192;process&#8192;$mail&#8192;which&#8192;is&#8192;an&#8192;ezcMail&#8192;object</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">}</span></div></li>
+</ol></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$deleteFromServer</code></td>
+              <td><em>bool</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcMailTransportException.html">ezcMailTransportException</a></code></td>
+              <td>
+                                  if a mailbox is not selected or if the server sent a negative response
+                              </td>
+            </tr></tbody></table><a name="methodfetchByFlag" id="fetchByFlag"><!-- --></a>
+
+    <h4>fetchByFlag</h4>
+
+    <div class="method-signature">
+      <a href="ezcMailImapSet.html">ezcMailImapSet</a>
+      fetchByFlag(
+                                  string
+          $flag
+                        )
+    </div>
+
+    <p>Returns an <a href="ezcMailImapSet.html">ezcMailImapSet</a> containing messages with a certain flag from  the current mailbox.</p><div><p>This method supports unique IDs instead of message numbers. See  <a href="ezcMailImapTransportOptions.html">ezcMailImapTransportOptions</a> for how to enable unique IDs  referencing.</p><p>$flag can be one of:</p><p>Basic flags: </p><ul><li>ANSWERED   - message has been answered</li><li>DELETED    - message is marked to be deleted by later EXPUNGE</li><li>DRAFT      - message is marked as a draft</li><li>FLAGGED    - message is "flagged" for urgent/special attention</li><li>RECENT     - message is recent</li><li>SEEN       - message has been read</li></ul>  Opposites of the above flags: <ul><li>UNANSWERED</li><li>UNDELETED</li><li>UNDRAFT</li><li>UNFLAGGED</li><li>OLD</li><li>UNSEEN</li></ul>  Composite flags: <ul><li>NEW        - equivalent to RECENT + UNSEEN</li><li>ALL        - all the messages</li></ul>  Before calling this method, a connection to the IMAP server must be  established and a user must be authenticated successfully, and a mailbox  must be selected.<p>Example:  </p><ol><li><div class="src-line">&#8192;<span class="src-var">$imap&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcMailImapTransport.html">ezcMailImapTransport</a></span><span class="src-sym">(&#8192;</span><span class="src-str">'imap.example.com'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$imap</span><span class="src-sym">-&gt;</span><a href="ezcMailImapTransport.html#methodauthenticate">authenticate</a><span class="src-sym">(&#8192;</span><span class="src-str">'username'</span><span class="src-sym">,&#8192;</span><span class="src-str">'password'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$imap</span><span class="src-sym">-&gt;</span><a href="ezcMailImapTransport.html#methodselectMailbox">selectMailbox</a><span class="src-sym">(&#8192;</span><span class="src-str">'mailbox'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;&#8192;</span><span class="src-comm">//&#8192;Inbox&#8192;or&#8192;another&#8192;mailbox</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;Fetch&#8192;the&#8192;messages&#8192;marked&#8192;with&#8192;the&#8192;RECENT&#8192;flag</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$set&#8192;</span>=&#8192;<span class="src-var">$imap</span><span class="src-sym">-&gt;</span><a href="ezcMailImapTransport.html#methodfetchByFlag">fetchByFlag</a><span class="src-sym">(&#8192;</span><span class="src-str">'RECENT'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;$set&#8192;can&#8192;be&#8192;parsed&#8192;with&#8192;ezcMailParser</span></div></li>
+</ol></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$flag</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcMailTransportException.html">ezcMailTransportException</a></code></td>
+              <td>
+                                  if a mailbox is not selected or if the server sent a negative response or if $flag is not valid
+                              </td>
+            </tr></tbody></table><a name="methodfetchByMessageNr" id="fetchByMessageNr"><!-- --></a>
+
+    <h4>fetchByMessageNr</h4>
+
+    <div class="method-signature">
+      <a href="ezcMailImapSet.html">ezcMailImapSet</a>
+      fetchByMessageNr(
+                                  int
+          $number
+                            ,           [bool
+          $deleteFromServer
+           = false]              )
+    </div>
+
+    <p>Returns an <a href="ezcMailImapSet.html">ezcMailImapSet</a> containing only the $number -th message in  the current mailbox.</p><div><p>This method supports unique IDs instead of message numbers. See  <a href="ezcMailImapTransportOptions.html">ezcMailImapTransportOptions</a> for how to enable unique IDs  referencing.</p><p>If $deleteFromServer is set to true the mail will be marked for deletion  after retrieval. If not it will be left intact.</p><p>Note: for IMAP the first message is 1 (so for $number = 0 an exception  will be thrown).</p><p>Before calling this method, a connection to the IMAP server must be  established and a user must be authenticated successfully, and a mailbox  must be selected.</p><p>Example:  </p><ol><li><div class="src-line">&#8192;<span class="src-var">$imap&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcMailImapTransport.html">ezcMailImapTransport</a></span><span class="src-sym">(&#8192;</span><span class="src-str">'imap.example.com'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$imap</span><span class="src-sym">-&gt;</span><a href="ezcMailImapTransport.html#methodauthenticate">authenticate</a><span class="src-sym">(&#8192;</span><span class="src-str">'username'</span><span class="src-sym">,&#8192;</span><span class="src-str">'password'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$imap</span><span class="src-sym">-&gt;</span><a href="ezcMailImapTransport.html#methodselectMailbox">selectMailbox</a><span class="src-sym">(&#8192;</span><span class="src-str">'Inbox'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$set&#8192;</span>=&#8192;<span class="src-var">$imap</span><span class="src-sym">-&gt;</span><a href="ezcMailImapTransport.html#methodfetchByMessageNr">fetchByMessageNr</a><span class="src-sym">(&#8192;</span><span class="src-num">1&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;$set&#8192;can&#8192;be&#8192;parsed&#8192;with&#8192;ezcMailParser</span></div></li>
+</ol></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$number</code></td>
+              <td><em>int</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$deleteFromServer</code></td>
+              <td><em>bool</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcMailNoSuchMessageException.html">ezcMailNoSuchMessageException</a></code></td>
+              <td>
+                                  if the message $number is out of range
+                              </td>
+            </tr><tr><td><code><a href="ezcMailTransportException.html">ezcMailTransportException</a></code></td>
+              <td>
+                                  if a mailbox is not selected or if the server sent a negative response
+                              </td>
+            </tr></tbody></table><a name="methodfetchFlags" id="fetchFlags"><!-- --></a>
+
+    <h4>fetchFlags</h4>
+
+    <div class="method-signature">
+      array(mixed)
+      fetchFlags(
+                                  array
+          $messages
+                        )
+    </div>
+
+    <p>Fetches IMAP flags for messages $messages.</p><div><p>This method supports unique IDs instead of message numbers. See  <a href="ezcMailImapTransportOptions.html">ezcMailImapTransportOptions</a> for how to enable unique IDs  referencing.</p><p>$messages is an array of message numbers, for example:  </p><ol><li><div class="src-line">&#8192;&#8192;&#8192;<span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-num">1</span><span class="src-sym">,&#8192;</span><span class="src-num">2</span><span class="src-sym">,&#8192;</span><span class="src-num">4&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol><p>The format of the returned array is:  </p><ol><li><div class="src-line">&#8192;&#8192;&#8192;<span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-id">message_number&#8192;</span>=&gt;&#8192;<span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-id">flags&#8192;</span><span class="src-sym">)&#8192;)</span></div></li>
+</ol><p>Before calling this method, a connection to the IMAP server must be  established and a user must be authenticated successfully, and a mailbox  must be selected.</p><p>Example:  </p><ol><li><div class="src-line">&#8192;<span class="src-var">$imap&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcMailImapTransport.html">ezcMailImapTransport</a></span><span class="src-sym">(&#8192;</span><span class="src-str">'imap.example.com'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$imap</span><span class="src-sym">-&gt;</span><a href="ezcMailImapTransport.html#methodauthenticate">authenticate</a><span class="src-sym">(&#8192;</span><span class="src-str">'username'</span><span class="src-sym">,&#8192;</span><span class="src-str">'password'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$imap</span><span class="src-sym">-&gt;</span><a href="ezcMailImapTransport.html#methodselectMailbox">selectMailbox</a><span class="src-sym">(&#8192;</span><span class="src-str">'mailbox'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;&#8192;</span><span class="src-comm">//&#8192;Inbox&#8192;or&#8192;another&#8192;mailbox</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$flags&#8192;</span>=&#8192;<span class="src-var">$imap</span><span class="src-sym">-&gt;</span><a href="ezcMailImapTransport.html#methodfetchFlags">fetchFlags</a><span class="src-sym">(&#8192;</span><span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-num">1</span><span class="src-sym">,&#8192;</span><span class="src-num">2</span><span class="src-sym">,&#8192;</span><span class="src-num">4&#8192;</span><span class="src-sym">)&#8192;)</span><span class="src-sym">;</span></div></li>
+</ol><p>The returned array $flags will be something like:  </p><ol><li><div class="src-line">&#8192;&#8192;&#8192;<span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-num">1&#8192;</span>=&gt;&#8192;<span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-str">'\Seen'&#8192;</span><span class="src-sym">)</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-num">2&#8192;</span>=&gt;&#8192;<span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-str">'\Seen'&#8192;</span><span class="src-sym">)</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-num">4&#8192;</span>=&gt;&#8192;<span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-str">'\Seen'</span><span class="src-sym">,&#8192;</span><span class="src-str">'NonJunk'&#8192;</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$messages</code></td>
+              <td><em>array</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcMailTransportException.html">ezcMailTransportException</a></code></td>
+              <td>
+                                  if a mailbox is not selected or if the server sent a negative response
+                              </td>
+            </tr></tbody></table><a name="methodfetchFromOffset" id="fetchFromOffset"><!-- --></a>
+
+    <h4>fetchFromOffset</h4>
+
+    <div class="method-signature">
+      <a href="ezcMailImapSet.html">ezcMailImapSet</a>
+      fetchFromOffset(
+                                  int
+          $offset
+                            ,           [int
+          $count
+           = 0]                  ,           [bool
+          $deleteFromServer
+           = false]              )
+    </div>
+
+    <p>Returns an <a href="ezcMailImapSet.html">ezcMailImapSet</a> with $count messages starting from $offset from  the current mailbox.</p><div><p>This method supports unique IDs instead of message numbers. See  <a href="ezcMailImapTransportOptions.html">ezcMailImapTransportOptions</a> for how to enable unique IDs  referencing.</p><p>Fetches $count messages starting from the $offset and returns them as a  <a href="ezcMailImapSet.html">ezcMailImapSet</a>. If $count is not specified or if it is 0, it fetches  all messages starting from the $offset.</p><p>Before calling this method, a connection to the IMAP server must be  established and a user must be authenticated successfully, and a mailbox  must be selected.</p><p>Example:  </p><ol><li><div class="src-line">&#8192;<span class="src-var">$imap&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcMailImapTransport.html">ezcMailImapTransport</a></span><span class="src-sym">(&#8192;</span><span class="src-str">'imap.example.com'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$imap</span><span class="src-sym">-&gt;</span><a href="ezcMailImapTransport.html#methodauthenticate">authenticate</a><span class="src-sym">(&#8192;</span><span class="src-str">'username'</span><span class="src-sym">,&#8192;</span><span class="src-str">'password'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$imap</span><span class="src-sym">-&gt;</span><a href="ezcMailImapTransport.html#methodselectMailbox">selectMailbox</a><span class="src-sym">(&#8192;</span><span class="src-str">'Inbox'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$set&#8192;</span>=&#8192;<span class="src-var">$imap</span><span class="src-sym">-&gt;</span><a href="ezcMailImapTransport.html#methodfetchFromOffset">fetchFromOffset</a><span class="src-sym">(&#8192;</span><span class="src-num">1</span><span class="src-sym">,&#8192;</span><span class="src-num">10&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;$set&#8192;can&#8192;be&#8192;parsed&#8192;with&#8192;ezcMailParser</span></div></li>
+</ol></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$offset</code></td>
+              <td><em>int</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$count</code></td>
+              <td><em>int</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$deleteFromServer</code></td>
+              <td><em>bool</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcMailTransportException.html">ezcMailTransportException</a></code></td>
+              <td>
+                                  if a mailbox is not selected or if the server sent a negative response
+                              </td>
+            </tr><tr><td><code><a href="ezcMailInvalidLimitException.html">ezcMailInvalidLimitException</a></code></td>
+              <td>
+                                  if $count is negative
+                              </td>
+            </tr><tr><td><code><a href="ezcMailOffsetOutOfRangeException.html">ezcMailOffsetOutOfRangeException</a></code></td>
+              <td>
+                                  if $offset is outside of the existing range of messages
+                              </td>
+            </tr></tbody></table><a name="methodfetchSizes" id="fetchSizes"><!-- --></a>
+
+    <h4>fetchSizes</h4>
+
+    <div class="method-signature">
+      array(int)
+      fetchSizes(
+                                  array
+          $messages
+                        )
+    </div>
+
+    <p>Fetches the sizes in bytes for messages $messages.</p><div><p>This method supports unique IDs instead of message numbers. See  <a href="ezcMailImapTransportOptions.html">ezcMailImapTransportOptions</a> for how to enable unique IDs  referencing.</p><p>$messages is an array of message numbers, for example:  </p><ol><li><div class="src-line">&#8192;&#8192;&#8192;<span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-num">1</span><span class="src-sym">,&#8192;</span><span class="src-num">2</span><span class="src-sym">,&#8192;</span><span class="src-num">4&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol><p>The format of the returned array is:  </p><ol><li><div class="src-line">&#8192;&#8192;&#8192;<span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-id">message_number&#8192;</span>=&gt;&#8192;<span class="src-id">size&#8192;</span><span class="src-sym">)</span></div></li>
+</ol><p>Before calling this method, a connection to the IMAP server must be  established and a user must be authenticated successfully, and a mailbox  must be selected.</p><p>Example:  </p><ol><li><div class="src-line">&#8192;<span class="src-var">$imap&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcMailImapTransport.html">ezcMailImapTransport</a></span><span class="src-sym">(&#8192;</span><span class="src-str">'imap.example.com'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$imap</span><span class="src-sym">-&gt;</span><a href="ezcMailImapTransport.html#methodauthenticate">authenticate</a><span class="src-sym">(&#8192;</span><span class="src-str">'username'</span><span class="src-sym">,&#8192;</span><span class="src-str">'password'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$imap</span><span class="src-sym">-&gt;</span><a href="ezcMailImapTransport.html#methodselectMailbox">selectMailbox</a><span class="src-sym">(&#8192;</span><span class="src-str">'mailbox'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;&#8192;</span><span class="src-comm">//&#8192;Inbox&#8192;or&#8192;another&#8192;mailbox</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$sizes&#8192;</span>=&#8192;<span class="src-var">$imap</span><span class="src-sym">-&gt;</span><a href="ezcMailImapTransport.html#methodfetchSizes">fetchSizes</a><span class="src-sym">(&#8192;</span><span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-num">1</span><span class="src-sym">,&#8192;</span><span class="src-num">2</span><span class="src-sym">,&#8192;</span><span class="src-num">4&#8192;</span><span class="src-sym">)&#8192;)</span><span class="src-sym">;</span></div></li>
+</ol><p>The returned array $sizes will be something like:  </p><ol><li><div class="src-line">&#8192;&#8192;&#8192;<span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-num">1&#8192;</span>=&gt;&#8192;<span class="src-num">1043</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-num">2&#8192;</span>=&gt;&#8192;<span class="src-num">203901</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-num">4&#8192;</span>=&gt;&#8192;<span class="src-num">14277</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$messages</code></td>
+              <td><em>array</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcMailTransportException.html">ezcMailTransportException</a></code></td>
+              <td>
+                                  if a mailbox is not selected or if the server sent a negative response
+                              </td>
+            </tr></tbody></table><a name="methodgetHierarchyDelimiter" id="getHierarchyDelimiter"><!-- --></a>
+
+    <h4>getHierarchyDelimiter</h4>
+
+    <div class="method-signature">
+      string
+      getHierarchyDelimiter(
+      )
+    </div>
+
+    <p>Returns the hierarchy delimiter of the IMAP server, useful for handling  nested IMAP folders.</p><div><p>For more information about the hierarchy delimiter, consult the IMAP RFCs  <a href="http://www.faqs.org/rfcs/rfc1730.html">http://www.faqs.org/rfcs/rfc1730.html</a> or  <a href="http://www.faqs.org/rfcs/rfc2060.html">http://www.faqs.org/rfcs/rfc2060.html</a>, section 6.3.8.</p><p>Before calling this method, a connection to the IMAP server must be  established and a user must be authenticated successfully.</p><p>Example of returning the hierarchy delimiter:  </p><ol><li><div class="src-line">&#8192;<span class="src-var">$imap&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcMailImapTransport.html">ezcMailImapTransport</a></span><span class="src-sym">(&#8192;</span><span class="src-str">'imap.example.com'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$imap</span><span class="src-sym">-&gt;</span><a href="ezcMailImapTransport.html#methodauthenticate">authenticate</a><span class="src-sym">(&#8192;</span><span class="src-str">'username'</span><span class="src-sym">,&#8192;</span><span class="src-str">'password'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$delimiter&#8192;</span>=&#8192;<span class="src-var">$imap</span><span class="src-sym">-&gt;</span><span class="src-id">getDelimiter</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol><p>After running the above code, $delimiter should be something like "/".</p></div>
+    
+          <h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>ezcMailMailTransportException</code></td>
+              <td>
+                                  if the current server state is not accepted or if the server sent a negative response
+                              </td>
+            </tr></tbody></table><a name="methodgetMessageSectionSize" id="getMessageSectionSize"><!-- --></a>
+
+    <h4>getMessageSectionSize</h4>
+
+    <div class="method-signature">
+      int
+      getMessageSectionSize(
+                                  
+          $response
+                        )
+    </div>
+
+    <p>Returns the size of a FETCH section in bytes.</p><div><p>The section header looks like: * id FETCH (BODY[TEXT] {size}  where size is the size in bytes and id is the message number or ID.</p><p>Example: for " * 2 FETCH (BODY[TEXT] {377}" this function returns 377.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$response</code></td>
+              <td><em></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodgetNextTag" id="getNextTag"><!-- --></a>
+
+    <h4>getNextTag</h4>
+
+    <div class="method-signature">
+      string
+      getNextTag(
+      )
+    </div>
+
+    <p>Generates the next IMAP tag to prepend to client commands.</p><div><p>The structure of the IMAP tag is Axxxx, where: </p><ul><li>A is a letter (uppercase for conformity)</li><li>x is a digit from 0 to 9</li></ul>  example of generated tag: T5439<p>It uses the class variable $this-&gt;currentTag.</p><p>Everytime it is called, the tag increases by 1.</p><p>If it reaches the last tag, it wraps around to the first tag.</p><p>By default, the first generated tag is A0001.</p></div>
+    
+        
+
+    
+    
+    
+        <a name="methodgetResponse" id="getResponse"><!-- --></a>
+
+    <h4>getResponse</h4>
+
+    <div class="method-signature">
+      string
+      getResponse(
+                                  string
+          $tag
+                            ,           [string
+          $response
+           = null]              )
+    </div>
+
+    <p>Reads the responses from the server until encountering $tag.</p><div><p>In IMAP, each command sent by the client is prepended with a  alphanumeric tag like 'A1234'. The server sends the response  to the client command as lines, and the last line in the response  is prepended with the same tag, and it contains the status of  the command completion ('OK', 'NO' or 'BAD').</p><p>Sometimes the server sends alerts and response lines from other  commands before sending the tagged line, so this method just  reads all the responses until it encounters $tag.</p><p>It returns the tagged line to be processed by the calling method.</p><p>If $response is specified, then it will not read the response  from the server before searching for $tag in $response.</p><p>Before calling this method, a connection to the IMAP server must be  established.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$tag</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$response</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodlistMailboxes" id="listMailboxes"><!-- --></a>
+
+    <h4>listMailboxes</h4>
+
+    <div class="method-signature">
+      array(string)
+      listMailboxes(
+                                  [string
+          $reference
+           = '']                  ,           [string
+          $mailbox
+           = '*']              )
+    </div>
+
+    <p>Returns an array with the names of the available mailboxes for the user  currently authenticated on the IMAP server.</p><div><p>Before calling this method, a connection to the IMAP server must be  established and a user must be authenticated successfully.</p><p>For more information about $reference and $mailbox, consult  the IMAP RFCs documents (<a href="http://www.faqs.org/rfcs/rfc1730.html">http://www.faqs.org/rfcs/rfc1730.html</a>  or <a href="http://www.faqs.org/rfcs/rfc2060.html">http://www.faqs.org/rfcs/rfc2060.html</a>, section 7.2.2.).</p><p>By default, $reference is "" and $mailbox is "*".</p><p>The array returned contains the mailboxes available for the connected  user on this IMAP server. Inbox is a special mailbox, and it can be  specified upper-case or lower-case or mixed-case. The other mailboxes  should be specified as they are (to the <a href="ezcMailImapTransport.html#methodselectMailbox">selectMailbox()</a> method).</p><p>Example of listing mailboxes:  </p><ol><li><div class="src-line">&#8192;<span class="src-var">$imap&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcMailImapTransport.html">ezcMailImapTransport</a></span><span class="src-sym">(&#8192;</span><span class="src-str">'imap.example.com'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$imap</span><span class="src-sym">-&gt;</span><a href="ezcMailImapTransport.html#methodauthenticate">authenticate</a><span class="src-sym">(&#8192;</span><span class="src-str">'username'</span><span class="src-sym">,&#8192;</span><span class="src-str">'password'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$mailboxes&#8192;</span>=&#8192;<span class="src-var">$imap</span><span class="src-sym">-&gt;</span><a href="ezcMailImapTransport.html#methodlistMailboxes">listMailboxes</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$reference</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$mailbox</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>ezcMailMailTransportException</code></td>
+              <td>
+                                  if the current server state is not accepted or if the server sent a negative response
+                              </td>
+            </tr></tbody></table><a name="methodlistMessages" id="listMessages"><!-- --></a>
+
+    <h4>listMessages</h4>
+
+    <div class="method-signature">
+      array(int)
+      listMessages(
+                                  [string
+          $contentType
+           = null]              )
+    </div>
+
+    <p>Returns a list of the not deleted messages in the current mailbox.</p><div><p>It returns only the messages with the flag DELETED not set.</p><p>Before calling this method, a connection to the IMAP server must be  established and a user must be authenticated successfully, and a mailbox  must be selected.</p><p>The format of the returned array is  </p><ol><li><div class="src-line">&#8192;&#8192;&#8192;<span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-id">message_id&#8192;</span>=&gt;&#8192;<span class="src-id">size&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol><p>Example:  </p><ol><li><div class="src-line">&#8192;&#8192;&#8192;<span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-num">2&#8192;</span>=&gt;&#8192;<span class="src-num">1700</span><span class="src-sym">,&#8192;</span><span class="src-num">5&#8192;</span>=&gt;&#8192;<span class="src-num">1450</span><span class="src-sym">,&#8192;</span><span class="src-num">6&#8192;</span>=&gt;&#8192;<span class="src-num">21043&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol><p>If $contentType is set, it returns only the messages with  $contentType in the Content-Type header.</p><p>For example $contentType can be "multipart/mixed" to return only the  messages with attachments.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$contentType</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcMailTransportException.html">ezcMailTransportException</a></code></td>
+              <td>
+                                  if a mailbox is not selected or if the server sent a negative response
+                              </td>
+            </tr></tbody></table><a name="methodlistUniqueIdentifiers" id="listUniqueIdentifiers"><!-- --></a>
+
+    <h4>listUniqueIdentifiers</h4>
+
+    <div class="method-signature">
+      array(string)
+      listUniqueIdentifiers(
+                                  [int
+          $msgNum
+           = null]              )
+    </div>
+
+    <p>Returns the unique identifiers for the messages from the current mailbox.</p><div><p>You can fetch the unique identifier for a specific message by  providing the $msgNum parameter.</p><p>The unique identifier can be used to recognize mail from servers  between requests. In contrast to the message numbers the unique  numbers assigned to an email usually never changes.</p><p>The format of the returned array is:  </p><ol><li><div class="src-line">&#8192;&#8192;&#8192;<span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-id">message_num&#8192;</span>=&gt;&#8192;<span class="src-id">unique_id&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol><p>Example:  </p><ol><li><div class="src-line">&#8192;&#8192;&#8192;<span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-num">1&#8192;</span>=&gt;&#8192;<span class="src-num">216</span><span class="src-sym">,&#8192;</span><span class="src-num">2&#8192;</span>=&gt;&#8192;<span class="src-num">217</span><span class="src-sym">,&#8192;</span><span class="src-num">3&#8192;</span>=&gt;&#8192;<span class="src-num">218</span><span class="src-sym">,&#8192;</span><span class="src-num">4&#8192;</span>=&gt;&#8192;<span class="src-num">219&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol><p>Before calling this method, a connection to the IMAP server must be  established and a user must be authenticated successfully, and a mailbox  must be selected.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$msgNum</code></td>
+              <td><em>int</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcMailTransportException.html">ezcMailTransportException</a></code></td>
+              <td>
+                                  if a mailbox is not selected or if the server sent a negative response
+                              </td>
+            </tr></tbody></table><a name="methodnoop" id="noop"><!-- --></a>
+
+    <h4>noop</h4>
+
+    <div class="method-signature">
+      void
+      noop(
+      )
+    </div>
+
+    <p>Sends a NOOP command to the server, use it to keep the connection alive.</p><div><p>Before calling this method, a connection to the IMAP server must be  established.</p></div>
+    
+          <h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcMailTransportException.html">ezcMailTransportException</a></code></td>
+              <td>
+                                  if there was no connection to the server or if the server sent a negative response
+                              </td>
+            </tr></tbody></table><a name="methodnormalizeFlag" id="normalizeFlag"><!-- --></a>
+
+    <h4>normalizeFlag</h4>
+
+    <div class="method-signature">
+      string
+      normalizeFlag(
+                                  string
+          $flag
+                        )
+    </div>
+
+    <p>Clears $flag of unwanted characters and makes it uppercase.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$flag</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodrenameMailbox" id="renameMailbox"><!-- --></a>
+
+    <h4>renameMailbox</h4>
+
+    <div class="method-signature">
+      bool
+      renameMailbox(
+                                  string
+          $mailbox
+                            ,           string
+          $newName
+                        )
+    </div>
+
+    <p>Renames the mailbox $mailbox to $newName.</p><div><p>Inbox cannot be renamed.</p><p>Before calling this method, a connection to the IMAP server must be  established and a user must be authenticated successfully.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$mailbox</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$newName</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcMailTransportException.html">ezcMailTransportException</a></code></td>
+              <td>
+                                  if the current server state is not accepted or if trying to rename the currently selected mailbox or if the server sent a negative response
+                              </td>
+            </tr></tbody></table><a name="methodresponseType" id="responseType"><!-- --></a>
+
+    <h4>responseType</h4>
+
+    <div class="method-signature">
+      int
+      responseType(
+                                  string
+          $line
+                        )
+    </div>
+
+    <p>Parses $line to return the response code.</p><div><p>Returns one of the following: </p><ul><li>RESPONSE_OK</li><li>RESPONSE_NO</li><li>RESPONSE_BAD</li><li>RESPONSE_UNTAGGED</li><li>RESPONSE_FEEDBACK</li></ul></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$line</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcMailTransportException.html">ezcMailTransportException</a></code></td>
+              <td>
+                                  if the IMAP response ($line) is not recognized
+                              </td>
+            </tr></tbody></table><a name="methodsearchByFlag" id="searchByFlag"><!-- --></a>
+
+    <h4>searchByFlag</h4>
+
+    <div class="method-signature">
+      array(int)
+      searchByFlag(
+                                  string
+          $flag
+                        )
+    </div>
+
+    <p>Returns an array of message numbers from the selected mailbox which have a  certain flag set.</p><div><p>This method supports unique IDs instead of message numbers. See  <a href="ezcMailImapTransportOptions.html">ezcMailImapTransportOptions</a> for how to enable unique IDs  referencing.</p><p>$flag can be one of:</p><p>Basic flags: </p><ul><li>ANSWERED   - message has been answered</li><li>DELETED    - message is marked to be deleted by later EXPUNGE</li><li>DRAFT      - message is marked as a draft</li><li>FLAGGED    - message is "flagged" for urgent/special attention</li><li>RECENT     - message is recent</li><li>SEEN       - message has been read</li></ul>  Opposites of the above flags: <ul><li>UNANSWERED</li><li>UNDELETED</li><li>UNDRAFT</li><li>UNFLAGGED</li><li>OLD</li><li>UNSEEN</li></ul>  Composite flags: <ul><li>NEW        - equivalent to RECENT + UNSEEN</li><li>ALL        - all the messages</li></ul>  The returned array is something like this:  <ol><li><div class="src-line">&#8192;&#8192;&#8192;<span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-num">0&#8192;</span>=&gt;&#8192;<span class="src-num">1</span><span class="src-sym">,&#8192;</span><span class="src-num">1&#8192;</span>=&gt;&#8192;<span class="src-num">5&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol><p>Before calling this method, a connection to the IMAP server must be  established and a user must be authenticated successfully, and a mailbox  must be selected.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$flag</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcMailTransportException.html">ezcMailTransportException</a></code></td>
+              <td>
+                                  if a mailbox is not selected or if the server sent a negative response or if $flag is not valid
+                              </td>
+            </tr></tbody></table><a name="methodsearchMailbox" id="searchMailbox"><!-- --></a>
+
+    <h4>searchMailbox</h4>
+
+    <div class="method-signature">
+      <a href="ezcMailImapSet.html">ezcMailImapSet</a>
+      searchMailbox(
+                                  [string
+          $criteria
+           = null]              )
+    </div>
+
+    <p>Returns an <a href="ezcMailImapSet.html">ezcMailImapSet</a> containing the messages which match the  provided $criteria from the current mailbox.</p><div><p>This method supports unique IDs instead of message numbers. See  <a href="ezcMailImapTransportOptions.html">ezcMailImapTransportOptions</a> for how to enable unique IDs  referencing.</p><p>See <a href="http://www.faqs.org/rfcs/rfc1730.html">http://www.faqs.org/rfcs/rfc1730.html</a></p><ul><li>6.4.4. (or
+ <a href="http://www.faqs.org/rfcs/rfc1730.html">http://www.faqs.org/rfcs/rfc1730.html</a> - 6.4.4.) for criterias</li></ul> which can be used for searching. The criterias can be combined in the  same search string (separate the criterias with spaces).<p>If $criteria is null or empty then it will default to 'ALL' (returns all  messages in the mailbox).</p><p>Before calling this method, a connection to the IMAP server must be  established and a user must be authenticated successfully, and a mailbox  must be selected.</p><p>Examples:  </p><ol><li><div class="src-line">&#8192;<span class="src-var">$imap&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcMailImapTransport.html">ezcMailImapTransport</a></span><span class="src-sym">(&#8192;</span><span class="src-str">'imap.example.com'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$imap</span><span class="src-sym">-&gt;</span><a href="ezcMailImapTransport.html#methodauthenticate">authenticate</a><span class="src-sym">(&#8192;</span><span class="src-str">'username'</span><span class="src-sym">,&#8192;</span><span class="src-str">'password'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$imap</span><span class="src-sym">-&gt;</span><a href="ezcMailImapTransport.html#methodselectMailbox">selectMailbox</a><span class="src-sym">(&#8192;</span><span class="src-str">'mailbox'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;&#8192;</span><span class="src-comm">//&#8192;Inbox&#8192;or&#8192;another&#8192;mailbox</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;return&#8192;an&#8192;ezcMailImapSet&#8192;containing&#8192;all&#8192;messages&#8192;flagged&#8192;as&#8192;'SEEN'</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$set&#8192;</span>=&#8192;<span class="src-var">$imap</span><span class="src-sym">-&gt;</span><a href="ezcMailImapTransport.html#methodsearchMailbox">searchMailbox</a><span class="src-sym">(&#8192;</span><span class="src-str">'SEEN'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;return&#8192;an&#8192;ezcMailImapSet&#8192;containing&#8192;messages&#8192;with&#8192;'release'&#8192;in&#8192;their&#8192;Subject</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$set&#8192;</span>=&#8192;<span class="src-var">$imap</span><span class="src-sym">-&gt;</span><a href="ezcMailImapTransport.html#methodsearchMailbox">searchMailbox</a><span class="src-sym">(&#8192;</span><span class="src-str">'SUBJECT&#8192;"release"'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;criterias&#8192;can&#8192;be&#8192;combined:</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;return&#8192;an&#8192;ezcMailImapSet&#8192;containing&#8192;messages&#8192;flagged&#8192;as&#8192;'SEEN'&#8192;and</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;with&#8192;'release'&#8192;in&#8192;their&#8192;Subject</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$set&#8192;</span>=&#8192;<span class="src-var">$imap</span><span class="src-sym">-&gt;</span><a href="ezcMailImapTransport.html#methodsearchMailbox">searchMailbox</a><span class="src-sym">(&#8192;</span><span class="src-str">'SEEN&#8192;SUBJECT&#8192;"release"'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;$set&#8192;can&#8192;be&#8192;parsed&#8192;with&#8192;ezcMailParser</span></div></li>
+</ol></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$criteria</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcMailTransportException.html">ezcMailTransportException</a></code></td>
+              <td>
+                                  if a mailbox is not selected or if the server sent a negative response
+                              </td>
+            </tr></tbody></table><a name="methodselectMailbox" id="selectMailbox"><!-- --></a>
+
+    <h4>selectMailbox</h4>
+
+    <div class="method-signature">
+      void
+      selectMailbox(
+                                  string
+          $mailbox
+                            ,           [bool
+          $readOnly
+           = false]              )
+    </div>
+
+    <p>Selects the mailbox $mailbox, which will be the active mailbox for the  subsequent commands until it is changed.</p><div><p>Before calling this method, a connection to the IMAP server must be  established and a user must be authenticated successfully.</p><p>Inbox is a special mailbox and can be specified with any case.</p><p>This method should be called after authentication, and before fetching  any messages.</p><p>Example of selecting a mailbox:  </p><ol><li><div class="src-line">&#8192;<span class="src-var">$imap&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcMailImapTransport.html">ezcMailImapTransport</a></span><span class="src-sym">(&#8192;</span><span class="src-str">'imap.example.com'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$imap</span><span class="src-sym">-&gt;</span><a href="ezcMailImapTransport.html#methodauthenticate">authenticate</a><span class="src-sym">(&#8192;</span><span class="src-str">'username'</span><span class="src-sym">,&#8192;</span><span class="src-str">'password'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$imap</span><span class="src-sym">-&gt;</span><a href="ezcMailImapTransport.html#methodselectMailbox">selectMailbox</a><span class="src-sym">(&#8192;</span><span class="src-str">'Reports&#8192;2006'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$mailbox</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$readOnly</code></td>
+              <td><em>bool</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>ezcMailMailTransportException</code></td>
+              <td>
+                                  if the current server state is not accepted or if the server sent a negative response
+                              </td>
+            </tr></tbody></table><a name="methodsetFlag" id="setFlag"><!-- --></a>
+
+    <h4>setFlag</h4>
+
+    <div class="method-signature">
+      bool
+      setFlag(
+                                  string
+          $messages
+                            ,           string
+          $flag
+                        )
+    </div>
+
+    <p>Sets $flag on $messages.</p><div><p>This method supports unique IDs instead of message numbers. See  <a href="ezcMailImapTransportOptions.html">ezcMailImapTransportOptions</a> for how to enable unique IDs  referencing.</p><p>$messages can be: </p><ul><li>a single message number (eg. 1)</li><li>a message range (eg. 1:4)</li><li>a message list (eg. 1,2,4)</li></ul>  $flag can be one of: <ul><li>ANSWERED   - message has been answered</li><li>DELETED    - message is marked to be deleted by later EXPUNGE</li><li>DRAFT      - message is marked as a draft</li><li>FLAGGED    - message is "flagged" for urgent/special attention</li><li>SEEN       - message has been read</li></ul>  This function automatically adds the '\' in front of the flag when  calling the server command.<p>Before calling this method, a connection to the IMAP server must be  established and a user must be authenticated successfully, and a mailbox  must be selected.</p><p>Example:  </p><ol><li><div class="src-line">&#8192;<span class="src-var">$imap&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcMailImapTransport.html">ezcMailImapTransport</a></span><span class="src-sym">(&#8192;</span><span class="src-str">'imap.example.com'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$imap</span><span class="src-sym">-&gt;</span><a href="ezcMailImapTransport.html#methodauthenticate">authenticate</a><span class="src-sym">(&#8192;</span><span class="src-str">'username'</span><span class="src-sym">,&#8192;</span><span class="src-str">'password'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$imap</span><span class="src-sym">-&gt;</span><a href="ezcMailImapTransport.html#methodselectMailbox">selectMailbox</a><span class="src-sym">(&#8192;</span><span class="src-str">'mailbox'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;&#8192;</span><span class="src-comm">//&#8192;Inbox&#8192;or&#8192;another&#8192;mailbox</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$imap</span><span class="src-sym">-&gt;</span><a href="ezcMailImapTransport.html#methodsetFlag">setFlag</a><span class="src-sym">(&#8192;</span><span class="src-str">'1:4'</span><span class="src-sym">,&#8192;</span><span class="src-str">'DRAFT'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$messages</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$flag</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcMailTransportException.html">ezcMailTransportException</a></code></td>
+              <td>
+                                  if a mailbox is not selected or if the server sent a negative response or if $flag is not valid
+                              </td>
+            </tr></tbody></table><a name="methodsort" id="sort"><!-- --></a>
+
+    <h4>sort</h4>
+
+    <div class="method-signature">
+      array(string)
+      sort(
+                                  array(int)
+          $messages
+                            ,           string
+          $sortCriteria
+                            ,           [bool
+          $reverse
+           = false]              )
+    </div>
+
+    <p>Sorts message numbers array $messages by the specified $sortCriteria.</p><div><p>This method supports unique IDs instead of message numbers. See  <a href="ezcMailImapTransportOptions.html">ezcMailImapTransportOptions</a> for how to enable unique IDs  referencing.</p><p>$messages is an array of message numbers, for example:  </p><ol><li><div class="src-line">&#8192;&#8192;&#8192;<span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-num">1</span><span class="src-sym">,&#8192;</span><span class="src-num">2</span><span class="src-sym">,&#8192;</span><span class="src-num">4&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol><p>$sortCriteria is an email header like: Subject, To, From, Date, Sender.</p><p>The sorting is done with the php function natcasesort().</p><p>Before calling this method, a connection to the IMAP server must be  established and a user must be authenticated successfully, and a mailbox  must be selected.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$messages</code></td>
+              <td><em>array(int)</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$sortCriteria</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$reverse</code></td>
+              <td><em>bool</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcMailTransportException.html">ezcMailTransportException</a></code></td>
+              <td>
+                                  if a mailbox is not selected or if the server sent a negative response or if the array $messages is empty
+                              </td>
+            </tr></tbody></table><a name="methodsortFromOffset" id="sortFromOffset"><!-- --></a>
+
+    <h4>sortFromOffset</h4>
+
+    <div class="method-signature">
+      <a href="ezcMailImapSet.html">ezcMailImapSet</a>
+      sortFromOffset(
+                                  int
+          $offset
+                            ,           [int
+          $count
+           = 0]                  ,           string
+          $sortCriteria
+                            ,           [bool
+          $reverse
+           = false]              )
+    </div>
+
+    <p>Returns an <a href="ezcMailImapSet.html">ezcMailImapSet</a> containing $count messages starting  from $offset sorted by $sortCriteria from the current mailbox.</p><div><p>This method supports unique IDs instead of message numbers. See  <a href="ezcMailImapTransportOptions.html">ezcMailImapTransportOptions</a> for how to enable unique IDs  referencing.</p><p>It is useful for paging through a mailbox.</p><p>Fetches $count messages starting from the $offset and returns them as a  <a href="ezcMailImapSet.html">ezcMailImapSet</a>. If $count is is 0, it fetches all messages  starting from the $offset.</p><p>$sortCriteria is an email header like: Subject, To, From, Date, Sender, etc.</p><p>Before calling this method, a connection to the IMAP server must be  established and a user must be authenticated successfully, and a mailbox  must be selected.</p><p>Example:  </p><ol><li><div class="src-line">&#8192;<span class="src-var">$imap&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcMailImapTransport.html">ezcMailImapTransport</a></span><span class="src-sym">(&#8192;</span><span class="src-str">'imap.example.com'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$imap</span><span class="src-sym">-&gt;</span><a href="ezcMailImapTransport.html#methodauthenticate">authenticate</a><span class="src-sym">(&#8192;</span><span class="src-str">'username'</span><span class="src-sym">,&#8192;</span><span class="src-str">'password'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$imap</span><span class="src-sym">-&gt;</span><a href="ezcMailImapTransport.html#methodselectMailbox">selectMailbox</a><span class="src-sym">(&#8192;</span><span class="src-str">'mailbox'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;&#8192;</span><span class="src-comm">//&#8192;Inbox&#8192;or&#8192;another&#8192;mailbox</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;Fetch&#8192;a&#8192;range&#8192;of&#8192;messages&#8192;sorted&#8192;by&#8192;Date</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$set&#8192;</span>=&#8192;<span class="src-var">$imap</span><span class="src-sym">-&gt;</span><a href="ezcMailImapTransport.html#methodsortFromOffset">sortFromOffset</a><span class="src-sym">(&#8192;</span><span class="src-num">1</span><span class="src-sym">,&#8192;</span><span class="src-num">10</span><span class="src-sym">,&#8192;</span><span class="src-str">"Date"&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;$set&#8192;can&#8192;be&#8192;parsed&#8192;with&#8192;ezcMailParser</span></div></li>
+</ol></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$offset</code></td>
+              <td><em>int</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$count</code></td>
+              <td><em>int</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$sortCriteria</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$reverse</code></td>
+              <td><em>bool</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcMailTransportException.html">ezcMailTransportException</a></code></td>
+              <td>
+                                  if a mailbox is not selected or if the server sent a negative response
+                              </td>
+            </tr><tr><td><code><a href="ezcMailInvalidLimitException.html">ezcMailInvalidLimitException</a></code></td>
+              <td>
+                                  if $count is negative
+                              </td>
+            </tr><tr><td><code><a href="ezcMailOffsetOutOfRangeException.html">ezcMailOffsetOutOfRangeException</a></code></td>
+              <td>
+                                  if $offset is outside of the existing range of messages
+                              </td>
+            </tr></tbody></table><a name="methodsortMessages" id="sortMessages"><!-- --></a>
+
+    <h4>sortMessages</h4>
+
+    <div class="method-signature">
+      <a href="ezcMailImapSet.html">ezcMailImapSet</a>
+      sortMessages(
+                                  array(int)
+          $messages
+                            ,           string
+          $sortCriteria
+                            ,           [bool
+          $reverse
+           = false]              )
+    </div>
+
+    <p>Returns an <a href="ezcMailImapSet.html">ezcMailImapSet</a> containing messages $messages sorted by  $sortCriteria from the current mailbox.</p><div><p>This method supports unique IDs instead of message numbers. See  <a href="ezcMailImapTransportOptions.html">ezcMailImapTransportOptions</a> for how to enable unique IDs  referencing.</p><p>$messages is an array of message numbers, for example:  </p><ol><li><div class="src-line">&#8192;&#8192;&#8192;<span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-num">1</span><span class="src-sym">,&#8192;</span><span class="src-num">2</span><span class="src-sym">,&#8192;</span><span class="src-num">4&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol><p>$sortCriteria is an email header like: Subject, To, From, Date, Sender, etc.</p><p>Before calling this method, a connection to the IMAP server must be  established and a user must be authenticated successfully, and a mailbox  must be selected.</p><p>Example:  </p><ol><li><div class="src-line">&#8192;<span class="src-var">$imap&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcMailImapTransport.html">ezcMailImapTransport</a></span><span class="src-sym">(&#8192;</span><span class="src-str">'imap.example.com'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$imap</span><span class="src-sym">-&gt;</span><a href="ezcMailImapTransport.html#methodauthenticate">authenticate</a><span class="src-sym">(&#8192;</span><span class="src-str">'username'</span><span class="src-sym">,&#8192;</span><span class="src-str">'password'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$imap</span><span class="src-sym">-&gt;</span><a href="ezcMailImapTransport.html#methodselectMailbox">selectMailbox</a><span class="src-sym">(&#8192;</span><span class="src-str">'mailbox'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;&#8192;</span><span class="src-comm">//&#8192;Inbox&#8192;or&#8192;another&#8192;mailbox</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;Fetch&#8192;the&#8192;list&#8192;of&#8192;messages&#8192;sorted&#8192;by&#8192;Date</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$set&#8192;</span>=&#8192;<span class="src-var">$imap</span><span class="src-sym">-&gt;</span><a href="ezcMailImapTransport.html#methodsortMessages">sortMessages</a><span class="src-sym">(&#8192;</span><span class="src-num">1</span><span class="src-sym">,&#8192;</span><span class="src-num">10</span><span class="src-sym">,&#8192;</span><span class="src-str">"Date"&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;$set&#8192;can&#8192;be&#8192;parsed&#8192;with&#8192;ezcMailParser</span></div></li>
+</ol></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$messages</code></td>
+              <td><em>array(int)</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$sortCriteria</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$reverse</code></td>
+              <td><em>bool</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcMailTransportException.html">ezcMailTransportException</a></code></td>
+              <td>
+                                  if a mailbox is not selected or if the server sent a negative response or if array $messages is empty
+                              </td>
+            </tr></tbody></table><a name="methodstatus" id="status"><!-- --></a>
+
+    <h4>status</h4>
+
+    <div class="method-signature">
+      bool
+      status(
+                                  int
+          &amp;$numMessages
+                            ,           int
+          &amp;$sizeMessages
+                            ,           [int
+          &amp;$recent
+           = 0]                  ,           [int
+          &amp;$unseen
+           = 0]              )
+    </div>
+
+    <p>Returns information about the messages in the current mailbox.</p><div><p>The information returned through the parameters is: </p><ul><li>$numMessages = number of not deleted messages in the selected mailbox</li><li>$sizeMessages = sum of the not deleted messages sizes</li><li>$recent = number of recent and not deleted messages</li><li>$unseen = number of unseen and not deleted messages</li></ul>  Before calling this method, a connection to the IMAP server must be  established and a user must be authenticated successfully, and a mailbox  must be selected.<p>Example of returning the status of the currently selected mailbox:  </p><ol><li><div class="src-line">&#8192;<span class="src-var">$imap&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcMailImapTransport.html">ezcMailImapTransport</a></span><span class="src-sym">(&#8192;</span><span class="src-str">'imap.example.com'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$imap</span><span class="src-sym">-&gt;</span><a href="ezcMailImapTransport.html#methodauthenticate">authenticate</a><span class="src-sym">(&#8192;</span><span class="src-str">'username'</span><span class="src-sym">,&#8192;</span><span class="src-str">'password'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$imap</span><span class="src-sym">-&gt;</span><a href="ezcMailImapTransport.html#methodselectMailbox">selectMailbox</a><span class="src-sym">(&#8192;</span><span class="src-str">'Inbox'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$imap</span><span class="src-sym">-&gt;</span><a href="ezcMailImapTransport.html#methodstatus">status</a><span class="src-sym">(&#8192;</span><span class="src-var">$numMessages</span><span class="src-sym">,&#8192;</span><span class="src-var">$sizeMessages</span><span class="src-sym">,&#8192;</span><span class="src-var">$recent</span><span class="src-sym">,&#8192;</span><span class="src-var">$unseen&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol><p>After running the above code, $numMessages, $sizeMessages, $recent  and $unseen will be populated with values.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>&amp;$numMessages</code></td>
+              <td><em>int</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>&amp;$sizeMessages</code></td>
+              <td><em>int</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>&amp;$recent</code></td>
+              <td><em>int</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>&amp;$unseen</code></td>
+              <td><em>int</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcMailTransportException.html">ezcMailTransportException</a></code></td>
+              <td>
+                                  if a mailbox is not selected or if the server sent a negative response
+                              </td>
+            </tr></tbody></table><a name="methodtop" id="top"><!-- --></a>
+
+    <h4>top</h4>
+
+    <div class="method-signature">
+      string
+      top(
+                                  int
+          $msgNum
+                            ,           [int
+          $chars
+           = 0]              )
+    </div>
+
+    <p>Returns the headers and the first characters from message $msgNum,  without setting the SEEN flag.</p><div><p>This method supports unique IDs instead of message numbers. See  <a href="ezcMailImapTransportOptions.html">ezcMailImapTransportOptions</a> for how to enable unique IDs  referencing.</p><p>If the command failed or if it was not supported by the server an empty  string is returned.</p><p>This method is useful for retrieving the headers of messages from the  mailbox as strings, which can be later parsed with <a href="ezcMailParser.html">ezcMailParser</a>  and <a href="ezcMailVariableSet.html">ezcMailVariableSet</a>. In this way the retrieval of the full  messages from the server is avoided when building a list of messages.</p><p>Before calling this method, a connection to the IMAP server must be  established and a user must be authenticated successfully, and a mailbox  must be selected.</p><p>Example of listing the mail headers of all the messages in the current  mailbox:  </p><ol><li><div class="src-line">&#8192;<span class="src-var">$imap&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcMailImapTransport.html">ezcMailImapTransport</a></span><span class="src-sym">(&#8192;</span><span class="src-str">'imap.example.com'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$imap</span><span class="src-sym">-&gt;</span><a href="ezcMailImapTransport.html#methodauthenticate">authenticate</a><span class="src-sym">(&#8192;</span><span class="src-str">'username'</span><span class="src-sym">,&#8192;</span><span class="src-str">'password'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$imap</span><span class="src-sym">-&gt;</span><a href="ezcMailImapTransport.html#methodselectMailbox">selectMailbox</a><span class="src-sym">(&#8192;</span><span class="src-str">'Inbox'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$parser&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcMailParser.html">ezcMailParser</a></span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$messages&#8192;</span>=&#8192;<span class="src-var">$imap</span><span class="src-sym">-&gt;</span><a href="ezcMailImapTransport.html#methodlistMessages">listMessages</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-key">foreach&#8192;</span><span class="src-sym">(&#8192;</span><span class="src-var">$messages&#8192;</span><span class="src-key">as&#8192;</span><span class="src-var">$messageNr&#8192;</span>=&gt;&#8192;<span class="src-var">$size&#8192;</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">{</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-var">$set&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcMailVariableSet.html">ezcMailVariableSet</a></span><span class="src-sym">(&#8192;</span><span class="src-var">$imap</span><span class="src-sym">-&gt;</span><a href="ezcMailImapTransport.html#methodtop">top</a><span class="src-sym">(&#8192;</span><span class="src-var">$messageNr&#8192;</span><span class="src-sym">)&#8192;)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-var">$mail&#8192;</span>=&#8192;<span class="src-var">$parser</span><span class="src-sym">-&gt;</span><span class="src-id">parseMail</span><span class="src-sym">(&#8192;</span><span class="src-var">$set&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-var">$mail&#8192;</span>=&#8192;<span class="src-var">$mail</span><span class="src-sym">[</span><span class="src-num">0</span><span class="src-sym">]</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;echo&#8192;<span class="src-str">"</span><span class="src-str">From:&#8192;{<span class="src-var">$mail</span></span><span class="src-sym">-&gt;</span><span class="src-id">from</span><span class="src-str"></span><span class="src-sym">}</span>,&#8192;Subject:&#8192;{<span class="src-var">$mail</span><span class="src-sym">-&gt;</span><span class="src-id">subject</span><span class="src-str"></span><span class="src-sym">}</span>,&#8192;Size:&#8192;{<span class="src-var">$size</span><span class="src-sym">}</span>\n<span class="src-str">"</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">}</span></div></li>
+</ol><p>For a more advanced example see the "Mail listing example" in the online  documentation.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$msgNum</code></td>
+              <td><em>int</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$chars</code></td>
+              <td><em>int</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcMailTransportException.html">ezcMailTransportException</a></code></td>
+              <td>
+                                  if a mailbox is not selected or if the server sent a negative response
+                              </td>
+            </tr></tbody></table><div class="credit">
+      Documentation generated by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+    </div>
+  </div>
+  
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

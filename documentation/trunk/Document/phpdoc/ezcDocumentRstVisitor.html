@@ -1,0 +1,989 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="PHP, apache, components, framework, quality" />
+	<meta name="author" content="dotxp" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Wed, 04 Aug 2010 13:07:34 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="ezcDocumentRstVisitor.html" />
+	<meta name="DC.creator" content="dotxp" />
+	<meta name="DC.date" content="Wed, 04 Aug 2010 13:07:34 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/Document/phpdoc/ezcDocumentRstVisitor.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/Document/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/trunk/Document/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Document/conversion.html" title="Conversion ">Conversion </a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Document/styles.html" title="Styles ">Styles </a>
+	</li>
+
+</ul>
+
+		
+  <div class="phpdoc">
+    <h2>Apache Zeta Components Manual :: Docs For Class ezcDocumentRstVisitor</h2>
+
+                  <h3>Document::ezcDocumentRstVisitor</h3>
+    
+<a name="sec-description"></a>
+<h3>Class ezcDocumentRstVisitor</h3>
+
+<p>Abstract visitor base for RST documents represented by the parser AST.</p>
+<p>Source for this file: <a href="http://fisheye6.atlassian.com/browse/zetacomponents/trunk/Document/src/document/rst/visitor.php?r=HEAD">/Document/src/document/rst/visitor.php</a></p>
+       
+  <h3>Implements interfaces:</h3>
+  <ul><li><a href="ezcDocumentErrorReporting.html">ezcDocumentErrorReporting</a></li>  </ul><table><tr><td>
+            <strong>Version:</strong>&#8192;&#8192;
+          </td>
+          <td>//autogen//</td>
+        </tr></table><a name="sec-descendants"></a>
+  <h3>Descendants</h3>
+  <table class="detail"><thead><tr><th>Child Class</th>
+        <th>Description</th>
+      </tr></thead><tbody><tr><td><a href="ezcDocumentRstXhtmlVisitor.html">ezcDocumentRstXhtmlVisitor</a></td>          <td>
+                          HTML visitor for the RST AST.
+                      </td>
+        </tr><tr><td><a href="ezcDocumentRstDocbookVisitor.html">ezcDocumentRstDocbookVisitor</a></td>          <td>
+                          Docbook visitor for the RST AST.
+                      </td>
+        </tr></tbody></table><a name="sec-const-summary"></a>
+  <h3>Constants</h3>
+  <table class="summary"><tr><td class="right">
+          <a name="const-DUBLICATE" id=""></a>
+          <code>
+            <a href="#const-DUBLICATE" title="details" class="const-name-summary">DUBLICATE</a>
+             =  4
+          </code>
+        </td>
+        <td>
+          Duplicate reference target. Will throw an error on use.                  </td>
+      </tr><tr><td class="right">
+          <a name="const-UNUSED" id=""></a>
+          <code>
+            <a href="#const-UNUSED" title="details" class="const-name-summary">UNUSED</a>
+             =  1
+          </code>
+        </td>
+        <td>
+          Unused reference target                  </td>
+      </tr><tr><td class="right">
+          <a name="const-USED" id=""></a>
+          <code>
+            <a href="#const-USED" title="details" class="const-name-summary">USED</a>
+             =  2
+          </code>
+        </td>
+        <td>
+          Used reference target                  </td>
+      </tr></table><a name="sec-var-summary"></a>
+  <h3>Member Variables</h3>
+  <table class="summary"><tr><td class="right">
+            <em>protected</em>            <em>int</em>          </td>
+          <td>
+            <code>
+              $anonymousReferenceCounter
+               = <span class="var-default"> 0</span>            </code>
+            <br><div style="margin-left: 20px">Index of last requested anonymous reference target.</div>                      </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            <em>array</em>          </td>
+          <td>
+            <code>
+              $anonymousReferences
+               = <span class="var-default">array()</span>            </code>
+            <br><div style="margin-left: 20px">Collected anonymous externals reference targets</div>                      </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            <em>ezcDocumentRstDocumentNode</em>          </td>
+          <td>
+            <code>
+              $ast
+                          </code>
+            <br><div style="margin-left: 20px">Reference to the AST root node.</div>                      </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            <em>array</em>          </td>
+          <td>
+            <code>
+              $errors
+               = <span class="var-default">array()</span>            </code>
+            <br><div style="margin-left: 20px">Aggregated minor errors during document processing.</div>                      </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            <em>array</em>          </td>
+          <td>
+            <code>
+              $footnoteCounter
+               = <span class="var-default">array( 0 )</span>            </code>
+            <br><div style="margin-left: 20px">Label dependant foot note counters for footnote auto enumeration.</div>                      </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            <em>array</em>          </td>
+          <td>
+            <code>
+              $footnotes
+               = <span class="var-default">array()</span>            </code>
+            <br><div style="margin-left: 20px">List with footnotes for later rendering.</div>                      </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            <em>array</em>          </td>
+          <td>
+            <code>
+              $footnoteSymbols
+               = <span class="var-default">array(<br>        "*",<br>        "\xE2\x80\xA0",<br>        "\xE2\x80\xA1",<br>        "\xC2\xA7",<br>        "\xC2\xB6",<br>        "#",<br>        "\xE2\x99\xA0",<br>        "\xE2\x99\xA5",<br>        "\xE2\x99\xA6",<br>        "\xE2\x99\xA3",<br>    )</span>            </code>
+            <br><div style="margin-left: 20px">Foot note symbol signs, as defined at  http://docutils.sourceforge.net/docs/ref/rst/restructuredtext.html#auto-symbol-footnotes</div>                      </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            <em>array</em>          </td>
+          <td>
+            <code>
+              $namedExternalReferences
+               = <span class="var-default">array()</span>            </code>
+            <br><div style="margin-left: 20px">Collected named external reference targets</div>                      </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            <em>string</em>          </td>
+          <td>
+            <code>
+              $path
+                          </code>
+            <br><div style="margin-left: 20px">Location of the currently processed RST file, relevant for inclusion.</div>                      </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            <em>array</em>          </td>
+          <td>
+            <code>
+              $referenceCounter
+               = <span class="var-default">array()</span>            </code>
+            <br><div style="margin-left: 20px">Counter of duplicate references for duplicate references.</div>                      </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            <em>array</em>          </td>
+          <td>
+            <code>
+              $references
+               = <span class="var-default">array()</span>            </code>
+            <br><div style="margin-left: 20px">Collected refrence targets.</div>                      </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            <em><a href="ezcDocumentRst.html">ezcDocumentRst</a></em>          </td>
+          <td>
+            <code>
+              $rst
+                          </code>
+            <br><div style="margin-left: 20px">RST document handler</div>                      </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            <em>array</em>          </td>
+          <td>
+            <code>
+              $substitutions
+               = <span class="var-default">array()</span>            </code>
+            <br><div style="margin-left: 20px">Collected substitutions.</div>                      </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            <em>array</em>          </td>
+          <td>
+            <code>
+              $usedIDs
+               = <span class="var-default">array()</span>            </code>
+            <br><div style="margin-left: 20px">Array of already generated IDs, so none will be used twice.</div>                      </td>
+        </tr></table><a name="sec-method-summary"></a>
+  <h3>Method Summary</h3>
+  <table class="summary"><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#__construct"><b>__construct</b></a>(
+                                                                                    $document
+                                                    ,                                     $path
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Create visitor from RST document handler.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#addFootnote"><b>addFootnote</b></a>(
+                                                                                    $node
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Add footnote</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#aggregateListItems"><b>aggregateListItems</b></a>(
+                                                                                    $node
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Aggregate list items</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#calculateId"><b>calculateId</b></a>(
+                                                                                    $string
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Get a valid identifier string</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#calculateUniqueId"><b>calculateUniqueId</b></a>(
+                                                                                    $string
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Calculate unique ID</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>bool</em>          </td>
+          <td>
+            <code>
+              <a href="#compareListType"><b>compareListType</b></a>(
+                                                                                    $item
+                                                    ,                                     $lastItem
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Compare two list items</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#getAnonymousReferenceTarget"><b>getAnonymousReferenceTarget</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Get anonymous reference target</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>array</em>          </td>
+          <td>
+            <code>
+              <a href="#getErrors"><b>getErrors</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Return list of errors occured during visiting the document.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#getNamedExternalReference"><b>getNamedExternalReference</b></a>(
+                                                                                    $name
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Return named external reference target</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>ezcDocumentRstFootnoteNode</em>          </td>
+          <td>
+            <code>
+              <a href="#hasFootnoteTarget"><b>hasFootnoteTarget</b></a>(
+                                                                                    $string
+                                                    ,                                     $node
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Check for internal footnote reference target</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#hasReferenceTarget"><b>hasReferenceTarget</b></a>(
+                                                                                    $string
+                                                    ,                   [                  $node
+                   = null]                                  ,                   [                  $force
+                   = false]                               )
+            </code>
+            <br><div style="margin-left: 20px">Check for internal reference target</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#nodeToString"><b>nodeToString</b></a>(
+                                                                                    $node
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Transform a node tree into a string</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#preProcessAst"><b>preProcessAst</b></a>(
+                                                                                    $node
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Pre process AST</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#substitute"><b>substitute</b></a>(
+                                                                                    $string
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Get substitution contents</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#tokenListToString"><b>tokenListToString</b></a>(
+                                                                                    $tokens
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Get string from token list.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#triggerError"><b>triggerError</b></a>(
+                                                                                    $level
+                                                    ,                                     $message
+                                                    ,                   [                  $file
+                   = null]                                  ,                   [                  $line
+                   = null]                                  ,                   [                  $position
+                   = null]                               )
+            </code>
+            <br><div style="margin-left: 20px">Trigger visitor error</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>mixed</em>          </td>
+          <td>
+            <code>
+              <a href="#visit"><b>visit</b></a>(
+                                                                                    $ast
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Docarate RST AST</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#visitChildren"><b>visitChildren</b></a>(
+                                                                                    $root
+                                                    ,                                     $node
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Visit children</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#visitSubstitutionReference"><b>visitSubstitutionReference</b></a>(
+                                                                                    $root
+                                                    ,                                     $node
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Visit substitution reference node</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#visitText"><b>visitText</b></a>(
+                                                                                    $root
+                                                    ,                                     $node
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Visit text node</div>          </td>
+        </tr></table><a name="sec-methods"></a>
+  <h3>Methods</h3>
+  <a name="method_detail"></a>
+                                        
+      <a name="method__construct" id="__construct"><!-- --></a>
+
+    <h4>__construct</h4>
+
+    <div class="method-signature">
+      void
+      __construct(
+                                  <a href="ezcDocumentRst.html">ezcDocumentRst</a>
+          $document
+                            ,           string
+          $path
+                        )
+    </div>
+
+    <p>Create visitor from RST document handler.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$document</code></td>
+              <td><em><a href="ezcDocumentRst.html">ezcDocumentRst</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$path</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefined in descendants as:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcDocumentRstXhtmlVisitor.html#method__construct">ezcDocumentRstXhtmlVisitor::__construct()</a></code></td>
+              <td>
+                Create visitor from RST document handler.&#8192;
+              </td>
+            </tr></tbody></table><a name="methodaddFootnote" id="addFootnote"><!-- --></a>
+
+    <h4>addFootnote</h4>
+
+    <div class="method-signature">
+      void
+      addFootnote(
+                                  <a href="ezcDocumentRstNode.html">ezcDocumentRstNode</a>
+          $node
+                        )
+    </div>
+
+    <p>Add footnote</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$node</code></td>
+              <td><em><a href="ezcDocumentRstNode.html">ezcDocumentRstNode</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodaggregateListItems" id="aggregateListItems"><!-- --></a>
+
+    <h4>aggregateListItems</h4>
+
+    <div class="method-signature">
+      void
+      aggregateListItems(
+                                  <a href="ezcDocumentRstNode.html">ezcDocumentRstNode</a>
+          $node
+                        )
+    </div>
+
+    <p>Aggregate list items</p><div><p>Aggregate list items into lists. In RST there are only list items, which  are aggregated to lists depending on their bullet type. The related list  items are aggregated into one list.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$node</code></td>
+              <td><em><a href="ezcDocumentRstNode.html">ezcDocumentRstNode</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodcalculateId" id="calculateId"><!-- --></a>
+
+    <h4>calculateId</h4>
+
+    <div class="method-signature">
+      string
+      calculateId(
+                                  string
+          $string
+                        )
+    </div>
+
+    <p>Get a valid identifier string</p><div><p>Get a valid identifier string from an arbritrary string.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$string</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodcalculateUniqueId" id="calculateUniqueId"><!-- --></a>
+
+    <h4>calculateUniqueId</h4>
+
+    <div class="method-signature">
+      string
+      calculateUniqueId(
+                                  string
+          $string
+                        )
+    </div>
+
+    <p>Calculate unique ID</p><div><p>Calculate a valid identifier, which is unique for this document.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$string</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodcompareListType" id="compareListType"><!-- --></a>
+
+    <h4>compareListType</h4>
+
+    <div class="method-signature">
+      bool
+      compareListType(
+                                  <a href="ezcDocumentRstNode.html">ezcDocumentRstNode</a>
+          $item
+                            ,           <a href="ezcDocumentRstNode.html">ezcDocumentRstNode</a>
+          $lastItem
+                        )
+    </div>
+
+    <p>Compare two list items</p><div><p>Check if the given list item may be a successor in the same list, as the  last item in the list. Returns the boolean status o the check.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$item</code></td>
+              <td><em><a href="ezcDocumentRstNode.html">ezcDocumentRstNode</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$lastItem</code></td>
+              <td><em><a href="ezcDocumentRstNode.html">ezcDocumentRstNode</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodgetAnonymousReferenceTarget" id="getAnonymousReferenceTarget"><!-- --></a>
+
+    <h4>getAnonymousReferenceTarget</h4>
+
+    <div class="method-signature">
+      string
+      getAnonymousReferenceTarget(
+      )
+    </div>
+
+    <p>Get anonymous reference target</p><div><p>Get the target URL of an anonomyous reference target.</p></div>
+    
+        
+
+    
+    
+    
+        <a name="methodgetErrors" id="getErrors"><!-- --></a>
+
+    <h4>getErrors</h4>
+
+    <div class="method-signature">
+      array
+      getErrors(
+      )
+    </div>
+
+    <p>Return list of errors occured during visiting the document.</p><div><p>May be an empty array, if on errors occured, or a list of  ezcDocumentVisitException objects.</p></div>
+    
+        
+
+    
+          <h5>Implementation of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcDocumentErrorReporting.html#methodgetErrors">ezcDocumentErrorReporting::getErrors()</a></code></td>
+              <td>
+                                  Return list of errors occured during visiting the document.
+                              </td>
+            </tr></tbody></table><a name="methodgetNamedExternalReference" id="getNamedExternalReference"><!-- --></a>
+
+    <h4>getNamedExternalReference</h4>
+
+    <div class="method-signature">
+      string
+      getNamedExternalReference(
+                                  string
+          $name
+                        )
+    </div>
+
+    <p>Return named external reference target</p><div><p>Get the target value of a named external reference.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$name</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodhasFootnoteTarget" id="hasFootnoteTarget"><!-- --></a>
+
+    <h4>hasFootnoteTarget</h4>
+
+    <div class="method-signature">
+      ezcDocumentRstFootnoteNode
+      hasFootnoteTarget(
+                                  string
+          $string
+                            ,           <a href="ezcDocumentRstNode.html">ezcDocumentRstNode</a>
+          $node
+                        )
+    </div>
+
+    <p>Check for internal footnote reference target</p><div><p>Returns the target name, when an internal reference target exists and  sets it to used, and false otherwise.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$string</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$node</code></td>
+              <td><em><a href="ezcDocumentRstNode.html">ezcDocumentRstNode</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodhasReferenceTarget" id="hasReferenceTarget"><!-- --></a>
+
+    <h4>hasReferenceTarget</h4>
+
+    <div class="method-signature">
+      string
+      hasReferenceTarget(
+                                  string
+          $string
+                            ,           [<a href="ezcDocumentRstNode.html">ezcDocumentRstNode</a>
+          $node
+           = null]                  ,           [bool
+          $force
+           = false]              )
+    </div>
+
+    <p>Check for internal reference target</p><div><p>Returns the target name, when an internal reference target exists and  sets it to used, and false otherwise. For duplicate reference targets  and missing reference targets an error will be triggered.</p><p>An optional third parameter may enforce the fetching of the reference,  even if there are duplicates, so that they still can be referenced in  some way.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$string</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$node</code></td>
+              <td><em><a href="ezcDocumentRstNode.html">ezcDocumentRstNode</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$force</code></td>
+              <td><em>bool</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodnodeToString" id="nodeToString"><!-- --></a>
+
+    <h4>nodeToString</h4>
+
+    <div class="method-signature">
+      string
+      nodeToString(
+                                  <a href="ezcDocumentRstNode.html">ezcDocumentRstNode</a>
+          $node
+                        )
+    </div>
+
+    <p>Transform a node tree into a string</p><div><p>Transform a node tree, with all its subnodes into a string by only  getting the textuual contents from ezcDocumentRstTextLineNode objects.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$node</code></td>
+              <td><em><a href="ezcDocumentRstNode.html">ezcDocumentRstNode</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodpreProcessAst" id="preProcessAst"><!-- --></a>
+
+    <h4>preProcessAst</h4>
+
+    <div class="method-signature">
+      void
+      preProcessAst(
+                                  <a href="ezcDocumentRstNode.html">ezcDocumentRstNode</a>
+          $node
+                        )
+    </div>
+
+    <p>Pre process AST</p><div><p>Performs multiple preprocessing steps on the AST:</p><p>Collect all possible reference targets in the AST to know the actual  destianation for references while decorating. The references are stored  in an internal structure and you may request the actual link by using  the getReferenceTarget() method.</p><p>Aggregate list items into lists. In RST there are only list items, which  are aggregated to lists depending on their bullet type. The related list  items are aggregated into one list.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$node</code></td>
+              <td><em><a href="ezcDocumentRstNode.html">ezcDocumentRstNode</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodsubstitute" id="substitute"><!-- --></a>
+
+    <h4>substitute</h4>
+
+    <div class="method-signature">
+      void
+      substitute(
+                                  string
+          $string
+                        )
+    </div>
+
+    <p>Get substitution contents</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$string</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodtokenListToString" id="tokenListToString"><!-- --></a>
+
+    <h4>tokenListToString</h4>
+
+    <div class="method-signature">
+      string
+      tokenListToString(
+                                  
+          $tokens
+                        )
+    </div>
+
+    <p>Get string from token list.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$tokens</code></td>
+              <td><em>array</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodtriggerError" id="triggerError"><!-- --></a>
+
+    <h4>triggerError</h4>
+
+    <div class="method-signature">
+      void
+      triggerError(
+                                  int
+          $level
+                            ,           string
+          $message
+                            ,           [string
+          $file
+           = null]                  ,           [int
+          $line
+           = null]                  ,           [int
+          $position
+           = null]              )
+    </div>
+
+    <p>Trigger visitor error</p><div><p>Emit a vistitor error, and convert it to an exception depending on the  error reporting settings.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$level</code></td>
+              <td><em>int</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$message</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$file</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$line</code></td>
+              <td><em>int</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$position</code></td>
+              <td><em>int</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Implementation of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcDocumentErrorReporting.html#methodtriggerError">ezcDocumentErrorReporting::triggerError()</a></code></td>
+              <td>
+                                  Trigger parser error.
+                              </td>
+            </tr></tbody></table><a name="methodvisit" id="visit"><!-- --></a>
+
+    <h4>visit</h4>
+
+    <div class="method-signature">
+      mixed
+      visit(
+                                  
+          $ast
+                        )
+    </div>
+
+    <p>Docarate RST AST</p><div><p>Visit the RST abstract syntax tree.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$ast</code></td>
+              <td><em>ezcDocumentRstDocumentNode</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefined in descendants as:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcDocumentRstXhtmlVisitor.html#methodvisit">ezcDocumentRstXhtmlVisitor::visit()</a></code></td>
+              <td>
+                Docarate RST AST&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcDocumentRstXhtmlBodyVisitor.html#methodvisit">ezcDocumentRstXhtmlBodyVisitor::visit()</a></code></td>
+              <td>
+                Docarate RST AST&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcDocumentRstDocbookVisitor.html#methodvisit">ezcDocumentRstDocbookVisitor::visit()</a></code></td>
+              <td>
+                Docarate RST AST&#8192;
+              </td>
+            </tr></tbody></table><a name="methodvisitChildren" id="visitChildren"><!-- --></a>
+
+    <h4>visitChildren</h4>
+
+    <div class="method-signature">
+      void
+      visitChildren(
+                                  
+          $root
+                            ,           <a href="ezcDocumentRstNode.html">ezcDocumentRstNode</a>
+          $node
+                        )
+    </div>
+
+    <p>Visit children</p><div><p>Just recurse into node and visit its children, ignoring the actual  node.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$root</code></td>
+              <td><em>DOMNode</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$node</code></td>
+              <td><em><a href="ezcDocumentRstNode.html">ezcDocumentRstNode</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefined in descendants as:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcDocumentRstDocbookVisitor.html#methodvisitChildren">ezcDocumentRstDocbookVisitor::visitChildren()</a></code></td>
+              <td>
+                Visit children&#8192;
+              </td>
+            </tr></tbody></table><a name="methodvisitSubstitutionReference" id="visitSubstitutionReference"><!-- --></a>
+
+    <h4>visitSubstitutionReference</h4>
+
+    <div class="method-signature">
+      void
+      visitSubstitutionReference(
+                                  
+          $root
+                            ,           <a href="ezcDocumentRstNode.html">ezcDocumentRstNode</a>
+          $node
+                        )
+    </div>
+
+    <p>Visit substitution reference node</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$root</code></td>
+              <td><em>DOMNode</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$node</code></td>
+              <td><em><a href="ezcDocumentRstNode.html">ezcDocumentRstNode</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefined in descendants as:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcDocumentRstDocbookVisitor.html#methodvisitSubstitutionReference">ezcDocumentRstDocbookVisitor::visitSubstitutionReference()</a></code></td>
+              <td>
+                Visit substitution reference node&#8192;
+              </td>
+            </tr></tbody></table><a name="methodvisitText" id="visitText"><!-- --></a>
+
+    <h4>visitText</h4>
+
+    <div class="method-signature">
+      void
+      visitText(
+                                  
+          $root
+                            ,           <a href="ezcDocumentRstNode.html">ezcDocumentRstNode</a>
+          $node
+                        )
+    </div>
+
+    <p>Visit text node</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$root</code></td>
+              <td><em>DOMNode</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$node</code></td>
+              <td><em><a href="ezcDocumentRstNode.html">ezcDocumentRstNode</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefined in descendants as:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcDocumentRstDocbookVisitor.html#methodvisitText">ezcDocumentRstDocbookVisitor::visitText()</a></code></td>
+              <td>
+                Visit text node&#8192;
+              </td>
+            </tr></tbody></table><div class="credit">
+      Documentation generated by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+    </div>
+  </div>
+  
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

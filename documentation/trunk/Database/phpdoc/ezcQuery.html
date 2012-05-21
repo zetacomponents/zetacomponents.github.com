@@ -1,0 +1,729 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="PHP, apache, components, framework, quality" />
+	<meta name="author" content="dotxp" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Wed, 04 Aug 2010 13:07:23 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="ezcQuery.html" />
+	<meta name="DC.creator" content="dotxp" />
+	<meta name="DC.date" content="Wed, 04 Aug 2010 13:07:23 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/Database/phpdoc/ezcQuery.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/Database/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/trunk/Database/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Database/oracle_setup.html" title="Oracle_setup ">Oracle_setup </a>
+	</li>
+
+</ul>
+
+		
+  <div class="phpdoc">
+    <h2>Apache Zeta Components Manual :: Docs For Class ezcQuery</h2>
+
+                  <h3>Database::ezcQuery</h3>
+    
+<a name="sec-description"></a>
+<h3>Class ezcQuery</h3>
+
+<p>The ezcQuery class provides the common API for all Query objects.</p><div><p>ezcQuery has three main purposes: </p><ul><li>it provides a common API for building queries through the getQuery() method.</li><li>it provides a common API for binding parameters to queries through
+   bindValue() and bindParam()</li><li>it provides internal aliasing functionality that allows you to use
+   aliases for table and column names. The substitution is done inside of the
+   query classes before the query itself is built.</li></ul>  Through the bind methods you can bind parameters and values to your  query. Finally you can use prepare to get a PDOStatement object  from your query object.<p>Subclasses should provide functionality to build an actual query.</p></div>
+<p>Source for this file: <a href="http://fisheye6.atlassian.com/browse/zetacomponents/trunk/Database/src/sqlabstraction/query.php?r=HEAD">/Database/src/sqlabstraction/query.php</a></p>
+       
+
+
+
+
+  <table><tr><td>
+            <strong>Version:</strong>&#8192;&#8192;
+          </td>
+          <td>//autogentag//</td>
+        </tr></table><a name="sec-descendants"></a>
+  <h3>Descendants</h3>
+  <table class="detail"><thead><tr><th>Child Class</th>
+        <th>Description</th>
+      </tr></thead><tbody><tr><td><a href="ezcQueryInsert.html">ezcQueryInsert</a></td>          <td>
+                          Class to create select database independent INSERT queries.
+                      </td>
+        </tr><tr><td><a href="ezcQuerySelect.html">ezcQuerySelect</a></td>          <td>
+                          Class to create select database independent SELECT queries.
+                      </td>
+        </tr><tr><td><a href="ezcQueryUpdate.html">ezcQueryUpdate</a></td>          <td>
+                          Class to create select database independent UPDATE queries.
+                      </td>
+        </tr><tr><td><a href="ezcQueryDelete.html">ezcQueryDelete</a></td>          <td>
+                          Class to create select database independent DELETE queries.
+                      </td>
+        </tr></tbody></table><a name="sec-var-summary"></a>
+  <h3>Member Variables</h3>
+  <table class="summary"><tr><td class="right">
+            <em>protected</em>            <em>PDO</em>          </td>
+          <td>
+            <code>
+              $db
+                          </code>
+            <br><div style="margin-left: 20px">A pointer to the database handler to use for this query.</div>                      </td>
+        </tr><tr><td class="right">
+            <em>public</em>            <em><a href="ezcQueryExpression.html">ezcQueryExpression</a></em>          </td>
+          <td>
+            <code>
+              $expr
+               = <span class="var-default"> null</span>            </code>
+            <br><div style="margin-left: 20px">The expression object for this class.</div>                      </td>
+        </tr></table><a name="sec-method-summary"></a>
+  <h3>Method Summary</h3>
+  <table class="summary"><tr><td class="right">
+            <em>public</em>            static
+                        <em>array</em>          </td>
+          <td>
+            <code>
+              <a href="#arrayFlatten"><b>arrayFlatten</b></a>(
+                                                                                    $array
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns all the elements in $array as one large single dimensional array.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>ezcQuery</em>          </td>
+          <td>
+            <code>
+              <a href="#__construct"><b>__construct</b></a>(
+                                                                                    $db
+                                                    ,                   [                  $aliases
+                   = array()]                               )
+            </code>
+            <br><div style="margin-left: 20px">Constructs a new ezcQuery that works on the database $db and with the aliases $aliases.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#bindParam"><b>bindParam</b></a>(
+                                                                                    &amp;$param
+                                                    ,                   [                  $placeHolder
+                   = null]                                  ,                   [                  $type
+                   = PDO::PARAM_STR]                                  ,                                     $param
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Binds the parameter $param to the specified variable name $placeHolder..</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#bindValue"><b>bindValue</b></a>(
+                                                                                    $value
+                                                    ,                   [                  $placeHolder
+                   = null]                                  ,                   [                  $type
+                   = PDO::PARAM_STR]                               )
+            </code>
+            <br><div style="margin-left: 20px">Binds the value $value to the specified variable name $placeHolder.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#doBind"><b>doBind</b></a>(
+                                                                                    $stmt
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Performs binding of variables bound with bindValue and bindParam on the statement $stmt.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#getIdentifier"><b>getIdentifier</b></a>(
+                                                                                    $alias
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns the correct identifier for the alias $alias.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>array(string)</em>          </td>
+          <td>
+            <code>
+              <a href="#getIdentifiers"><b>getIdentifiers</b></a>(
+                                                                                    $aliasList
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns the correct identifiers for the aliases found in $aliases.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>            abstract            <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#getQuery"><b>getQuery</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns the query string for this query object.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>bool</em>          </td>
+          <td>
+            <code>
+              <a href="#hasAliases"><b>hasAliases</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns true if this object has aliases.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>PDOStatement</em>          </td>
+          <td>
+            <code>
+              <a href="#prepare"><b>prepare</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns a prepared statement from this query which can be used for execution.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#resetBinds"><b>resetBinds</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Resets the bound values and parameters to empty.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#setAliases"><b>setAliases</b></a>(
+                                                                                    $aliases
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Sets the aliases $aliases for this object.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em><a href="ezcQuerySubSelect.html">ezcQuerySubSelect</a></em>          </td>
+          <td>
+            <code>
+              <a href="#subSelect"><b>subSelect</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns the ezcQuerySubSelect query object.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#__toString"><b>__toString</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Return SQL string for query.</div>          </td>
+        </tr></table><a name="sec-methods"></a>
+  <h3>Methods</h3>
+  <a name="method_detail"></a>
+        <a name="methodarrayFlatten" id="arrayFlatten"><!-- --></a>
+
+    <h4>arrayFlatten</h4>
+
+    <div class="method-signature">
+      static array
+      arrayFlatten(
+                                  
+          $array
+                        )
+    </div>
+
+      <p>Returns all the elements in $array as one large single dimensional array.</p>      
+              <h5>Parameters:</h5>
+        <table class="detail"><thead><tr><th>Name</th>
+              <th>Type</th>
+              <th class="desc">Description</th>
+            </tr></thead><tbody><tr><td><code>$array</code></td>
+                <td><em>array</em></td>
+                <td>
+                                  </td>
+              </tr></tbody></table><a name="method__construct" id="__construct"><!-- --></a>
+
+    <h4>__construct</h4>
+
+    <div class="method-signature">
+      ezcQuery
+      __construct(
+                                  
+          $db
+                            ,           [
+          $aliases
+           = array()]              )
+    </div>
+
+    <p>Constructs a new ezcQuery that works on the database $db and with the aliases $aliases.</p><div><p>The aliases can be used to substitute the column and table names with more  friendly names. E.g PersistentObject uses it to allow using property and class  names instead of column and table names.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$db</code></td>
+              <td><em>PDO</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$aliases</code></td>
+              <td><em>array(string=&gt;string)</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefined in descendants as:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcQueryInsert.html#method__construct">ezcQueryInsert::__construct()</a></code></td>
+              <td>
+                Constructs a new ezcQueryInsert that works on the database $db and with the aliases $aliases.&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcQuerySelect.html#method__construct">ezcQuerySelect::__construct()</a></code></td>
+              <td>
+                Constructs a new ezcQuery object.&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcQuerySelectSqlite.html#method__construct">ezcQuerySelectSqlite::__construct()</a></code></td>
+              <td>
+                Constructs a new ezcQuerySelectSqlite object.&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcQuerySelectOracle.html#method__construct">ezcQuerySelectOracle::__construct()</a></code></td>
+              <td>
+                Constructs a new ezcQueryOracle object working on the database $db.&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcQuerySubSelect.html#method__construct">ezcQuerySubSelect::__construct()</a></code></td>
+              <td>
+                Constructs a new ezcQuerySubSelect object.&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcQueryUpdate.html#method__construct">ezcQueryUpdate::__construct()</a></code></td>
+              <td>
+                Constructs a new ezcQueryUpdate that works on the database $db and with the aliases $aliases.&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcQueryDelete.html#method__construct">ezcQueryDelete::__construct()</a></code></td>
+              <td>
+                Constructs a new ezcQueryDelete that works on the database $db and with the aliases $aliases.&#8192;
+              </td>
+            </tr></tbody></table><a name="methodbindParam" id="bindParam"><!-- --></a>
+
+    <h4>bindParam</h4>
+
+    <div class="method-signature">
+      string
+      bindParam(
+                                  
+          &amp;$param
+                            ,           [string
+          $placeHolder
+           = null]                  ,           [
+          $type
+           = PDO::PARAM_STR]                  ,           &amp;mixed
+          $param
+                        )
+    </div>
+
+    <p>Binds the parameter $param to the specified variable name $placeHolder..</p><div><p>This method provides a shortcut for PDOStatement::bindParam  when using prepared statements.</p><p>The parameter $param specifies the variable that you want to bind. If  $placeholder is not provided bind() will automatically create a  placeholder for you. An automatic placeholder will be of the name  'ezcValue1', 'ezcValue2' etc.</p><p>For more information see <a href="http://php.net/pdostatement-bindparam">http://php.net/pdostatement-bindparam</a></p><p>Example:  </p><ol><li><div class="src-line">&#8192;<span class="src-var">$value&#8192;</span>=&#8192;<span class="src-num">2</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$q</span><span class="src-sym">-&gt;</span><span class="src-id">eq</span><span class="src-sym">(&#8192;</span><span class="src-str">'id'</span><span class="src-sym">,&#8192;</span><span class="src-var">$q</span><span class="src-sym">-&gt;</span><a href="ezcQuery.html#methodbindParam">bindParam</a><span class="src-sym">(&#8192;</span><span class="src-var">$value&#8192;</span><span class="src-sym">)&#8192;)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$stmt&#8192;</span>=&#8192;<span class="src-var">$q</span><span class="src-sym">-&gt;</span><a href="ezcQuery.html#methodprepare">prepare</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;&#8192;</span><span class="src-comm">//&#8192;the&#8192;parameter&#8192;$value&#8192;is&#8192;bound&#8192;to&#8192;the&#8192;query.</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$value&#8192;</span>=&#8192;<span class="src-num">4</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$stmt</span><span class="src-sym">-&gt;</span><span class="src-id">execute</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;&#8192;</span><span class="src-comm">//&#8192;executed&#8192;with&#8192;'id&#8192;=&#8192;4'</span></div></li>
+</ol></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$param</code></td>
+              <td><em>&amp;mixed</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$placeHolder</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  the name to bind with. The string must start with a colon ':'.
+                              </td>
+            </tr><tr><td><code>&amp;$param</code></td>
+              <td><em></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$type</code></td>
+              <td><em></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefined in descendants as:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcQuerySubSelect.html#methodbindParam">ezcQuerySubSelect::bindParam()</a></code></td>
+              <td>
+                Binds the parameter $param to the specified variable name $placeHolder.&#8192;
+              </td>
+            </tr></tbody></table><a name="methodbindValue" id="bindValue"><!-- --></a>
+
+    <h4>bindValue</h4>
+
+    <div class="method-signature">
+      string
+      bindValue(
+                                  mixed
+          $value
+                            ,           [string
+          $placeHolder
+           = null]                  ,           [
+          $type
+           = PDO::PARAM_STR]              )
+    </div>
+
+    <p>Binds the value $value to the specified variable name $placeHolder.</p><div><p>This method provides a shortcut for PDOStatement::bindValue  when using prepared statements.</p><p>The parameter $value specifies the value that you want to bind. If  $placeholder is not provided bindValue() will automatically create a  placeholder for you. An automatic placeholder will be of the name  'ezcValue1', 'ezcValue2' etc.</p><p>For more information see <a href="http://php.net/pdostatement-bindparam">http://php.net/pdostatement-bindparam</a></p><p>Example:  </p><ol><li><div class="src-line">&#8192;<span class="src-var">$value&#8192;</span>=&#8192;<span class="src-num">2</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$q</span><span class="src-sym">-&gt;</span><span class="src-id">eq</span><span class="src-sym">(&#8192;</span><span class="src-str">'id'</span><span class="src-sym">,&#8192;</span><span class="src-var">$q</span><span class="src-sym">-&gt;</span><a href="ezcQuery.html#methodbindValue">bindValue</a><span class="src-sym">(&#8192;</span><span class="src-var">$value&#8192;</span><span class="src-sym">)&#8192;)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$stmt&#8192;</span>=&#8192;<span class="src-var">$q</span><span class="src-sym">-&gt;</span><a href="ezcQuery.html#methodprepare">prepare</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;&#8192;</span><span class="src-comm">//&#8192;the&#8192;value&#8192;2&#8192;is&#8192;bound&#8192;to&#8192;the&#8192;query.</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$value&#8192;</span>=&#8192;<span class="src-num">4</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$stmt</span><span class="src-sym">-&gt;</span><span class="src-id">execute</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;&#8192;</span><span class="src-comm">//&#8192;executed&#8192;with&#8192;'id&#8192;=&#8192;2'</span></div></li>
+</ol></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$value</code></td>
+              <td><em>mixed</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$placeHolder</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  the name to bind with. The string must start with a colon ':'.
+                              </td>
+            </tr><tr><td><code>$type</code></td>
+              <td><em></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefined in descendants as:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcQuerySubSelect.html#methodbindValue">ezcQuerySubSelect::bindValue()</a></code></td>
+              <td>
+                Binds the value $value to the specified variable name $placeHolder.&#8192;
+              </td>
+            </tr></tbody></table><a name="methoddoBind" id="doBind"><!-- --></a>
+
+    <h4>doBind</h4>
+
+    <div class="method-signature">
+      void
+      doBind(
+                                  
+          $stmt
+                        )
+    </div>
+
+    <p>Performs binding of variables bound with bindValue and bindParam on the statement $stmt.</p><div><p>This method must be called if you have used the bind methods  in your query and you build the method yourself using build.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$stmt</code></td>
+              <td><em>PDOStatement</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodgetIdentifier" id="getIdentifier"><!-- --></a>
+
+    <h4>getIdentifier</h4>
+
+    <div class="method-signature">
+      string
+      getIdentifier(
+                                  string
+          $alias
+                        )
+    </div>
+
+    <p>Returns the correct identifier for the alias $alias.</p><div><p>If the alias does not exists in the list of aliases  it is returned unchanged.</p><p>This can method handles composite identifiers separated by a dot ('.').</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$alias</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodgetIdentifiers" id="getIdentifiers"><!-- --></a>
+
+    <h4>getIdentifiers</h4>
+
+    <div class="method-signature">
+      array(string)
+      getIdentifiers(
+                                  
+          $aliasList
+                        )
+    </div>
+
+    <p>Returns the correct identifiers for the aliases found in $aliases.</p><div><p>This method is similar to getIdentifier except that it works on an array.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$aliasList</code></td>
+              <td><em>array(string)</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodgetQuery" id="getQuery"><!-- --></a>
+
+    <h4>getQuery</h4>
+
+    <div class="method-signature">
+      string
+      getQuery(
+      )
+    </div>
+
+    <p>Returns the query string for this query object.</p>
+    
+          <h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcQueryInvalidException.html">ezcQueryInvalidException</a></code></td>
+              <td>
+                                  if it was not possible to build a valid query.
+                              </td>
+            </tr></tbody></table><h5>Redefined in descendants as:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcQueryInsert.html#methodgetQuery">ezcQueryInsert::getQuery()</a></code></td>
+              <td>
+                Returns the query string for this query object.&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcQuerySelect.html#methodgetQuery">ezcQuerySelect::getQuery()</a></code></td>
+              <td>
+                Returns the complete select query string.&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcQuerySelectMssql.html#methodgetQuery">ezcQuerySelectMssql::getQuery()</a></code></td>
+              <td>
+                Transforms the query from the parent to provide LIMIT functionality.&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcQuerySelectOracle.html#methodgetQuery">ezcQuerySelectOracle::getQuery()</a></code></td>
+              <td>
+                Transforms the query from the parent to provide LIMIT functionality.&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcQuerySubSelect.html#methodgetQuery">ezcQuerySubSelect::getQuery()</a></code></td>
+              <td>
+                Returns the SQL string for the subselect.&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcQueryUpdate.html#methodgetQuery">ezcQueryUpdate::getQuery()</a></code></td>
+              <td>
+                Returns the query string for this query object.&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcQueryDelete.html#methodgetQuery">ezcQueryDelete::getQuery()</a></code></td>
+              <td>
+                Returns the query string for this query object.&#8192;
+              </td>
+            </tr></tbody></table><a name="methodhasAliases" id="hasAliases"><!-- --></a>
+
+    <h4>hasAliases</h4>
+
+    <div class="method-signature">
+      bool
+      hasAliases(
+      )
+    </div>
+
+    <p>Returns true if this object has aliases.</p>
+    
+        
+
+    
+    
+    
+        <a name="methodprepare" id="prepare"><!-- --></a>
+
+    <h4>prepare</h4>
+
+    <div class="method-signature">
+      PDOStatement
+      prepare(
+      )
+    </div>
+
+    <p>Returns a prepared statement from this query which can be used for execution.</p><div><p>The returned object is a PDOStatement for which you can find extensive  documentation in the PHP manual:  <a href="http://php.net/pdostatement-bindcolumn">http://php.net/pdostatement-bindcolumn</a></p><p>prepare() automatically calls doBind() on the statement.</p></div>
+    
+        
+
+    
+    
+          <h5>Redefined in descendants as:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcQuerySelectOracle.html#methodprepare">ezcQuerySelectOracle::prepare()</a></code></td>
+              <td>
+                Handles preparing query.&#8192;
+              </td>
+            </tr></tbody></table><a name="methodresetBinds" id="resetBinds"><!-- --></a>
+
+    <h4>resetBinds</h4>
+
+    <div class="method-signature">
+      void
+      resetBinds(
+      )
+    </div>
+
+    <p>Resets the bound values and parameters to empty.</p><div><p>This is useful if your query can be reset and used multiple times.</p></div>
+    
+        
+
+    
+    
+    
+        <a name="methodsetAliases" id="setAliases"><!-- --></a>
+
+    <h4>setAliases</h4>
+
+    <div class="method-signature">
+      void
+      setAliases(
+                                  
+          $aliases
+                        )
+    </div>
+
+    <p>Sets the aliases $aliases for this object.</p><div><p>The aliases should be in the form array( "aliasName" =&gt; "databaseName" )  Each alias defines a relation between a user-defined name and a name  in the database. This is supported for table names as column names.</p><p>The aliases can be used to substitute the column and table names with more  friendly names. The substitution is done when the query is built, not using  AS statements in the database itself.</p><p>Example of a select query with aliases:  </p><ol><li><div class="src-line">&#8192;<span class="src-php">&lt;?php</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$q</span><span class="src-sym">-&gt;</span><a href="ezcQuery.html#methodsetAliases">setAliases</a><span class="src-sym">(&#8192;</span><span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-str">'Identifier'&#8192;</span>=&gt;&#8192;<span class="src-str">'id'</span><span class="src-sym">,&#8192;</span><span class="src-str">'Company'&#8192;</span>=&gt;&#8192;<span class="src-str">'company'&#8192;</span><span class="src-sym">)&#8192;)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$q</span><span class="src-sym">-&gt;</span><span class="src-id">select</span><span class="src-sym">(&#8192;</span><span class="src-str">'Company'&#8192;</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;<span class="src-sym">-&gt;</span><span class="src-id">from</span><span class="src-sym">(&#8192;</span><span class="src-str">'table'&#8192;</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;<span class="src-sym">-&gt;</span><span class="src-id">where</span><span class="src-sym">(&#8192;</span><span class="src-var">$q</span><span class="src-sym">-&gt;</span><span class="src-id"><a href="ezcQuery.html#var%24expr">expr</a></span><span class="src-sym">-&gt;</span><span class="src-id">eq</span><span class="src-sym">(&#8192;</span><span class="src-str">'Identifier'</span><span class="src-sym">,&#8192;</span><span class="src-num">5&#8192;</span><span class="src-sym">)&#8192;)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;echo&#8192;<span class="src-var">$q</span><span class="src-sym">-&gt;</span><a href="ezcQuery.html#methodgetQuery">getQuery</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-php">?&gt;</span></div></li>
+</ol><p>This example will output SQL similar to:  </p><ol><li><div class="src-line">&#8192;<span class="src-id">SELECT&#8192;company&#8192;FROM&#8192;table&#8192;WHERE&#8192;id&#8192;</span>=&#8192;<span class="src-num">5</span></div></li>
+</ol><p>Aliasses also take effect for composite names in the form  tablename.columnname as the following example shows:  </p><ol><li><div class="src-line">&#8192;<span class="src-php">&lt;?php</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$q</span><span class="src-sym">-&gt;</span><a href="ezcQuery.html#methodsetAliases">setAliases</a><span class="src-sym">(&#8192;</span><span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-str">'Order'&#8192;</span>=&gt;&#8192;<span class="src-str">'orders'</span><span class="src-sym">,&#8192;</span><span class="src-str">'Recipient'&#8192;</span>=&gt;&#8192;<span class="src-str">'company'&#8192;</span><span class="src-sym">)&#8192;)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$q</span><span class="src-sym">-&gt;</span><span class="src-id">select</span><span class="src-sym">(&#8192;</span><span class="src-str">'Order.Recipient'&#8192;</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;<span class="src-sym">-&gt;</span><span class="src-id">from</span><span class="src-sym">(&#8192;</span><span class="src-str">'Order'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;echo&#8192;<span class="src-var">$q</span><span class="src-sym">-&gt;</span><a href="ezcQuery.html#methodgetQuery">getQuery</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-php">?&gt;</span></div></li>
+</ol><p>This example will output SQL similar to:  </p><ol><li><div class="src-line">&#8192;<span class="src-id">SELECT&#8192;orders</span>.<span class="src-id">company&#8192;FROM&#8192;orders</span><span class="src-sym">;</span></div></li>
+</ol><p>It is even possible to have an alias point to a table name/column name  combination. This will only work for alias names without a . (dot):  </p><ol><li><div class="src-line">&#8192;<span class="src-php">&lt;?php</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$q</span><span class="src-sym">-&gt;</span><a href="ezcQuery.html#methodsetAliases">setAliases</a><span class="src-sym">(&#8192;</span><span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-str">'Order'&#8192;</span>=&gt;&#8192;<span class="src-str">'orders'</span><span class="src-sym">,&#8192;</span><span class="src-str">'Recipient'&#8192;</span>=&gt;&#8192;<span class="src-str">'orders.company'&#8192;</span><span class="src-sym">)&#8192;)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$q</span><span class="src-sym">-&gt;</span><span class="src-id">select</span><span class="src-sym">(&#8192;</span><span class="src-str">'Recipient'&#8192;</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;<span class="src-sym">-&gt;</span><span class="src-id">from</span><span class="src-sym">(&#8192;</span><span class="src-str">'Order'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;echo&#8192;<span class="src-var">$q</span><span class="src-sym">-&gt;</span><a href="ezcQuery.html#methodgetQuery">getQuery</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-php">?&gt;</span></div></li>
+</ol><p>This example will output SQL similar to:  </p><ol><li><div class="src-line">&#8192;<span class="src-id">SELECT&#8192;orders</span>.<span class="src-id">company&#8192;FROM&#8192;orders</span><span class="src-sym">;</span></div></li>
+</ol><p>In the following example, the Recipient alias will not be used, as it is  points to a fully qualified name - the Order alias however is used:  </p><ol><li><div class="src-line">&#8192;<span class="src-php">&lt;?php</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$q</span><span class="src-sym">-&gt;</span><a href="ezcQuery.html#methodsetAliases">setAliases</a><span class="src-sym">(&#8192;</span><span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-str">'Order'&#8192;</span>=&gt;&#8192;<span class="src-str">'orders'</span><span class="src-sym">,&#8192;</span><span class="src-str">'Recipient'&#8192;</span>=&gt;&#8192;<span class="src-str">'orders.company'&#8192;</span><span class="src-sym">)&#8192;)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$q</span><span class="src-sym">-&gt;</span><span class="src-id">select</span><span class="src-sym">(&#8192;</span><span class="src-str">'Order.Recipient'&#8192;</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;<span class="src-sym">-&gt;</span><span class="src-id">from</span><span class="src-sym">(&#8192;</span><span class="src-str">'Order'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;echo&#8192;<span class="src-var">$q</span><span class="src-sym">-&gt;</span><a href="ezcQuery.html#methodgetQuery">getQuery</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-php">?&gt;</span></div></li>
+</ol><p>This example will output SQL similar to:  </p><ol><li><div class="src-line">&#8192;<span class="src-id">SELECT&#8192;orders</span>.<span class="src-id">Recipient&#8192;FROM&#8192;orders</span><span class="src-sym">;</span></div></li>
+</ol></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$aliases</code></td>
+              <td><em>array(string=&gt;string)</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodsubSelect" id="subSelect"><!-- --></a>
+
+    <h4>subSelect</h4>
+
+    <div class="method-signature">
+      <a href="ezcQuerySubSelect.html">ezcQuerySubSelect</a>
+      subSelect(
+      )
+    </div>
+
+    <p>Returns the ezcQuerySubSelect query object.</p><div><p>This method creates new ezcQuerySubSelect object  that could be used for building correct  subselect inside query.</p></div>
+    
+        
+
+    
+    
+          <h5>Redefined in descendants as:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcQuerySubSelect.html#methodsubSelect">ezcQuerySubSelect::subSelect()</a></code></td>
+              <td>
+                Returns ezcQuerySubSelect of deeper level.&#8192;
+              </td>
+            </tr></tbody></table><a name="method__toString" id="__toString"><!-- --></a>
+
+    <h4>__toString</h4>
+
+    <div class="method-signature">
+      string
+      __toString(
+      )
+    </div>
+
+    <p>Return SQL string for query.</p><div><p>Typecasting to (string) should be used to make __toString() to be called  with PHP 5.1.  This will not be needed in PHP 5.2 and higher when this  object is used in a string context.</p><p>Example:  </p><ol><li><div class="src-line">&#8192;<span class="src-var">$q</span><span class="src-sym">-&gt;</span><span class="src-id">select</span><span class="src-sym">(</span><span class="src-str">'*'</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;<span class="src-sym">-&gt;</span><span class="src-id">from</span><span class="src-sym">(&#8192;</span><span class="src-str">'table1'&#8192;</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;<span class="src-sym">-&gt;</span><span class="src-id">where&#8192;</span><span class="src-sym">(&#8192;</span><span class="src-var">$q</span><span class="src-sym">-&gt;</span><span class="src-id"><a href="ezcQuery.html#var%24expr">expr</a></span><span class="src-sym">-&gt;</span><span class="src-id">eq</span><span class="src-sym">(&#8192;</span><span class="src-str">'name'</span><span class="src-sym">,&#8192;</span><span class="src-var">$q</span><span class="src-sym">-&gt;</span><a href="ezcQuery.html#methodbindValue">bindValue</a><span class="src-sym">(&#8192;</span><span class="src-str">"Beeblebrox"&#8192;</span><span class="src-sym">)&#8192;)&#8192;)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;echo&#8192;<span class="src-var">$q</span><span class="src-sym">,&#8192;</span><span class="src-str">"\n"</span><span class="src-sym">;</span></div></li>
+</ol></div>
+    
+        
+
+    
+    
+          <h5>Redefined in descendants as:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcQuerySubSelect.html#method__toString">ezcQuerySubSelect::__toString()</a></code></td>
+              <td>
+                Returns the SQL string for the subselect.&#8192;
+              </td>
+            </tr></tbody></table><div class="credit">
+      Documentation generated by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+    </div>
+  </div>
+  
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

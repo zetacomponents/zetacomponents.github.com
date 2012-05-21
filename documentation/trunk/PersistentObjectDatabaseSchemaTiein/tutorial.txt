@@ -1,0 +1,194 @@
+eZ Components - PersistentObjectDatabaseSchemaTiein
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. contents:: Table of Contents
+
+Introduction
+============
+
+The PersistentObjectDatabaseSchemaTiein component allows you to generate 
+template PersistentObject definition files and php classes from a database
+structure or a DatabaseSchema schema file. You will most likely have to
+adjust the PersistentObject definitions afterwards.
+
+For more information regarding PersistentObject definition files, please refer
+to the API documentation for ezcPersistentObjectDefinition. Details on
+DatabaseSchema files can be found in the documentation for ezcDbSchema.
+
+Synopsis
+========
+
+::
+
+    $ rungenerator.php -s <string> -f <string> [-o] [-p <string>] [-t] \
+        [-ct "class_template.ezt"] [-dt "definition_template.ezt"] \
+        [-tp "trunk/PersistentObjectDatabaseSchemaTiein/src/template_writer/templates"]
+        [-h] [--] <string:def dir> [<string:class dir>]
+
+The component contains an executable script, which can be called using the PHP
+command line interpreter (CLI). You have to provide at least the following two
+options and the "def dir" argument.
+
+-s / --source <string>
+  This option determines the source DatabaseSchema file from which to generate
+  the PersistentObject definitions.
+-f / --format <string>
+  This option determines the format of the provided source schema file.
+  Examples are 'xml' and 'array'. For a full list of valid formats, please
+  refer to the `DatabaseSchema API`_ documentation.
+
+The "def dir" argument defines where the generated PersistentObject
+definitions are stored. The optional "class dir" argument can be used to
+define another directory, where class stubs for the generated defintions are
+created in. Additional options that might be useful are:
+ 
+-o / --overwrite
+  If this option is set, files will be overwriten if they alreday exist. The
+  default behaviour is not to overwrite any files.
+-p / --prefix <string>
+  Using this option you can define a unique prefix that will be prepended to
+  all class names, and class file names, if appliable.
+
+.. _`DatabaseSchema API`: classtrees_DatabaseSchema.html
+
+The -h / --help option gives you some information on these options and
+arguments, too.
+
+Make sure that the script can write to its target directories in respect to
+permissions and accessability.
+
+Usage
+=====
+
+Run the script from the main eZ Components source directory using the following
+command::
+
+    $ php PersistentObjectDatabaseSchemaTiein/rungenerator.php
+
+By default, you will see a short help description on how to use this tool. 
+
+You need a valid DatabaseSchema file for your database structure to generate 
+PersistentObject definitions. You can generate a DatabaseSchema file from
+your database with the DatabaseSchema component. For detailed
+information, please refer to the `DatabaseSchema API`_ documentation.
+
+Once you have a valid DatabaseSchema file, you should create a directory
+where your PersistentObject definitions will be stored. Then you can use the
+rungenerator.php script to create the template definition files. Use the following
+command ::
+
+    $ php PersistentObjectDatabaseSchemaTiein/rungenerator.php \
+      -s path/to/schema.file -f array path/to/persistentobject/definition/dir/
+
+You have to replace the paths according to the example. The -s parameter
+defines where the DatabaseSchema definition file can be found. The -f option
+indicates the format of the schema file. In this case, it is a PHP array
+definition; another common format is XML. The last part of the command line
+call specifies the target directory to store the generated PersistentObject
+definitions.
+
+It is also possible to generate class stubs for the defined persistent objects
+at the same time by specifying the "class dir" argument. To do so, create a
+directory where your classes will be stored and add it to the command ::
+
+    $ php PersistentObjectDatabaseSchemaTiein/rungenerator.php \
+      -s path/to/schema.file -f array path/to/definition/dir/ \
+      path/to/classes/dir/
+
+Customizing definitions and classes
+===================================
+
+The generator script assumes that the names of your PersistentObject classes
+and their properties map exactly to the same table and column names of your
+database structure. For example, a table called ez_persistent_objects with the
+column persistent_object_id results in a class ez_persistent_objects and the
+property persistent_object_id. 
+
+If you want a different mapping, you can edit the generated PersistentObject
+files manually. The class to table name mapping is done through the properties
+of the main ezcPersistentObjectDefinition object. The "table" property should
+be correct as it is taken from the database definition.  Adjust the "class"
+property according to your needs.
+
+*Note*: If you change the class name of a PersistentObject definition, you
+have to rename the file name accordingly. The file name for a PersistentObject
+definition must be the same as the class name, completely in lowercase.
+
+The same procedure applies to the property definition of your persistent
+objects. The column name to object property mapping is defined by the
+ezcPersistentObjectProperty class. The "columnName" property of the definition
+objects should be correct as it is taken from your database schema file. You
+can adjust the "propertyName" properties according to your needs. *Note*: You
+propably need to adjust the property names in generated class stubs and the
+setState() and getState() methods accordingly.
+
+The generator script guesses the PHP types of your PersistentObject properties.
+It uses the following mapping:
+
+:integer:   ezcPersistentObjectProperty::PHP_TYPE_INT
+:timestamp: ezcPersistentObjectProperty::PHP_TYPE_INT
+:float:     ezcPersistentObjectProperty::PHP_TYPE_FLOAT
+:decimal:   ezcPersistentObjectProperty::PHP_TYPE_FLOAT
+:text:      ezcPersistentObjectProperty::PHP_TYPE_STRING
+:time:      ezcPersistentObjectProperty::PHP_TYPE_STRING
+:date:      ezcPersistentObjectProperty::PHP_TYPE_STRING
+:blob:      ezcPersistentObjectProperty::PHP_TYPE_STRING
+:clob:      ezcPersistentObjectProperty::PHP_TYPE_STRING
+
+If the mappings are incorrect for your special case, you can adjust the
+"propertyType" properties of your ezcPersistentObjectProperty definitions.
+
+Template based generation
+=========================
+
+Since version 1.3, the generator also supports definition and class stub
+generation based on templates (as provided by the Template__) component.
+
+.. __: introduction_Template.html
+
+To activate this functionality, use the *-t* switch. By default, templates are
+used which create classes similar to the eZ Components coding standard, using
+properties with overloading.
+
+If you favor a different style, you can provide your own templates, using the
+*-ct* switch to provide the class template file name and *-dt* for the
+definition template. You can provide both independently. However, if you
+provide one of these, you also need to provide *-tp* with the path to the
+directory where your templates are located. This path will also be used to
+store compiled templates.
+
+A template receives 3 parameters:
+
+$schema
+  An instance of ezcDbSchemaTable, describing a table from your database
+  schema.
+$tableName
+  The name of the table to render.
+$classPrefix
+  The prefix provided by the *-p* parameter.
+
+The template must return the file name to store the rendered class / definition
+should be stored in. The name of the return variable must be $fileName. For
+definition files, it is necessary that the file name is the full class name
+completely converted to lower case, if you want to use the default
+ezcPersistentCodeManager.
+
+A good starting point to create your own templates is to look into the
+templates provided with the component under *template_writer/templates/* in the
+component directory.
+
+More information
+================
+
+For more information, see the API documentation of
+ezcPersistentObjectDefinition, ezcPersistentObjectProperty, ezcDbSchema and
+ezcDbschemaPersistentWriter.
+
+
+
+..
+   Local Variables:
+   mode: rst
+   fill-column: 79
+   End: 
+   vim: et syn=rst tw=79

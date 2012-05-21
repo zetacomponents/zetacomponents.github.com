@@ -1,0 +1,639 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="" />
+	<meta name="author" content="jerome" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Sun, 10 Jul 2011 11:11:01 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="ezcMailComposer.html" />
+	<meta name="DC.creator" content="jerome" />
+	<meta name="DC.date" content="Sun, 10 Jul 2011 11:11:01 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailComposer.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/Mail/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/trunk/Mail/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Mail/mail-listing-example.html" title="Mail-listing-example ">Mail-listing-example </a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Mail/display-example.html" title="Display-example ">Display-example </a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Mail/rfcs.html" title="Rfcs ">Rfcs </a>
+	</li>
+
+</ul>
+
+		
+  <div class="phpdoc">
+    <h2>Apache Zeta Components Manual :: Docs For Class ezcMailComposer</h2>
+
+                  <h3>Mail::ezcMailComposer</h3>
+    
+<a name="sec-description"></a>
+<h3>Class ezcMailComposer</h3>
+
+<p>Convenience class for writing mail.</p><div><p>This class allows you to create  text and/or HTML mail with attachments. If you need to create more  advanced mail use the ezcMail class and build the body from scratch.</p><p>ezcMailComposer is used with the following steps: </p><ol><li>Create a composer object.</li><li>Set the subject and recipients.</li><li>Set the plainText and htmlText message parts. You can set only one
+    or both. If you set both, the client will display the htmlText if it
+    supports HTML. Otherwise the client will display plainText.</li><li>Add any attachments (addFileAttachment() or addStringAttachment()).</li><li>Call the build method.</li></ol>  This example shows how to send an HTML mail with a text fallback and  attachments. The HTML message has an inline image.  <ol><li><div class="src-line">&#8192;<span class="src-var">$mail&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcMailComposer.html">ezcMailComposer</a></span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$mail</span><span class="src-sym">-&gt;</span><span class="src-id">from&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcMailAddress.html">ezcMailAddress</a></span><span class="src-sym">(&#8192;</span><span class="src-str">'john@example.com'</span><span class="src-sym">,&#8192;</span><span class="src-str">'John&#8192;Doe'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$mail</span><span class="src-sym">-&gt;</span><a href="ezcMail.html#methodaddTo">addTo</a><span class="src-sym">(&#8192;</span><span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcMailAddress.html">ezcMailAddress</a></span><span class="src-sym">(&#8192;</span><span class="src-str">'cindy@example.com'</span><span class="src-sym">,&#8192;</span><span class="src-str">'Cindy&#8192;Doe'&#8192;</span><span class="src-sym">)&#8192;)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$mail</span><span class="src-sym">-&gt;</span><span class="src-id">subject&#8192;</span>=&#8192;<span class="src-str">"Example&#8192;of&#8192;an&#8192;HTML&#8192;email&#8192;with&#8192;attachments"</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$mail</span><span class="src-sym">-&gt;</span><span class="src-id">plainText&#8192;</span>=&#8192;<span class="src-str">"Here&#8192;is&#8192;the&#8192;text&#8192;version&#8192;of&#8192;the&#8192;mail.&#8192;This&#8192;is&#8192;displayed&#8192;if&#8192;the&#8192;client&#8192;can&#8192;not&#8192;understand&#8192;HTML"</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$mail</span><span class="src-sym">-&gt;</span><span class="src-id">htmlText&#8192;</span>=&#8192;<span class="src-str">"&lt;html&gt;Here&#8192;is&#8192;the&#8192;HTML&#8192;version&#8192;of&#8192;your&#8192;mail&#8192;with&#8192;an&#8192;image:&#8192;&lt;img&#8192;src='file://path_to_image.jpg'&#8192;/&gt;&lt;/html&gt;"</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$mail</span><span class="src-sym">-&gt;</span><a href="ezcMailComposer.html#methodaddFileAttachment">addFileAttachment</a><span class="src-sym">(&#8192;</span><span class="src-str">'path_to_attachment.file'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$mail</span><span class="src-sym">-&gt;</span><a href="ezcMailComposer.html#methodbuild">build</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$transport&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcMailMtaTransport.html">ezcMailMtaTransport</a></span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$transport</span><span class="src-sym">-&gt;</span><span class="src-id">send</span><span class="src-sym">(&#8192;</span><span class="src-var">$mail&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol><p>By default, if the htmlText property contains an HTML image tag with file://  in href, that file will be included in the created message.</p><p>Example:  </p><ol><li><div class="src-line">&#8192;&lt;<span class="src-id">img&#8192;src</span>=<span class="src-str">"file:///home/me/image.jpg"&#8192;</span>/&gt;</div></li>
+</ol><p>This can be a security risk if a user links to another file, for example logs  or password files. With the automaticImageInclude option (default value true)  from <a href="ezcMailComposerOptions.html">ezcMailComposerOptions</a>, the automatic inclusion of files can be  turned off.</p><p>Example:  </p><ol><li><div class="src-line">&#8192;<span class="src-var">$options&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcMailComposerOptions.html">ezcMailComposerOptions</a></span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$options</span><span class="src-sym">-&gt;</span><span class="src-id">automaticImageInclude&#8192;</span>=&#8192;<span class="src-id">false</span><span class="src-sym">;&#8192;</span><span class="src-comm">//&#8192;default&#8192;value&#8192;is&#8192;true</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$mail&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcMailComposer.html">ezcMailComposer</a></span><span class="src-sym">(&#8192;</span><span class="src-var">$options&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;...&#8192;add&#8192;To,&#8192;From,&#8192;Subject,&#8192;etc&#8192;to&#8192;$mail</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$mail</span><span class="src-sym">-&gt;</span><span class="src-id">htmlText&#8192;</span>=&#8192;<span class="src-str">"&lt;html&gt;Here&#8192;is&#8192;the&#8192;image:&#8192;&lt;img&#8192;src="</span><a href="http://www.php.net/file">file</a>:<span class="src-comm">///etc/passwd"&#8192;/&gt;&lt;/html&gt;";</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;...&#8192;send&#8192;$mail</span></div></li>
+</ol><p>After running the above code, the sent mail will not contain the file specified  in the htmlText property.</p><p>The file name in the attachment can be different than the file name on disk, by  passing an <a href="ezcMailContentDispositionHeader.html">ezcMailContentDispositionHeader</a> object to the function  addFileAttachment(). Example:  </p><ol><li><div class="src-line">&#8192;<span class="src-var">$mail&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcMailComposer.html">ezcMailComposer</a></span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$mail</span><span class="src-sym">-&gt;</span><span class="src-id">from&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcMailAddress.html">ezcMailAddress</a></span><span class="src-sym">(&#8192;</span><span class="src-str">'john@example.com'</span><span class="src-sym">,&#8192;</span><span class="src-str">'John&#8192;Doe'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$mail</span><span class="src-sym">-&gt;</span><a href="ezcMail.html#methodaddTo">addTo</a><span class="src-sym">(&#8192;</span><span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcMailAddress.html">ezcMailAddress</a></span><span class="src-sym">(&#8192;</span><span class="src-str">'cindy@example.com'</span><span class="src-sym">,&#8192;</span><span class="src-str">'Cindy&#8192;Doe'&#8192;</span><span class="src-sym">)&#8192;)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$mail</span><span class="src-sym">-&gt;</span><span class="src-id">subject&#8192;</span>=&#8192;<span class="src-str">"Example&#8192;of&#8192;an&#8192;HTML&#8192;email&#8192;with&#8192;attachments&#8192;and&#8192;custom&#8192;attachment&#8192;file&#8192;name"</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$mail</span><span class="src-sym">-&gt;</span><span class="src-id">plainText&#8192;</span>=&#8192;<span class="src-str">"Here&#8192;is&#8192;the&#8192;text&#8192;version&#8192;of&#8192;the&#8192;mail.&#8192;This&#8192;is&#8192;displayed&#8192;if&#8192;the&#8192;client&#8192;can&#8192;not&#8192;understand&#8192;HTML"</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$mail</span><span class="src-sym">-&gt;</span><span class="src-id">htmlText&#8192;</span>=&#8192;<span class="src-str">"&lt;html&gt;Here&#8192;is&#8192;the&#8192;HTML&#8192;version&#8192;of&#8192;your&#8192;mail&#8192;with&#8192;an&#8192;image:&#8192;&lt;img&#8192;src='file://path_to_image.jpg'&#8192;/&gt;&lt;/html&gt;"</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$disposition&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcMailContentDispositionHeader.html">ezcMailContentDispositionHeader</a></span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$disposition</span><span class="src-sym">-&gt;</span><span class="src-id">fileName&#8192;</span>=&#8192;<span class="src-str">'custom&#8192;name&#8192;for&#8192;attachment.txt'</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$disposition</span><span class="src-sym">-&gt;</span><span class="src-id">fileNameCharSet&#8192;</span>=&#8192;<span class="src-str">'utf-8'</span><span class="src-sym">;&#8192;</span><span class="src-comm">//&#8192;if&#8192;using&#8192;non-ascii&#8192;characters&#8192;in&#8192;the&#8192;file&#8192;name</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$disposition</span><span class="src-sym">-&gt;</span><span class="src-id">disposition&#8192;</span>=&#8192;<span class="src-str">'attachment'</span><span class="src-sym">;&#8192;</span><span class="src-comm">//&#8192;default&#8192;value&#8192;is&#8192;'inline'</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$mail</span><span class="src-sym">-&gt;</span><a href="ezcMailComposer.html#methodaddFileAttachment">addFileAttachment</a><span class="src-sym">(&#8192;</span><span class="src-str">'path_to_attachment.file'</span><span class="src-sym">,&#8192;</span><span class="src-id">null</span><span class="src-sym">,&#8192;</span><span class="src-id">null</span><span class="src-sym">,&#8192;</span><span class="src-var">$disposition&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$mail</span><span class="src-sym">-&gt;</span><a href="ezcMailComposer.html#methodbuild">build</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$transport&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcMailMtaTransport.html">ezcMailMtaTransport</a></span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$transport</span><span class="src-sym">-&gt;</span><span class="src-id">send</span><span class="src-sym">(&#8192;</span><span class="src-var">$mail&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol><p>Use the function addStringAttachment() if you want to add an attachment which  is stored in a string variable. A file name for a string attachment needs to  be specified as well. Example:</p><p></p><ol><li><div class="src-line">&#8192;<span class="src-var">$contents&#8192;</span>=&#8192;<span class="src-str">'contents&#8192;for&#8192;mail&#8192;attachment'</span><span class="src-sym">;&#8192;</span><span class="src-comm">//&#8192;can&#8192;be&#8192;a&#8192;binary&#8192;string,&#8192;eg.&#8192;image&#8192;file&#8192;contents</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$mail</span><span class="src-sym">-&gt;</span><a href="ezcMailComposer.html#methodaddStringAttachment">addStringAttachment</a><span class="src-sym">(&#8192;</span><span class="src-str">'filename'</span><span class="src-sym">,&#8192;</span><span class="src-var">$contents&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol></div>
+<p>Source for this file: <a href="http://fisheye6.atlassian.com/browse/zetacomponents/trunk/Mail/src/composer.php?r=HEAD">/Mail/src/composer.php</a></p>
+       
+
+
+<pre><a href="ezcMailPart.html">ezcMailPart</a>
+   |
+   --<a href="ezcMail.html">ezcMail</a>
+      |
+      --ezcMailComposer</pre>
+
+
+  <table><tr><td>
+            <strong>Version:</strong>&#8192;&#8192;
+          </td>
+          <td>//autogen//</td>
+        </tr></table><a name="sec-inherited-consts"></a>
+  <h3>Inherited Constants</h3>
+  <table class="summary"><thead><tr><th colspan="2">
+              From <span class="classname"><a href="ezcMail.html">ezcMail</a></span>:
+            </th>
+          </tr></thead><tbody><tr><td class="right">
+                <code><a href="ezcMail.html#constBASE64">ezcMail::BASE64</a></code>
+              </td>
+              <td>
+                &#8192;&#8192;&#8192;Base 64 encoding.              </td>
+            </tr><tr><td class="right">
+                <code><a href="ezcMail.html#constBINARY">ezcMail::BINARY</a></code>
+              </td>
+              <td>
+                &#8192;&#8192;&#8192;Binary encoding.              </td>
+            </tr><tr><td class="right">
+                <code><a href="ezcMail.html#constEIGHT_BIT">ezcMail::EIGHT_BIT</a></code>
+              </td>
+              <td>
+                &#8192;&#8192;&#8192;8 bit encoding.              </td>
+            </tr><tr><td class="right">
+                <code><a href="ezcMail.html#constQUOTED_PRINTABLE">ezcMail::QUOTED_PRINTABLE</a></code>
+              </td>
+              <td>
+                &#8192;&#8192;&#8192;Quoted printable encoding.              </td>
+            </tr><tr><td class="right">
+                <code><a href="ezcMail.html#constSEVEN_BIT">ezcMail::SEVEN_BIT</a></code>
+              </td>
+              <td>
+                &#8192;&#8192;&#8192;7 bit encoding.              </td>
+            </tr></tbody></table><a name="sec-prop-summary"></a>
+  <h3>Properties</h3>
+  <table class="summary"><tr><td class="right">
+          <a name="prop%24charset" id="$charset"></a>
+          <a name="prop-%24charset" id="$charset"></a>
+          <em>string</em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24charset" title="details" class="var-name-summary">$charset</a>
+                      </code>
+          <br><div style="margin-left: 20px">Contains the character set for both $plainText and $htmlText.            Default value is 'us-ascii'. This does not set any specific            charset for the subject, you need the subjectCharset property for            that.</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24encoding" id="$encoding"></a>
+          <a name="prop-%24encoding" id="$encoding"></a>
+          <em>string</em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24encoding" title="details" class="var-name-summary">$encoding</a>
+                      </code>
+          <br><div style="margin-left: 20px">Contains the encoding for both $plainText and $htmlText.            Default value is ezcMail::EIGHT_BIT. Other values are found            as constants in the class <a href="ezcMail.html">ezcMail</a>.</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24htmlText" id="$htmlText"></a>
+          <a name="prop-%24htmlText" id="$htmlText"></a>
+          <em>string</em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24htmlText" title="details" class="var-name-summary">$htmlText</a>
+                      </code>
+          <br><div style="margin-left: 20px">Contains the message of the mail in HTML. You should also provide            the text of the HTML message in the plainText property. Both will            be sent and the receiver will see the HTML message if his/her            client supports HTML.  If the HTML message contains links to            local images and/or files these will be included into the mail            when generateBody is called. Links to local files must start with            "file://" in order to be recognized. You can use the option            automaticImageInclude (default value is true) from            <a href="ezcMailComposerOptions.html">ezcMailComposerOptions</a> to turn off the            automatic inclusion of files in the generated mail.</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24options" id="$options"></a>
+          <a name="prop-%24options" id="$options"></a>
+          <em><a href="ezcMailComposerOptions.html">ezcMailComposerOptions</a></em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24options" title="details" class="var-name-summary">$options</a>
+                      </code>
+          <br><div style="margin-left: 20px">Options for composing mail. See <a href="ezcMailComposerOptions.html">ezcMailComposerOptions</a>.</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24plainText" id="$plainText"></a>
+          <a name="prop-%24plainText" id="$plainText"></a>
+          <em>string</em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24plainText" title="details" class="var-name-summary">$plainText</a>
+                      </code>
+          <br><div style="margin-left: 20px">Contains the message of the mail in plain text.</div>        </td>
+      </tr></table><a name="sec-var-summary"></a>
+  <h3>Member Variables</h3>
+  <table class="summary"><tr><td class="right">
+            <em>protected</em>            <em><a href="ezcMailComposerOptions.html">ezcMailComposerOptions</a></em>          </td>
+          <td>
+            <code>
+              $options
+                          </code>
+            <br><div style="margin-left: 20px">Holds the options for this class.</div>                      </td>
+        </tr></table><h3>Inherited Member Variables</h3>
+  <table class="summary"><thead><tr><th colspan="2">
+            From <span class="classname"><a href="ezcMailPart.html">ezcMailPart</a></span>         
+          </th>
+        </tr></thead><tbody><tr><td class="right">
+              <em>protected</em>                          </td>
+            <td>
+              <code><a href="ezcMailPart.html#var%24properties">ezcMailPart::$properties</a></code>
+              
+            </td>
+          </tr></tbody></table><a name="sec-method-summary"></a>
+  <h3>Method Summary</h3>
+  <table class="summary"><tr><td class="right">
+            <em>public</em>                        <em>ezcMailComposer</em>          </td>
+          <td>
+            <code>
+              <a href="#__construct"><b>__construct</b></a>(
+                                                                  [                  $options
+                   = null]                               )
+            </code>
+            <br><div style="margin-left: 20px">Constructs an empty ezcMailComposer object.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#addAttachment"><b>addAttachment</b></a>(
+                                                                                    $fileName
+                                                    ,                   [                  $content
+                   = null]                                  ,                   [                  $contentType
+                   = null]                                  ,                   [                  $mimeType
+                   = null]                                  ,                   [                  $contentDisposition
+                   = null]                               )
+            </code>
+            <br><div style="margin-left: 20px">Adds the file $fileName to the list of attachments.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#addFileAttachment"><b>addFileAttachment</b></a>(
+                                                                                    $fileName
+                                                    ,                   [                  $contentType
+                   = null]                                  ,                   [                  $mimeType
+                   = null]                                  ,                   [                  $contentDisposition
+                   = null]                               )
+            </code>
+            <br><div style="margin-left: 20px">Adds the file $fileName to the list of attachments.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#addStringAttachment"><b>addStringAttachment</b></a>(
+                                                                                    $fileName
+                                                    ,                                     $content
+                                                    ,                   [                  $contentType
+                   = null]                                  ,                   [                  $mimeType
+                   = null]                                  ,                   [                  $contentDisposition
+                   = null]                               )
+            </code>
+            <br><div style="margin-left: 20px">Adds the file $fileName to the list of attachments, with contents $content.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#build"><b>build</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Builds the complete email message in RFC822 format.</div>          </td>
+        </tr></table><h3>Inherited Methods</h3>
+  <table class="summary"><thead><tr><th colspan="2">
+            From <span class="classname"><a href="ezcMail.html">ezcMail</a></span>
+          </th>
+        </tr></thead><tbody><tr><td class="right">
+              <em>public</em>                                          <em>ezcMail</em>            </td>
+            <td>
+              <code><b><a href="ezcMail.html#method__construct">ezcMail::__construct()</a></b></code>
+              <br><div style="margin-left: 20px">Constructs an empty ezcMail object.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b><a href="ezcMail.html#methodaddBcc">ezcMail::addBcc()</a></b></code>
+              <br><div style="margin-left: 20px">Adds the ezcMailAddress $address to the list of 'bcc' recipients.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b><a href="ezcMail.html#methodaddCc">ezcMail::addCc()</a></b></code>
+              <br><div style="margin-left: 20px">Adds the ezcMailAddress $address to the list of 'cc' recipients.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b><a href="ezcMail.html#methodaddTo">ezcMail::addTo()</a></b></code>
+              <br><div style="margin-left: 20px">Adds the ezcMailAddress $address to the list of 'to' recipients.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>protected</em>                            static              <em>void</em>            </td>
+            <td>
+              <code><b><a href="ezcMail.html#methodcollectPart">ezcMail::collectPart()</a></b></code>
+              <br><div style="margin-left: 20px">Saves $mail in the $context object.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>array(ezcMailPart)</em>            </td>
+            <td>
+              <code><b><a href="ezcMail.html#methodfetchParts">ezcMail::fetchParts()</a></b></code>
+              <br><div style="margin-left: 20px">Returns an array of mail parts from the current mail.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>string</em>            </td>
+            <td>
+              <code><b><a href="ezcMail.html#methodgenerateBody">ezcMail::generateBody()</a></b></code>
+              <br><div style="margin-left: 20px">Returns the generated body part of this mail.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>string</em>            </td>
+            <td>
+              <code><b><a href="ezcMail.html#methodgenerateHeaders">ezcMail::generateHeaders()</a></b></code>
+              <br><div style="margin-left: 20px">Returns the generated headers for the mail.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b><a href="ezcMail.html#methodwalkParts">ezcMail::walkParts()</a></b></code>
+              <br><div style="margin-left: 20px">Walks recursively through the mail parts in the specified mail object.</div>                          </td>
+          </tr></tbody><thead><tr><th colspan="2">
+            From <span class="classname"><a href="ezcMailPart.html">ezcMailPart</a></span>
+          </th>
+        </tr></thead><tbody><tr><td class="right">
+              <em>public</em>                                          <em>ezcMailPart</em>            </td>
+            <td>
+              <code><b><a href="ezcMailPart.html#method__construct">ezcMailPart::__construct()</a></b></code>
+              <br><div style="margin-left: 20px">Constructs a new mail part.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b><a href="ezcMailPart.html#methodappendExcludeHeaders">ezcMailPart::appendExcludeHeaders()</a></b></code>
+              <br><div style="margin-left: 20px">The array $headers will be excluded when the headers are generated.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>string</em>            </td>
+            <td>
+              <code><b><a href="ezcMailPart.html#methodgenerate">ezcMailPart::generate()</a></b></code>
+              <br><div style="margin-left: 20px">Returns the complete mail part including both the header and the body  as a string.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>              abstract                            <em>string</em>            </td>
+            <td>
+              <code><b><a href="ezcMailPart.html#methodgenerateBody">ezcMailPart::generateBody()</a></b></code>
+              <br><div style="margin-left: 20px">Returns the body of this part as a string.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>string</em>            </td>
+            <td>
+              <code><b><a href="ezcMailPart.html#methodgenerateHeaders">ezcMailPart::generateHeaders()</a></b></code>
+              <br><div style="margin-left: 20px">Returns the headers set for this part as a RFC 822 string.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>mixed</em>            </td>
+            <td>
+              <code><b><a href="ezcMailPart.html#methodgetHeader">ezcMailPart::getHeader()</a></b></code>
+              <br><div style="margin-left: 20px">Returns the RAW value of the header $name.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>protected</em>                                          <em>string</em>            </td>
+            <td>
+              <code><b><a href="ezcMailPart.html#methodgetHeaderCharset">ezcMailPart::getHeaderCharset()</a></b></code>
+              <br><div style="margin-left: 20px">Returns the charset registered for the header $name.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b><a href="ezcMailPart.html#methodsetHeader">ezcMailPart::setHeader()</a></b></code>
+              <br><div style="margin-left: 20px">Sets the header $name to the value $value and its charset to $charset.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>protected</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b><a href="ezcMailPart.html#methodsetHeaderCharset">ezcMailPart::setHeaderCharset()</a></b></code>
+              <br><div style="margin-left: 20px">Sets the charset of the header $name to $value.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b><a href="ezcMailPart.html#methodsetHeaders">ezcMailPart::setHeaders()</a></b></code>
+              <br><div style="margin-left: 20px">Adds the headers $headers.</div>                          </td>
+          </tr></tbody></table><a name="sec-methods"></a>
+  <h3>Methods</h3>
+  <a name="method_detail"></a>
+          
+      <a name="method__construct" id="__construct"><!-- --></a>
+
+    <h4>__construct</h4>
+
+    <div class="method-signature">
+      ezcMailComposer
+      __construct(
+                                  [<a href="ezcMailComposerOptions.html">ezcMailComposerOptions</a>
+          $options
+           = null]              )
+    </div>
+
+    <p>Constructs an empty ezcMailComposer object.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$options</code></td>
+              <td><em><a href="ezcMailComposerOptions.html">ezcMailComposerOptions</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcMail.html#method__construct">ezcMail::__construct()</a></code></td>
+            <td>
+                              Constructs an empty ezcMail object.
+                          </td>
+          </tr></tbody></table><a name="methodaddAttachment" id="addAttachment"><!-- --></a>
+
+    <h4>addAttachment</h4>
+
+    <div class="method-signature">
+      void
+      addAttachment(
+                                  string
+          $fileName
+                            ,           [string
+          $content
+           = null]                  ,           [string
+          $contentType
+           = null]                  ,           [string
+          $mimeType
+           = null]                  ,           [<a href="ezcMailContentDispositionHeader.html">ezcMailContentDispositionHeader</a>
+          $contentDisposition
+           = null]              )
+    </div>
+
+    <p>Adds the file $fileName to the list of attachments.</p><div><p>If $content is specified, $fileName is not checked if it exists.  $this-&gt;attachments will also contain in this case the $content,  $contentType and $mimeType.</p><p>The $contentType (default = application) and $mimeType (default =  octet-stream) control the complete mime-type of the attachment.</p><p>If $contentDisposition is specified, the attached file will have its  Content-Disposition header set according to the $contentDisposition  object and the filename of the attachment in the generated mail will be  the one from the $contentDisposition object.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$fileName</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$content</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$contentType</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$mimeType</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$contentDisposition</code></td>
+              <td><em><a href="ezcMailContentDispositionHeader.html">ezcMailContentDispositionHeader</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>ezcBaseFilePermissionProblem</code></td>
+              <td>
+                                  if $fileName could not be read.
+                              </td>
+            </tr><tr><td><code><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseFileNotFoundException.html">ezcBaseFileNotFoundException</a></code></td>
+              <td>
+                                  if $fileName does not exists.
+                              </td>
+            </tr></tbody></table><a name="methodaddFileAttachment" id="addFileAttachment"><!-- --></a>
+
+    <h4>addFileAttachment</h4>
+
+    <div class="method-signature">
+      void
+      addFileAttachment(
+                                  string
+          $fileName
+                            ,           [string
+          $contentType
+           = null]                  ,           [string
+          $mimeType
+           = null]                  ,           [<a href="ezcMailContentDispositionHeader.html">ezcMailContentDispositionHeader</a>
+          $contentDisposition
+           = null]              )
+    </div>
+
+    <p>Adds the file $fileName to the list of attachments.</p><div><p>The $contentType (default = application) and $mimeType (default =  octet-stream) control the complete mime-type of the attachment.</p><p>If $contentDisposition is specified, the attached file will have its  Content-Disposition header set according to the $contentDisposition  object and the filename of the attachment in the generated mail will be  the one from the $contentDisposition object.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$fileName</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$contentType</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$mimeType</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$contentDisposition</code></td>
+              <td><em><a href="ezcMailContentDispositionHeader.html">ezcMailContentDispositionHeader</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>ezcBaseFilePermissionProblem</code></td>
+              <td>
+                                  if $fileName could not be read.
+                              </td>
+            </tr><tr><td><code><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseFileNotFoundException.html">ezcBaseFileNotFoundException</a></code></td>
+              <td>
+                                  if $fileName does not exists.
+                              </td>
+            </tr></tbody></table><a name="methodaddStringAttachment" id="addStringAttachment"><!-- --></a>
+
+    <h4>addStringAttachment</h4>
+
+    <div class="method-signature">
+      void
+      addStringAttachment(
+                                  string
+          $fileName
+                            ,           string
+          $content
+                            ,           [string
+          $contentType
+           = null]                  ,           [string
+          $mimeType
+           = null]                  ,           [<a href="ezcMailContentDispositionHeader.html">ezcMailContentDispositionHeader</a>
+          $contentDisposition
+           = null]              )
+    </div>
+
+    <p>Adds the file $fileName to the list of attachments, with contents $content.</p><div><p>The file $fileName is not checked if it exists. An attachment is added  to the mail, with the name $fileName, and the contents $content.</p><p>The $contentType (default = application) and $mimeType (default =  octet-stream) control the complete mime-type of the attachment.</p><p>If $contentDisposition is specified, the attached file will have its  Content-Disposition header set according to the $contentDisposition  object and the filename of the attachment in the generated mail will be  the one from the $contentDisposition object.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$fileName</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$content</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$contentType</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$mimeType</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$contentDisposition</code></td>
+              <td><em><a href="ezcMailContentDispositionHeader.html">ezcMailContentDispositionHeader</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodbuild" id="build"><!-- --></a>
+
+    <h4>build</h4>
+
+    <div class="method-signature">
+      void
+      build(
+      )
+    </div>
+
+    <p>Builds the complete email message in RFC822 format.</p><div><p>This method must be called before the message is sent.</p></div>
+    
+          <h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseFileNotFoundException.html">ezcBaseFileNotFoundException</a></code></td>
+              <td>
+                                  if any of the attachment files can not be found.
+                              </td>
+            </tr></tbody></table><div class="credit">
+      Documentation generated by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+    </div>
+  </div>
+  
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

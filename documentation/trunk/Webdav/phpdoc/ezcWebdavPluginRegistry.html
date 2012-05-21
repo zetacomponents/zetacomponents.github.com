@@ -1,0 +1,352 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="" />
+	<meta name="author" content="jerome" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Sun, 10 Jul 2011 11:11:10 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="ezcWebdavPluginRegistry.html" />
+	<meta name="DC.creator" content="jerome" />
+	<meta name="DC.date" content="Sun, 10 Jul 2011 11:11:10 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/Webdav/phpdoc/ezcWebdavPluginRegistry.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/Webdav/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/trunk/Webdav/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Webdav/clients.html" title="Clients ">Clients </a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Webdav/plugin_architecture.html" title="Plugin_architecture ">Plugin_architecture </a>
+	</li>
+
+</ul>
+
+		
+  <div class="phpdoc">
+    <h2>Apache Zeta Components Manual :: Docs For Class ezcWebdavPluginRegistry</h2>
+
+                  <h3>Webdav::ezcWebdavPluginRegistry</h3>
+    
+<a name="sec-description"></a>
+<h3>Class ezcWebdavPluginRegistry</h3>
+
+<p>Global plugin registry class.</p><div><p>An instance of this class is request wide uniquely responsible for handling  plugins to the Webdav component. It has a number of different hooks  available of the server and transport layer of the component to allow  plugins to interact and integrate with these layers to add extended  funtionality.</p><p>A good overview of the working of the plugin system can be found in its  design document Webdav/design/extensibility.txt.</p></div>
+<p>Source for this file: <a href="http://fisheye6.atlassian.com/browse/zetacomponents/trunk/Webdav/src/plugin_registry.php?r=HEAD">/Webdav/src/plugin_registry.php</a></p>
+       
+
+
+
+
+  <table><tr><td>
+            <strong>Version:</strong>&#8192;&#8192;
+          </td>
+          <td>//autogen//</td>
+        </tr></table><a name="sec-method-summary"></a>
+  <h3>Method Summary</h3>
+  <table class="summary"><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#__construct"><b>__construct</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Creates a new plugin registry.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#announceHook"><b>announceHook</b></a>(
+                                                                                    $class
+                                                    ,                                     $hook
+                                                    ,                                     $params
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Announces the given hook.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em><a href="ezcWebdavPluginConfiguration.html">ezcWebdavPluginConfiguration</a></em>          </td>
+          <td>
+            <code>
+              <a href="#getPluginConfig"><b>getPluginConfig</b></a>(
+                                                                                    $namespace
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns a plugins configuration object.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>bool</em>          </td>
+          <td>
+            <code>
+              <a href="#hasPlugin"><b>hasPlugin</b></a>(
+                                                                                    $namespace
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns if a plugin is active in the server.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#initPlugins"><b>initPlugins</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Initializes all registered plugins.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#registerPlugin"><b>registerPlugin</b></a>(
+                                                                                    $config
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Registers a new plugin to be used.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#unregisterPlugin"><b>unregisterPlugin</b></a>(
+                                                                                    $config
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Can be used to deactivate a plugin.</div>          </td>
+        </tr></table><a name="sec-methods"></a>
+  <h3>Methods</h3>
+  <a name="method_detail"></a>
+              
+      <a name="method__construct" id="__construct"><!-- --></a>
+
+    <h4>__construct</h4>
+
+    <div class="method-signature">
+      void
+      __construct(
+      )
+    </div>
+
+    <p>Creates a new plugin registry.</p>
+    
+        
+
+    
+    
+    
+        <a name="methodannounceHook" id="announceHook"><!-- --></a>
+
+    <h4>announceHook</h4>
+
+    <div class="method-signature">
+      void
+      announceHook(
+                                  string
+          $class
+                            ,           string
+          $hook
+                            ,           <a href="ezcWebdavPluginParameters.html">ezcWebdavPluginParameters</a>
+          $params
+                        )
+    </div>
+
+    <p>Announces the given hook.</p><div><p>This class may only be used by <a href="ezcWebdavServer.html">ezcWebdavServer</a> and <a href="ezcWebdavTransport.html">ezcWebdavTransport</a> to announce the reaching of a hook. Therefore, this  method is marked private. Receives the name of the class issuing the  $hook and the $params that may be used for information extraction and  _careful_ possible manipulation.</p><p>This method is declared private, because the announcement of hooks is  only allowed by component internal classes.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$class</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$hook</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$params</code></td>
+              <td><em><a href="ezcWebdavPluginParameters.html">ezcWebdavPluginParameters</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>ezcWebdavPluginFailureException</code></td>
+              <td>
+                                  in case a plugin threw an exception. The original one can be accessed for processing through the public $originalException attribute.
+                              </td>
+            </tr></tbody></table><a name="methodgetPluginConfig" id="getPluginConfig"><!-- --></a>
+
+    <h4>getPluginConfig</h4>
+
+    <div class="method-signature">
+      <a href="ezcWebdavPluginConfiguration.html">ezcWebdavPluginConfiguration</a>
+      getPluginConfig(
+                                  string
+          $namespace
+                        )
+    </div>
+
+    <p>Returns a plugins configuration object.</p><div><p>Returns the instance of <a href="ezcWebdavPluginConfiguration.html">ezcWebdavPluginConfiguration</a> used for  the plugin with a given $namespace. Throws an exception, if the plugin  was not found.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$namespace</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodhasPlugin" id="hasPlugin"><!-- --></a>
+
+    <h4>hasPlugin</h4>
+
+    <div class="method-signature">
+      bool
+      hasPlugin(
+                                  string
+          $namespace
+                        )
+    </div>
+
+    <p>Returns if a plugin is active in the server.</p><div><p>Checks if a configuration with the given $namespace exists and returns  this information as a boolean value.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$namespace</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodinitPlugins" id="initPlugins"><!-- --></a>
+
+    <h4>initPlugins</h4>
+
+    <div class="method-signature">
+      void
+      initPlugins(
+      )
+    </div>
+
+    <p>Initializes all registered plugins.</p><div><p>This method calls the <a href="ezcWebdavPluginConfiguration.html#methodinit">ezcWebdavPluginConfiguration::init()</a>  method for each registered plugin. The method is marked as private,  because it is not intended for external use, but may only be called from  <a href="ezcWebdavServer.html">ezcWebdavServer</a>.</p></div>
+    
+        
+
+    
+    
+    
+        <a name="methodregisterPlugin" id="registerPlugin"><!-- --></a>
+
+    <h4>registerPlugin</h4>
+
+    <div class="method-signature">
+      void
+      registerPlugin(
+                                  <a href="ezcWebdavPluginConfiguration.html">ezcWebdavPluginConfiguration</a>
+          $config
+                        )
+    </div>
+
+    <p>Registers a new plugin to be used.</p><div><p>Receives an instance of <a href="ezcWebdavPluginConfiguration.html">ezcWebdavPluginConfiguration</a>, which is  possible extended for internal use in the plugin. The 'namespace'  property of this class is used to register it internally. Multiple  registrations of the same namespace will lead to an exception.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$config</code></td>
+              <td><em><a href="ezcWebdavPluginConfiguration.html">ezcWebdavPluginConfiguration</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>ezcWebdavPluginDoubleRegistrationException</code></td>
+              <td>
+                                  if the namespace of a plugin is registered twice.
+                              </td>
+            </tr></tbody></table><a name="methodunregisterPlugin" id="unregisterPlugin"><!-- --></a>
+
+    <h4>unregisterPlugin</h4>
+
+    <div class="method-signature">
+      void
+      unregisterPlugin(
+                                  <a href="ezcWebdavPluginConfiguration.html">ezcWebdavPluginConfiguration</a>
+          $config
+                        )
+    </div>
+
+    <p>Can be used to deactivate a plugin.</p><div><p>Receives an instance of <a href="ezcWebdavPluginConfiguration.html">ezcWebdavPluginConfiguration</a>, which is  possible extended for internal use in the plugin. The 'namespace'  property of this class is used to unregister it internally.  Unregistration of a notregistered $config object will be silently  ignored.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$config</code></td>
+              <td><em><a href="ezcWebdavPluginConfiguration.html">ezcWebdavPluginConfiguration</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><div class="credit">
+      Documentation generated by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+    </div>
+  </div>
+  
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,1155 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="PHP, apache, components, framework, quality" />
+	<meta name="author" content="dotxp" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Wed, 04 Aug 2010 13:07:14 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="ezcAuthenticationOpenidFilter.html" />
+	<meta name="DC.creator" content="dotxp" />
+	<meta name="DC.date" content="Wed, 04 Aug 2010 13:07:14 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationOpenidFilter.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/Authentication/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/trunk/Authentication/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Authentication/security.html" title="Security ">Security </a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Authentication/rfcs.html" title="Rfcs ">Rfcs </a>
+	</li>
+
+</ul>
+
+		
+  <div class="phpdoc">
+    <h2>Apache Zeta Components Manual :: Docs For Class ezcAuthenticationOpenidFilter</h2>
+
+                  <h3>Authentication::ezcAuthenticationOpenidFilter</h3>
+    
+<a name="sec-description"></a>
+<h3>Class ezcAuthenticationOpenidFilter</h3>
+
+<p>Filter to authenticate against OpenID. Currently supporting OpenID 1.0, 1.1  and 2.0.</p><div><p>The filter takes an identifier (URL) as credentials, and performs these steps  (by default, with redirection of the user agent to the OpenID provider): </p><ol><li>Normalize the identifier</li><li>Discover the provider and delegate by requesting the URL
+       - first using the Yadis discovery protocol
+       - if Yadis fails then discover by parsing the HTML page source at URL</li><li>(Optional) OpenID associate request - for the so-called 'smart' (stateful) mode.</li><li>OpenID checkid_setup request. This step redirects the browser to the OpenID
+     provider discovered in step 2. After user enters his OpenID username and
+     password at this page and accepts the originating site, the browser is
+     redirected back to the originating site. The return URL can be changed
+     with the OpenID option returnUrl (see <a href="ezcAuthenticationOpenidOptions.html">ezcAuthenticationOpenidOptions</a>).</li><li>OpenID check_authentication request. After the redirection from the provider
+     to the originating site, the values provided by the provider must be checked
+     in an extra request against the provider. The provider responds with is_valid
+     true or false.</li></ol>  The OpenID request checkid_immediate is supported, which allows for user  authentication in a pop-up window or iframe (or similar techniques). The steps  of the authentication process are the same as above, but step 4 changes as  follows:   4. OpenID checkid_immediate request. This step asks the OpenID provider if the      user can be authenticated on the spot, with no redirection. If the user      cannot be authenticated, the provider sends back a setup URL, which the      application can use in a pop-up window or iframe to display to the user      so that he can authenticate himself to the OpenID provider. After user      enters his OpenID username and password at this page and accepts the      originating site, the pop-up window or iframe is redirected to the      return URL value (which should be a different page than the page which      opens the pop-up window). The return URL page will then inform the      main page of success or failure through JavaScript, and the main page      can do the action that it needs to perform based on the outcome in the      pop-up page. The checkid_immediate mode is enabled by setting the      option immediate to true.<p>For example, this is one simple way of implementing checkid_immediate: </p><ul><li>the main page contains the OpenID login form (where the user types in his
+    OpenID identifier). This page contains also a hidded form value which
+    specifies to which page to return to in the pop-up window. The Enter key
+    and the submit button should be disabled on the form. When user clicks on
+    the Login button, the main page should employ AJAX to request the return
+    URL. When the return URL finishes loading, the main page will read from the
+    return URL page the setup URL and it will open it in a pop-up/iframe.</li><li>the return URL page enables the option immediate to the OpenID filter, and
+    runs the filter. It gets back the setup URL and it echoes it to be picked-up
+    by the main page once the return URL page will finish loading. The setup URL
+    should be the only thing that the return URL page is echoing, to not interfere
+    with the main page.</li><li>in the pop-up/iframe the setup URL will load, which basically depends on
+    the OpenID provider how it is handled by the user. After the user enters
+    his credentials on the setup URL page, he will be redirected to the return URL,
+    which should detect this, and which should inform the main page that the
+    user was authenticated to the OpenID provider.</li></ul>  As this mode required advanced JavaScript techniques and AJAX, no example  source code will be provided here as it is out of the scope of this  documentation. A rudimentary example is provided in the tutorial.<p>Specifications: </p><ul><li>OpenID 1.0: <a href="http://openid.net/specs/openid-simple-registration-extension-1_0.html">http://openid.net/specs/openid-simple-registration-extension-1_0.html</a></li><li>OpenID 1.1: <a href="http://openid.net/specs/openid-authentication-1_1.html">http://openid.net/specs/openid-authentication-1_1.html</a></li><li>OpenID 2.0: <a href="http://openid.net/specs/openid-authentication-2_0.html">http://openid.net/specs/openid-authentication-2_0.html</a></li><li>Yadis  1.0: <a href="http://yadis.org">http://yadis.org</a></li><li>XRDS discovery: <a href="http://docs.oasis-open.org/xri/2.0/specs/cd02/xri-resolution-V2.0-cd-02.html">http://docs.oasis-open.org/xri/2.0/specs/cd02/xri-resolution-V2.0-cd-02.html</a></li></ul>  To specify which OpenID version to authenticate against, use the  openidVersion option (default is '1.1'):<p></p><ol><li><div class="src-line">&#8192;<span class="src-var">$options&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcAuthenticationOpenidOptions.html">ezcAuthenticationOpenidOptions</a></span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$options</span><span class="src-sym">-&gt;</span><span class="src-id">version&#8192;</span>=&#8192;<span class="src-id"><a href="ezcAuthenticationOpenidFilter.html">ezcAuthenticationOpenidFilter</a></span><span class="src-sym">::</span><span class="src-id">VERSION_2_0</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$filter&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcAuthenticationOpenidFilter.html">ezcAuthenticationOpenidFilter</a></span><span class="src-sym">(&#8192;</span><span class="src-var">$options&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol><p>OpenID 2.0 will use XRDS discovery by default instead of Yadis. If XRDS  discovery fails (or if the specified version is not '2.0') then Yadis  discovery will be performed, and if Yadis fails then HTML discovery  will be performed.</p><p>Example of use (authentication code + login form + logout support) - stateless ('dumb'):  </p><ol><li><div class="src-line">&#8192;//&#8192;no&#8192;headers&#8192;should&#8192;be&#8192;sent&#8192;before&#8192;calling&#8192;$session-&gt;start()</div></li>
+<li><div class="src-line">&#8192;$session&#8192;=&#8192;new&#8192;ezcAuthenticationSession();</div></li>
+<li><div class="src-line">&#8192;$session-&gt;start();</div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;$url&#8192;=&#8192;isset(&#8192;$_GET['openid_identifier']&#8192;)&#8192;?&#8192;$_GET['openid_identifier']&#8192;:&#8192;$session-&gt;load();</div></li>
+<li><div class="src-line">&#8192;$action&#8192;=&#8192;isset(&#8192;$_GET['action']&#8192;)&#8192;?&#8192;strtolower(&#8192;$_GET['action']&#8192;)&#8192;:&#8192;null;</div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;$credentials&#8192;=&#8192;new&#8192;ezcAuthenticationIdCredentials(&#8192;$url&#8192;);</div></li>
+<li><div class="src-line">&#8192;$authentication&#8192;=&#8192;new&#8192;ezcAuthentication(&#8192;$credentials&#8192;);</div></li>
+<li><div class="src-line">&#8192;$authentication-&gt;session&#8192;=&#8192;$session;</div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;if&#8192;(&#8192;$action&#8192;===&#8192;'logout'&#8192;)</div></li>
+<li><div class="src-line">&#8192;{</div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;$session-&gt;destroy();</div></li>
+<li><div class="src-line">&#8192;}</div></li>
+<li><div class="src-line">&#8192;else</div></li>
+<li><div class="src-line">&#8192;{</div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;$filter&#8192;=&#8192;new&#8192;ezcAuthenticationOpenidFilter();</div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;$authentication-&gt;addFilter(&#8192;$filter&#8192;);</div></li>
+<li><div class="src-line">&#8192;}</div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;if&#8192;(&#8192;!$authentication-&gt;run()&#8192;)</div></li>
+<li><div class="src-line">&#8192;{</div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;//&#8192;authentication&#8192;did&#8192;not&#8192;succeed,&#8192;so&#8192;inform&#8192;the&#8192;user</div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;$status&#8192;=&#8192;$authentication-&gt;getStatus();</div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;$err&#8192;=&#8192;array(</div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;'ezcAuthenticationOpenidFilter'&#8192;=&gt;&#8192;array(</div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;ezcAuthenticationOpenidFilter::STATUS_SIGNATURE_INCORRECT&#8192;=&gt;&#8192;'OpenID&#8192;said&#8192;the&#8192;provided&#8192;identifier&#8192;was&#8192;incorrect',</div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;ezcAuthenticationOpenidFilter::STATUS_CANCELLED&#8192;=&gt;&#8192;'The&#8192;OpenID&#8192;authentication&#8192;was&#8192;cancelled',</div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;ezcAuthenticationOpenidFilter::STATUS_URL_INCORRECT&#8192;=&gt;&#8192;'The&#8192;identifier&#8192;you&#8192;provided&#8192;is&#8192;invalid'</div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;),</div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;'ezcAuthenticationSession'&#8192;=&gt;&#8192;array(</div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;ezcAuthenticationSession::STATUS_EMPTY&#8192;=&gt;&#8192;'',</div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;ezcAuthenticationSession::STATUS_EXPIRED&#8192;=&gt;&#8192;'Session&#8192;expired'</div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;)</div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;);</div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;foreach&#8192;(&#8192;$status&#8192;as&#8192;$line&#8192;)</div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;{</div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;list(&#8192;$key,&#8192;$value&#8192;)&#8192;=&#8192;each(&#8192;$line&#8192;);</div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;echo&#8192;$err[$key][$value]&#8192;.&#8192;"\n";</div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;}</div></li>
+<li><div class="src-line">&#8192;?&gt;</div></li>
+<li><div class="src-line">&#8192;Please&#8192;login&#8192;with&#8192;your&#8192;OpenID&#8192;identifier&#8192;(an&#8192;URL,&#8192;eg.&#8192;www.example.com&#8192;or&#8192;http://www.example.com):</div></li>
+<li><div class="src-line">&#8192;&lt;form&#8192;method="GET"&#8192;action=""&gt;</div></li>
+<li><div class="src-line">&#8192;&lt;input&#8192;type="hidden"&#8192;name="action"&#8192;value="login"&#8192;/&gt;</div></li>
+<li><div class="src-line">&#8192;&lt;img&#8192;src="http://openid.net/login-bg.gif"&#8192;/&gt;&#8192;&lt;input&#8192;type="text"&#8192;name="openid_identifier"&#8192;/&gt;</div></li>
+<li><div class="src-line">&#8192;&lt;input&#8192;type="submit"&#8192;value="Login"&#8192;/&gt;</div></li>
+<li><div class="src-line">&#8192;&lt;/form&gt;</div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-php">&lt;?php</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">}</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-key">else</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">{</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-php">?&gt;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;You&#8192;are&#8192;logged-in&#8192;as&#8192;&lt;b&gt;<span class="src-php">&lt;?php&#8192;</span>echo&#8192;<span class="src-var">$url</span><span class="src-sym">;&#8192;</span><span class="src-php">?&gt;</span>&lt;/b&gt;&#8192;|&#8192;&lt;a&#8192;href="?action=logout"&gt;Logout&lt;/a&gt;</div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-php">&lt;?php</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">}</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-php">?&gt;</span></div></li>
+</ol><p>To use stateful ('smart') mode, the only changes to the above example are in  the else branch of the "if ( $action === 'logout' )":  </p><ol><li><div class="src-line">&#8192;<span class="src-comm">//&#8192;...</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-key">if&#8192;</span><span class="src-sym">(&#8192;</span><span class="src-var">$action&#8192;</span>===&#8192;<span class="src-str">'logout'&#8192;</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">{</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-var">$session</span><span class="src-sym">-&gt;</span><span class="src-id">destroy</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">}</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-key">else</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">{</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-var">$options&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcAuthenticationOpenidOptions.html">ezcAuthenticationOpenidOptions</a></span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-var">$options</span><span class="src-sym">-&gt;</span><span class="src-id">mode&#8192;</span>=&#8192;<span class="src-id"><a href="ezcAuthenticationOpenidFilter.html">ezcAuthenticationOpenidFilter</a></span><span class="src-sym">::</span><span class="src-id">MODE_SMART</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-var">$options</span><span class="src-sym">-&gt;</span><span class="src-id">store&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcAuthenticationOpenidFileStore.html">ezcAuthenticationOpenidFileStore</a></span><span class="src-sym">(&#8192;</span><span class="src-str">'/tmp/store'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-var">$filter&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcAuthenticationOpenidFilter.html">ezcAuthenticationOpenidFilter</a></span><span class="src-sym">(&#8192;</span><span class="src-var">$options&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-var">$authentication</span><span class="src-sym">-&gt;</span><span class="src-id">addFilter</span><span class="src-sym">(&#8192;</span><span class="src-var">$filter&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">}</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;...</span></div></li>
+</ol><p>Extra data can be fetched from the OpenID provider during the authentication  process, by registering the data to be fetched before calling run(). Example:  </p><ol><li><div class="src-line">&#8192;<span class="src-comm">//&#8192;$filter&#8192;is&#8192;an&#8192;ezcAuthenticationOpenidFilter&#8192;object</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$filter</span><span class="src-sym">-&gt;</span><a href="ezcAuthenticationOpenidFilter.html#methodregisterFetchData">registerFetchData</a><span class="src-sym">(&#8192;</span><span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-str">'fullname'</span><span class="src-sym">,&#8192;</span><span class="src-str">'gender'</span><span class="src-sym">,&#8192;</span><span class="src-str">'country'</span><span class="src-sym">,&#8192;</span><span class="src-str">'language'&#8192;</span><span class="src-sym">)&#8192;)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;after&#8192;run()</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$data&#8192;</span>=&#8192;<span class="src-var">$filter</span><span class="src-sym">-&gt;</span><a href="ezcAuthenticationOpenidFilter.html#methodfetchData">fetchData</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol><p>The $data array will be something like:  </p><ol><li><div class="src-line">&#8192;<span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-str">'fullname'&#8192;</span>=&gt;&#8192;<span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-str">'John&#8192;Doe'&#8192;</span><span class="src-sym">)</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'gender'&#8192;</span>=&gt;&#8192;<span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-str">'M'&#8192;</span><span class="src-sym">)</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'country'&#8192;</span>=&gt;&#8192;<span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-str">'US'&#8192;</span><span class="src-sym">)</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'language'&#8192;</span>=&gt;&#8192;<span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-str">'FR'&#8192;</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol><p>The extra data which is possible to be fetched during the authentication  process is: </p><ul><li>nickname - the user's nickname (short name, alias)</li><li>email - the user's email address</li><li>fullname - the user's full name</li><li>dob - the user's date of birth as YYYY-MM-DD. Any component value whose
+    representation uses fewer than the specified number of digits should
+    be zero-padded (eg. 02 for February). If the user does not want to
+    reveal any particular component of this value, it should be zero
+    (eg. "1980-00-00" if the user is born in 1980 but does not want to
+    specify his month and day of birth)</li><li>gender - the user's gender, "M" for male, "F" for female</li><li>postcode - the user's postal code</li><li>country - the user's country as an ISO3166 string, (eg. "US")</li><li>language - the user's preferred language as an ISO639 string (eg. "FR")</li><li>timezone - the user's timezone, for example "Europe/Paris"</li></ul>  Note: if using the checkid_immediate mode (by setting the option immediate to  true), then retrieval of extra data is not possible.</div>
+<p>Source for this file: <a href="http://fisheye6.atlassian.com/browse/zetacomponents/trunk/Authentication/src/filters/openid/openid_filter.php?r=HEAD">/Authentication/src/filters/openid/openid_filter.php</a></p>
+       
+  <h3>Implements interfaces:</h3>
+  <ul><li><a href="ezcAuthenticationDataFetch.html">ezcAuthenticationDataFetch</a></li>  </ul><pre><a href="ezcAuthenticationFilter.html">ezcAuthenticationFilter</a>
+   |
+   --ezcAuthenticationOpenidFilter</pre>
+
+
+  <table><tr><td>
+            <strong>Version:</strong>&#8192;&#8192;
+          </td>
+          <td>//autogen//</td>
+        </tr><tr><td>
+            <strong>Todo:</strong>&#8192;&#8192;
+          </td>
+          <td>add support for fetching extra data as in OpenID attribute exchange        <a href="http://issues.ez.no/14847">http://issues.ez.no/14847</a></td>
+        </tr><tr><td>
+            <strong>Todo:</strong>&#8192;&#8192;
+          </td>
+          <td>add support for multiple URLs in each category at discovery</td>
+        </tr><tr><td>
+            <strong>Todo:</strong>&#8192;&#8192;
+          </td>
+          <td>add support for XRI identifiers and discovery</td>
+        </tr><tr><td>
+            <strong>Todo:</strong>&#8192;&#8192;
+          </td>
+          <td>check if the nonce handling is correct (openid.response_nonce?)</td>
+        </tr><tr><td>
+            <strong>Todo:</strong>&#8192;&#8192;
+          </td>
+          <td>check return_to in the response</td>
+        </tr></table><a name="sec-const-summary"></a>
+  <h3>Constants</h3>
+  <table class="summary"><tr><td class="right">
+          <a name="const-MODE_DUMB" id=""></a>
+          <code>
+            <a href="#const-MODE_DUMB" title="details" class="const-name-summary">MODE_DUMB</a>
+             =  1
+          </code>
+        </td>
+        <td>
+          OpenID authentication mode where the OpenID provider generates a secret  for every request.          <p>The server (consumer) is stateless.  An extra check_authentication request to the provider is needed.  This is the default mode.</p>        </td>
+      </tr><tr><td class="right">
+          <a name="const-MODE_SMART" id=""></a>
+          <code>
+            <a href="#const-MODE_SMART" title="details" class="const-name-summary">MODE_SMART</a>
+             =  2
+          </code>
+        </td>
+        <td>
+          OpenID authentication mode where the server generates a secret which will  be shared with the OpenID provider.          <p>The server (consumer) is keeping state.  The extra check_authentication request is not needed.  The shared secret must be established once in a while (defined by the  option secretValidity, default 1 day = 86400 seconds).</p>        </td>
+      </tr><tr><td class="right">
+          <a name="const-STATUS_CANCELLED" id=""></a>
+          <code>
+            <a href="#const-STATUS_CANCELLED" title="details" class="const-name-summary">STATUS_CANCELLED</a>
+             =  3
+          </code>
+        </td>
+        <td>
+          User cancelled the OpenID authentication.                  </td>
+      </tr><tr><td class="right">
+          <a name="const-STATUS_NONCE_INCORRECT" id=""></a>
+          <code>
+            <a href="#const-STATUS_NONCE_INCORRECT" title="details" class="const-name-summary">STATUS_NONCE_INCORRECT</a>
+             =  2
+          </code>
+        </td>
+        <td>
+          The OpenID provider did not return a valid nonce in the response.                  </td>
+      </tr><tr><td class="right">
+          <a name="const-STATUS_SETUP_URL" id=""></a>
+          <code>
+            <a href="#const-STATUS_SETUP_URL" title="details" class="const-name-summary">STATUS_SETUP_URL</a>
+             =  5
+          </code>
+        </td>
+        <td>
+          The OpenID server returned a setup URL after a checkid_immediate request,  which is available by calling the getSetupUrl() method.                  </td>
+      </tr><tr><td class="right">
+          <a name="const-STATUS_SIGNATURE_INCORRECT" id=""></a>
+          <code>
+            <a href="#const-STATUS_SIGNATURE_INCORRECT" title="details" class="const-name-summary">STATUS_SIGNATURE_INCORRECT</a>
+             =  1
+          </code>
+        </td>
+        <td>
+          The OpenID provider did not authorize the provided URL.                  </td>
+      </tr><tr><td class="right">
+          <a name="const-STATUS_URL_INCORRECT" id=""></a>
+          <code>
+            <a href="#const-STATUS_URL_INCORRECT" title="details" class="const-name-summary">STATUS_URL_INCORRECT</a>
+             =  4
+          </code>
+        </td>
+        <td>
+          The URL provided by user was empty, or the required information could  not be discovered from it.                  </td>
+      </tr><tr><td class="right">
+          <a name="const-VERSION_1_0" id=""></a>
+          <code>
+            <a href="#const-VERSION_1_0" title="details" class="const-name-summary">VERSION_1_0</a>
+             =  '1.0'
+          </code>
+        </td>
+        <td>
+          OpenID version 1.0.                  </td>
+      </tr><tr><td class="right">
+          <a name="const-VERSION_1_1" id=""></a>
+          <code>
+            <a href="#const-VERSION_1_1" title="details" class="const-name-summary">VERSION_1_1</a>
+             =  '1.1'
+          </code>
+        </td>
+        <td>
+          OpenID version 1.1.                  </td>
+      </tr><tr><td class="right">
+          <a name="const-VERSION_2_0" id=""></a>
+          <code>
+            <a href="#const-VERSION_2_0" title="details" class="const-name-summary">VERSION_2_0</a>
+             =  '2.0'
+          </code>
+        </td>
+        <td>
+          OpenID version 2.0.                  </td>
+      </tr></table><a name="sec-inherited-consts"></a>
+  <h3>Inherited Constants</h3>
+  <table class="summary"><thead><tr><th colspan="2">
+              From <span class="classname"><a href="ezcAuthenticationFilter.html">ezcAuthenticationFilter</a></span>:
+            </th>
+          </tr></thead><tbody><tr><td class="right">
+                <code><a href="ezcAuthenticationFilter.html#constSTATUS_OK">ezcAuthenticationFilter::STATUS_OK</a></code>
+              </td>
+              <td>
+                &#8192;&#8192;&#8192;Successful authentication.              </td>
+            </tr></tbody></table><a name="sec-var-summary"></a>
+  <h3>Member Variables</h3>
+  <table class="summary"><tr><td class="right">
+            <em>protected</em>            <em>array(string=&gt;mixed)</em>          </td>
+          <td>
+            <code>
+              $data
+               = <span class="var-default">array()</span>            </code>
+            <br><div style="margin-left: 20px">Holds the extra data fetched during the authentication process.</div>            <br><div style="margin-left: 20px"><p>Usually it has this structure:  </p><ol><li><div class="src-line">&#8192;<span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-str">'fullname'&#8192;</span>=&gt;&#8192;<span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-str">'John&#8192;Doe'&#8192;</span><span class="src-sym">)</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'gender'&#8192;</span>=&gt;&#8192;<span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-str">'M'&#8192;</span><span class="src-sym">)</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'country'&#8192;</span>=&gt;&#8192;<span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-str">'NO'&#8192;</span><span class="src-sym">)</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'language'&#8192;</span>=&gt;&#8192;<span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-str">'FR'&#8192;</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol></div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            <em>array(string)</em>          </td>
+          <td>
+            <code>
+              $requestedData
+               = <span class="var-default">array()</span>            </code>
+            <br><div style="margin-left: 20px">Holds the attributes which will be requested during the authentication  process.</div>            <br><div style="margin-left: 20px"><p>Usually it has this structure:  </p><ol><li><div class="src-line">&#8192;<span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-str">'fullname'</span><span class="src-sym">,&#8192;</span><span class="src-str">'gender'</span><span class="src-sym">,&#8192;</span><span class="src-str">'country'</span><span class="src-sym">,&#8192;</span><span class="src-str">'language'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol></div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            <em>string</em>          </td>
+          <td>
+            <code>
+              $setupUrl
+               = <span class="var-default"> false</span>            </code>
+            <br><div style="margin-left: 20px">Holds the setup URL retrieved during the checkid_immediate OpenID request.</div>            <br><div style="margin-left: 20px"><p>This URL can be used by the application to authenticate the user in a  pop-up window or iframe (or similar techniques).</p></div>          </td>
+        </tr></table><h3>Inherited Member Variables</h3>
+  <table class="summary"><thead><tr><th colspan="2">
+            From <span class="classname"><a href="ezcAuthenticationFilter.html">ezcAuthenticationFilter</a></span>         
+          </th>
+        </tr></thead><tbody><tr><td class="right">
+              <em>protected</em>                          </td>
+            <td>
+              <code><a href="ezcAuthenticationFilter.html#var%24options">ezcAuthenticationFilter::$options</a></code>
+              
+            </td>
+          </tr></tbody></table><a name="sec-method-summary"></a>
+  <h3>Method Summary</h3>
+  <table class="summary"><tr><td class="right">
+            <em>public</em>                        <em>ezcAuthenticationOpenidFilter</em>          </td>
+          <td>
+            <code>
+              <a href="#__construct"><b>__construct</b></a>(
+                                                                  [                  $options
+                   = null]                               )
+            </code>
+            <br><div style="margin-left: 20px">Creates a new object of this class.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>array(string=&gt;mixed)||null</em>          </td>
+          <td>
+            <code>
+              <a href="#associate"><b>associate</b></a>(
+                                                                                    $provider
+                                                    ,                                     $params
+                                                    ,                   [                  $method
+                   = 'GET']                               )
+            </code>
+            <br><div style="margin-left: 20px">Attempts to establish a shared secret with the OpenID provider and  returns it (for "smart" mode).</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>bool</em>          </td>
+          <td>
+            <code>
+              <a href="#checkImmediate"><b>checkImmediate</b></a>(
+                                                                                    $provider
+                                                    ,                                     $params
+                                                    ,                   [                  $method
+                   = 'GET']                               )
+            </code>
+            <br><div style="margin-left: 20px">Connects to $provider (checkid_immediate OpenID request) and returns an  URL (setup URL) which can be used by the application in a pop-up window.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>bool</em>          </td>
+          <td>
+            <code>
+              <a href="#checkSignature"><b>checkSignature</b></a>(
+                                                                                    $provider
+                                                    ,                                     $params
+                                                    ,                   [                  $method
+                   = 'GET']                               )
+            </code>
+            <br><div style="margin-left: 20px">Opens a connection with the OpenID provider and checks if $params are  correct (check_authentication OpenID request).</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>bool</em>          </td>
+          <td>
+            <code>
+              <a href="#checkSignatureSmart"><b>checkSignatureSmart</b></a>(
+                                                                                    $association
+                                                    ,                                     $params
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Checks if $params are correct by signing with $association-&gt;secret.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>array(string=&gt;array)</em>          </td>
+          <td>
+            <code>
+              <a href="#createAssociateRequest"><b>createAssociateRequest</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns an array of parameters for use in an OpenID associate request.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>array(string=&gt;array)</em>          </td>
+          <td>
+            <code>
+              <a href="#createCheckidRequest"><b>createCheckidRequest</b></a>(
+                                                                                    $id
+                                                    ,                                     $providers
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns an array of parameters for use in an OpenID check_id request.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>array(string=&gt;array)</em>          </td>
+          <td>
+            <code>
+              <a href="#discover"><b>discover</b></a>(
+                                                                                    $url
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Discovers the OpenID server information from the provided URL.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>array(string=&gt;array)</em>          </td>
+          <td>
+            <code>
+              <a href="#discoverHtml"><b>discoverHtml</b></a>(
+                                                                                    $url
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Discovers the OpenID server information from the provided URL by parsing  the HTML page source.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>array(string=&gt;array)</em>          </td>
+          <td>
+            <code>
+              <a href="#discoverXrds"><b>discoverXrds</b></a>(
+                                                                                    $url
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Discovers the OpenID server information from the provided URL using XRDS.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>array(string=&gt;array)</em>          </td>
+          <td>
+            <code>
+              <a href="#discoverYadis"><b>discoverYadis</b></a>(
+                                                                                    $url
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Discovers the OpenID server information from the provided URL using Yadis.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>array(string=&gt;mixed)</em>          </td>
+          <td>
+            <code>
+              <a href="#fetchData"><b>fetchData</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns the extra data fetched during the authentication process.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#generateNonce"><b>generateNonce</b></a>(
+                                                                  [                  $length
+                   = 6]                               )
+            </code>
+            <br><div style="margin-left: 20px">Generates a new nonce value with the specified length (default 6).</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>bool|string</em>          </td>
+          <td>
+            <code>
+              <a href="#getProvider"><b>getProvider</b></a>(
+                                                                                    $providers
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns the first provider in the $providers array if exists, otherwise  returns false.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#getSetupUrl"><b>getSetupUrl</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns the setup URL.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#redirectToOpenidProvider"><b>redirectToOpenidProvider</b></a>(
+                                                                                    $provider
+                                                    ,                                     $params
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Performs a redirection to $provider with the specified parameters $params  (checkid_setup OpenID request).</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#registerFetchData"><b>registerFetchData</b></a>(
+                                                                  [                  $data
+                   = array()]                               )
+            </code>
+            <br><div style="margin-left: 20px">Registers which extra data to fetch during the authentication process.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>int</em>          </td>
+          <td>
+            <code>
+              <a href="#run"><b>run</b></a>(
+                                                                                    $credentials
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Runs the filter and returns a status code when finished.</div>          </td>
+        </tr></table><h3>Inherited Methods</h3>
+  <table class="summary"><thead><tr><th colspan="2">
+            From <span class="classname"><a href="ezcAuthenticationFilter.html">ezcAuthenticationFilter</a></span>
+          </th>
+        </tr></thead><tbody><tr><td class="right">
+              <em>public</em>                                          <em><a href="ezcAuthenticationFilterOptions.html">ezcAuthenticationFilterOptions</a></em>            </td>
+            <td>
+              <code><b><a href="ezcAuthenticationFilter.html#methodgetOptions">ezcAuthenticationFilter::getOptions()</a></b></code>
+              <br><div style="margin-left: 20px">Returns the options of this class.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>              abstract                            <em>int</em>            </td>
+            <td>
+              <code><b><a href="ezcAuthenticationFilter.html#methodrun">ezcAuthenticationFilter::run()</a></b></code>
+              <br><div style="margin-left: 20px">Runs the filter and returns a status code when finished.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b><a href="ezcAuthenticationFilter.html#methodsetOptions">ezcAuthenticationFilter::setOptions()</a></b></code>
+              <br><div style="margin-left: 20px">Sets the options of this class to $options.</div>                          </td>
+          </tr></tbody></table><a name="sec-methods"></a>
+  <h3>Methods</h3>
+  <a name="method_detail"></a>
+                                    
+      <a name="method__construct" id="__construct"><!-- --></a>
+
+    <h4>__construct</h4>
+
+    <div class="method-signature">
+      ezcAuthenticationOpenidFilter
+      __construct(
+                                  [<a href="ezcAuthenticationOpenidOptions.html">ezcAuthenticationOpenidOptions</a>
+          $options
+           = null]              )
+    </div>
+
+    <p>Creates a new object of this class.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$options</code></td>
+              <td><em><a href="ezcAuthenticationOpenidOptions.html">ezcAuthenticationOpenidOptions</a></em></td>
+              <td>
+                                  Options for this class
+                              </td>
+            </tr></tbody></table><a name="methodassociate" id="associate"><!-- --></a>
+
+    <h4>associate</h4>
+
+    <div class="method-signature">
+      array(string=&gt;mixed)||null
+      associate(
+                                  string
+          $provider
+                            ,           
+          $params
+                            ,           [string
+          $method
+           = 'GET']              )
+    </div>
+
+    <p>Attempts to establish a shared secret with the OpenID provider and  returns it (for "smart" mode).</p><div><p>If the shared secret is still in its validity period, then it will be  returned instead of establishing a new one.</p><p>If the shared secret could not be established the null will be returned,  and the OpenID connection will be in "dumb" mode.</p><p>The format of the returned array is:    array( 'assoc_handle' =&gt; assoc_handle_value,           'mac_key' =&gt; mac_key_value         )</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$provider</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  The OpenID provider (discovered in HTML or Yadis)
+                              </td>
+            </tr><tr><td><code>$params</code></td>
+              <td><em>array(string=&gt;string)</em></td>
+              <td>
+                                  OpenID parameters for associate mode
+                              </td>
+            </tr><tr><td><code>$method</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  The method to connect to the provider (default GET)
+                              </td>
+            </tr></tbody></table><a name="methodcheckImmediate" id="checkImmediate"><!-- --></a>
+
+    <h4>checkImmediate</h4>
+
+    <div class="method-signature">
+      bool
+      checkImmediate(
+                                  string
+          $provider
+                            ,           
+          $params
+                            ,           [string
+          $method
+           = 'GET']              )
+    </div>
+
+    <p>Connects to $provider (checkid_immediate OpenID request) and returns an  URL (setup URL) which can be used by the application in a pop-up window.</p><div><p>The format of the check_authentication $params array is:  </p><ol><li><div class="src-line">&#8192;<span class="src-key">array</span><span class="src-sym">(</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'openid.return_to'&#8192;</span>=&gt;&#8192;<a href="http://www.php.net/urlencode">urlencode</a><span class="src-sym">(&#8192;</span><span class="src-id">URL&#8192;</span><span class="src-sym">)</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'openid.trust_root'&#8192;</span>=&gt;&#8192;<a href="http://www.php.net/urlencode">urlencode</a><span class="src-sym">(&#8192;</span><span class="src-id">URL&#8192;</span><span class="src-sym">)</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'openid.identity'&#8192;</span>=&gt;&#8192;<a href="http://www.php.net/urlencode">urlencode</a><span class="src-sym">(&#8192;</span><span class="src-id">URL&#8192;</span><span class="src-sym">)</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'openid.mode'&#8192;</span>=&gt;&#8192;<span class="src-str">'checkid_immediate'</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$provider</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  The OpenID provider (discovered in HTML or Yadis)
+                              </td>
+            </tr><tr><td><code>$params</code></td>
+              <td><em>array(string=&gt;string)</em></td>
+              <td>
+                                  OpenID parameters for checkid_immediate mode
+                              </td>
+            </tr><tr><td><code>$method</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  The method to connect to the provider (default GET)
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcAuthenticationOpenidException.html">ezcAuthenticationOpenidException</a></code></td>
+              <td>
+                                  if connection to the OpenID provider could not be opened
+                              </td>
+            </tr></tbody></table><a name="methodcheckSignature" id="checkSignature"><!-- --></a>
+
+    <h4>checkSignature</h4>
+
+    <div class="method-signature">
+      bool
+      checkSignature(
+                                  string
+          $provider
+                            ,           
+          $params
+                            ,           [string
+          $method
+           = 'GET']              )
+    </div>
+
+    <p>Opens a connection with the OpenID provider and checks if $params are  correct (check_authentication OpenID request).</p><div><p>The format of the check_authentication $params array is:  </p><ol><li><div class="src-line">&#8192;<span class="src-key">array</span><span class="src-sym">(</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'openid.assoc_handle'&#8192;</span>=&gt;&#8192;<a href="http://www.php.net/urlencode">urlencode</a><span class="src-sym">(&#8192;</span><span class="src-id">HANDLE&#8192;</span><span class="src-sym">)</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'openid.signed'&#8192;</span>=&gt;&#8192;<a href="http://www.php.net/urlencode">urlencode</a><span class="src-sym">(&#8192;</span><span class="src-id">SIGNED&#8192;</span><span class="src-sym">)</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'openid.sig'&#8192;</span>=&gt;&#8192;<a href="http://www.php.net/urlencode">urlencode</a><span class="src-sym">(&#8192;</span><span class="src-id">SIG&#8192;</span><span class="src-sym">)</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'openid.mode'&#8192;</span>=&gt;&#8192;<span class="src-str">'check_authentication'</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol>  where HANDLE, SIGNED and SIG are parameters returned from the provider in  the id_res step of OpenID authentication. In addition, the $params array  must contain the values present in SIG.</div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$provider</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  The OpenID provider (discovered in HTML or Yadis)
+                              </td>
+            </tr><tr><td><code>$params</code></td>
+              <td><em>array(string=&gt;string)</em></td>
+              <td>
+                                  OpenID parameters for check_authentication mode
+                              </td>
+            </tr><tr><td><code>$method</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  The method to connect to the provider (default GET)
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcAuthenticationOpenidException.html">ezcAuthenticationOpenidException</a></code></td>
+              <td>
+                                  if connection to the OpenID provider could not be opened
+                              </td>
+            </tr></tbody></table><a name="methodcheckSignatureSmart" id="checkSignatureSmart"><!-- --></a>
+
+    <h4>checkSignatureSmart</h4>
+
+    <div class="method-signature">
+      bool
+      checkSignatureSmart(
+                                  <a href="ezcAuthenticationOpenidAssociation.html">ezcAuthenticationOpenidAssociation</a>
+          $association
+                            ,           
+          $params
+                        )
+    </div>
+
+    <p>Checks if $params are correct by signing with $association-&gt;secret.</p><div><p>The format of the $params array is:  </p><ol><li><div class="src-line">&#8192;<span class="src-key">array</span><span class="src-sym">(</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'openid.assoc_handle'&#8192;</span>=&gt;&#8192;<span class="src-id">HANDLE</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'openid.signed'&#8192;</span>=&gt;&#8192;<span class="src-id">SIGNED</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'openid.sig'&#8192;</span>=&gt;&#8192;<span class="src-id">SIG</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'openid.mode'&#8192;</span>=&gt;&#8192;<span class="src-str">'id_res'</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol>  where HANDLE, SIGNED and SIG are parameters returned from the provider in  the id_res step of OpenID authentication. In addition, the $params array  must contain the values present in SIG.</div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$association</code></td>
+              <td><em><a href="ezcAuthenticationOpenidAssociation.html">ezcAuthenticationOpenidAssociation</a></em></td>
+              <td>
+                                  The OpenID association used for signing $params
+                              </td>
+            </tr><tr><td><code>$params</code></td>
+              <td><em>array(string=&gt;string)</em></td>
+              <td>
+                                  OpenID parameters for id_res mode
+                              </td>
+            </tr></tbody></table><a name="methodcreateAssociateRequest" id="createAssociateRequest"><!-- --></a>
+
+    <h4>createAssociateRequest</h4>
+
+    <div class="method-signature">
+      array(string=&gt;array)
+      createAssociateRequest(
+      )
+    </div>
+
+    <p>Returns an array of parameters for use in an OpenID associate request.</p>
+    
+        
+
+    
+    
+    
+        <a name="methodcreateCheckidRequest" id="createCheckidRequest"><!-- --></a>
+
+    <h4>createCheckidRequest</h4>
+
+    <div class="method-signature">
+      array(string=&gt;array)
+      createCheckidRequest(
+                                  string
+          $id
+                            ,           
+          $providers
+                        )
+    </div>
+
+    <p>Returns an array of parameters for use in an OpenID check_id request.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$id</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  The OpenID identifier from the user
+                              </td>
+            </tr><tr><td><code>$providers</code></td>
+              <td><em>array(string)</em></td>
+              <td>
+                                  OpenID providers retrieved during discovery
+                              </td>
+            </tr></tbody></table><a name="methoddiscover" id="discover"><!-- --></a>
+
+    <h4>discover</h4>
+
+    <div class="method-signature">
+      array(string=&gt;array)
+      discover(
+                                  string
+          $url
+                        )
+    </div>
+
+    <p>Discovers the OpenID server information from the provided URL.</p><div><p>First the XRDS discovery is tried, if the openidVersion option is  "2.0". If XRDS discovery fails, or if the openidVersion option is  not "2.0", Yadis discovery is tried. If it doesn't succeed, then the  HTML discovery is tried.</p><p>The format of the returned array is (example):  </p><ol><li><div class="src-line">&#8192;&#8192;&#8192;<span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-str">'openid.server'&#8192;</span>=&gt;&#8192;<span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-num">0&#8192;</span>=&gt;&#8192;<span class="src-str">'http://www.example-provider.com'&#8192;</span><span class="src-sym">)</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'openid.delegate'&#8192;</span>=&gt;&#8192;<span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-num">0&#8192;</span>=&gt;&#8192;<span class="src-str">'http://www.example-delegate.com'&#8192;</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$url</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  URL to connect to and discover the OpenID information
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcAuthenticationOpenidConnectionException.html">ezcAuthenticationOpenidConnectionException</a></code></td>
+              <td>
+                                  if connection to the URL could not be opened
+                              </td>
+            </tr></tbody></table><a name="methoddiscoverHtml" id="discoverHtml"><!-- --></a>
+
+    <h4>discoverHtml</h4>
+
+    <div class="method-signature">
+      array(string=&gt;array)
+      discoverHtml(
+                                  string
+          $url
+                        )
+    </div>
+
+    <p>Discovers the OpenID server information from the provided URL by parsing  the HTML page source.</p><div><p>The format of the returned array is (example):  </p><ol><li><div class="src-line">&#8192;&#8192;&#8192;<span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-str">'openid.server'&#8192;</span>=&gt;&#8192;<span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-num">0&#8192;</span>=&gt;&#8192;<span class="src-str">'http://www.example-provider.com'&#8192;</span><span class="src-sym">)</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'openid.delegate'&#8192;</span>=&gt;&#8192;<span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-num">0&#8192;</span>=&gt;&#8192;<span class="src-str">'http://www.example-delegate.com'&#8192;</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$url</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  URL to connect to and discover the OpenID information
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcAuthenticationOpenidConnectionException.html">ezcAuthenticationOpenidConnectionException</a></code></td>
+              <td>
+                                  if connection to the URL could not be opened
+                              </td>
+            </tr></tbody></table><a name="methoddiscoverXrds" id="discoverXrds"><!-- --></a>
+
+    <h4>discoverXrds</h4>
+
+    <div class="method-signature">
+      array(string=&gt;array)
+      discoverXrds(
+                                  string
+          $url
+                        )
+    </div>
+
+    <p>Discovers the OpenID server information from the provided URL using XRDS.</p><div><p>The format of the returned array is (example):  </p><ol><li><div class="src-line">&#8192;&#8192;&#8192;<span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-str">'openid.server'&#8192;</span>=&gt;&#8192;<span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-num">0&#8192;</span>=&gt;&#8192;<span class="src-str">'http://www.example-provider.com'&#8192;</span><span class="src-sym">)</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'openid.delegate'&#8192;</span>=&gt;&#8192;<span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-num">0&#8192;</span>=&gt;&#8192;<span class="src-str">'http://www.example-delegate.com'&#8192;</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$url</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  URL to connect to and discover the OpenID information
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcAuthenticationOpenidConnectionException.html">ezcAuthenticationOpenidConnectionException</a></code></td>
+              <td>
+                                  if connection to the URL could not be opened
+                              </td>
+            </tr></tbody></table><a name="methoddiscoverYadis" id="discoverYadis"><!-- --></a>
+
+    <h4>discoverYadis</h4>
+
+    <div class="method-signature">
+      array(string=&gt;array)
+      discoverYadis(
+                                  string
+          $url
+                        )
+    </div>
+
+    <p>Discovers the OpenID server information from the provided URL using Yadis.</p><div><p>The format of the returned array is (example):  </p><ol><li><div class="src-line">&#8192;&#8192;&#8192;<span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-str">'openid.server'&#8192;</span>=&gt;&#8192;<span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-num">0&#8192;</span>=&gt;&#8192;<span class="src-str">'http://www.example-provider.com'&#8192;</span><span class="src-sym">)</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'openid.delegate'&#8192;</span>=&gt;&#8192;<span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-num">0&#8192;</span>=&gt;&#8192;<span class="src-str">'http://www.example-delegate.com'&#8192;</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$url</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  URL to connect to and discover the OpenID information
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcAuthenticationOpenidConnectionException.html">ezcAuthenticationOpenidConnectionException</a></code></td>
+              <td>
+                                  if connection to the URL could not be opened
+                              </td>
+            </tr></tbody></table><a name="methodfetchData" id="fetchData"><!-- --></a>
+
+    <h4>fetchData</h4>
+
+    <div class="method-signature">
+      array(string=&gt;mixed)
+      fetchData(
+      )
+    </div>
+
+    <p>Returns the extra data fetched during the authentication process.</p><div><p>The return is something like:  </p><ol><li><div class="src-line">&#8192;<span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-str">'fullname'&#8192;</span>=&gt;&#8192;<span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-str">'John&#8192;Doe'&#8192;</span><span class="src-sym">)</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'gender'&#8192;</span>=&gt;&#8192;<span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-str">'M'&#8192;</span><span class="src-sym">)</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'country'&#8192;</span>=&gt;&#8192;<span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-str">'US'&#8192;</span><span class="src-sym">)</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'language'&#8192;</span>=&gt;&#8192;<span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-str">'FR'&#8192;</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol></div>
+    
+        
+
+    
+          <h5>Implementation of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcAuthenticationDataFetch.html#methodfetchData">ezcAuthenticationDataFetch::fetchData()</a></code></td>
+              <td>
+                                  Returns the extra data fetched during the authentication process.
+                              </td>
+            </tr></tbody></table><a name="methodgenerateNonce" id="generateNonce"><!-- --></a>
+
+    <h4>generateNonce</h4>
+
+    <div class="method-signature">
+      string
+      generateNonce(
+                                  [int
+          $length
+           = 6]              )
+    </div>
+
+    <p>Generates a new nonce value with the specified length (default 6).</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$length</code></td>
+              <td><em>int</em></td>
+              <td>
+                                  The length of the generated nonce, default 6
+                              </td>
+            </tr></tbody></table><a name="methodgetProvider" id="getProvider"><!-- --></a>
+
+    <h4>getProvider</h4>
+
+    <div class="method-signature">
+      bool|string
+      getProvider(
+                                  
+          $providers
+                        )
+    </div>
+
+    <p>Returns the first provider in the $providers array if exists, otherwise  returns false.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$providers</code></td>
+              <td><em>array(string=&gt;array)</em></td>
+              <td>
+                                  OpenID providers discovered during OpenID discovery
+                              </td>
+            </tr></tbody></table><a name="methodgetSetupUrl" id="getSetupUrl"><!-- --></a>
+
+    <h4>getSetupUrl</h4>
+
+    <div class="method-signature">
+      string
+      getSetupUrl(
+      )
+    </div>
+
+    <p>Returns the setup URL.</p>
+    
+        
+
+    
+    
+    
+        <a name="methodredirectToOpenidProvider" id="redirectToOpenidProvider"><!-- --></a>
+
+    <h4>redirectToOpenidProvider</h4>
+
+    <div class="method-signature">
+      void
+      redirectToOpenidProvider(
+                                  string
+          $provider
+                            ,           
+          $params
+                        )
+    </div>
+
+    <p>Performs a redirection to $provider with the specified parameters $params  (checkid_setup OpenID request).</p><div><p>The format of the checkid_setup $params array is:  </p><ol><li><div class="src-line">&#8192;<span class="src-key">array</span><span class="src-sym">(</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'openid.return_to'&#8192;</span>=&gt;&#8192;<a href="http://www.php.net/urlencode">urlencode</a><span class="src-sym">(&#8192;</span><span class="src-id">URL&#8192;</span><span class="src-sym">)</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'openid.trust_root'&#8192;</span>=&gt;&#8192;<a href="http://www.php.net/urlencode">urlencode</a><span class="src-sym">(&#8192;</span><span class="src-id">URL&#8192;</span><span class="src-sym">)</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'openid.identity'&#8192;</span>=&gt;&#8192;<a href="http://www.php.net/urlencode">urlencode</a><span class="src-sym">(&#8192;</span><span class="src-id">URL&#8192;</span><span class="src-sym">)</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'openid.mode'&#8192;</span>=&gt;&#8192;<span class="src-str">'checkid_setup'</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$provider</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  The OpenID provider (discovered in HTML or Yadis)
+                              </td>
+            </tr><tr><td><code>$params</code></td>
+              <td><em>array(string=&gt;string)</em></td>
+              <td>
+                                  OpenID parameters for checkid_setup
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcAuthenticationOpenidRedirectException.html">ezcAuthenticationOpenidRedirectException</a></code></td>
+              <td>
+                                  if redirection could not be performed
+                              </td>
+            </tr></tbody></table><a name="methodregisterFetchData" id="registerFetchData"><!-- --></a>
+
+    <h4>registerFetchData</h4>
+
+    <div class="method-signature">
+      void
+      registerFetchData(
+                                  [
+          $data
+           = array()]              )
+    </div>
+
+    <p>Registers which extra data to fetch during the authentication process.</p><div><p>The extra data which is possible to be fetched during the authentication  process is: </p><ul><li>nickname - the user's nickname (short name, alias)</li><li>email - the user's email address</li><li>fullname - the user's full name</li><li>dob - the user's date of birth as YYYY-MM-DD. Any component value whose
+    representation uses fewer than the specified number of digits should
+    be zero-padded (eg. 02 for February). If the user does not want to
+    reveal any particular component of this value, it should be zero
+    (eg. "1980-00-00" if the user is born in 1980 but does not want to
+    specify his month and day of birth)</li><li>gender - the user's gender, "M" for male, "F" for female</li><li>postcode - the user's postal code</li><li>country - the user's country as an ISO3166 string, (eg. "US")</li><li>language - the user's preferred language as an ISO639 string (eg. "FR")</li><li>timezone - the user's timezone, for example "Europe/Paris"</li></ul>  The input $data should be an array of attributes to request, for example:  <ol><li><div class="src-line">&#8192;<span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-str">'fullname'</span><span class="src-sym">,&#8192;</span><span class="src-str">'gender'</span><span class="src-sym">,&#8192;</span><span class="src-str">'country'</span><span class="src-sym">,&#8192;</span><span class="src-str">'language'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$data</code></td>
+              <td><em>array(string)</em></td>
+              <td>
+                                  A list of attributes to fetch during authentication
+                              </td>
+            </tr></tbody></table><h5>Implementation of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcAuthenticationDataFetch.html#methodregisterFetchData">ezcAuthenticationDataFetch::registerFetchData()</a></code></td>
+              <td>
+                                  Registers which extra data to fetch during the authentication process.
+                              </td>
+            </tr></tbody></table><a name="methodrun" id="run"><!-- --></a>
+
+    <h4>run</h4>
+
+    <div class="method-signature">
+      int
+      run(
+                                  <a href="ezcAuthenticationIdCredentials.html">ezcAuthenticationIdCredentials</a>
+          $credentials
+                        )
+    </div>
+
+    <p>Runs the filter and returns a status code when finished.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$credentials</code></td>
+              <td><em><a href="ezcAuthenticationIdCredentials.html">ezcAuthenticationIdCredentials</a></em></td>
+              <td>
+                                  Authentication credentials
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcAuthenticationOpenidModeNotSupportedException.html">ezcAuthenticationOpenidModeNotSupportedException</a></code></td>
+              <td>
+                                  if trying to authenticate with an unsupported OpenID mode
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcAuthenticationFilter.html#methodrun">ezcAuthenticationFilter::run()</a></code></td>
+            <td>
+                              Runs the filter and returns a status code when finished.
+                          </td>
+          </tr></tbody></table><div class="credit">
+      Documentation generated by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+    </div>
+  </div>
+  
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

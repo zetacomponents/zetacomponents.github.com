@@ -1,0 +1,149 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="" />
+	<meta name="author" content="jerome" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Sun, 10 Jul 2011 11:10:50 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="ezcCacheStackConfigurator.html" />
+	<meta name="DC.creator" content="jerome" />
+	<meta name="DC.date" content="Sun, 10 Jul 2011 11:10:50 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/Cache/phpdoc/ezcCacheStackConfigurator.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/Cache/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/trunk/Cache/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+
+</ul>
+
+		
+  <div class="phpdoc">
+    <h2>Apache Zeta Components Manual :: Docs For Class ezcCacheStackConfigurator</h2>
+
+              
+              <h3>Cache::ezcCacheStackConfigurator</h3>
+    
+<a name="sec-description"></a>
+<h3>Interface ezcCacheStackConfigurator</h3>
+
+<p>Interface to be implemented by stack configurator classes.</p><div><p>To allow the usage of <a href="ezcCacheStack.html">ezcCacheStack</a> with the <a href="ezcCacheManager.html">ezcCacheManager</a>, a class implementing this interface is necessary. The name  of the class must be stored in the <a href="ezcCacheStackOptions.html">ezcCacheStackOptions</a> defined for  the stack in the manager. As soon as the stack is requested by the user for  the first time, a new <a href="ezcCacheStack.html">ezcCacheStack</a> object will be created in the  manager. This object will be given to the ezcCacheStackConfigurator-&gt;configure() method of the class named in the  options.</p></div>
+<p>Source for this file: <a href="http://fisheye6.atlassian.com/browse/zetacomponents/trunk/Cache/src/interfaces/stack_configurator.php?r=HEAD">/Cache/src/interfaces/stack_configurator.php</a></p>
+       
+
+
+
+
+  <table><tr><td>
+            <strong>Version:</strong>&#8192;&#8192;
+          </td>
+          <td>//autogentag//</td>
+        </tr></table><a name="sec-method-summary"></a>
+  <h3>Method Summary</h3>
+  <table class="summary"><tr><td class="right">
+            <em>public</em>            static
+                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#configure"><b>configure</b></a>(
+                                                                                    $stack
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Configures the given stack.</div>          </td>
+        </tr></table><a name="sec-methods"></a>
+  <h3>Methods</h3>
+  <a name="method_detail"></a>
+      <a name="methodconfigure" id="configure"><!-- --></a>
+
+    <h4>configure</h4>
+
+    <div class="method-signature">
+      static void
+      configure(
+                                  <a href="ezcCacheStack.html">ezcCacheStack</a>
+          $stack
+                        )
+    </div>
+
+      <p>Configures the given stack.</p><div><p>This method configures the given $stack object. The object is usually  expected to be newly constructed after this method receives it. If given  in a class implemnting this interface is given in <a href="ezcCacheStackOptions.html">ezcCacheStackOptions</a>, this method will be called automatically from  ezcCacheStack-&gt;__construct().</p><p>This method is expected to use the ezcCacheStack-&gt;pushStorage()  method to configure storages in the stack.</p></div>      
+              <h5>Parameters:</h5>
+        <table class="detail"><thead><tr><th>Name</th>
+              <th>Type</th>
+              <th class="desc">Description</th>
+            </tr></thead><tbody><tr><td><code>$stack</code></td>
+                <td><em><a href="ezcCacheStack.html">ezcCacheStack</a></em></td>
+                <td>
+                                  </td>
+              </tr></tbody></table><div class="credit">
+      Documentation generated by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+    </div>
+  </div>
+  
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

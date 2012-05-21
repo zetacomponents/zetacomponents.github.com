@@ -1,0 +1,622 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="" />
+	<meta name="author" content="jerome" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Sun, 10 Jul 2011 11:11:01 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="ezcMailPart.html" />
+	<meta name="DC.creator" content="jerome" />
+	<meta name="DC.date" content="Sun, 10 Jul 2011 11:11:01 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailPart.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/Mail/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/trunk/Mail/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Mail/mail-listing-example.html" title="Mail-listing-example ">Mail-listing-example </a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Mail/display-example.html" title="Display-example ">Display-example </a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Mail/rfcs.html" title="Rfcs ">Rfcs </a>
+	</li>
+
+</ul>
+
+		
+  <div class="phpdoc">
+    <h2>Apache Zeta Components Manual :: Docs For Class ezcMailPart</h2>
+
+                  <h3>Mail::ezcMailPart</h3>
+    
+<a name="sec-description"></a>
+<h3>Class ezcMailPart</h3>
+
+<p>Abstract base class for all mail MIME parts.</p><div><p>This base class provides functionality to store headers and to generate  the mail part. Implementations of this class must handle the body of that  parts themselves. They must also implement <a href="ezcMailPart.html#methodgenerateBody">generateBody()</a> which is  called when the message part is generated.</p></div>
+<p>Source for this file: <a href="http://fisheye6.atlassian.com/browse/zetacomponents/trunk/Mail/src/interfaces/part.php?r=HEAD">/Mail/src/interfaces/part.php</a></p>
+       
+
+
+
+
+  <table><tr><td>
+            <strong>Version:</strong>&#8192;&#8192;
+          </td>
+          <td>//autogen//</td>
+        </tr></table><a name="sec-descendants"></a>
+  <h3>Descendants</h3>
+  <table class="detail"><thead><tr><th>Child Class</th>
+        <th>Description</th>
+      </tr></thead><tbody><tr><td><a href="ezcMailDeliveryStatus.html">ezcMailDeliveryStatus</a></td>          <td>
+                          Mail part used for sending delivery status message.
+                      </td>
+        </tr><tr><td><a href="ezcMailMultipart.html">ezcMailMultipart</a></td>          <td>
+                          Abstract base class for all multipart types.
+                      </td>
+        </tr><tr><td><a href="ezcMailText.html">ezcMailText</a></td>          <td>
+                          Mail part used for sending all forms of plain text.
+                      </td>
+        </tr><tr><td><a href="ezcMailRfc822Digest.html">ezcMailRfc822Digest</a></td>          <td>
+                          Mail part or mail digest parts.
+                      </td>
+        </tr><tr><td><a href="ezcMailFilePart.html">ezcMailFilePart</a></td>          <td>
+                          Mail part for all forms of binary data.
+                      </td>
+        </tr><tr><td><a href="ezcMail.html">ezcMail</a></td>          <td>
+                          The main mail class.
+                      </td>
+        </tr></tbody></table><a name="sec-prop-summary"></a>
+  <h3>Properties</h3>
+  <table class="summary"><tr><td class="right">
+          <a name="prop%24contentDisposition" id="$contentDisposition"></a>
+          <a name="prop-%24contentDisposition" id="$contentDisposition"></a>
+          <em><a href="ezcMailContentDispositionHeader.html">ezcMailContentDispositionHeader</a></em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24contentDisposition" title="details" class="var-name-summary">$contentDisposition</a>
+                      </code>
+          <br><div style="margin-left: 20px">Contains the information from the Content-Disposition field of            this mail.  This useful especially when you are investigating            retrieved mail to see if a part is an attachment or should be            displayed inline.  However, it can also be used to set the same            on outgoing mail. Note that the ezcMailFile part sets the            Content-Disposition field itself based on it's own properties            when sending mail.</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24headers" id="$headers"></a>
+          <a name="prop-%24headers" id="$headers"></a>
+          <em>ezcMailHeadersHolder</em>        </td>
+        <td class="right">
+          <em>read</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24headers" title="details" class="var-name-summary">$headers</a>
+                      </code>
+          <br><div style="margin-left: 20px">Contains the header holder object, taking care of the                 headers of this part. Can be retreived for reasons of                 extending this class and its derivals.</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24size" id="$size"></a>
+          <a name="prop-%24size" id="$size"></a>
+          <em>int</em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24size" title="details" class="var-name-summary">$size</a>
+                      </code>
+          <br><div style="margin-left: 20px">The size of the mail part in bytes. It is set when parsing a            mail ezcMailParser-&gt;parseMail().</div>        </td>
+      </tr></table><a name="sec-var-summary"></a>
+  <h3>Member Variables</h3>
+  <table class="summary"><tr><td class="right">
+            <em>protected</em>            <em>array(string=&gt;mixed)</em>          </td>
+          <td>
+            <code>
+              $properties
+               = <span class="var-default">array()</span>            </code>
+            <br><div style="margin-left: 20px">Holds the properties of this class.</div>                      </td>
+        </tr></table><a name="sec-method-summary"></a>
+  <h3>Method Summary</h3>
+  <table class="summary"><tr><td class="right">
+            <em>public</em>                        <em>ezcMailPart</em>          </td>
+          <td>
+            <code>
+              <a href="#__construct"><b>__construct</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Constructs a new mail part.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#appendExcludeHeaders"><b>appendExcludeHeaders</b></a>(
+                                                                                    $headers
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">The array $headers will be excluded when the headers are generated.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#generate"><b>generate</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns the complete mail part including both the header and the body  as a string.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>            abstract            <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#generateBody"><b>generateBody</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns the body of this part as a string.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#generateHeaders"><b>generateHeaders</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns the headers set for this part as a RFC 822 string.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>mixed</em>          </td>
+          <td>
+            <code>
+              <a href="#getHeader"><b>getHeader</b></a>(
+                                                                                    $name
+                                                    ,                   [                  $returnAllValues
+                   = false]                               )
+            </code>
+            <br><div style="margin-left: 20px">Returns the RAW value of the header $name.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#getHeaderCharset"><b>getHeaderCharset</b></a>(
+                                                                                    $name
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns the charset registered for the header $name.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#setHeader"><b>setHeader</b></a>(
+                                                                                    $name
+                                                    ,                                     $value
+                                                    ,                   [                  $charset
+                   = 'us-ascii']                               )
+            </code>
+            <br><div style="margin-left: 20px">Sets the header $name to the value $value and its charset to $charset.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#setHeaderCharset"><b>setHeaderCharset</b></a>(
+                                                                                    $name
+                                                    ,                   [                  $value
+                   = 'us-ascii']                               )
+            </code>
+            <br><div style="margin-left: 20px">Sets the charset of the header $name to $value.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#setHeaders"><b>setHeaders</b></a>(
+                                                                                    $headers
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Adds the headers $headers.</div>          </td>
+        </tr></table><a name="sec-methods"></a>
+  <h3>Methods</h3>
+  <a name="method_detail"></a>
+                    
+      <a name="method__construct" id="__construct"><!-- --></a>
+
+    <h4>__construct</h4>
+
+    <div class="method-signature">
+      ezcMailPart
+      __construct(
+      )
+    </div>
+
+    <p>Constructs a new mail part.</p>
+    
+        
+
+    
+    
+          <h5>Redefined in descendants as:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcMailDeliveryStatus.html#method__construct">ezcMailDeliveryStatus::__construct()</a></code></td>
+              <td>
+                Constructs a new DeliveryStatus part.&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcMailMultipart.html#method__construct">ezcMailMultipart::__construct()</a></code></td>
+              <td>
+                Constructs a new ezcMailMultipart with the parts $parts.&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcMailMultipartMixed.html#method__construct">ezcMailMultipartMixed::__construct()</a></code></td>
+              <td>
+                Constructs a new ezcMailMultipartMixed&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcMailMultipartAlternative.html#method__construct">ezcMailMultipartAlternative::__construct()</a></code></td>
+              <td>
+                Constructs a new ezcMailMultipartAlternative&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcMailMultipartReport.html#method__construct">ezcMailMultipartReport::__construct()</a></code></td>
+              <td>
+                Constructs a new ezcMailMultipartReport.&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcMailMultipartDigest.html#method__construct">ezcMailMultipartDigest::__construct()</a></code></td>
+              <td>
+                Constructs a new ezcMailMultipartDigest&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcMailMultipartRelated.html#method__construct">ezcMailMultipartRelated::__construct()</a></code></td>
+              <td>
+                Constructs a new ezcMailMultipartRelated.&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcMailText.html#method__construct">ezcMailText::__construct()</a></code></td>
+              <td>
+                Constructs a new TextPart with the given $text, $charset and $encoding.&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcMailRfc822Digest.html#method__construct">ezcMailRfc822Digest::__construct()</a></code></td>
+              <td>
+                Constructs a new ezcMailDigest with the mail $mail.&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcMailFilePart.html#method__construct">ezcMailFilePart::__construct()</a></code></td>
+              <td>
+                Constructs a new attachment with $fileName.&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcMailVirtualFile.html#method__construct">ezcMailVirtualFile::__construct()</a></code></td>
+              <td>
+                Constructs a new attachment with $fileName and $contents.&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcMailStreamFile.html#method__construct">ezcMailStreamFile::__construct()</a></code></td>
+              <td>
+                Constructs a new attachment with $fileName and $stream.&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcMailFile.html#method__construct">ezcMailFile::__construct()</a></code></td>
+              <td>
+                Constructs a new attachment with $fileName.&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcMail.html#method__construct">ezcMail::__construct()</a></code></td>
+              <td>
+                Constructs an empty ezcMail object.&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcMailComposer.html#method__construct">ezcMailComposer::__construct()</a></code></td>
+              <td>
+                Constructs an empty ezcMailComposer object.&#8192;
+              </td>
+            </tr></tbody></table><a name="methodappendExcludeHeaders" id="appendExcludeHeaders"><!-- --></a>
+
+    <h4>appendExcludeHeaders</h4>
+
+    <div class="method-signature">
+      void
+      appendExcludeHeaders(
+                                  
+          $headers
+                        )
+    </div>
+
+    <p>The array $headers will be excluded when the headers are generated.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$headers</code></td>
+              <td><em>array(string)</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodgenerate" id="generate"><!-- --></a>
+
+    <h4>generate</h4>
+
+    <div class="method-signature">
+      string
+      generate(
+      )
+    </div>
+
+    <p>Returns the complete mail part including both the header and the body  as a string.</p>
+    
+        
+
+    
+    
+          <h5>Redefined in descendants as:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcMailFilePart.html#methodgenerate">ezcMailFilePart::generate()</a></code></td>
+              <td>
+                Override of the generate() method from ezcMailPart. Used to set headers before  generating the part.&#8192;
+              </td>
+            </tr></tbody></table><a name="methodgenerateBody" id="generateBody"><!-- --></a>
+
+    <h4>generateBody</h4>
+
+    <div class="method-signature">
+      string
+      generateBody(
+      )
+    </div>
+
+    <p>Returns the body of this part as a string.</p><div><p>This method is called automatically by generate() and subclasses must  implement it.</p></div>
+    
+        
+
+    
+    
+          <h5>Redefined in descendants as:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcMailDeliveryStatus.html#methodgenerateBody">ezcMailDeliveryStatus::generateBody()</a></code></td>
+              <td>
+                Returns the generated text body of this part as a string.&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcMailMultipart.html#methodgenerateBody">ezcMailMultipart::generateBody()</a></code></td>
+              <td>
+                Returns the generated body for all multipart types.&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcMailText.html#methodgenerateBody">ezcMailText::generateBody()</a></code></td>
+              <td>
+                Returns the generated text body of this part as a string.&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcMailRfc822Digest.html#methodgenerateBody">ezcMailRfc822Digest::generateBody()</a></code></td>
+              <td>
+                Returns the body part of this mail consisting of the digested mail.&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcMailVirtualFile.html#methodgenerateBody">ezcMailVirtualFile::generateBody()</a></code></td>
+              <td>
+                Returns the contents of the file with the correct encoding.&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcMailStreamFile.html#methodgenerateBody">ezcMailStreamFile::generateBody()</a></code></td>
+              <td>
+                Returns the contents of the file with the correct encoding.&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcMailFile.html#methodgenerateBody">ezcMailFile::generateBody()</a></code></td>
+              <td>
+                Returns the contents of the file with the correct encoding.&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcMail.html#methodgenerateBody">ezcMail::generateBody()</a></code></td>
+              <td>
+                Returns the generated body part of this mail.&#8192;
+              </td>
+            </tr></tbody></table><a name="methodgenerateHeaders" id="generateHeaders"><!-- --></a>
+
+    <h4>generateHeaders</h4>
+
+    <div class="method-signature">
+      string
+      generateHeaders(
+      )
+    </div>
+
+    <p>Returns the headers set for this part as a RFC 822 string.</p><div><p>Each header is separated by a line break.  This method does not add the required two lines of space  to separate the headers from the body of the part.</p><p>It also encodes the headers (with the 'Q' encoding) if the charset  associated with the header is different than 'us-ascii' or if it  contains characters not allowed in mail headers.</p><p>This function is called automatically by generate() and  subclasses can override this method if they wish to set additional  headers when the mail is generated.</p></div>
+    
+        
+
+    
+    
+          <h5>Redefined in descendants as:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcMailDeliveryStatus.html#methodgenerateHeaders">ezcMailDeliveryStatus::generateHeaders()</a></code></td>
+              <td>
+                Returns the headers set for this part as a RFC822 compliant string.&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcMailText.html#methodgenerateHeaders">ezcMailText::generateHeaders()</a></code></td>
+              <td>
+                Returns the headers set for this part as a RFC822 compliant string.&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcMail.html#methodgenerateHeaders">ezcMail::generateHeaders()</a></code></td>
+              <td>
+                Returns the generated headers for the mail.&#8192;
+              </td>
+            </tr></tbody></table><a name="methodgetHeader" id="getHeader"><!-- --></a>
+
+    <h4>getHeader</h4>
+
+    <div class="method-signature">
+      mixed
+      getHeader(
+                                  string
+          $name
+                            ,           [bool
+          $returnAllValues
+           = false]              )
+    </div>
+
+    <p>Returns the RAW value of the header $name.</p><div><p>Returns an empty string if the header is not found.  Getting headers is case insensitive. Getting the header  'Message-Id' will match both 'Message-ID' and 'MESSAGE-ID'  as well as 'Message-Id'.</p><p>The raw value is MIME-encoded, so if you want to decode it,  use <a href="ezcMailTools.html#methodmimeDecode">ezcMailTools::mimeDecode()</a> or implement your own  MIME-decoding function.</p><p>If $returnAllValues is true, the function will return all  the values of the header $name from the mail in an array. If  it is false it will return only the first value as a string  if there are multiple values present in the mail.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$name</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$returnAllValues</code></td>
+              <td><em>bool</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodgetHeaderCharset" id="getHeaderCharset"><!-- --></a>
+
+    <h4>getHeaderCharset</h4>
+
+    <div class="method-signature">
+      string
+      getHeaderCharset(
+                                  string
+          $name
+                        )
+    </div>
+
+    <p>Returns the charset registered for the header $name.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$name</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodsetHeader" id="setHeader"><!-- --></a>
+
+    <h4>setHeader</h4>
+
+    <div class="method-signature">
+      void
+      setHeader(
+                                  string
+          $name
+                            ,           string
+          $value
+                            ,           [string
+          $charset
+           = 'us-ascii']              )
+    </div>
+
+    <p>Sets the header $name to the value $value and its charset to $charset.</p><div><p>If the header is already set it will override the old value.</p><p>Headers set should be folded at 76 or 998 characters according to  the folding rules described in RFC 2822.</p><p>If $charset is specified, it is associated with the header $name. It  defaults to 'us-ascii' if not specified. The text in $value is encoded  with $charset after calling generateHeaders().</p><p>Note: The header Content-Disposition will be overwritten by the  contents of the contentsDisposition property if set.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$name</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$value</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$charset</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodsetHeaderCharset" id="setHeaderCharset"><!-- --></a>
+
+    <h4>setHeaderCharset</h4>
+
+    <div class="method-signature">
+      void
+      setHeaderCharset(
+                                  string
+          $name
+                            ,           [string
+          $value
+           = 'us-ascii']              )
+    </div>
+
+    <p>Sets the charset of the header $name to $value.</p><div><p>If $value is not specified it defaults to 'us-ascii'.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$name</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$value</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodsetHeaders" id="setHeaders"><!-- --></a>
+
+    <h4>setHeaders</h4>
+
+    <div class="method-signature">
+      void
+      setHeaders(
+                                  
+          $headers
+                        )
+    </div>
+
+    <p>Adds the headers $headers.</p><div><p>The headers specified in the associative array $headers will overwrite  any existing header values.</p><p>The array $headers can have one of these 2 forms: </p><ul><li>array( header_name =&gt; header_value ) - by default the 'us-ascii' charset
+    will be associated with all headers</li><li>array( header_name =&gt; array( header_value, header_charset ) ) - if
+    header_charset is missing it will default to 'us-ascii'</li></ul>  Headers set should be folded at 76 or 998 characters according to  the folding rules described in RFC 2822.</div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$headers</code></td>
+              <td><em>array(string=&gt;mixed)</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><div class="credit">
+      Documentation generated by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+    </div>
+  </div>
+  
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

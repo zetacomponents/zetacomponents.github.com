@@ -1,0 +1,313 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="" />
+	<meta name="author" content="jerome" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Sun, 10 Jul 2011 11:11:01 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="ezcMailMboxTransport.html" />
+	<meta name="DC.creator" content="jerome" />
+	<meta name="DC.date" content="Sun, 10 Jul 2011 11:11:01 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailMboxTransport.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/Mail/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/trunk/Mail/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Mail/mail-listing-example.html" title="Mail-listing-example ">Mail-listing-example </a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Mail/display-example.html" title="Display-example ">Display-example </a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Mail/rfcs.html" title="Rfcs ">Rfcs </a>
+	</li>
+
+</ul>
+
+		
+  <div class="phpdoc">
+    <h2>Apache Zeta Components Manual :: Docs For Class ezcMailMboxTransport</h2>
+
+                  <h3>Mail::ezcMailMboxTransport</h3>
+    
+<a name="sec-description"></a>
+<h3>Class ezcMailMboxTransport</h3>
+
+<p>ezcMailMboxTransport implements mail retrieval from an mbox file.</p><div><p>The mbox set is constructed from a file pointer and iterates over all the  messages in an mbox file.</p></div>
+<p>Source for this file: <a href="http://fisheye6.atlassian.com/browse/zetacomponents/trunk/Mail/src/transports/mbox/mbox_transport.php?r=HEAD">/Mail/src/transports/mbox/mbox_transport.php</a></p>
+       
+
+
+
+
+  <table><tr><td>
+            <strong>Version:</strong>&#8192;&#8192;
+          </td>
+          <td>//autogen//</td>
+        </tr></table><a name="sec-var-summary"></a>
+  <h3>Member Variables</h3>
+  <table class="summary"><tr><td class="right">
+            <em>public</em>            <em>resource(filepointer)</em>          </td>
+          <td>
+            <code>
+              $fh
+                          </code>
+            <br><div style="margin-left: 20px">Holds the filepointer to the mbox</div>                      </td>
+        </tr></table><a name="sec-method-summary"></a>
+  <h3>Method Summary</h3>
+  <table class="summary"><tr><td class="right">
+            <em>public</em>                        <em>ezcMailMboxTransport</em>          </td>
+          <td>
+            <code>
+              <a href="#__construct"><b>__construct</b></a>(
+                                                                                    $fileName
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Constructs the ezcMailMboxTransport object</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em><a href="ezcMailMboxSet.html">ezcMailMboxSet</a></em>          </td>
+          <td>
+            <code>
+              <a href="#fetchAll"><b>fetchAll</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns an ezcMailMboxSet containing all the messages in the mbox.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em><a href="ezcMailMboxSet.html">ezcMailMboxSet</a></em>          </td>
+          <td>
+            <code>
+              <a href="#fetchByMessageNr"><b>fetchByMessageNr</b></a>(
+                                                                                    $number
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns an ezcMailMboxSet containing only the $number -th message in the mbox.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em><a href="ezcMailMboxSet.html">ezcMailMboxSet</a></em>          </td>
+          <td>
+            <code>
+              <a href="#fetchFromOffset"><b>fetchFromOffset</b></a>(
+                                                                                    $offset
+                                                    ,                   [                  $count
+                   = 0]                               )
+            </code>
+            <br><div style="margin-left: 20px">Returns an ezcMailMboxSet with $count messages starting from $offset.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>array(int=&gt;int)</em>          </td>
+          <td>
+            <code>
+              <a href="#listMessages"><b>listMessages</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">This function reads through the whole mbox and returns starting positions of the messages.</div>          </td>
+        </tr></table><a name="sec-methods"></a>
+  <h3>Methods</h3>
+  <a name="method_detail"></a>
+          
+      <a name="method__construct" id="__construct"><!-- --></a>
+
+    <h4>__construct</h4>
+
+    <div class="method-signature">
+      ezcMailMboxTransport
+      __construct(
+                                  string
+          $fileName
+                        )
+    </div>
+
+    <p>Constructs the ezcMailMboxTransport object</p><div><p>Opens the mbox $fileName.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$fileName</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseFilePermissionException.html">ezcBaseFilePermissionException</a></code></td>
+              <td>
+                                  if the mbox file could be opened for reading.
+                              </td>
+            </tr><tr><td><code><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseFileNotFoundException.html">ezcBaseFileNotFoundException</a></code></td>
+              <td>
+                                  if the mbox file could not be found.
+                              </td>
+            </tr></tbody></table><a name="methodfetchAll" id="fetchAll"><!-- --></a>
+
+    <h4>fetchAll</h4>
+
+    <div class="method-signature">
+      <a href="ezcMailMboxSet.html">ezcMailMboxSet</a>
+      fetchAll(
+      )
+    </div>
+
+    <p>Returns an ezcMailMboxSet containing all the messages in the mbox.</p>
+    
+        
+
+    
+    
+    
+        <a name="methodfetchByMessageNr" id="fetchByMessageNr"><!-- --></a>
+
+    <h4>fetchByMessageNr</h4>
+
+    <div class="method-signature">
+      <a href="ezcMailMboxSet.html">ezcMailMboxSet</a>
+      fetchByMessageNr(
+                                  int
+          $number
+                        )
+    </div>
+
+    <p>Returns an ezcMailMboxSet containing only the $number -th message in the mbox.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$number</code></td>
+              <td><em>int</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcMailNoSuchMessageException.html">ezcMailNoSuchMessageException</a></code></td>
+              <td>
+                                  if the message $number is out of range.
+                              </td>
+            </tr></tbody></table><a name="methodfetchFromOffset" id="fetchFromOffset"><!-- --></a>
+
+    <h4>fetchFromOffset</h4>
+
+    <div class="method-signature">
+      <a href="ezcMailMboxSet.html">ezcMailMboxSet</a>
+      fetchFromOffset(
+                                  int
+          $offset
+                            ,           [int
+          $count
+           = 0]              )
+    </div>
+
+    <p>Returns an ezcMailMboxSet with $count messages starting from $offset.</p><div><p>Fetches $count messages starting from the $offset and returns them as a  ezcMailMboxSet. If $count is not specified or if it is 0, it fetches  all messages starting from the $offset.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$offset</code></td>
+              <td><em>int</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$count</code></td>
+              <td><em>int</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcMailOffsetOutOfRangeException.html">ezcMailOffsetOutOfRangeException</a></code></td>
+              <td>
+                                  if $offset is outside of the existing range of messages.
+                              </td>
+            </tr><tr><td><code><a href="ezcMailInvalidLimitException.html">ezcMailInvalidLimitException</a></code></td>
+              <td>
+                                  if $count is negative.
+                              </td>
+            </tr></tbody></table><a name="methodlistMessages" id="listMessages"><!-- --></a>
+
+    <h4>listMessages</h4>
+
+    <div class="method-signature">
+      array(int=&gt;int)
+      listMessages(
+      )
+    </div>
+
+    <p>This function reads through the whole mbox and returns starting positions of the messages.</p>
+    
+        
+
+    
+    
+    
+  
+    <div class="credit">
+      Documentation generated by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+    </div>
+  </div>
+  
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

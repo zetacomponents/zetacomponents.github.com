@@ -1,0 +1,496 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="" />
+	<meta name="author" content="jerome" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Sun, 10 Jul 2011 11:11:10 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="ezcWebdavPropertyHandler.html" />
+	<meta name="DC.creator" content="jerome" />
+	<meta name="DC.date" content="Sun, 10 Jul 2011 11:11:10 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/Webdav/phpdoc/ezcWebdavPropertyHandler.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/Webdav/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/trunk/Webdav/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Webdav/clients.html" title="Clients ">Clients </a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Webdav/plugin_architecture.html" title="Plugin_architecture ">Plugin_architecture </a>
+	</li>
+
+</ul>
+
+		
+  <div class="phpdoc">
+    <h2>Apache Zeta Components Manual :: Docs For Class ezcWebdavPropertyHandler</h2>
+
+                  <h3>Webdav::ezcWebdavPropertyHandler</h3>
+    
+<a name="sec-description"></a>
+<h3>Class ezcWebdavPropertyHandler</h3>
+
+<p>Handles the parsing and serailization of live and dead properties.</p><div><p>An instance of this class is used by <a href="ezcWebdavTransport.html">ezcWebdavTransport</a> and <a href="ezcWebdavFileBackend.html">ezcWebdavFileBackend</a> to parse <a href="ezcWebdavLiveProperty.html">ezcWebdavLiveProperty</a> and <a href="ezcWebdavDeadProperty.html">ezcWebdavDeadProperty</a> instances from XML content and to re-serialized  instances of these classes back to XML.</p><p><a href="ezcWebdavTransport.html">ezcWebdavTransport</a> might be configured to use a different property  handler, to adjust the behavior of property handling to specific client  needs. <a href="ezcWebdavFileBackend.html">ezcWebdavFileBackend</a> always uses this default implementation.</p></div>
+<p>Source for this file: <a href="http://fisheye6.atlassian.com/browse/zetacomponents/trunk/Webdav/src/transports/property_handler.php?r=HEAD">/Webdav/src/transports/property_handler.php</a></p>
+       
+
+
+
+
+  <table><tr><td>
+            <strong>Version:</strong>&#8192;&#8192;
+          </td>
+          <td>//autogen//</td>
+        </tr></table><a name="sec-descendants"></a>
+  <h3>Descendants</h3>
+  <table class="detail"><thead><tr><th>Child Class</th>
+        <th>Description</th>
+      </tr></thead><tbody><tr><td><a href="ezcWebdavNautilusPropertyHandler.html">ezcWebdavNautilusPropertyHandler</a></td>          <td>
+                          Property handler adjusted for the GNOME Nautilus client.
+                      </td>
+        </tr></tbody></table><a name="sec-const-summary"></a>
+  <h3>Constants</h3>
+  <table class="summary"><tr><td class="right">
+          <a name="const-GETCONTENTTYPE_REGEX" id=""></a>
+          <code>
+            <a href="#const-GETCONTENTTYPE_REGEX" title="details" class="const-name-summary">GETCONTENTTYPE_REGEX</a>
+             =  '(^(?P&lt;mime&gt;\w+/\w+)\s*(?:;\s*charset\s*=\s*(?P&lt;charset&gt;.+)\s*)?$)i'
+          </code>
+        </td>
+        <td>
+          Regedx to parse the &lt;getcontenttype /&gt; XML elemens content.          <p>Example: 'text/html; charset=UTF-8'</p>        </td>
+      </tr></table><a name="sec-var-summary"></a>
+  <h3>Member Variables</h3>
+  <table class="summary"><tr><td class="right">
+            <em>protected</em>            <em><a href="ezcWebdavXmlTool.html">ezcWebdavXmlTool</a></em>          </td>
+          <td>
+            <code>
+              $xmlTool
+                          </code>
+            <br><div style="margin-left: 20px">XML tool.</div>                      </td>
+        </tr></table><a name="sec-method-summary"></a>
+  <h3>Method Summary</h3>
+  <table class="summary"><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#__construct"><b>__construct</b></a>(
+                                                                  [                  $xml
+                   = null]                               )
+            </code>
+            <br><div style="margin-left: 20px">Creates a new property handler.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em><a href="ezcWebdavDeadProperty.html">ezcWebdavDeadProperty</a></em>          </td>
+          <td>
+            <code>
+              <a href="#extractDeadProperty"><b>extractDeadProperty</b></a>(
+                                                                                    $domElement
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Extract a dead property from a DOMElement.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em><a href="ezcWebdavSourcePropertyLink.html">ezcWebdavSourcePropertyLink</a></em>          </td>
+          <td>
+            <code>
+              <a href="#extractLinkContent"><b>extractLinkContent</b></a>(
+                                                                                    $domElement
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Extracts the &lt;link /&gt; XML elements.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em><a href="ezcWebdavLiveProperty.html">ezcWebdavLiveProperty</a>|null</em>          </td>
+          <td>
+            <code>
+              <a href="#extractLiveProperty"><b>extractLiveProperty</b></a>(
+                                                                                    $domElement
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Extracts a live property from a DOMElement.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em><a href="ezcWebdavBasicPropertyStorage.html">ezcWebdavBasicPropertyStorage</a></em>          </td>
+          <td>
+            <code>
+              <a href="#extractProperties"><b>extractProperties</b></a>(
+                                                                                    $domNodes
+                                                    ,                                     $storage
+                                                    ,                   [                  $flag
+                   = null]                               )
+            </code>
+            <br><div style="margin-left: 20px">Returns extracted properties in an ezcWebdavPropertyStorage.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em><a href="ezcWebdavXmlTool.html">ezcWebdavXmlTool</a></em>          </td>
+          <td>
+            <code>
+              <a href="#getXmlTool"><b>getXmlTool</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns the XML tool to work with.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>DOMElement</em>          </td>
+          <td>
+            <code>
+              <a href="#serializeDeadProperty"><b>serializeDeadProperty</b></a>(
+                                                                                    $property
+                                                    ,                                     $parentElement
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns the XML representation of a dead property.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>array(DOMElement)</em>          </td>
+          <td>
+            <code>
+              <a href="#serializeLinkContent"><b>serializeLinkContent</b></a>(
+                                                                  [                  $links
+                   = null]                                  ,                                     $dom
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Serializes an array of ezcWebdavSourcePropertyLink elements to XML.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>DOMElement|null</em>          </td>
+          <td>
+            <code>
+              <a href="#serializeLiveProperty"><b>serializeLiveProperty</b></a>(
+                                                                                    $property
+                                                    ,                                     $parentElement
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns the XML representation of a live property.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#serializeProperties"><b>serializeProperties</b></a>(
+                                                                                    $storage
+                                                    ,                                     $parentElement
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Serializes an object of new ezcWebdavPropertyStorage to XML.</div>          </td>
+        </tr></table><a name="sec-methods"></a>
+  <h3>Methods</h3>
+  <a name="method_detail"></a>
+                    
+      <a name="method__construct" id="__construct"><!-- --></a>
+
+    <h4>__construct</h4>
+
+    <div class="method-signature">
+      void
+      __construct(
+                                  [<a href="ezcWebdavXmlTool.html">ezcWebdavXmlTool</a>
+          $xml
+           = null]              )
+    </div>
+
+    <p>Creates a new property handler.</p><div><p>An instance of this class is capable of handling live and dead WebDAV  properties. It can extract properties from requests and generate  response information for properties. If $xml is not specified, the  instance in <a href="ezcWebdavServer.html">ezcWebdavServer</a> will be used, which propably  underlies client specific adjustments.</p><p>The <a href="ezcWebdavXmlTool.html">ezcWebdavXmlTool</a> instance of <a href="ezcWebdavServer.html">ezcWebdavServer</a> can be  configured using a <a href="ezcWebdavServerConfiguration.html">ezcWebdavServerConfiguration</a> in the <a href="ezcWebdavServerConfigurationManager.html">ezcWebdavServerConfigurationManager</a> of the <a href="ezcWebdavServer.html">ezcWebdavServer</a>  singleton instance. The XML instance is created as soon as the server is  configured for a specific client.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$xml</code></td>
+              <td><em><a href="ezcWebdavXmlTool.html">ezcWebdavXmlTool</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodextractDeadProperty" id="extractDeadProperty"><!-- --></a>
+
+    <h4>extractDeadProperty</h4>
+
+    <div class="method-signature">
+      <a href="ezcWebdavDeadProperty.html">ezcWebdavDeadProperty</a>
+      extractDeadProperty(
+                                  
+          $domElement
+                        )
+    </div>
+
+    <p>Extract a dead property from a DOMElement.</p><div><p>This method is responsible for parsing a <a href="ezcWebdavDeadProperty.html">ezcWebdavDeadProperty</a>  (unknown) property from a $domElement.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$domElement</code></td>
+              <td><em>DOMElement</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodextractLinkContent" id="extractLinkContent"><!-- --></a>
+
+    <h4>extractLinkContent</h4>
+
+    <div class="method-signature">
+      <a href="ezcWebdavSourcePropertyLink.html">ezcWebdavSourcePropertyLink</a>
+      extractLinkContent(
+                                  
+          $domElement
+                        )
+    </div>
+
+    <p>Extracts the &lt;link /&gt; XML elements.</p><div><p>This method extracts the &lt;link /&gt; XML elements from the &lt;source /&gt;  element and returns the corresponding <a href="ezcWebdavSourcePropertyLink.html">ezcWebdavSourcePropertyLink</a> object to be used as the content of <a href="ezcWebdavSourceProperty.html">ezcWebdavSourceProperty</a>.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$domElement</code></td>
+              <td><em>DOMElement</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodextractLiveProperty" id="extractLiveProperty"><!-- --></a>
+
+    <h4>extractLiveProperty</h4>
+
+    <div class="method-signature">
+      <a href="ezcWebdavLiveProperty.html">ezcWebdavLiveProperty</a>|null
+      extractLiveProperty(
+                                  
+          $domElement
+                        )
+    </div>
+
+    <p>Extracts a live property from a DOMElement.</p><div><p>This method is responsible for parsing WebDAV live properties. The  DOMElement $domElement must be an XML element in the DAV: namepsace. If  the received property is not defined in RFC 2518, null is returned.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$domElement</code></td>
+              <td><em>DOMElement</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodextractProperties" id="extractProperties"><!-- --></a>
+
+    <h4>extractProperties</h4>
+
+    <div class="method-signature">
+      <a href="ezcWebdavBasicPropertyStorage.html">ezcWebdavBasicPropertyStorage</a>
+      extractProperties(
+                                  
+          $domNodes
+                            ,           <a href="ezcWebdavBasicPropertyStorage.html">ezcWebdavBasicPropertyStorage</a>
+          $storage
+                            ,           [int
+          $flag
+           = null]              )
+    </div>
+
+    <p>Returns extracted properties in an ezcWebdavPropertyStorage.</p><div><p>This method receives a DOMNodeList $domNodes which must contain a set  of DOMElement objects, while each of those represents a WebDAV property.</p><p>The list may contain live properties as well as dead ones. Live  properties (<a href="ezcWebdavLiveProperty.html">ezcWebdavLiveProperty</a>) as defined in RFC 2518 are  currently recognized, except for locking related properties. All other  properties in the DAV: namespace are added as dead properties (<a href="ezcWebdavDeadProperty.html">ezcWebdavDeadProperty</a>). Dead properties are parsed generally in any  namespace.</p><p>The extracted properties are stored in the given <a href="ezcWebdavPropertyStorage.html">ezcWebdavPropertyStorage</a> $storage. If a $flag value is provided, this  one is submitted as the second parameter to ezcWebdavFlaggedPropertyStorage-&gt;attach().</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$domNodes</code></td>
+              <td><em>DOMNodeList</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$storage</code></td>
+              <td><em><a href="ezcWebdavBasicPropertyStorage.html">ezcWebdavBasicPropertyStorage</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$flag</code></td>
+              <td><em>int</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodgetXmlTool" id="getXmlTool"><!-- --></a>
+
+    <h4>getXmlTool</h4>
+
+    <div class="method-signature">
+      <a href="ezcWebdavXmlTool.html">ezcWebdavXmlTool</a>
+      getXmlTool(
+      )
+    </div>
+
+    <p>Returns the XML tool to work with.</p><div><p>This method either returns the internally (<a href="ezcWebdavPropertyHandler.html#var%24xmlTool">$xmlTool</a>) instance of  <a href="ezcWebdavXmlTool.html">ezcWebdavXmlTool</a> or, if this one is not available, the instance  stored in the singleton of <a href="ezcWebdavServer.html">ezcWebdavServer</a>. The latter instance  might be an extended one, which is adjusted to the special needs of a  certain client.</p></div>
+    
+        
+
+    
+    
+    
+        <a name="methodserializeDeadProperty" id="serializeDeadProperty"><!-- --></a>
+
+    <h4>serializeDeadProperty</h4>
+
+    <div class="method-signature">
+      DOMElement
+      serializeDeadProperty(
+                                  <a href="ezcWebdavDeadProperty.html">ezcWebdavDeadProperty</a>
+          $property
+                            ,           
+          $parentElement
+                        )
+    </div>
+
+    <p>Returns the XML representation of a dead property.</p><div><p>Returns a DOMElement, representing the content of the given $property in  XML. The newly created element is also appended as a child to the given  $parentElement.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$property</code></td>
+              <td><em><a href="ezcWebdavDeadProperty.html">ezcWebdavDeadProperty</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$parentElement</code></td>
+              <td><em>DOMElement</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodserializeLinkContent" id="serializeLinkContent"><!-- --></a>
+
+    <h4>serializeLinkContent</h4>
+
+    <div class="method-signature">
+      array(DOMElement)
+      serializeLinkContent(
+                                  [
+          $links
+           = null]                  ,           
+          $dom
+                        )
+    </div>
+
+    <p>Serializes an array of ezcWebdavSourcePropertyLink elements to XML.</p><div><p>This method takes an array of <a href="ezcWebdavSourcePropertyLink.html">ezcWebdavSourcePropertyLink</a>  instances, which are serialized to DOMElement objects (using the given  $dom) to be added to a <a href="ezcWebdavSourceProperty.html">ezcWebdavSourceProperty</a> XML  representation. The DOMElement instances are returned in an array.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$links</code></td>
+              <td><em>array(ezcWebdavSourcePropertyLink)</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$dom</code></td>
+              <td><em>DOMDocument</em></td>
+              <td>
+                                  To create the returned DOMElements.
+                              </td>
+            </tr></tbody></table><a name="methodserializeLiveProperty" id="serializeLiveProperty"><!-- --></a>
+
+    <h4>serializeLiveProperty</h4>
+
+    <div class="method-signature">
+      DOMElement|null
+      serializeLiveProperty(
+                                  <a href="ezcWebdavLiveProperty.html">ezcWebdavLiveProperty</a>
+          $property
+                            ,           
+          $parentElement
+                        )
+    </div>
+
+    <p>Returns the XML representation of a live property.</p><div><p>Returns a DOMElement, representing the content of the given $property.  The newly created element is also appended as a child to the given  $parentElement.</p><p>In case the given property is not recodnized, null is returned to  indicate that a plugin hook must be announced to see if a plugin can  serialize the property.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$property</code></td>
+              <td><em><a href="ezcWebdavLiveProperty.html">ezcWebdavLiveProperty</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$parentElement</code></td>
+              <td><em>DOMElement</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefined in descendants as:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcWebdavNautilusPropertyHandler.html#methodserializeLiveProperty">ezcWebdavNautilusPropertyHandler::serializeLiveProperty()</a></code></td>
+              <td>
+                Returns the XML representation of a live property.&#8192;
+              </td>
+            </tr></tbody></table><a name="methodserializeProperties" id="serializeProperties"><!-- --></a>
+
+    <h4>serializeProperties</h4>
+
+    <div class="method-signature">
+      void
+      serializeProperties(
+                                  <a href="ezcWebdavPropertyStorage.html">ezcWebdavPropertyStorage</a>
+          $storage
+                            ,           
+          $parentElement
+                        )
+    </div>
+
+    <p>Serializes an object of new ezcWebdavPropertyStorage to XML.</p><div><p>Attaches all properties of the $storage to the $parentElement XML  element in their XML representation.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$storage</code></td>
+              <td><em><a href="ezcWebdavPropertyStorage.html">ezcWebdavPropertyStorage</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$parentElement</code></td>
+              <td><em>DOMElement</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><div class="credit">
+      Documentation generated by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+    </div>
+  </div>
+  
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

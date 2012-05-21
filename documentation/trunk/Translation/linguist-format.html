@@ -1,0 +1,116 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="PHP, apache, components, framework, quality" />
+	<meta name="author" content="dotxp" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Sat, 06 Nov 2010 12:08:09 +0100" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="Linguist-format " />
+	<meta name="DC.creator" content="dotxp" />
+	<meta name="DC.date" content="Sat, 06 Nov 2010 12:08:09 +0100" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/Translation/linguist-format.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/Translation/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Translation/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/trunk/Translation/linguist-format.html" title="Linguist-format ">Linguist-format </a>
+	</li>
+
+</ul>
+
+		<h2>Translation File Format: Qt Linguist</h2><div class="toc"><h3>Table of Contents</h3><ul><li><p><a href="#introduction">Introduction</a></p></li><li><p><a href="#file-format">File Format</a></p><ul><li><p><a href="#root">Root</a></p></li><li><p><a href="#contexts">Contexts</a></p></li><li><p><a href="#messages">Messages</a></p><ul><li><p><a href="#unfinished">Unfinished</a></p></li><li><p><a href="#obsolete">Obsolete</a></p></li><li><p><a href="#parameters">Parameters</a></p></li></ul></li></ul></li><li><p><a href="#example">Example</a></p></li></ul></div><a name="introduction"></a><a name="id3"></a><h3>Introduction</h3><p>The <a href='/zetacomponents/documentation/trunk/Translation/phpdoc/ezcTranslationTsBackend.html'>ezcTranslationTsBackend</a> reads its data from Qt's Linguist files - an XML based format for storing original text and translated text. This document describes how those files are formatted.</p><a name="file-format"></a><a name="id4"></a><h3>File Format</h3><a name="root"></a><a name="id5"></a><h4>Root</h4><p>The format is an XML file containing different contexts, which contain translatable strings. The XML doctype is TS. Each file starts with the following header:</p><code class="block">&lt;!DOCTYPE TS&gt;</code><p>The root element of the file is also TS:</p><code class="block">&lt;TS&gt;
+    ... contexts come here ...
+&lt;/TS&gt;</code><p>The XML header is not present, and thus there is no character set definition either. However, it is <em>required</em> to use UTF-8 for all texts (source and translations) in this file.</p><a name="contexts"></a><a name="id6"></a><h4>Contexts</h4><p>Each context consists of two or more child elements. The first element should always be the "name" element. After this follow one or more "message" elements:</p><code class="block">&lt;context&gt;
+    &lt;name&gt;design/admin/class/classlist&lt;/name&gt;
+    ... messages come here ...
+&lt;/context&gt;</code><p>The context's name indicates where in an (web-) application a specific translatable string is used. This helps translators translate all the strings properly.</p><a name="messages"></a><a name="id7"></a><h4>Messages</h4><p>Each message contains one translatable string and its translation. The translatable string is stored in the "source" element, and the translation in the "translation" element. The translation has an optional attribute "type" that can either contain "obsolete" or "unfinished" as value. A simple example of a message is here:</p><code class="block">&lt;message&gt;
+    &lt;source&gt;Approval&lt;/source&gt;
+    &lt;translation&gt;Goedkeuring&lt;/translation&gt;
+&lt;/message&gt;</code><p>This message defines that the translation for "Approval" is "Goedkeuring".</p><a name="unfinished"></a><a name="id8"></a><h5>Unfinished</h5><p>The "unfinished" value for the "type" attribute of the "translation" element is a specifier that tells the <a href="http://www.trolltech.com/products/qt/features/internationalization">Qt Linguist</a> tool that this specific translatable string has not been (correctly/fully) translated yet. Unfinished entries are created by scripts that pull out translatable strings from applications and templates. The future eZ Components's TemplateTranslationTiein package will contain scripts like this as well. An example on how an unfinished translation might look like is below:</p><code class="block">&lt;message&gt;
+    &lt;source&gt;Create a copy of the &amp;lt;%class_name&amp;gt; class.&lt;/source&gt;
+    &lt;translation type="unfinished"&gt;&lt;/translation&gt;
+&lt;/message&gt;</code><a name="obsolete"></a><a name="id9"></a><h5>Obsolete</h5><p>Obsolete translations are translations of strings that were previously contained in your application and that contained a translation in the translation file. When the script was run to compare the TS file with the strings in the application it finds out the strings are no longer used. When they are no longer used the script sets the "type" attribute of the "translation" element to "obsolete":</p><code class="block">&lt;message&gt;
+    &lt;source&gt;Groups&lt;/source&gt;
+    &lt;translation type="obsolete"&gt;Groepen&lt;/translation&gt;
+&lt;/message&gt;</code><a name="parameters"></a><a name="id10"></a><h5>Parameters</h5><p>Translatable strings can contain parameters that are <a href="http://ez.no/doc/components/view/latest/(file)/Translation/ezcTranslation.html#getTranslation">filled in</a> with user supplied data. The Translation component supports both positional parameters as well as named parameters. A positional parameter has the form "%" &lt;digit&gt; and a named parameter the form "%" &lt;string&gt;. Parameters to translated strings are filled in by the application, and in some cases the order in the translated strings differ from the order as they appear in the host language (often English) like in the following example:</p><code class="block">&lt;message&gt;
+    &lt;source&gt;Search for &amp;lt;%1&amp;gt; returned %2 matches&lt;/source&gt;
+    &lt;translation&gt;Er zijn %2 items gevonden bij het zoeken naar &amp;lt;%1&amp;gt;&lt;/translation&gt;
+&lt;/message&gt;</code><p>Another example shows how named parameters are contained in the TS file:</p><code class="block">&lt;message&gt;
+    &lt;source&gt;Translations for &amp;lt;%object_name&amp;gt; [%translation_count]&lt;/source&gt;
+    &lt;translation&gt;Vertalingen voor &amp;lt;%object_name&amp;gt; [%translation_count]&lt;/translation&gt;
+&lt;/message&gt;</code><a name="example"></a><a name="id11"></a><h3>Example</h3><p>A full example of an TS file can be found <a href="https://svn.apache.org/repos/asf/incubator/zetacomponents/trunk/Translation/tests/files/translations/nl-nl.xml">here</a>.</p><!--Local Variables:
+mode: rst
+fill-column: 79
+End:
+vim: et syn=rst tw=79-->
+
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

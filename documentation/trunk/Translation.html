@@ -1,0 +1,310 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="PHP, apache, components, framework, quality" />
+	<meta name="author" content="jerome" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Sun, 10 Jul 2011 11:10:41 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="Translation" />
+	<meta name="DC.creator" content="jerome" />
+	<meta name="DC.date" content="Sun, 10 Jul 2011 11:10:41 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/Translation/tutorial.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/Translation/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Translation/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Translation/linguist-format.html" title="Linguist-format ">Linguist-format </a>
+	</li>
+
+</ul>
+
+		<h2>eZ Components - Translation</h2><div class="toc"><h3>Table of Contents</h3><ul><li><p><a href="#introduction">Introduction</a></p></li><li><p><a href="#dependencies">Dependencies</a></p></li><li><p><a href="#class-overview">Class overview</a></p></li><li><p><a href="#basic-usage">Basic usage</a></p></li><li><p><a href="#parameterized-strings">Parameterized strings</a></p></li><li><p><a href="#filters">Filters</a></p></li><li><p><a href="#iteration">Iteration</a></p></li><li><p><a href="#caching">Caching</a></p></li><li><p><a href="#manipulating-translation-files">Manipulating translation files</a></p></li><li><p><a href="#more-information">More information</a></p></li></ul></div><a name="introduction"></a><a name="id1"></a><h3>Introduction</h3><p>Many web applications require the use of translated GUI elements. There are several traditional ways of providing this functionality, but none of them are particularly easy to use or maintain. The Translation component provides functionality for retrieving translated data through multiple (extendable) backends and for filtering translatable data. It also allows translated strings with parameters; as a result, it is possible to use different word orders in different languages while still utilizing the parameters correctly.</p><a name="dependencies"></a><a name="id2"></a><h3>Dependencies</h3><p>This component has an optional dependency on the Cache component by means of the TranslationCacheTiein component. When the latter is installed, the Translation system can make use of a cache for the storage and retrieval of data.</p><p>The Template component also has an optional dependency on this component, by means of the TemplateTranslationTiein component. This component adds a template function that uses the Translation component to fetch translated data.</p><a name="class-overview"></a><a name="id3"></a><h3>Class overview</h3><dl><dt>ezcTranslationManager</dt><dd>This is the main class of this component. It is responsible for calling the configured backends to read translation data and return a translation context in the form of an <a href='/zetacomponents/documentation/trunk/Translation/phpdoc/ezcTranslation.html'>ezcTranslation</a> object.</dd><dt>ezcTranslationCacheBackend, <a href='/zetacomponents/documentation/trunk/Translation/phpdoc/ezcTranslationTsBackend.html'>ezcTranslationTsBackend</a></dt><dd>These classes implement backends that read data from a specific source. <a href='/zetacomponents/documentation/trunk/Translation/phpdoc/ezcTranslationTsBackend.html'>ezcTranslationTsBackend</a> reads its data from <a href="http://qt.nokia.com/products/qt/features/internationalization">Qt's Linguist files</a> - an XML-based format for storing original text and translated text. The <a href='/zetacomponents/documentation/trunk/Translation/phpdoc/ezcTranslationCacheBackend.html'>ezcTranslationCacheBackend</a> handler reads translation data through the Cache mechanism.</dd><dt>ezcTranslation</dt><dd>Objects of this class are returned by the <a href='/zetacomponents/documentation/trunk/Translation/phpdoc/ezcTranslationManager.html#getContext'>ezcTranslationManager::getContext</a>() method. <a href='/zetacomponents/documentation/trunk/Translation/phpdoc/ezcTranslationManager.html'>ezcTranslationManager</a> uses the backend's getContext() method to retrieve data.</dd><dt>ezcTranslationComplementEmptyFilter</dt><dd>This class implements a filter that substitutes a missing ("unfinished") translated string with its untranslated source. This filter makes sure that all translatable strings return some text, even if a particular string has not been translated yet.</dd><dt>ezcTranslationBorkFilter, <a href='/zetacomponents/documentation/trunk/Translation/phpdoc/ezcTranslationLeetFilter.html'>ezcTranslationLeetFilter</a></dt><dd>These two classes serve as examples on how to implement filters. Aside from serving as examples, they have very little function.</dd></dl><a name="basic-usage"></a><a name="id4"></a><h3>Basic usage</h3><p>In the simplest case, your application only needs to access translated versions of the strings that it uses. In most cases, the strings used in an application will be in English, but of course that is not always the case. In the first version of this component, we only support <a href="http://qt.nokia.com/products/qt/features/internationalization">Qt's Linguist files</a> (TS files) which group translatable strings together in contexts. The TS file format is handled by the <a href='/zetacomponents/documentation/trunk/Translation/phpdoc/ezcTranslationTsBackend.html'>ezcTranslationTsBackend</a> class. This backend requires one setting (the location to find the translation) and has one option (the format for the filename for each locale).</p><p>In the first example, we assume that all translations are stored in the "translations/" directory, and that the filename consists of "translation-" followed by the locale name with the suffix ".xml". The locale name itself is a freeform field, but we recommend to use the <a href="http://www.loc.gov/standards/iso639-2/php/code_list.php">ISO639-1</a> language code, followed by a _ (underscore), followed by the <a href="http://www.iso.org/iso/en/prods-services/iso3166ma/02iso-3166-code-lists/list-en1.html">ISO3166</a> country code. For example, use nb_NO.xml for Bokmål/Norway or nl_BE.xml for Dutch/Belgium.</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #0000FF">require_once&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #000000">$backend&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Translation/phpdoc/ezcTranslationTsBackend.html'>ezcTranslationTsBackend</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">dirname</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">__FILE__&nbsp;</span><span style="color: #0000FF">).&nbsp;</span><span style="color: #335533">'/translations'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$backend</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">setOptions</span><span style="color: #0000FF">(&nbsp;array(&nbsp;</span><span style="color: #335533">'format'&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #335533">'translation-[LOCALE].xml'&nbsp;</span><span style="color: #0000FF">)&nbsp;);</span></li>
+<li></li>
+<li><span style="color: #000000">$manager&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Translation/phpdoc/ezcTranslationManager.html'>ezcTranslationManager</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$backend&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$headersContext&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$manager</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">getContext</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'nb_NO'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'tutorial/headers'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$descriptionContext&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$manager</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">getContext</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'nb_NO'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'tutorial/descriptions'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #0000FF">echo&nbsp;</span><span style="color: #000000">$headersContext</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">getTranslation</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'header1'&nbsp;</span><span style="color: #0000FF">),&nbsp;</span><span style="color: #335533">"\n"</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">echo&nbsp;</span><span style="color: #000000">$descriptionContext</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">getTranslation</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'desc1'&nbsp;</span><span style="color: #0000FF">),&nbsp;</span><span style="color: #335533">"\n"</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">echo&nbsp;</span><span style="color: #000000">$descriptionContext</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">getTranslation</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'desc2'&nbsp;</span><span style="color: #0000FF">),&nbsp;</span><span style="color: #335533">"\n"</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><p>In the above example we create a backend object in lines 4 and 5. We tell the backend where to find the translations and the format of the translation filename. The string "[LOCALE]" will automatically be replaced with the locale name when the translation file is opened. With the configured backend, we then construct a manager in line 7. In lines 8 and 9 we instruct the manager to return the contexts "tutorial/headers" and "tutorial/descriptions" for the "nb_NO" locale. When the manager retrieves the content, it first checks its internal cache to determine whether the <a href='/zetacomponents/documentation/trunk/Translation/phpdoc/ezcTranslation.html'>ezcTranslation</a> object for that context was already retrieved. If the object for the context is available in the cache, it will simply return the <a href='/zetacomponents/documentation/trunk/Translation/phpdoc/ezcTranslation.html'>ezcTranslation</a> object. If the context is not in the cache, it will defer the retrieving to the backend, store the results in its cache and return the context.</p><a name="parameterized-strings"></a><a name="id5"></a><h3>Parameterized strings</h3><p>In many cases, there are parameters to your translated strings, for example to fill in the name of an article. In this case, a solution would be to separate the translatable string into two parts, then concatenate them together with the parameter in the correct place. However, it is also possible that the order of parameters changes when you translate a string. For example the English string "Search for 'appelmoes' returned 3 matches" can be translated in Dutch as: "Er zijn 3 items gevonden bij het zoeken naar 'appelmoes'". The simple concatenation mechanism would no longer work. Luckily, the Translation component supports parameterized strings in two different ways: with numerical replacement identifiers (such as %1 and %2) and with associative identifiers (such as %search_string and %matches). The following example illustrates how this is done.</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #0000FF">require_once&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #000000">$backend&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Translation/phpdoc/ezcTranslationTsBackend.html'>ezcTranslationTsBackend</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">dirname</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">__FILE__&nbsp;</span><span style="color: #0000FF">).&nbsp;</span><span style="color: #335533">'/translations'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$backend</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">setOptions</span><span style="color: #0000FF">(&nbsp;array(&nbsp;</span><span style="color: #335533">'format'&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #335533">'translation-[LOCALE].xml'&nbsp;</span><span style="color: #0000FF">)&nbsp;);</span></li>
+<li></li>
+<li><span style="color: #000000">$manager&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Translation/phpdoc/ezcTranslationManager.html'>ezcTranslationManager</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$backend&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$dutch&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$manager</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">getContext</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'nl_NL'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'search'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$norsk&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$manager</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">getContext</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'nb_NO'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'search'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #000000">$params&nbsp;</span><span style="color: #0000FF">=&nbsp;array(&nbsp;</span><span style="color: #335533">'search_string'&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #335533">'appelmoes'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'matches'&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #000000">4&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #0000FF">echo&nbsp;</span><span style="color: #000000">$dutch</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">getTranslation</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">"Search&nbsp;for&nbsp;'%search_string'&nbsp;returned&nbsp;%matches&nbsp;matches."</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">$params&nbsp;</span><span style="color: #0000FF">),&nbsp;</span><span style="color: #335533">"\n"</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #000000">$params&nbsp;</span><span style="color: #0000FF">=&nbsp;array(&nbsp;</span><span style="color: #335533">'fruit'&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #335533">'epplet'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #0000FF">echo&nbsp;</span><span style="color: #000000">$norsk</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">getTranslation</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">"The&nbsp;%fruit&nbsp;is&nbsp;round."</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">$params&nbsp;</span><span style="color: #0000FF">),&nbsp;</span><span style="color: #335533">"\n"</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><p>The first lines are the same as in the previous example. In this case, however, we retrieve an <a href='/zetacomponents/documentation/trunk/Translation/phpdoc/ezcTranslation.html'>ezcTranslation</a> object for the same context for two different locales (in line 8 and 9). In lines 11 and 12, we request the translation for "Search for '%search_string' returned %matches matches.". This sentence has two parameters (search_string and matches) for which the values are provided in an array. The array is passed as the second parameter to the getTranslation() method.</p><p>The translation for the English "The apple is round" in Norwegian is "Applet er rund". With the name of the fruit being the parameter, you can see that in Norwegian the parameter value needs to have its first letter uppercased, since it begins a sentence. The translation system supports this by specifying the first letter of the parameter name in the translated string as a capital letter. In TS format, this would be as follows:</p><code class="block">&lt;source&gt;The %fruit is round.&lt;/source&gt;
+&lt;translation&gt;%Fruit er rund.&lt;/translation&gt;</code><p>When the first letter of a parameter name in the translated string is a capital, the translation system will also make the first letter of the parameter value uppercase. The output of the whole script is therefore:</p><code class="block">Er zijn 4 items gevonden bij het zoeken naar 'appelmoes'.
+Epplet er rund.</code><a name="filters"></a><a name="id6"></a><h3>Filters</h3><p>In some cases, not all of the translation files are up to date. For example, the original translation file might be updated with new strings, but the translator has not had the time to translate the strings yet. For your application to show at least the original strings (often in English) the Translation component uses filters. Filters are applied after the backend retrieves the data, but before it is placed in the internal cache of the manager.</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #0000FF">require_once&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #000000">$backend&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Translation/phpdoc/ezcTranslationTsBackend.html'>ezcTranslationTsBackend</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">dirname</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">__FILE__&nbsp;</span><span style="color: #0000FF">).&nbsp;</span><span style="color: #335533">'/translations'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$backend</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">setOptions</span><span style="color: #0000FF">(&nbsp;array(&nbsp;</span><span style="color: #335533">'format'&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #335533">'translation-[LOCALE].xml'&nbsp;</span><span style="color: #0000FF">)&nbsp;);</span></li>
+<li></li>
+<li><span style="color: #000000">$manager&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Translation/phpdoc/ezcTranslationManager.html'>ezcTranslationManager</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$backend&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$manager</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">addFilter</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Translation/phpdoc/ezcTranslationComplementEmptyFilter.html#getInstance'>ezcTranslationComplementEmptyFilter::getInstance</a></span><span style="color: #0000FF">()&nbsp;);</span></li>
+<li><span style="color: #000000">$headersContext&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$manager</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">getContext</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'nl_NL'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'tutorial/headers'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #0000FF">echo&nbsp;</span><span style="color: #000000">$headersContext</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">getTranslation</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'header1'&nbsp;</span><span style="color: #0000FF">),&nbsp;</span><span style="color: #335533">"\n"</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><p>In this example, we add a filter to the manager in line 8. In line 9, we then request translation for a string that is marked as "unfinished". The <a href='/zetacomponents/documentation/trunk/Translation/phpdoc/ezcTranslationComplementEmptyFilter.html'>ezcTranslationComplementEmptyFilter</a> filter fills in the original string for every translation that is still marked as "unfinished".</p><p>There are a few extra (but less useful) filters in the Translation component. The next example shows the "Leet" and "Bork" filters in action. The Bork filter mangles non-finished or non-translated text so that it is obvious which text is translatable but not yet translated. The "Leet" filter renders your text using <a href="http://en.wikipedia.org/wiki/Leet">Leetspeak</a>. Both filters are demonstrated in the following example:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #0000FF">require_once&nbsp;</span><span style="color: #335533">'tutorial_example_03.php'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #000000">$manager&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Translation/phpdoc/ezcTranslationManager.html'>ezcTranslationManager</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$backend&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$manager</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">addFilter</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Translation/phpdoc/ezcTranslationBorkFilter.html#getInstance'>ezcTranslationBorkFilter::getInstance</a></span><span style="color: #0000FF">()&nbsp;);</span></li>
+<li><span style="color: #000000">$search&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$manager</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">getContext</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'nl_NL'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'search'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$params&nbsp;</span><span style="color: #0000FF">=&nbsp;array(&nbsp;</span><span style="color: #335533">'search_string'&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #335533">'appelmoes'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'matches'&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #000000">4&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #0000FF">echo&nbsp;</span><span style="color: #000000">$search</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">getTranslation</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">"Search&nbsp;for&nbsp;'%search_string'&nbsp;returned&nbsp;%matches&nbsp;matches."</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">$params&nbsp;</span><span style="color: #0000FF">),&nbsp;</span><span style="color: #335533">"\n"</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #000000">$manager&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Translation/phpdoc/ezcTranslationManager.html'>ezcTranslationManager</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$backend&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$manager</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">addFilter</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Translation/phpdoc/ezcTranslationLeetFilter.html#getInstance'>ezcTranslationLeetFilter::getInstance</a></span><span style="color: #0000FF">()&nbsp;);</span></li>
+<li><span style="color: #000000">$search&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$manager</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">getContext</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'nl_NL'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'search'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$params&nbsp;</span><span style="color: #0000FF">=&nbsp;array(&nbsp;</span><span style="color: #335533">'search_string'&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #335533">'appelmoes'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'matches'&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #000000">4&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #0000FF">echo&nbsp;</span><span style="color: #000000">$search</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">getTranslation</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">"Search&nbsp;for&nbsp;'%search_string'&nbsp;returned&nbsp;%matches&nbsp;matches."</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">$params&nbsp;</span><span style="color: #0000FF">),&nbsp;</span><span style="color: #335533">"\n"</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><p>Lines 4 to 8 show the usage of <a href='/zetacomponents/documentation/trunk/Translation/phpdoc/ezcTranslationBorkFilter.html'>ezcTranslationBorkFilter</a> and lines 10 to 14 show the usage of <a href='/zetacomponents/documentation/trunk/Translation/phpdoc/ezcTranslationLeetFilter.html'>ezcTranslationLeetFilter</a>. The output of this script is:</p><code class="block">header1
+[Seerch for 'appelmoes' retoorned 4 metches.]
+3r zijn 4 i73ms g3v0nd3n bij h37 z03k3n n44r 'appelmoes'.</code><p>The first line is "header1" because this script includes the previous one. For the Bork filter you can see that it uses the original string and not the translated version. The Leet filter however uses the translated string exclusively. In case you want to implement your own filters, you need to create a class that implements the <a href='/zetacomponents/documentation/trunk/Translation/phpdoc/ezcTranslationFilter.html'>ezcTranslationFilter</a> interface. Have a look at the implementation for the <a href='/zetacomponents/documentation/trunk/Translation/phpdoc/ezcTranslationBorkFilter.html'>ezcTranslationBorkFilter</a> filter, which shows how to implement such a class.</p><a name="iteration"></a><a name="id7"></a><h3>Iteration</h3><p>In some situations it might be useful to iterate over all the contexts in a specific translation file. The backends that implement the <a href='/zetacomponents/documentation/trunk/Translation/phpdoc/ezcTranslationContextRead.html'>ezcTranslationContextRead</a> interface provide this functionality in the form of an iterator. The <a href='/zetacomponents/documentation/trunk/Translation/phpdoc/ezcTranslationTsBackend.html'>ezcTranslationTsBackend</a> is such a class. Using this interface is extremely easy, as you will see in the next example.</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #0000FF">require_once&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #000000">$backend&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Translation/phpdoc/ezcTranslationTsBackend.html'>ezcTranslationTsBackend</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">dirname</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">__FILE__&nbsp;</span><span style="color: #0000FF">).&nbsp;</span><span style="color: #335533">'/translations'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$backend</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">setOptions</span><span style="color: #0000FF">(&nbsp;array(&nbsp;</span><span style="color: #335533">'format'&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #335533">'translation-[LOCALE].xml'&nbsp;</span><span style="color: #0000FF">)&nbsp;);</span></li>
+<li></li>
+<li><span style="color: #000000">$backend</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">initReader</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'nb_NO'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #0000FF">foreach&nbsp;(&nbsp;</span><span style="color: #000000">$backend&nbsp;</span><span style="color: #0000FF">as&nbsp;</span><span style="color: #000000">$contextName&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #000000">$contextData&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #000000">$contextName</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">"\n"</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;foreach&nbsp;(&nbsp;</span><span style="color: #000000">$contextData&nbsp;</span><span style="color: #0000FF">as&nbsp;</span><span style="color: #000000">$context&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #335533">"\toriginal&nbsp;string:&nbsp;&nbsp;&nbsp;</span><span style="color: #0000FF">{</span><span style="color: #000000">$context</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">original</span><span style="color: #0000FF">}</span><span style="color: #335533">\n"</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #335533">"\ttranslated&nbsp;string:&nbsp;</span><span style="color: #0000FF">{</span><span style="color: #000000">$context</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">translation</span><span style="color: #0000FF">}</span><span style="color: #335533">\n\n"</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;}</span></li>
+<li><span style="color: #0000FF">}</span></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><p>In line 7, we initialize the reader with the locale "nb_NO". After this is done, we can simply use foreach() to loop over all the contexts in the translation definition (in lines 9 to 17).</p><a name="caching"></a><a name="id8"></a><h3>Caching</h3><p>Reading from an XML file for every translation context is not very fast - especially when the translation file has a lot of strings. Thus, the translation system benefits from a caching solution. Caching is implemented in the <a href="introduction_Cache.html">Cache</a> component and the links between this component and the caching component are implemented in <a href="TranslationCacheTiein/ezcTranslationCacheBackend.html">ezcTranslationCacheBackend</a> from the <a href="introduction_TranslationCacheTiein.html">TranslationCacheTiein</a> component.</p><p>Using the cache backend is similar to using the Ts backend, as is shown in the next example:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #0000FF">require_once&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #000000">$cacheObj&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Translation/phpdoc/ezcCacheStorageFileArray.html'>ezcCacheStorageFileArray</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">dirname</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">__FILE__&nbsp;</span><span style="color: #0000FF">).&nbsp;</span><span style="color: #335533">'/translations-cache'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$backend&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Translation/phpdoc/ezcTranslationCacheBackend.html'>ezcTranslationCacheBackend</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$cacheObj&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #000000">$manager&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Translation/phpdoc/ezcTranslationManager.html'>ezcTranslationManager</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$backend&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$headersContext&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$manager</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">getContext</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'nb_NO'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'tutorial/headers'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$descriptionContext&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$manager</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">getContext</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'nb_NO'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'tutorial/descriptions'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #0000FF">echo&nbsp;</span><span style="color: #000000">$headersContext</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">getTranslation</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'header1'&nbsp;</span><span style="color: #0000FF">),&nbsp;</span><span style="color: #335533">"\n"</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">echo&nbsp;</span><span style="color: #000000">$descriptionContext</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">getTranslation</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'desc1'&nbsp;</span><span style="color: #0000FF">),&nbsp;</span><span style="color: #335533">"\n"</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">echo&nbsp;</span><span style="color: #000000">$descriptionContext</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">getTranslation</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'desc2'&nbsp;</span><span style="color: #0000FF">),&nbsp;</span><span style="color: #335533">"\n"</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><p>Instead of setting up the Ts backend, we have to instantiate <a href='/zetacomponents/documentation/trunk/Translation/phpdoc/ezcCacheStorageFileArray.html'>ezcCacheStorageFileArray</a> (line 4), which we then pass as the sole parameter to the constructor of <a href="TranslationCacheTiein/ezcTranslationCacheBackend.html">ezcTranslationCacheBackend</a> (line 5). Lines 7 to 13 are exactly the same as in the first example.</p><p>When you try to run this script an <a href='/zetacomponents/documentation/trunk/Translation/phpdoc/ezcTranslationContextNotAvailableException.html'>ezcTranslationContextNotAvailableException</a> exception is thrown because we did not put any contents in the cache yet. <a href="TranslationCacheTiein/ezcTranslationCacheBackend.html">ezcTranslationCacheBackend</a> implements the <a href='/zetacomponents/documentation/trunk/Translation/phpdoc/ezcTranslationContextWrite.html'>ezcTranslationContextWrite</a> interface. Using that, combined with a class that implements the <a href='/zetacomponents/documentation/trunk/Translation/phpdoc/ezcTranslationContextRead.html'>ezcTranslationContextRead</a> interface (such as <a href='/zetacomponents/documentation/trunk/Translation/phpdoc/ezcTranslationTsBackend.html'>ezcTranslationTsBackend</a>), you can fill the cache in a memory efficient way. The next example demonstrates how this is done.</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #0000FF">require_once&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #000000">$reader&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Translation/phpdoc/ezcTranslationTsBackend.html'>ezcTranslationTsBackend</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">dirname</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">__FILE__&nbsp;</span><span style="color: #0000FF">).&nbsp;</span><span style="color: #335533">'/translations'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$reader</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">setOptions</span><span style="color: #0000FF">(&nbsp;array(&nbsp;</span><span style="color: #335533">'format'&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #335533">'translation-[LOCALE].xml'&nbsp;</span><span style="color: #0000FF">)&nbsp;);</span></li>
+<li><span style="color: #000000">$reader</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">initReader</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'nb_NO'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #000000">$cacheObj&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Translation/phpdoc/ezcCacheStorageFileArray.html'>ezcCacheStorageFileArray</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">dirname</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">__FILE__&nbsp;</span><span style="color: #0000FF">).&nbsp;</span><span style="color: #335533">'/translations-cache'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$writer&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Translation/phpdoc/ezcTranslationCacheBackend.html'>ezcTranslationCacheBackend</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$cacheObj&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$writer</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">initWriter</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'nb_NO'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #0000FF">foreach&nbsp;(&nbsp;</span><span style="color: #000000">$reader&nbsp;</span><span style="color: #0000FF">as&nbsp;</span><span style="color: #000000">$contextName&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #000000">$contextData&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$writer</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">storeContext</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$contextName</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">$contextData&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #0000FF">}</span></li>
+<li></li>
+<li><span style="color: #000000">$reader</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">deInitReader</span><span style="color: #0000FF">();</span></li>
+<li><span style="color: #000000">$writer</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">deInitWriter</span><span style="color: #0000FF">();</span></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><p>In lines 4 to 6 we set up the reader interface, like we did in the previous example. Then we continue in lines 8 to 10 to initialize the writer. You should keep the locale for both the reader and writer the same. In line 12, we use a foreach() loop to iterate over all the contexts through the reader interface. We use the <a href='/zetacomponents/documentation/trunk/Translation/phpdoc/ezcTranslationContextWrite.html#storeContext'>ezcTranslationContextWrite::storeContext</a>() method in line 14 to store the retrieved context object to the cache. After we iterate over all the contexts and store them, we initialize the reader and writer in lines 17-18. After you run this script, the script from the previous example would also work (as the cache now has all the contexts).</p><a name="manipulating-translation-files"></a><a name="id9"></a><h3>Manipulating translation files</h3><p>It is possible to use the Translation component to modify translation files in the Linguist format as well. The TS backend implements the <a href='/zetacomponents/documentation/trunk/Translation/phpdoc/ezcTranslationContextWrite.html'>ezcTranslationContextWrite</a> interface as well. Modifications happen on context level, which means it is not possible right now to remove whole contexts from the translation files. Updating and adding strings to a context, as well as adding a whole new context is supported. To show how to do this, we take the following TS file as starting point:</p><code class="block">&lt;!DOCTYPE TS&gt;&lt;TS&gt;
+&lt;context&gt;
+    &lt;name&gt;existing&lt;/name&gt;
+    &lt;message&gt;
+        &lt;source&gt;update with new translation&lt;/source&gt;
+        &lt;translation type="unfinished"&gt;&lt;/translation&gt;
+    &lt;/message&gt;
+    &lt;message&gt;
+        &lt;source&gt;update translation&lt;/source&gt;
+        &lt;translation&gt;vertaling aanpassen&lt;/translation&gt;
+    &lt;/message&gt;
+    &lt;message&gt;
+        &lt;source&gt;to obsolete&lt;/source&gt;
+        &lt;translation&gt;markeren als ongebruikt&lt;/translation&gt;
+    &lt;/message&gt;
+&lt;/context&gt;
+&lt;/TS&gt;
+</code><p>And use the following script to update it:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #0000FF">require_once&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;copy&nbsp;so&nbsp;that&nbsp;we&nbsp;can&nbsp;play&nbsp;with&nbsp;the&nbsp;file</span></li>
+<li><span style="color: #000000">copy</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">dirname</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">__FILE__&nbsp;</span><span style="color: #0000FF">).&nbsp;</span><span style="color: #335533">'/translations/mod-example-nl_NL.xml'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'/tmp/mod-example-nl_NL.xml'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;setup&nbsp;the&nbsp;backend&nbsp;to&nbsp;read&nbsp;from&nbsp;/tmp</span></li>
+<li><span style="color: #000000">$backend&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Translation/phpdoc/ezcTranslationTsBackend.html'>ezcTranslationTsBackend</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'/tmp'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$backend</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">setOptions</span><span style="color: #0000FF">(&nbsp;array(&nbsp;</span><span style="color: #335533">'format'&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #335533">'mod-example-[LOCALE].xml'&nbsp;</span><span style="color: #0000FF">)&nbsp;);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;get&nbsp;the&nbsp;original&nbsp;context</span></li>
+<li><span style="color: #000000">$context&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$backend</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">getContext</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'nl_NL'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'existing'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;the&nbsp;modifications</span></li>
+<li><span style="color: #000000">$context</span><span style="color: #0000FF">[]&nbsp;=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Translation/phpdoc/ezcTranslationData.html'>ezcTranslationData</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'added'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'toegevoeg'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'comment'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Translation/phpdoc/ezcTranslationData.html#constTRANSLATED'>ezcTranslationData::TRANSLATED</a>&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$context</span><span style="color: #0000FF">[]&nbsp;=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Translation/phpdoc/ezcTranslationData.html'>ezcTranslationData</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'update&nbsp;with&nbsp;new&nbsp;translation'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'ingevuld'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">NULL</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Translation/phpdoc/ezcTranslationData.html#constTRANSLATED'>ezcTranslationData::TRANSLATED</a>&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$context</span><span style="color: #0000FF">[]&nbsp;=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Translation/phpdoc/ezcTranslationData.html'>ezcTranslationData</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'update&nbsp;translation'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'bijgewerkt'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">NULL</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Translation/phpdoc/ezcTranslationData.html#constTRANSLATED'>ezcTranslationData::TRANSLATED</a>&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$context</span><span style="color: #0000FF">[]&nbsp;=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Translation/phpdoc/ezcTranslationData.html'>ezcTranslationData</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'to&nbsp;obsolete'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'markeren&nbsp;als&nbsp;ongebruikt'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">NULL</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Translation/phpdoc/ezcTranslationData.html#constOBSOLETE'>ezcTranslationData::OBSOLETE</a>&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;init&nbsp;the&nbsp;writer,&nbsp;and&nbsp;write&nbsp;the&nbsp;modified&nbsp;context</span></li>
+<li><span style="color: #000000">$backend</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">initWriter</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'nl_NL'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$backend</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">storeContext</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'existing'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">$context&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;create&nbsp;a&nbsp;new&nbsp;context&nbsp;and&nbsp;write&nbsp;it</span></li>
+<li><span style="color: #000000">$context&nbsp;</span><span style="color: #0000FF">=&nbsp;array();</span></li>
+<li><span style="color: #000000">$context</span><span style="color: #0000FF">[]&nbsp;=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Translation/phpdoc/ezcTranslationData.html'>ezcTranslationData</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'new&nbsp;string'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'nieuwe&nbsp;string'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">NULL</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Translation/phpdoc/ezcTranslationData.html#constTRANSLATED'>ezcTranslationData::TRANSLATED</a>&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$backend</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">storeContext</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'new'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">$context&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;deinit&nbsp;the&nbsp;writer</span></li>
+<li><span style="color: #000000">$backend</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">deinitWriter</span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;read&nbsp;the&nbsp;context&nbsp;again,&nbsp;while&nbsp;keeping&nbsp;obsolete&nbsp;strings</span></li>
+<li><span style="color: #000000">$backend</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">setOptions</span><span style="color: #0000FF">(&nbsp;array(&nbsp;</span><span style="color: #335533">'keepObsolete'&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #000000">true&nbsp;</span><span style="color: #0000FF">)&nbsp;);</span></li>
+<li><span style="color: #000000">$context&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$backend</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">getContext</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'nl_NL'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'existing'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;re-format&nbsp;the&nbsp;written&nbsp;file&nbsp;and&nbsp;show&nbsp;it</span></li>
+<li><span style="color: #0000FF">`</span><span style="color: #335533">cat&nbsp;/tmp/mod-example-nl_NL.xml&nbsp;|&nbsp;xmllint&nbsp;--format&nbsp;-&nbsp;&gt;&nbsp;/tmp/formatted.xml</span><span style="color: #0000FF">`;</span></li>
+<li><span style="color: #0000FF">echo&nbsp;</span><span style="color: #000000">file_get_contents</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'/tmp/formatted.xml'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><p>After running, the output is:</p><code class="block">&lt;?xml version="1.0"?&gt;
+&lt;!DOCTYPE TS&gt;
+&lt;TS&gt;
+  &lt;context&gt;
+    &lt;name&gt;existing&lt;/name&gt;
+    &lt;message&gt;
+      &lt;source&gt;added&lt;/source&gt;
+      &lt;translation&gt;toegevoeg&lt;/translation&gt;
+      &lt;comment&gt;comment&lt;/comment&gt;
+    &lt;/message&gt;
+    &lt;message&gt;
+      &lt;source&gt;update with new translation&lt;/source&gt;
+      &lt;translation&gt;ingevuld&lt;/translation&gt;
+    &lt;/message&gt;
+    &lt;message&gt;
+      &lt;source&gt;update translation&lt;/source&gt;
+      &lt;translation&gt;bijgewerkt&lt;/translation&gt;
+    &lt;/message&gt;
+    &lt;message&gt;
+      &lt;source&gt;to obsolete&lt;/source&gt;
+      &lt;translation type="obsolete"&gt;markeren als ongebruikt&lt;/translation&gt;
+    &lt;/message&gt;
+  &lt;/context&gt;
+  &lt;context&gt;
+    &lt;name&gt;new&lt;/name&gt;
+    &lt;message&gt;
+      &lt;source&gt;new string&lt;/source&gt;
+      &lt;translation&gt;nieuwe string&lt;/translation&gt;
+    &lt;/message&gt;
+  &lt;/context&gt;
+&lt;/TS&gt;</code><a name="more-information"></a><a name="id10"></a><h3>More information</h3><p>See the API documentation for <a href='/zetacomponents/documentation/trunk/Translation/phpdoc/ezcTranslationManager.html'>ezcTranslationManager</a> (and of course the other classes in this component) for more information.</p><!--Local Variables:
+mode: rst
+fill-column: 79
+End:
+vim: et syn=rst tw=79-->
+
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

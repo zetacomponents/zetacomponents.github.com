@@ -1,0 +1,727 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="" />
+	<meta name="author" content="jerome" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Sun, 10 Jul 2011 11:11:01 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="ezcMailTools.html" />
+	<meta name="DC.creator" content="jerome" />
+	<meta name="DC.date" content="Sun, 10 Jul 2011 11:11:01 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailTools.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/Mail/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/trunk/Mail/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Mail/mail-listing-example.html" title="Mail-listing-example ">Mail-listing-example </a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Mail/display-example.html" title="Display-example ">Display-example </a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Mail/rfcs.html" title="Rfcs ">Rfcs </a>
+	</li>
+
+</ul>
+
+		
+  <div class="phpdoc">
+    <h2>Apache Zeta Components Manual :: Docs For Class ezcMailTools</h2>
+
+                  <h3>Mail::ezcMailTools</h3>
+    
+<a name="sec-description"></a>
+<h3>Class ezcMailTools</h3>
+
+<p>This class contains static convenience methods for composing addresses  and ensuring correct line-breaks in the mail.</p>
+<p>Source for this file: <a href="http://fisheye6.atlassian.com/browse/zetacomponents/trunk/Mail/src/tools.php?r=HEAD">/Mail/src/tools.php</a></p>
+       
+
+
+
+
+  <table><tr><td>
+            <strong>Version:</strong>&#8192;&#8192;
+          </td>
+          <td>//autogen//</td>
+        </tr></table><a name="sec-const-summary"></a>
+  <h3>Constants</h3>
+  <table class="summary"><tr><td class="right">
+          <a name="const-REPLY_ALL" id=""></a>
+          <code>
+            <a href="#const-REPLY_ALL" title="details" class="const-name-summary">REPLY_ALL</a>
+             =  1
+          </code>
+        </td>
+        <td>
+          Reply to all.                  </td>
+      </tr><tr><td class="right">
+          <a name="const-REPLY_SENDER" id=""></a>
+          <code>
+            <a href="#const-REPLY_SENDER" title="details" class="const-name-summary">REPLY_SENDER</a>
+             =  1
+          </code>
+        </td>
+        <td>
+          Reply to sender.                  </td>
+      </tr></table><a name="sec-var-summary"></a>
+  <h3>Member Variables</h3>
+  <table class="summary"><tr><td class="right">
+            <em>public</em>            static
+            <em>string</em>          </td>
+          <td>
+            <code>
+              $mxValidateAddress
+                          </code>
+            <br><div style="margin-left: 20px">Email address to use for validateEmailAddressMx(). Change this if this  address cannot be used with your Internet Service Provider.</div>            <br><div style="margin-left: 20px"><p>Default value: 'postmaster@ez.no'.</p></div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>            static
+            <em>string</em>          </td>
+          <td>
+            <code>
+              $mxValidateServer
+                          </code>
+            <br><div style="margin-left: 20px">Server to use for validateEmailAddressMx(). Change this if this server  cannot be used with your Internet Service Provider.</div>            <br><div style="margin-left: 20px"><p>Default value: 'smtp.ez.no'.</p></div>          </td>
+        </tr></table><a name="sec-method-summary"></a>
+  <h3>Method Summary</h3>
+  <table class="summary"><tr><td class="right">
+            <em>public</em>            static
+                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#composeEmailAddress"><b>composeEmailAddress</b></a>(
+                                                                                    $item
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns ezcMailAddress $item as a RFC822 compliant address string.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>            static
+                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#composeEmailAddresses"><b>composeEmailAddresses</b></a>(
+                                                                                    $items
+                                                    ,                   [                  $foldLength
+                   = null]                               )
+            </code>
+            <br><div style="margin-left: 20px">Returns the array $items consisting of ezcMailAddress objects  as one RFC822 compliant address string.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>            static
+                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#generateContentId"><b>generateContentId</b></a>(
+                                                                  [                  $partName
+                   = "part"]                               )
+            </code>
+            <br><div style="margin-left: 20px">Returns an unique ID to be used for Content-ID headers.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>            static
+                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#generateMessageId"><b>generateMessageId</b></a>(
+                                                                                    $hostname
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns an unique message ID to be used for a mail message.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>            static
+                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#guessContentType"><b>guessContentType</b></a>(
+                                                                                    $fileName
+                                                    ,                                     &amp;$contentType
+                                                    ,                                     &amp;$mimeType
+                                                    ,                                     $contentType
+                                                    ,                                     $mimeType
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Guesses the content and mime type by using the file extension.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>            static
+                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#lineBreak"><b>lineBreak</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns one endLine character.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>            static
+                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#mimeDecode"><b>mimeDecode</b></a>(
+                                                                                    $text
+                                                    ,                   [                  $charset
+                   = 'utf-8']                               )
+            </code>
+            <br><div style="margin-left: 20px">Decodes mime encoded fields and tries to recover from errors.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>            static
+                        <em><a href="ezcMailAddress.html">ezcMailAddress</a></em>          </td>
+          <td>
+            <code>
+              <a href="#parseEmailAddress"><b>parseEmailAddress</b></a>(
+                                                                                    $address
+                                                    ,                   [                  $encoding
+                   = "mime"]                               )
+            </code>
+            <br><div style="margin-left: 20px">Returns an ezcMailAddress object parsed from the address string $address.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>            static
+                        <em>array(ezcMailAddress)</em>          </td>
+          <td>
+            <code>
+              <a href="#parseEmailAddresses"><b>parseEmailAddresses</b></a>(
+                                                                                    $addresses
+                                                    ,                   [                  $encoding
+                   = "mime"]                               )
+            </code>
+            <br><div style="margin-left: 20px">Returns an array of ezcMailAddress objects parsed from the address string $addresses.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>            static
+                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#replaceContentIdRefs"><b>replaceContentIdRefs</b></a>(
+                                                                                    $htmlText
+                                                    ,                                     $contentIdArray
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Replaces HTML embedded "cid:" references with replacements from $contentIdArray.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>            static
+                        <em><a href="ezcMail.html">ezcMail</a></em>          </td>
+          <td>
+            <code>
+              <a href="#replyToMail"><b>replyToMail</b></a>(
+                                                                                    $mail
+                                                    ,                                     $from
+                                                    ,                   [                  $type
+                   = self::REPLY_SENDER]                                  ,                   [                  $subjectPrefix
+                   = "Re: "]                                  ,                   [                  $mailClass
+                   = "ezcMail"]                               )
+            </code>
+            <br><div style="margin-left: 20px">Returns a new mail object that is a reply to the current object.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>            static
+                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#setLineBreak"><b>setLineBreak</b></a>(
+                                                                                    $characters
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Sets the endLine $character(s) to use when generating mail.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>            static
+                        <em>bool</em>          </td>
+          <td>
+            <code>
+              <a href="#validateEmailAddress"><b>validateEmailAddress</b></a>(
+                                                                                    $address
+                                                    ,                   [                  $checkMxRecords
+                   = false]                               )
+            </code>
+            <br><div style="margin-left: 20px">Returns true if $address is a valid email address, false otherwise.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            static
+                        <em>bool</em>          </td>
+          <td>
+            <code>
+              <a href="#validateEmailAddressMx"><b>validateEmailAddressMx</b></a>(
+                                                                                    $address
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Checks if the email address $address is valid based on its MX records.</div>          </td>
+        </tr></table><a name="sec-methods"></a>
+  <h3>Methods</h3>
+  <a name="method_detail"></a>
+      <a name="methodcomposeEmailAddress" id="composeEmailAddress"><!-- --></a>
+
+    <h4>composeEmailAddress</h4>
+
+    <div class="method-signature">
+      static string
+      composeEmailAddress(
+                                  <a href="ezcMailAddress.html">ezcMailAddress</a>
+          $item
+                        )
+    </div>
+
+      <p>Returns ezcMailAddress $item as a RFC822 compliant address string.</p><div><p>Example:  </p><ol><li><div class="src-line">&#8192;<a href="ezcMailTools.html#methodcomposeEmailAddress">composeEmailAddress</a><span class="src-sym">(&#8192;</span><span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcMailAddress.html">ezcMailAddress</a></span><span class="src-sym">(&#8192;</span><span class="src-str">'sender@example.com'</span><span class="src-sym">,&#8192;</span><span class="src-str">'John&#8192;Doe'&#8192;</span><span class="src-sym">)&#8192;)</span><span class="src-sym">;</span></div></li>
+</ol><p>Returns:  </p><pre> John Doe <sender></sender></pre><p>The name part of $item will be surrounded by quotes if it contains any of  these characters: , @ &lt; &gt; : ; ' "</p></div>      
+              <h5>Parameters:</h5>
+        <table class="detail"><thead><tr><th>Name</th>
+              <th>Type</th>
+              <th class="desc">Description</th>
+            </tr></thead><tbody><tr><td><code>$item</code></td>
+                <td><em><a href="ezcMailAddress.html">ezcMailAddress</a></em></td>
+                <td>
+                                  </td>
+              </tr></tbody></table><a name="methodcomposeEmailAddresses" id="composeEmailAddresses"><!-- --></a>
+
+    <h4>composeEmailAddresses</h4>
+
+    <div class="method-signature">
+      static string
+      composeEmailAddresses(
+                                  
+          $items
+                            ,           [int
+          $foldLength
+           = null]              )
+    </div>
+
+      <p>Returns the array $items consisting of ezcMailAddress objects  as one RFC822 compliant address string.</p><div><p>Set foldLength to control how many characters each line can have before a line  break is inserted according to the folding rules specified in RFC2822.</p></div>      
+              <h5>Parameters:</h5>
+        <table class="detail"><thead><tr><th>Name</th>
+              <th>Type</th>
+              <th class="desc">Description</th>
+            </tr></thead><tbody><tr><td><code>$items</code></td>
+                <td><em>array(ezcMailAddress)</em></td>
+                <td>
+                                  </td>
+              </tr><tr><td><code>$foldLength</code></td>
+                <td><em>int</em></td>
+                <td>
+                                  </td>
+              </tr></tbody></table><a name="methodgenerateContentId" id="generateContentId"><!-- --></a>
+
+    <h4>generateContentId</h4>
+
+    <div class="method-signature">
+      static string
+      generateContentId(
+                                  [string
+          $partName
+           = "part"]              )
+    </div>
+
+      <p>Returns an unique ID to be used for Content-ID headers.</p><div><p>The part $partName is default set to "part". Another value can be used to provide,  for example, a file name of a part. $partName will be encoded with base64 to be  compliant with the RFCs.</p><p>The formula used is [base64( $partName )]."@".[time].[counter]</p></div>      
+              <h5>Parameters:</h5>
+        <table class="detail"><thead><tr><th>Name</th>
+              <th>Type</th>
+              <th class="desc">Description</th>
+            </tr></thead><tbody><tr><td><code>$partName</code></td>
+                <td><em>string</em></td>
+                <td>
+                                  </td>
+              </tr></tbody></table><a name="methodgenerateMessageId" id="generateMessageId"><!-- --></a>
+
+    <h4>generateMessageId</h4>
+
+    <div class="method-signature">
+      static string
+      generateMessageId(
+                                  string
+          $hostname
+                        )
+    </div>
+
+      <p>Returns an unique message ID to be used for a mail message.</p><div><p>The hostname $hostname will be added to the unique ID as required by RFC822.  If an e-mail address is provided instead, the hostname is extracted and used.</p><p>The formula to generate the message ID is: [time_and_date].[process_id].[counter]</p></div>      
+              <h5>Parameters:</h5>
+        <table class="detail"><thead><tr><th>Name</th>
+              <th>Type</th>
+              <th class="desc">Description</th>
+            </tr></thead><tbody><tr><td><code>$hostname</code></td>
+                <td><em>string</em></td>
+                <td>
+                                  </td>
+              </tr></tbody></table><a name="methodguessContentType" id="guessContentType"><!-- --></a>
+
+    <h4>guessContentType</h4>
+
+    <div class="method-signature">
+      static void
+      guessContentType(
+                                  string
+          $fileName
+                            ,           
+          &amp;$contentType
+                            ,           
+          &amp;$mimeType
+                            ,           string
+          $contentType
+                            ,           string
+          $mimeType
+                        )
+    </div>
+
+      <p>Guesses the content and mime type by using the file extension.</p><div><p>The content and mime types are returned through the $contentType  and $mimeType arguments.  For the moment only for image files.</p></div>      
+              <h5>Parameters:</h5>
+        <table class="detail"><thead><tr><th>Name</th>
+              <th>Type</th>
+              <th class="desc">Description</th>
+            </tr></thead><tbody><tr><td><code>$fileName</code></td>
+                <td><em>string</em></td>
+                <td>
+                                  </td>
+              </tr><tr><td><code>$contentType</code></td>
+                <td><em>string</em></td>
+                <td>
+                                  </td>
+              </tr><tr><td><code>$mimeType</code></td>
+                <td><em>string</em></td>
+                <td>
+                                  </td>
+              </tr><tr><td><code>&amp;$contentType</code></td>
+                <td><em></em></td>
+                <td>
+                                  </td>
+              </tr><tr><td><code>&amp;$mimeType</code></td>
+                <td><em></em></td>
+                <td>
+                                  </td>
+              </tr></tbody></table><a name="methodlineBreak" id="lineBreak"><!-- --></a>
+
+    <h4>lineBreak</h4>
+
+    <div class="method-signature">
+      static string
+      lineBreak(
+      )
+    </div>
+
+      <p>Returns one endLine character.</p><div><p>The default is to use "\n\r" as specified by RFC 2045.</p></div>      
+      
+      
+      
+      
+      
+        <a name="methodmimeDecode" id="mimeDecode"><!-- --></a>
+
+    <h4>mimeDecode</h4>
+
+    <div class="method-signature">
+      static string
+      mimeDecode(
+                                  string
+          $text
+                            ,           [string
+          $charset
+           = 'utf-8']              )
+    </div>
+
+      <p>Decodes mime encoded fields and tries to recover from errors.</p><div><p>Decodes the $text encoded as a MIME string to the $charset. In case the  strict conversion fails this method tries to workaround the issues by  trying to "fix" the original $text before trying to convert it.</p></div>      
+              <h5>Parameters:</h5>
+        <table class="detail"><thead><tr><th>Name</th>
+              <th>Type</th>
+              <th class="desc">Description</th>
+            </tr></thead><tbody><tr><td><code>$text</code></td>
+                <td><em>string</em></td>
+                <td>
+                                  </td>
+              </tr><tr><td><code>$charset</code></td>
+                <td><em>string</em></td>
+                <td>
+                                  </td>
+              </tr></tbody></table><a name="methodparseEmailAddress" id="parseEmailAddress"><!-- --></a>
+
+    <h4>parseEmailAddress</h4>
+
+    <div class="method-signature">
+      static <a href="ezcMailAddress.html">ezcMailAddress</a>
+      parseEmailAddress(
+                                  string
+          $address
+                            ,           [string
+          $encoding
+           = "mime"]              )
+    </div>
+
+      <p>Returns an ezcMailAddress object parsed from the address string $address.</p><div><p>You can set the encoding of the name part with the $encoding parameter.  If $encoding is omitted or set to "mime" parseEmailAddress will asume that  the name part is mime encoded.</p><p>This method does not perform validation. It will also accept slightly  malformed addresses.</p><p>If the mail address given can not be decoded null is returned.</p><p>Example:  </p><ol><li><div class="src-line">&#8192;<span class="src-id"><a href="ezcMailTools.html">ezcMailTools</a></span><span class="src-sym">::</span><a href="ezcMailTools.html#methodparseEmailAddress">parseEmailAddress</a><span class="src-sym">(&#8192;</span><span class="src-str">'John&#8192;Doe&#8192;&lt;john@example.com&gt;'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol></div>      
+              <h5>Parameters:</h5>
+        <table class="detail"><thead><tr><th>Name</th>
+              <th>Type</th>
+              <th class="desc">Description</th>
+            </tr></thead><tbody><tr><td><code>$address</code></td>
+                <td><em>string</em></td>
+                <td>
+                                  </td>
+              </tr><tr><td><code>$encoding</code></td>
+                <td><em>string</em></td>
+                <td>
+                                  </td>
+              </tr></tbody></table><a name="methodparseEmailAddresses" id="parseEmailAddresses"><!-- --></a>
+
+    <h4>parseEmailAddresses</h4>
+
+    <div class="method-signature">
+      static array(ezcMailAddress)
+      parseEmailAddresses(
+                                  string
+          $addresses
+                            ,           [string
+          $encoding
+           = "mime"]              )
+    </div>
+
+      <p>Returns an array of ezcMailAddress objects parsed from the address string $addresses.</p><div><p>You can set the encoding of the name parts with the $encoding parameter.  If $encoding is omitted or set to "mime" parseEmailAddresses will asume that  the name parts are mime encoded.</p><p>Example:  </p><ol><li><div class="src-line">&#8192;<span class="src-id"><a href="ezcMailTools.html">ezcMailTools</a></span><span class="src-sym">::</span><a href="ezcMailTools.html#methodparseEmailAddresses">parseEmailAddresses</a><span class="src-sym">(&#8192;</span><span class="src-str">'John&#8192;Doe&#8192;&lt;john@example.com&gt;'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol></div>      
+              <h5>Parameters:</h5>
+        <table class="detail"><thead><tr><th>Name</th>
+              <th>Type</th>
+              <th class="desc">Description</th>
+            </tr></thead><tbody><tr><td><code>$addresses</code></td>
+                <td><em>string</em></td>
+                <td>
+                                  </td>
+              </tr><tr><td><code>$encoding</code></td>
+                <td><em>string</em></td>
+                <td>
+                                  </td>
+              </tr></tbody></table><a name="methodreplaceContentIdRefs" id="replaceContentIdRefs"><!-- --></a>
+
+    <h4>replaceContentIdRefs</h4>
+
+    <div class="method-signature">
+      static string
+      replaceContentIdRefs(
+                                  string
+          $htmlText
+                            ,           array(string=&gt;string)
+          $contentIdArray
+                        )
+    </div>
+
+      <p>Replaces HTML embedded "cid:" references with replacements from $contentIdArray.</p><div><p>The method matches all "cid:" references in the $htmlText and then loops  over each match. For each match the found content ID is looked-up as key  in the $contentIdArray and the value is then inserted as replacement for  the "cid:" reference.</p><p></p><ol><li><div class="src-line">&#8192;<span class="src-php">&lt;?php</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$contentIdArray&#8192;</span>=&#8192;<span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-str">'consoletools-table.png@1421450'&#8192;</span>=&gt;&#8192;<span class="src-str">'http://localhost/consoletools-table.jpg'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$text&#8192;</span>=&#8192;<span class="src-str">"&lt;html&gt;&#8192;Embedded&#8192;image:&#8192;&lt;img&#8192;src='cid:consoletools-table.png@1421450'/&gt;&#8192;&lt;/html&gt;"</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$htmlBody&#8192;</span>=&#8192;<span class="src-id"><a href="ezcMailTools.html">ezcMailTools</a></span><span class="src-sym">::</span><a href="ezcMailTools.html#methodreplaceContentIdRefs">replaceContentIdRefs</a><span class="src-sym">(&#8192;</span><span class="src-var">$text</span><span class="src-sym">,&#8192;</span><span class="src-var">$contentIdArray&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;$htmlBody&#8192;is&#8192;now:</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;&lt;html&gt;&#8192;Embedded&#8192;image:&#8192;&lt;img&#8192;src='http://localhost/consoletools-table.jpg'/&gt;&#8192;&lt;/html&gt;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-php">?&gt;</span></div></li>
+</ol><p>The $contentIdArray can be build by iterating over all parts in the  mail, and for each ezcMailFilePart that you find: 1. copy the associated  file (fileName property of the ezcMailFilePart object) to your webroot;  2. add an element to the array with the key created from the contentId  property from the ezcMailFilePart object. See the tutorial for an  example of this.</p></div>      
+              <h5>Parameters:</h5>
+        <table class="detail"><thead><tr><th>Name</th>
+              <th>Type</th>
+              <th class="desc">Description</th>
+            </tr></thead><tbody><tr><td><code>$htmlText</code></td>
+                <td><em>string</em></td>
+                <td>
+                                  </td>
+              </tr><tr><td><code>$contentIdArray</code></td>
+                <td><em>array(string=&gt;string)</em></td>
+                <td>
+                                  </td>
+              </tr></tbody></table><a name="methodreplyToMail" id="replyToMail"><!-- --></a>
+
+    <h4>replyToMail</h4>
+
+    <div class="method-signature">
+      static <a href="ezcMail.html">ezcMail</a>
+      replyToMail(
+                                  <a href="ezcMail.html">ezcMail</a>
+          $mail
+                            ,           <a href="ezcMailAddress.html">ezcMailAddress</a>
+          $from
+                            ,           [int
+          $type
+           = self::REPLY_SENDER]                  ,           [string
+          $subjectPrefix
+           = "Re: "]                  ,           [string
+          $mailClass
+           = "ezcMail"]              )
+    </div>
+
+      <p>Returns a new mail object that is a reply to the current object.</p><div><p>The new mail will have the correct to, cc, bcc and reference headers set.  It will not have any body set.</p><p>By default the reply will only be sent to the sender of the original mail.  If $type is set to REPLY_ALL, all the original recipients will be included  in the reply.</p><p>Use $subjectPrefix to set the prefix to the subject of the mail. The default  is to prefix with 'Re: '.</p></div>      
+              <h5>Parameters:</h5>
+        <table class="detail"><thead><tr><th>Name</th>
+              <th>Type</th>
+              <th class="desc">Description</th>
+            </tr></thead><tbody><tr><td><code>$mail</code></td>
+                <td><em><a href="ezcMail.html">ezcMail</a></em></td>
+                <td>
+                                  </td>
+              </tr><tr><td><code>$from</code></td>
+                <td><em><a href="ezcMailAddress.html">ezcMailAddress</a></em></td>
+                <td>
+                                  </td>
+              </tr><tr><td><code>$type</code></td>
+                <td><em>int</em></td>
+                <td>
+                                      REPLY_SENDER or REPLY_ALL
+                                  </td>
+              </tr><tr><td><code>$subjectPrefix</code></td>
+                <td><em>string</em></td>
+                <td>
+                                  </td>
+              </tr><tr><td><code>$mailClass</code></td>
+                <td><em>string</em></td>
+                <td>
+                                  </td>
+              </tr></tbody></table><a name="methodsetLineBreak" id="setLineBreak"><!-- --></a>
+
+    <h4>setLineBreak</h4>
+
+    <div class="method-signature">
+      static void
+      setLineBreak(
+                                  string
+          $characters
+                        )
+    </div>
+
+      <p>Sets the endLine $character(s) to use when generating mail.</p><div><p>The default is to use "\r\n" as specified by RFC 2045.</p></div>      
+              <h5>Parameters:</h5>
+        <table class="detail"><thead><tr><th>Name</th>
+              <th>Type</th>
+              <th class="desc">Description</th>
+            </tr></thead><tbody><tr><td><code>$characters</code></td>
+                <td><em>string</em></td>
+                <td>
+                                  </td>
+              </tr></tbody></table><a name="methodvalidateEmailAddress" id="validateEmailAddress"><!-- --></a>
+
+    <h4>validateEmailAddress</h4>
+
+    <div class="method-signature">
+      static bool
+      validateEmailAddress(
+                                  string
+          $address
+                            ,           [bool
+          $checkMxRecords
+           = false]              )
+    </div>
+
+      <p>Returns true if $address is a valid email address, false otherwise.</p><div><p>By default it will only validate against the same regular expression  used in ext/filter. It follows  <a href="http://www.faqs.org/rfcs/rfc822.html">RFC822</a> and  <a href="http://www.faqs.org/rfcs/rfc2822.html">RFC2822</a>.</p><p>If $checkMxRecords is true, then an MX records check will be performed  also, by sending a test mail (RCPT TO) to $address using the MX records  found for the domain part of $address. MX record checking does not work  on Windows due to the lack of getmxrr() and checkdnsrr() PHP functions.  The ezcBaseFunctionalityNotSupportedException is thrown in this case.</p><p>If checking against MX records, set these values before performing the  check, to ensure the MX record checks work properly:  </p><ol><li><div class="src-line">&#8192;<span class="src-id"><a href="ezcMailTools.html">ezcMailTools</a></span><span class="src-sym">::</span><span class="src-var">$mxValidateServer&#8192;</span>=&#8192;<span class="src-str">'your.mail.server'</span><span class="src-sym">;&#8192;</span><span class="src-comm">//&#8192;default&#8192;'smtp.ez.no'</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-id">ezcMailTools</span><span class="src-sym">::</span><span class="src-var">$mxValidateAddress&#8192;</span>=&#8192;<span class="src-str">'email@mail.server'</span><span class="src-sym">;&#8192;</span><span class="src-comm">//&#8192;default&#8192;'postmaster@ez.no'</span></div></li>
+</ol><p>The input email address $address should be trimmed from white spaces  and/or quotes around it before calling this function (if needed).</p><p>An email address has this form:  </p><ol><li><div class="src-line">&#8192;&#8192;&#8192;<span class="src-id">localpart</span><span class="src-sym">@</span><span class="src-id">domainpart</span></div></li>
+</ol><p>The localpart has these rules, and these rules are just an approximation of  the rules in RFC2822: </p><ul><li>allowed characters: . + ~ / ' - _ ` ^ $ % &amp; ! ' | {</li><li>the dot (.) cannot be the first or the last character</li><li>the double-quote character (") can only surround the localpart (so
+    if it appears it must be the first and the last character of localpart)</li><li>spaces are allowed if the localpart is surrounded in double-quotes</li><li>other ASCII characters (even from the extended-ASCII set) are allowed
+    if the localparts is surrounded in double-quotes (the function
+    ezcMailTools::composeEmailAddress will encode it when using it
+    in a mail header)</li><li>the double-quotes character (") cannot be escaped to appear in a
+    localpart surrounded by double quotes (so "john"doe"@example.com is not
+    a valid email address)</li></ul>  The domainpart has the same rules as a domain name, as defined in  <a href="http://www.faqs.org/rfcs/rfc822.html">RFC822</a> and  <a href="http://www.faqs.org/rfcs/rfc2822.html">RFC2822</a>.<p>See also the test files (in the "Mail/tests/tools/data" directory) for  examples of correct and incorrect email addresses.</p></div>      
+              <h5>Parameters:</h5>
+        <table class="detail"><thead><tr><th>Name</th>
+              <th>Type</th>
+              <th class="desc">Description</th>
+            </tr></thead><tbody><tr><td><code>$address</code></td>
+                <td><em>string</em></td>
+                <td>
+                                  </td>
+              </tr><tr><td><code>$checkMxRecords</code></td>
+                <td><em>bool</em></td>
+                <td>
+                                  </td>
+              </tr></tbody></table><h5>Exceptions:</h5>
+        <table class="detail"><thead><tr><th>Type</th>
+              <th class="desc">Description</th>
+            </tr></thead><tbody><tr><td><code><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseFunctionalityNotSupportedException.html">ezcBaseFunctionalityNotSupportedException</a></code></td>
+                <td>
+                                      if $checkMxRecords is true and getmxrr() or checkdnsrr() functions are missing (e.g. on Windows)
+                                  </td>
+              </tr></tbody></table><a name="methodvalidateEmailAddressMx" id="validateEmailAddressMx"><!-- --></a>
+
+    <h4>validateEmailAddressMx</h4>
+
+    <div class="method-signature">
+      static bool
+      validateEmailAddressMx(
+                                  string
+          $address
+                        )
+    </div>
+
+      <p>Checks if the email address $address is valid based on its MX records.</p><div><p>Steps: </p><ul><li>the MX records are fetched for the domain part of $address, along with
+    their weights</li><li>the MX records are sorted based on the weights</li><li>for each MX record a connection is open</li><li>a test mail (RCPT TO) is tried to be sent to $address</li><li>if one test mail succeeds, then the address is valid, else invalid</li></ul>  Set these values before calling this function, to ensure the MX record  checks work properly:  <ol><li><div class="src-line">&#8192;<span class="src-id"><a href="ezcMailTools.html">ezcMailTools</a></span><span class="src-sym">::</span><span class="src-var">$mxValidateServer&#8192;</span>=&#8192;<span class="src-str">'your.mail.server'</span><span class="src-sym">;&#8192;</span><span class="src-comm">//&#8192;default&#8192;'smtp.ez.no'</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-id">ezcMailTools</span><span class="src-sym">::</span><span class="src-var">$mxValidateAddress&#8192;</span>=&#8192;<span class="src-str">'email@mail.server'</span><span class="src-sym">;&#8192;</span><span class="src-comm">//&#8192;default&#8192;'postmaster@ez.no'</span></div></li>
+</ol><p>MX record checking does not work on Windows due to the lack of getmxrr()  and checkdnsrr() PHP functions. The ezcBaseFunctionalityNotSupportedException  is thrown in this case.</p></div>      
+              <h5>Parameters:</h5>
+        <table class="detail"><thead><tr><th>Name</th>
+              <th>Type</th>
+              <th class="desc">Description</th>
+            </tr></thead><tbody><tr><td><code>$address</code></td>
+                <td><em>string</em></td>
+                <td>
+                                  </td>
+              </tr></tbody></table><h5>Exceptions:</h5>
+        <table class="detail"><thead><tr><th>Type</th>
+              <th class="desc">Description</th>
+            </tr></thead><tbody><tr><td><code><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseFunctionalityNotSupportedException.html">ezcBaseFunctionalityNotSupportedException</a></code></td>
+                <td>
+                                      if getmxrr() or checkdnsrr() functions are missing (e.g. on Windows)
+                                  </td>
+              </tr></tbody></table><div class="credit">
+      Documentation generated by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+    </div>
+  </div>
+  
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

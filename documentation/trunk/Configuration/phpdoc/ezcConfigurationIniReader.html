@@ -1,0 +1,401 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="PHP, apache, components, framework, quality" />
+	<meta name="author" content="dotxp" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Wed, 04 Aug 2010 13:07:19 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="ezcConfigurationIniReader.html" />
+	<meta name="DC.creator" content="dotxp" />
+	<meta name="DC.date" content="Wed, 04 Aug 2010 13:07:19 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/Configuration/phpdoc/ezcConfigurationIniReader.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/Configuration/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/trunk/Configuration/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+
+</ul>
+
+		
+  <div class="phpdoc">
+    <h2>Apache Zeta Components Manual :: Docs For Class ezcConfigurationIniReader</h2>
+
+                  <h3>Configuration::ezcConfigurationIniReader</h3>
+    
+<a name="sec-description"></a>
+<h3>Class ezcConfigurationIniReader</h3>
+
+<p>ezcConfigurationIniReader provides functionality for reading INI files into  ezcConfiguration objects.</p><div><p>Typical usage is to create the reader object and pass the filepath in the  constructor:  </p><ol><li><div class="src-line">&#8192;<span class="src-var">$reader&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcConfigurationIniReader.html">ezcConfigurationIniReader</a></span><span class="src-sym">(&#8192;</span><span class="src-str">"settings/site.ini"&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$reader</span><span class="src-sym">-&gt;</span><a href="ezcConfigurationIniReader.html#methodload">load</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol>  That makes the class figure out the location and name values automatically.<p>Or generally use the init() function:  </p><ol><li><div class="src-line">&#8192;<span class="src-var">$reader&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcConfigurationIniReader.html">ezcConfigurationIniReader</a></span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$reader</span><span class="src-sym">-&gt;</span><a href="ezcConfigurationFileReader.html#methodinit">init</a><span class="src-sym">(&#8192;</span><span class="src-str">"settings"</span><span class="src-sym">,&#8192;</span><span class="src-str">"site"&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$reader</span><span class="src-sym">-&gt;</span><a href="ezcConfigurationIniReader.html#methodload">load</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol><p>Accessing the configuration object is done by the getConfig() method or by  using the return value of load():  </p><ol><li><div class="src-line">&#8192;<span class="src-var">$conf1&#8192;</span>=&#8192;<span class="src-var">$reader</span><span class="src-sym">-&gt;</span><a href="ezcConfigurationIniReader.html#methodload">load</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$conf2&#8192;</span>=&#8192;<span class="src-var">$reader</span><span class="src-sym">-&gt;</span><a href="ezcConfigurationFileReader.html#methodgetConfig">getConfig</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;$conf1&#8192;and&#8192;$conf2&#8192;points&#8192;to&#8192;the&#8192;same&#8192;object</span></div></li>
+</ol><p>If caching is employed the getTimestamp() method can be used to find the last  modification time of the file.  </p><ol><li><div class="src-line">&#8192;<span class="src-var">$time&#8192;</span>=&#8192;<span class="src-var">$reader</span><span class="src-sym">-&gt;</span><a href="ezcConfigurationFileReader.html#methodgetTimestamp">getTimestamp</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-key">if&#8192;</span><span class="src-sym">(&#8192;</span><span class="src-var">$time&#8192;</span>&gt;&#8192;<span class="src-var">$cachedTime&#8192;</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">{</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;<span class="src-var">$reader</span><span class="src-sym">-&gt;</span><a href="ezcConfigurationIniReader.html#methodload">load</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">}</span></div></li>
+</ol><p>Options can be set with the setOptions() method. The only option that this  reader supports is the "useComments" option:  </p><ol><li><div class="src-line">&#8192;<span class="src-var">$reader</span><span class="src-sym">-&gt;</span><a href="ezcConfigurationFileReader.html#methodsetOptions">setOptions</a><span class="src-sym">(&#8192;</span><span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-str">'useComments'&#8192;</span>=&gt;&#8192;<span class="src-id">true&#8192;</span><span class="src-sym">)&#8192;)</span><span class="src-sym">;</span></div></li>
+</ol><p>Instead of loading the INI file it can be validated with validate(), this will  return an ezcConfigurationValidationResult which can be inspected and  presented to the end user.  </p><ol><li><div class="src-line">&#8192;<span class="src-var">$result&#8192;</span>=&#8192;<span class="src-var">$reader</span><span class="src-sym">-&gt;</span><a href="ezcConfigurationIniReader.html#methodvalidate">validate</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-key">if&#8192;</span><span class="src-sym">(&#8192;</span><span class="src-sym">!</span><span class="src-var">$result</span><span class="src-sym">-&gt;</span><span class="src-id">isValid&#8192;</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">{</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;<span class="src-key">foreach&#8192;</span><span class="src-sym">(&#8192;</span><span class="src-var">$result</span><span class="src-sym">-&gt;</span><span class="src-id">getResultList</span><span class="src-sym">(</span><span class="src-sym">)&#8192;</span><span class="src-key">as&#8192;</span><span class="src-var">$resultItem&#8192;</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;<span class="src-sym">{</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;print&#8192;<span class="src-var">$resultItem</span><span class="src-sym">-&gt;</span><a href="http://www.php.net/file">file</a>&#8192;.&#8192;<span class="src-str">":"&#8192;</span>.&#8192;<span class="src-var">$resultItem</span><span class="src-sym">-&gt;</span><span class="src-id">line&#8192;</span>.&#8192;<span class="src-str">":"&#8192;</span>.</div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-var">$resultItem</span><span class="src-sym">-&gt;</span><span class="src-id">column</span>.&#8192;<span class="src-str">":"</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;print&#8192;<span class="src-str">"&#8192;"&#8192;</span>.&#8192;<span class="src-var">$resultItem</span><span class="src-sym">-&gt;</span><span class="src-id">details&#8192;</span>.&#8192;<span class="src-str">"\n"</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;<span class="src-sym">}</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">}</span></div></li>
+</ol><p>For more information on file based configurations see <a href="ezcConfigurationFileReader.html">ezcConfigurationFileReader</a>.</p><p>This class uses exceptions and will throw them when the conditions for the  operation fails somehow.</p></div>
+<p>Source for this file: <a href="http://fisheye6.atlassian.com/browse/zetacomponents/trunk/Configuration/src/ini/ini_reader.php?r=HEAD">/Configuration/src/ini/ini_reader.php</a></p>
+       
+
+
+<pre><a href="ezcConfigurationReader.html">ezcConfigurationReader</a>
+   |
+   --<a href="ezcConfigurationFileReader.html">ezcConfigurationFileReader</a>
+      |
+      --ezcConfigurationIniReader</pre>
+
+
+  <table><tr><td>
+            <strong>Version:</strong>&#8192;&#8192;
+          </td>
+          <td>//autogen//</td>
+        </tr></table><h3>Inherited Member Variables</h3>
+  <table class="summary"><thead><tr><th colspan="2">
+            From <span class="classname"><a href="ezcConfigurationFileReader.html">ezcConfigurationFileReader</a></span>         
+          </th>
+        </tr></thead><tbody><tr><td class="right">
+              <em>protected</em>                          </td>
+            <td>
+              <code><a href="ezcConfigurationFileReader.html#var%24config">ezcConfigurationFileReader::$config</a></code>
+              
+            </td>
+          </tr><tr><td class="right">
+              <em>protected</em>                          </td>
+            <td>
+              <code><a href="ezcConfigurationFileReader.html#var%24location">ezcConfigurationFileReader::$location</a></code>
+              
+            </td>
+          </tr><tr><td class="right">
+              <em>protected</em>                          </td>
+            <td>
+              <code><a href="ezcConfigurationFileReader.html#var%24name">ezcConfigurationFileReader::$name</a></code>
+              
+            </td>
+          </tr><tr><td class="right">
+              <em>protected</em>                          </td>
+            <td>
+              <code><a href="ezcConfigurationFileReader.html#var%24options">ezcConfigurationFileReader::$options</a></code>
+              
+            </td>
+          </tr><tr><td class="right">
+              <em>protected</em>                          </td>
+            <td>
+              <code><a href="ezcConfigurationFileReader.html#var%24path">ezcConfigurationFileReader::$path</a></code>
+              
+            </td>
+          </tr></tbody></table><a name="sec-method-summary"></a>
+  <h3>Method Summary</h3>
+  <table class="summary"><tr><td class="right">
+            <em>protected</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#getSuffix"><b>getSuffix</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns 'ini'. The suffix used in the storage filename.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em><a href="ezcConfiguration.html">ezcConfiguration</a></em>          </td>
+          <td>
+            <code>
+              <a href="#load"><b>load</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Loads a configuration object</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em><a href="ezcConfigurationValidationResult.html">ezcConfigurationValidationResult</a></em>          </td>
+          <td>
+            <code>
+              <a href="#validate"><b>validate</b></a>(
+                                                                  [                  $strict
+                   = false]                               )
+            </code>
+            <br><div style="margin-left: 20px">Validates the configuration.</div>          </td>
+        </tr></table><h3>Inherited Methods</h3>
+  <table class="summary"><thead><tr><th colspan="2">
+            From <span class="classname"><a href="ezcConfigurationFileReader.html">ezcConfigurationFileReader</a></span>
+          </th>
+        </tr></thead><tbody><tr><td class="right">
+              <em>public</em>                                          <em>ezcConfigurationFileReader</em>            </td>
+            <td>
+              <code><b><a href="ezcConfigurationFileReader.html#method__construct">ezcConfigurationFileReader::__construct()</a></b></code>
+              <br><div style="margin-left: 20px">Constructs the reader object.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>bool</em>            </td>
+            <td>
+              <code><b><a href="ezcConfigurationFileReader.html#methodconfigExists">ezcConfigurationFileReader::configExists()</a></b></code>
+              <br><div style="margin-left: 20px">Returns true if the configuration exists.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em><a href="ezcConfiguration.html">ezcConfiguration</a></em>            </td>
+            <td>
+              <code><b><a href="ezcConfigurationFileReader.html#methodgetConfig">ezcConfigurationFileReader::getConfig()</a></b></code>
+              <br><div style="margin-left: 20px">Returns the current configuration object.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>string</em>            </td>
+            <td>
+              <code><b><a href="ezcConfigurationFileReader.html#methodgetLocation">ezcConfigurationFileReader::getLocation()</a></b></code>
+              <br><div style="margin-left: 20px">Returns the current location string.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>string</em>            </td>
+            <td>
+              <code><b><a href="ezcConfigurationFileReader.html#methodgetName">ezcConfigurationFileReader::getName()</a></b></code>
+              <br><div style="margin-left: 20px">Returns the current name for the configuration to be read.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>array</em>            </td>
+            <td>
+              <code><b><a href="ezcConfigurationFileReader.html#methodgetOptions">ezcConfigurationFileReader::getOptions()</a></b></code>
+              <br><div style="margin-left: 20px">Returns the current options for the reader.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>int</em>            </td>
+            <td>
+              <code><b><a href="ezcConfigurationFileReader.html#methodgetTimestamp">ezcConfigurationFileReader::getTimestamp()</a></b></code>
+              <br><div style="margin-left: 20px">Returns the last modified timestamp.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b><a href="ezcConfigurationFileReader.html#methodinit">ezcConfigurationFileReader::init()</a></b></code>
+              <br><div style="margin-left: 20px">Initializes the reader with a location and a name. These values determine  where the configuration will be serialized.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>protected</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b><a href="ezcConfigurationFileReader.html#methodparseLocationPath">ezcConfigurationFileReader::parseLocationPath()</a></b></code>
+              <br><div style="margin-left: 20px">Parses a the path $path and sets the location and name  properties on this object.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b><a href="ezcConfigurationFileReader.html#methodsetOptions">ezcConfigurationFileReader::setOptions()</a></b></code>
+              <br><div style="margin-left: 20px">Sets the options $configurationData.</div>                          </td>
+          </tr></tbody><thead><tr><th colspan="2">
+            From <span class="classname"><a href="ezcConfigurationReader.html">ezcConfigurationReader</a></span>
+          </th>
+        </tr></thead><tbody><tr><td class="right">
+              <em>public</em>              abstract                            <em>bool</em>            </td>
+            <td>
+              <code><b><a href="ezcConfigurationReader.html#methodconfigExists">ezcConfigurationReader::configExists()</a></b></code>
+              <br><div style="margin-left: 20px">Checks if the configuration exists.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>              abstract                            <em><a href="ezcConfiguration.html">ezcConfiguration</a></em>            </td>
+            <td>
+              <code><b><a href="ezcConfigurationReader.html#methodgetConfig">ezcConfigurationReader::getConfig()</a></b></code>
+              <br><div style="margin-left: 20px">Returns the current configuration object.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>              abstract                            <em>string</em>            </td>
+            <td>
+              <code><b><a href="ezcConfigurationReader.html#methodgetLocation">ezcConfigurationReader::getLocation()</a></b></code>
+              <br><div style="margin-left: 20px">Returns the current location string.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>              abstract                            <em>string</em>            </td>
+            <td>
+              <code><b><a href="ezcConfigurationReader.html#methodgetName">ezcConfigurationReader::getName()</a></b></code>
+              <br><div style="margin-left: 20px">Returns the name of the configuration to be read.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>              abstract                            <em>array</em>            </td>
+            <td>
+              <code><b><a href="ezcConfigurationReader.html#methodgetOptions">ezcConfigurationReader::getOptions()</a></b></code>
+              <br><div style="margin-left: 20px">Returns the options for the reader.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>protected</em>              abstract                            <em>string</em>            </td>
+            <td>
+              <code><b><a href="ezcConfigurationReader.html#methodgetSuffix">ezcConfigurationReader::getSuffix()</a></b></code>
+              <br><div style="margin-left: 20px">Returns the suffix used in the storage filename.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>              abstract                            <em>mixed</em>            </td>
+            <td>
+              <code><b><a href="ezcConfigurationReader.html#methodgetTimestamp">ezcConfigurationReader::getTimestamp()</a></b></code>
+              <br><div style="margin-left: 20px">Returns the last modified timestamp.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>              abstract                            <em>void</em>            </td>
+            <td>
+              <code><b><a href="ezcConfigurationReader.html#methodinit">ezcConfigurationReader::init()</a></b></code>
+              <br><div style="margin-left: 20px">Initializes the reader with a $location and a $name.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>              abstract                            <em><a href="ezcConfiguration.html">ezcConfiguration</a></em>            </td>
+            <td>
+              <code><b><a href="ezcConfigurationReader.html#methodload">ezcConfigurationReader::load()</a></b></code>
+              <br><div style="margin-left: 20px">Loads the current config object.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>              abstract                            <em>void</em>            </td>
+            <td>
+              <code><b><a href="ezcConfigurationReader.html#methodsetOptions">ezcConfigurationReader::setOptions()</a></b></code>
+              <br><div style="margin-left: 20px">Sets the options $options for the reader.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>              abstract                            <em><a href="ezcConfigurationValidationResult.html">ezcConfigurationValidationResult</a></em>            </td>
+            <td>
+              <code><b><a href="ezcConfigurationReader.html#methodvalidate">ezcConfigurationReader::validate()</a></b></code>
+              <br><div style="margin-left: 20px">Validates the configuration.</div>                          </td>
+          </tr></tbody></table><a name="sec-methods"></a>
+  <h3>Methods</h3>
+  <a name="method_detail"></a>
+      
+      <a name="methodgetSuffix" id="getSuffix"><!-- --></a>
+
+    <h4>getSuffix</h4>
+
+    <div class="method-signature">
+      string
+      getSuffix(
+      )
+    </div>
+
+    <p>Returns 'ini'. The suffix used in the storage filename.</p>
+    
+        
+
+          <h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcConfigurationReader.html#methodgetSuffix">ezcConfigurationReader::getSuffix()</a></code></td>
+            <td>
+                              Returns the suffix used in the storage filename.
+                          </td>
+          </tr></tbody></table><a name="methodload" id="load"><!-- --></a>
+
+    <h4>load</h4>
+
+    <div class="method-signature">
+      <a href="ezcConfiguration.html">ezcConfiguration</a>
+      load(
+      )
+    </div>
+
+    <p>Loads a configuration object</p><div><p>Loads the current config object from a give location which can later be stored  with a ezcConfigurationWriter.</p></div>
+    
+          <h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcConfigurationNoConfigException.html">ezcConfigurationNoConfigException</a></code></td>
+              <td>
+                                  if there is no config object to be read from the location.
+                              </td>
+            </tr><tr><td><code><a href="ezcConfigurationInvalidSuffixException.html">ezcConfigurationInvalidSuffixException</a></code></td>
+              <td>
+                                  if the current location values cannot be used for reading.
+                              </td>
+            </tr><tr><td><code>ezcConfigurationReadFailureException</code></td>
+              <td>
+                                  if the configuration could not be read from the given location.
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcConfigurationReader.html#methodload">ezcConfigurationReader::load()</a></code></td>
+            <td>
+                              Loads the current config object.
+                          </td>
+          </tr></tbody></table><a name="methodvalidate" id="validate"><!-- --></a>
+
+    <h4>validate</h4>
+
+    <div class="method-signature">
+      <a href="ezcConfigurationValidationResult.html">ezcConfigurationValidationResult</a>
+      validate(
+                                  [bool
+          $strict
+           = false]              )
+    </div>
+
+    <p>Validates the configuration.</p><div><p>Validates the configuration at the given location and returns the  validation result.</p><p>If $strict is set it will not validate the file if it contains any  errors or warnings. If false it will allow warnings but not errors.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$strict</code></td>
+              <td><em>bool</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcConfigurationReader.html#methodvalidate">ezcConfigurationReader::validate()</a></code></td>
+            <td>
+                              Validates the configuration.
+                          </td>
+          </tr></tbody></table><div class="credit">
+      Documentation generated by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+    </div>
+  </div>
+  
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

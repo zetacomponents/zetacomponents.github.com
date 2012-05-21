@@ -1,0 +1,264 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="" />
+	<meta name="author" content="jerome" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Sun, 10 Jul 2011 11:10:50 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="ezcCacheStackOptions.html" />
+	<meta name="DC.creator" content="jerome" />
+	<meta name="DC.date" content="Sun, 10 Jul 2011 11:10:50 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/Cache/phpdoc/ezcCacheStackOptions.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/Cache/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/trunk/Cache/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+
+</ul>
+
+		
+  <div class="phpdoc">
+    <h2>Apache Zeta Components Manual :: Docs For Class ezcCacheStackOptions</h2>
+
+                  <h3>Cache::ezcCacheStackOptions</h3>
+    
+<a name="sec-description"></a>
+<h3>Class ezcCacheStackOptions</h3>
+
+<p>Options class for ezcCacheStack instances.</p><div><p>This options class is used with <a href="ezcCacheStack.html">ezcCacheStack</a> instances.</p><p>The $configurator property is special, since it only takes effect during  construction of the stack. The idea is, to use this in combination with  <a href="ezcCacheManager.html">ezcCacheManager</a>. The method <a href="ezcCacheStackConfigurator.html#methodconfigure">ezcCacheStackConfigurator::configure()</a> will called by the constructor of  <a href="ezcCacheStack.html">ezcCacheStack</a>. Inside this method, the configuration of the stack  can happen as needed. Therefore, the <a href="ezcCacheStackableStorage.html">ezcCacheStackableStorage</a>  instances for the stack do not need to exist when the stack is configured in  the <a href="ezcCacheManager.html">ezcCacheManager</a>.</p><p>The rest of the options is used as usual to affect the behavior of the  <a href="ezcCacheStack.html">ezcCacheStack</a>. However, it is highly recommended to not change  $metaStorage and $replacementStrategy once they have been set for a stack.  If these options are changed, the whole stack needs to be resetted using  <a href="ezcCacheStack.html#methodreset">ezcCacheStack::reset()</a>. Aside of that, the previous $metaStorage  needs to be resetted.</p></div>
+<p>Source for this file: <a href="http://fisheye6.atlassian.com/browse/zetacomponents/trunk/Cache/src/options/stack.php?r=HEAD">/Cache/src/options/stack.php</a></p>
+       
+
+
+<pre><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseOptions.html">ezcBaseOptions</a>
+   |
+   --ezcCacheStackOptions</pre>
+
+
+  <table><tr><td>
+            <strong>Version:</strong>&#8192;&#8192;
+          </td>
+          <td>//autogen//</td>
+        </tr></table><a name="sec-prop-summary"></a>
+  <h3>Properties</h3>
+  <table class="summary"><tr><td class="right">
+          <a name="prop%24bubbleUpOnRestore" id="$bubbleUpOnRestore"></a>
+          <a name="prop-%24bubbleUpOnRestore" id="$bubbleUpOnRestore"></a>
+          <em>bool</em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24bubbleUpOnRestore" title="details" class="var-name-summary">$bubbleUpOnRestore</a>
+                      </code>
+          <br><div style="margin-left: 20px">This option determines if data that is restored from a storage in            the stack will be bubbled up to higher caches. The default here is            false, since it might significantly reduce the <a href="ezcCacheStack.html#methodrestore">ezcCacheStack::restore()</a> performance. In addition, for bubbled up            items, only the attributes will be used that have been provided            while restoring the desired item. Also the lifetime of the item            will practically be reset, since higher storages will start with a            fresh TTL value.</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24configurator" id="$configurator"></a>
+          <a name="prop-%24configurator" id="$configurator"></a>
+          <em>string</em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24configurator" title="details" class="var-name-summary">$configurator</a>
+                      </code>
+          <br><div style="margin-left: 20px">Name of a class implementing ezcCacheStackConfigurator. This class            will be used right after construction of the stack, to perform            initial configuration. After the construction process, this option            does not have any effect. Null (default) means no configuration.</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24metaStorage" id="$metaStorage"></a>
+          <a name="prop-%24metaStorage" id="$metaStorage"></a>
+          <em><a href="ezcCacheStackMetaDataStorage.html">ezcCacheStackMetaDataStorage</a></em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24metaStorage" title="details" class="var-name-summary">$metaStorage</a>
+                      </code>
+          <br><div style="margin-left: 20px">This storage will be used to store the meta data of the            replacement strategy used by the stack. If null (default) is            given, the top most storage will be used.</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24replacementStrategy" id="$replacementStrategy"></a>
+          <a name="prop-%24replacementStrategy" id="$replacementStrategy"></a>
+          <em>string</em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24replacementStrategy" title="details" class="var-name-summary">$replacementStrategy</a>
+                      </code>
+          <br><div style="margin-left: 20px">The  name of the class given in this property must extend ezcCacheReplacementStrategy. The class will be used as the            replacement strategy in the stack. ezcCacheLruReplacementStrategy            is the default.</div>        </td>
+      </tr></table><h3>Inherited Member Variables</h3>
+  <table class="summary"><thead><tr><th colspan="2">
+            From <span class="classname"><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseOptions.html">ezcBaseOptions</a></span>         
+          </th>
+        </tr></thead><tbody><tr><td class="right">
+              <em>protected</em>                          </td>
+            <td>
+              <code><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseOptions.html#var%24properties">ezcBaseOptions::$properties</a></code>
+              
+            </td>
+          </tr></tbody></table><a name="sec-method-summary"></a>
+  <h3>Method Summary</h3>
+  <table class="summary"><tr><td class="right">
+            <em>public</em>                        <em>ezcCacheStackOptions</em>          </td>
+          <td>
+            <code>
+              <a href="#__construct"><b>__construct</b></a>(
+                                                                  [                  $options
+                   = array()]                               )
+            </code>
+            <br><div style="margin-left: 20px">Construct a new options object.</div>          </td>
+        </tr></table><h3>Inherited Methods</h3>
+  <table class="summary"><thead><tr><th colspan="2">
+            From <span class="classname"><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseOptions.html">ezcBaseOptions</a></span>
+          </th>
+        </tr></thead><tbody><tr><td class="right">
+              <em>public</em>                                          <em>ezcBaseOptions</em>            </td>
+            <td>
+              <code><b><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseOptions.html#method__construct">ezcBaseOptions::__construct()</a></b></code>
+              <br><div style="margin-left: 20px">Construct a new options object.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseOptions.html#methodmerge">ezcBaseOptions::merge()</a></b></code>
+              <br><div style="margin-left: 20px">Merge an array into the actual options object.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>bool</em>            </td>
+            <td>
+              <code><b><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseOptions.html#methodoffsetExists">ezcBaseOptions::offsetExists()</a></b></code>
+              <br><div style="margin-left: 20px">Returns if an option exists.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>mixed</em>            </td>
+            <td>
+              <code><b><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseOptions.html#methodoffsetGet">ezcBaseOptions::offsetGet()</a></b></code>
+              <br><div style="margin-left: 20px">Returns an option value.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseOptions.html#methodoffsetSet">ezcBaseOptions::offsetSet()</a></b></code>
+              <br><div style="margin-left: 20px">Set an option.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseOptions.html#methodoffsetUnset">ezcBaseOptions::offsetUnset()</a></b></code>
+              <br><div style="margin-left: 20px">Unset an option.</div>                          </td>
+          </tr></tbody></table><a name="sec-methods"></a>
+  <h3>Methods</h3>
+  <a name="method_detail"></a>
+  
+      <a name="method__construct" id="__construct"><!-- --></a>
+
+    <h4>__construct</h4>
+
+    <div class="method-signature">
+      ezcCacheStackOptions
+      __construct(
+                                  [
+          $options
+           = array()]              )
+    </div>
+
+    <p>Construct a new options object.</p><div><p>Options are constructed from an option array by default. The constructor  automatically passes the given options to the __set() method to set them  in the class.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$options</code></td>
+              <td><em>array(string=&gt;mixed)</em></td>
+              <td>
+                                  The initial options to set.
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseValueException.html">ezcBaseValueException</a></code></td>
+              <td>
+                                  If the value for a property is out of range.
+                              </td>
+            </tr><tr><td><code><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBasePropertyNotFoundException.html">ezcBasePropertyNotFoundException</a></code></td>
+              <td>
+                                  If trying to access a non existent property.
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseOptions.html#method__construct">ezcBaseOptions::__construct()</a></code></td>
+            <td>
+                              Construct a new options object.
+                          </td>
+          </tr></tbody></table><div class="credit">
+      Documentation generated by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+    </div>
+  </div>
+  
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

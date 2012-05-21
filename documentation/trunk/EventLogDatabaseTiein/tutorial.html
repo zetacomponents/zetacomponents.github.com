@@ -1,0 +1,160 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="PHP, apache, components, framework, quality" />
+	<meta name="author" content="dotxp" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Wed, 04 Aug 2010 13:07:09 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="Tutorial" />
+	<meta name="DC.creator" content="dotxp" />
+	<meta name="DC.date" content="Wed, 04 Aug 2010 13:07:09 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/EventLogDatabaseTiein/tutorial.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li class="requested">
+	<a href="/zetacomponents/documentation/trunk/EventLogDatabaseTiein/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/EventLogDatabaseTiein/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+
+</ul>
+
+		<h2>eZ Components - EventLogDatabaseTiein</h2><div class="toc"><h3>Table of Contents</h3><ul><li><p><a href="#introduction">Introduction</a></p></li><li><p><a href="#class-overview">Class overview</a></p></li><li><p><a href="#examples">Examples</a></p><ul><li><p><a href="#writing-to-a-database">Writing to a database</a></p></li></ul></li></ul></div><a name="introduction"></a><a name="id1"></a><h3>Introduction</h3><p>The EventLogDatabaseTiein component provides an API to log events and audit trails using a database connection. See the <a href="http://ez.no/doc/components/view/trunk/(file)/introduction_EventLog.html">EventLog</a> and <a href="http://ez.no/doc/components/view/trunk/(file)/introduction_Database.html">Database</a> tutorials for more information about the components that EventLogDatabaseTiein interacts with.</p><p>ezcLogDatabaseWriter is the log writer that writes log messages to the database.</p><p>To write log messages to the database, the <a href="http://ez.no/doc/components/view/trunk/(file)/introduction_Database.html">Database</a> component is used. The table to which the log is written should already exist.</p><a name="class-overview"></a><a name="id2"></a><h3>Class overview</h3><p>ezcLogDatabaseWriter is the only class in EventLogDatabaseTiein:</p><dl><dt>ezcLogDatabaseWriter</dt><dd>The <a href='/zetacomponents/documentation/trunk/EventLogDatabaseTiein/phpdoc/ezcLogDatabaseWriter.html'>ezcLogDatabaseWriter</a> class writes the log message to a database.</dd></dl><p>For more information, see the class documentation.</p><a name="examples"></a><a name="id3"></a><h3>Examples</h3><a name="writing-to-a-database"></a><a name="id4"></a><h4>Writing to a database</h4><p>In this example, a MySQL database is used for writing log messages. The database "app" and the table "log" should already exist. The table should at least contain the following columns: time, message, severity, source and category.</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #0000FF">require_once&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000">date_default_timezone_set</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">"UTC"&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Get&nbsp;the&nbsp;database&nbsp;instance</span></li>
+<li><span style="color: #000000">$db&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/EventLogDatabaseTiein/phpdoc/ezcDbInstance.html#get'>ezcDbInstance::get</a></span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Get&nbsp;the&nbsp;log&nbsp;instance</span></li>
+<li><span style="color: #000000">$log&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/EventLogDatabaseTiein/phpdoc/ezcLog.html#getInstance'>ezcLog::getInstance</a></span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Create&nbsp;a&nbsp;database&nbsp;writer&nbsp;attached&nbsp;to&nbsp;the&nbsp;database&nbsp;handler&nbsp;and&nbsp;the&nbsp;table&nbsp;"log"</span></li>
+<li><span style="color: #000000">$writer&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/EventLogDatabaseTiein/phpdoc/ezcLogDatabaseWriter.html'>ezcLogDatabaseWriter</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$db</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">"log"&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Specify&nbsp;that&nbsp;log&nbsp;messages&nbsp;will&nbsp;be&nbsp;written&nbsp;to&nbsp;the&nbsp;database</span></li>
+<li><span style="color: #000000">$log</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">getMapper</span><span style="color: #0000FF">()-&gt;</span><span style="color: #000000">appendRule</span><span style="color: #0000FF">(&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/EventLogDatabaseTiein/phpdoc/ezcLogFilterRule.html'>ezcLogFilterRule</a></span><span style="color: #0000FF">(&nbsp;new&nbsp;</span><span style="color: #000000">ezcLogFilter</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">$writer</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">true&nbsp;</span><span style="color: #0000FF">)&nbsp;);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Write&nbsp;a&nbsp;log&nbsp;entry&nbsp;(&nbsp;message,&nbsp;severity,&nbsp;source,&nbsp;category&nbsp;)</span></li>
+<li><span style="color: #000000">$log</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">log</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">"File&nbsp;'/images/spacer.gif'&nbsp;does&nbsp;not&nbsp;exist."</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/EventLogDatabaseTiein/phpdoc/ezcLog.html#constWARNING'>ezcLog::WARNING</a></span><span style="color: #0000FF">,&nbsp;array(&nbsp;</span><span style="color: #335533">"source"&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #335533">"Application"</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">"category"&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #335533">"Design"&nbsp;</span><span style="color: #0000FF">)&nbsp;);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Write&nbsp;a&nbsp;log&nbsp;entry&nbsp;(&nbsp;message,&nbsp;severity,&nbsp;source,&nbsp;category,&nbsp;file,&nbsp;line&nbsp;)</span></li>
+<li><span style="color: #000000">$log</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">log</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">"File&nbsp;'/images/spacer.gif'&nbsp;does&nbsp;not&nbsp;exist."</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/EventLogDatabaseTiein/phpdoc/ezcLog.html#constWARNING'>ezcLog::WARNING</a></span><span style="color: #0000FF">,&nbsp;array(&nbsp;</span><span style="color: #335533">"source"&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #335533">"Application"</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">"category"&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #335533">"Design"&nbsp;</span><span style="color: #0000FF">),&nbsp;array(&nbsp;</span><span style="color: #335533">"file"&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #335533">"/index.php"</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">"line"&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #000000">123&nbsp;</span><span style="color: #0000FF">)&nbsp;);</span></li>
+<li></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><p>An example SQL query to create the table is as follows:</p><code class="block">CREATE TABLE log (
+    category varchar(255) NOT NULL,
+    file varchar(255),
+    id bigint NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    line bigint,
+    message varchar(255) NOT NULL,
+    severity varchar(255) NOT NULL,
+    source varchar(255) NOT NULL,
+    time timestamp NOT NULL
+);</code><p>The log table will have rows similar to the following:</p><code class="block">array(16) {
+  ["category"]=&gt;
+  string(6) "Design"
+  [0]=&gt;
+  string(6) "Design"
+  ["file"]=&gt;
+  NULL
+  [1]=&gt;
+  NULL
+  ["id"]=&gt;
+  string(1) "1"
+  [2]=&gt;
+  string(1) "1"
+  ["line"]=&gt;
+  NULL
+  [3]=&gt;
+  NULL
+  ["message"]=&gt;
+  string(41) "File '/images/spacer.gif' does not exist."
+  [4]=&gt;
+  string(41) "File '/images/spacer.gif' does not exist."
+  ["severity"]=&gt;
+  string(7) "Warning"
+  [5]=&gt;
+  string(7) "Warning"
+  ["source"]=&gt;
+  string(11) "Application"
+  [6]=&gt;
+  string(11) "Application"
+  ["time"]=&gt;
+  string(19) "2006-11-28 14:21:32"
+  [7]=&gt;
+  string(19) "2006-11-28 14:21:32"
+}</code><!--Local Variables:
+mode: rst
+fill-column: 79
+End:
+vim: et syn=rst tw=79-->
+
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

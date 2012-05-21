@@ -1,0 +1,695 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="PHP, apache, components, framework, quality" />
+	<meta name="author" content="dotxp" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Wed, 04 Aug 2010 13:07:15 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="ezcBase.html" />
+	<meta name="DC.creator" content="dotxp" />
+	<meta name="DC.date" content="Wed, 04 Aug 2010 13:07:15 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBase.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/Base/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/trunk/Base/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+
+</ul>
+
+		
+  <div class="phpdoc">
+    <h2>Apache Zeta Components Manual :: Docs For Class ezcBase</h2>
+
+                  <h3>Base::ezcBase</h3>
+    
+<a name="sec-description"></a>
+<h3>Class ezcBase</h3>
+
+<p>Base class implements the methods needed to use the eZ components.</p>
+<p>Source for this file: <a href="http://fisheye6.atlassian.com/browse/zetacomponents/trunk/Base/src/base.php?r=HEAD">/Base/src/base.php</a></p>
+       
+
+
+
+
+  <table><tr><td>
+            <strong>Version:</strong>&#8192;&#8192;
+          </td>
+          <td>//autogentag//</td>
+        </tr></table><a name="sec-const-summary"></a>
+  <h3>Constants</h3>
+  <table class="summary"><tr><td class="right">
+          <a name="const-DEP_PHP_EXTENSION" id=""></a>
+          <code>
+            <a href="#const-DEP_PHP_EXTENSION" title="details" class="const-name-summary">DEP_PHP_EXTENSION</a>
+             =  "extension"
+          </code>
+        </td>
+        <td>
+          Used for dependency checking, to check for a PHP extension.                  </td>
+      </tr><tr><td class="right">
+          <a name="const-DEP_PHP_VERSION" id=""></a>
+          <code>
+            <a href="#const-DEP_PHP_VERSION" title="details" class="const-name-summary">DEP_PHP_VERSION</a>
+             =  "version"
+          </code>
+        </td>
+        <td>
+          Used for dependency checking, to check for a PHP version.                  </td>
+      </tr><tr><td class="right">
+          <a name="const-MODE_DEVELOPMENT" id=""></a>
+          <code>
+            <a href="#const-MODE_DEVELOPMENT" title="details" class="const-name-summary">MODE_DEVELOPMENT</a>
+             =  1
+          </code>
+        </td>
+        <td>
+          Denotes the development mode                  </td>
+      </tr><tr><td class="right">
+          <a name="const-MODE_PRODUCTION" id=""></a>
+          <code>
+            <a href="#const-MODE_PRODUCTION" title="details" class="const-name-summary">MODE_PRODUCTION</a>
+             =  0
+          </code>
+        </td>
+        <td>
+          Denotes the production mode                  </td>
+      </tr></table><a name="sec-var-summary"></a>
+  <h3>Member Variables</h3>
+  <table class="summary"><tr><td class="right">
+            <em>protected</em>            static
+            <em>array(string=&gt;string)</em>          </td>
+          <td>
+            <code>
+              $autoloadArray
+                          </code>
+            <br><div style="margin-left: 20px">This variable stores all the elements from the autoload arrays. When a  new autoload file is loaded, their files are added to this array.</div>                      </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            static
+            <em>array(string=&gt;string)</em>          </td>
+          <td>
+            <code>
+              $externalAutoloadArray
+                          </code>
+            <br><div style="margin-left: 20px">This variable stores all the elements from the autoload arrays for  external repositories. When a new autoload file is loaded, their files  are added to this array.</div>                      </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            static
+            <em>string</em>          </td>
+          <td>
+            <code>
+              $packageDir
+                          </code>
+            <br><div style="margin-left: 20px">The full path to the autoload directory.</div>                      </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            static
+            <em>array(string=&gt;array)</em>          </td>
+          <td>
+            <code>
+              $repositoryDirs
+                          </code>
+            <br><div style="margin-left: 20px">Stores info with additional paths where autoload files and classes for</div>            <br><div style="margin-left: 20px"><p>autoloading could be found. Each item of $repositoryDirs looks like  array( autoloadFileDir, baseDir ). The array key is the prefix belonging  to classes within that repository - if provided when calling  addClassRepository(), or an autoincrement integer otherwise.</p></div>          </td>
+        </tr></table><a name="sec-method-summary"></a>
+  <h3>Method Summary</h3>
+  <table class="summary"><tr><td class="right">
+            <em>public</em>            static
+                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#addClassRepository"><b>addClassRepository</b></a>(
+                                                                                    $basePath
+                                                    ,                   [                  $autoloadDirPath
+                   = null]                                  ,                   [                  $prefix
+                   = null]                               )
+            </code>
+            <br><div style="margin-left: 20px">Adds an additional class repository.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>            static
+                        <em>bool</em>          </td>
+          <td>
+            <code>
+              <a href="#autoload"><b>autoload</b></a>(
+                                                                                    $className
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Tries to autoload the given className. If the className could be found  this method returns true, otherwise false.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>            static
+                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#checkDependency"><b>checkDependency</b></a>(
+                                                                                    $component
+                                                    ,                                     $type
+                                                    ,                                     $value
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Checks for dependencies on PHP versions or extensions</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>            static
+                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#getInstallationPath"><b>getInstallationPath</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns the base path of the eZ Components installation</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>            static
+                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#getInstallMethod"><b>getInstallMethod</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns the installation method</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>            static
+                        <em>array(string=&gt;ezcBaseRepositoryDirectory)</em>          </td>
+          <td>
+            <code>
+              <a href="#getRepositoryDirectories"><b>getRepositoryDirectories</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Return the list of directories that contain class repositories.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>            static
+                        <em>int</em>          </td>
+          <td>
+            <code>
+              <a href="#getRunMode"><b>getRunMode</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns the current development mode.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>            static
+                        <em>bool</em>          </td>
+          <td>
+            <code>
+              <a href="#inDevMode"><b>inDevMode</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns true when we are in development mode.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            static
+                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#loadExternalFile"><b>loadExternalFile</b></a>(
+                                                                                    $file
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Loads, require(), the given file name from an external package.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            static
+                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#loadFile"><b>loadFile</b></a>(
+                                                                                    $file
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Loads, require(), the given file name. If we are in development mode,  "/src/" is inserted into the path.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            static
+                        <em>bool</em>          </td>
+          <td>
+            <code>
+              <a href="#requireFile"><b>requireFile</b></a>(
+                                                                                    $fileName
+                                                    ,                                     $className
+                                                    ,                                     $prefix
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Tries to load the autoload array and, if loaded correctly, includes the class.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>            static
+                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#setOptions"><b>setOptions</b></a>(
+                                                                                    $options
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Associates an option object with this static class.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            static
+                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#setPackageDir"><b>setPackageDir</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Figures out the base path of the eZ Components installation.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>            static
+                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#setRunMode"><b>setRunMode</b></a>(
+                                                                                    $runMode
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Sets the development mode to the one specified.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>            static
+                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#setWorkingDirectory"><b>setWorkingDirectory</b></a>(
+                                                                                    $directory
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Sets the current working directory to $directory.</div>          </td>
+        </tr></table><a name="sec-methods"></a>
+  <h3>Methods</h3>
+  <a name="method_detail"></a>
+      <a name="methodaddClassRepository" id="addClassRepository"><!-- --></a>
+
+    <h4>addClassRepository</h4>
+
+    <div class="method-signature">
+      static void
+      addClassRepository(
+                                  string
+          $basePath
+                            ,           [string
+          $autoloadDirPath
+           = null]                  ,           [string
+          $prefix
+           = null]              )
+    </div>
+
+      <p>Adds an additional class repository.</p><div><p>Used for adding class repositoryies outside the eZ components to be  loaded by the autoload system.</p><p>This function takes two arguments: $basePath is the base path for the  whole class repository and $autoloadDirPath the path where autoload  files for this repository are found. The paths in the autoload files are  relative to the package directory as specified by the $basePath  argument. I.e. class definition file will be searched at location  $basePath + path to the class definition file as stored in the autoload  file.</p><p>addClassRepository() should be called somewhere in code before external classes  are used.</p><p>Example:  Take the following facts:  </p><ul><li>there is a class repository stored in the directory "./repos"</li><li>autoload files for that repository are stored in "./repos/autoloads"</li><li>there are two components in this repository: "Me" and "You"</li><li>the "Me" component has the classes "erMyClass1" and "erMyClass2"</li><li>the "You" component has the classes "erYourClass1" and "erYourClass2"</li></ul><p>In this case you would need to create the following files in  "./repos/autoloads". Please note that the part before _autoload.php in  the filename is the first part of the <strong>classname</strong>, not considering  the all lower-case letter prefix.</p><p>"my_autoload.php":  </p><ol><li><div class="src-line">&#8192;<span class="src-php">&lt;?php</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-key">return&#8192;</span><span class="src-key">array&#8192;</span><span class="src-sym">(</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'erMyClass1'&#8192;</span>=&gt;&#8192;<span class="src-str">'Me/myclass1.php'</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'erMyClass2'&#8192;</span>=&gt;&#8192;<span class="src-str">'Me/myclass2.php'</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-php">?&gt;</span></div></li>
+</ol><p>"your_autoload.php":  </p><ol><li><div class="src-line">&#8192;<span class="src-php">&lt;?php</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-key">return&#8192;</span><span class="src-key">array&#8192;</span><span class="src-sym">(</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'erYourClass1'&#8192;</span>=&gt;&#8192;<span class="src-str">'You/yourclass1.php'</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'erYourClass2'&#8192;</span>=&gt;&#8192;<span class="src-str">'You/yourclass2.php'</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-php">?&gt;</span></div></li>
+</ol><p>The directory structure for the external repository is then:  </p><ol><li><div class="src-line">&#8192;./<span class="src-id">repos</span>/<span class="src-id">autoloads</span>/<span class="src-id">my_autoload</span>.<span class="src-id">php</span></div></li>
+<li><div class="src-line">&#8192;./<span class="src-id">repos</span>/<span class="src-id">autoloads</span>/<span class="src-id">you_autoload</span>.<span class="src-id">php</span></div></li>
+<li><div class="src-line">&#8192;./<span class="src-id">repos</span>/<span class="src-id">Me</span>/<span class="src-id">myclass1</span>.<span class="src-id">php</span></div></li>
+<li><div class="src-line">&#8192;./<span class="src-id">repos</span>/<span class="src-id">Me</span>/<span class="src-id">myclass2</span>.<span class="src-id">php</span></div></li>
+<li><div class="src-line">&#8192;./<span class="src-id">repos</span>/<span class="src-id">You</span>/<span class="src-id">yourclass1</span>.<span class="src-id">php</span></div></li>
+<li><div class="src-line">&#8192;./<span class="src-id">repos</span>/<span class="src-id">You</span>/<span class="src-id">yourclass2</span>.<span class="src-id">php</span></div></li>
+</ol><p>To use this repository with the autoload mechanism you have to use the  following code:  </p><ol><li><div class="src-line">&#8192;<span class="src-php">&lt;?php</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-id"><a href="ezcBase.html">ezcBase</a></span><span class="src-sym">::</span><a href="ezcBase.html#methodaddClassRepository">addClassRepository</a><span class="src-sym">(&#8192;</span><span class="src-str">'./repos'</span><span class="src-sym">,&#8192;</span><span class="src-str">'./repos/autoloads'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$myVar&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id">erMyClass2</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-php">?&gt;</span></div></li>
+</ol></div>      
+              <h5>Parameters:</h5>
+        <table class="detail"><thead><tr><th>Name</th>
+              <th>Type</th>
+              <th class="desc">Description</th>
+            </tr></thead><tbody><tr><td><code>$basePath</code></td>
+                <td><em>string</em></td>
+                <td>
+                                  </td>
+              </tr><tr><td><code>$autoloadDirPath</code></td>
+                <td><em>string</em></td>
+                <td>
+                                  </td>
+              </tr><tr><td><code>$prefix</code></td>
+                <td><em>string</em></td>
+                <td>
+                                  </td>
+              </tr></tbody></table><h5>Exceptions:</h5>
+        <table class="detail"><thead><tr><th>Type</th>
+              <th class="desc">Description</th>
+            </tr></thead><tbody><tr><td><code><a href="ezcBaseFileNotFoundException.html">ezcBaseFileNotFoundException</a></code></td>
+                <td>
+                                      if $autoloadDirPath or $basePath do not exist.
+                                  </td>
+              </tr></tbody></table><a name="methodautoload" id="autoload"><!-- --></a>
+
+    <h4>autoload</h4>
+
+    <div class="method-signature">
+      static bool
+      autoload(
+                                  string
+          $className
+                        )
+    </div>
+
+      <p>Tries to autoload the given className. If the className could be found  this method returns true, otherwise false.</p><div><p>This class caches the requested class names (including the ones who  failed to load).</p></div>      
+              <h5>Parameters:</h5>
+        <table class="detail"><thead><tr><th>Name</th>
+              <th>Type</th>
+              <th class="desc">Description</th>
+            </tr></thead><tbody><tr><td><code>$className</code></td>
+                <td><em>string</em></td>
+                <td>
+                                      The name of the class that should be loaded.
+                                  </td>
+              </tr></tbody></table><a name="methodcheckDependency" id="checkDependency"><!-- --></a>
+
+    <h4>checkDependency</h4>
+
+    <div class="method-signature">
+      static void
+      checkDependency(
+                                  string
+          $component
+                            ,           int
+          $type
+                            ,           mixed
+          $value
+                        )
+    </div>
+
+      <p>Checks for dependencies on PHP versions or extensions</p><div><p>The function as called by the $component component checks for the $type  dependency. The dependency $type is compared against the $value. The  function aborts the script if the dependency is not matched.</p></div>      
+              <h5>Parameters:</h5>
+        <table class="detail"><thead><tr><th>Name</th>
+              <th>Type</th>
+              <th class="desc">Description</th>
+            </tr></thead><tbody><tr><td><code>$component</code></td>
+                <td><em>string</em></td>
+                <td>
+                                  </td>
+              </tr><tr><td><code>$type</code></td>
+                <td><em>int</em></td>
+                <td>
+                                  </td>
+              </tr><tr><td><code>$value</code></td>
+                <td><em>mixed</em></td>
+                <td>
+                                  </td>
+              </tr></tbody></table><a name="methodgetInstallationPath" id="getInstallationPath"><!-- --></a>
+
+    <h4>getInstallationPath</h4>
+
+    <div class="method-signature">
+      static string
+      getInstallationPath(
+      )
+    </div>
+
+      <p>Returns the base path of the eZ Components installation</p><div><p>This method returns the base path, including a trailing directory  separator.</p></div>      
+      
+      
+      
+      
+      
+        <a name="methodgetInstallMethod" id="getInstallMethod"><!-- --></a>
+
+    <h4>getInstallMethod</h4>
+
+    <div class="method-signature">
+      static string
+      getInstallMethod(
+      )
+    </div>
+
+      <p>Returns the installation method</p><div><p>Possible return values are 'custom', 'devel', 'tarball' and 'pear'. Only  'tarball' and 'pear' are returned for user-installed versions.</p></div>      
+      
+      
+      
+      
+      
+        <a name="methodgetRepositoryDirectories" id="getRepositoryDirectories"><!-- --></a>
+
+    <h4>getRepositoryDirectories</h4>
+
+    <div class="method-signature">
+      static array(string=&gt;ezcBaseRepositoryDirectory)
+      getRepositoryDirectories(
+      )
+    </div>
+
+      <p>Return the list of directories that contain class repositories.</p><div><p>The path to the eZ components directory is always included in the result  array. Each element in the returned array has the format of:  packageDirectory =&gt; ezcBaseRepositoryDirectory</p></div>      
+      
+      
+      
+      
+      
+        <a name="methodgetRunMode" id="getRunMode"><!-- --></a>
+
+    <h4>getRunMode</h4>
+
+    <div class="method-signature">
+      static int
+      getRunMode(
+      )
+    </div>
+
+      <p>Returns the current development mode.</p>      
+      
+      
+      
+      
+      
+        <a name="methodinDevMode" id="inDevMode"><!-- --></a>
+
+    <h4>inDevMode</h4>
+
+    <div class="method-signature">
+      static bool
+      inDevMode(
+      )
+    </div>
+
+      <p>Returns true when we are in development mode.</p>      
+      
+      
+      
+      
+      
+        <a name="methodloadExternalFile" id="loadExternalFile"><!-- --></a>
+
+    <h4>loadExternalFile</h4>
+
+    <div class="method-signature">
+      static void
+      loadExternalFile(
+                                  string
+          $file
+                        )
+    </div>
+
+      <p>Loads, require(), the given file name from an external package.</p>      
+              <h5>Parameters:</h5>
+        <table class="detail"><thead><tr><th>Name</th>
+              <th>Type</th>
+              <th class="desc">Description</th>
+            </tr></thead><tbody><tr><td><code>$file</code></td>
+                <td><em>string</em></td>
+                <td>
+                                      The name of the file that should be loaded.
+                                  </td>
+              </tr></tbody></table><a name="methodloadFile" id="loadFile"><!-- --></a>
+
+    <h4>loadFile</h4>
+
+    <div class="method-signature">
+      static void
+      loadFile(
+                                  string
+          $file
+                        )
+    </div>
+
+      <p>Loads, require(), the given file name. If we are in development mode,  "/src/" is inserted into the path.</p>      
+              <h5>Parameters:</h5>
+        <table class="detail"><thead><tr><th>Name</th>
+              <th>Type</th>
+              <th class="desc">Description</th>
+            </tr></thead><tbody><tr><td><code>$file</code></td>
+                <td><em>string</em></td>
+                <td>
+                                      The name of the file that should be loaded.
+                                  </td>
+              </tr></tbody></table><a name="methodrequireFile" id="requireFile"><!-- --></a>
+
+    <h4>requireFile</h4>
+
+    <div class="method-signature">
+      static bool
+      requireFile(
+                                  string
+          $fileName
+                            ,           string
+          $className
+                            ,           string
+          $prefix
+                        )
+    </div>
+
+      <p>Tries to load the autoload array and, if loaded correctly, includes the class.</p>      
+              <h5>Parameters:</h5>
+        <table class="detail"><thead><tr><th>Name</th>
+              <th>Type</th>
+              <th class="desc">Description</th>
+            </tr></thead><tbody><tr><td><code>$fileName</code></td>
+                <td><em>string</em></td>
+                <td>
+                                      Name of the autoload file.
+                                  </td>
+              </tr><tr><td><code>$className</code></td>
+                <td><em>string</em></td>
+                <td>
+                                      Name of the class that should be autoloaded.
+                                  </td>
+              </tr><tr><td><code>$prefix</code></td>
+                <td><em>string</em></td>
+                <td>
+                                      The prefix of the class repository.
+                                  </td>
+              </tr></tbody></table><a name="methodsetOptions" id="setOptions"><!-- --></a>
+
+    <h4>setOptions</h4>
+
+    <div class="method-signature">
+      static void
+      setOptions(
+                                  
+          $options
+                        )
+    </div>
+
+      <p>Associates an option object with this static class.</p>      
+              <h5>Parameters:</h5>
+        <table class="detail"><thead><tr><th>Name</th>
+              <th>Type</th>
+              <th class="desc">Description</th>
+            </tr></thead><tbody><tr><td><code>$options</code></td>
+                <td><em>ezcBaseAutoloadOptions</em></td>
+                <td>
+                                  </td>
+              </tr></tbody></table><a name="methodsetPackageDir" id="setPackageDir"><!-- --></a>
+
+    <h4>setPackageDir</h4>
+
+    <div class="method-signature">
+      static void
+      setPackageDir(
+      )
+    </div>
+
+      <p>Figures out the base path of the eZ Components installation.</p><div><p>It stores the path that it finds in a static member variable. The path  depends on the installation method of the eZ Components. The SVN version  has a different path than the PEAR installed version.</p></div>      
+      
+      
+      
+      
+      
+        <a name="methodsetRunMode" id="setRunMode"><!-- --></a>
+
+    <h4>setRunMode</h4>
+
+    <div class="method-signature">
+      static void
+      setRunMode(
+                                  int
+          $runMode
+                        )
+    </div>
+
+      <p>Sets the development mode to the one specified.</p>      
+              <h5>Parameters:</h5>
+        <table class="detail"><thead><tr><th>Name</th>
+              <th>Type</th>
+              <th class="desc">Description</th>
+            </tr></thead><tbody><tr><td><code>$runMode</code></td>
+                <td><em>int</em></td>
+                <td>
+                                  </td>
+              </tr></tbody></table><a name="methodsetWorkingDirectory" id="setWorkingDirectory"><!-- --></a>
+
+    <h4>setWorkingDirectory</h4>
+
+    <div class="method-signature">
+      static void
+      setWorkingDirectory(
+                                  string
+          $directory
+                        )
+    </div>
+
+      <p>Sets the current working directory to $directory.</p>      
+              <h5>Parameters:</h5>
+        <table class="detail"><thead><tr><th>Name</th>
+              <th>Type</th>
+              <th class="desc">Description</th>
+            </tr></thead><tbody><tr><td><code>$directory</code></td>
+                <td><em>string</em></td>
+                <td>
+                                  </td>
+              </tr></tbody></table><div class="credit">
+      Documentation generated by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+    </div>
+  </div>
+  
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

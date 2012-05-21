@@ -1,0 +1,495 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="PHP, apache, components, framework, quality" />
+	<meta name="author" content="dotxp" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Wed, 04 Aug 2010 13:07:42 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="ezcGraphDataSetProperty.html" />
+	<meta name="DC.creator" content="dotxp" />
+	<meta name="DC.date" content="Wed, 04 Aug 2010 13:07:42 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/Graph/phpdoc/ezcGraphDataSetProperty.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/Graph/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/trunk/Graph/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Graph/gallery.html" title="Gallery ">Gallery </a>
+	</li>
+
+</ul>
+
+		
+  <div class="phpdoc">
+    <h2>Apache Zeta Components Manual :: Docs For Class ezcGraphDataSetProperty</h2>
+
+                  <h3>Graph::ezcGraphDataSetProperty</h3>
+    
+<a name="sec-description"></a>
+<h3>Class ezcGraphDataSetProperty</h3>
+
+<p>Abstract class for properties of datasets</p><div><p>This class is used to extends datasets with additional properties, and  stores only non default values for each data point in a data set.</p><p>The class is extended by property implementations including simple value  validators, like:</p><p></p><ul><li>ezcGraphDataSetAxisProperty</li><li>ezcGraphDataSetBooleanProperty</li><li>ezcGraphDataSetColorProperty</li><li>ezcGraphDataSetIntProperty</li><li>ezcGraphDataSetStringProperty</li></ul>  The color property can for example be accessed in a chart like:<p></p><ol><li><div class="src-line">&#8192;&#8192;<span class="src-var">$graph&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcGraphLineChart.html">ezcGraphLineChart</a></span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;&#8192;<span class="src-var">$graph</span><span class="src-sym">-&gt;</span><span class="src-id">data</span><span class="src-sym">[</span><span class="src-str">'example'</span><span class="src-sym">]&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcGraphArrayDataSet.html">ezcGraphArrayDataSet</a></span><span class="src-sym">(&#8192;</span><span class="src-key">array</span><span class="src-sym">(</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'Foo'&#8192;</span>=&gt;&#8192;<span class="src-num">23</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'Bar'&#8192;</span>=&gt;&#8192;<span class="src-num">42</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;<span class="src-sym">)&#8192;)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;&#8192;<span class="src-comm">//&#8192;Set&#8192;color&#8192;for&#8192;all&#8192;data&#8192;points&#8192;in&#8192;this&#8192;data&#8192;set</span></div></li>
+<li><div class="src-line">&#8192;&#8192;<span class="src-var">$graph</span><span class="src-sym">-&gt;</span><span class="src-id">data</span><span class="src-sym">[</span><span class="src-str">'example'</span><span class="src-sym">]</span><span class="src-sym">-&gt;</span><span class="src-id">color&#8192;</span>=&#8192;<span class="src-str">'#a40000'</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;&#8192;<span class="src-comm">//&#8192;Set&#8192;different&#8192;color&#8192;for&#8192;one&#8192;special&#8192;datapoint</span></div></li>
+<li><div class="src-line">&#8192;&#8192;<span class="src-var">$graph</span><span class="src-sym">-&gt;</span><span class="src-id">data</span><span class="src-sym">[</span><span class="src-str">'example'</span><span class="src-sym">]</span><span class="src-sym">-&gt;</span><span class="src-id">color</span><span class="src-sym">[</span><span class="src-str">'Foo'</span><span class="src-sym">]&#8192;</span>=&#8192;<span class="src-str">'#2e3436'</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;&#8192;<span class="src-var">$graph</span><span class="src-sym">-&gt;</span><span class="src-id">render</span><span class="src-sym">(&#8192;</span><span class="src-num">400</span><span class="src-sym">,&#8192;</span><span class="src-num">200</span><span class="src-sym">,&#8192;</span><span class="src-str">'test.svg'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol></div>
+<p>Source for this file: <a href="http://fisheye6.atlassian.com/browse/zetacomponents/trunk/Graph/src/interfaces/dataset_property.php?r=HEAD">/Graph/src/interfaces/dataset_property.php</a></p>
+       
+  <h3>Implements interfaces:</h3>
+  <ul><li>ArrayAccess (internal interface)</li>  </ul><table><tr><td>
+            <strong>Version:</strong>&#8192;&#8192;
+          </td>
+          <td>//autogentag//</td>
+        </tr></table><a name="sec-descendants"></a>
+  <h3>Descendants</h3>
+  <table class="detail"><thead><tr><th>Child Class</th>
+        <th>Description</th>
+      </tr></thead><tbody><tr><td><a href="ezcGraphDataSetStringProperty.html">ezcGraphDataSetStringProperty</a></td>          <td>
+                          Class for string properties of datasets
+                      </td>
+        </tr><tr><td><a href="ezcGraphDataSetIntProperty.html">ezcGraphDataSetIntProperty</a></td>          <td>
+                          Class for integer properties of datasets
+                      </td>
+        </tr><tr><td><a href="ezcGraphDataSetColorProperty.html">ezcGraphDataSetColorProperty</a></td>          <td>
+                          Class for color properties of datasets
+                      </td>
+        </tr><tr><td><a href="ezcGraphDataSetAxisProperty.html">ezcGraphDataSetAxisProperty</a></td>          <td>
+                          Class for axis properties of datasets
+                      </td>
+        </tr><tr><td><a href="ezcGraphDataSetBooleanProperty.html">ezcGraphDataSetBooleanProperty</a></td>          <td>
+                          Class for boolean properties of datasets
+                      </td>
+        </tr></tbody></table><a name="sec-var-summary"></a>
+  <h3>Member Variables</h3>
+  <table class="summary"><tr><td class="right">
+            <em>protected</em>            <em><a href="ezcGraphDataSet.html">ezcGraphDataSet</a></em>          </td>
+          <td>
+            <code>
+              $dataset
+                          </code>
+            <br><div style="margin-left: 20px">Contains a reference to the dataset to check for availability of data  keys</div>                      </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            <em>array</em>          </td>
+          <td>
+            <code>
+              $dataValue
+                          </code>
+            <br><div style="margin-left: 20px">Contains specified values for single dataset elements</div>                      </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            <em>mixed</em>          </td>
+          <td>
+            <code>
+              $defaultValue
+                          </code>
+            <br><div style="margin-left: 20px">Default value for this property</div>                      </td>
+        </tr></table><a name="sec-method-summary"></a>
+  <h3>Method Summary</h3>
+  <table class="summary"><tr><td class="right">
+            <em>protected</em>            abstract            <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#checkValue"><b>checkValue</b></a>(
+                                                                                    &amp;$value
+                                                    ,                                     $value
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Abstract method to contain the check for validity of the value</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>bool</em>          </td>
+          <td>
+            <code>
+              <a href="#offsetExists"><b>offsetExists</b></a>(
+                                                                                    $key
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns if an option exists.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>mixed</em>          </td>
+          <td>
+            <code>
+              <a href="#offsetGet"><b>offsetGet</b></a>(
+                                                                                    $key
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns an option value.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#offsetSet"><b>offsetSet</b></a>(
+                                                                                    $key
+                                                    ,                                     $value
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Set an option.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#offsetUnset"><b>offsetUnset</b></a>(
+                                                                                    $key
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Unset an option.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>mixed</em>          </td>
+          <td>
+            <code>
+              <a href="#__get"><b>__get</b></a>(
+                                                                                    $name
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Get the default value for this property</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#__set"><b>__set</b></a>(
+                                                                                    $name
+                                                    ,                                     $value
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Set the default value for this property</div>          </td>
+        </tr></table><a name="sec-methods"></a>
+  <h3>Methods</h3>
+  <a name="method_detail"></a>
+              
+      <a name="methodcheckValue" id="checkValue"><!-- --></a>
+
+    <h4>checkValue</h4>
+
+    <div class="method-signature">
+      void
+      checkValue(
+                                  
+          &amp;$value
+                            ,           mixed
+          $value
+                        )
+    </div>
+
+    <p>Abstract method to contain the check for validity of the value</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$value</code></td>
+              <td><em>mixed</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>&amp;$value</code></td>
+              <td><em></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefined in descendants as:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcGraphDataSetStringProperty.html#methodcheckValue">ezcGraphDataSetStringProperty::checkValue()</a></code></td>
+              <td>
+                Converts value to an <a href="ezcGraphColor.html">ezcGraphColor</a> object&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcGraphDataSetIntProperty.html#methodcheckValue">ezcGraphDataSetIntProperty::checkValue()</a></code></td>
+              <td>
+                Converts value to an <a href="ezcGraphColor.html">ezcGraphColor</a> object&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcGraphDataSetColorProperty.html#methodcheckValue">ezcGraphDataSetColorProperty::checkValue()</a></code></td>
+              <td>
+                Converts value to an <a href="ezcGraphColor.html">ezcGraphColor</a> object&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcGraphDataSetAxisProperty.html#methodcheckValue">ezcGraphDataSetAxisProperty::checkValue()</a></code></td>
+              <td>
+                Chacks if value is really an axis&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcGraphDataSetBooleanProperty.html#methodcheckValue">ezcGraphDataSetBooleanProperty::checkValue()</a></code></td>
+              <td>
+                Converts value to an <a href="ezcGraphColor.html">ezcGraphColor</a> object&#8192;
+              </td>
+            </tr></tbody></table><a name="methodoffsetExists" id="offsetExists"><!-- --></a>
+
+    <h4>offsetExists</h4>
+
+    <div class="method-signature">
+      bool
+      offsetExists(
+                                  string
+          $key
+                        )
+    </div>
+
+    <p>Returns if an option exists.</p><div><p>Allows isset() using ArrayAccess.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$key</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  The name of the option to get.
+                              </td>
+            </tr></tbody></table><h5>Implementation of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>ArrayAccess::offsetExists</code></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodoffsetGet" id="offsetGet"><!-- --></a>
+
+    <h4>offsetGet</h4>
+
+    <div class="method-signature">
+      mixed
+      offsetGet(
+                                  string
+          $key
+                        )
+    </div>
+
+    <p>Returns an option value.</p><div><p>Get an option value by ArrayAccess.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$key</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  The name of the option to get.
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBasePropertyNotFoundException.html">ezcBasePropertyNotFoundException</a></code></td>
+              <td>
+                                  If a the value for the property options is not an instance of
+                              </td>
+            </tr></tbody></table><h5>Implementation of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>ArrayAccess::offsetGet</code></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodoffsetSet" id="offsetSet"><!-- --></a>
+
+    <h4>offsetSet</h4>
+
+    <div class="method-signature">
+      void
+      offsetSet(
+                                  string
+          $key
+                            ,           mixed
+          $value
+                        )
+    </div>
+
+    <p>Set an option.</p><div><p>Sets an option using ArrayAccess.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$key</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  The option to set.
+                              </td>
+            </tr><tr><td><code>$value</code></td>
+              <td><em>mixed</em></td>
+              <td>
+                                  The value for the option.
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseValueException.html">ezcBaseValueException</a></code></td>
+              <td>
+                                  If a the value for a property is out of range.
+                              </td>
+            </tr><tr><td><code><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBasePropertyNotFoundException.html">ezcBasePropertyNotFoundException</a></code></td>
+              <td>
+                                  If a the value for the property options is not an instance of
+                              </td>
+            </tr></tbody></table><h5>Implementation of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>ArrayAccess::offsetSet</code></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefined in descendants as:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcGraphDataSetAxisProperty.html#methodoffsetSet">ezcGraphDataSetAxisProperty::offsetSet()</a></code></td>
+              <td>
+                Set an option.&#8192;
+              </td>
+            </tr></tbody></table><a name="methodoffsetUnset" id="offsetUnset"><!-- --></a>
+
+    <h4>offsetUnset</h4>
+
+    <div class="method-signature">
+      void
+      offsetUnset(
+                                  string
+          $key
+                        )
+    </div>
+
+    <p>Unset an option.</p><div><p>Unsets an option using ArrayAccess.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$key</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  The options to unset.
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseValueException.html">ezcBaseValueException</a></code></td>
+              <td>
+                                  If a the value for a property is out of range.
+                              </td>
+            </tr><tr><td><code><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBasePropertyNotFoundException.html">ezcBasePropertyNotFoundException</a></code></td>
+              <td>
+                                  If a the value for the property options is not an instance of
+                              </td>
+            </tr></tbody></table><h5>Implementation of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>ArrayAccess::offsetUnset</code></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="method__get" id="__get"><!-- --></a>
+
+    <h4>__get</h4>
+
+    <div class="method-signature">
+      mixed
+      __get(
+                                  string
+          $name
+                        )
+    </div>
+
+    <p>Get the default value for this property</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$name</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  Property name
+                              </td>
+            </tr></tbody></table><a name="method__set" id="__set"><!-- --></a>
+
+    <h4>__set</h4>
+
+    <div class="method-signature">
+      void
+      __set(
+                                  string
+          $name
+                            ,           mixed
+          $value
+                        )
+    </div>
+
+    <p>Set the default value for this property</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$name</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  Property name
+                              </td>
+            </tr><tr><td><code>$value</code></td>
+              <td><em>mixed</em></td>
+              <td>
+                                  Property value
+                              </td>
+            </tr></tbody></table><div class="credit">
+      Documentation generated by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+    </div>
+  </div>
+  
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

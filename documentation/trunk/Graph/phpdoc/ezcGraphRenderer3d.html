@@ -1,0 +1,1827 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="PHP, apache, components, framework, quality" />
+	<meta name="author" content="dotxp" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Wed, 04 Aug 2010 13:07:43 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="ezcGraphRenderer3d.html" />
+	<meta name="DC.creator" content="dotxp" />
+	<meta name="DC.date" content="Wed, 04 Aug 2010 13:07:43 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/Graph/phpdoc/ezcGraphRenderer3d.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/Graph/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/trunk/Graph/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Graph/gallery.html" title="Gallery ">Gallery </a>
+	</li>
+
+</ul>
+
+		
+  <div class="phpdoc">
+    <h2>Apache Zeta Components Manual :: Docs For Class ezcGraphRenderer3d</h2>
+
+                  <h3>Graph::ezcGraphRenderer3d</h3>
+    
+<a name="sec-description"></a>
+<h3>Class ezcGraphRenderer3d</h3>
+
+<p>Class to transform chart primitives into image primitives. This renderer  renders the charts in a isometric three dimensional view.</p><div><p>The class options are defined in the class <a href="ezcGraphRenderer3dOptions.html">ezcGraphRenderer3dOptions</a>  extending the basic renderer options in <a href="ezcGraphRendererOptions.html">ezcGraphRendererOptions</a>.</p><p></p><ol><li><div class="src-line">&#8192;&#8192;&#8192;<span class="src-var">$graph&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcGraphPieChart.html">ezcGraphPieChart</a></span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;<span class="src-var">$graph</span><span class="src-sym">-&gt;</span><span class="src-id">palette&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcGraphPaletteEzRed.html">ezcGraphPaletteEzRed</a></span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;<span class="src-var">$graph</span><span class="src-sym">-&gt;</span><span class="src-id">title&#8192;</span>=&#8192;<span class="src-str">'Access&#8192;statistics'</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;<span class="src-var">$graph</span><span class="src-sym">-&gt;</span><span class="src-id"><a href="ezcGraphRenderer3d.html#var%24options">options</a></span><span class="src-sym">-&gt;</span><span class="src-id">label&#8192;</span>=&#8192;<span class="src-str">'%2$d&#8192;(%3$.1f%%)'</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;<span class="src-var">$graph</span><span class="src-sym">-&gt;</span><span class="src-id">data</span><span class="src-sym">[</span><span class="src-str">'Access&#8192;statistics'</span><span class="src-sym">]&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcGraphArrayDataSet.html">ezcGraphArrayDataSet</a></span><span class="src-sym">(&#8192;</span><span class="src-key">array</span><span class="src-sym">(</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'Mozilla'&#8192;</span>=&gt;&#8192;<span class="src-num">19113</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'Explorer'&#8192;</span>=&gt;&#8192;<span class="src-num">10917</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'Opera'&#8192;</span>=&gt;&#8192;<span class="src-num">1464</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'Safari'&#8192;</span>=&gt;&#8192;<span class="src-num">652</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'Konqueror'&#8192;</span>=&gt;&#8192;<span class="src-num">474</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;<span class="src-sym">)&#8192;)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;<span class="src-var">$graph</span><span class="src-sym">-&gt;</span><span class="src-id">data</span><span class="src-sym">[</span><span class="src-str">'Access&#8192;statistics'</span><span class="src-sym">]</span><span class="src-sym">-&gt;</span><span class="src-id">highlight</span><span class="src-sym">[</span><span class="src-str">'Explorer'</span><span class="src-sym">]&#8192;</span>=&#8192;<span class="src-id">true</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;<span class="src-var">$graph</span><span class="src-sym">-&gt;</span><span class="src-id">renderer&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcGraphRenderer3d.html">ezcGraphRenderer3d</a></span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;<span class="src-var">$graph</span><span class="src-sym">-&gt;</span><span class="src-id">renderer</span><span class="src-sym">-&gt;</span><span class="src-id"><a href="ezcGraphRenderer3d.html#var%24options">options</a></span><span class="src-sym">-&gt;</span><span class="src-id">moveOut&#8192;</span>=&#8192;<span class="src-num">.2</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;<span class="src-var">$graph</span><span class="src-sym">-&gt;</span><span class="src-id">renderer</span><span class="src-sym">-&gt;</span><span class="src-id"><a href="ezcGraphRenderer3d.html#var%24options">options</a></span><span class="src-sym">-&gt;</span><span class="src-id">pieChartOffset&#8192;</span>=&#8192;<span class="src-num">63</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;<span class="src-var">$graph</span><span class="src-sym">-&gt;</span><span class="src-id">renderer</span><span class="src-sym">-&gt;</span><span class="src-id"><a href="ezcGraphRenderer3d.html#var%24options">options</a></span><span class="src-sym">-&gt;</span><span class="src-id">pieChartGleam&#8192;</span>=&#8192;<span class="src-num">.3</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;<span class="src-var">$graph</span><span class="src-sym">-&gt;</span><span class="src-id">renderer</span><span class="src-sym">-&gt;</span><span class="src-id"><a href="ezcGraphRenderer3d.html#var%24options">options</a></span><span class="src-sym">-&gt;</span><span class="src-id">pieChartGleamColor&#8192;</span>=&#8192;<span class="src-str">'#FFFFFF'</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;<span class="src-var">$graph</span><span class="src-sym">-&gt;</span><span class="src-id">renderer</span><span class="src-sym">-&gt;</span><span class="src-id"><a href="ezcGraphRenderer3d.html#var%24options">options</a></span><span class="src-sym">-&gt;</span><span class="src-id">pieChartShadowSize&#8192;</span>=&#8192;<span class="src-num">5</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;<span class="src-var">$graph</span><span class="src-sym">-&gt;</span><span class="src-id">renderer</span><span class="src-sym">-&gt;</span><span class="src-id"><a href="ezcGraphRenderer3d.html#var%24options">options</a></span><span class="src-sym">-&gt;</span><span class="src-id">pieChartShadowColor&#8192;</span>=&#8192;<span class="src-str">'#000000'</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;<span class="src-var">$graph</span><span class="src-sym">-&gt;</span><span class="src-id">renderer</span><span class="src-sym">-&gt;</span><span class="src-id"><a href="ezcGraphRenderer3d.html#var%24options">options</a></span><span class="src-sym">-&gt;</span><span class="src-id">legendSymbolGleam&#8192;</span>=&#8192;<span class="src-num">.5</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;<span class="src-var">$graph</span><span class="src-sym">-&gt;</span><span class="src-id">renderer</span><span class="src-sym">-&gt;</span><span class="src-id"><a href="ezcGraphRenderer3d.html#var%24options">options</a></span><span class="src-sym">-&gt;</span><span class="src-id">legendSymbolGleamSize&#8192;</span>=&#8192;<span class="src-num">.9</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;<span class="src-var">$graph</span><span class="src-sym">-&gt;</span><span class="src-id">renderer</span><span class="src-sym">-&gt;</span><span class="src-id"><a href="ezcGraphRenderer3d.html#var%24options">options</a></span><span class="src-sym">-&gt;</span><span class="src-id">legendSymbolGleamColor&#8192;</span>=&#8192;<span class="src-str">'#FFFFFF'</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;<span class="src-var">$graph</span><span class="src-sym">-&gt;</span><span class="src-id">renderer</span><span class="src-sym">-&gt;</span><span class="src-id"><a href="ezcGraphRenderer3d.html#var%24options">options</a></span><span class="src-sym">-&gt;</span><span class="src-id">pieChartSymbolColor&#8192;</span>=&#8192;<span class="src-str">'#55575388'</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;<span class="src-var">$graph</span><span class="src-sym">-&gt;</span><span class="src-id">renderer</span><span class="src-sym">-&gt;</span><span class="src-id"><a href="ezcGraphRenderer3d.html#var%24options">options</a></span><span class="src-sym">-&gt;</span><span class="src-id">pieChartHeight&#8192;</span>=&#8192;<span class="src-num">5</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;<span class="src-var">$graph</span><span class="src-sym">-&gt;</span><span class="src-id">renderer</span><span class="src-sym">-&gt;</span><span class="src-id"><a href="ezcGraphRenderer3d.html#var%24options">options</a></span><span class="src-sym">-&gt;</span><span class="src-id">pieChartRotation&#8192;</span>=&#8192;<span class="src-num">.8</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;<span class="src-var">$graph</span><span class="src-sym">-&gt;</span><a href="ezcGraphRenderer.html#methodrender">render</a><span class="src-sym">(&#8192;</span><span class="src-num">400</span><span class="src-sym">,&#8192;</span><span class="src-num">150</span><span class="src-sym">,&#8192;</span><span class="src-str">'tutorial_pie_chart_3d.svg'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol></div>
+<p>Source for this file: <a href="http://fisheye6.atlassian.com/browse/zetacomponents/trunk/Graph/src/renderer/3d.php?r=HEAD">/Graph/src/renderer/3d.php</a></p>
+       
+  <h3>Implements interfaces:</h3>
+  <ul><li><a href="ezcGraphStackedBarsRenderer.html">ezcGraphStackedBarsRenderer</a></li>  </ul><pre><a href="ezcGraphRenderer.html">ezcGraphRenderer</a>
+   |
+   --ezcGraphRenderer3d</pre>
+
+
+  <table><tr><td>
+            <strong>Version:</strong>&#8192;&#8192;
+          </td>
+          <td>//autogentag//</td>
+        </tr></table><a name="sec-var-summary"></a>
+  <h3>Member Variables</h3>
+  <table class="summary"><tr><td class="right">
+            <em>protected</em>            <em>array</em>          </td>
+          <td>
+            <code>
+              $axisLabels
+               = <span class="var-default">array()</span>            </code>
+            <br><div style="margin-left: 20px">Collect axis labels, so that the axis are drawn, when all axis spaces  are known.</div>                      </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            <em>array</em>          </td>
+          <td>
+            <code>
+              $barPostProcessing
+               = <span class="var-default">array()</span>            </code>
+            <br><div style="margin-left: 20px">Collects bar sides to draw them in a post processing step to simulate  a simple z buffer.</div>            <br><div style="margin-left: 20px"><p>array(       array(           'index' =&gt; (int) // used for sorting           'context' =&gt; ezcGraphContext // context of call           'method' =&gt; (string) // method of driver to call           'parameters' =&gt; array // parameters for method call       ), ...   )</p></div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            <em>array</em>          </td>
+          <td>
+            <code>
+              $circleSectors
+               = <span class="var-default">array()</span>            </code>
+            <br><div style="margin-left: 20px">Collects circle sectors to draw shadow in background of all circle  sectors.</div>                      </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            <em>ezcGraphBoundings</em>          </td>
+          <td>
+            <code>
+              $dataBoundings
+               = <span class="var-default"> false</span>            </code>
+            <br><div style="margin-left: 20px">Boundings for the chart data</div>                      </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            <em>float</em>          </td>
+          <td>
+            <code>
+              $depth
+               = <span class="var-default"> false</span>            </code>
+            <br><div style="margin-left: 20px">Depth of displayed pseudo three dimensional line chart elements.</div>                      </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            <em>array</em>          </td>
+          <td>
+            <code>
+              $frontLines
+               = <span class="var-default">array()</span>            </code>
+            <br><div style="margin-left: 20px">Array containing lines from the axis and grid which should be redrawn on  top of the data.</div>                      </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            <em>array</em>          </td>
+          <td>
+            <code>
+              $linePostSymbols
+               = <span class="var-default">array()</span>            </code>
+            <br><div style="margin-left: 20px">Array with symbols for post processing, which ensures, that the symbols  are rendered topmost.</div>                      </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            <em><a href="ezcGraphRenderer3dOptions.html">ezcGraphRenderer3dOptions</a></em>          </td>
+          <td>
+            <code>
+              $options
+                          </code>
+            <br><div style="margin-left: 20px">Options</div>                      </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            <em>ezcGraphBoundings</em>          </td>
+          <td>
+            <code>
+              $pieSegmentBoundings
+               = <span class="var-default"> false</span>            </code>
+            <br><div style="margin-left: 20px">Contains the boundings used for pie segments</div>                      </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            <em>array</em>          </td>
+          <td>
+            <code>
+              $pieSegmentLabels
+               = <span class="var-default">array(<br>        0 =&gt; array(),1=&gt;array(),)</span>            </code>
+            <br><div style="margin-left: 20px">Pie segment labels divided into two array, containing the labels on the  left and right side of the pie chart center.</div>                      </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            <em>float</em>          </td>
+          <td>
+            <code>
+              $xDepthFactor
+               = <span class="var-default"> false</span>            </code>
+            <br><div style="margin-left: 20px">Factor to reduce the width according to depth</div>                      </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            <em>float</em>          </td>
+          <td>
+            <code>
+              $yDepthFactor
+               = <span class="var-default"> false</span>            </code>
+            <br><div style="margin-left: 20px">Factor to reduce the height according to depth</div>                      </td>
+        </tr></table><h3>Inherited Member Variables</h3>
+  <table class="summary"><thead><tr><th colspan="2">
+            From <span class="classname"><a href="ezcGraphRenderer.html">ezcGraphRenderer</a></span>         
+          </th>
+        </tr></thead><tbody><tr><td class="right">
+              <em>protected</em>                          </td>
+            <td>
+              <code><a href="ezcGraphRenderer.html#var%24driver">ezcGraphRenderer::$driver</a></code>
+              
+            </td>
+          </tr><tr><td class="right">
+              <em>protected</em>                          </td>
+            <td>
+              <code><a href="ezcGraphRenderer.html#var%24elements">ezcGraphRenderer::$elements</a></code>
+              
+            </td>
+          </tr><tr><td class="right">
+              <em>protected</em>                          </td>
+            <td>
+              <code><a href="ezcGraphRenderer.html#var%24xAxisSpace">ezcGraphRenderer::$xAxisSpace</a></code>
+              
+            </td>
+          </tr><tr><td class="right">
+              <em>protected</em>                          </td>
+            <td>
+              <code><a href="ezcGraphRenderer.html#var%24yAxisSpace">ezcGraphRenderer::$yAxisSpace</a></code>
+              
+            </td>
+          </tr></tbody></table><a name="sec-method-summary"></a>
+  <h3>Method Summary</h3>
+  <table class="summary"><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#drawAxis"><b>drawAxis</b></a>(
+                                                                                    $boundings
+                                                    ,                                     $start
+                                                    ,                                     $end
+                                                    ,                                     $axis
+                                                    ,                   [                  $labelClass
+                   = null]                               )
+            </code>
+            <br><div style="margin-left: 20px">Draw axis</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#drawBackgroundImage"><b>drawBackgroundImage</b></a>(
+                                                                                    $boundings
+                                                    ,                                     $file
+                                                    ,                   [                  $position
+                   = 48]                                  ,                   [                  $repeat
+                   = ezcGraph::NO_REPEAT]                               )
+            </code>
+            <br><div style="margin-left: 20px">Draw background image</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#drawBar"><b>drawBar</b></a>(
+                                                                                    $boundings
+                                                    ,                                     $context
+                                                    ,                                     $color
+                                                    ,                                     $position
+                                                    ,                                     $stepSize
+                                                    ,                   [                  $dataNumber
+                   = 1]                                  ,                   [                  $dataCount
+                   = 1]                                  ,                   [                  $symbol
+                   = ezcGraph::NO_SYMBOL]                                  ,                   [                  $axisPosition
+                   = 0.]                               )
+            </code>
+            <br><div style="margin-left: 20px">Draw bar</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>ezcGraphBoundings</em>          </td>
+          <td>
+            <code>
+              <a href="#drawBox"><b>drawBox</b></a>(
+                                                                                    $boundings
+                                                    ,                   [                  $background
+                   = null]                                  ,                   [                  $borderColor
+                   = null]                                  ,                   [                  $borderWidth
+                   = 0]                                  ,                   [                  $margin
+                   = 0]                                  ,                   [                  $padding
+                   = 0]                                  ,                   [                  $title
+                   = false]                                  ,                   [                  $titleSize
+                   = 16]                               )
+            </code>
+            <br><div style="margin-left: 20px">Draw box</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#drawCircularBar"><b>drawCircularBar</b></a>(
+                                                                                    $context
+                                                    ,                                     $color
+                                                    ,                                     $position
+                                                    ,                                     $barWidth
+                                                    ,                                     $offset
+                                                    ,                                     $axisPosition
+                                                    ,                                     $startDepth
+                                                    ,                                     $midDepth
+                                                    ,                                     $endDepth
+                                                    ,                                     $symbol
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Draws a bar with a circular ground shape.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#drawDataHighlightText"><b>drawDataHighlightText</b></a>(
+                                                                                    $boundings
+                                                    ,                                     $context
+                                                    ,                                     $end
+                                                    ,                   [                  $axisPosition
+                   = 0.]                                  ,                   [                  $dataNumber
+                   = 1]                                  ,                   [                  $dataCount
+                   = 1]                                  ,                                     $font
+                                                    ,                                     $text
+                                                    ,                                     $size
+                                                    ,                   [                  $markLines
+                   = null]                                  ,                   [                  $xOffset
+                   = 0]                                  ,                   [                  $yOffset
+                   = 0]                                  ,                   [                  $stepSize
+                   = 0.]                                  ,                   [                  $type
+                   = ezcGraph::LINE]                               )
+            </code>
+            <br><div style="margin-left: 20px">Draws a highlight textbox for a datapoint.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#drawDataLine"><b>drawDataLine</b></a>(
+                                                                                    $boundings
+                                                    ,                                     $context
+                                                    ,                                     $color
+                                                    ,                                     $start
+                                                    ,                                     $end
+                                                    ,                   [                  $dataNumber
+                   = 0]                                  ,                   [                  $dataCount
+                   = 1]                                  ,                   [                  $symbol
+                   = ezcGraph::NO_SYMBOL]                                  ,                   [                  $symbolColor
+                   = null]                                  ,                   [                  $fillColor
+                   = null]                                  ,                   [                  $axisPosition
+                   = 0.]                                  ,                   [                  $thickness
+                   = 1.]                               )
+            </code>
+            <br><div style="margin-left: 20px">Draw data line</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#drawDiamondBar"><b>drawDiamondBar</b></a>(
+                                                                                    $context
+                                                    ,                                     $color
+                                                    ,                                     $position
+                                                    ,                                     $barWidth
+                                                    ,                                     $offset
+                                                    ,                                     $axisPosition
+                                                    ,                                     $startDepth
+                                                    ,                                     $midDepth
+                                                    ,                                     $endDepth
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Draws a bar with a diamond ground shape.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#drawGridLine"><b>drawGridLine</b></a>(
+                                                                                    $start
+                                                    ,                                     $end
+                                                    ,                                     $color
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Draw grid line</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#drawLegend"><b>drawLegend</b></a>(
+                                                                                    $boundings
+                                                    ,                                     $legend
+                                                    ,                   [                  $type
+                   = ezcGraph::VERTICAL]                               )
+            </code>
+            <br><div style="margin-left: 20px">Draw legend</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#drawPieSegment"><b>drawPieSegment</b></a>(
+                                                                                    $boundings
+                                                    ,                                     $context
+                                                    ,                                     $color
+                                                    ,                   [                  $startAngle
+                   = .0]                                  ,                   [                  $endAngle
+                   = 360.]                                  ,                   [                  $label
+                   = false]                                  ,                   [                  $moveOut
+                   = false]                               )
+            </code>
+            <br><div style="margin-left: 20px">Draw pie segment</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#drawRectangularBar"><b>drawRectangularBar</b></a>(
+                                                                                    $context
+                                                    ,                                     $color
+                                                    ,                                     $position
+                                                    ,                                     $barWidth
+                                                    ,                                     $offset
+                                                    ,                                     $axisPosition
+                                                    ,                                     $startDepth
+                                                    ,                                     $midDepth
+                                                    ,                                     $endDepth
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Draws a bar with a rectangular ground shape.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#drawStackedBar"><b>drawStackedBar</b></a>(
+                                                                                    $boundings
+                                                    ,                                     $context
+                                                    ,                                     $color
+                                                    ,                                     $start
+                                                    ,                                     $position
+                                                    ,                                     $stepSize
+                                                    ,                   [                  $symbol
+                   = ezcGraph::NO_SYMBOL]                                  ,                   [                  $axisPosition
+                   = 0.]                               )
+            </code>
+            <br><div style="margin-left: 20px">Draw stacked bar</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#drawStepLine"><b>drawStepLine</b></a>(
+                                                                                    $start
+                                                    ,                                     $end
+                                                    ,                                     $color
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Draw step line</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#drawText"><b>drawText</b></a>(
+                                                                                    $boundings
+                                                    ,                                     $text
+                                                    ,                   [                  $align
+                   = ezcGraph::LEFT]                                  ,                   [                  $rotation
+                   = null]                               )
+            </code>
+            <br><div style="margin-left: 20px">Draw text</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#finish"><b>finish</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Call all postprocessing functions</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#finishBars"><b>finishBars</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Draw all collected bar elements</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#finishCirleSectors"><b>finishCirleSectors</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Draws the collected circle sectors</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#finishFrontLines"><b>finishFrontLines</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Draw collected front lines</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#finishLineSymbols"><b>finishLineSymbols</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Draw the collected line symbols</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#finishPieSegmentLabels"><b>finishPieSegmentLabels</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Draws the collected pie segment labels</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em><a href="ezcGraphCoordinate.html">ezcGraphCoordinate</a></em>          </td>
+          <td>
+            <code>
+              <a href="#get3dCoordinate"><b>get3dCoordinate</b></a>(
+                                                                                    $c
+                                                    ,                   [                  $front
+                   = 1.]                               )
+            </code>
+            <br><div style="margin-left: 20px">Calculate the display coordinate from a coordinate</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#resetRenderer"><b>resetRenderer</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Reset renderer properties</div>          </td>
+        </tr></table><h3>Inherited Methods</h3>
+  <table class="summary"><thead><tr><th colspan="2">
+            From <span class="classname"><a href="ezcGraphRenderer.html">ezcGraphRenderer</a></span>
+          </th>
+        </tr></thead><tbody><tr><td class="right">
+              <em>protected</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b><a href="ezcGraphRenderer.html#methodaddElementReference">ezcGraphRenderer::addElementReference()</a></b></code>
+              <br><div style="margin-left: 20px">Adds a element reference for context</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>              abstract                            <em>void</em>            </td>
+            <td>
+              <code><b><a href="ezcGraphRenderer.html#methoddrawAxis">ezcGraphRenderer::drawAxis()</a></b></code>
+              <br><div style="margin-left: 20px">Draw axis</div>                          </td>
+          </tr><tr><td class="right">
+              <em>protected</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b><a href="ezcGraphRenderer.html#methoddrawAxisArrowHead">ezcGraphRenderer::drawAxisArrowHead()</a></b></code>
+              <br><div style="margin-left: 20px">Draw axis arrow head</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>              abstract                            <em>void</em>            </td>
+            <td>
+              <code><b><a href="ezcGraphRenderer.html#methoddrawBackgroundImage">ezcGraphRenderer::drawBackgroundImage()</a></b></code>
+              <br><div style="margin-left: 20px">Draw background image</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>              abstract                            <em>void</em>            </td>
+            <td>
+              <code><b><a href="ezcGraphRenderer.html#methoddrawBar">ezcGraphRenderer::drawBar()</a></b></code>
+              <br><div style="margin-left: 20px">Draw bar</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>              abstract                            <em>ezcGraphBoundings</em>            </td>
+            <td>
+              <code><b><a href="ezcGraphRenderer.html#methoddrawBox">ezcGraphRenderer::drawBox()</a></b></code>
+              <br><div style="margin-left: 20px">Draw box</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>              abstract                            <em>void</em>            </td>
+            <td>
+              <code><b><a href="ezcGraphRenderer.html#methoddrawDataHighlightText">ezcGraphRenderer::drawDataHighlightText()</a></b></code>
+              <br><div style="margin-left: 20px">Draws a highlight textbox for a datapoint.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>              abstract                            <em>void</em>            </td>
+            <td>
+              <code><b><a href="ezcGraphRenderer.html#methoddrawDataLine">ezcGraphRenderer::drawDataLine()</a></b></code>
+              <br><div style="margin-left: 20px">Draw data line</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>              abstract                            <em>void</em>            </td>
+            <td>
+              <code><b><a href="ezcGraphRenderer.html#methoddrawLegend">ezcGraphRenderer::drawLegend()</a></b></code>
+              <br><div style="margin-left: 20px">Draw legend</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>              abstract                            <em>void</em>            </td>
+            <td>
+              <code><b><a href="ezcGraphRenderer.html#methoddrawPieSegment">ezcGraphRenderer::drawPieSegment()</a></b></code>
+              <br><div style="margin-left: 20px">Draw pie segment</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b><a href="ezcGraphRenderer.html#methoddrawSymbol">ezcGraphRenderer::drawSymbol()</a></b></code>
+              <br><div style="margin-left: 20px">Draw Symbol</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>              abstract                            <em>void</em>            </td>
+            <td>
+              <code><b><a href="ezcGraphRenderer.html#methoddrawText">ezcGraphRenderer::drawText()</a></b></code>
+              <br><div style="margin-left: 20px">Draw text</div>                          </td>
+          </tr><tr><td class="right">
+              <em>protected</em>              abstract                            <em>void</em>            </td>
+            <td>
+              <code><b><a href="ezcGraphRenderer.html#methodfinish">ezcGraphRenderer::finish()</a></b></code>
+              <br><div style="margin-left: 20px">Finish rendering</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>array</em>            </td>
+            <td>
+              <code><b><a href="ezcGraphRenderer.html#methodgetElementReferences">ezcGraphRenderer::getElementReferences()</a></b></code>
+              <br><div style="margin-left: 20px">Return all chart element references</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b><a href="ezcGraphRenderer.html#methodrender">ezcGraphRenderer::render()</a></b></code>
+              <br><div style="margin-left: 20px">Finally renders the image</div>                          </td>
+          </tr><tr><td class="right">
+              <em>protected</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b><a href="ezcGraphRenderer.html#methodresetRenderer">ezcGraphRenderer::resetRenderer()</a></b></code>
+              <br><div style="margin-left: 20px">Reset renderer properties</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b><a href="ezcGraphRenderer.html#methodsetDriver">ezcGraphRenderer::setDriver()</a></b></code>
+              <br><div style="margin-left: 20px">Set renderers driver</div>                          </td>
+          </tr></tbody></table><a name="sec-methods"></a>
+  <h3>Methods</h3>
+  <a name="method_detail"></a>
+                                              
+      <a name="methoddrawAxis" id="drawAxis"><!-- --></a>
+
+    <h4>drawAxis</h4>
+
+    <div class="method-signature">
+      void
+      drawAxis(
+                                  
+          $boundings
+                            ,           <a href="ezcGraphCoordinate.html">ezcGraphCoordinate</a>
+          $start
+                            ,           <a href="ezcGraphCoordinate.html">ezcGraphCoordinate</a>
+          $end
+                            ,           <a href="ezcGraphChartElementAxis.html">ezcGraphChartElementAxis</a>
+          $axis
+                            ,           [<a href="ezcGraphAxisLabelRenderer.html">ezcGraphAxisLabelRenderer</a>
+          $labelClass
+           = null]              )
+    </div>
+
+    <p>Draw axis</p><div><p>Draws an axis form the provided start point to the end point. A specific  angle of the axis is not required.</p><p>For the labeleing of the axis a sorted array with major steps and an  array with minor steps is expected, which are build like this:   array(       array(           'position' =&gt; (float),           'label' =&gt; (string),       )   )  where the label is optional.</p><p>The label renderer class defines how the labels are rendered. For more  documentation on this topic have a look at the basic label renderer  class.</p><p>Additionally it can be specified if a major and minor grid are rendered  by defining a color for them. The axis label is used to add a caption  for the axis.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$boundings</code></td>
+              <td><em>ezcGraphBoundings</em></td>
+              <td>
+                                  Boundings of axis
+                              </td>
+            </tr><tr><td><code>$start</code></td>
+              <td><em><a href="ezcGraphCoordinate.html">ezcGraphCoordinate</a></em></td>
+              <td>
+                                  Start point of axis
+                              </td>
+            </tr><tr><td><code>$end</code></td>
+              <td><em><a href="ezcGraphCoordinate.html">ezcGraphCoordinate</a></em></td>
+              <td>
+                                  Endpoint of axis
+                              </td>
+            </tr><tr><td><code>$axis</code></td>
+              <td><em><a href="ezcGraphChartElementAxis.html">ezcGraphChartElementAxis</a></em></td>
+              <td>
+                                  Axis to render
+                              </td>
+            </tr><tr><td><code>$labelClass</code></td>
+              <td><em><a href="ezcGraphAxisLabelRenderer.html">ezcGraphAxisLabelRenderer</a></em></td>
+              <td>
+                                  Used label renderer
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcGraphRenderer.html#methoddrawAxis">ezcGraphRenderer::drawAxis()</a></code></td>
+            <td>
+                              Draw axis
+                          </td>
+          </tr></tbody></table><a name="methoddrawBackgroundImage" id="drawBackgroundImage"><!-- --></a>
+
+    <h4>drawBackgroundImage</h4>
+
+    <div class="method-signature">
+      void
+      drawBackgroundImage(
+                                  
+          $boundings
+                            ,           string
+          $file
+                            ,           [int
+          $position
+           = 48]                  ,           [int
+          $repeat
+           = ezcGraph::NO_REPEAT]              )
+    </div>
+
+    <p>Draw background image</p><div><p>Draws a background image at the defined position. If repeat is set the  background image will be repeated like any texture.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$boundings</code></td>
+              <td><em>ezcGraphBoundings</em></td>
+              <td>
+                                  Boundings for the background image
+                              </td>
+            </tr><tr><td><code>$file</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  Filename of background image
+                              </td>
+            </tr><tr><td><code>$position</code></td>
+              <td><em>int</em></td>
+              <td>
+                                  Position of background image
+                              </td>
+            </tr><tr><td><code>$repeat</code></td>
+              <td><em>int</em></td>
+              <td>
+                                  Type of repetition
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcGraphRenderer.html#methoddrawBackgroundImage">ezcGraphRenderer::drawBackgroundImage()</a></code></td>
+            <td>
+                              Draw background image
+                          </td>
+          </tr></tbody></table><a name="methoddrawBar" id="drawBar"><!-- --></a>
+
+    <h4>drawBar</h4>
+
+    <div class="method-signature">
+      void
+      drawBar(
+                                  
+          $boundings
+                            ,           <a href="ezcGraphContext.html">ezcGraphContext</a>
+          $context
+                            ,           <a href="ezcGraphColor.html">ezcGraphColor</a>
+          $color
+                            ,           <a href="ezcGraphCoordinate.html">ezcGraphCoordinate</a>
+          $position
+                            ,           float
+          $stepSize
+                            ,           [int
+          $dataNumber
+           = 1]                  ,           [int
+          $dataCount
+           = 1]                  ,           [int
+          $symbol
+           = ezcGraph::NO_SYMBOL]                  ,           [float
+          $axisPosition
+           = 0.]              )
+    </div>
+
+    <p>Draw bar</p><div><p>Draws a bar as a data element in a line chart</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$boundings</code></td>
+              <td><em>ezcGraphBoundings</em></td>
+              <td>
+                                  Chart boundings
+                              </td>
+            </tr><tr><td><code>$context</code></td>
+              <td><em><a href="ezcGraphContext.html">ezcGraphContext</a></em></td>
+              <td>
+                                  Context of call
+                              </td>
+            </tr><tr><td><code>$color</code></td>
+              <td><em><a href="ezcGraphColor.html">ezcGraphColor</a></em></td>
+              <td>
+                                  Color of line
+                              </td>
+            </tr><tr><td><code>$position</code></td>
+              <td><em><a href="ezcGraphCoordinate.html">ezcGraphCoordinate</a></em></td>
+              <td>
+                                  Position of data point
+                              </td>
+            </tr><tr><td><code>$stepSize</code></td>
+              <td><em>float</em></td>
+              <td>
+                                  Space which can be used for bars
+                              </td>
+            </tr><tr><td><code>$dataNumber</code></td>
+              <td><em>int</em></td>
+              <td>
+                                  Number of dataset
+                              </td>
+            </tr><tr><td><code>$dataCount</code></td>
+              <td><em>int</em></td>
+              <td>
+                                  Count of datasets in chart
+                              </td>
+            </tr><tr><td><code>$symbol</code></td>
+              <td><em>int</em></td>
+              <td>
+                                  Symbol to draw for line
+                              </td>
+            </tr><tr><td><code>$axisPosition</code></td>
+              <td><em>float</em></td>
+              <td>
+                                  Position of axis for drawing filled lines
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcGraphRenderer.html#methoddrawBar">ezcGraphRenderer::drawBar()</a></code></td>
+            <td>
+                              Draw bar
+                          </td>
+          </tr></tbody></table><a name="methoddrawBox" id="drawBox"><!-- --></a>
+
+    <h4>drawBox</h4>
+
+    <div class="method-signature">
+      ezcGraphBoundings
+      drawBox(
+                                  
+          $boundings
+                            ,           [<a href="ezcGraphColor.html">ezcGraphColor</a>
+          $background
+           = null]                  ,           [<a href="ezcGraphColor.html">ezcGraphColor</a>
+          $borderColor
+           = null]                  ,           [int
+          $borderWidth
+           = 0]                  ,           [int
+          $margin
+           = 0]                  ,           [int
+          $padding
+           = 0]                  ,           [mixed
+          $title
+           = false]                  ,           [int
+          $titleSize
+           = 16]              )
+    </div>
+
+    <p>Draw box</p><div><p>Box are wrapping each major chart element and draw border, background  and title to each chart element.</p><p>Optionally a padding and margin for each box can be defined.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$boundings</code></td>
+              <td><em>ezcGraphBoundings</em></td>
+              <td>
+                                  Boundings of the box
+                              </td>
+            </tr><tr><td><code>$background</code></td>
+              <td><em><a href="ezcGraphColor.html">ezcGraphColor</a></em></td>
+              <td>
+                                  Background color
+                              </td>
+            </tr><tr><td><code>$borderColor</code></td>
+              <td><em><a href="ezcGraphColor.html">ezcGraphColor</a></em></td>
+              <td>
+                                  Border color
+                              </td>
+            </tr><tr><td><code>$borderWidth</code></td>
+              <td><em>int</em></td>
+              <td>
+                                  Border width
+                              </td>
+            </tr><tr><td><code>$margin</code></td>
+              <td><em>int</em></td>
+              <td>
+                                  Margin
+                              </td>
+            </tr><tr><td><code>$padding</code></td>
+              <td><em>int</em></td>
+              <td>
+                                  Padding
+                              </td>
+            </tr><tr><td><code>$title</code></td>
+              <td><em>mixed</em></td>
+              <td>
+                                  Title of the box
+                              </td>
+            </tr><tr><td><code>$titleSize</code></td>
+              <td><em>int</em></td>
+              <td>
+                                  Size of title in the box
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcGraphRenderer.html#methoddrawBox">ezcGraphRenderer::drawBox()</a></code></td>
+            <td>
+                              Draw box
+                          </td>
+          </tr></tbody></table><a name="methoddrawCircularBar" id="drawCircularBar"><!-- --></a>
+
+    <h4>drawCircularBar</h4>
+
+    <div class="method-signature">
+      void
+      drawCircularBar(
+                                  <a href="ezcGraphContext.html">ezcGraphContext</a>
+          $context
+                            ,           <a href="ezcGraphColor.html">ezcGraphColor</a>
+          $color
+                            ,           <a href="ezcGraphCoordinate.html">ezcGraphCoordinate</a>
+          $position
+                            ,           float
+          $barWidth
+                            ,           float
+          $offset
+                            ,           float
+          $axisPosition
+                            ,           float
+          $startDepth
+                            ,           float
+          $midDepth
+                            ,           float
+          $endDepth
+                            ,           int
+          $symbol
+                        )
+    </div>
+
+    <p>Draws a bar with a circular ground shape.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$context</code></td>
+              <td><em><a href="ezcGraphContext.html">ezcGraphContext</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$color</code></td>
+              <td><em><a href="ezcGraphColor.html">ezcGraphColor</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$position</code></td>
+              <td><em><a href="ezcGraphCoordinate.html">ezcGraphCoordinate</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$barWidth</code></td>
+              <td><em>float</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$offset</code></td>
+              <td><em>float</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$axisPosition</code></td>
+              <td><em>float</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$startDepth</code></td>
+              <td><em>float</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$midDepth</code></td>
+              <td><em>float</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$endDepth</code></td>
+              <td><em>float</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$symbol</code></td>
+              <td><em>int</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methoddrawDataHighlightText" id="drawDataHighlightText"><!-- --></a>
+
+    <h4>drawDataHighlightText</h4>
+
+    <div class="method-signature">
+      void
+      drawDataHighlightText(
+                                  
+          $boundings
+                            ,           <a href="ezcGraphContext.html">ezcGraphContext</a>
+          $context
+                            ,           <a href="ezcGraphCoordinate.html">ezcGraphCoordinate</a>
+          $end
+                            ,           [float
+          $axisPosition
+           = 0.]                  ,           [int
+          $dataNumber
+           = 1]                  ,           [int
+          $dataCount
+           = 1]                  ,           <a href="ezcGraphFontOptions.html">ezcGraphFontOptions</a>
+          $font
+                            ,           string
+          $text
+                            ,           int
+          $size
+                            ,           [<a href="ezcGraphColor.html">ezcGraphColor</a>
+          $markLines
+           = null]                  ,           [int
+          $xOffset
+           = 0]                  ,           [int
+          $yOffset
+           = 0]                  ,           [float
+          $stepSize
+           = 0.]                  ,           [int
+          $type
+           = ezcGraph::LINE]              )
+    </div>
+
+    <p>Draws a highlight textbox for a datapoint.</p><div><p>A highlight textbox for line and bar charts means a box with the current  value in the graph.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$boundings</code></td>
+              <td><em>ezcGraphBoundings</em></td>
+              <td>
+                                  Chart boundings
+                              </td>
+            </tr><tr><td><code>$context</code></td>
+              <td><em><a href="ezcGraphContext.html">ezcGraphContext</a></em></td>
+              <td>
+                                  Context of call
+                              </td>
+            </tr><tr><td><code>$end</code></td>
+              <td><em><a href="ezcGraphCoordinate.html">ezcGraphCoordinate</a></em></td>
+              <td>
+                                  Ending point
+                              </td>
+            </tr><tr><td><code>$axisPosition</code></td>
+              <td><em>float</em></td>
+              <td>
+                                  Position of axis for drawing filled lines
+                              </td>
+            </tr><tr><td><code>$dataNumber</code></td>
+              <td><em>int</em></td>
+              <td>
+                                  Number of dataset
+                              </td>
+            </tr><tr><td><code>$dataCount</code></td>
+              <td><em>int</em></td>
+              <td>
+                                  Count of datasets in chart
+                              </td>
+            </tr><tr><td><code>$font</code></td>
+              <td><em><a href="ezcGraphFontOptions.html">ezcGraphFontOptions</a></em></td>
+              <td>
+                                  Font used for highlight string
+                              </td>
+            </tr><tr><td><code>$text</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  Acutual value
+                              </td>
+            </tr><tr><td><code>$size</code></td>
+              <td><em>int</em></td>
+              <td>
+                                  Size of highlight text
+                              </td>
+            </tr><tr><td><code>$markLines</code></td>
+              <td><em><a href="ezcGraphColor.html">ezcGraphColor</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$xOffset</code></td>
+              <td><em>int</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$yOffset</code></td>
+              <td><em>int</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$stepSize</code></td>
+              <td><em>float</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$type</code></td>
+              <td><em>int</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcGraphRenderer.html#methoddrawDataHighlightText">ezcGraphRenderer::drawDataHighlightText()</a></code></td>
+            <td>
+                              Draws a highlight textbox for a datapoint.
+                          </td>
+          </tr></tbody></table><a name="methoddrawDataLine" id="drawDataLine"><!-- --></a>
+
+    <h4>drawDataLine</h4>
+
+    <div class="method-signature">
+      void
+      drawDataLine(
+                                  
+          $boundings
+                            ,           <a href="ezcGraphContext.html">ezcGraphContext</a>
+          $context
+                            ,           <a href="ezcGraphColor.html">ezcGraphColor</a>
+          $color
+                            ,           <a href="ezcGraphCoordinate.html">ezcGraphCoordinate</a>
+          $start
+                            ,           <a href="ezcGraphCoordinate.html">ezcGraphCoordinate</a>
+          $end
+                            ,           [int
+          $dataNumber
+           = 0]                  ,           [int
+          $dataCount
+           = 1]                  ,           [int
+          $symbol
+           = ezcGraph::NO_SYMBOL]                  ,           [<a href="ezcGraphColor.html">ezcGraphColor</a>
+          $symbolColor
+           = null]                  ,           [<a href="ezcGraphColor.html">ezcGraphColor</a>
+          $fillColor
+           = null]                  ,           [float
+          $axisPosition
+           = 0.]                  ,           [float
+          $thickness
+           = 1.]              )
+    </div>
+
+    <p>Draw data line</p><div><p>Draws a line as a data element in a line chart</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$boundings</code></td>
+              <td><em>ezcGraphBoundings</em></td>
+              <td>
+                                  Chart boundings
+                              </td>
+            </tr><tr><td><code>$context</code></td>
+              <td><em><a href="ezcGraphContext.html">ezcGraphContext</a></em></td>
+              <td>
+                                  Context of call
+                              </td>
+            </tr><tr><td><code>$color</code></td>
+              <td><em><a href="ezcGraphColor.html">ezcGraphColor</a></em></td>
+              <td>
+                                  Color of line
+                              </td>
+            </tr><tr><td><code>$start</code></td>
+              <td><em><a href="ezcGraphCoordinate.html">ezcGraphCoordinate</a></em></td>
+              <td>
+                                  Starting point
+                              </td>
+            </tr><tr><td><code>$end</code></td>
+              <td><em><a href="ezcGraphCoordinate.html">ezcGraphCoordinate</a></em></td>
+              <td>
+                                  Ending point
+                              </td>
+            </tr><tr><td><code>$dataNumber</code></td>
+              <td><em>int</em></td>
+              <td>
+                                  Number of dataset
+                              </td>
+            </tr><tr><td><code>$dataCount</code></td>
+              <td><em>int</em></td>
+              <td>
+                                  Count of datasets in chart
+                              </td>
+            </tr><tr><td><code>$symbol</code></td>
+              <td><em>int</em></td>
+              <td>
+                                  Symbol to draw for line
+                              </td>
+            </tr><tr><td><code>$symbolColor</code></td>
+              <td><em><a href="ezcGraphColor.html">ezcGraphColor</a></em></td>
+              <td>
+                                  Color of the symbol, defaults to linecolor
+                              </td>
+            </tr><tr><td><code>$fillColor</code></td>
+              <td><em><a href="ezcGraphColor.html">ezcGraphColor</a></em></td>
+              <td>
+                                  Color to fill line with
+                              </td>
+            </tr><tr><td><code>$axisPosition</code></td>
+              <td><em>float</em></td>
+              <td>
+                                  Position of axis for drawing filled lines
+                              </td>
+            </tr><tr><td><code>$thickness</code></td>
+              <td><em>float</em></td>
+              <td>
+                                  Line thickness
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcGraphRenderer.html#methoddrawDataLine">ezcGraphRenderer::drawDataLine()</a></code></td>
+            <td>
+                              Draw data line
+                          </td>
+          </tr></tbody></table><a name="methoddrawDiamondBar" id="drawDiamondBar"><!-- --></a>
+
+    <h4>drawDiamondBar</h4>
+
+    <div class="method-signature">
+      void
+      drawDiamondBar(
+                                  <a href="ezcGraphContext.html">ezcGraphContext</a>
+          $context
+                            ,           <a href="ezcGraphColor.html">ezcGraphColor</a>
+          $color
+                            ,           <a href="ezcGraphCoordinate.html">ezcGraphCoordinate</a>
+          $position
+                            ,           float
+          $barWidth
+                            ,           float
+          $offset
+                            ,           float
+          $axisPosition
+                            ,           float
+          $startDepth
+                            ,           float
+          $midDepth
+                            ,           float
+          $endDepth
+                        )
+    </div>
+
+    <p>Draws a bar with a diamond ground shape.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$context</code></td>
+              <td><em><a href="ezcGraphContext.html">ezcGraphContext</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$color</code></td>
+              <td><em><a href="ezcGraphColor.html">ezcGraphColor</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$position</code></td>
+              <td><em><a href="ezcGraphCoordinate.html">ezcGraphCoordinate</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$barWidth</code></td>
+              <td><em>float</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$offset</code></td>
+              <td><em>float</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$axisPosition</code></td>
+              <td><em>float</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$startDepth</code></td>
+              <td><em>float</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$midDepth</code></td>
+              <td><em>float</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$endDepth</code></td>
+              <td><em>float</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methoddrawGridLine" id="drawGridLine"><!-- --></a>
+
+    <h4>drawGridLine</h4>
+
+    <div class="method-signature">
+      void
+      drawGridLine(
+                                  <a href="ezcGraphCoordinate.html">ezcGraphCoordinate</a>
+          $start
+                            ,           <a href="ezcGraphCoordinate.html">ezcGraphCoordinate</a>
+          $end
+                            ,           <a href="ezcGraphColor.html">ezcGraphColor</a>
+          $color
+                        )
+    </div>
+
+    <p>Draw grid line</p><div><p>Draw line for the grid in the chart background</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$start</code></td>
+              <td><em><a href="ezcGraphCoordinate.html">ezcGraphCoordinate</a></em></td>
+              <td>
+                                  Start point
+                              </td>
+            </tr><tr><td><code>$end</code></td>
+              <td><em><a href="ezcGraphCoordinate.html">ezcGraphCoordinate</a></em></td>
+              <td>
+                                  End point
+                              </td>
+            </tr><tr><td><code>$color</code></td>
+              <td><em><a href="ezcGraphColor.html">ezcGraphColor</a></em></td>
+              <td>
+                                  Color of the grid line
+                              </td>
+            </tr></tbody></table><a name="methoddrawLegend" id="drawLegend"><!-- --></a>
+
+    <h4>drawLegend</h4>
+
+    <div class="method-signature">
+      void
+      drawLegend(
+                                  
+          $boundings
+                            ,           <a href="ezcGraphChartElementLegend.html">ezcGraphChartElementLegend</a>
+          $legend
+                            ,           [int
+          $type
+           = ezcGraph::VERTICAL]              )
+    </div>
+
+    <p>Draw legend</p><div><p>Will draw a legend in the bounding box</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$boundings</code></td>
+              <td><em>ezcGraphBoundings</em></td>
+              <td>
+                                  Bounding of legend
+                              </td>
+            </tr><tr><td><code>$legend</code></td>
+              <td><em><a href="ezcGraphChartElementLegend.html">ezcGraphChartElementLegend</a></em></td>
+              <td>
+                                  Legend to draw;
+                              </td>
+            </tr><tr><td><code>$type</code></td>
+              <td><em>int</em></td>
+              <td>
+                                  Type of legend: Protrait or landscape
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcGraphRenderer.html#methoddrawLegend">ezcGraphRenderer::drawLegend()</a></code></td>
+            <td>
+                              Draw legend
+                          </td>
+          </tr></tbody></table><a name="methoddrawPieSegment" id="drawPieSegment"><!-- --></a>
+
+    <h4>drawPieSegment</h4>
+
+    <div class="method-signature">
+      void
+      drawPieSegment(
+                                  
+          $boundings
+                            ,           <a href="ezcGraphContext.html">ezcGraphContext</a>
+          $context
+                            ,           <a href="ezcGraphColor.html">ezcGraphColor</a>
+          $color
+                            ,           [float
+          $startAngle
+           = .0]                  ,           [float
+          $endAngle
+           = 360.]                  ,           [mixed
+          $label
+           = false]                  ,           [bool
+          $moveOut
+           = false]              )
+    </div>
+
+    <p>Draw pie segment</p><div><p>Draws a single pie segment</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$boundings</code></td>
+              <td><em>ezcGraphBoundings</em></td>
+              <td>
+                                  Chart boundings
+                              </td>
+            </tr><tr><td><code>$context</code></td>
+              <td><em><a href="ezcGraphContext.html">ezcGraphContext</a></em></td>
+              <td>
+                                  Context of call
+                              </td>
+            </tr><tr><td><code>$color</code></td>
+              <td><em><a href="ezcGraphColor.html">ezcGraphColor</a></em></td>
+              <td>
+                                  Color of pie segment
+                              </td>
+            </tr><tr><td><code>$startAngle</code></td>
+              <td><em>float</em></td>
+              <td>
+                                  Start angle
+                              </td>
+            </tr><tr><td><code>$endAngle</code></td>
+              <td><em>float</em></td>
+              <td>
+                                  End angle
+                              </td>
+            </tr><tr><td><code>$label</code></td>
+              <td><em>mixed</em></td>
+              <td>
+                                  Label of pie segment
+                              </td>
+            </tr><tr><td><code>$moveOut</code></td>
+              <td><em>bool</em></td>
+              <td>
+                                  Move out from middle for hilighting
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcGraphRenderer.html#methoddrawPieSegment">ezcGraphRenderer::drawPieSegment()</a></code></td>
+            <td>
+                              Draw pie segment
+                          </td>
+          </tr></tbody></table><a name="methoddrawRectangularBar" id="drawRectangularBar"><!-- --></a>
+
+    <h4>drawRectangularBar</h4>
+
+    <div class="method-signature">
+      void
+      drawRectangularBar(
+                                  <a href="ezcGraphContext.html">ezcGraphContext</a>
+          $context
+                            ,           <a href="ezcGraphColor.html">ezcGraphColor</a>
+          $color
+                            ,           <a href="ezcGraphCoordinate.html">ezcGraphCoordinate</a>
+          $position
+                            ,           float
+          $barWidth
+                            ,           float
+          $offset
+                            ,           float
+          $axisPosition
+                            ,           float
+          $startDepth
+                            ,           float
+          $midDepth
+                            ,           float
+          $endDepth
+                        )
+    </div>
+
+    <p>Draws a bar with a rectangular ground shape.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$context</code></td>
+              <td><em><a href="ezcGraphContext.html">ezcGraphContext</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$color</code></td>
+              <td><em><a href="ezcGraphColor.html">ezcGraphColor</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$position</code></td>
+              <td><em><a href="ezcGraphCoordinate.html">ezcGraphCoordinate</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$barWidth</code></td>
+              <td><em>float</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$offset</code></td>
+              <td><em>float</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$axisPosition</code></td>
+              <td><em>float</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$startDepth</code></td>
+              <td><em>float</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$midDepth</code></td>
+              <td><em>float</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$endDepth</code></td>
+              <td><em>float</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methoddrawStackedBar" id="drawStackedBar"><!-- --></a>
+
+    <h4>drawStackedBar</h4>
+
+    <div class="method-signature">
+      void
+      drawStackedBar(
+                                  
+          $boundings
+                            ,           <a href="ezcGraphContext.html">ezcGraphContext</a>
+          $context
+                            ,           <a href="ezcGraphColor.html">ezcGraphColor</a>
+          $color
+                            ,           <a href="ezcGraphCoordinate.html">ezcGraphCoordinate</a>
+          $start
+                            ,           <a href="ezcGraphCoordinate.html">ezcGraphCoordinate</a>
+          $position
+                            ,           float
+          $stepSize
+                            ,           [int
+          $symbol
+           = ezcGraph::NO_SYMBOL]                  ,           [float
+          $axisPosition
+           = 0.]              )
+    </div>
+
+    <p>Draw stacked bar</p><div><p>Draws a stacked bar part as a data element in a line chart</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$boundings</code></td>
+              <td><em>ezcGraphBoundings</em></td>
+              <td>
+                                  Chart boundings
+                              </td>
+            </tr><tr><td><code>$context</code></td>
+              <td><em><a href="ezcGraphContext.html">ezcGraphContext</a></em></td>
+              <td>
+                                  Context of call
+                              </td>
+            </tr><tr><td><code>$color</code></td>
+              <td><em><a href="ezcGraphColor.html">ezcGraphColor</a></em></td>
+              <td>
+                                  Color of line
+                              </td>
+            </tr><tr><td><code>$start</code></td>
+              <td><em><a href="ezcGraphCoordinate.html">ezcGraphCoordinate</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$position</code></td>
+              <td><em><a href="ezcGraphCoordinate.html">ezcGraphCoordinate</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$stepSize</code></td>
+              <td><em>float</em></td>
+              <td>
+                                  Space which can be used for bars
+                              </td>
+            </tr><tr><td><code>$symbol</code></td>
+              <td><em>int</em></td>
+              <td>
+                                  Symbol to draw for line
+                              </td>
+            </tr><tr><td><code>$axisPosition</code></td>
+              <td><em>float</em></td>
+              <td>
+                                  Position of axis for drawing filled lines
+                              </td>
+            </tr></tbody></table><h5>Implementation of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcGraphStackedBarsRenderer.html#methoddrawStackedBar">ezcGraphStackedBarsRenderer::drawStackedBar()</a></code></td>
+              <td>
+                                  Draw stacked bar
+                              </td>
+            </tr></tbody></table><a name="methoddrawStepLine" id="drawStepLine"><!-- --></a>
+
+    <h4>drawStepLine</h4>
+
+    <div class="method-signature">
+      void
+      drawStepLine(
+                                  <a href="ezcGraphCoordinate.html">ezcGraphCoordinate</a>
+          $start
+                            ,           <a href="ezcGraphCoordinate.html">ezcGraphCoordinate</a>
+          $end
+                            ,           <a href="ezcGraphColor.html">ezcGraphColor</a>
+          $color
+                        )
+    </div>
+
+    <p>Draw step line</p><div><p>Draw a step (marker for label position) on a axis.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$start</code></td>
+              <td><em><a href="ezcGraphCoordinate.html">ezcGraphCoordinate</a></em></td>
+              <td>
+                                  Start point
+                              </td>
+            </tr><tr><td><code>$end</code></td>
+              <td><em><a href="ezcGraphCoordinate.html">ezcGraphCoordinate</a></em></td>
+              <td>
+                                  End point
+                              </td>
+            </tr><tr><td><code>$color</code></td>
+              <td><em><a href="ezcGraphColor.html">ezcGraphColor</a></em></td>
+              <td>
+                                  Color of the grid line
+                              </td>
+            </tr></tbody></table><a name="methoddrawText" id="drawText"><!-- --></a>
+
+    <h4>drawText</h4>
+
+    <div class="method-signature">
+      void
+      drawText(
+                                  
+          $boundings
+                            ,           string
+          $text
+                            ,           [int
+          $align
+           = ezcGraph::LEFT]                  ,           [
+          $rotation
+           = null]              )
+    </div>
+
+    <p>Draw text</p><div><p>Draws the provided text in the boundings</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$boundings</code></td>
+              <td><em>ezcGraphBoundings</em></td>
+              <td>
+                                  Boundings of text
+                              </td>
+            </tr><tr><td><code>$text</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  Text
+                              </td>
+            </tr><tr><td><code>$align</code></td>
+              <td><em>int</em></td>
+              <td>
+                                  Alignement of text
+                              </td>
+            </tr><tr><td><code>$rotation</code></td>
+              <td><em>ezcGraphRotation</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcGraphRenderer.html#methoddrawText">ezcGraphRenderer::drawText()</a></code></td>
+            <td>
+                              Draw text
+                          </td>
+          </tr></tbody></table><a name="methodfinish" id="finish"><!-- --></a>
+
+    <h4>finish</h4>
+
+    <div class="method-signature">
+      void
+      finish(
+      )
+    </div>
+
+    <p>Call all postprocessing functions</p>
+    
+        
+
+          <h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcGraphRenderer.html#methodfinish">ezcGraphRenderer::finish()</a></code></td>
+            <td>
+                              Finish rendering
+                          </td>
+          </tr></tbody></table><a name="methodfinishBars" id="finishBars"><!-- --></a>
+
+    <h4>finishBars</h4>
+
+    <div class="method-signature">
+      void
+      finishBars(
+      )
+    </div>
+
+    <p>Draw all collected bar elements</p><div><p>Draw all collected bar elements after sorting them depending of their  position to simulate simple z buffering.</p></div>
+    
+        
+
+    
+    
+    
+        <a name="methodfinishCirleSectors" id="finishCirleSectors"><!-- --></a>
+
+    <h4>finishCirleSectors</h4>
+
+    <div class="method-signature">
+      void
+      finishCirleSectors(
+      )
+    </div>
+
+    <p>Draws the collected circle sectors</p><div><p>All circle sectors are collected and drawn later to be able to render  the shadows of the pie segments in the back of all pie segments, and  ensure the correct drawing order for all pie segment elements.</p></div>
+    
+        
+
+    
+    
+    
+        <a name="methodfinishFrontLines" id="finishFrontLines"><!-- --></a>
+
+    <h4>finishFrontLines</h4>
+
+    <div class="method-signature">
+      void
+      finishFrontLines(
+      )
+    </div>
+
+    <p>Draw collected front lines</p><div><p>Draw all grid and axis lines, which should be redrawn in front of the  data.</p></div>
+    
+        
+
+    
+    
+    
+        <a name="methodfinishLineSymbols" id="finishLineSymbols"><!-- --></a>
+
+    <h4>finishLineSymbols</h4>
+
+    <div class="method-signature">
+      void
+      finishLineSymbols(
+      )
+    </div>
+
+    <p>Draw the collected line symbols</p><div><p>Symbols for the data lines are collected and delayed to ensure that  they are not covered and hidden by other data lines.</p></div>
+    
+        
+
+    
+    
+    
+        <a name="methodfinishPieSegmentLabels" id="finishPieSegmentLabels"><!-- --></a>
+
+    <h4>finishPieSegmentLabels</h4>
+
+    <div class="method-signature">
+      void
+      finishPieSegmentLabels(
+      )
+    </div>
+
+    <p>Draws the collected pie segment labels</p><div><p>All labels are collected and drawn later to be able to partition the  available space for the labels woth knowledge of the overall label  count and their required size and optimal position.</p></div>
+    
+        
+
+    
+    
+    
+        <a name="methodget3dCoordinate" id="get3dCoordinate"><!-- --></a>
+
+    <h4>get3dCoordinate</h4>
+
+    <div class="method-signature">
+      <a href="ezcGraphCoordinate.html">ezcGraphCoordinate</a>
+      get3dCoordinate(
+                                  <a href="ezcGraphCoordinate.html">ezcGraphCoordinate</a>
+          $c
+                            ,           [float
+          $front
+           = 1.]              )
+    </div>
+
+    <p>Calculate the display coordinate from a coordinate</p><div><p>Calculates the display coordinate of a coordinate depending on the  depth setting and the distance of the coordinate to the front of the  chart.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$c</code></td>
+              <td><em><a href="ezcGraphCoordinate.html">ezcGraphCoordinate</a></em></td>
+              <td>
+                                  Coordinate
+                              </td>
+            </tr><tr><td><code>$front</code></td>
+              <td><em>float</em></td>
+              <td>
+                                  Distance to front (0 - 1)
+                              </td>
+            </tr></tbody></table><a name="methodresetRenderer" id="resetRenderer"><!-- --></a>
+
+    <h4>resetRenderer</h4>
+
+    <div class="method-signature">
+      void
+      resetRenderer(
+      )
+    </div>
+
+    <p>Reset renderer properties</p><div><p>Reset all renderer properties, which were calculated during the  rendering process, to offer a clean environment for rerendering.</p></div>
+    
+        
+
+          <h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcGraphRenderer.html#methodresetRenderer">ezcGraphRenderer::resetRenderer()</a></code></td>
+            <td>
+                              Reset renderer properties
+                          </td>
+          </tr></tbody></table><div class="credit">
+      Documentation generated by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+    </div>
+  </div>
+  
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

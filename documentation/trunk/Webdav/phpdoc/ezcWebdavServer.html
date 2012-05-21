@@ -1,0 +1,562 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="" />
+	<meta name="author" content="jerome" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Sun, 10 Jul 2011 11:11:10 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="ezcWebdavServer.html" />
+	<meta name="DC.creator" content="jerome" />
+	<meta name="DC.date" content="Sun, 10 Jul 2011 11:11:10 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/Webdav/phpdoc/ezcWebdavServer.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/Webdav/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/trunk/Webdav/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Webdav/clients.html" title="Clients ">Clients </a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Webdav/plugin_architecture.html" title="Plugin_architecture ">Plugin_architecture </a>
+	</li>
+
+</ul>
+
+		
+  <div class="phpdoc">
+    <h2>Apache Zeta Components Manual :: Docs For Class ezcWebdavServer</h2>
+
+                  <h3>Webdav::ezcWebdavServer</h3>
+    
+<a name="sec-description"></a>
+<h3>Class ezcWebdavServer</h3>
+
+<p>Base class for creating a webdav server, capable of serving webdav requests.</p><div><p></p><ol><li><div class="src-line">&#8192;<span class="src-var">$server&#8192;</span>=&#8192;<span class="src-id"><a href="ezcWebdavServer.html">ezcWebdavServer</a></span><span class="src-sym">::</span><a href="ezcWebdavServer.html#methodgetInstance">getInstance</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;Optionally&#8192;register&#8192;aditional&#8192;transport&#8192;handlers</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;This&#8192;step&#8192;is&#8192;only&#8192;required,&#8192;if&#8192;you&#8192;want&#8192;to&#8192;add&#8192;custom&#8192;or&#8192;third&#8192;party&#8192;extensions</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;implementations&#8192;for&#8192;special&#8192;clients.</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;Create&#8192;a&#8192;new&#8192;configuration&#8192;set&#8192;for&#8192;the&#8192;client</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$newClientConf&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcWebdavServerConfiguration.html">ezcWebdavServerConfiguration</a></span><span class="src-sym">(</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-comm">//&#8192;Regular&#8192;expression&#8192;to&#8192;match&#8192;client&#8192;name</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'(My.*Webdav\s+Cliengt)i'</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-comm">//&#8192;Class&#8192;name&#8192;of&#8192;transport&#8192;handler,&#8192;extending&#8192;&lt;a&#8192;href="ezcWebdavTransport.html"&gt;ezcWebdavTransport&lt;/a&gt;</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'myCustomTransportTransport'</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-comm">//&#8192;There&#8192;are&#8192;more&#8192;settings&#8192;you&#8192;can&#8192;provide,&#8192;see&#8192;//.</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;Append&#8192;the&#8192;configuration&#8192;at&#8192;front,&#8192;because&#8192;the&#8192;last&#8192;configuration&#8192;is&#8192;a</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;catch&#8192;all&#8192;for&#8192;misc&#8192;clients.</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$server</span><span class="src-sym">-&gt;</span><span class="src-id">configurations</span><span class="src-sym">-&gt;</span><span class="src-id">insertBefore</span><span class="src-sym">(&#8192;</span><span class="src-var">$newClientConf</span><span class="src-sym">,&#8192;</span><span class="src-num">0&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;If&#8192;you&#8192;want&#8192;to&#8192;use&#8192;a&#8192;different&#8192;path&#8192;factory&#8192;globally,&#8192;you&#8192;need&#8192;to&#8192;replace</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;it&#8192;in&#8192;every&#8192;configuration.</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$myPathFactory&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcWebdavBasicPathFactory.html">ezcWebdavBasicPathFactory</a></span><span class="src-sym">(&#8192;</span><span class="src-str">'http://webdav.server/base/path'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-key">foreach&#8192;</span><span class="src-sym">(&#8192;</span><span class="src-var">$server</span><span class="src-sym">-&gt;</span><span class="src-id">configuration&#8192;</span><span class="src-key">as&#8192;</span><span class="src-var">$config&#8192;</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">{</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-var">$config</span><span class="src-sym">-&gt;</span><span class="src-id">pathFactory&#8192;</span>=&#8192;<span class="src-var">$myPathFactory</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">}</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;Serve&#8192;data&#8192;using&#8192;file&#8192;backend&#8192;with&#8192;data&#8192;in&#8192;the&#8192;local&#8192;directory&#8192;"/path"</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;Make&#8192;sure&#8192;this&#8192;directory&#8192;is&#8192;read&#8192;and&#8192;writable&#8192;for&#8192;your&#8192;server&#8192;and&#8192;that</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;the&#8192;umask&#8192;is&#8192;set&#8192;accordingly&#8192;in&#8192;the&#8192;server&#8192;settings,&#8192;if&#8192;you&#8192;want&#8192;to</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;access&#8192;the&#8192;files&#8192;as&#8192;a&#8192;different&#8192;user,&#8192;too.</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$backend&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id">ezcWebdavBackendFile</span><span class="src-sym">(&#8192;</span><span class="src-str">'/path'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;Make&#8192;the&#8192;server&#8192;serve&#8192;WebDAV&#8192;requests</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$server</span><span class="src-sym">-&gt;</span><a href="ezcWebdavServer.html#methodhandle">handle</a><span class="src-sym">(&#8192;</span><span class="src-var">$backend&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol></div>
+<p>Source for this file: <a href="http://fisheye6.atlassian.com/browse/zetacomponents/trunk/Webdav/src/server.php?r=HEAD">/Webdav/src/server.php</a></p>
+       
+
+
+
+
+  <table><tr><td>
+            <strong>Version:</strong>&#8192;&#8192;
+          </td>
+          <td>//autogentag//</td>
+        </tr></table><a name="sec-prop-summary"></a>
+  <h3>Properties</h3>
+  <table class="summary"><tr><td class="right">
+          <a name="prop%24auth" id="$auth"></a>
+          <a name="prop-%24auth" id="$auth"></a>
+          <em><a href="ezcWebdavAuth.html">ezcWebdavAuth</a></em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24auth" title="details" class="var-name-summary">$auth</a>
+                      </code>
+          <br><div style="margin-left: 20px">The central authentication mechanism for the WebDAV server. This            instance will be used to perform authentication and authorization            on every incoming request. A valid property value is an object            that at least implements <a href="ezcWebdavBasicAuthenticator.html">ezcWebdavBasicAuthenticator</a> or            <a href="ezcWebdavDigestAuthenticator.html">ezcWebdavDigestAuthenticator</a> or both. In addition <a href="ezcWebdavAuthorizer.html">ezcWebdavAuthorizer</a> may be implemented. The default is null,            indicating that no authentication/authorization is provided.</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24backend" id="$backend"></a>
+          <a name="prop-%24backend" id="$backend"></a>
+          <em><a href="ezcWebdavBackend.html">ezcWebdavBackend</a></em>        </td>
+        <td class="right">
+          <em>read</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24backend" title="details" class="var-name-summary">$backend</a>
+                      </code>
+          <br><div style="margin-left: 20px">The backend given to ezcWebdavServer-&gt;handle(). Null                 before handle() was called.</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24configurations" id="$configurations"></a>
+          <a name="prop-%24configurations" id="$configurations"></a>
+          <em><a href="ezcWebdavServerConfigurationManager.html">ezcWebdavServerConfigurationManager</a></em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24configurations" title="details" class="var-name-summary">$configurations</a>
+                      </code>
+          <br><div style="margin-left: 20px">Configuration manager, handling different client configurations            for this server.</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24pathFactory" id="$pathFactory"></a>
+          <a name="prop-%24pathFactory" id="$pathFactory"></a>
+          <em><a href="ezcWebdavPathFactory.html">ezcWebdavPathFactory</a></em>        </td>
+        <td class="right">
+          <em>read</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24pathFactory" title="details" class="var-name-summary">$pathFactory</a>
+                      </code>
+          <br><div style="margin-left: 20px">The path factory object used to translate between URIs and                 local paths. Configured by the <a href="ezcWebdavServerConfigurationManager.html">ezcWebdavServerConfigurationManager</a> when the <a href="ezcWebdavServer.html#methodhandle">ezcWebdavServer::handle()</a> method is run}.</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24pluginRegistry" id="$pluginRegistry"></a>
+          <a name="prop-%24pluginRegistry" id="$pluginRegistry"></a>
+          <em><a href="ezcWebdavPluginRegistry.html">ezcWebdavPluginRegistry</a></em>        </td>
+        <td class="right">
+          <em>read</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24pluginRegistry" title="details" class="var-name-summary">$pluginRegistry</a>
+                      </code>
+          <br><div style="margin-left: 20px">The internal plugin registry. Can be accessed to register and                 remove plugins.</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24propertyHandler" id="$propertyHandler"></a>
+          <a name="prop-%24propertyHandler" id="$propertyHandler"></a>
+          <em><a href="ezcWebdavPropertyHandler.html">ezcWebdavPropertyHandler</a></em>        </td>
+        <td class="right">
+          <em>read</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24propertyHandler" title="details" class="var-name-summary">$propertyHandler</a>
+                      </code>
+          <br><div style="margin-left: 20px">The property handler object used to parse and serialize                 WebDAV properties on the transport level. Configured by the                 <a href="ezcWebdavServerConfigurationManager.html">ezcWebdavServerConfigurationManager</a> when the <a href="ezcWebdavServer.html#methodhandle">ezcWebdavServer::handle()</a> method is run}.</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24transport" id="$transport"></a>
+          <a name="prop-%24transport" id="$transport"></a>
+          <em><a href="ezcWebdavTransport.html">ezcWebdavTransport</a></em>        </td>
+        <td class="right">
+          <em>read</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24transport" title="details" class="var-name-summary">$transport</a>
+                      </code>
+          <br><div style="margin-left: 20px">The transport layer object used to parse and serialize WebDAV                 requests and responses. Configured by the <a href="ezcWebdavServerConfigurationManager.html">ezcWebdavServerConfigurationManager</a> when the <a href="ezcWebdavServer.html#methodhandle">ezcWebdavServer::handle()</a> method is run}.</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24xmlTool" id="$xmlTool"></a>
+          <a name="prop-%24xmlTool" id="$xmlTool"></a>
+          <em><a href="ezcWebdavXmlTool.html">ezcWebdavXmlTool</a></em>        </td>
+        <td class="right">
+          <em>read</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24xmlTool" title="details" class="var-name-summary">$xmlTool</a>
+                      </code>
+          <br><div style="margin-left: 20px">The XML tool object used for XML related operations in the                 server and transport level. Configured by the <a href="ezcWebdavServerConfigurationManager.html">ezcWebdavServerConfigurationManager</a> when the <a href="ezcWebdavServer.html#methodhandle">ezcWebdavServer::handle()</a> method is run}.</div>        </td>
+      </tr></table><a name="sec-var-summary"></a>
+  <h3>Member Variables</h3>
+  <table class="summary"><tr><td class="right">
+            <em>protected</em>            static
+            <em><a href="ezcWebdavServer.html">ezcWebdavServer</a></em>          </td>
+          <td>
+            <code>
+              $instance
+                          </code>
+            <br><div style="margin-left: 20px">Singleton instance.</div>                      </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            <em>array(string=&gt;mixed)</em>          </td>
+          <td>
+            <code>
+              $properties
+               = <span class="var-default">array()</span>            </code>
+            <br><div style="margin-left: 20px">Properties.</div>                      </td>
+        </tr></table><a name="sec-method-summary"></a>
+  <h3>Method Summary</h3>
+  <table class="summary"><tr><td class="right">
+            <em>public</em>            static
+                        <em><a href="ezcWebdavServer.html">ezcWebdavServer</a></em>          </td>
+          <td>
+            <code>
+              <a href="#getInstance"><b>getInstance</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns singleton instance.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#__construct"><b>__construct</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Creates a new instance.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em><a href="ezcWebdavErrorResponse.html">ezcWebdavErrorResponse</a></em>          </td>
+          <td>
+            <code>
+              <a href="#createUnauthenticatedResponse"><b>createUnauthenticatedResponse</b></a>(
+                                                                                    $uri
+                                                    ,                                     $desc
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Creates an ezcWebdavErrorResponse to indicate the need for authentication.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em><a href="ezcWebdavErrorResponse.html">ezcWebdavErrorResponse</a></em>          </td>
+          <td>
+            <code>
+              <a href="#createUnauthorizedResponse"><b>createUnauthorizedResponse</b></a>(
+                                                                                    $uri
+                                                    ,                                     $desc
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Creates an ezcWebdavErrorResponse to indicate unauthorized access.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#handle"><b>handle</b></a>(
+                                                                                    $backend
+                                                    ,                   [                  $uri
+                   = null]                               )
+            </code>
+            <br><div style="margin-left: 20px">Handles the current request.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#init"><b>init</b></a>(
+                                                                                    $pathFactory
+                                                    ,                                     $xmlTool
+                                                    ,                                     $propertyHandler
+                                                    ,                                     $headerHandler
+                                                    ,                                     $transport
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Initializes the server with the given objects.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>bool</em>          </td>
+          <td>
+            <code>
+              <a href="#isAuthorized"><b>isAuthorized</b></a>(
+                                                                                    $path
+                                                    ,                                     $credentials
+                                                    ,                   [                  $access
+                   = ezcWebdavAuthorizer::ACCESS_READ]                               )
+            </code>
+            <br><div style="margin-left: 20px">Performs authorization.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#reset"><b>reset</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Reset the server to its initial state.</div>          </td>
+        </tr></table><a name="sec-methods"></a>
+  <h3>Methods</h3>
+  <a name="method_detail"></a>
+            <a name="methodgetInstance" id="getInstance"><!-- --></a>
+
+    <h4>getInstance</h4>
+
+    <div class="method-signature">
+      static <a href="ezcWebdavServer.html">ezcWebdavServer</a>
+      getInstance(
+      )
+    </div>
+
+      <p>Returns singleton instance.</p><div><p>The instantiation of 2 WebDAV servers at the same time does not make  sense and could possibly cause strange effects, like double sending of a  response. Therefore the server implements a singleton and its only  instance must be retrieved using this method. Configuration changes can  then be performed through the properties of this instance.</p></div>      
+      
+      
+      
+      
+      
+          
+      <a name="method__construct" id="__construct"><!-- --></a>
+
+    <h4>__construct</h4>
+
+    <div class="method-signature">
+      void
+      __construct(
+      )
+    </div>
+
+    <p>Creates a new instance.</p><div><p>The constructor is protected due to singleton reasons. Use <a href="ezcWebdavServer.html#methodgetInstance">getInstance()</a> and then use the properties of the server to adjust its  configuration.</p></div>
+    
+        
+
+    
+    
+    
+        <a name="methodcreateUnauthenticatedResponse" id="createUnauthenticatedResponse"><!-- --></a>
+
+    <h4>createUnauthenticatedResponse</h4>
+
+    <div class="method-signature">
+      <a href="ezcWebdavErrorResponse.html">ezcWebdavErrorResponse</a>
+      createUnauthenticatedResponse(
+                                  string
+          $uri
+                            ,           string
+          $desc
+                        )
+    </div>
+
+    <p>Creates an ezcWebdavErrorResponse to indicate the need for authentication.</p><div><p>Creates a <a href="ezcWebdavErrorResponse.html">ezcWebdavErrorResponse</a> object with status code <a href="ezcWebdavResponse.html#constSTATUS_401">ezcWebdavResponse::STATUS_401</a> and a corresponding WWW-Authenticate  header using the $realm define in <a href="ezcWebdavServerOptions.html">ezcWebdavServerOptions</a>. The  $uri and $desc parameters are used to create the error response.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$uri</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$desc</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodcreateUnauthorizedResponse" id="createUnauthorizedResponse"><!-- --></a>
+
+    <h4>createUnauthorizedResponse</h4>
+
+    <div class="method-signature">
+      <a href="ezcWebdavErrorResponse.html">ezcWebdavErrorResponse</a>
+      createUnauthorizedResponse(
+                                  string
+          $uri
+                            ,           string
+          $desc
+                        )
+    </div>
+
+    <p>Creates an ezcWebdavErrorResponse to indicate unauthorized access.</p><div><p>Creates a <a href="ezcWebdavErrorResponse.html">ezcWebdavErrorResponse</a> object with status code <a href="ezcWebdavResponse.html#constSTATUS_403">ezcWebdavResponse::STATUS_403</a>. The $uri and $desc parameters are used  to create the error response.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$uri</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$desc</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodhandle" id="handle"><!-- --></a>
+
+    <h4>handle</h4>
+
+    <div class="method-signature">
+      void
+      handle(
+                                  <a href="ezcWebdavBackend.html">ezcWebdavBackend</a>
+          $backend
+                            ,           [string
+          $uri
+           = null]              )
+    </div>
+
+    <p>Handles the current request.</p><div><p>This method is the absolute heart of the Webdav component. It is called  to make the server instance handle the current request. This means, a  <a href="ezcWebdavTransport.html">ezcWebdavTransport</a> is selected and instantiated through the  <a href="ezcWebdavServerConfigurationManager.html">ezcWebdavServerConfigurationManager</a> in $configurations.  This transport (and all other objects, created from the configuration)  is used to parse the incoming request into an instance of <a href="ezcWebdavRequest.html">ezcWebdavRequest</a>, which is then handed to the submitted $backend for  handling. The resulting <a href="ezcWebdavResponse.html">ezcWebdavResponse</a> is serialized by the  <a href="ezcWebdavTransport.html">ezcWebdavTransport</a> and send back to the client.</p><p>The method receives at least an instance of <a href="ezcWebdavBackend.html">ezcWebdavBackend</a>,  which is used to server the request. Optionally, the request URI can be  submitted in $uri. If this is not the case, the request URI is  determined by the server variables  </p><ul><li>$_SERVER['SERVER_NAME']</li><li>$_SERVER['REQUEST_URI']</li></ul></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$backend</code></td>
+              <td><em><a href="ezcWebdavBackend.html">ezcWebdavBackend</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$uri</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodinit" id="init"><!-- --></a>
+
+    <h4>init</h4>
+
+    <div class="method-signature">
+      void
+      init(
+                                  <a href="ezcWebdavPathFactory.html">ezcWebdavPathFactory</a>
+          $pathFactory
+                            ,           <a href="ezcWebdavXmlTool.html">ezcWebdavXmlTool</a>
+          $xmlTool
+                            ,           <a href="ezcWebdavPropertyHandler.html">ezcWebdavPropertyHandler</a>
+          $propertyHandler
+                            ,           <a href="ezcWebdavHeaderHandler.html">ezcWebdavHeaderHandler</a>
+          $headerHandler
+                            ,           <a href="ezcWebdavTransport.html">ezcWebdavTransport</a>
+          $transport
+                        )
+    </div>
+
+    <p>Initializes the server with the given objects.</p><div><p>This method is marked proteced, because it is intended to be used by by  <a href="ezcWebdavServerConfiguration.html">ezcWebdavServerConfiguration</a> instances and instances of derived  classes, but not directly.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$pathFactory</code></td>
+              <td><em><a href="ezcWebdavPathFactory.html">ezcWebdavPathFactory</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$xmlTool</code></td>
+              <td><em><a href="ezcWebdavXmlTool.html">ezcWebdavXmlTool</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$propertyHandler</code></td>
+              <td><em><a href="ezcWebdavPropertyHandler.html">ezcWebdavPropertyHandler</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$headerHandler</code></td>
+              <td><em><a href="ezcWebdavHeaderHandler.html">ezcWebdavHeaderHandler</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$transport</code></td>
+              <td><em><a href="ezcWebdavTransport.html">ezcWebdavTransport</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodisAuthorized" id="isAuthorized"><!-- --></a>
+
+    <h4>isAuthorized</h4>
+
+    <div class="method-signature">
+      bool
+      isAuthorized(
+                                  string
+          $path
+                            ,           <a href="ezcWebdavAuth.html">ezcWebdavAuth</a>
+          $credentials
+                            ,           [int
+          $access
+           = ezcWebdavAuthorizer::ACCESS_READ]              )
+    </div>
+
+    <p>Performs authorization.</p><div><p>This method does several things:</p><p></p><ul><li>Check if authorization is enabled by ezcWebdavServer-&gt;$auth</li><li>If it is, extract username from Authenticate header or choose ''</li><li>Check authorization</li></ul>  It returns true, if authorization is not enabled or succeeded. False is  returned otherwise.</div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$path</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$credentials</code></td>
+              <td><em><a href="ezcWebdavAuth.html">ezcWebdavAuth</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$access</code></td>
+              <td><em>int</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodreset" id="reset"><!-- --></a>
+
+    <h4>reset</h4>
+
+    <div class="method-signature">
+      void
+      reset(
+      )
+    </div>
+
+    <p>Reset the server to its initial state.</p><div><p>Resets the internal server state as if a new instance has just been  constructed.</p></div>
+    
+        
+
+    
+    
+    
+  
+    <div class="credit">
+      Documentation generated by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+    </div>
+  </div>
+  
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

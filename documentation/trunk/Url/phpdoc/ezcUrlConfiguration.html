@@ -1,0 +1,456 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="PHP, apache, components, framework, quality" />
+	<meta name="author" content="dotxp" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Wed, 04 Aug 2010 13:08:02 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="ezcUrlConfiguration.html" />
+	<meta name="DC.creator" content="dotxp" />
+	<meta name="DC.date" content="Wed, 04 Aug 2010 13:08:02 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/Url/phpdoc/ezcUrlConfiguration.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/Url/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/trunk/Url/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+
+</ul>
+
+		
+  <div class="phpdoc">
+    <h2>Apache Zeta Components Manual :: Docs For Class ezcUrlConfiguration</h2>
+
+                  <h3>Url::ezcUrlConfiguration</h3>
+    
+<a name="sec-description"></a>
+<h3>Class ezcUrlConfiguration</h3>
+
+<p>ezcUrlConfiguration makes it possible to use a custom URL form in your application.</p><div><p>A URL is assumed to be of this form:  scheme://host/basedir/script/ordered_parameters/unordered_parameters</p><p>Example:  http://example.com/mydir/index.php/groups/Games/Adventure/Adult/(game)/Larry/7</p><p>Where:  scheme = "http"  host = "example.com"  basedir = "mydir"  script = "index.php"  ordered parameters = "groups", "Games", "Adventure", "Adult"  unordered parameters = array( "Larry", "7" )</p><p>When creating a configuration with ordered parameters, those parameters are  required to be present in the parsed URL, in the same number as the  configuration states. Having a different number of ordered parameters in the  parsed URL will lead to wrong values assigned to the unordered parameters (if  any follow the ordered parameters).</p><p>See the tutorial for a way to change configurations dynamically based on  the ordered parameters.</p><p>Example of use:  </p><ol><li><div class="src-line">&#8192;<span class="src-comm">//&#8192;create&#8192;an&#8192;ezcUrlConfiguration&#8192;object</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$urlCfg&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcUrlConfiguration.html">ezcUrlConfiguration</a></span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;set&#8192;the&#8192;basedir&#8192;and&#8192;script&#8192;values</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$urlCfg</span><span class="src-sym">-&gt;</span><span class="src-id">basedir&#8192;</span>=&#8192;<span class="src-str">'mydir'</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$urlCfg</span><span class="src-sym">-&gt;</span><span class="src-id">script&#8192;</span>=&#8192;<span class="src-str">'index.php'</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;define&#8192;delimiters&#8192;for&#8192;unordered&#8192;parameter&#8192;names</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$urlCfg</span><span class="src-sym">-&gt;</span><span class="src-id">unorderedDelimiters&#8192;</span>=&#8192;<span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-str">'('</span><span class="src-sym">,&#8192;</span><span class="src-str">')'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;define&#8192;ordered&#8192;parameters</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$urlCfg</span><span class="src-sym">-&gt;</span><a href="ezcUrlConfiguration.html#methodaddOrderedParameter">addOrderedParameter</a><span class="src-sym">(&#8192;</span><span class="src-str">'section'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$urlCfg</span><span class="src-sym">-&gt;</span><a href="ezcUrlConfiguration.html#methodaddOrderedParameter">addOrderedParameter</a><span class="src-sym">(&#8192;</span><span class="src-str">'group'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$urlCfg</span><span class="src-sym">-&gt;</span><a href="ezcUrlConfiguration.html#methodaddOrderedParameter">addOrderedParameter</a><span class="src-sym">(&#8192;</span><span class="src-str">'category'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$urlCfg</span><span class="src-sym">-&gt;</span><a href="ezcUrlConfiguration.html#methodaddOrderedParameter">addOrderedParameter</a><span class="src-sym">(&#8192;</span><span class="src-str">'subcategory'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;define&#8192;unordered&#8192;parameters</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$urlCfg</span><span class="src-sym">-&gt;</span><a href="ezcUrlConfiguration.html#methodaddUnorderedParameter">addUnorderedParameter</a><span class="src-sym">(&#8192;</span><span class="src-str">'game'</span><span class="src-sym">,&#8192;</span><span class="src-id"><a href="ezcUrlConfiguration.html">ezcUrlConfiguration</a></span><span class="src-sym">::</span><span class="src-id">MULTIPLE_ARGUMENTS&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;create&#8192;a&#8192;new&#8192;ezcUrl&#8192;object&#8192;from&#8192;a&#8192;string&#8192;URL&#8192;and&#8192;use&#8192;the&#8192;above&#8192;$urlCfg</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$url&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcUrl.html">ezcUrl</a></span><span class="src-sym">(&#8192;</span><span class="src-str">'http://www.example.com/mydir/index.php/groups/Games/Adventure/Adult/(game)/Larry/7'</span><span class="src-sym">,&#8192;</span><span class="src-var">$urlCfg&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;to&#8192;get&#8192;the&#8192;parameter&#8192;values&#8192;from&#8192;the&#8192;URL&#8192;use&#8192;$url-&gt;getParam():</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$section&#8192;</span>=&#8192;&#8192;<span class="src-var">$url</span><span class="src-sym">-&gt;</span><span class="src-id">getParam</span><span class="src-sym">(&#8192;</span><span class="src-str">'section'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;&#8192;</span><span class="src-comm">//&#8192;will&#8192;be&#8192;"groups"</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$group&#8192;</span>=&#8192;<span class="src-var">$url</span><span class="src-sym">-&gt;</span><span class="src-id">getParam</span><span class="src-sym">(&#8192;</span><span class="src-str">'group'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;&#8192;</span><span class="src-comm">//&#8192;will&#8192;be&#8192;"Games"</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$category&#8192;</span>=&#8192;<span class="src-var">$url</span><span class="src-sym">-&gt;</span><span class="src-id">getParam</span><span class="src-sym">(&#8192;</span><span class="src-str">'category'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;&#8192;</span><span class="src-comm">//&#8192;will&#8192;be&#8192;"Adventure"</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$subcategory&#8192;</span>=&#8192;<span class="src-var">$url</span><span class="src-sym">-&gt;</span><span class="src-id">getParam</span><span class="src-sym">(&#8192;</span><span class="src-str">'subcategory'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;&#8192;</span><span class="src-comm">//&#8192;will&#8192;be&#8192;"Adult"</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$game&#8192;</span>=&#8192;<span class="src-var">$url</span><span class="src-sym">-&gt;</span><span class="src-id">getParam</span><span class="src-sym">(&#8192;</span><span class="src-str">'game'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;&#8192;</span><span class="src-comm">//&#8192;will&#8192;be&#8192;array(&#8192;"Larry",&#8192;"7"&#8192;)</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;to&#8192;remove&#8192;parameters&#8192;from&#8192;the&#8192;URL&#8192;configuration&#8192;$urlCfg</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$urlCfg</span><span class="src-sym">-&gt;</span><a href="ezcUrlConfiguration.html#methodremoveOrderedParameter">removeOrderedParameter</a><span class="src-sym">(&#8192;</span><span class="src-str">'subcategory'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$urlCfg</span><span class="src-sym">-&gt;</span><a href="ezcUrlConfiguration.html#methodremoveUnorderedParameter">removeUnorderedParameter</a><span class="src-sym">(&#8192;</span><span class="src-str">'game'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;to&#8192;remove&#8192;parameters&#8192;from&#8192;the&#8192;URL&#8192;configuration&#8192;stored&#8192;in&#8192;the&#8192;URL</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$url</span><span class="src-sym">-&gt;</span><span class="src-id">configuration</span><span class="src-sym">-&gt;</span><a href="ezcUrlConfiguration.html#methodremoveOrderedParameter">removeOrderedParameter</a><span class="src-sym">(&#8192;</span><span class="src-str">'subcategory'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$url</span><span class="src-sym">-&gt;</span><span class="src-id">configuration</span><span class="src-sym">-&gt;</span><a href="ezcUrlConfiguration.html#methodremoveUnorderedParameter">removeUnorderedParameter</a><span class="src-sym">(&#8192;</span><span class="src-str">'game'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol><p>Example of aggregating values for unordered parameters:  </p><ol><li><div class="src-line">&#8192;<span class="src-var">$urlCfg&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcUrlConfiguration.html">ezcUrlConfiguration</a></span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$urlCfg</span><span class="src-sym">-&gt;</span><a href="ezcUrlConfiguration.html#methodaddUnorderedParameter">addUnorderedParameter</a><span class="src-sym">(&#8192;</span><span class="src-str">'param1'</span><span class="src-sym">,&#8192;</span><span class="src-id"><a href="ezcUrlConfiguration.html">ezcUrlConfiguration</a></span><span class="src-sym">::</span><span class="src-id">AGGREGATE_ARGUMENTS&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$url&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcUrl.html">ezcUrl</a></span><span class="src-sym">(&#8192;</span><span class="src-str">'http://www.example.com/(param1)/x/(param1)/y/z'</span><span class="src-sym">,&#8192;</span><span class="src-var">$urlCfg&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$param1&#8192;</span>=&#8192;<span class="src-var">$url</span><span class="src-sym">-&gt;</span><span class="src-id">getParam</span><span class="src-sym">(&#8192;</span><span class="src-str">'param1'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;&#8192;</span><span class="src-comm">//&#8192;will&#8192;be&#8192;array(&#8192;array(&#8192;"x"&#8192;),&#8192;array(&#8192;"y",&#8192;"z"&#8192;)&#8192;)</span></div></li>
+</ol></div>
+<p>Source for this file: <a href="http://fisheye6.atlassian.com/browse/zetacomponents/trunk/Url/src/url_configuration.php?r=HEAD">/Url/src/url_configuration.php</a></p>
+       
+
+
+
+
+  <table><tr><td>
+            <strong>Version:</strong>&#8192;&#8192;
+          </td>
+          <td>//autogen//</td>
+        </tr></table><a name="sec-const-summary"></a>
+  <h3>Constants</h3>
+  <table class="summary"><tr><td class="right">
+          <a name="const-AGGREGATE_ARGUMENTS" id=""></a>
+          <code>
+            <a href="#const-AGGREGATE_ARGUMENTS" title="details" class="const-name-summary">AGGREGATE_ARGUMENTS</a>
+             =  4
+          </code>
+        </td>
+        <td>
+          Flag for specifying aggregation for unordered parameter values if the  parameter name appears more than once in the URL.          <p>For example, if the URL is 'http://www.example.com/(param1)/x/(param1)/y/z',  then all values will be considered for the parameter param1. So  $url-&gt;getParam( 'param1' ) will return array( array( "x" ), array( "y", "z" ) ),  if $url is an ezcUrl object created from the above URL.</p>        </td>
+      </tr><tr><td class="right">
+          <a name="const-MULTIPLE_ARGUMENTS" id=""></a>
+          <code>
+            <a href="#const-MULTIPLE_ARGUMENTS" title="details" class="const-name-summary">MULTIPLE_ARGUMENTS</a>
+             =  2
+          </code>
+        </td>
+        <td>
+          Flag for specifying multiple arguments for unordered parameters.                  </td>
+      </tr><tr><td class="right">
+          <a name="const-SINGLE_ARGUMENT" id=""></a>
+          <code>
+            <a href="#const-SINGLE_ARGUMENT" title="details" class="const-name-summary">SINGLE_ARGUMENT</a>
+             =  1
+          </code>
+        </td>
+        <td>
+          Flag for specifying single arguments for unordered parameters.                  </td>
+      </tr></table><a name="sec-prop-summary"></a>
+  <h3>Properties</h3>
+  <table class="summary"><tr><td class="right">
+          <a name="prop%24basedir" id="$basedir"></a>
+          <a name="prop-%24basedir" id="$basedir"></a>
+          <em>string</em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24basedir" title="details" class="var-name-summary">$basedir</a>
+                      </code>
+          <br><div style="margin-left: 20px">The part of the URL after the first slash. It can be null.            Example: $basedir = shop in http://www.example.com/shop</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24orderedParameters" id="$orderedParameters"></a>
+          <a name="prop-%24orderedParameters" id="$orderedParameters"></a>
+          <em>array(string=&gt;int)</em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24orderedParameters" title="details" class="var-name-summary">$orderedParameters</a>
+                      </code>
+          <br><div style="margin-left: 20px">The ordered parameters of the URL.            Example: $orderedParameters = array( 'section' =&gt; 0, 'module' =&gt; 1, 'view' =&gt; 2, 'content' =&gt; 3 );               url = http://www.example.com/doc/components/view/trunk            The numbers in the array represent the indices for each parameter.</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24script" id="$script"></a>
+          <a name="prop-%24script" id="$script"></a>
+          <em>string</em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24script" title="details" class="var-name-summary">$script</a>
+                      </code>
+          <br><div style="margin-left: 20px">The default php script, which comes after the basedir. Can be null            if the web server configuration is set to hide it.            Example: $script = index.php in http://www.example.com/shop/index.php</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24unorderedDelimiters" id="$unorderedDelimiters"></a>
+          <a name="prop-%24unorderedDelimiters" id="$unorderedDelimiters"></a>
+          <em>array(string)</em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24unorderedDelimiters" title="details" class="var-name-summary">$unorderedDelimiters</a>
+                      </code>
+          <br><div style="margin-left: 20px">The delimiters for the unordered parameters names.            Example: $unorderedDelimiters = array( '(', ')' ) for               url = http://www.example.com/doc/(file)/classtrees_Base.html</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24unorderedParameters" id="$unorderedParameters"></a>
+          <a name="prop-%24unorderedParameters" id="$unorderedParameters"></a>
+          <em>array(string=&gt;int)</em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24unorderedParameters" title="details" class="var-name-summary">$unorderedParameters</a>
+                      </code>
+          <br><div style="margin-left: 20px">The unordered parameters of the URL.            Example: $unorderedParameters = array( 'file' =&gt; SINGLE_ARGUMENT );               url = http://www.example.com/doc/(file)/classtrees_Base.html            The keys of the array represent the parameter names, and the values            in the array represent the types of the parameters.</div>        </td>
+      </tr></table><a name="sec-method-summary"></a>
+  <h3>Method Summary</h3>
+  <table class="summary"><tr><td class="right">
+            <em>public</em>            static
+                        <em><a href="ezcUrlConfiguration.html">ezcUrlConfiguration</a></em>          </td>
+          <td>
+            <code>
+              <a href="#getInstance"><b>getInstance</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns the instance of the class.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>ezcUrlConfiguration</em>          </td>
+          <td>
+            <code>
+              <a href="#__construct"><b>__construct</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Constructs a new ezcUrlConfiguration object.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#addOrderedParameter"><b>addOrderedParameter</b></a>(
+                                                                                    $name
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Adds an ordered parameter to the URL configuration.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#addUnorderedParameter"><b>addUnorderedParameter</b></a>(
+                                                                                    $name
+                                                    ,                   [                  $type
+                   = null]                               )
+            </code>
+            <br><div style="margin-left: 20px">Adds an unordered parameter to the URL configuration.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#removeOrderedParameter"><b>removeOrderedParameter</b></a>(
+                                                                                    $name
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Removes an ordered parameter from the URL configuration.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#removeUnorderedParameter"><b>removeUnorderedParameter</b></a>(
+                                                                                    $name
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Removes an unordered parameter from the URL configuration.</div>          </td>
+        </tr></table><a name="sec-methods"></a>
+  <h3>Methods</h3>
+  <a name="method_detail"></a>
+            <a name="methodgetInstance" id="getInstance"><!-- --></a>
+
+    <h4>getInstance</h4>
+
+    <div class="method-signature">
+      static <a href="ezcUrlConfiguration.html">ezcUrlConfiguration</a>
+      getInstance(
+      )
+    </div>
+
+      <p>Returns the instance of the class.</p>      
+      
+      
+      
+      
+      
+      
+      <a name="method__construct" id="__construct"><!-- --></a>
+
+    <h4>__construct</h4>
+
+    <div class="method-signature">
+      ezcUrlConfiguration
+      __construct(
+      )
+    </div>
+
+    <p>Constructs a new ezcUrlConfiguration object.</p><div><p>The properties of the object get default values, which can be changed by  setting the properties directly, like:  </p><ol><li><div class="src-line">&#8192;&#8192;&#8192;<span class="src-var">$urlCfg&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcUrlConfiguration.html">ezcUrlConfiguration</a></span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;<span class="src-var">$urlCfg</span><span class="src-sym">-&gt;</span><span class="src-id">basedir&#8192;</span>=&#8192;<span class="src-str">'mydir'</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;<span class="src-var">$urlCfg</span><span class="src-sym">-&gt;</span><span class="src-id">script&#8192;</span>=&#8192;<span class="src-str">'index.php'</span><span class="src-sym">;</span></div></li>
+</ol></div>
+    
+        
+
+    
+    
+    
+        <a name="methodaddOrderedParameter" id="addOrderedParameter"><!-- --></a>
+
+    <h4>addOrderedParameter</h4>
+
+    <div class="method-signature">
+      void
+      addOrderedParameter(
+                                  string
+          $name
+                        )
+    </div>
+
+    <p>Adds an ordered parameter to the URL configuration.</p><div><p>Ordered parameters must be added before unordered parameters, and  they must appear in the parsed URL in the same number and order  as they are defined in the configuration.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$name</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  The name of the ordered parameter to add to the configuration
+                              </td>
+            </tr></tbody></table><a name="methodaddUnorderedParameter" id="addUnorderedParameter"><!-- --></a>
+
+    <h4>addUnorderedParameter</h4>
+
+    <div class="method-signature">
+      void
+      addUnorderedParameter(
+                                  string
+          $name
+                            ,           [int
+          $type
+           = null]              )
+    </div>
+
+    <p>Adds an unordered parameter to the URL configuration.</p><div><p>The possible values for the $type parameter are: </p><ul><li><a href="ezcUrlConfiguration.html#constSINGLE_ARGUMENT">ezcUrlConfiguration::SINGLE_ARGUMENT</a> (default): the getParam()
+    method in ezcUrl will return a string containing the value of the
+    parameter $name</li><li><a href="ezcUrlConfiguration.html#constMULTIPLE_ARGUMENTS">ezcUrlConfiguration::MULTIPLE_ARGUMENTS</a>: the getParam() method
+    will return an array containing the last encountered values of the
+    parameter $name</li><li><a href="ezcUrlConfiguration.html#constAGGREGATE_ARGUMENTS">ezcUrlConfiguration::AGGREGATE_ARGUMENTS</a>: the getParam() method
+    will return an array with all encountered values for the parameter $name</li></ul>  Examples:  <ol><li><div class="src-line">&#8192;<span class="src-var">$urlCfg&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcUrlConfiguration.html">ezcUrlConfiguration</a></span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;single&#8192;parameter&#8192;value</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$urlCfg</span><span class="src-sym">-&gt;</span><a href="ezcUrlConfiguration.html#methodaddUnorderedParameter">addUnorderedParameter</a><span class="src-sym">(&#8192;</span><span class="src-str">'param1'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;&#8192;</span><span class="src-comm">//&#8192;type&#8192;is&#8192;SINGLE_ARGUMENT&#8192;by&#8192;default</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$url&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcUrl.html">ezcUrl</a></span><span class="src-sym">(&#8192;</span><span class="src-str">'http://www.example.com/(param1)/x'</span><span class="src-sym">,&#8192;</span><span class="src-var">$urlCfg&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$param1&#8192;</span>=&#8192;<span class="src-var">$url</span><span class="src-sym">-&gt;</span><span class="src-id">getParam</span><span class="src-sym">(&#8192;</span><span class="src-str">'param1'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;&#8192;</span><span class="src-comm">//&#8192;will&#8192;return&#8192;"x"</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;multiple&#8192;parameter&#8192;values</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$urlCfg</span><span class="src-sym">-&gt;</span><a href="ezcUrlConfiguration.html#methodaddUnorderedParameter">addUnorderedParameter</a><span class="src-sym">(&#8192;</span><span class="src-str">'param1'</span><span class="src-sym">,&#8192;</span><span class="src-id"><a href="ezcUrlConfiguration.html">ezcUrlConfiguration</a></span><span class="src-sym">::</span><span class="src-id">MULTIPLE_ARGUMENTS&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$url&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcUrl.html">ezcUrl</a></span><span class="src-sym">(&#8192;</span><span class="src-str">'http://www.example.com/(param1)/x/y'</span><span class="src-sym">,&#8192;</span><span class="src-var">$urlCfg&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$param1&#8192;</span>=&#8192;<span class="src-var">$url</span><span class="src-sym">-&gt;</span><span class="src-id">getParam</span><span class="src-sym">(&#8192;</span><span class="src-str">'param1'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;&#8192;</span><span class="src-comm">//&#8192;will&#8192;return&#8192;array(&#8192;"x",&#8192;"y"&#8192;)</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;multiple&#8192;parameter&#8192;values&#8192;with&#8192;aggregation</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$urlCfg</span><span class="src-sym">-&gt;</span><a href="ezcUrlConfiguration.html#methodaddUnorderedParameter">addUnorderedParameter</a><span class="src-sym">(&#8192;</span><span class="src-str">'param1'</span><span class="src-sym">,&#8192;</span><span class="src-id"><a href="ezcUrlConfiguration.html">ezcUrlConfiguration</a></span><span class="src-sym">::</span><span class="src-id">AGGREGATE_ARGUMENTS&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$url&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcUrl.html">ezcUrl</a></span><span class="src-sym">(&#8192;</span><span class="src-str">'http://www.example.com/(param1)/x/(param1)/y/z'</span><span class="src-sym">,&#8192;</span><span class="src-var">$urlCfg&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$param1&#8192;</span>=&#8192;<span class="src-var">$url</span><span class="src-sym">-&gt;</span><span class="src-id">getParam</span><span class="src-sym">(&#8192;</span><span class="src-str">'param1'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;&#8192;</span><span class="src-comm">//&#8192;will&#8192;return&#8192;array(&#8192;array(&#8192;"x"&#8192;),&#8192;array(&#8192;"y",&#8192;"z"&#8192;)&#8192;)</span></div></li>
+</ol><p>Ordered parameters must be added before unordered parameters, and  they must appear in the parsed URL in the same number and order  as they are defined in the configuration.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$name</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  The name of the unordered parameter to add to the configuration
+                              </td>
+            </tr><tr><td><code>$type</code></td>
+              <td><em>int</em></td>
+              <td>
+                                  The type of the unordered parameter
+                              </td>
+            </tr></tbody></table><a name="methodremoveOrderedParameter" id="removeOrderedParameter"><!-- --></a>
+
+    <h4>removeOrderedParameter</h4>
+
+    <div class="method-signature">
+      void
+      removeOrderedParameter(
+                                  string
+          $name
+                        )
+    </div>
+
+    <p>Removes an ordered parameter from the URL configuration.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$name</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  The name of the ordered parameter to remove from the configuration
+                              </td>
+            </tr></tbody></table><a name="methodremoveUnorderedParameter" id="removeUnorderedParameter"><!-- --></a>
+
+    <h4>removeUnorderedParameter</h4>
+
+    <div class="method-signature">
+      void
+      removeUnorderedParameter(
+                                  string
+          $name
+                        )
+    </div>
+
+    <p>Removes an unordered parameter from the URL configuration.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$name</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  The name of the unordered parameter to remove from the configuration
+                              </td>
+            </tr></tbody></table><div class="credit">
+      Documentation generated by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+    </div>
+  </div>
+  
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

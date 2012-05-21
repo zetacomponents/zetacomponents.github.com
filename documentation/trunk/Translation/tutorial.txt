@@ -1,0 +1,318 @@
+eZ Components - Translation
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. contents:: Table of Contents
+
+Introduction
+============
+
+Many web applications require the use of translated GUI elements. There are
+several traditional ways of providing this functionality, but none of them are
+particularly easy to use or maintain. The Translation component provides
+functionality for retrieving translated data through multiple (extendable)
+backends and for filtering translatable data. It also allows translated strings
+with parameters; as a result, it is possible to use different word orders in
+different languages while still utilizing the parameters correctly.
+
+Dependencies
+============
+
+This component has an optional dependency on the Cache component by means of
+the TranslationCacheTiein component. When the latter is installed, the
+Translation system can make use of a cache for the storage and retrieval of
+data.
+
+The Template component also has an optional dependency on this component, by
+means of the TemplateTranslationTiein component. This component adds a template
+function that uses the Translation component to fetch translated data.
+
+Class overview
+==============
+
+ezcTranslationManager
+  This is the main class of this component. It is responsible for calling the
+  configured backends to read translation data and return a translation
+  context in the form of an ezcTranslation object.
+
+ezcTranslationCacheBackend, ezcTranslationTsBackend
+  These classes implement backends that read data from a specific source.
+  ezcTranslationTsBackend reads its data from `Qt's Linguist files`_ - an
+  XML-based format for storing original text and translated text. The
+  ezcTranslationCacheBackend handler reads translation data through the Cache
+  mechanism.
+
+ezcTranslation
+  Objects of this class are returned by the ezcTranslationManager::getContext()
+  method. ezcTranslationManager uses the backend's getContext() method to
+  retrieve data. 
+
+ezcTranslationComplementEmptyFilter
+  This class implements a filter that substitutes a missing ("unfinished") translated string
+  with its untranslated source. This filter makes sure that all translatable
+  strings return some text, even if a particular string has not been translated yet.
+  
+ezcTranslationBorkFilter, ezcTranslationLeetFilter
+  These two classes serve as examples on how to implement filters. Aside from
+  serving as examples, they have very little function.
+
+
+.. _Qt's Linguist files: http://qt.nokia.com/products/qt/features/internationalization
+
+
+Basic usage
+===========
+
+In the simplest case, your application only needs to access
+translated versions of the strings that it uses. In most cases, the strings used
+in an application will be in English, but of course that is not always the case. In the
+first version of this component, we only support `Qt's Linguist files`_ (TS
+files) which group translatable strings together in contexts. The TS file
+format is handled by the ezcTranslationTsBackend class. This backend requires
+one setting (the location to find the translation) and has one option
+(the format for the filename for each locale). 
+
+In the first example, we assume that all translations are stored in the
+"translations/" directory, and that the filename consists of "translation-"
+followed by the locale name with the suffix ".xml". The locale name itself is a freeform
+field, but we recommend to use the `ISO639-1`_ language code, followed by a _
+(underscore), followed by the ISO3166_ country code. For example, use nb_NO.xml for
+Bokmål/Norway or nl_BE.xml for Dutch/Belgium.
+
+.. include:: tutorial_example_01.php
+   :literal:
+
+In the above example we create a backend object in lines 4 and 5. We tell the
+backend where to find the translations and the format of the translation
+filename. The string "[LOCALE]" will automatically be replaced with the
+locale name when the translation file is opened. With the configured backend, we
+then construct a manager in line 7. In lines 8 and 9 we instruct the manager to
+return the contexts "tutorial/headers" and "tutorial/descriptions" for the
+"nb_NO" locale. When the manager retrieves the content, it first
+checks its internal cache to determine whether the ezcTranslation object for that context was
+already retrieved. If the object for the context is available in the cache, it
+will simply return the ezcTranslation object. If the context is not in the
+cache, it will defer the retrieving to the backend, store the results in its
+cache and return the context.
+
+Parameterized strings
+=====================
+
+In many cases, there are parameters to your translated strings, for example to
+fill in the name of an article. In this case, a solution would be to separate the
+translatable string into two parts, then concatenate them together with the
+parameter in the correct place. However, it is also possible that the order of
+parameters changes when you translate a string. For example the
+English string "Search for 'appelmoes' returned 3 matches" can be translated in Dutch
+as: "Er zijn 3 items gevonden bij het zoeken naar 'appelmoes'". The simple
+concatenation mechanism would no longer work. Luckily, the Translation
+component supports parameterized strings in two different ways: with
+numerical replacement identifiers (such as %1 and %2) and with associative
+identifiers (such as %search_string and %matches). The following example
+illustrates how this is done.
+
+.. include:: tutorial_example_02.php
+   :literal:
+
+The first lines are the same as in the previous example. In this case, however, we retrieve
+an ezcTranslation object for the same context for two different locales (in
+line 8 and 9). In lines 11 and 12, we request the translation for "Search for
+'%search_string' returned %matches matches.". This sentence has two parameters
+(search_string and matches) for which the values are provided in an array. The
+array is passed as the second parameter to the getTranslation() method.
+
+The translation for the English "The apple is round" in Norwegian is "Applet er
+rund". With the name of the fruit being the parameter, you can see that in
+Norwegian the parameter value needs to have its first letter uppercased, since
+it begins a sentence. The translation system supports this by
+specifying the first letter of the parameter name in the translated string as a
+capital letter. In TS format, this would be as follows: ::
+
+    <source>The %fruit is round.</source>
+    <translation>%Fruit er rund.</translation>
+
+When the first letter of a parameter name in the translated string is a
+capital, the translation system will also make the first letter of the
+parameter value uppercase. The output of the whole script is therefore: ::
+
+    Er zijn 4 items gevonden bij het zoeken naar 'appelmoes'.
+    Epplet er rund.
+
+    
+.. _`ISO639-1`: http://www.loc.gov/standards/iso639-2/php/code_list.php
+.. _ISO3166: http://www.iso.org/iso/en/prods-services/iso3166ma/02iso-3166-code-lists/list-en1.html
+
+
+Filters
+=======
+
+In some cases, not all of the translation files are up to date. For example, the
+original translation file might be updated with new strings, but the translator
+has not had the time to translate the strings yet. For your application to show
+at least the original strings (often in English) the Translation component uses filters.
+Filters are applied after the backend retrieves the data, but before it is placed
+in the internal cache of the manager. 
+
+.. include:: tutorial_example_03.php
+   :literal:
+
+In this example, we add a filter to the manager in line 8. In
+line 9, we then request translation for a string that is marked as "unfinished".
+The ezcTranslationComplementEmptyFilter filter fills in the original string for
+every translation that is still marked as "unfinished".
+
+There are a few extra (but less useful) filters in the Translation component.
+The next example shows the "Leet" and "Bork" filters in action. The Bork
+filter mangles non-finished or non-translated text so that it is obvious which
+text is translatable but not yet translated. The "Leet" filter renders your
+text using Leetspeak_. Both filters are demonstrated in the following example:
+
+.. include:: tutorial_example_03b.php
+   :literal:
+
+Lines 4 to 8 show the usage of ezcTranslationBorkFilter and lines 10 to 14
+show the usage of ezcTranslationLeetFilter. The output of this script is::
+
+    header1
+    [Seerch for 'appelmoes' retoorned 4 metches.]
+    3r zijn 4 i73ms g3v0nd3n bij h37 z03k3n n44r 'appelmoes'.
+
+The first line is "header1" because this script includes the previous one. For
+the Bork filter you can see that it uses the original string and not the
+translated version. The Leet filter however uses the translated string
+exclusively. In case you want to implement your own filters, you need to create
+a class that implements the ezcTranslationFilter interface. Have a look at the
+implementation for the ezcTranslationBorkFilter filter, which shows how to
+implement such a class.
+
+.. _Leetspeak: http://en.wikipedia.org/wiki/Leet
+
+
+Iteration
+=========
+
+In some situations it might be useful to iterate over all the contexts in a
+specific translation file. The backends that implement the
+ezcTranslationContextRead interface provide this functionality in the form of
+an iterator. The ezcTranslationTsBackend is such a class. Using this interface
+is extremely easy, as you will see in the next example.
+
+.. include:: tutorial_example_04.php
+   :literal:
+
+In line 7, we initialize the reader with the locale "nb_NO". After this is done,
+we can simply use foreach() to loop over all the contexts in the translation
+definition (in lines 9 to 17).
+
+
+Caching
+=======
+
+Reading from an XML file for every translation context is not very fast -
+especially when the translation file has a lot of strings. Thus, the translation
+system benefits from a caching solution. Caching is implemented in the Cache_
+component and the links between this component and the caching component are
+implemented in ezcTranslationCacheBackend_ from the
+TranslationCacheTiein_ component.
+
+Using the cache backend is similar to using the Ts backend, as is shown in
+the next example:
+
+.. include:: tutorial_example_05.php
+   :literal:
+
+Instead of setting up the Ts backend, we have to instantiate
+ezcCacheStorageFileArray (line 4), which we then pass as the sole parameter to
+the constructor of ezcTranslationCacheBackend_ (line 5). Lines 7 to 13 are
+exactly the same as in the first example.
+
+When you try to run this script an ezcTranslationContextNotAvailableException
+exception is thrown because we did not put any contents in the cache yet.
+ezcTranslationCacheBackend_ implements the ezcTranslationContextWrite
+interface. Using that, combined with a class that implements the ezcTranslationContextRead
+interface (such as ezcTranslationTsBackend), you can fill the cache in a
+memory efficient way. The next example demonstrates how this is done. 
+
+.. include:: tutorial_example_06.php
+   :literal:
+
+In lines 4 to 6 we set up the reader interface, like we did in the previous 
+example. Then we continue in lines 8 to 10 to initialize the writer. You
+should keep the locale for both the reader and writer the same. In line 12, we
+use a foreach() loop to iterate over all the contexts through the
+reader interface. We use the ezcTranslationContextWrite::storeContext()
+method in line 14 to store the retrieved context object to the cache. After we
+iterate over all the contexts and store them, we initialize the reader and
+writer in lines 17-18. After you run this script, the script from the previous
+example would also work (as the cache now has all the contexts).
+
+.. _ezcTranslationCacheBackend: TranslationCacheTiein/ezcTranslationCacheBackend.html
+.. _ezcCacheStorageFileArray: Cache/ezcCacheStorageFileArray.html
+.. _Cache: introduction_Cache.html
+.. _TranslationCacheTiein: introduction_TranslationCacheTiein.html
+
+Manipulating translation files
+==============================
+
+It is possible to use the Translation component to modify translation files in
+the Linguist format as well. The TS backend implements the
+ezcTranslationContextWrite interface as well. Modifications happen on context
+level, which means it is not possible right now to remove whole contexts from
+the translation files. Updating and adding strings to a context, as well as
+adding a whole new context is supported. To show how to do this, we take the
+following TS file as starting point:
+
+.. include:: translations/mod-example-nl_NL.xml
+   :literal:
+
+And use the following script to update it:
+
+.. include:: tutorial_example_07.php
+   :literal:
+
+After running, the output is::
+
+    <?xml version="1.0"?>
+    <!DOCTYPE TS>
+    <TS>
+      <context>
+        <name>existing</name>
+        <message>
+          <source>added</source>
+          <translation>toegevoeg</translation>
+          <comment>comment</comment>
+        </message>
+        <message>
+          <source>update with new translation</source>
+          <translation>ingevuld</translation>
+        </message>
+        <message>
+          <source>update translation</source>
+          <translation>bijgewerkt</translation>
+        </message>
+        <message>
+          <source>to obsolete</source>
+          <translation type="obsolete">markeren als ongebruikt</translation>
+        </message>
+      </context>
+      <context>
+        <name>new</name>
+        <message>
+          <source>new string</source>
+          <translation>nieuwe string</translation>
+        </message>
+      </context>
+    </TS>
+
+More information
+================
+
+See the API documentation for ezcTranslationManager (and of course the other
+classes in this component) for more information.
+
+
+..
+   Local Variables:
+   mode: rst
+   fill-column: 79
+   End:
+   vim: et syn=rst tw=79

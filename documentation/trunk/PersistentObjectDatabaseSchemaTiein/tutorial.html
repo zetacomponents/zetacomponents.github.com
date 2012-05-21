@@ -1,0 +1,99 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="PHP, apache, components, framework, quality" />
+	<meta name="author" content="dotxp" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Wed, 04 Aug 2010 13:07:08 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="Tutorial" />
+	<meta name="DC.creator" content="dotxp" />
+	<meta name="DC.date" content="Wed, 04 Aug 2010 13:07:08 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/PersistentObjectDatabaseSchemaTiein/tutorial.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li class="requested">
+	<a href="/zetacomponents/documentation/trunk/PersistentObjectDatabaseSchemaTiein/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/PersistentObjectDatabaseSchemaTiein/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+
+</ul>
+
+		<h2>eZ Components - PersistentObjectDatabaseSchemaTiein</h2><div class="toc"><h3>Table of Contents</h3><ul><li><p><a href="#introduction">Introduction</a></p></li><li><p><a href="#synopsis">Synopsis</a></p></li><li><p><a href="#usage">Usage</a></p></li><li><p><a href="#customizing-definitions-and-classes">Customizing definitions and classes</a></p></li><li><p><a href="#template-based-generation">Template based generation</a></p></li><li><p><a href="#more-information">More information</a></p></li></ul></div><a name="introduction"></a><a name="id2"></a><h3>Introduction</h3><p>The PersistentObjectDatabaseSchemaTiein component allows you to generate template PersistentObject definition files and php classes from a database structure or a DatabaseSchema schema file. You will most likely have to adjust the PersistentObject definitions afterwards.</p><p>For more information regarding PersistentObject definition files, please refer to the API documentation for <a href='/zetacomponents/documentation/trunk/PersistentObjectDatabaseSchemaTiein/phpdoc/ezcPersistentObjectDefinition.html'>ezcPersistentObjectDefinition</a>. Details on DatabaseSchema files can be found in the documentation for <a href='/zetacomponents/documentation/trunk/PersistentObjectDatabaseSchemaTiein/phpdoc/ezcDbSchema.html'>ezcDbSchema</a>.</p><a name="synopsis"></a><a name="id3"></a><h3>Synopsis</h3><code class="block">$ rungenerator.php -s &lt;string&gt; -f &lt;string&gt; [-o] [-p &lt;string&gt;] [-t] \
+    [-ct "class_template.ezt"] [-dt "definition_template.ezt"] \
+    [-tp "trunk/PersistentObjectDatabaseSchemaTiein/src/template_writer/templates"]
+    [-h] [--] &lt;string:def dir&gt; [&lt;string:class dir&gt;]</code><p>The component contains an executable script, which can be called using the PHP command line interpreter (CLI). You have to provide at least the following two options and the "def dir" argument.</p><dl><dt>-s / --source &lt;string&gt;</dt><dd>This option determines the source DatabaseSchema file from which to generate the PersistentObject definitions.</dd><dt>-f / --format &lt;string&gt;</dt><dd>This option determines the format of the provided source schema file. Examples are 'xml' and 'array'. For a full list of valid formats, please refer to the <a href="classtrees_DatabaseSchema.html">DatabaseSchema API</a> documentation.</dd></dl><p>The "def dir" argument defines where the generated PersistentObject definitions are stored. The optional "class dir" argument can be used to define another directory, where class stubs for the generated defintions are created in. Additional options that might be useful are:</p><dl><dt>-o / --overwrite</dt><dd>If this option is set, files will be overwriten if they alreday exist. The default behaviour is not to overwrite any files.</dd><dt>-p / --prefix &lt;string&gt;</dt><dd>Using this option you can define a unique prefix that will be prepended to all class names, and class file names, if appliable.</dd></dl><p>The -h / --help option gives you some information on these options and arguments, too.</p><p>Make sure that the script can write to its target directories in respect to permissions and accessability.</p><a name="usage"></a><a name="id4"></a><h3>Usage</h3><p>Run the script from the main eZ Components source directory using the following command:</p><code class="block">$ php PersistentObjectDatabaseSchemaTiein/rungenerator.php</code><p>By default, you will see a short help description on how to use this tool.</p><p>You need a valid DatabaseSchema file for your database structure to generate PersistentObject definitions. You can generate a DatabaseSchema file from your database with the DatabaseSchema component. For detailed information, please refer to the <a href="classtrees_DatabaseSchema.html">DatabaseSchema API</a> documentation.</p><p>Once you have a valid DatabaseSchema file, you should create a directory where your PersistentObject definitions will be stored. Then you can use the rungenerator.php script to create the template definition files. Use the following command</p><code class="block">$ php PersistentObjectDatabaseSchemaTiein/rungenerator.php \
+  -s path/to/schema.file -f array path/to/persistentobject/definition/dir/</code><p>You have to replace the paths according to the example. The -s parameter defines where the DatabaseSchema definition file can be found. The -f option indicates the format of the schema file. In this case, it is a PHP array definition; another common format is XML. The last part of the command line call specifies the target directory to store the generated PersistentObject definitions.</p><p>It is also possible to generate class stubs for the defined persistent objects at the same time by specifying the "class dir" argument. To do so, create a directory where your classes will be stored and add it to the command</p><code class="block">$ php PersistentObjectDatabaseSchemaTiein/rungenerator.php \
+  -s path/to/schema.file -f array path/to/definition/dir/ \
+  path/to/classes/dir/</code><a name="customizing-definitions-and-classes"></a><a name="id5"></a><h3>Customizing definitions and classes</h3><p>The generator script assumes that the names of your PersistentObject classes and their properties map exactly to the same table and column names of your database structure. For example, a table called ez_persistent_objects with the column persistent_object_id results in a class ez_persistent_objects and the property persistent_object_id.</p><p>If you want a different mapping, you can edit the generated PersistentObject files manually. The class to table name mapping is done through the properties of the main <a href='/zetacomponents/documentation/trunk/PersistentObjectDatabaseSchemaTiein/phpdoc/ezcPersistentObjectDefinition.html'>ezcPersistentObjectDefinition</a> object. The "table" property should be correct as it is taken from the database definition.  Adjust the "class" property according to your needs.</p><p><em>Note</em>: If you change the class name of a PersistentObject definition, you have to rename the file name accordingly. The file name for a PersistentObject definition must be the same as the class name, completely in lowercase.</p><p>The same procedure applies to the property definition of your persistent objects. The column name to object property mapping is defined by the <a href='/zetacomponents/documentation/trunk/PersistentObjectDatabaseSchemaTiein/phpdoc/ezcPersistentObjectProperty.html'>ezcPersistentObjectProperty</a> class. The "columnName" property of the definition objects should be correct as it is taken from your database schema file. You can adjust the "propertyName" properties according to your needs. <em>Note</em>: You propably need to adjust the property names in generated class stubs and the setState() and getState() methods accordingly.</p><p>The generator script guesses the PHP types of your PersistentObject properties. It uses the following mapping:</p><p>If the mappings are incorrect for your special case, you can adjust the "propertyType" properties of your <a href='/zetacomponents/documentation/trunk/PersistentObjectDatabaseSchemaTiein/phpdoc/ezcPersistentObjectProperty.html'>ezcPersistentObjectProperty</a> definitions.</p><a name="template-based-generation"></a><a name="id6"></a><h3>Template based generation</h3><p>Since version 1.3, the generator also supports definition and class stub generation based on templates (as provided by the <a href="introduction_Template.html">Template</a>) component.</p><p>To activate this functionality, use the <em>-t</em> switch. By default, templates are used which create classes similar to the eZ Components coding standard, using properties with overloading.</p><p>If you favor a different style, you can provide your own templates, using the <em>-ct</em> switch to provide the class template file name and <em>-dt</em> for the definition template. You can provide both independently. However, if you provide one of these, you also need to provide <em>-tp</em> with the path to the directory where your templates are located. This path will also be used to store compiled templates.</p><p>A template receives 3 parameters:</p><dl><dt>$schema</dt><dd>An instance of <a href='/zetacomponents/documentation/trunk/PersistentObjectDatabaseSchemaTiein/phpdoc/ezcDbSchemaTable.html'>ezcDbSchemaTable</a>, describing a table from your database schema.</dd><dt>$tableName</dt><dd>The name of the table to render.</dd><dt>$classPrefix</dt><dd>The prefix provided by the <em>-p</em> parameter.</dd></dl><p>The template must return the file name to store the rendered class / definition should be stored in. The name of the return variable must be $fileName. For definition files, it is necessary that the file name is the full class name completely converted to lower case, if you want to use the default <a href='/zetacomponents/documentation/trunk/PersistentObjectDatabaseSchemaTiein/phpdoc/ezcPersistentCodeManager.html'>ezcPersistentCodeManager</a>.</p><p>A good starting point to create your own templates is to look into the templates provided with the component under <em>template_writer/templates/</em> in the component directory.</p><a name="more-information"></a><a name="id7"></a><h3>More information</h3><p>For more information, see the API documentation of <a href='/zetacomponents/documentation/trunk/PersistentObjectDatabaseSchemaTiein/phpdoc/ezcPersistentObjectDefinition.html'>ezcPersistentObjectDefinition</a>, <a href='/zetacomponents/documentation/trunk/PersistentObjectDatabaseSchemaTiein/phpdoc/ezcPersistentObjectProperty.html'>ezcPersistentObjectProperty</a>, <a href='/zetacomponents/documentation/trunk/PersistentObjectDatabaseSchemaTiein/phpdoc/ezcDbSchema.html'>ezcDbSchema</a> and <a href='/zetacomponents/documentation/trunk/PersistentObjectDatabaseSchemaTiein/phpdoc/ezcDbschemaPersistentWriter.html'>ezcDbschemaPersistentWriter</a>.</p><!--Local Variables:
+mode: rst
+fill-column: 79
+End:
+vim: et syn=rst tw=79-->
+
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

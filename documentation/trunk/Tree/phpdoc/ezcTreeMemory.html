@@ -1,0 +1,1222 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="PHP, apache, components, framework, quality" />
+	<meta name="author" content="dotxp" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Wed, 04 Aug 2010 13:08:01 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="ezcTreeMemory.html" />
+	<meta name="DC.creator" content="dotxp" />
+	<meta name="DC.date" content="Wed, 04 Aug 2010 13:08:01 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/Tree/phpdoc/ezcTreeMemory.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/Tree/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/trunk/Tree/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+
+</ul>
+
+		
+  <div class="phpdoc">
+    <h2>Apache Zeta Components Manual :: Docs For Class ezcTreeMemory</h2>
+
+                  <h3>Tree::ezcTreeMemory</h3>
+    
+<a name="sec-description"></a>
+<h3>Class ezcTreeMemory</h3>
+
+<p>ezcTreeMemory is an implementation of a tree backend that operates on  an in-memory tree structure. Meta-information is kept in objects of the  ezcTreeMemoryNode class.</p><div><p>Example:  </p><ol><li><div class="src-line">&#8192;<span class="src-php">&lt;?php</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-comm">//&#8192;Create&#8192;a&#8192;new&#8192;tree</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-var">$tree&#8192;</span>=&#8192;<span class="src-id"><a href="ezcTreeMemory.html">ezcTreeMemory</a></span><span class="src-sym">::</span><a href="ezcTreeMemory.html#methodcreate">create</a><span class="src-sym">(&#8192;</span><span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcTreeMemoryDataStore.html">ezcTreeMemoryDataStore</a></span><span class="src-sym">(</span><span class="src-sym">)&#8192;)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-comm">//&#8192;or</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-var">$tree&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcTreeMemory.html">ezcTreeMemory</a></span><span class="src-sym">(&#8192;</span><span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcTreeMemoryDataStore.html">ezcTreeMemoryDataStore</a></span><span class="src-sym">(</span><span class="src-sym">)&#8192;)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-php">?&gt;</span></div></li>
+</ol><p>See <a href="ezcTree.html">ezcTree</a> for examples on how to operate on the tree.</p></div>
+<p>Source for this file: <a href="http://fisheye6.atlassian.com/browse/zetacomponents/trunk/Tree/src/backends/memory.php?r=HEAD">/Tree/src/backends/memory.php</a></p>
+       
+
+
+<pre><a href="ezcTree.html">ezcTree</a>
+   |
+   --ezcTreeMemory</pre>
+
+
+  <table><tr><td>
+            <strong>Version:</strong>&#8192;&#8192;
+          </td>
+          <td>//autogentag//</td>
+        </tr></table><a name="sec-prop-summary"></a>
+  <h3>Properties</h3>
+  <table class="summary"><tr><td class="right">
+          <a name="prop%24nodeClassName" id="$nodeClassName"></a>
+          <a name="prop-%24nodeClassName" id="$nodeClassName"></a>
+          <em>string</em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24nodeClassName" title="details" class="var-name-summary">$nodeClassName</a>
+                      </code>
+          <br><div style="margin-left: 20px">Which class is used as tree node - this class *must* inherit                 the ezcTreeNode class.</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24store" id="$store"></a>
+          <a name="prop-%24store" id="$store"></a>
+          <em><a href="ezcTreeXmlDataStore.html">ezcTreeXmlDataStore</a></em>        </td>
+        <td class="right">
+          <em>read</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24store" title="details" class="var-name-summary">$store</a>
+                      </code>
+          <br><div style="margin-left: 20px">The data store that is used for retrieving/storing data.</div>        </td>
+      </tr></table><h3>Inherited Member Variables</h3>
+  <table class="summary"><thead><tr><th colspan="2">
+            From <span class="classname"><a href="ezcTree.html">ezcTree</a></span>         
+          </th>
+        </tr></thead><tbody><tr><td class="right">
+              <em>protected</em>                          </td>
+            <td>
+              <code><a href="ezcTree.html#var%24inTransaction">ezcTree::$inTransaction</a></code>
+              
+            </td>
+          </tr><tr><td class="right">
+              <em>protected</em>                          </td>
+            <td>
+              <code><a href="ezcTree.html#var%24inTransactionCommit">ezcTree::$inTransactionCommit</a></code>
+              
+            </td>
+          </tr><tr><td class="right">
+              <em>protected</em>                          </td>
+            <td>
+              <code><a href="ezcTree.html#var%24properties">ezcTree::$properties</a></code>
+              
+            </td>
+          </tr></tbody></table><a name="sec-method-summary"></a>
+  <h3>Method Summary</h3>
+  <table class="summary"><tr><td class="right">
+            <em>public</em>            static
+                        <em><a href="ezcTreeMemory.html">ezcTreeMemory</a></em>          </td>
+          <td>
+            <code>
+              <a href="#create"><b>create</b></a>(
+                                                                                    $store
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">A factory method that creates a new empty tree using the data store $store.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>ezcTreeMemory</em>          </td>
+          <td>
+            <code>
+              <a href="#__construct"><b>__construct</b></a>(
+                                                                                    $store
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Constructs a new ezcTreeMemory object.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#addChild"><b>addChild</b></a>(
+                                                                                    $parentId
+                                                    ,                                     $childNode
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Adds the node $childNode as child of the node with ID $parentId</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#delete"><b>delete</b></a>(
+                                                                                    $nodeId
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Deletes the node with ID $nodeId from the tree, including all its children</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em><a href="ezcTreeNodeList.html">ezcTreeNodeList</a></em>          </td>
+          <td>
+            <code>
+              <a href="#fetchChildren"><b>fetchChildren</b></a>(
+                                                                                    $nodeId
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns all the children of the node with ID $nodeId.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em><a href="ezcTreeNode.html">ezcTreeNode</a></em>          </td>
+          <td>
+            <code>
+              <a href="#fetchNodeById"><b>fetchNodeById</b></a>(
+                                                                                    $nodeId
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns the node identified by the ID $nodeId.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em><a href="ezcTreeNode.html">ezcTreeNode</a></em>          </td>
+          <td>
+            <code>
+              <a href="#fetchParent"><b>fetchParent</b></a>(
+                                                                                    $nodeId
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns the parent node of the node with ID $nodeId.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em><a href="ezcTreeNodeList.html">ezcTreeNodeList</a></em>          </td>
+          <td>
+            <code>
+              <a href="#fetchPath"><b>fetchPath</b></a>(
+                                                                                    $nodeId
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns all the nodes in the path from the root node to the node with ID  $nodeId, including those two nodes.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em><a href="ezcTreeNodeList.html">ezcTreeNodeList</a></em>          </td>
+          <td>
+            <code>
+              <a href="#fetchSubtree"><b>fetchSubtree</b></a>(
+                                                                                    $nodeId
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Alias for fetchSubtreeDepthFirst().</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em><a href="ezcTreeNodeList.html">ezcTreeNodeList</a></em>          </td>
+          <td>
+            <code>
+              <a href="#fetchSubtreeBreadthFirst"><b>fetchSubtreeBreadthFirst</b></a>(
+                                                                                    $nodeId
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns the node with ID $nodeId and all its children, sorted according to  the <a href="http://en.wikipedia.org/wiki/Breadth-first_search">Breadth-first sorting</a>  algorithm.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em><a href="ezcTreeNodeList.html">ezcTreeNodeList</a></em>          </td>
+          <td>
+            <code>
+              <a href="#fetchSubtreeDepthFirst"><b>fetchSubtreeDepthFirst</b></a>(
+                                                                                    $nodeId
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns the node with ID $nodeId and all its children, sorted accoring to  the <a href="http://en.wikipedia.org/wiki/Depth-first_search">Depthth-first sorting</a>  algorithm.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#fixateTransaction"><b>fixateTransaction</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Fixates the transaction.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>integer</em>          </td>
+          <td>
+            <code>
+              <a href="#generateNodeID"><b>generateNodeID</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">This method generates the next node ID.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>int</em>          </td>
+          <td>
+            <code>
+              <a href="#getChildCount"><b>getChildCount</b></a>(
+                                                                                    $nodeId
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns the number of direct children of the node with ID $nodeId.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>int</em>          </td>
+          <td>
+            <code>
+              <a href="#getChildCountRecursive"><b>getChildCountRecursive</b></a>(
+                                                                                    $nodeId
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns the number of children of the node with ID $nodeId, recursively</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>int</em>          </td>
+          <td>
+            <code>
+              <a href="#getPathLength"><b>getPathLength</b></a>(
+                                                                                    $nodeId
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns the distance from the root node to the node with ID $nodeId</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em><a href="ezcTreeNode.html">ezcTreeNode</a></em>          </td>
+          <td>
+            <code>
+              <a href="#getRootNode"><b>getRootNode</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns the root node</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>bool</em>          </td>
+          <td>
+            <code>
+              <a href="#hasChildNodes"><b>hasChildNodes</b></a>(
+                                                                                    $nodeId
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns whether the node with ID $nodeId has children</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>bool</em>          </td>
+          <td>
+            <code>
+              <a href="#isChildOf"><b>isChildOf</b></a>(
+                                                                                    $childId
+                                                    ,                                     $parentId
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns whether the node with ID $childId is a direct child of the node  with ID $parentId</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>bool</em>          </td>
+          <td>
+            <code>
+              <a href="#isDescendantOf"><b>isDescendantOf</b></a>(
+                                                                                    $childId
+                                                    ,                                     $parentId
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns whether the node with ID $childId is a direct or indirect child  of the node with ID $parentId</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>bool</em>          </td>
+          <td>
+            <code>
+              <a href="#isSiblingOf"><b>isSiblingOf</b></a>(
+                                                                                    $child1Id
+                                                    ,                                     $child2Id
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns whether the nodes with IDs $child1Id and $child2Id are siblings  (ie, the share the same parent)</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#move"><b>move</b></a>(
+                                                                                    $nodeId
+                                                    ,                                     $targetParentId
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Moves the node with ID $nodeId as child to the node with ID $targetParentId</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>bool</em>          </td>
+          <td>
+            <code>
+              <a href="#nodeExists"><b>nodeExists</b></a>(
+                                                                                    $nodeId
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns whether the node with ID $nodeId exists.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#setRootNode"><b>setRootNode</b></a>(
+                                                                                    $node
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Sets a new node as root node, this wipes also out the whole tree</div>          </td>
+        </tr></table><h3>Inherited Methods</h3>
+  <table class="summary"><thead><tr><th colspan="2">
+            From <span class="classname"><a href="ezcTree.html">ezcTree</a></span>
+          </th>
+        </tr></thead><tbody><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b><a href="ezcTree.html#methodaccept">ezcTree::accept()</a></b></code>
+              <br><div style="margin-left: 20px">Implements the accept method for visiting.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>              abstract                            <em>void</em>            </td>
+            <td>
+              <code><b><a href="ezcTree.html#methodaddChild">ezcTree::addChild()</a></b></code>
+              <br><div style="margin-left: 20px">Adds the node $childNode as child of the node with ID $parentId.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>protected</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b><a href="ezcTree.html#methodaddTransactionItem">ezcTree::addTransactionItem()</a></b></code>
+              <br><div style="margin-left: 20px">Adds a new transaction item to the list.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b><a href="ezcTree.html#methodbeginTransaction">ezcTree::beginTransaction()</a></b></code>
+              <br><div style="margin-left: 20px">Starts an transaction in which all tree modifications are queued until  the transaction is committed with the commit() method.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>protected</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b><a href="ezcTree.html#methodcheckNodeId">ezcTree::checkNodeId()</a></b></code>
+              <br><div style="margin-left: 20px">This method checks whether a node ID is valid to be used in a backend.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b><a href="ezcTree.html#methodcommit">ezcTree::commit()</a></b></code>
+              <br><div style="margin-left: 20px">Commits the transaction by running the stored instructions to modify  the tree structure.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                            static              <em>void</em>            </td>
+            <td>
+              <code><b><a href="ezcTree.html#methodcopy">ezcTree::copy()</a></b></code>
+              <br><div style="margin-left: 20px">Copies the tree in $from to the empty tree in $to.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em><a href="ezcTreeNode.html">ezcTreeNode</a></em>            </td>
+            <td>
+              <code><b><a href="ezcTree.html#methodcreateNode">ezcTree::createNode()</a></b></code>
+              <br><div style="margin-left: 20px">Creates a new tree node with node ID $nodeId and $data.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>              abstract                            <em>void</em>            </td>
+            <td>
+              <code><b><a href="ezcTree.html#methoddelete">ezcTree::delete()</a></b></code>
+              <br><div style="margin-left: 20px">Deletes the node with ID $nodeId from the tree, including all its children.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>              abstract                            <em><a href="ezcTreeNodeList.html">ezcTreeNodeList</a></em>            </td>
+            <td>
+              <code><b><a href="ezcTree.html#methodfetchChildren">ezcTree::fetchChildren()</a></b></code>
+              <br><div style="margin-left: 20px">Returns all the children of the node with ID $nodeId.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em><a href="ezcTreeNode.html">ezcTreeNode</a></em>            </td>
+            <td>
+              <code><b><a href="ezcTree.html#methodfetchNodeById">ezcTree::fetchNodeById()</a></b></code>
+              <br><div style="margin-left: 20px">Returns the node identified by the ID $nodeId.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>              abstract                            <em><a href="ezcTreeNode.html">ezcTreeNode</a></em>            </td>
+            <td>
+              <code><b><a href="ezcTree.html#methodfetchParent">ezcTree::fetchParent()</a></b></code>
+              <br><div style="margin-left: 20px">Returns the parent node of the node with ID $nodeId.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>              abstract                            <em><a href="ezcTreeNodeList.html">ezcTreeNodeList</a></em>            </td>
+            <td>
+              <code><b><a href="ezcTree.html#methodfetchPath">ezcTree::fetchPath()</a></b></code>
+              <br><div style="margin-left: 20px">Returns all the nodes in the path from the root node to the node with ID  $nodeId, including those two nodes.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>              abstract                            <em><a href="ezcTreeNodeList.html">ezcTreeNodeList</a></em>            </td>
+            <td>
+              <code><b><a href="ezcTree.html#methodfetchSubtree">ezcTree::fetchSubtree()</a></b></code>
+              <br><div style="margin-left: 20px">Alias for fetchSubtreeDepthFirst().</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>              abstract                            <em><a href="ezcTreeNodeList.html">ezcTreeNodeList</a></em>            </td>
+            <td>
+              <code><b><a href="ezcTree.html#methodfetchSubtreeBreadthFirst">ezcTree::fetchSubtreeBreadthFirst()</a></b></code>
+              <br><div style="margin-left: 20px">Returns the node with ID $nodeId and all its children, sorted according to  the <a href="http://en.wikipedia.org/wiki/Breadth-first_search">Breadth-first sorting</a>  algorithm.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>              abstract                            <em><a href="ezcTreeNodeList.html">ezcTreeNodeList</a></em>            </td>
+            <td>
+              <code><b><a href="ezcTree.html#methodfetchSubtreeDepthFirst">ezcTree::fetchSubtreeDepthFirst()</a></b></code>
+              <br><div style="margin-left: 20px">Returns the node with ID $nodeId and all its children, sorted according to  the <a href="http://en.wikipedia.org/wiki/Depth-first_search">Depth-first sorting</a>  algorithm.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>protected</em>              abstract                            <em>integer</em>            </td>
+            <td>
+              <code><b><a href="ezcTree.html#methodgenerateNodeID">ezcTree::generateNodeID()</a></b></code>
+              <br><div style="margin-left: 20px">This method generates the next node ID.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>              abstract                            <em>int</em>            </td>
+            <td>
+              <code><b><a href="ezcTree.html#methodgetChildCount">ezcTree::getChildCount()</a></b></code>
+              <br><div style="margin-left: 20px">Returns the number of direct children of the node with ID $nodeId.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>              abstract                            <em>int</em>            </td>
+            <td>
+              <code><b><a href="ezcTree.html#methodgetChildCountRecursive">ezcTree::getChildCountRecursive()</a></b></code>
+              <br><div style="margin-left: 20px">Returns the number of children of the node with ID $nodeId, recursively.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>              abstract                            <em>int</em>            </td>
+            <td>
+              <code><b><a href="ezcTree.html#methodgetPathLength">ezcTree::getPathLength()</a></b></code>
+              <br><div style="margin-left: 20px">Returns the distance from the root node to the node with ID $nodeId.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>              abstract                            <em><a href="ezcTreeNode.html">ezcTreeNode</a></em>            </td>
+            <td>
+              <code><b><a href="ezcTree.html#methodgetRootNode">ezcTree::getRootNode()</a></b></code>
+              <br><div style="margin-left: 20px">Returns the root node.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>              abstract                            <em>bool</em>            </td>
+            <td>
+              <code><b><a href="ezcTree.html#methodhasChildNodes">ezcTree::hasChildNodes()</a></b></code>
+              <br><div style="margin-left: 20px">Returns whether the node with ID $nodeId has children.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>bool</em>            </td>
+            <td>
+              <code><b><a href="ezcTree.html#methodinTransaction">ezcTree::inTransaction()</a></b></code>
+              <br><div style="margin-left: 20px">Returns whether we are currently in a transaction or not</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>bool</em>            </td>
+            <td>
+              <code><b><a href="ezcTree.html#methodinTransactionCommit">ezcTree::inTransactionCommit()</a></b></code>
+              <br><div style="margin-left: 20px">Returns whether we are currently in a transaction commit state or not</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>              abstract                            <em>bool</em>            </td>
+            <td>
+              <code><b><a href="ezcTree.html#methodisChildOf">ezcTree::isChildOf()</a></b></code>
+              <br><div style="margin-left: 20px">Returns whether the node with ID $childId is a direct child of the node  with ID $parentId.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>              abstract                            <em>bool</em>            </td>
+            <td>
+              <code><b><a href="ezcTree.html#methodisDescendantOf">ezcTree::isDescendantOf()</a></b></code>
+              <br><div style="margin-left: 20px">Returns whether the node with ID $childId is a direct or indirect child  of the node with ID $parentId.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>              abstract                            <em>bool</em>            </td>
+            <td>
+              <code><b><a href="ezcTree.html#methodisSiblingOf">ezcTree::isSiblingOf()</a></b></code>
+              <br><div style="margin-left: 20px">Returns whether the nodes with IDs $child1Id and $child2Id are siblings  (ie, they share the same parent).</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>              abstract                            <em>void</em>            </td>
+            <td>
+              <code><b><a href="ezcTree.html#methodmove">ezcTree::move()</a></b></code>
+              <br><div style="margin-left: 20px">Moves the node with ID $nodeId as child to the node with ID $targetParentId.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>              abstract                            <em>bool</em>            </td>
+            <td>
+              <code><b><a href="ezcTree.html#methodnodeExists">ezcTree::nodeExists()</a></b></code>
+              <br><div style="margin-left: 20px">Returns whether the node with ID $nodeId exists.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b><a href="ezcTree.html#methodrollback">ezcTree::rollback()</a></b></code>
+              <br><div style="margin-left: 20px">Rolls back the transaction by clearing all stored instructions.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>              abstract                            <em>void</em>            </td>
+            <td>
+              <code><b><a href="ezcTree.html#methodsetRootNode">ezcTree::setRootNode()</a></b></code>
+              <br><div style="margin-left: 20px">Sets a new node as root node, this also wipes out the whole tree.</div>                          </td>
+          </tr></tbody></table><a name="sec-methods"></a>
+  <h3>Methods</h3>
+  <a name="method_detail"></a>
+          <a name="methodcreate" id="create"><!-- --></a>
+
+    <h4>create</h4>
+
+    <div class="method-signature">
+      static <a href="ezcTreeMemory.html">ezcTreeMemory</a>
+      create(
+                                  <a href="ezcTreeMemoryDataStore.html">ezcTreeMemoryDataStore</a>
+          $store
+                        )
+    </div>
+
+      <p>A factory method that creates a new empty tree using the data store $store.</p>      
+              <h5>Parameters:</h5>
+        <table class="detail"><thead><tr><th>Name</th>
+              <th>Type</th>
+              <th class="desc">Description</th>
+            </tr></thead><tbody><tr><td><code>$store</code></td>
+                <td><em><a href="ezcTreeMemoryDataStore.html">ezcTreeMemoryDataStore</a></em></td>
+                <td>
+                                  </td>
+              </tr></tbody></table><a name="method__construct" id="__construct"><!-- --></a>
+
+    <h4>__construct</h4>
+
+    <div class="method-signature">
+      ezcTreeMemory
+      __construct(
+                                  <a href="ezcTreeMemoryDataStore.html">ezcTreeMemoryDataStore</a>
+          $store
+                        )
+    </div>
+
+    <p>Constructs a new ezcTreeMemory object.</p><div><p>The store that is used for data storage should be passed as the  $store argument.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$store</code></td>
+              <td><em><a href="ezcTreeMemoryDataStore.html">ezcTreeMemoryDataStore</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodaddChild" id="addChild"><!-- --></a>
+
+    <h4>addChild</h4>
+
+    <div class="method-signature">
+      void
+      addChild(
+                                  string
+          $parentId
+                            ,           <a href="ezcTreeNode.html">ezcTreeNode</a>
+          $childNode
+                        )
+    </div>
+
+    <p>Adds the node $childNode as child of the node with ID $parentId</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$parentId</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$childNode</code></td>
+              <td><em><a href="ezcTreeNode.html">ezcTreeNode</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcTree.html#methodaddChild">ezcTree::addChild()</a></code></td>
+            <td>
+                              Adds the node $childNode as child of the node with ID $parentId.
+                          </td>
+          </tr></tbody></table><a name="methoddelete" id="delete"><!-- --></a>
+
+    <h4>delete</h4>
+
+    <div class="method-signature">
+      void
+      delete(
+                                  string
+          $nodeId
+                        )
+    </div>
+
+    <p>Deletes the node with ID $nodeId from the tree, including all its children</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$nodeId</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcTree.html#methoddelete">ezcTree::delete()</a></code></td>
+            <td>
+                              Deletes the node with ID $nodeId from the tree, including all its children.
+                          </td>
+          </tr></tbody></table><a name="methodfetchChildren" id="fetchChildren"><!-- --></a>
+
+    <h4>fetchChildren</h4>
+
+    <div class="method-signature">
+      <a href="ezcTreeNodeList.html">ezcTreeNodeList</a>
+      fetchChildren(
+                                  string
+          $nodeId
+                        )
+    </div>
+
+    <p>Returns all the children of the node with ID $nodeId.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$nodeId</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcTree.html#methodfetchChildren">ezcTree::fetchChildren()</a></code></td>
+            <td>
+                              Returns all the children of the node with ID $nodeId.
+                          </td>
+          </tr></tbody></table><a name="methodfetchNodeById" id="fetchNodeById"><!-- --></a>
+
+    <h4>fetchNodeById</h4>
+
+    <div class="method-signature">
+      <a href="ezcTreeNode.html">ezcTreeNode</a>
+      fetchNodeById(
+                                  string
+          $nodeId
+                        )
+    </div>
+
+    <p>Returns the node identified by the ID $nodeId.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$nodeId</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcTreeInvalidIdException.html">ezcTreeInvalidIdException</a></code></td>
+              <td>
+                                  if there is no node with ID $nodeId
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcTree.html#methodfetchNodeById">ezcTree::fetchNodeById()</a></code></td>
+            <td>
+                              Returns the node identified by the ID $nodeId.
+                          </td>
+          </tr></tbody></table><a name="methodfetchParent" id="fetchParent"><!-- --></a>
+
+    <h4>fetchParent</h4>
+
+    <div class="method-signature">
+      <a href="ezcTreeNode.html">ezcTreeNode</a>
+      fetchParent(
+                                  string
+          $nodeId
+                        )
+    </div>
+
+    <p>Returns the parent node of the node with ID $nodeId.</p><div><p>This method returns null if there is no parent node.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$nodeId</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcTree.html#methodfetchParent">ezcTree::fetchParent()</a></code></td>
+            <td>
+                              Returns the parent node of the node with ID $nodeId.
+                          </td>
+          </tr></tbody></table><a name="methodfetchPath" id="fetchPath"><!-- --></a>
+
+    <h4>fetchPath</h4>
+
+    <div class="method-signature">
+      <a href="ezcTreeNodeList.html">ezcTreeNodeList</a>
+      fetchPath(
+                                  string
+          $nodeId
+                        )
+    </div>
+
+    <p>Returns all the nodes in the path from the root node to the node with ID  $nodeId, including those two nodes.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$nodeId</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcTree.html#methodfetchPath">ezcTree::fetchPath()</a></code></td>
+            <td>
+                              Returns all the nodes in the path from the root node to the node with ID  $nodeId, including those two nodes.
+                          </td>
+          </tr></tbody></table><a name="methodfetchSubtree" id="fetchSubtree"><!-- --></a>
+
+    <h4>fetchSubtree</h4>
+
+    <div class="method-signature">
+      <a href="ezcTreeNodeList.html">ezcTreeNodeList</a>
+      fetchSubtree(
+                                  string
+          $nodeId
+                        )
+    </div>
+
+    <p>Alias for fetchSubtreeDepthFirst().</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$nodeId</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcTree.html#methodfetchSubtree">ezcTree::fetchSubtree()</a></code></td>
+            <td>
+                              Alias for fetchSubtreeDepthFirst().
+                          </td>
+          </tr></tbody></table><a name="methodfetchSubtreeBreadthFirst" id="fetchSubtreeBreadthFirst"><!-- --></a>
+
+    <h4>fetchSubtreeBreadthFirst</h4>
+
+    <div class="method-signature">
+      <a href="ezcTreeNodeList.html">ezcTreeNodeList</a>
+      fetchSubtreeBreadthFirst(
+                                  string
+          $nodeId
+                        )
+    </div>
+
+    <p>Returns the node with ID $nodeId and all its children, sorted according to  the <a href="http://en.wikipedia.org/wiki/Breadth-first_search">Breadth-first sorting</a>  algorithm.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$nodeId</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcTree.html#methodfetchSubtreeBreadthFirst">ezcTree::fetchSubtreeBreadthFirst()</a></code></td>
+            <td>
+                              Returns the node with ID $nodeId and all its children, sorted according to  the <a href="http://en.wikipedia.org/wiki/Breadth-first_search">Breadth-first sorting</a>  algorithm.
+                          </td>
+          </tr></tbody></table><a name="methodfetchSubtreeDepthFirst" id="fetchSubtreeDepthFirst"><!-- --></a>
+
+    <h4>fetchSubtreeDepthFirst</h4>
+
+    <div class="method-signature">
+      <a href="ezcTreeNodeList.html">ezcTreeNodeList</a>
+      fetchSubtreeDepthFirst(
+                                  string
+          $nodeId
+                        )
+    </div>
+
+    <p>Returns the node with ID $nodeId and all its children, sorted accoring to  the <a href="http://en.wikipedia.org/wiki/Depth-first_search">Depthth-first sorting</a>  algorithm.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$nodeId</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcTree.html#methodfetchSubtreeDepthFirst">ezcTree::fetchSubtreeDepthFirst()</a></code></td>
+            <td>
+                              Returns the node with ID $nodeId and all its children, sorted according to  the <a href="http://en.wikipedia.org/wiki/Depth-first_search">Depth-first sorting</a>  algorithm.
+                          </td>
+          </tr></tbody></table><a name="methodfixateTransaction" id="fixateTransaction"><!-- --></a>
+
+    <h4>fixateTransaction</h4>
+
+    <div class="method-signature">
+      void
+      fixateTransaction(
+      )
+    </div>
+
+    <p>Fixates the transaction.</p>
+    
+        
+
+    
+    
+    
+        <a name="methodgenerateNodeID" id="generateNodeID"><!-- --></a>
+
+    <h4>generateNodeID</h4>
+
+    <div class="method-signature">
+      integer
+      generateNodeID(
+      )
+    </div>
+
+    <p>This method generates the next node ID.</p>
+    
+        
+
+          <h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcTree.html#methodgenerateNodeID">ezcTree::generateNodeID()</a></code></td>
+            <td>
+                              This method generates the next node ID.
+                          </td>
+          </tr></tbody></table><a name="methodgetChildCount" id="getChildCount"><!-- --></a>
+
+    <h4>getChildCount</h4>
+
+    <div class="method-signature">
+      int
+      getChildCount(
+                                  string
+          $nodeId
+                        )
+    </div>
+
+    <p>Returns the number of direct children of the node with ID $nodeId.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$nodeId</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcTree.html#methodgetChildCount">ezcTree::getChildCount()</a></code></td>
+            <td>
+                              Returns the number of direct children of the node with ID $nodeId.
+                          </td>
+          </tr></tbody></table><a name="methodgetChildCountRecursive" id="getChildCountRecursive"><!-- --></a>
+
+    <h4>getChildCountRecursive</h4>
+
+    <div class="method-signature">
+      int
+      getChildCountRecursive(
+                                  string
+          $nodeId
+                        )
+    </div>
+
+    <p>Returns the number of children of the node with ID $nodeId, recursively</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$nodeId</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcTree.html#methodgetChildCountRecursive">ezcTree::getChildCountRecursive()</a></code></td>
+            <td>
+                              Returns the number of children of the node with ID $nodeId, recursively.
+                          </td>
+          </tr></tbody></table><a name="methodgetPathLength" id="getPathLength"><!-- --></a>
+
+    <h4>getPathLength</h4>
+
+    <div class="method-signature">
+      int
+      getPathLength(
+                                  string
+          $nodeId
+                        )
+    </div>
+
+    <p>Returns the distance from the root node to the node with ID $nodeId</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$nodeId</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcTree.html#methodgetPathLength">ezcTree::getPathLength()</a></code></td>
+            <td>
+                              Returns the distance from the root node to the node with ID $nodeId.
+                          </td>
+          </tr></tbody></table><a name="methodgetRootNode" id="getRootNode"><!-- --></a>
+
+    <h4>getRootNode</h4>
+
+    <div class="method-signature">
+      <a href="ezcTreeNode.html">ezcTreeNode</a>
+      getRootNode(
+      )
+    </div>
+
+    <p>Returns the root node</p><div><p>This methods returns null if there is no root node.</p></div>
+    
+        
+
+          <h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcTree.html#methodgetRootNode">ezcTree::getRootNode()</a></code></td>
+            <td>
+                              Returns the root node.
+                          </td>
+          </tr></tbody></table><a name="methodhasChildNodes" id="hasChildNodes"><!-- --></a>
+
+    <h4>hasChildNodes</h4>
+
+    <div class="method-signature">
+      bool
+      hasChildNodes(
+                                  string
+          $nodeId
+                        )
+    </div>
+
+    <p>Returns whether the node with ID $nodeId has children</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$nodeId</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcTree.html#methodhasChildNodes">ezcTree::hasChildNodes()</a></code></td>
+            <td>
+                              Returns whether the node with ID $nodeId has children.
+                          </td>
+          </tr></tbody></table><a name="methodisChildOf" id="isChildOf"><!-- --></a>
+
+    <h4>isChildOf</h4>
+
+    <div class="method-signature">
+      bool
+      isChildOf(
+                                  string
+          $childId
+                            ,           string
+          $parentId
+                        )
+    </div>
+
+    <p>Returns whether the node with ID $childId is a direct child of the node  with ID $parentId</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$childId</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$parentId</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcTree.html#methodisChildOf">ezcTree::isChildOf()</a></code></td>
+            <td>
+                              Returns whether the node with ID $childId is a direct child of the node  with ID $parentId.
+                          </td>
+          </tr></tbody></table><a name="methodisDescendantOf" id="isDescendantOf"><!-- --></a>
+
+    <h4>isDescendantOf</h4>
+
+    <div class="method-signature">
+      bool
+      isDescendantOf(
+                                  string
+          $childId
+                            ,           string
+          $parentId
+                        )
+    </div>
+
+    <p>Returns whether the node with ID $childId is a direct or indirect child  of the node with ID $parentId</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$childId</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$parentId</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcTree.html#methodisDescendantOf">ezcTree::isDescendantOf()</a></code></td>
+            <td>
+                              Returns whether the node with ID $childId is a direct or indirect child  of the node with ID $parentId.
+                          </td>
+          </tr></tbody></table><a name="methodisSiblingOf" id="isSiblingOf"><!-- --></a>
+
+    <h4>isSiblingOf</h4>
+
+    <div class="method-signature">
+      bool
+      isSiblingOf(
+                                  string
+          $child1Id
+                            ,           string
+          $child2Id
+                        )
+    </div>
+
+    <p>Returns whether the nodes with IDs $child1Id and $child2Id are siblings  (ie, the share the same parent)</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$child1Id</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$child2Id</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcTree.html#methodisSiblingOf">ezcTree::isSiblingOf()</a></code></td>
+            <td>
+                              Returns whether the nodes with IDs $child1Id and $child2Id are siblings  (ie, they share the same parent).
+                          </td>
+          </tr></tbody></table><a name="methodmove" id="move"><!-- --></a>
+
+    <h4>move</h4>
+
+    <div class="method-signature">
+      void
+      move(
+                                  string
+          $nodeId
+                            ,           string
+          $targetParentId
+                        )
+    </div>
+
+    <p>Moves the node with ID $nodeId as child to the node with ID $targetParentId</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$nodeId</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$targetParentId</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcTree.html#methodmove">ezcTree::move()</a></code></td>
+            <td>
+                              Moves the node with ID $nodeId as child to the node with ID $targetParentId.
+                          </td>
+          </tr></tbody></table><a name="methodnodeExists" id="nodeExists"><!-- --></a>
+
+    <h4>nodeExists</h4>
+
+    <div class="method-signature">
+      bool
+      nodeExists(
+                                  string
+          $nodeId
+                        )
+    </div>
+
+    <p>Returns whether the node with ID $nodeId exists.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$nodeId</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcTree.html#methodnodeExists">ezcTree::nodeExists()</a></code></td>
+            <td>
+                              Returns whether the node with ID $nodeId exists.
+                          </td>
+          </tr></tbody></table><a name="methodsetRootNode" id="setRootNode"><!-- --></a>
+
+    <h4>setRootNode</h4>
+
+    <div class="method-signature">
+      void
+      setRootNode(
+                                  <a href="ezcTreeNode.html">ezcTreeNode</a>
+          $node
+                        )
+    </div>
+
+    <p>Sets a new node as root node, this wipes also out the whole tree</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$node</code></td>
+              <td><em><a href="ezcTreeNode.html">ezcTreeNode</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcTree.html#methodsetRootNode">ezcTree::setRootNode()</a></code></td>
+            <td>
+                              Sets a new node as root node, this also wipes out the whole tree.
+                          </td>
+          </tr></tbody></table><div class="credit">
+      Documentation generated by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+    </div>
+  </div>
+  
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

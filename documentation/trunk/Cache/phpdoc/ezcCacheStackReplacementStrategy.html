@@ -1,0 +1,341 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="" />
+	<meta name="author" content="jerome" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Sun, 10 Jul 2011 11:10:50 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="ezcCacheStackReplacementStrategy.html" />
+	<meta name="DC.creator" content="jerome" />
+	<meta name="DC.date" content="Sun, 10 Jul 2011 11:10:50 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/Cache/phpdoc/ezcCacheStackReplacementStrategy.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/Cache/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/trunk/Cache/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+
+</ul>
+
+		
+  <div class="phpdoc">
+    <h2>Apache Zeta Components Manual :: Docs For Class ezcCacheStackReplacementStrategy</h2>
+
+              
+              <h3>Cache::ezcCacheStackReplacementStrategy</h3>
+    
+<a name="sec-description"></a>
+<h3>Interface ezcCacheStackReplacementStrategy</h3>
+
+<p>Interface to be implemented by stack replacement strategies.</p><div><p>This interface is to be implemented by replacement strategy classes, which  can be configured to be used by an <a href="ezcCacheStack.html">ezcCacheStack</a>. The defined  methods wrap around their counterparts on <a href="ezcCacheStackableStorage.html">ezcCacheStackableStorage</a>.</p><p>A replacement strategy must take care about the actual  storing/restoring/deleting of cache items in the given storage. In addition  it must take care about keeping the needed <a href="ezcCacheStackMetaData.html">ezcCacheStackMetaData</a> up  to date and about purging data from the cache storage, if it runs full.</p><p>A replacement strategy must define its own meta data class which implements  <a href="ezcCacheStackMetaData.html">ezcCacheStackMetaData</a>. It must check in each method call, that the  given $metaData is of correct type. If this is not the case, <a href="ezcCacheInvalidMetaDataException.html">ezcCacheInvalidMetaDataException</a> must be throwen.</p></div>
+<p>Source for this file: <a href="http://fisheye6.atlassian.com/browse/zetacomponents/trunk/Cache/src/interfaces/replacement_strategy.php?r=HEAD">/Cache/src/interfaces/replacement_strategy.php</a></p>
+       
+
+
+
+
+  <table><tr><td>
+            <strong>Version:</strong>&#8192;&#8192;
+          </td>
+          <td>//autogentag//</td>
+        </tr></table><a name="sec-method-summary"></a>
+  <h3>Method Summary</h3>
+  <table class="summary"><tr><td class="right">
+            <em>public</em>            static
+                        <em><a href="ezcCacheStackMetaData.html">ezcCacheStackMetaData</a></em>          </td>
+          <td>
+            <code>
+              <a href="#createMetaData"><b>createMetaData</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns a fresh meta data object.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>            static
+                        <em>array(string)</em>          </td>
+          <td>
+            <code>
+              <a href="#delete"><b>delete</b></a>(
+                                                                                    $conf
+                                                    ,                                     $metaData
+                                                    ,                                     $itemId
+                                                    ,                   [                  $itemAttributes
+                   = array()]                                  ,                   [                  $search
+                   = false]                               )
+            </code>
+            <br><div style="margin-left: 20px">Deletes the data with the given $itemId from the given $storage.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>            static
+                        <em>mixed</em>          </td>
+          <td>
+            <code>
+              <a href="#restore"><b>restore</b></a>(
+                                                                                    $conf
+                                                    ,                                     $metaData
+                                                    ,                                     $itemId
+                                                    ,                   [                  $itemAttributes
+                   = array()]                                  ,                   [                  $search
+                   = false]                               )
+            </code>
+            <br><div style="margin-left: 20px">Restores the data with the given $dataId from the storage given in $conf.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>            static
+                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#store"><b>store</b></a>(
+                                                                                    $conf
+                                                    ,                                     $metaData
+                                                    ,                                     $itemId
+                                                    ,                                     $itemData
+                                                    ,                   [                  $itemAttributes
+                   = array()]                               )
+            </code>
+            <br><div style="margin-left: 20px">Stores the given $itemData in the storage given in $conf.</div>          </td>
+        </tr></table><a name="sec-methods"></a>
+  <h3>Methods</h3>
+  <a name="method_detail"></a>
+      <a name="methodcreateMetaData" id="createMetaData"><!-- --></a>
+
+    <h4>createMetaData</h4>
+
+    <div class="method-signature">
+      static <a href="ezcCacheStackMetaData.html">ezcCacheStackMetaData</a>
+      createMetaData(
+      )
+    </div>
+
+      <p>Returns a fresh meta data object.</p><div><p>Different replacement strategies will use different meta data classes.  This method must return a freshly created instance of the meta data  object used by this meta data.</p></div>      
+      
+      
+      
+      
+      
+        <a name="methoddelete" id="delete"><!-- --></a>
+
+    <h4>delete</h4>
+
+    <div class="method-signature">
+      static array(string)
+      delete(
+                                  <a href="ezcCacheStackStorageConfiguration.html">ezcCacheStackStorageConfiguration</a>
+          $conf
+                            ,           <a href="ezcCacheStackMetaData.html">ezcCacheStackMetaData</a>
+          $metaData
+                            ,           string
+          $itemId
+                            ,           [array(string=&gt;string)
+          $itemAttributes
+           = array()]                  ,           [bool
+          $search
+           = false]              )
+    </div>
+
+      <p>Deletes the data with the given $itemId from the given $storage.</p><div><p>This method takes care about deleting the item identified by $itemId and  optionally $itemAttributes from the <a href="ezcCacheStackableStorage.html">ezcCacheStackableStorage</a>  give in $conf. The parameters $itemId, $itemAttributes and $search are  therefore forwarded to ezcCacheStackableStorage::delete(). This  method returns a list of all item IDs that have been deleted by the  call. The method reflects these changes in $metaData.</p></div>      
+              <h5>Parameters:</h5>
+        <table class="detail"><thead><tr><th>Name</th>
+              <th>Type</th>
+              <th class="desc">Description</th>
+            </tr></thead><tbody><tr><td><code>$conf</code></td>
+                <td><em><a href="ezcCacheStackStorageConfiguration.html">ezcCacheStackStorageConfiguration</a></em></td>
+                <td>
+                                  </td>
+              </tr><tr><td><code>$metaData</code></td>
+                <td><em><a href="ezcCacheStackMetaData.html">ezcCacheStackMetaData</a></em></td>
+                <td>
+                                  </td>
+              </tr><tr><td><code>$itemId</code></td>
+                <td><em>string</em></td>
+                <td>
+                                  </td>
+              </tr><tr><td><code>$itemAttributes</code></td>
+                <td><em>array(string=&gt;string)</em></td>
+                <td>
+                                  </td>
+              </tr><tr><td><code>$search</code></td>
+                <td><em>bool</em></td>
+                <td>
+                                  </td>
+              </tr></tbody></table><h5>Exceptions:</h5>
+        <table class="detail"><thead><tr><th>Type</th>
+              <th class="desc">Description</th>
+            </tr></thead><tbody><tr><td><code><a href="ezcCacheInvalidMetaDataException.html">ezcCacheInvalidMetaDataException</a></code></td>
+                <td>
+                                      if the given $metaData is not processable by this replacement strategy.
+                                  </td>
+              </tr></tbody></table><a name="methodrestore" id="restore"><!-- --></a>
+
+    <h4>restore</h4>
+
+    <div class="method-signature">
+      static mixed
+      restore(
+                                  <a href="ezcCacheStackStorageConfiguration.html">ezcCacheStackStorageConfiguration</a>
+          $conf
+                            ,           <a href="ezcCacheStackMetaData.html">ezcCacheStackMetaData</a>
+          $metaData
+                            ,           string
+          $itemId
+                            ,           [array(string=&gt;string)
+          $itemAttributes
+           = array()]                  ,           [bool
+          $search
+           = false]              )
+    </div>
+
+      <p>Restores the data with the given $dataId from the storage given in $conf.</p><div><p>This method takes care of restoring the item with ID $itemId and  optionally $itemAttributes from the <a href="ezcCacheStackableStorage.html">ezcCacheStackableStorage</a>  given in $conf. The parameters $itemId, $itemAttributes and $search are  forwarded to ezcCacheStackableStorage::restore(), the returned  value (item data on successful restore, otherwise false) are returned by  this method.</p><p>The method must take care that the restore process is reflected in  $metaData according to the spcific replacement strategy implementation.</p></div>      
+              <h5>Parameters:</h5>
+        <table class="detail"><thead><tr><th>Name</th>
+              <th>Type</th>
+              <th class="desc">Description</th>
+            </tr></thead><tbody><tr><td><code>$conf</code></td>
+                <td><em><a href="ezcCacheStackStorageConfiguration.html">ezcCacheStackStorageConfiguration</a></em></td>
+                <td>
+                                  </td>
+              </tr><tr><td><code>$metaData</code></td>
+                <td><em><a href="ezcCacheStackMetaData.html">ezcCacheStackMetaData</a></em></td>
+                <td>
+                                  </td>
+              </tr><tr><td><code>$itemId</code></td>
+                <td><em>string</em></td>
+                <td>
+                                  </td>
+              </tr><tr><td><code>$itemAttributes</code></td>
+                <td><em>array(string=&gt;string)</em></td>
+                <td>
+                                  </td>
+              </tr><tr><td><code>$search</code></td>
+                <td><em>bool</em></td>
+                <td>
+                                  </td>
+              </tr></tbody></table><h5>Exceptions:</h5>
+        <table class="detail"><thead><tr><th>Type</th>
+              <th class="desc">Description</th>
+            </tr></thead><tbody><tr><td><code><a href="ezcCacheInvalidMetaDataException.html">ezcCacheInvalidMetaDataException</a></code></td>
+                <td>
+                                      if the given $metaData is not processable by this replacement strategy.
+                                  </td>
+              </tr></tbody></table><a name="methodstore" id="store"><!-- --></a>
+
+    <h4>store</h4>
+
+    <div class="method-signature">
+      static void
+      store(
+                                  <a href="ezcCacheStackStorageConfiguration.html">ezcCacheStackStorageConfiguration</a>
+          $conf
+                            ,           <a href="ezcCacheStackMetaData.html">ezcCacheStackMetaData</a>
+          $metaData
+                            ,           string
+          $itemId
+                            ,           mixed
+          $itemData
+                            ,           [array(string=&gt;string)
+          $itemAttributes
+           = array()]              )
+    </div>
+
+      <p>Stores the given $itemData in the storage given in $conf.</p><div><p>This method stores the given $itemData assigned to $itemId and  optionally $itemAttributes in the <a href="ezcCacheStackableStorage.html">ezcCacheStackableStorage</a> given  in $conf. In case the storage has reached the $itemLimit defined in  $conf, it must be freed according to $freeRate <a href="ezcCacheStackStorageConfiguration.html">ezcCacheStackStorageConfiguration</a>.</p><p>The freeing of items from the storage must first happen via <a href="ezcCacheStackableStorage.html#methodpurge">ezcCacheStackableStorage::purge()</a>, which removes outdated items from  the storage and returns the affected IDs. In case this does not last to  free the desired number of items, the replacement strategy specific  algorithm for freeing takes effect.</p><p>After the necessary freeing process has been performed, the item is  stored in the storage and the $metaData is updated accordingly.</p></div>      
+              <h5>Parameters:</h5>
+        <table class="detail"><thead><tr><th>Name</th>
+              <th>Type</th>
+              <th class="desc">Description</th>
+            </tr></thead><tbody><tr><td><code>$conf</code></td>
+                <td><em><a href="ezcCacheStackStorageConfiguration.html">ezcCacheStackStorageConfiguration</a></em></td>
+                <td>
+                                  </td>
+              </tr><tr><td><code>$metaData</code></td>
+                <td><em><a href="ezcCacheStackMetaData.html">ezcCacheStackMetaData</a></em></td>
+                <td>
+                                  </td>
+              </tr><tr><td><code>$itemId</code></td>
+                <td><em>string</em></td>
+                <td>
+                                  </td>
+              </tr><tr><td><code>$itemData</code></td>
+                <td><em>mixed</em></td>
+                <td>
+                                  </td>
+              </tr><tr><td><code>$itemAttributes</code></td>
+                <td><em>array(string=&gt;string)</em></td>
+                <td>
+                                  </td>
+              </tr></tbody></table><h5>Exceptions:</h5>
+        <table class="detail"><thead><tr><th>Type</th>
+              <th class="desc">Description</th>
+            </tr></thead><tbody><tr><td><code><a href="ezcCacheInvalidMetaDataException.html">ezcCacheInvalidMetaDataException</a></code></td>
+                <td>
+                                      if the given $metaData is not processable by this replacement strategy.
+                                  </td>
+              </tr></tbody></table><div class="credit">
+      Documentation generated by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+    </div>
+  </div>
+  
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

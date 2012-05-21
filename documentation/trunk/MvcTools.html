@@ -1,0 +1,310 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="PHP, apache, components, framework, quality" />
+	<meta name="author" content="jerome" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Fri, 05 Aug 2011 09:14:16 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="MvcTools" />
+	<meta name="DC.creator" content="jerome" />
+	<meta name="DC.date" content="Fri, 05 Aug 2011 09:14:16 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/MvcTools/tutorial.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/MvcTools/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/MvcTools/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+
+</ul>
+
+		<h2>eZ Components - MvcTools</h2><div class="toc"><h3>Table of Contents</h3><ul><li><p><a href="#introduction">Introduction</a></p><ul><li><p><a href="#class-overview">Class Overview</a></p><ul><li><p><a href="#request-parsers">Request Parsers</a></p></li><li><p><a href="#router">Router</a></p></li><li><p><a href="#controller">Controller</a></p></li><li><p><a href="#view-handlers">View Handlers</a></p></li><li><p><a href="#response-writer">Response Writer</a></p></li><li><p><a href="#id2">Dispatchers</a></p></li></ul></li><li><p><a href="#a-simple-application-hello-world">A Simple Application: Hello World</a></p><ul><li><p><a href="#set-up">Set-up</a></p></li><li><p><a href="#dispatcher-configuration">Dispatcher Configuration</a></p></li><li><p><a href="#creating-the-router">Creating The Router</a></p></li><li><p><a href="#creating-the-controller">Creating the Controller</a></p></li><li><p><a href="#creating-the-views">Creating the Views</a></p></li><li><p><a href="#wrapping-it-up">Wrapping it Up</a></p></li></ul></li></ul></li><li><p><a href="#security">Security</a></p><ul><li><p><a href="#overriding-the-x-powered-by-header">Overriding the X-Powered-By header</a></p></li></ul></li></ul></div><a name="introduction"></a><a name="id4"></a><h3>Introduction</h3><p>The MvcTools component provides an application developer with all the tools to architect his application framework. It is not meant to provide a full framework but merely provides the different parts that can be used. In this tutorial we'll use MvcTools to build <strong>HelloMvc</strong>, a classic application that greets the visitor in the choosen language. Its sources are available in the SVN at: <a href="https://svn.apache.org/repos/asf/incubator/zetacomponents/docs/examples/applications/HelloMvc">https://svn.apache.org/repos/asf/incubator/zetacomponents/docs/examples/applications/HelloMvc</a></p><p><strong>TheWire</strong> is a <a href="http://twitter.com">twitter</a> like application to share information which is architectured with MvcTools and avalaible in SVN as well, at <a href="https://svn.apache.org/repos/asf/incubator/zetacomponents/docs/examples/applications/TheWire/">https://svn.apache.org/repos/asf/incubator/zetacomponents/docs/examples/applications/TheWire/</a>.</p><a name="class-overview"></a><a name="id5"></a><h4>Class Overview</h4><p>The MvcTools component provides classes dealing with the different parts of an MVC framework. It provides functionality for dispatching, routing, views generation, input parsing, output generation and filters. The diagram below shows the code flow through all the different parts.</p><div class="&#10;&#9;&#9;&#9;&#9;&#9;image &#10;&#9;&#9;&#9;&#9;&#9;&#10;&#9;&#9;&#9;&#9;&#9;&#9;&#9;center&#10;&#9;&#9;&#9;&#9;&#9;&#9; "><img alt="Request flow" title="Request flow" src="img/dispatcher-flow.png"/><span class="image_title">Request flow</span></div><p>The next few sections describe the different parts of the diagram. How this all ties together follows in the section .</p><a name="request-parsers"></a><a name="id6"></a><h5>Request Parsers</h5><p>The request parser is responsible for taking input from a specific source and creating an abstract <a href='/zetacomponents/documentation/trunk/MvcTools/phpdoc/ezcMvcRequest.html'>ezcMvcRequest</a> object from this input data.</p><dl><dt>ezcMvcHttpRequestParser</dt><dd>Uses HTTP input to create a request object. This is the request parser you would use in most cases, as it's meant for the Web part of applications.</dd><dt>ezcMvcMailRequestParser</dt><dd>Uses an e-mail message to create a request object from. The request parser requires an <a href='/zetacomponents/documentation/trunk/MvcTools/phpdoc/ezcMail.html'>ezcMail</a> object and therefore this request parser is only available through the MvcMailTiein component.</dd></dl><a name="router"></a><a name="id7"></a><h5>Router</h5><p>The router analyses the request data in the abstract <a href='/zetacomponents/documentation/trunk/MvcTools/phpdoc/ezcMvcRequest.html'>ezcMvcRequest</a> object and decides which controller should be used to handle the incoming request data. The router uses route objects to matched against request data. Those route objects do the matching themselves, and there are multiple implementations available. Each route is linked to a controller class, an action name and an optional set of extra variables that are either set in the route object instantiation, or defined by URL parameters.</p><dl><dt>ezcMvcRouter</dt><dd>Is an abstract class that should be inherited in the application to define the routes with the help of route objects of the classes <a href='/zetacomponents/documentation/trunk/MvcTools/phpdoc/ezcMvcRailsRoute.html'>ezcMvcRailsRoute</a> and <a href='/zetacomponents/documentation/trunk/MvcTools/phpdoc/ezcMvcRegexpRoute.html'>ezcMvcRegexpRoute</a>. Matches are done against the full URI part of the request information.</dd><dt>ezcMvcRailsRoute</dt><dd>A route that uses a rails-like URL matcher to match against the URI. The pattern accepts parameters in URL elements starting with : (a colon). An example of a pattern is <code class="inline">/rss/tag/:tagName</code> where <code class="inline">:tagname</code> denotes a variable URL element with the name <em>tagName</em>.</dd><dt>ezcMvcRegexpRoute</dt><dd>This route class uses regular expressions to match URLs. Variables are defined by using named sub patterns. An example of a pattern is <code class="inline">@^people/(?P&lt;name&gt;.*)$@</code> — where <code class="inline">(?P&lt;name&gt;.*)</code> defines the location of a variable URL element with the name <em>name</em>. The <a href='/zetacomponents/documentation/trunk/MvcTools/phpdoc/ezcMvcRegexpRoute.html'>ezcMvcRegexpRoute</a> patterns are more complex than <a href='/zetacomponents/documentation/trunk/MvcTools/phpdoc/ezcMvcRailsRoute.html'>ezcMvcRailsRoute</a> patterns, but also more powerful because you can name one URL position different depending on the contents such as in <code class="inline">@^people(/((?P&lt;nr&gt;[0-9]+)|(?P&lt;name&gt;.+)))?$@</code> (the variable <em>nr</em> is returned if a sequence of numbers is matched, otherwise the variable <em>name</em> is returned.</dd></dl><a name="controller"></a><a name="id8"></a><h5>Controller</h5><p>The controller is created in the dispatcher by using information that is returned from the router (in the form of an <a href='/zetacomponents/documentation/trunk/MvcTools/phpdoc/ezcMvcRoutingInformation.html'>ezcMvcRoutingInformation</a> object). It is up to the dispatcher on how the controller is created.</p><dl><dt>ezcMvcController</dt><dd>Every controller should inherit from this abstract class, which implements a constructor that sets the action method and creates object variables for each of the request variables. The abstract class also implements the createResult() method that will be called by the dispatcher to run an action. The implementations of the actions should be done in the inherited class.</dd></dl><a name="view-handlers"></a><a name="id9"></a><h5>View Handlers</h5><p>Each action returns an abstract object of the class <a href='/zetacomponents/documentation/trunk/MvcTools/phpdoc/ezcMvcResult.html'>ezcMvcResult</a>. This object contains a set of variables that have to be rendered by a view. A view is selected by the dispatcher and controls the rendering of different sections (zones).</p><dl><dt>ezcMvcView</dt><dd>Is the abstract class that views should inherit from. Every view class should implement the createZones() method to configure the different zone of a view. Each zone can have a different view handler. And each view handler implements <a href='/zetacomponents/documentation/trunk/MvcTools/phpdoc/ezcMvcViewHandler.html'>ezcMvcViewHandler</a> interface.</dd><dt>ezcMvcPhpViewHandler</dt><dd>This view handler uses a plain PHP script to process the result variables. All result variables are available as properties on the $this object.</dd><dt>ezcMvcJsonViewHandler</dt><dd>The JSON view handler collects all the variables, and the result from previous zones into an array that is then encoded as JSON.</dd><dt>ezcMvcTemplateViewHandler</dt><dd>This view handler uses the Template component for rendering result variables. It is part of the MvcTemplateTiein package. Variables are simply passed as template variables.</dd></dl><a name="response-writer"></a><a name="id10"></a><h5>Response Writer</h5><p>The response writers are responsible for outputting the rendered result.</p><dl><dt>ezcMvcHttpResponseWriter</dt><dd>Uses HTTP to output the rendered result. This is what you would normally use for web applications. The response writer will also set the correct headers.</dd></dl><a name="id2"></a><a name="id11"></a><h5>Dispatchers</h5><p>The dispatcher is responsible for the whole flow of a request. Dispatchers should implement the <a href='/zetacomponents/documentation/trunk/MvcTools/phpdoc/ezcMvcDispatcher.html'>ezcMvcDispatcher</a> interface. The component comes with only one basic dispatcher at the moment.</p><dl><dt>ezcMvcConfigurableDispatcher</dt><dd>The configurable dispatcher takes as parameter an object of a class that implements the <a href='/zetacomponents/documentation/trunk/MvcTools/phpdoc/ezcMvcDispatcherConfiguration.html'>ezcMvcDispatcherConfiguration</a> interface. The dispatcher uses information from this object to decide on any of the above mentioned categories.</dd><dt>ezcMvcDispatcherConfiguration</dt><dd>This interface describes the methods for creating the request parser, router, views and response writers. Besides the above mentioned elements it also is responsible for creating the correct request object for fatal errors and the selection and running of filters. Where the <a href='/zetacomponents/documentation/trunk/MvcTools/phpdoc/ezcMvcConfigurableDispatcher.html'>ezcMvcConfigurableDispatcher</a> object is responsible for running the code, a class implementing the <a href='/zetacomponents/documentation/trunk/MvcTools/phpdoc/ezcMvcDispatcherConfiguration.html'>ezcMvcDispatcherConfiguration</a> interface is responsible for selecting and configuring the application's specifics.</dd></dl><a name="a-simple-application-hello-world"></a><a name="id12"></a><h4>A Simple Application: Hello World</h4><p>Before we go all the way with a complex application such as TheWire we'll be implementing a very simple application with only a few routes, one controller and two views. From this simple base we will then continue later on with adding more complex elements and end up with TheWire.</p><a name="set-up"></a><a name="id13"></a><h5>Set-up</h5><p>First of all, we need to create a directory structure. Because we do not want all of our code available directly through the web server will will place the libraries and other related files outside of the document root. We therefore create four directories under our application root: cache, lib, templates and www.</p><p>In the top level directory (HelloMvc) we place a config.php file, where we set the include path, add the class repository and configure the Template component. The file is otherwise really simple:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #007700">//&nbsp;Set&nbsp;the&nbsp;include&nbsp;path&nbsp;to&nbsp;the&nbsp;eZ&nbsp;Components&nbsp;location,&nbsp;and&nbsp;bootstrap&nbsp;the</span></li>
+<li><span style="color: #007700">//&nbsp;library.&nbsp;The&nbsp;two&nbsp;lines&nbsp;below&nbsp;assume&nbsp;that&nbsp;you're&nbsp;using&nbsp;eZ&nbsp;Components&nbsp;from</span></li>
+<li><span style="color: #007700">//&nbsp;SVN&nbsp;--&nbsp;see&nbsp;the&nbsp;installation&nbsp;guide&nbsp;at&nbsp;http://ezcomponents.org/docs/install.</span></li>
+<li><span style="color: #000000">ini_set</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'include_path'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'/home/derick/dev/ezcomponents/trunk:.'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #0000FF">require&nbsp;</span><span style="color: #335533">'Base/src/ezc_bootstrap.php'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Add&nbsp;the&nbsp;class&nbsp;repository&nbsp;containing&nbsp;our&nbsp;application's&nbsp;classes.&nbsp;We&nbsp;store</span></li>
+<li><span style="color: #007700">//&nbsp;those&nbsp;in&nbsp;the&nbsp;/lib&nbsp;directory&nbsp;and&nbsp;the&nbsp;classes&nbsp;have&nbsp;the&nbsp;"hello"&nbsp;prefix.</span></li>
+<li><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/MvcTools/phpdoc/ezcBase.html#addClassRepository'>ezcBase::addClassRepository</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">dirname</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">__FILE__&nbsp;</span><span style="color: #0000FF">)&nbsp;.&nbsp;</span><span style="color: #335533">'/lib'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">null</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'hello'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Configure&nbsp;the&nbsp;template&nbsp;system&nbsp;by&nbsp;telling&nbsp;it&nbsp;where&nbsp;to&nbsp;find&nbsp;templates,&nbsp;and</span></li>
+<li><span style="color: #007700">//&nbsp;where&nbsp;to&nbsp;put&nbsp;the&nbsp;compiled&nbsp;templates.</span></li>
+<li><span style="color: #000000">$tc&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/MvcTools/phpdoc/ezcTemplateConfiguration.html#getInstance'>ezcTemplateConfiguration::getInstance</a></span><span style="color: #0000FF">();</span></li>
+<li><span style="color: #000000">$tc</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">templatePath&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">dirname</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">__FILE__&nbsp;</span><span style="color: #0000FF">)&nbsp;.&nbsp;</span><span style="color: #335533">'/templates'</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000">$tc</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">compilePath&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">dirname</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">__FILE__&nbsp;</span><span style="color: #0000FF">)&nbsp;.&nbsp;</span><span style="color: #335533">'/cache'</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><p>In the "cache" directory, we create a subdirectory "compiled_templates" and give write access to the apache group:</p><code class="block">$ mkdir cache/compiled_templates
+# chgrp nogroup cache/compiled_templates
+# chmod g+w cache/compiled_templates</code><p>We create a file "index.php" in the "www" directory. This file contains the bootstrapping code that gets the application going. Again, the contents of this file are very simple:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #007700">//&nbsp;Include&nbsp;the&nbsp;configuration&nbsp;file</span></li>
+<li><span style="color: #0000FF">include&nbsp;</span><span style="color: #335533">'../config.php'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Instantiate&nbsp;the&nbsp;dispatcher&nbsp;configuration&nbsp;object.</span></li>
+<li><span style="color: #000000">$config&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000">helloMvcConfiguration</span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Send&nbsp;the&nbsp;configuration&nbsp;to&nbsp;the&nbsp;dispatcher,&nbsp;and&nbsp;run&nbsp;it.</span></li>
+<li><span style="color: #000000">$dispatcher&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/MvcTools/phpdoc/ezcMvcConfigurableDispatcher.html'>ezcMvcConfigurableDispatcher</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$config&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$dispatcher</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">run</span><span style="color: #0000FF">();</span></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><p>After the above steps, our directory structure now looks like:</p><code class="block">HelloMvc
+├── cache/
+│   └── compiled_templates/
+├── lib/
+├── templates/
+├── www/
+│   └── index.php
+└── config.php</code><a name="dispatcher-configuration"></a><a name="id14"></a><h5>Dispatcher Configuration</h5><p>The dispatcher configuration controls the inner workings of the application. We first have to create the autoload file, and place the entry for the helloMvcConfiguration in this autoload file. The autoload.php file goes into the "lib/autoload" directory and for now should contain the following:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #0000FF">return&nbsp;array(</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #335533">'helloMvcConfiguration'&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #335533">'config.php'</span><span style="color: #0000FF">,</span></li>
+<li><span style="color: #0000FF">);</span></li>
+<span style="color: #000000">?&gt;</span>
+</ol><p>The config.php file we create in the "lib" directory, it contains the helloMvcConfiguration class that implements the <a href='/zetacomponents/documentation/trunk/MvcTools/phpdoc/ezcMvcDispatcherConfiguration.html'>ezcMvcDispatcherConfiguration</a> interface:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #0000FF">class&nbsp;</span><span style="color: #000000">helloMvcConfiguration&nbsp;</span><span style="color: #0000FF">implements&nbsp;</span><span style="color: #000000">ezcMvcDispatcherConfiguration</span></li>
+<span style="color: #0000FF">{</span>
+</ol><p>The next few paragraphs introduce all the methods that this class needs to implement. They control the different aspects, from request parsing to response writing.</p><p>We start with the createRequestParser() method, which is required to return a request parser object that will be used to gather information from the environment. We're going to write a web site, so we're going to use the <a href='/zetacomponents/documentation/trunk/MvcTools/phpdoc/ezcMvcHttpRequestParser.html'>ezcMvcHttpRequestParser</a> class. The method creates a parser object, and then we set the prefix to the directory in which the application is run (as seen through the browser):</p><code class="block">function createRequestParser()
+{
+    $parser = new <a href='/zetacomponents/documentation/trunk/MvcTools/phpdoc/ezcMvcHttpRequestParser.html'>ezcMvcHttpRequestParser</a>;
+    $parser-&gt;prefix = preg_replace( '@/index\.php$@', '', $_SERVER['SCRIPT_NAME'] );
+    return $parser;
+}</code><p>After the dispatcher created an <a href='/zetacomponents/documentation/trunk/MvcTools/phpdoc/ezcMvcRequest.html'>ezcMvcRequest</a> object with the request parser, it creates a router object through the createRouter() method. This method accepts the created <a href='/zetacomponents/documentation/trunk/MvcTools/phpdoc/ezcMvcRequest.html'>ezcMvcRequest</a> object so that it could chose a different router depending on information contained in the request object. We don't need that here however, so we just return the user-created router object directly:</p><code class="block">function createRouter( <a href='/zetacomponents/documentation/trunk/MvcTools/phpdoc/ezcMvcRequest.html'>ezcMvcRequest</a> $request )
+{
+    return new helloRouter( $request );
+}</code><p>We'll create the router object itself as first thing after the rest of the dispatcher configuration. We will create two routes, "/" for a general "Hello World" greeting and "/" + <em>name</em> for a personalized greeting.  The router and dispatcher will find a controller, execute the action and return a result in the form of an <a href='/zetacomponents/documentation/trunk/MvcTools/phpdoc/ezcMvcResult.html'>ezcMvcResult</a> object.  This object needs to be processed with view handlers. View handlers are selected by returning a specific view class from the createView() method of the dispatcher configuration. For each of the two routes, we create a view. We can do that by using the 'matchedRoute' property of the route information object, which is also passed as argument to the createView() method. Our createView() method looks like:</p><code class="block">function createView( <a href='/zetacomponents/documentation/trunk/MvcTools/phpdoc/ezcMvcRoutingInformation.html'>ezcMvcRoutingInformation</a> $routeInfo,
+                     <a href='/zetacomponents/documentation/trunk/MvcTools/phpdoc/ezcMvcRequest.html'>ezcMvcRequest</a> $request, <a href='/zetacomponents/documentation/trunk/MvcTools/phpdoc/ezcMvcResult.html'>ezcMvcResult</a> $result )
+{
+    switch ( $routeInfo-&gt;matchedRoute )
+    {
+        case '/:name':
+            return new helloNameView( $request, $result );
+        default:
+            return new helloRootView( $request, $result );
+    }
+}</code><p>In case the route '/:name' matches, it returns the helloNameView view and otherwise the helloRootView. We'll get back to the implementations of those views later.</p><p>After the view has rendered the result, the rendered result needs to be transported back to the client. In order to select such a response writer, the dispatcher calls the createResponseWriter() method. In our case we're only interested in HTTP and therefore we'll just select the <a href='/zetacomponents/documentation/trunk/MvcTools/phpdoc/ezcMvcHttpResponseWriter.html'>ezcMvcHttpResponseWriter</a> as you can see in the implementation of this method:</p><code class="block">function createResponseWriter( <a href='/zetacomponents/documentation/trunk/MvcTools/phpdoc/ezcMvcRoutingInformation.html'>ezcMvcRoutingInformation</a> $routeInfo,
+                               <a href='/zetacomponents/documentation/trunk/MvcTools/phpdoc/ezcMvcRequest.html'>ezcMvcRequest</a> $request, <a href='/zetacomponents/documentation/trunk/MvcTools/phpdoc/ezcMvcResult.html'>ezcMvcResult</a> $result,
+                               <a href='/zetacomponents/documentation/trunk/MvcTools/phpdoc/ezcMvcResponse.html'>ezcMvcResponse</a> $response )
+{
+    return new <a href='/zetacomponents/documentation/trunk/MvcTools/phpdoc/ezcMvcHttpResponseWriter.html'>ezcMvcHttpResponseWriter</a>( $response );
+}</code><p>The last method that we use, is the createFatalRedirectRequest() method. This method is called by the configurable dispatcher when no route could be found by the router, or when the view rendering threw an Exception. The purpose of the createFatalRedirectRequest() method is to reconstruct a new <a href='/zetacomponents/documentation/trunk/MvcTools/phpdoc/ezcMvcRequest.html'>ezcMvcRequest</a> object containing the URL parameters that the router will link to a controller/action handling a fatal request. In our simple example, we'll basically redirect to a "personal greeting" page with as name "FATAL".  The fatal redirect is an <em>internal</em> redirect. You need to be aware that if the processing of this fatal redirect requests generate other fatal errors, the code will loop. The configurable dispatcher has an internal redirect limit of 25. If this limit is reached, an <a href='/zetacomponents/documentation/trunk/MvcTools/phpdoc/ezcMvcInfiniteLoopException.html'>ezcMvcInfiniteLoopException</a> is thrown. Our createFatalRedirectRequest() method looks like:</p><code class="block">function createFatalRedirectRequest( <a href='/zetacomponents/documentation/trunk/MvcTools/phpdoc/ezcMvcRequest.html'>ezcMvcRequest</a> $request,
+                                     <a href='/zetacomponents/documentation/trunk/MvcTools/phpdoc/ezcMvcResult.html'>ezcMvcResult</a> $result,
+                                     Exception $response )
+{
+    echo $response-&gt;getMessage();
+
+    $req = clone $request;
+    $req-&gt;uri = '/FATAL';
+
+    return $req;
+}</code><p>In this method, during development, it is probably wise to output the error message contained in the exception with something like we do with the echo statement. You would not want that in a production environment of course as you don't want your users to see your error messages like this raw.</p><p>We're cloning the original request here to keep all the original request parameters (user agent, request time, etc). With this last method, we conclude the helloMvcConfiguration class. You can find the whole fine in SVN at <a href="https://svn.apache.org/repos/asf/incubator/zetacomponents/docs/examples/applications/HelloMvc/lib/config.php">https://svn.apache.org/repos/asf/incubator/zetacomponents/docs/examples/applications/HelloMvc/lib/config.php</a></p><p>There are four other methods defined in the interface. Those methods deal with running filters on request, result and response data. We will be using the runResultFilters() method to automatically add an "installRoot" variable to the variables that are available in the views. It's trivial to do so as the implementation of the runResultFilters() method shows:</p><code class="block">function runResultFilters( <a href='/zetacomponents/documentation/trunk/MvcTools/phpdoc/ezcMvcRoutingInformation.html'>ezcMvcRoutingInformation</a> $routeInfo, <a href='/zetacomponents/documentation/trunk/MvcTools/phpdoc/ezcMvcRequest.html'>ezcMvcRequest</a> $request, <a href='/zetacomponents/documentation/trunk/MvcTools/phpdoc/ezcMvcResult.html'>ezcMvcResult</a> $result )
+{
+    $result-&gt;variables['installRoot'] = preg_replace( '@/index\.php$@', '', $_SERVER['SCRIPT_NAME'] );
+}</code><p>We are not using the other three methods in this example, but they still have to be present because they're part of the interface:</p><code class="block">function runPreRoutingFilters( <a href='/zetacomponents/documentation/trunk/MvcTools/phpdoc/ezcMvcRequest.html'>ezcMvcRequest</a> $request )
+{
+}
+
+function runRequestFilters( <a href='/zetacomponents/documentation/trunk/MvcTools/phpdoc/ezcMvcRoutingInformation.html'>ezcMvcRoutingInformation</a> $routeInfo, <a href='/zetacomponents/documentation/trunk/MvcTools/phpdoc/ezcMvcRequest.html'>ezcMvcRequest</a> $request )
+{
+}
+
+function runResponseFilters( <a href='/zetacomponents/documentation/trunk/MvcTools/phpdoc/ezcMvcRoutingInformation.html'>ezcMvcRoutingInformation</a> $routeInfo, <a href='/zetacomponents/documentation/trunk/MvcTools/phpdoc/ezcMvcRequest.html'>ezcMvcRequest</a> $request, <a href='/zetacomponents/documentation/trunk/MvcTools/phpdoc/ezcMvcResult.html'>ezcMvcResult</a> $result, <a href='/zetacomponents/documentation/trunk/MvcTools/phpdoc/ezcMvcResponse.html'>ezcMvcResponse</a> $response )
+{
+}</code><a name="creating-the-router"></a><a name="id15"></a><h5>Creating The Router</h5><p>The first thing to implement is the router object. We're going to place this in the "lib/" directory with the name "router.php". First of all, we have to add this entry to the autoload file at "/lib/autoload/autoload.php". Add the following line below the 'helloMvcConfiguration' line:</p><code class="block">'helloRouter'           =&gt; 'router.php',</code><p>The router class should inherit from the <a href='/zetacomponents/documentation/trunk/MvcTools/phpdoc/ezcMvcRouter.html'>ezcMvcRouter</a> class, and re-implement the createRoutes() method. This method is expected to return an array with objects that implement the <a href='/zetacomponents/documentation/trunk/MvcTools/phpdoc/ezcMvcRoute.html'>ezcMvcRoute</a> interface. The MvcTools component comes with two implementations: <a href='/zetacomponents/documentation/trunk/MvcTools/phpdoc/ezcMvcRailsRoute.html'>ezcMvcRailsRoute</a> and <a href='/zetacomponents/documentation/trunk/MvcTools/phpdoc/ezcMvcRegexpRoute.html'>ezcMvcRegexpRoute</a>. We'll be using the <a href='/zetacomponents/documentation/trunk/MvcTools/phpdoc/ezcMvcRailsRoute.html'>ezcMvcRailsRoute</a> class as it is slightly easier to use. The router class' implementation is then really simple:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #0000FF">class&nbsp;</span><span style="color: #000000">helloRouter&nbsp;</span><span style="color: #0000FF">extends&nbsp;</span><span style="color: #000000">ezcMvcRouter</span></li>
+<li><span style="color: #0000FF">{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;function&nbsp;</span><span style="color: #000000">createRoutes</span><span style="color: #0000FF">()</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;array(</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/MvcTools/phpdoc/ezcMvcRailsRoute.html'>ezcMvcRailsRoute</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'/downloadTest'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'helloTestController'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'download'&nbsp;</span><span style="color: #0000FF">),</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/MvcTools/phpdoc/ezcMvcRailsRoute.html'>ezcMvcRailsRoute</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'/:name'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'helloController'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'greetPersonally'&nbsp;</span><span style="color: #0000FF">),</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/MvcTools/phpdoc/ezcMvcRailsRoute.html'>ezcMvcRailsRoute</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'/'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'helloController'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'greet'&nbsp;</span><span style="color: #0000FF">),</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;}</span></li>
+<li><span style="color: #0000FF">}</span></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><p>Each route defines a pattern ('/' or '/:name') and links that to a controller (helloController) and an action ('greet' or 'greetPersonally').</p><p>The controller is created by the dispatcher, which assumes the controller class will be loaded through the autoload mechanism. If you do not want your controllers to have to use the autoload mechanism, you can inherit from the configurable dispatcher, and override the createController() method. See the class documentation for <a href='/zetacomponents/documentation/trunk/MvcTools/phpdoc/ezcMvcConfigurableDispatcher.html'>ezcMvcConfigurableDispatcher</a> for more information about what this method's signature is.</p><a name="creating-the-controller"></a><a name="id16"></a><h5>Creating the Controller</h5><p>The controller implements the real logic of the application. In our case that is of course not a whole lot as we'll only echo a greeting. We start again by adding the controller to the autoload.php file. Add the following line below the 'helloRouter' line:</p><code class="block">'helloController'       =&gt; 'controllers/hello.php',</code><p>Then we proceed creating the controller class in the 'lib/controllers' directory. We will inherit from the <a href='/zetacomponents/documentation/trunk/MvcTools/phpdoc/ezcMvcController.html'>ezcMvcController</a> class that implements calling action methods depending on the $this-&gt;action property that is set by the dispatcher. The action method is matched with the method name by using a very simple algorithm:</p><ul><li><p>The action name is split up by '_'.</p></li><li><p>Every element is run through <a href="http://php.net/ucfirst">ucfirst</a> to uppercase the first character.</p></li><li><p>The method name is assembled by using "do" and then appending every element (without the '_').</p></li></ul><p>Examples:</p><ul><li><p>"list" turns into "doList()".</p></li><li><p>"greeting" turns into "doGreeting()".</p></li><li><p>"greet_personally" turns into "doGreetPersonally()".</p></li><li><p>"greetPersonally" turns into "doGreetPersonally()".</p></li></ul><p>In our case, that means we'll have to implement the doGreet() and doGreetPersonally() methods in our inherited class. Every action method is required to return an object of the class <a href='/zetacomponents/documentation/trunk/MvcTools/phpdoc/ezcMvcResult.html'>ezcMvcResult</a> or the class <a href='/zetacomponents/documentation/trunk/MvcTools/phpdoc/ezcMvcInternalRedirect.html'>ezcMvcInternalRedirect</a>. We will only use the <a href='/zetacomponents/documentation/trunk/MvcTools/phpdoc/ezcMvcResult.html'>ezcMvcResult</a> class in our first example.</p><p>Our doGreet() method will select a random language to use as greeting, we'll do the same for the doGreetPersonally() method but there we'll also set the person's name as variable on the <a href='/zetacomponents/documentation/trunk/MvcTools/phpdoc/ezcMvcResult.html'>ezcMvcResult</a> object. Because we're sharing functionality between two methods, we create another method to select a random language's greeting:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #0000FF">class&nbsp;</span><span style="color: #000000">helloController&nbsp;</span><span style="color: #0000FF">extends&nbsp;</span><span style="color: #000000">ezcMvcController</span></li>
+<li><span style="color: #0000FF">{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;private&nbsp;function&nbsp;</span><span style="color: #000000">selectGreeting</span><span style="color: #0000FF">()</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$greetings&nbsp;</span><span style="color: #0000FF">=&nbsp;array(&nbsp;</span><span style="color: #335533">'Hello'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'Hei'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'こんにちわ'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'доброе&nbsp;утро'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;</span><span style="color: #000000">$greetings</span><span style="color: #0000FF">[</span><span style="color: #000000">mt_rand</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">0</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">count</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$greetings&nbsp;</span><span style="color: #0000FF">)&nbsp;-&nbsp;</span><span style="color: #000000">1&nbsp;</span><span style="color: #0000FF">)];</span></li>
+<span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;}</span>
+</ol><p>The doGreet() method uses this method to select a greeting, and adds this to the result as the 'greeting' variable. It then returns the result object:</p><code class="block">public function doGreet()
+{
+    $ret = new <a href='/zetacomponents/documentation/trunk/MvcTools/phpdoc/ezcMvcResult.html'>ezcMvcResult</a>;
+    $ret-&gt;variables['greeting'] = $this-&gt;selectGreeting();
+    return $ret;
+}</code><p>The doGreetPersonally() method doesn't do a whole lot more. Compared to the doGreet() method above it adds another array key, "person", and set's it value to the $this-&gt;name variable. This "name" variable name comes from directly from the router where this part of the URL was defined with ":name". This means that the URL "/Derick" would cause the $this-&gt;name variable to be set to "Derick". The method below just passes this on as the "person" variable to the view handlers that will render the results from this action method.</p><code class="block">public function doGreetPersonally()
+{
+    $ret = new <a href='/zetacomponents/documentation/trunk/MvcTools/phpdoc/ezcMvcResult.html'>ezcMvcResult</a>;
+    $ret-&gt;variables['greeting'] = $this-&gt;selectGreeting();
+    $ret-&gt;variables['person'] = $this-&gt;name;
+    return $ret;
+}</code><p>The whole controller file can be found in SVN as: <a href="https://svn.apache.org/repos/asf/incubator/zetacomponents/docs/examples/applications/HelloMvc/lib/controllers/hello.php">https://svn.apache.org/repos/asf/incubator/zetacomponents/docs/examples/applications/HelloMvc/lib/controllers/hello.php</a></p><p>It is also possible to return different results than the above normal type. You can do so by setting the $ret-&gt;status property to an instance of either <a href='/zetacomponents/documentation/trunk/MvcTools/phpdoc/ezcMvcExternalRedirect.html'>ezcMvcExternalRedirect</a> or <a href='/zetacomponents/documentation/trunk/MvcTools/phpdoc/ezcMvcResultUnauthorized.html'>ezcMvcResultUnauthorized</a>.</p><a name="creating-the-views"></a><a name="id17"></a><h5>Creating the Views</h5><p>Now we've the abstract result object we can render this result with the two view that we'll be using: helloRootView and helloNameView. We place the two view files in the "lib/views/" directory and add the following two lines to the autoload.php file:</p><code class="block">'helloRootView'         =&gt; 'views/root.php',
+'helloNameView'         =&gt; 'views/name.php',</code><p>Before we create the view classes, the concept of zones should be explained. Zones are a way for arranging different parts of a layout. Take for example the following layout:</p><div class="&#10;&#9;&#9;&#9;&#9;&#9;image &#10;&#9;&#9;&#9;&#9;&#9;&#10;&#9;&#9;&#9;&#9;&#9;&#9;&#9;center&#10;&#9;&#9;&#9;&#9;&#9;&#9; "><img alt="Layout zones" title="Layout zones" src="img/zones.png"/><span class="image_title">Layout zones</span></div><p>In this small example there are three zones:</p><ul><li><p>The "menu" zone, where we'll put in a link to the home page.</p></li><li><p>The "content" zones, where we'll put the greeting.</p></li><li><p>The "pagelayout" zone, which encapsulates the others -- it provides the main layout and HTML headers, stylesheets, etc.</p></li></ul><p>Each view that you define can include multiple zones, each with their own associated name and view handler. Zones are processed in order, and the result of each processed zone is added as a variable for use for subsequent zones. Because this becomes clearer with an example, we now show the helloRootView class that we put into the 'lib/views/' directory as root.php:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #0000FF">class&nbsp;</span><span style="color: #000000">helloRootView&nbsp;</span><span style="color: #0000FF">extends&nbsp;</span><span style="color: #000000">ezcMvcView</span></li>
+<li><span style="color: #0000FF">{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;</span><span style="color: #000000">createZones</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$layout&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$zones&nbsp;</span><span style="color: #0000FF">=&nbsp;array();</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$zones</span><span style="color: #0000FF">[]&nbsp;=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/MvcTools/phpdoc/ezcMvcTemplateViewHandler.html'>ezcMvcTemplateViewHandler</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'menu'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'menu.ezt'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$zones</span><span style="color: #0000FF">[]&nbsp;=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/MvcTools/phpdoc/ezcMvcPhpViewHandler.html'>ezcMvcPhpViewHandler</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'content'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'../templates/generic_greeting.php'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$zones</span><span style="color: #0000FF">[]&nbsp;=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/MvcTools/phpdoc/ezcMvcTemplateViewHandler.html'>ezcMvcTemplateViewHandler</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'page_layout'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'layout.ezt'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;</span><span style="color: #000000">$zones</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;}</span></li>
+<li><span style="color: #0000FF">}</span></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><p>Here we define the three zones in order. First, the view would process the "menu.ezt" template with the template view handler. The result of this will be assigned to the "menu" variable. This "menu" variable would show up just like any other variable in a result object, which means it can be used in both the "content" and "page_layout" views. In our example, the "content" view will not make use of this, but the "page_layout" view will to put the content of the "menu" view (and also the "content" view) in the correct spot on the page. This mechanism prevents you from having to include the menu, content (and any other template) from the "page_layout" template and prevents you from having to send all the required variables along to the included templates. The zone mechanism also allows you to use different view handlers for different parts of the layout. In our case we use a template for the "menu" and "page_layout" zones, but the plain PHP for the "content" zone.</p><p>The helloNameView class is put in the 'lib/views/' directory as name.php:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #0000FF">class&nbsp;</span><span style="color: #000000">helloNameView&nbsp;</span><span style="color: #0000FF">extends&nbsp;</span><span style="color: #000000">ezcMvcView</span></li>
+<li><span style="color: #0000FF">{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;</span><span style="color: #000000">createZones</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$layout&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$zones&nbsp;</span><span style="color: #0000FF">=&nbsp;array();</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$zones</span><span style="color: #0000FF">[]&nbsp;=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/MvcTools/phpdoc/ezcMvcTemplateViewHandler.html'>ezcMvcTemplateViewHandler</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'menu'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'menu.ezt'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$zones</span><span style="color: #0000FF">[]&nbsp;=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/MvcTools/phpdoc/ezcMvcPhpViewHandler.html'>ezcMvcPhpViewHandler</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'content'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'../templates/personal_greeting.php'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$zones</span><span style="color: #0000FF">[]&nbsp;=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/MvcTools/phpdoc/ezcMvcTemplateViewHandler.html'>ezcMvcTemplateViewHandler</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'page_layout'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'layout.ezt'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;</span><span style="color: #000000">$zones</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;}</span></li>
+<li><span style="color: #0000FF">}</span></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><p>The templates themselves we place in the "templates/" directory. We keep them as simple as possible. First the "menu.ezt" template:</p><code class="block">{use $installRoot}
+&lt;div id="menu"&gt;
+&lt;a href="{$installRoot}/"&gt;Home Page&lt;/a&gt;
+&lt;/div&gt;
+</code><p>Secondly the "generic_greeting.php" PHP script:</p><ol class="code">
+<li>&lt;div&nbsp;id="greeting"&gt;</li>
+<li><span style="color: #000000">&lt;?php&nbsp;</span><span style="color: #0000FF">echo&nbsp;</span><span style="color: #000000">$this</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">greeting</span><span style="color: #0000FF">;&nbsp;</span><span style="color: #000000">?&gt;</span></li>
+<li>&lt;/div&gt;</li>
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><p>We'll also create the "personal_greeting.php" PHP script, that our other view (helloNameView) uses:</p><ol class="code">
+<li>&lt;div&nbsp;id="greeting"&gt;</li>
+<li><span style="color: #000000">&lt;?php&nbsp;</span><span style="color: #0000FF">echo&nbsp;</span><span style="color: #000000">$this</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">greeting</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">"&nbsp;"</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">htmlspecialchars</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$this</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">person&nbsp;</span><span style="color: #0000FF">);&nbsp;</span><span style="color: #000000">?&gt;</span></li>
+<li>&lt;/div&gt;</li>
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><p>And lastly the "layout.ezt" template:</p><code class="block">{use $menu, $content}
+&lt;html&gt;
+&lt;head&gt;&lt;title&gt;Hello World&lt;/title&gt;&lt;/head&gt;
+&lt;body&gt;
+{raw $menu}
+&lt;br/&gt;
+{raw $content}
+&lt;/body&gt;
+&lt;/html&gt;
+</code><p>Please note that we're using the "{raw}" construct to include the already rendered zones. If we would not have done that, all HTML tags in there would be escaped again. This is a feature of the Template component. For the same reason, it's safe to just use "{$person}" in a template, but if you use a PHP style template like we've done here for "generic_greeting.php" and "personal_greeting.php" you need to think of placing htmlspecialchars() around variables that come from the input.</p><a name="wrapping-it-up"></a><a name="id18"></a><h5>Wrapping it Up</h5><p>To make the application work properly in Apache, we need to tell it to send all requests to the index.php script. We do that by using mod_rewrite through a .htaccess file. We place this file in the "www/" directory, and fill it with the following text:</p><code class="block">RewriteEngine On
+
+RewriteCond %{REQUEST_FILENAME} -s [OR]
+RewriteCond %{REQUEST_FILENAME} -l
+RewriteRule ^.*$ - [NC,L]
+RewriteRule ^.*$ index.php [NC,L]
+</code><p>The full directory listing is now:</p><code class="block">HelloMvc
+├── cache/
+│   └── compiled_templates/
+├── lib/
+│   ├── autoload/
+│   │   └── autoload.php
+│   ├── controllers/
+│   │   └── hello.php
+│   ├── views/
+│   │   ├── name.php
+│   │   └── root.php
+│   ├── config.php
+│   └── router.php
+├── templates/
+│   ├── generic_greeting.php
+│   ├── layout.ezt
+│   ├── menu.ezt
+│   └── personal_greeting.php
+├── www/
+│   ├── .htaccess
+│   └── index.php
+└── config.php</code><a name="security"></a><a name="id19"></a><h3>Security</h3><a name="overriding-the-x-powered-by-header"></a><a name="id20"></a><h4>Overriding the X-Powered-By header</h4><p>By default, the MvcTools component will add an X-Powered-By HTTP header containing the string "Apache Zeta Components MvcTools" or "eZ Components MvcTools". This can be considered a security issue. If you want to modify this header you can add the following code in your response filter:</p><code class="block">$response-&gt;generator = "Whatever you want here";</code><!--Local Variables:
+mode: rst
+fill-column: 79
+End:
+vim: et syn=rst tw=79 nocin-->
+
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,224 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="PHP, apache, components, framework, quality" />
+	<meta name="author" content="dotxp" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Wed, 04 Aug 2010 13:07:09 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="Archive" />
+	<meta name="DC.creator" content="dotxp" />
+	<meta name="DC.date" content="Wed, 04 Aug 2010 13:07:09 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/Archive/tutorial.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/Archive/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Archive/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+
+</ul>
+
+		<h2>eZ Components - Archive</h2><div class="toc"><h3>Table of Contents</h3><ul><li><p><a href="#introduction">Introduction</a></p></li><li><p><a href="#class-overview">Class overview</a></p></li><li><p><a href="#usage">Usage</a></p><ul><li><p><a href="#extracting-a-tar-archive">Extracting a Tar-archive</a></p></li><li><p><a href="#appending-files-to-an-archive">Appending files to an archive</a></p></li><li><p><a href="#appending-directories-to-an-archive">Appending directories to an archive</a></p></li><li><p><a href="#appending-a-directory-tree-to-an-archive">Appending a directory tree to an archive</a></p></li></ul></li><li><p><a href="#more-information">More Information</a></p></li></ul></div><a name="introduction"></a><a name="id1"></a><h3>Introduction</h3><p>The Archive component provides a generic API for creating and extracting archives.  Currently, the Archive component supports the Tar and Zip formats. Compression algorithms, such as GZip or BZip2, are indirectly supported. The stream wrappers from PHP should be used to handle compressed archives.</p><a name="class-overview"></a><a name="id2"></a><h3>Class overview</h3><p>The following list sums up the most important classes:</p><dl><dt>ezcArchive</dt><dd>This class provides the main API for accessing or creating a Tar or Zip archive. <a href='/zetacomponents/documentation/trunk/Archive/phpdoc/ezcArchive.html'>ezcArchive</a> provides methods for extracting entries (files, directories, symbolic links and so on), appending entries and removing entries.</dd><dt>ezcArchiveEntry</dt><dd>The <a href='/zetacomponents/documentation/trunk/Archive/phpdoc/ezcArchiveEntry.html'>ezcArchiveEntry</a> class is returned when an entry (such as a file or directory) is requested from the opened archive. <a href='/zetacomponents/documentation/trunk/Archive/phpdoc/ezcArchiveEntry.html'>ezcArchiveEntry</a> provides entry information about the path, its access rights and whether the entry is a directory, a symbolic link, a hard link, a block-file and so on. The owner name, the group name and the last access time are also available.</dd></dl><p>More information about these classes can be found in the documentation of the class itself.</p><a name="usage"></a><a name="id3"></a><h3>Usage</h3><p>The following examples demonstrate how to use the Archive component.</p><a name="extracting-a-tar-archive"></a><a name="id4"></a><h4>Extracting a Tar-archive</h4><p>The Tar format has more than one standard. The most common formats are:</p><ul><li><p>Gnu</p></li><li><p>POSIX</p></li><li><p>Unix V7</p></li><li><p>Ustar (The default when creating a tar archive)</p></li></ul><p>The Archive component can extract from any of these formats. Appending entries to the archive is only available for the Unix V7 and Ustar formats.</p><p>Extracting entries can occur in two ways:</p><ul><li><p><a href='/zetacomponents/documentation/trunk/Archive/phpdoc/ezcArchive.html#extract'>ezcArchive-&gt;extract</a>(), extracts all entries from the archive.</p></li><li><p><a href='/zetacomponents/documentation/trunk/Archive/phpdoc/ezcArchive.html#extractCurrent'>ezcArchive-&gt;extractCurrent</a>(), extracts only the current entry.</p></li></ul><p>An <a href='/zetacomponents/documentation/trunk/Archive/phpdoc/ezcArchive.html'>ezcArchive</a> object can be used like an iterator. After opening the file, it points to the first entry. The iterator can be moved using <a href='/zetacomponents/documentation/trunk/Archive/phpdoc/ezcArchive.html#next'>ezcArchive-&gt;next</a>() and <a href='/zetacomponents/documentation/trunk/Archive/phpdoc/ezcArchive.html#rewind'>ezcArchive-&gt;rewind</a>() to move to the next entry or go back to the first entry.</p><p>The next example demonstrates how to extract an entire archive file-by-file:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li></li>
+<li><span style="color: #0000FF">require_once&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000">date_default_timezone_set</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">"UTC"&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Open&nbsp;the&nbsp;gzipped&nbsp;TAR&nbsp;archive.</span></li>
+<li><span style="color: #000000">$archive&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Archive/phpdoc/ezcArchive.html#open'>ezcArchive::open</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">"compress.zlib:///tmp/my_archive.tar.gz"&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #0000FF">while(&nbsp;</span><span style="color: #000000">$archive</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">valid</span><span style="color: #0000FF">()&nbsp;)</span></li>
+<li><span style="color: #0000FF">{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">//&nbsp;Returns&nbsp;the&nbsp;current&nbsp;entry&nbsp;(<a href='/zetacomponents/documentation/trunk/Archive/phpdoc/ezcArchiveEntry.html'>ezcArchiveEntry</a>).</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$entry&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$archive</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">current</span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">//&nbsp;<a href='/zetacomponents/documentation/trunk/Archive/phpdoc/ezcArchiveEntry.html'>ezcArchiveEntry</a>&nbsp;has&nbsp;an&nbsp;__toString()&nbsp;method.</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000FF">echo&nbsp;</span><span style="color: #000000">$entry</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">"\n"</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">//&nbsp;Extract&nbsp;the&nbsp;current&nbsp;archive&nbsp;entry&nbsp;to&nbsp;/tmp/target_location/</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$archive</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">extractCurrent</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">"/tmp/target_location/"&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$archive</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">next</span><span style="color: #0000FF">();</span></li>
+<li><span style="color: #0000FF">}</span></li>
+<li></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><p>First, tutorial_autoload.php is included. The included file loads the correct php files for the Archive package. Hereafter the time zone is set to "UTC". The Archive component uses some date functions and might therefore produce warnings if the time zone is not specified.</p><p>The gzipped Tar archive is opened using the zlib stream. The while() method iterates over each entry, showing the name and extracting the entry itself.</p><p>The Archive component extends from the PHP Iterator class, thus the above example can be rewritten as follows:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #0000FF">require_once&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #000000">$archive&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Archive/phpdoc/ezcArchive.html#open'>ezcArchive::open</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">"compress.zlib:///tmp/my_archive.tar.gz"&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;The&nbsp;foreach&nbsp;method&nbsp;calls&nbsp;internally&nbsp;the&nbsp;iterator&nbsp;methods.</span></li>
+<li><span style="color: #0000FF">foreach(&nbsp;</span><span style="color: #000000">$archive&nbsp;</span><span style="color: #0000FF">as&nbsp;</span><span style="color: #000000">$entry&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #000000">$entry</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">"\n"</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$archive</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">extractCurrent</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">"/tmp/target_location/"&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #0000FF">}</span></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><p>Please be aware that by default archive files are opened in read/write mode. In order to prevent that, you can set an option to open the archive in read-only mode. This also prevents the modify and create timestamps of the file to be preserved. The following example shows that:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #0000FF">require_once&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #000000">$options&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Archive/phpdoc/ezcArchiveOptions.html'>ezcArchiveOptions</a></span><span style="color: #0000FF">(&nbsp;array(&nbsp;</span><span style="color: #335533">'readOnly'&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #000000">true&nbsp;</span><span style="color: #0000FF">)&nbsp;);</span></li>
+<li><span style="color: #000000">$archive&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Archive/phpdoc/ezcArchive.html#open'>ezcArchive::open</a></span><span style="color: #0000FF">(</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #335533">"compress.zlib:///tmp/my_archive.tar.gz"</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">null</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">$options&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;The&nbsp;foreach&nbsp;method&nbsp;calls&nbsp;internally&nbsp;the&nbsp;iterator&nbsp;methods.</span></li>
+<li><span style="color: #0000FF">foreach(&nbsp;</span><span style="color: #000000">$archive&nbsp;</span><span style="color: #0000FF">as&nbsp;</span><span style="color: #000000">$entry&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #000000">$entry</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">"\n"</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$archive</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">extractCurrent</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">"/tmp/target_location/"&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #0000FF">}</span></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><a name="appending-files-to-an-archive"></a><a name="id5"></a><h4>Appending files to an archive</h4><p>Unfortunately, it is not yet possible to directly append files to a gzipped or bzipped Tar archive. The ZLib and BZip2 libraries do not support opening a file for reading and writing.</p><p>ezcArchive has two methods for appending files:</p><ul><li><p><a href='/zetacomponents/documentation/trunk/Archive/phpdoc/ezcArchive.html#append'>ezcArchive-&gt;append</a>(), appends entries to the end of the archive.</p></li><li><p><a href='/zetacomponents/documentation/trunk/Archive/phpdoc/ezcArchive.html#appendCurrent'>ezcArchive-&gt;appendCurrent</a>(), appends entries after the current entry and removes the rest of the files from the archive.</p></li></ul><p>To replace the first file as well, use <a href='/zetacomponents/documentation/trunk/Archive/phpdoc/ezcArchive.html#truncate'>ezcArchive-&gt;truncate</a>().  The next example replaces all entries from an existing Zip archive with the files file1.txt and file2.txt:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li></li>
+<li><span style="color: #0000FF">require_once&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000">date_default_timezone_set</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">"UTC"&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #000000">$archive&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Archive/phpdoc/ezcArchive.html#open'>ezcArchive::open</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">"/tmp/my_archive.zip"&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$archive</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">truncate</span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #000000">$filesToAppend</span><span style="color: #0000FF">[]&nbsp;=&nbsp;</span><span style="color: #335533">"/tmp/file1.txt"</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000">$filesToAppend</span><span style="color: #0000FF">[]&nbsp;=&nbsp;</span><span style="color: #335533">"/tmp/file2.txt"</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;The&nbsp;second&nbsp;parameter&nbsp;specifies&nbsp;prefix.&nbsp;The&nbsp;prefix&nbsp;is&nbsp;normally&nbsp;not&nbsp;included&nbsp;</span></li>
+<li><span style="color: #007700">//&nbsp;in&nbsp;the&nbsp;archive.</span></li>
+<li><span style="color: #000000">$archive</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">appendToCurrent</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$filesToAppend</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">"/tmp/"&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><a name="appending-directories-to-an-archive"></a><a name="id6"></a><h4>Appending directories to an archive</h4><p>You need to append a slash '/' to the end of the directory name that is added to an archive.</p><p>The next example replaces all entries from an existing Zip archive with the 'directory' folder and the 'file.txt' file:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li></li>
+<li><span style="color: #0000FF">require_once&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000">date_default_timezone_set</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">"UTC"&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #000000">$archive&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Archive/phpdoc/ezcArchive.html#open'>ezcArchive::open</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">"/tmp/my_archive.zip"&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$archive</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">truncate</span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #000000">$filesToAppend</span><span style="color: #0000FF">[]&nbsp;=&nbsp;</span><span style="color: #335533">"/tmp/directory/"</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000">$filesToAppend</span><span style="color: #0000FF">[]&nbsp;=&nbsp;</span><span style="color: #335533">"/tmp/file.txt"</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;The&nbsp;second&nbsp;parameter&nbsp;specifies&nbsp;prefix.&nbsp;The&nbsp;prefix&nbsp;is&nbsp;normally&nbsp;not&nbsp;included&nbsp;</span></li>
+<li><span style="color: #007700">//&nbsp;in&nbsp;the&nbsp;archive.</span></li>
+<li><span style="color: #000000">$archive</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">appendToCurrent</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$filesToAppend</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">"/tmp/"&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><a name="appending-a-directory-tree-to-an-archive"></a><a name="id7"></a><h4>Appending a directory tree to an archive</h4><p>Using the function <a href='/zetacomponents/documentation/trunk/Archive/phpdoc/ezcBase.html#walkRecursive'>ezcBase::walkRecursive</a>() a directory tree can be added to an archive.</p><p>The next example shows how to browse a directory tree and add all the files and directories inside to an archive:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li></li>
+<li><span style="color: #0000FF">require_once&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000">date_default_timezone_set</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">"UTC"&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #0000FF">class&nbsp;</span><span style="color: #000000">ArchiveContext&nbsp;</span><span style="color: #0000FF">extends&nbsp;</span><span style="color: #000000">ezcBaseFileFindContext</span></li>
+<li><span style="color: #0000FF">{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;</span><span style="color: #000000">$archive</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;</span><span style="color: #000000">$prefix</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">}</span></li>
+<li></li>
+<li><span style="color: #0000FF">function&nbsp;</span><span style="color: #000000">findRecursiveCallback</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">ezcBaseFileFindContext&nbsp;$context</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">$sourceDir</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">$fileName</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">$fileInfo&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$path&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">"</span><span style="color: #0000FF">{</span><span style="color: #000000">$sourceDir</span><span style="color: #0000FF">}</span><span style="color: #335533">/</span><span style="color: #0000FF">{</span><span style="color: #000000">$fileName</span><span style="color: #0000FF">}</span><span style="color: #335533">"</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(&nbsp;</span><span style="color: #000000">is_dir</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$path&nbsp;</span><span style="color: #0000FF">)&nbsp;)</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$path&nbsp;</span><span style="color: #0000FF">.=&nbsp;</span><span style="color: #335533">'/'</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;}</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$context</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">archive</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">append</span><span style="color: #0000FF">(&nbsp;array(&nbsp;</span><span style="color: #000000">$path&nbsp;</span><span style="color: #0000FF">),&nbsp;</span><span style="color: #000000">$context</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">prefix&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #0000FF">}</span></li>
+<li></li>
+<li><span style="color: #0000FF">function&nbsp;</span><span style="color: #000000">appendRecursive</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$archive</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">$sourceDir</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">$prefix&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$context&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000">ArchiveContext</span><span style="color: #0000FF">();</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$context</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">archive&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$archive</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$context</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">prefix&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$prefix</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Archive/phpdoc/ezcBaseFile.html#walkRecursive'>ezcBaseFile::walkRecursive</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$sourceDir</span><span style="color: #0000FF">,&nbsp;array(),&nbsp;array(),&nbsp;</span><span style="color: #335533">'findRecursiveCallback'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">$context&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #0000FF">}</span></li>
+<li></li>
+<li><span style="color: #000000">$archive&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Archive/phpdoc/ezcArchive.html#open'>ezcArchive::open</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">"my_archive.zip"</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Archive/phpdoc/ezcArchive.html#constZIP'>ezcArchive::ZIP</a>&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$archive</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">truncate</span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;the&nbsp;2nd&nbsp;parameter&nbsp;is&nbsp;the&nbsp;directory,&nbsp;the&nbsp;3rd&nbsp;parameter&nbsp;is&nbsp;the&nbsp;prefix</span></li>
+<li><span style="color: #000000">appendRecursive</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$archive</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'/tmp/directory/'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'/tmp/directory/'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><p>The <strong>ArchiveContext</strong> class will hold the archive object which is passed to the callback function <em>findRecursiveCallback</em>. The <em>appendRecursive</em> function sets up the context object (of class <strong>ArchiveContext</strong>) and calls the <em>findRecursiveCallback</em> function. In the <em>findRecursiveCallback</em> function the current file or directory is appended to the archive object inside the context.</p><a name="more-information"></a><a name="id8"></a><h3>More Information</h3><p>For more information, see the <a href='/zetacomponents/documentation/trunk/Archive/phpdoc/ezcArchive.html'>ezcArchive</a> API documentation.</p><!--Local Variables:
+mode: rst
+fill-column: 79
+End:
+vim: et syn=rst tw=79-->
+
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

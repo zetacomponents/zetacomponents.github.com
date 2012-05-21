@@ -1,0 +1,533 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="PHP, apache, components, framework, quality" />
+	<meta name="author" content="dotxp" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Wed, 04 Aug 2010 13:07:50 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="ezcMvcConfigurableDispatcher.html" />
+	<meta name="DC.creator" content="dotxp" />
+	<meta name="DC.date" content="Wed, 04 Aug 2010 13:07:50 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/MvcTools/phpdoc/ezcMvcConfigurableDispatcher.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/MvcTools/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/trunk/MvcTools/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+
+</ul>
+
+		
+  <div class="phpdoc">
+    <h2>Apache Zeta Components Manual :: Docs For Class ezcMvcConfigurableDispatcher</h2>
+
+                  <h3>MvcTools::ezcMvcConfigurableDispatcher</h3>
+    
+<a name="sec-description"></a>
+<h3>Class ezcMvcConfigurableDispatcher</h3>
+
+<p>This class implements an example dispatcher that can be configured through  ezcMvcDispatcherConfiguration.</p>
+<p>Source for this file: <a href="http://fisheye6.atlassian.com/browse/zetacomponents/trunk/MvcTools/src/dispatchers/configurable.php?r=HEAD">/MvcTools/src/dispatchers/configurable.php</a></p>
+       
+  <h3>Implements interfaces:</h3>
+  <ul><li><a href="ezcMvcDispatcher.html">ezcMvcDispatcher</a></li>  </ul><table><tr><td>
+            <strong>Version:</strong>&#8192;&#8192;
+          </td>
+          <td>//autogentag//</td>
+        </tr></table><a name="sec-var-summary"></a>
+  <h3>Member Variables</h3>
+  <table class="summary"><tr><td class="right">
+            <em>protected</em>            <em><a href="ezcMvcDispatcherConfiguration.html">ezcMvcDispatcherConfiguration</a></em>          </td>
+          <td>
+            <code>
+              $configuration
+                          </code>
+            <br><div style="margin-left: 20px">Contains the configuration that determines which request parser, router,  view handler and response writer are used.</div>                      </td>
+        </tr></table><a name="sec-method-summary"></a>
+  <h3>Method Summary</h3>
+  <table class="summary"><tr><td class="right">
+            <em>public</em>                        <em>ezcMvcConfigurableDispatcher</em>          </td>
+          <td>
+            <code>
+              <a href="#__construct"><b>__construct</b></a>(
+                                                                                    $configuration
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Creates a new ezcMvcConfigurableDispatcher</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#checkRedirectLimit"><b>checkRedirectLimit</b></a>(
+                                                                                    &amp;$redirects
+                                                    ,                                     $redirects
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Checks whether the number of redirects does not exceed the limit, and  increases the $redirects count.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em><a href="ezcMvcController.html">ezcMvcController</a></em>          </td>
+          <td>
+            <code>
+              <a href="#createController"><b>createController</b></a>(
+                                                                                    $routingInformation
+                                                    ,                                     $request
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Creates the controller by using the routing information and request data.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em><a href="ezcMvcController.html">ezcMvcController</a></em>          </td>
+          <td>
+            <code>
+              <a href="#getController"><b>getController</b></a>(
+                                                                                    $routingInformation
+                                                    ,                                     $request
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Uses the router (through createController()) to fetch the controller</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em><a href="ezcMvcRequest.html">ezcMvcRequest</a></em>          </td>
+          <td>
+            <code>
+              <a href="#getFatalRedirectRequest"><b>getFatalRedirectRequest</b></a>(
+                                                                                    $request
+                                                    ,                                     $result
+                                                    ,                                     $e
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Uses the configuration to fetch a fatal redirect request object</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em><a href="ezcMvcRequestParser.html">ezcMvcRequestParser</a></em>          </td>
+          <td>
+            <code>
+              <a href="#getRequestParser"><b>getRequestParser</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Uses the configuration to fetch the request parser</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em><a href="ezcMvcResponseWriter.html">ezcMvcResponseWriter</a></em>          </td>
+          <td>
+            <code>
+              <a href="#getResponseWriter"><b>getResponseWriter</b></a>(
+                                                                                    $routingInformation
+                                                    ,                                     $request
+                                                    ,                                     $result
+                                                    ,                                     $response
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Uses the configuration to fetch the response writer</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em><a href="ezcMvcRouter.html">ezcMvcRouter</a></em>          </td>
+          <td>
+            <code>
+              <a href="#getRouter"><b>getRouter</b></a>(
+                                                                                    $request
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Uses the configuration to fetch the router</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em><a href="ezcMvcView.html">ezcMvcView</a></em>          </td>
+          <td>
+            <code>
+              <a href="#getView"><b>getView</b></a>(
+                                                                                    $routingInformation
+                                                    ,                                     $request
+                                                    ,                                     $result
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Uses the configuration to fetch the view handler</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#run"><b>run</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Runs through the request, by using the configuration to obtain correct handlers.</div>          </td>
+        </tr></table><a name="sec-methods"></a>
+  <h3>Methods</h3>
+  <a name="method_detail"></a>
+                    
+      <a name="method__construct" id="__construct"><!-- --></a>
+
+    <h4>__construct</h4>
+
+    <div class="method-signature">
+      ezcMvcConfigurableDispatcher
+      __construct(
+                                  <a href="ezcMvcDispatcherConfiguration.html">ezcMvcDispatcherConfiguration</a>
+          $configuration
+                        )
+    </div>
+
+    <p>Creates a new ezcMvcConfigurableDispatcher</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$configuration</code></td>
+              <td><em><a href="ezcMvcDispatcherConfiguration.html">ezcMvcDispatcherConfiguration</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodcheckRedirectLimit" id="checkRedirectLimit"><!-- --></a>
+
+    <h4>checkRedirectLimit</h4>
+
+    <div class="method-signature">
+      void
+      checkRedirectLimit(
+                                  
+          &amp;$redirects
+                            ,           int
+          $redirects
+                        )
+    </div>
+
+    <p>Checks whether the number of redirects does not exceed the limit, and  increases the $redirects count.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$redirects</code></td>
+              <td><em>int</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>&amp;$redirects</code></td>
+              <td><em></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcMvcInfiniteLoopException.html">ezcMvcInfiniteLoopException</a></code></td>
+              <td>
+                                  when the number of redirects exceeds the limit (25 by default).
+                              </td>
+            </tr></tbody></table><a name="methodcreateController" id="createController"><!-- --></a>
+
+    <h4>createController</h4>
+
+    <div class="method-signature">
+      <a href="ezcMvcController.html">ezcMvcController</a>
+      createController(
+                                  <a href="ezcMvcRoutingInformation.html">ezcMvcRoutingInformation</a>
+          $routingInformation
+                            ,           <a href="ezcMvcRequest.html">ezcMvcRequest</a>
+          $request
+                        )
+    </div>
+
+    <p>Creates the controller by using the routing information and request data.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$routingInformation</code></td>
+              <td><em><a href="ezcMvcRoutingInformation.html">ezcMvcRoutingInformation</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$request</code></td>
+              <td><em><a href="ezcMvcRequest.html">ezcMvcRequest</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodgetController" id="getController"><!-- --></a>
+
+    <h4>getController</h4>
+
+    <div class="method-signature">
+      <a href="ezcMvcController.html">ezcMvcController</a>
+      getController(
+                                  <a href="ezcMvcRoutingInformation.html">ezcMvcRoutingInformation</a>
+          $routingInformation
+                            ,           <a href="ezcMvcRequest.html">ezcMvcRequest</a>
+          $request
+                        )
+    </div>
+
+    <p>Uses the router (through createController()) to fetch the controller</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$routingInformation</code></td>
+              <td><em><a href="ezcMvcRoutingInformation.html">ezcMvcRoutingInformation</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$request</code></td>
+              <td><em><a href="ezcMvcRequest.html">ezcMvcRequest</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcMvcInvalidConfiguration.html">ezcMvcInvalidConfiguration</a></code></td>
+              <td>
+                                  when the returned object is of the wrong class
+                              </td>
+            </tr></tbody></table><a name="methodgetFatalRedirectRequest" id="getFatalRedirectRequest"><!-- --></a>
+
+    <h4>getFatalRedirectRequest</h4>
+
+    <div class="method-signature">
+      <a href="ezcMvcRequest.html">ezcMvcRequest</a>
+      getFatalRedirectRequest(
+                                  <a href="ezcMvcRequest.html">ezcMvcRequest</a>
+          $request
+                            ,           <a href="ezcMvcResult.html">ezcMvcResult</a>
+          $result
+                            ,           
+          $e
+                        )
+    </div>
+
+    <p>Uses the configuration to fetch a fatal redirect request object</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$request</code></td>
+              <td><em><a href="ezcMvcRequest.html">ezcMvcRequest</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$result</code></td>
+              <td><em><a href="ezcMvcResult.html">ezcMvcResult</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$e</code></td>
+              <td><em>Exception</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcMvcInvalidConfiguration.html">ezcMvcInvalidConfiguration</a></code></td>
+              <td>
+                                  when the returned object is of the wrong class
+                              </td>
+            </tr></tbody></table><a name="methodgetRequestParser" id="getRequestParser"><!-- --></a>
+
+    <h4>getRequestParser</h4>
+
+    <div class="method-signature">
+      <a href="ezcMvcRequestParser.html">ezcMvcRequestParser</a>
+      getRequestParser(
+      )
+    </div>
+
+    <p>Uses the configuration to fetch the request parser</p>
+    
+          <h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcMvcInvalidConfiguration.html">ezcMvcInvalidConfiguration</a></code></td>
+              <td>
+                                  when the returned object is of the wrong class
+                              </td>
+            </tr></tbody></table><a name="methodgetResponseWriter" id="getResponseWriter"><!-- --></a>
+
+    <h4>getResponseWriter</h4>
+
+    <div class="method-signature">
+      <a href="ezcMvcResponseWriter.html">ezcMvcResponseWriter</a>
+      getResponseWriter(
+                                  <a href="ezcMvcRoutingInformation.html">ezcMvcRoutingInformation</a>
+          $routingInformation
+                            ,           <a href="ezcMvcRequest.html">ezcMvcRequest</a>
+          $request
+                            ,           <a href="ezcMvcResult.html">ezcMvcResult</a>
+          $result
+                            ,           <a href="ezcMvcResponse.html">ezcMvcResponse</a>
+          $response
+                        )
+    </div>
+
+    <p>Uses the configuration to fetch the response writer</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$routingInformation</code></td>
+              <td><em><a href="ezcMvcRoutingInformation.html">ezcMvcRoutingInformation</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$request</code></td>
+              <td><em><a href="ezcMvcRequest.html">ezcMvcRequest</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$result</code></td>
+              <td><em><a href="ezcMvcResult.html">ezcMvcResult</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$response</code></td>
+              <td><em><a href="ezcMvcResponse.html">ezcMvcResponse</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcMvcInvalidConfiguration.html">ezcMvcInvalidConfiguration</a></code></td>
+              <td>
+                                  when the returned object is of the wrong class
+                              </td>
+            </tr></tbody></table><a name="methodgetRouter" id="getRouter"><!-- --></a>
+
+    <h4>getRouter</h4>
+
+    <div class="method-signature">
+      <a href="ezcMvcRouter.html">ezcMvcRouter</a>
+      getRouter(
+                                  <a href="ezcMvcRequest.html">ezcMvcRequest</a>
+          $request
+                        )
+    </div>
+
+    <p>Uses the configuration to fetch the router</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$request</code></td>
+              <td><em><a href="ezcMvcRequest.html">ezcMvcRequest</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcMvcInvalidConfiguration.html">ezcMvcInvalidConfiguration</a></code></td>
+              <td>
+                                  when the returned object is of the wrong class
+                              </td>
+            </tr></tbody></table><a name="methodgetView" id="getView"><!-- --></a>
+
+    <h4>getView</h4>
+
+    <div class="method-signature">
+      <a href="ezcMvcView.html">ezcMvcView</a>
+      getView(
+                                  <a href="ezcMvcRoutingInformation.html">ezcMvcRoutingInformation</a>
+          $routingInformation
+                            ,           <a href="ezcMvcRequest.html">ezcMvcRequest</a>
+          $request
+                            ,           <a href="ezcMvcResult.html">ezcMvcResult</a>
+          $result
+                        )
+    </div>
+
+    <p>Uses the configuration to fetch the view handler</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$routingInformation</code></td>
+              <td><em><a href="ezcMvcRoutingInformation.html">ezcMvcRoutingInformation</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$request</code></td>
+              <td><em><a href="ezcMvcRequest.html">ezcMvcRequest</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$result</code></td>
+              <td><em><a href="ezcMvcResult.html">ezcMvcResult</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcMvcInvalidConfiguration.html">ezcMvcInvalidConfiguration</a></code></td>
+              <td>
+                                  when the returned object is of the wrong class
+                              </td>
+            </tr></tbody></table><a name="methodrun" id="run"><!-- --></a>
+
+    <h4>run</h4>
+
+    <div class="method-signature">
+      void
+      run(
+      )
+    </div>
+
+    <p>Runs through the request, by using the configuration to obtain correct handlers.</p>
+    
+        
+
+    
+          <h5>Implementation of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcMvcDispatcher.html#methodrun">ezcMvcDispatcher::run()</a></code></td>
+              <td>
+                                  Runs the dispatcher.
+                              </td>
+            </tr></tbody></table><div class="credit">
+      Documentation generated by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+    </div>
+  </div>
+  
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

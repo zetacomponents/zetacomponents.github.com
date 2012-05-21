@@ -1,0 +1,461 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="PHP, apache, components, framework, quality" />
+	<meta name="author" content="dotxp" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Wed, 04 Aug 2010 13:07:23 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="ezcDbHandlerMssql.html" />
+	<meta name="DC.creator" content="dotxp" />
+	<meta name="DC.date" content="Wed, 04 Aug 2010 13:07:23 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/Database/phpdoc/ezcDbHandlerMssql.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/Database/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/trunk/Database/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Database/oracle_setup.html" title="Oracle_setup ">Oracle_setup </a>
+	</li>
+
+</ul>
+
+		
+  <div class="phpdoc">
+    <h2>Apache Zeta Components Manual :: Docs For Class ezcDbHandlerMssql</h2>
+
+                  <h3>Database::ezcDbHandlerMssql</h3>
+    
+<a name="sec-description"></a>
+<h3>Class ezcDbHandlerMssql</h3>
+
+<p>MS SQL Server driver implementation.</p>
+<p>Source for this file: <a href="http://fisheye6.atlassian.com/browse/zetacomponents/trunk/Database/src/handlers/mssql.php?r=HEAD">/Database/src/handlers/mssql.php</a></p>
+       
+
+
+<pre>PDO
+   |
+   --<a href="ezcDbHandler.html">ezcDbHandler</a>
+      |
+      --ezcDbHandlerMssql</pre>
+
+
+  <table><tr><td>
+            <strong>Version:</strong>&#8192;&#8192;
+          </td>
+          <td>//autogentag//</td>
+        </tr></table><a name="sec-var-summary"></a>
+  <h3>Member Variables</h3>
+  <table class="summary"><tr><td class="right">
+            <em>public</em>            <em><a href="ezcDbMssqlOptions.html">ezcDbMssqlOptions</a></em>          </td>
+          <td>
+            <code>
+              $options
+                          </code>
+            <br><div style="margin-left: 20px">Contains the options that are used to set up handler.</div>                      </td>
+        </tr></table><h3>Inherited Member Variables</h3>
+  <table class="summary"><thead><tr><th colspan="2">
+            From <span class="classname"><a href="ezcDbHandler.html">ezcDbHandler</a></span>         
+          </th>
+        </tr></thead><tbody><tr><td class="right">
+              <em>protected</em>                          </td>
+            <td>
+              <code><a href="ezcDbHandler.html#var%24identifierQuoteChars">ezcDbHandler::$identifierQuoteChars</a></code>
+              
+            </td>
+          </tr><tr><td class="right">
+              <em>protected</em>                          </td>
+            <td>
+              <code><a href="ezcDbHandler.html#var%24transactionErrorFlag">ezcDbHandler::$transactionErrorFlag</a></code>
+              
+            </td>
+          </tr><tr><td class="right">
+              <em>protected</em>                          </td>
+            <td>
+              <code><a href="ezcDbHandler.html#var%24transactionNestingLevel">ezcDbHandler::$transactionNestingLevel</a></code>
+              
+            </td>
+          </tr></tbody></table><a name="sec-method-summary"></a>
+  <h3>Method Summary</h3>
+  <table class="summary"><tr><td class="right">
+            <em>public</em>            static
+                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#getName"><b>getName</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns 'mssql'.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>ezcDbHandlerMssql</em>          </td>
+          <td>
+            <code>
+              <a href="#__construct"><b>__construct</b></a>(
+                                                                                    $dbParams
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Constructs a handler object from the parameters $dbParams.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>bool</em>          </td>
+          <td>
+            <code>
+              <a href="#beginTransaction"><b>beginTransaction</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Begins a transaction.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>bool</em>          </td>
+          <td>
+            <code>
+              <a href="#commit"><b>commit</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Commits a transaction.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em><a href="ezcQueryExpressionMssql.html">ezcQueryExpressionMssql</a></em>          </td>
+          <td>
+            <code>
+              <a href="#createExpression"><b>createExpression</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns a new ezcQueryExpression derived object with SQL Server  implementation specifics.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em><a href="ezcQuerySelectMssql.html">ezcQuerySelectMssql</a></em>          </td>
+          <td>
+            <code>
+              <a href="#createSelectQuery"><b>createSelectQuery</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns a new ezcQuerySelectMssql derived object with SQL Server  implementation specifics.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>bool</em>          </td>
+          <td>
+            <code>
+              <a href="#rollback"><b>rollback</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Rollback a transaction.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#setOptions"><b>setOptions</b></a>(
+                                                                                    $options
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Associates an option object with this handler and changes settings for  opened connections.</div>          </td>
+        </tr></table><h3>Inherited Methods</h3>
+  <table class="summary"><thead><tr><th colspan="2">
+            From <span class="classname"><a href="ezcDbHandler.html">ezcDbHandler</a></span>
+          </th>
+        </tr></thead><tbody><tr><td class="right">
+              <em>public</em>                                          <em>ezcDbHandler</em>            </td>
+            <td>
+              <code><b><a href="ezcDbHandler.html#method__construct">ezcDbHandler::__construct()</a></b></code>
+              <br><div style="margin-left: 20px">Constructs a handler object.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>bool</em>            </td>
+            <td>
+              <code><b><a href="ezcDbHandler.html#methodbeginTransaction">ezcDbHandler::beginTransaction()</a></b></code>
+              <br><div style="margin-left: 20px">Begins a transaction.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>bool</em>            </td>
+            <td>
+              <code><b><a href="ezcDbHandler.html#methodcommit">ezcDbHandler::commit()</a></b></code>
+              <br><div style="margin-left: 20px">Commits a transaction.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em><a href="ezcQueryDelete.html">ezcQueryDelete</a></em>            </td>
+            <td>
+              <code><b><a href="ezcDbHandler.html#methodcreateDeleteQuery">ezcDbHandler::createDeleteQuery()</a></b></code>
+              <br><div style="margin-left: 20px">Returns a new ezcQueryDelete derived object for the correct database type.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em><a href="ezcQueryExpression.html">ezcQueryExpression</a></em>            </td>
+            <td>
+              <code><b><a href="ezcDbHandler.html#methodcreateExpression">ezcDbHandler::createExpression()</a></b></code>
+              <br><div style="margin-left: 20px">Returns a new ezcQueryExpression derived object for the correct database type.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em><a href="ezcQueryInsert.html">ezcQueryInsert</a></em>            </td>
+            <td>
+              <code><b><a href="ezcDbHandler.html#methodcreateInsertQuery">ezcDbHandler::createInsertQuery()</a></b></code>
+              <br><div style="margin-left: 20px">Returns a new ezcQueryInsert derived object for the correct database type.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em><a href="ezcQuerySelect.html">ezcQuerySelect</a></em>            </td>
+            <td>
+              <code><b><a href="ezcDbHandler.html#methodcreateSelectQuery">ezcDbHandler::createSelectQuery()</a></b></code>
+              <br><div style="margin-left: 20px">Returns a new ezcQuerySelect derived object for the correct database type.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em><a href="ezcQueryUpdate.html">ezcQueryUpdate</a></em>            </td>
+            <td>
+              <code><b><a href="ezcDbHandler.html#methodcreateUpdateQuery">ezcDbHandler::createUpdateQuery()</a></b></code>
+              <br><div style="margin-left: 20px">Returns a new ezcQueryUpdate derived object for the correct database type.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>ezcDbUtilities</em>            </td>
+            <td>
+              <code><b><a href="ezcDbHandler.html#methodcreateUtilities">ezcDbHandler::createUtilities()</a></b></code>
+              <br><div style="margin-left: 20px">Returns a new ezcUtilities derived object for the correct database type.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>string</em>            </td>
+            <td>
+              <code><b><a href="ezcDbHandler.html#methodquoteIdentifier">ezcDbHandler::quoteIdentifier()</a></b></code>
+              <br><div style="margin-left: 20px">Returns the quoted version of an identifier to be used in an SQL query.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>bool</em>            </td>
+            <td>
+              <code><b><a href="ezcDbHandler.html#methodrollback">ezcDbHandler::rollback()</a></b></code>
+              <br><div style="margin-left: 20px">Rollback a transaction.</div>                          </td>
+          </tr></tbody></table><a name="sec-methods"></a>
+  <h3>Methods</h3>
+  <a name="method_detail"></a>
+                <a name="methodgetName" id="getName"><!-- --></a>
+
+    <h4>getName</h4>
+
+    <div class="method-signature">
+      static string
+      getName(
+      )
+    </div>
+
+      <p>Returns 'mssql'.</p>      
+      
+      
+      
+      
+      
+      
+      <a name="method__construct" id="__construct"><!-- --></a>
+
+    <h4>__construct</h4>
+
+    <div class="method-signature">
+      ezcDbHandlerMssql
+      __construct(
+                                  
+          $dbParams
+                        )
+    </div>
+
+    <p>Constructs a handler object from the parameters $dbParams.</p><div><p>Supported database parameters are: </p><ul><li>dbname|database: Database name</li><li>host|hostspec:   Name of the host database is running on</li><li>port:            TCP port</li><li>user|username:   Database user name</li><li>pass|password:   Database user password</li></ul></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$dbParams</code></td>
+              <td><em>array</em></td>
+              <td>
+                                  Database connection parameters (key=&gt;value pairs).
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcDbMissingParameterException.html">ezcDbMissingParameterException</a></code></td>
+              <td>
+                                  if the database name was not specified.
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcDbHandler.html#method__construct">ezcDbHandler::__construct()</a></code></td>
+            <td>
+                              Constructs a handler object.
+                          </td>
+          </tr></tbody></table><a name="methodbeginTransaction" id="beginTransaction"><!-- --></a>
+
+    <h4>beginTransaction</h4>
+
+    <div class="method-signature">
+      bool
+      beginTransaction(
+      )
+    </div>
+
+    <p>Begins a transaction.</p><div><p>This method executes a begin transaction query unless a  transaction has already been started (transaction nesting level &gt; 0 ).</p><p>Each call to begin() must have a corresponding commit() or rollback() call.</p></div>
+    
+        
+
+          <h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcDbHandler.html#methodbeginTransaction">ezcDbHandler::beginTransaction()</a></code></td>
+            <td>
+                              Begins a transaction.
+                          </td>
+          </tr></tbody></table><a name="methodcommit" id="commit"><!-- --></a>
+
+    <h4>commit</h4>
+
+    <div class="method-signature">
+      bool
+      commit(
+      )
+    </div>
+
+    <p>Commits a transaction.</p><div><p>If this this call to commit corresponds to the outermost call to  begin() and all queries within this transaction were successful,  a commit query is executed. If one of the queries  returned with an error, a rollback query is executed instead.</p><p>This method returns true if the transaction was successful. If the  transaction failed and rollback was called, false is returned.</p></div>
+    
+        
+
+          <h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcDbHandler.html#methodcommit">ezcDbHandler::commit()</a></code></td>
+            <td>
+                              Commits a transaction.
+                          </td>
+          </tr></tbody></table><a name="methodcreateExpression" id="createExpression"><!-- --></a>
+
+    <h4>createExpression</h4>
+
+    <div class="method-signature">
+      <a href="ezcQueryExpressionMssql.html">ezcQueryExpressionMssql</a>
+      createExpression(
+      )
+    </div>
+
+    <p>Returns a new ezcQueryExpression derived object with SQL Server  implementation specifics.</p>
+    
+        
+
+          <h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcDbHandler.html#methodcreateExpression">ezcDbHandler::createExpression()</a></code></td>
+            <td>
+                              Returns a new ezcQueryExpression derived object for the correct database type.
+                          </td>
+          </tr></tbody></table><a name="methodcreateSelectQuery" id="createSelectQuery"><!-- --></a>
+
+    <h4>createSelectQuery</h4>
+
+    <div class="method-signature">
+      <a href="ezcQuerySelectMssql.html">ezcQuerySelectMssql</a>
+      createSelectQuery(
+      )
+    </div>
+
+    <p>Returns a new ezcQuerySelectMssql derived object with SQL Server  implementation specifics.</p>
+    
+        
+
+          <h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcDbHandler.html#methodcreateSelectQuery">ezcDbHandler::createSelectQuery()</a></code></td>
+            <td>
+                              Returns a new ezcQuerySelect derived object for the correct database type.
+                          </td>
+          </tr></tbody></table><a name="methodrollback" id="rollback"><!-- --></a>
+
+    <h4>rollback</h4>
+
+    <div class="method-signature">
+      bool
+      rollback(
+      )
+    </div>
+
+    <p>Rollback a transaction.</p><div><p>If this this call to rollback corresponds to the outermost call to  begin(), a rollback query is executed. If this is an inner transaction  (nesting level &gt; 1) the error flag is set, leaving the rollback to the  outermost transaction.</p><p>This method always returns true.</p></div>
+    
+        
+
+          <h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcDbHandler.html#methodrollback">ezcDbHandler::rollback()</a></code></td>
+            <td>
+                              Rollback a transaction.
+                          </td>
+          </tr></tbody></table><a name="methodsetOptions" id="setOptions"><!-- --></a>
+
+    <h4>setOptions</h4>
+
+    <div class="method-signature">
+      void
+      setOptions(
+                                  <a href="ezcDbMssqlOptions.html">ezcDbMssqlOptions</a>
+          $options
+                        )
+    </div>
+
+    <p>Associates an option object with this handler and changes settings for  opened connections.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$options</code></td>
+              <td><em><a href="ezcDbMssqlOptions.html">ezcDbMssqlOptions</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><div class="credit">
+      Documentation generated by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+    </div>
+  </div>
+  
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

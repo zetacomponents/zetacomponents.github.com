@@ -1,0 +1,909 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="PHP, apache, components, framework, quality" />
+	<meta name="author" content="dotxp" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Wed, 04 Aug 2010 13:07:34 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="ezcDocumentWikiDocbookVisitor.html" />
+	<meta name="DC.creator" content="dotxp" />
+	<meta name="DC.date" content="Wed, 04 Aug 2010 13:07:34 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/Document/phpdoc/ezcDocumentWikiDocbookVisitor.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/Document/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/trunk/Document/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Document/conversion.html" title="Conversion ">Conversion </a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Document/styles.html" title="Styles ">Styles </a>
+	</li>
+
+</ul>
+
+		
+  <div class="phpdoc">
+    <h2>Apache Zeta Components Manual :: Docs For Class ezcDocumentWikiDocbookVisitor</h2>
+
+                  <h3>Document::ezcDocumentWikiDocbookVisitor</h3>
+    
+<a name="sec-description"></a>
+<h3>Class ezcDocumentWikiDocbookVisitor</h3>
+
+<p>Docbook visitor for the Wiki AST.</p>
+<p>Source for this file: <a href="http://fisheye6.atlassian.com/browse/zetacomponents/trunk/Document/src/document/wiki/visitor/docbook.php?r=HEAD">/Document/src/document/wiki/visitor/docbook.php</a></p>
+       
+
+
+<pre><a href="ezcDocumentWikiVisitor.html">ezcDocumentWikiVisitor</a>
+   |
+   --ezcDocumentWikiDocbookVisitor</pre>
+
+
+  <table><tr><td>
+            <strong>Version:</strong>&#8192;&#8192;
+          </td>
+          <td>//autogen//</td>
+        </tr></table><a name="sec-var-summary"></a>
+  <h3>Member Variables</h3>
+  <table class="summary"><tr><td class="right">
+            <em>protected</em>            <em>array</em>          </td>
+          <td>
+            <code>
+              $complexVisitMapping
+               = <span class="var-default">array(<br>        'ezcDocumentWikiTextNode'           =&gt; 'visitText',<br>        'ezcDocumentWikiSeparatorNode'      =&gt; 'visitText',<br>        'ezcDocumentWikiBoldNode'           =&gt; 'visitEmphasisMarkup',<br>        'ezcDocumentWikiItalicNode'         =&gt; 'visitEmphasisMarkup',<br>        'ezcDocumentWikiUnderlineNode'      =&gt; 'visitEmphasisMarkup',<br>        'ezcDocumentWikiTitleNode'          =&gt; 'visitTitle',<br>        'ezcDocumentWikiLinkNode'           =&gt; 'visitLink',<br>        'ezcDocumentWikiExternalLinkNode'   =&gt; 'visitExternalLink',<br>        'ezcDocumentWikiInternalLinkNode'   =&gt; 'visitExternalLink',<br>        'ezcDocumentWikiInterWikiLinkNode'  =&gt; 'visitExternalLink',<br>        'ezcDocumentWikiBulletListNode'     =&gt; 'visitList',<br>        'ezcDocumentWikiEnumeratedListNode' =&gt; 'visitList',<br>        'ezcDocumentWikiImageNode'          =&gt; 'visitImages',<br>        'ezcDocumentWikiLiteralBlockNode'   =&gt; 'visitLiteralBlock',<br>        'ezcDocumentWikiInlineLiteralNode'  =&gt; 'visitLiteral',<br>        'ezcDocumentWikiTableRowNode'       =&gt; 'visitTableRow',<br>        'ezcDocumentWikiTableCellNode'      =&gt; 'visitTableCell',<br>        'ezcDocumentWikiLineBreakNode'      =&gt; 'visitLineBreak',<br>        'ezcDocumentWikiParagraphNode'      =&gt; 'visitParagraph',<br>        'ezcDocumentWikiBlockquoteNode'     =&gt; 'visitBlockquote',<br>        'ezcDocumentWikiFootnoteNode'       =&gt; 'visitFootnote',<br>        'ezcDocumentWikiPluginNode'         =&gt; 'visitPlugin',<br><br>        // Node markup is ignored, because there is no equivalent in docbook<br>        'ezcDocumentWikiDeletedNode'   =&gt; 'visitChildren',<br>    )</span>            </code>
+            <br><div style="margin-left: 20px">Mapping of class names to internal visitors for the respective nodes.</div>                      </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            <em>DOMDocument</em>          </td>
+          <td>
+            <code>
+              $document
+                          </code>
+            <br><div style="margin-left: 20px">DOM document</div>                      </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            <em>array</em>          </td>
+          <td>
+            <code>
+              $simpleVisitMapping
+               = <span class="var-default">array(<br>        'ezcDocumentWikiSectionNode'            =&gt; 'section',<br>        'ezcDocumentWikiInlineQuoteNode'        =&gt; 'quote',<br>        'ezcDocumentWikiSuperscriptNode'        =&gt; 'superscript',<br>        'ezcDocumentWikiSubscriptNode'          =&gt; 'subscript',<br>        'ezcDocumentWikiMonospaceNode'          =&gt; 'literal',<br>        'ezcDocumentWikiBulletListItemNode'     =&gt; 'listitem',<br>        'ezcDocumentWikiEnumeratedListItemNode' =&gt; 'listitem',<br>        'ezcDocumentWikiPageBreakNode'          =&gt; 'beginpage',<br><br>        'ezcDocumentWikiTableNode'              =&gt; 'table',<br>    )</span>            </code>
+            <br><div style="margin-left: 20px">Direct mapping of AST node class names to docbook element names.</div>                      </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            <em>array</em>          </td>
+          <td>
+            <code>
+              $skipNodes
+               = <span class="var-default">array()</span>            </code>
+            <br><div style="margin-left: 20px">Array with nodes, which can be ignored during the transformation  process, they only provide additional information during preprocessing.</div>                      </td>
+        </tr></table><h3>Inherited Member Variables</h3>
+  <table class="summary"><thead><tr><th colspan="2">
+            From <span class="classname"><a href="ezcDocumentWikiVisitor.html">ezcDocumentWikiVisitor</a></span>         
+          </th>
+        </tr></thead><tbody><tr><td class="right">
+              <em>protected</em>                          </td>
+            <td>
+              <code><a href="ezcDocumentWikiVisitor.html#var%24ast">ezcDocumentWikiVisitor::$ast</a></code>
+              
+            </td>
+          </tr><tr><td class="right">
+              <em>protected</em>                          </td>
+            <td>
+              <code><a href="ezcDocumentWikiVisitor.html#var%24errors">ezcDocumentWikiVisitor::$errors</a></code>
+              
+            </td>
+          </tr><tr><td class="right">
+              <em>protected</em>                          </td>
+            <td>
+              <code><a href="ezcDocumentWikiVisitor.html#var%24footnoteCounter">ezcDocumentWikiVisitor::$footnoteCounter</a></code>
+              
+            </td>
+          </tr><tr><td class="right">
+              <em>protected</em>                          </td>
+            <td>
+              <code><a href="ezcDocumentWikiVisitor.html#var%24footnotes">ezcDocumentWikiVisitor::$footnotes</a></code>
+              
+            </td>
+          </tr><tr><td class="right">
+              <em>protected</em>                          </td>
+            <td>
+              <code><a href="ezcDocumentWikiVisitor.html#var%24wiki">ezcDocumentWikiVisitor::$wiki</a></code>
+              
+            </td>
+          </tr></tbody></table><a name="sec-method-summary"></a>
+  <h3>Method Summary</h3>
+  <table class="summary"><tr><td class="right">
+            <em>protected</em>                        <em>bool</em>          </td>
+          <td>
+            <code>
+              <a href="#isInlineNode"><b>isInlineNode</b></a>(
+                                                                                    $node
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Is inline node?</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>mixed</em>          </td>
+          <td>
+            <code>
+              <a href="#visit"><b>visit</b></a>(
+                                                                                    $ast
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Docarate Wiki AST</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#visitBlockquote"><b>visitBlockquote</b></a>(
+                                                                                    $root
+                                                    ,                                     $node
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Visit blockquote</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#visitEmphasisMarkup"><b>visitEmphasisMarkup</b></a>(
+                                                                                    $root
+                                                    ,                                     $node
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Visit emphasis markup</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#visitExternalLink"><b>visitExternalLink</b></a>(
+                                                                                    $root
+                                                    ,                                     $node
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Visit external link node</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#visitFootnote"><b>visitFootnote</b></a>(
+                                                                                    $root
+                                                    ,                                     $node
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Visit footnote</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#visitImages"><b>visitImages</b></a>(
+                                                                                    $root
+                                                    ,                                     $node
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Visit images</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#visitLineBreak"><b>visitLineBreak</b></a>(
+                                                                                    $root
+                                                    ,                                     $node
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Visit line break</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#visitLink"><b>visitLink</b></a>(
+                                                                                    $root
+                                                    ,                                     $node
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Visit link node</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#visitList"><b>visitList</b></a>(
+                                                                                    $root
+                                                    ,                                     $node
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Visit list</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#visitLiteral"><b>visitLiteral</b></a>(
+                                                                                    $root
+                                                    ,                                     $node
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Visit literal</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#visitLiteralBlock"><b>visitLiteralBlock</b></a>(
+                                                                                    $root
+                                                    ,                                     $node
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Visit literal block</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#visitNode"><b>visitNode</b></a>(
+                                                                                    $root
+                                                    ,                                     $node
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Visit single AST node</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#visitParagraph"><b>visitParagraph</b></a>(
+                                                                                    $root
+                                                    ,                                     $node
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Visit paragraph</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#visitPlugin"><b>visitPlugin</b></a>(
+                                                                                    $root
+                                                    ,                                     $node
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Visit plugin</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#visitTableCell"><b>visitTableCell</b></a>(
+                                                                                    $root
+                                                    ,                                     $node
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Visit table cell</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#visitTableRow"><b>visitTableRow</b></a>(
+                                                                                    $root
+                                                    ,                                     $node
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Visit table row</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#visitTitle"><b>visitTitle</b></a>(
+                                                                                    $root
+                                                    ,                                     $node
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Visit section titles</div>          </td>
+        </tr></table><h3>Inherited Methods</h3>
+  <table class="summary"><thead><tr><th colspan="2">
+            From <span class="classname"><a href="ezcDocumentWikiVisitor.html">ezcDocumentWikiVisitor</a></span>
+          </th>
+        </tr></thead><tbody><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b><a href="ezcDocumentWikiVisitor.html#method__construct">ezcDocumentWikiVisitor::__construct()</a></b></code>
+              <br><div style="margin-left: 20px">Create visitor from Wiki document handler.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>protected</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b><a href="ezcDocumentWikiVisitor.html#methodaddFootnote">ezcDocumentWikiVisitor::addFootnote()</a></b></code>
+              <br><div style="margin-left: 20px">Add footnote</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>array</em>            </td>
+            <td>
+              <code><b><a href="ezcDocumentWikiVisitor.html#methodgetErrors">ezcDocumentWikiVisitor::getErrors()</a></b></code>
+              <br><div style="margin-left: 20px">Return list of errors occured during visiting the document.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em><a href="ezcDocumentWikiFootnoteNode.html">ezcDocumentWikiFootnoteNode</a></em>            </td>
+            <td>
+              <code><b><a href="ezcDocumentWikiVisitor.html#methodhasFootnoteTarget">ezcDocumentWikiVisitor::hasFootnoteTarget()</a></b></code>
+              <br><div style="margin-left: 20px">Check for internal footnote reference target</div>                          </td>
+          </tr><tr><td class="right">
+              <em>protected</em>                                          <em>string</em>            </td>
+            <td>
+              <code><b><a href="ezcDocumentWikiVisitor.html#methodnodeListToString">ezcDocumentWikiVisitor::nodeListToString()</a></b></code>
+              <br><div style="margin-left: 20px">Node list to string</div>                          </td>
+          </tr><tr><td class="right">
+              <em>protected</em>                                          <em>string</em>            </td>
+            <td>
+              <code><b><a href="ezcDocumentWikiVisitor.html#methodnodeToString">ezcDocumentWikiVisitor::nodeToString()</a></b></code>
+              <br><div style="margin-left: 20px">Transform a node tree into a string</div>                          </td>
+          </tr><tr><td class="right">
+              <em>protected</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b><a href="ezcDocumentWikiVisitor.html#methodpreProcessAst">ezcDocumentWikiVisitor::preProcessAst()</a></b></code>
+              <br><div style="margin-left: 20px">Pre process AST</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b><a href="ezcDocumentWikiVisitor.html#methodtriggerError">ezcDocumentWikiVisitor::triggerError()</a></b></code>
+              <br><div style="margin-left: 20px">Trigger visitor error</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>mixed</em>            </td>
+            <td>
+              <code><b><a href="ezcDocumentWikiVisitor.html#methodvisit">ezcDocumentWikiVisitor::visit()</a></b></code>
+              <br><div style="margin-left: 20px">Docarate Wiki AST</div>                          </td>
+          </tr><tr><td class="right">
+              <em>protected</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b><a href="ezcDocumentWikiVisitor.html#methodvisitChildren">ezcDocumentWikiVisitor::visitChildren()</a></b></code>
+              <br><div style="margin-left: 20px">Visit children</div>                          </td>
+          </tr><tr><td class="right">
+              <em>protected</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b><a href="ezcDocumentWikiVisitor.html#methodvisitText">ezcDocumentWikiVisitor::visitText()</a></b></code>
+              <br><div style="margin-left: 20px">Visit text node</div>                          </td>
+          </tr></tbody></table><a name="sec-methods"></a>
+  <h3>Methods</h3>
+  <a name="method_detail"></a>
+                                    
+      <a name="methodisInlineNode" id="isInlineNode"><!-- --></a>
+
+    <h4>isInlineNode</h4>
+
+    <div class="method-signature">
+      bool
+      isInlineNode(
+                                  
+          $node
+                        )
+    </div>
+
+    <p>Is inline node?</p><div><p>Check if contents of the current node are a inline node</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$node</code></td>
+              <td><em>DOMNode</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodvisit" id="visit"><!-- --></a>
+
+    <h4>visit</h4>
+
+    <div class="method-signature">
+      mixed
+      visit(
+                                  <a href="ezcDocumentWikiDocumentNode.html">ezcDocumentWikiDocumentNode</a>
+          $ast
+                        )
+    </div>
+
+    <p>Docarate Wiki AST</p><div><p>Visit the Wiki abstract syntax tree.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$ast</code></td>
+              <td><em><a href="ezcDocumentWikiDocumentNode.html">ezcDocumentWikiDocumentNode</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcDocumentWikiVisitor.html#methodvisit">ezcDocumentWikiVisitor::visit()</a></code></td>
+            <td>
+                              Docarate Wiki AST
+                          </td>
+          </tr></tbody></table><a name="methodvisitBlockquote" id="visitBlockquote"><!-- --></a>
+
+    <h4>visitBlockquote</h4>
+
+    <div class="method-signature">
+      void
+      visitBlockquote(
+                                  
+          $root
+                            ,           <a href="ezcDocumentWikiNode.html">ezcDocumentWikiNode</a>
+          $node
+                        )
+    </div>
+
+    <p>Visit blockquote</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$root</code></td>
+              <td><em>DOMNode</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$node</code></td>
+              <td><em><a href="ezcDocumentWikiNode.html">ezcDocumentWikiNode</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodvisitEmphasisMarkup" id="visitEmphasisMarkup"><!-- --></a>
+
+    <h4>visitEmphasisMarkup</h4>
+
+    <div class="method-signature">
+      void
+      visitEmphasisMarkup(
+                                  
+          $root
+                            ,           <a href="ezcDocumentWikiNode.html">ezcDocumentWikiNode</a>
+          $node
+                        )
+    </div>
+
+    <p>Visit emphasis markup</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$root</code></td>
+              <td><em>DOMNode</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$node</code></td>
+              <td><em><a href="ezcDocumentWikiNode.html">ezcDocumentWikiNode</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodvisitExternalLink" id="visitExternalLink"><!-- --></a>
+
+    <h4>visitExternalLink</h4>
+
+    <div class="method-signature">
+      void
+      visitExternalLink(
+                                  
+          $root
+                            ,           <a href="ezcDocumentWikiNode.html">ezcDocumentWikiNode</a>
+          $node
+                        )
+    </div>
+
+    <p>Visit external link node</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$root</code></td>
+              <td><em>DOMNode</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$node</code></td>
+              <td><em><a href="ezcDocumentWikiNode.html">ezcDocumentWikiNode</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodvisitFootnote" id="visitFootnote"><!-- --></a>
+
+    <h4>visitFootnote</h4>
+
+    <div class="method-signature">
+      void
+      visitFootnote(
+                                  
+          $root
+                            ,           <a href="ezcDocumentWikiNode.html">ezcDocumentWikiNode</a>
+          $node
+                        )
+    </div>
+
+    <p>Visit footnote</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$root</code></td>
+              <td><em>DOMNode</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$node</code></td>
+              <td><em><a href="ezcDocumentWikiNode.html">ezcDocumentWikiNode</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodvisitImages" id="visitImages"><!-- --></a>
+
+    <h4>visitImages</h4>
+
+    <div class="method-signature">
+      void
+      visitImages(
+                                  
+          $root
+                            ,           <a href="ezcDocumentWikiNode.html">ezcDocumentWikiNode</a>
+          $node
+                        )
+    </div>
+
+    <p>Visit images</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$root</code></td>
+              <td><em>DOMNode</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$node</code></td>
+              <td><em><a href="ezcDocumentWikiNode.html">ezcDocumentWikiNode</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodvisitLineBreak" id="visitLineBreak"><!-- --></a>
+
+    <h4>visitLineBreak</h4>
+
+    <div class="method-signature">
+      void
+      visitLineBreak(
+                                  
+          $root
+                            ,           <a href="ezcDocumentWikiNode.html">ezcDocumentWikiNode</a>
+          $node
+                        )
+    </div>
+
+    <p>Visit line break</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$root</code></td>
+              <td><em>DOMNode</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$node</code></td>
+              <td><em><a href="ezcDocumentWikiNode.html">ezcDocumentWikiNode</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodvisitLink" id="visitLink"><!-- --></a>
+
+    <h4>visitLink</h4>
+
+    <div class="method-signature">
+      void
+      visitLink(
+                                  
+          $root
+                            ,           <a href="ezcDocumentWikiNode.html">ezcDocumentWikiNode</a>
+          $node
+                        )
+    </div>
+
+    <p>Visit link node</p><div><p>Docbook has no support for description of links, so that the description  elements in the AST are omitted.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$root</code></td>
+              <td><em>DOMNode</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$node</code></td>
+              <td><em><a href="ezcDocumentWikiNode.html">ezcDocumentWikiNode</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodvisitList" id="visitList"><!-- --></a>
+
+    <h4>visitList</h4>
+
+    <div class="method-signature">
+      void
+      visitList(
+                                  
+          $root
+                            ,           <a href="ezcDocumentWikiNode.html">ezcDocumentWikiNode</a>
+          $node
+                        )
+    </div>
+
+    <p>Visit list</p><div><p>Ensure stacked lists are created inside another list item.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$root</code></td>
+              <td><em>DOMNode</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$node</code></td>
+              <td><em><a href="ezcDocumentWikiNode.html">ezcDocumentWikiNode</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodvisitLiteral" id="visitLiteral"><!-- --></a>
+
+    <h4>visitLiteral</h4>
+
+    <div class="method-signature">
+      void
+      visitLiteral(
+                                  
+          $root
+                            ,           <a href="ezcDocumentWikiNode.html">ezcDocumentWikiNode</a>
+          $node
+                        )
+    </div>
+
+    <p>Visit literal</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$root</code></td>
+              <td><em>DOMNode</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$node</code></td>
+              <td><em><a href="ezcDocumentWikiNode.html">ezcDocumentWikiNode</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodvisitLiteralBlock" id="visitLiteralBlock"><!-- --></a>
+
+    <h4>visitLiteralBlock</h4>
+
+    <div class="method-signature">
+      void
+      visitLiteralBlock(
+                                  
+          $root
+                            ,           <a href="ezcDocumentWikiNode.html">ezcDocumentWikiNode</a>
+          $node
+                        )
+    </div>
+
+    <p>Visit literal block</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$root</code></td>
+              <td><em>DOMNode</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$node</code></td>
+              <td><em><a href="ezcDocumentWikiNode.html">ezcDocumentWikiNode</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodvisitNode" id="visitNode"><!-- --></a>
+
+    <h4>visitNode</h4>
+
+    <div class="method-signature">
+      void
+      visitNode(
+                                  
+          $root
+                            ,           <a href="ezcDocumentWikiNode.html">ezcDocumentWikiNode</a>
+          $node
+                        )
+    </div>
+
+    <p>Visit single AST node</p><div><p>Visit a single AST node, may be called for each node found anywhere  as child. The current position in the DOMDocument is passed by a  reference to the current DOMNode, which is operated on.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$root</code></td>
+              <td><em>DOMNode</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$node</code></td>
+              <td><em><a href="ezcDocumentWikiNode.html">ezcDocumentWikiNode</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodvisitParagraph" id="visitParagraph"><!-- --></a>
+
+    <h4>visitParagraph</h4>
+
+    <div class="method-signature">
+      void
+      visitParagraph(
+                                  
+          $root
+                            ,           <a href="ezcDocumentWikiNode.html">ezcDocumentWikiNode</a>
+          $node
+                        )
+    </div>
+
+    <p>Visit paragraph</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$root</code></td>
+              <td><em>DOMNode</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$node</code></td>
+              <td><em><a href="ezcDocumentWikiNode.html">ezcDocumentWikiNode</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodvisitPlugin" id="visitPlugin"><!-- --></a>
+
+    <h4>visitPlugin</h4>
+
+    <div class="method-signature">
+      void
+      visitPlugin(
+                                  
+          $root
+                            ,           <a href="ezcDocumentWikiNode.html">ezcDocumentWikiNode</a>
+          $node
+                        )
+    </div>
+
+    <p>Visit plugin</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$root</code></td>
+              <td><em>DOMNode</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$node</code></td>
+              <td><em><a href="ezcDocumentWikiNode.html">ezcDocumentWikiNode</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodvisitTableCell" id="visitTableCell"><!-- --></a>
+
+    <h4>visitTableCell</h4>
+
+    <div class="method-signature">
+      void
+      visitTableCell(
+                                  
+          $root
+                            ,           <a href="ezcDocumentWikiNode.html">ezcDocumentWikiNode</a>
+          $node
+                        )
+    </div>
+
+    <p>Visit table cell</p><div><p>Visit a table cell and additionally always create an inner paragraph.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$root</code></td>
+              <td><em>DOMNode</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$node</code></td>
+              <td><em><a href="ezcDocumentWikiNode.html">ezcDocumentWikiNode</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodvisitTableRow" id="visitTableRow"><!-- --></a>
+
+    <h4>visitTableRow</h4>
+
+    <div class="method-signature">
+      void
+      visitTableRow(
+                                  
+          $root
+                            ,           <a href="ezcDocumentWikiNode.html">ezcDocumentWikiNode</a>
+          $node
+                        )
+    </div>
+
+    <p>Visit table row</p><div><p>Visit a table row and decide if it belongs into a tbody or a thead  section.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$root</code></td>
+              <td><em>DOMNode</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$node</code></td>
+              <td><em><a href="ezcDocumentWikiNode.html">ezcDocumentWikiNode</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodvisitTitle" id="visitTitle"><!-- --></a>
+
+    <h4>visitTitle</h4>
+
+    <div class="method-signature">
+      void
+      visitTitle(
+                                  
+          $root
+                            ,           <a href="ezcDocumentWikiNode.html">ezcDocumentWikiNode</a>
+          $node
+                        )
+    </div>
+
+    <p>Visit section titles</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$root</code></td>
+              <td><em>DOMNode</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$node</code></td>
+              <td><em><a href="ezcDocumentWikiNode.html">ezcDocumentWikiNode</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><div class="credit">
+      Documentation generated by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+    </div>
+  </div>
+  
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

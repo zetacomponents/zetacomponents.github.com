@@ -1,0 +1,256 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="PHP, apache, components, framework, quality" />
+	<meta name="author" content="dotxp" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Wed, 04 Aug 2010 13:07:09 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="Tutorial" />
+	<meta name="DC.creator" content="dotxp" />
+	<meta name="DC.date" content="Wed, 04 Aug 2010 13:07:09 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/Debug/tutorial.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li class="requested">
+	<a href="/zetacomponents/documentation/trunk/Debug/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Debug/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Debug/example_stylesheet.html" title="Example_stylesheet ">Example_stylesheet </a>
+	</li>
+
+</ul>
+
+		<h2>eZ Components - Debug</h2><div class="toc"><h3>Table of Contents</h3><ul><li><p><a href="#introduction">Introduction</a></p></li><li><p><a href="#class-overview">Class overview</a></p></li><li><p><a href="#usage">Usage</a></p><ul><li><p><a href="#writing-a-log-message-to-file">Writing a log message to file</a></p></li><li><p><a href="#timers">Timers</a></p></li><li><p><a href="#recursive-timers">Recursive timers</a></p></li><li><p><a href="#stack-traces">Stack traces</a></p><ul><li><p><a href="#global-stack-trace-switch">1) Global stack trace switch</a></p></li><li><p><a href="#local-stack-trace-switch">2) Local stack trace switch</a></p></li></ul></li></ul></li></ul></div><a name="introduction"></a><a name="id1"></a><h3>Introduction</h3><p>The Debug component provides an API to log and time debug events. This component depends mainly on the EventLog component. The functionality of the Debug component is divided into two parts:</p><ul><li><p>Writing debug messages.</p></li><li><p>Measuring the execution time.</p></li></ul><p>Writing a debug message is almost the same as writing a message with the EventLog component. However, there is one major distinction: messages written with the EventLog component are intended to be written to a storage element (such as a log file or database). Messages written with the Debug component are usually directly formatted and displayed. Note that the Debug::log() method has a slightly different signature than the EventLog::log() method.</p><p>Timing information is captured by starting and stopping timers using the public methods from <a href='/zetacomponents/documentation/trunk/Debug/phpdoc/ezcDebug.html'>ezcDebug</a>. The timing information is stored in a structure with raw data. This structure should be formatted and displayed at the end of the script.</p><p>The Debug summary output can be formatted with an implementation from <a href='/zetacomponents/documentation/trunk/Debug/phpdoc/ezcDebugOutputFormatter.html'>ezcDebugOutputFormatter</a>. The default, and currently only, formatter is <a href='/zetacomponents/documentation/trunk/Debug/phpdoc/ezcDebugHtmlFormatter.html'>ezcDebugHtmlFormatter</a>. This HTML formatter transforms the raw log messages and raw timing information into a HTML string for display.</p><a name="class-overview"></a><a name="id2"></a><h3>Class overview</h3><p>The following classes are the most important to use, extend or implement:</p><dl><dt>ezcDebug</dt><dd>This provides the public API for writing Debug messages and capturing timing information.</dd><dt>ezcDebugOptions</dt><dd>Allows you to switch on debug stack traces and to configure their appearance.</dd><dt>ezcDebugOutputFormatter</dt><dd>ezcDebugOutputFormatter provides an interface for the debug output format. New implementations can format the raw log messages and timing information to any output format.</dd><dt>ezcDebugHtmlFormatter</dt><dd>ezcDebugHtmlFormatter is an implementation of the <a href='/zetacomponents/documentation/trunk/Debug/phpdoc/ezcDebugOutputFormatter.html'>ezcDebugOutputFormatter</a> interface. This formatter reads the raw log and timing information and returns it as an HTML string. This string can be output directly to an HTML page.</dd></dl><p>See the API documentation for more information.</p><a name="usage"></a><a name="id3"></a><h3>Usage</h3><a name="writing-a-log-message-to-file"></a><a name="id4"></a><h4>Writing a log message to file</h4><p>The following script writes a message to the Debug component. At the end of the script, the log message is formatted and printed.</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li></li>
+<li><span style="color: #0000FF">require_once&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000">date_default_timezone_set</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">"UTC"&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Get&nbsp;the&nbsp;one&nbsp;and&nbsp;only&nbsp;instance&nbsp;of&nbsp;the&nbsp;<a href='/zetacomponents/documentation/trunk/Debug/phpdoc/ezcDebug.html'>ezcDebug</a>.</span></li>
+<li><span style="color: #000000">$debug&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Debug/phpdoc/ezcDebug.html#getInstance'>ezcDebug::getInstance</a></span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Write&nbsp;a&nbsp;log&nbsp;message&nbsp;with&nbsp;verbosity&nbsp;1.</span></li>
+<li><span style="color: #000000">$debug</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">log</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">"Connecting&nbsp;with&nbsp;the&nbsp;Payment&nbsp;server"</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">1&nbsp;</span><span style="color: #0000FF">);&nbsp;&nbsp;</span></li>
+<li></li>
+<li><span style="color: #000000">$debug</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">log</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">"Connected&nbsp;with&nbsp;the&nbsp;Payment&nbsp;server"</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">2</span><span style="color: #0000FF">,&nbsp;array(&nbsp;</span><span style="color: #335533">"source"&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #335533">"shop"</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">"category"&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #335533">"payment"&nbsp;</span><span style="color: #0000FF">)&nbsp;);&nbsp;&nbsp;</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Get&nbsp;HTML&nbsp;output.</span></li>
+<li><span style="color: #000000">$output&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$debug</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">generateOutput</span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #0000FF">echo&nbsp;</span><span style="color: #000000">$output</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><p>Writing log messages is almost the same as writing them to the EventLog component. As a matter of fact, the EventLog component is internally used by Debug.</p><p>Further information about writing log messages can be found in the EventLog component.</p><a name="timers"></a><a name="id5"></a><h4>Timers</h4><p>The timers from <a href='/zetacomponents/documentation/trunk/Debug/phpdoc/ezcDebug.html'>ezcDebug</a> can be used for two purposes:</p><ul><li><p>Timers measure the time between two points in the program.</p></li><li><p>Accumulators get the current time after a certain point (for example after starting the script).</p></li></ul><p>Both methods are executed with <a href='/zetacomponents/documentation/trunk/Debug/phpdoc/ezcDebug.html#startTimer'>ezcDebug::startTimer</a>(), <a href='/zetacomponents/documentation/trunk/Debug/phpdoc/ezcDebug.html#stopTimer'>ezcDebug::stopTimer</a>() and <a href='/zetacomponents/documentation/trunk/Debug/phpdoc/ezcDebug.html#switchTimer'>ezcDebug::switchTimer</a>(). The next script demonstrates the usage of these methods:</p><ol class="code">
+<li>&lt;style&nbsp;type="text/css"&gt;@import&nbsp;url("example_stylesheet.txt");&lt;/style&gt;</li>
+<li><span style="color: #000000">&lt;?php</span></li>
+<li></li>
+<li><span style="color: #0000FF">require_once&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000">date_default_timezone_set</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">"UTC"&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Get&nbsp;the&nbsp;one&nbsp;and&nbsp;only&nbsp;instance&nbsp;of&nbsp;the&nbsp;<a href='/zetacomponents/documentation/trunk/Debug/phpdoc/ezcDebug.html'>ezcDebug</a>.</span></li>
+<li><span style="color: #000000">$debug&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Debug/phpdoc/ezcDebug.html#getInstance'>ezcDebug::getInstance</a></span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Start&nbsp;the&nbsp;accumulator.</span></li>
+<li><span style="color: #000000">$debug</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">startTimer</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">"Program&nbsp;runtime"</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">"Accumulators"&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$debug</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">switchTimer</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">"Start"</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">"Program&nbsp;runtime"&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Measure&nbsp;the&nbsp;time&nbsp;of&nbsp;writing&nbsp;"hello&nbsp;world".</span></li>
+<li><span style="color: #007700">//&nbsp;The&nbsp;name&nbsp;of&nbsp;the&nbsp;timer&nbsp;is:&nbsp;"Hello&nbsp;world"&nbsp;and&nbsp;it&nbsp;will&nbsp;be&nbsp;placed&nbsp;in&nbsp;the&nbsp;group:&nbsp;"output".&nbsp;</span></li>
+<li><span style="color: #000000">$debug</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">startTimer&nbsp;</span><span style="color: #0000FF">(</span><span style="color: #335533">"Hello&nbsp;world"</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">"output"&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #0000FF">echo&nbsp;</span><span style="color: #335533">"Hello&nbsp;world&lt;br/&gt;"</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000">$debug</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">stopTimer</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">"Hello&nbsp;world"&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Replace&nbsp;the&nbsp;"Start"&nbsp;timer&nbsp;for&nbsp;"Half&nbsp;the&nbsp;way".</span></li>
+<li><span style="color: #000000">$debug</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">switchTimer</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">"Half&nbsp;the&nbsp;way"</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">"Start"&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Measure&nbsp;the&nbsp;time&nbsp;of&nbsp;writing&nbsp;"cruel&nbsp;world".</span></li>
+<li><span style="color: #000000">$debug</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">startTimer</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">"Goodbye&nbsp;cruel&nbsp;world"</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">"output"&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #0000FF">echo&nbsp;</span><span style="color: #335533">"Goodbye&nbsp;cruel&nbsp;world&lt;br/&gt;"</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000">$debug</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">stopTimer</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">"Goodbye&nbsp;cruel&nbsp;world"&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Stop&nbsp;the&nbsp;last&nbsp;timer.</span></li>
+<li><span style="color: #000000">$debug</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">switchTimer</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">"Stop"</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">"Half&nbsp;the&nbsp;way"&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$debug</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">stopTimer</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">"Stop"&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Get&nbsp;HTML&nbsp;output.</span></li>
+<li><span style="color: #000000">$output&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$debug</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">generateOutput</span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #0000FF">echo&nbsp;</span><span style="color: #335533">"&lt;br/&gt;&lt;br/&gt;"</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">echo&nbsp;</span><span style="color: #000000">$output</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><p>The output is as follows (if the CSS stylesheet is used that is available through "Example Stylesheet" in the menu):</p><div class="&#10;&#9;&#9;&#9;&#9;&#9;image &#10;&#9;&#9;&#9;&#9;&#9;&#10;&#9;&#9;&#9;&#9;&#9;&#9;&#9;center&#10;&#9;&#9;&#9;&#9;&#9;&#9; "><img alt="" title="" src="img/debug_tutorial_timers.png"/><span class="image_title"/></div><p>The output has two groups: output and accumulators. There are two timers in the "output" group: "Hello world" and "Goodbye cruel world".</p><p>The "accumulators" group has one timer called "Program runtime". This timer took a total of 0.00034 seconds. In this timer are several "switch timers". These show the time since the "Program runtime" was started.</p><a name="recursive-timers"></a><a name="id6"></a><h4>Recursive timers</h4><p>You can also time repeating code blocks. For example, you can measure the time a PHP statement takes in a loop. The Debug timer will calculate the average time of the repeating statement and display it in the debug summary. See the next example:</p><ol class="code">
+<li>&lt;style&nbsp;type="text/css"&gt;@import&nbsp;url("example_stylesheet.txt");&lt;/style&gt;</li>
+<li><span style="color: #000000">&lt;?php</span></li>
+<li></li>
+<li><span style="color: #0000FF">require_once&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000">date_default_timezone_set</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">"UTC"&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Get&nbsp;the&nbsp;one&nbsp;and&nbsp;only&nbsp;instance&nbsp;of&nbsp;the&nbsp;<a href='/zetacomponents/documentation/trunk/Debug/phpdoc/ezcDebug.html'>ezcDebug</a>.</span></li>
+<li><span style="color: #000000">$debug&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Debug/phpdoc/ezcDebug.html#getInstance'>ezcDebug::getInstance</a></span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Start&nbsp;the&nbsp;accumulator.</span></li>
+<li><span style="color: #000000">$debug</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">startTimer</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">"Script&nbsp;runtime"</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">"Accumulators"&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Store&nbsp;the&nbsp;name&nbsp;of&nbsp;the&nbsp;accumulator.</span></li>
+<li><span style="color: #000000">$accumulatorName&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">"start"</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000">$debug</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">switchTimer</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$accumulatorName</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">"Script&nbsp;runtime"&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Time&nbsp;the&nbsp;loop.</span></li>
+<li><span style="color: #000000">$debug</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">startTimer&nbsp;</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">"Five&nbsp;times&nbsp;Hello&nbsp;world"</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">"output"&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #0000FF">for(&nbsp;</span><span style="color: #000000">$i&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">0</span><span style="color: #0000FF">;&nbsp;</span><span style="color: #000000">$i&nbsp;</span><span style="color: #0000FF">&lt;&nbsp;</span><span style="color: #000000">5</span><span style="color: #0000FF">;&nbsp;</span><span style="color: #000000">$i</span><span style="color: #0000FF">++&nbsp;)</span></li>
+<li><span style="color: #0000FF">{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">//&nbsp;Time&nbsp;the&nbsp;"Hello&nbsp;world"&nbsp;only.</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$debug</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">startTimer&nbsp;</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">"Hello&nbsp;world"</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">"output"&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #335533">"Hello&nbsp;world&lt;br/&gt;"</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$debug</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">stopTimer</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">"Hello&nbsp;world"&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">//&nbsp;Store&nbsp;the&nbsp;accumulator.</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$debug</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">switchTimer</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">"After:&nbsp;hello&nbsp;world"</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">$accumulatorName&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$accumulatorName&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">"After:&nbsp;hello&nbsp;world"</span><span style="color: #0000FF">;&nbsp;</span></li>
+<li><span style="color: #0000FF">}</span></li>
+<li><span style="color: #000000">$debug</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">stopTimer</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">"Five&nbsp;times&nbsp;Hello&nbsp;world"&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Stop&nbsp;the&nbsp;accumulator</span></li>
+<li><span style="color: #000000">$debug</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">switchTimer</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">"stop"</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">$accumulatorName&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$debug</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">stopTimer</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">"stop"&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Get&nbsp;HTML&nbsp;output.</span></li>
+<li><span style="color: #000000">$output&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$debug</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">generateOutput</span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #0000FF">echo&nbsp;</span><span style="color: #335533">"&lt;br/&gt;&lt;br/&gt;"</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">echo&nbsp;</span><span style="color: #000000">$output</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><p>The resulting output is as follows (if the CSS stylesheet is used that is available through "Example Stylesheet" in the menu):</p><div class="&#10;&#9;&#9;&#9;&#9;&#9;image &#10;&#9;&#9;&#9;&#9;&#9;&#10;&#9;&#9;&#9;&#9;&#9;&#9;&#9;center&#10;&#9;&#9;&#9;&#9;&#9;&#9; "><img alt="" title="" src="img/debug_tutorial_recursive_timers.png"/><span class="image_title"/></div><a name="stack-traces"></a><a name="id7"></a><h4>Stack traces</h4><p>Sometimes it is useful to get a stack trace for log messages. To achieve this, there are 2 possibilities offered by the Debug component:</p><a name="global-stack-trace-switch"></a><a name="id8"></a><h5>1) Global stack trace switch</h5><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li></li>
+<li><span style="color: #0000FF">require_once&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #000000">$debug&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Debug/phpdoc/ezcDebug.html#getInstance'>ezcDebug::getInstance</a></span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Switch&nbsp;on&nbsp;global&nbsp;stack&nbsp;traces.</span></li>
+<li><span style="color: #000000">$debug</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">options</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">stackTrace&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">true</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Configure&nbsp;stack&nbsp;trace&nbsp;appearance.</span></li>
+<li><span style="color: #000000">$debug</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">options</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">stackTraceDepth&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">3</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000">$debug</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">options</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">stackTraceMaxData&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">32</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000">$debug</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">options</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">stackTraceMaxChildren&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">3</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000">$debug</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">options</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">stackTraceMaxDepth&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">2</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;...&nbsp;somewhere&nbsp;else&nbsp;...</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Log&nbsp;with&nbsp;no&nbsp;explicit&nbsp;stacktrace&nbsp;indication</span></li>
+<li><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Debug/phpdoc/ezcDebug.html#getInstance'>ezcDebug::getInstance</a></span><span style="color: #0000FF">()-&gt;</span><span style="color: #000000">log</span><span style="color: #0000FF">(</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #335533">'Function&nbsp;testThis()&nbsp;has&nbsp;been&nbsp;called.'</span><span style="color: #0000FF">,</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Debug/phpdoc/ezcLog.html#constNOTICE'>ezcLog::NOTICE</a></span><span style="color: #0000FF">,</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;array(&nbsp;</span><span style="color: #335533">'additional'&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #335533">'info'&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;...&nbsp;somewhere&nbsp;else&nbsp;...</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Print&nbsp;out&nbsp;log&nbsp;with&nbsp;stacktraces.</span></li>
+<li><span style="color: #000000">$debug&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Debug/phpdoc/ezcDebug.html#getInstance'>ezcDebug::getInstance</a></span><span style="color: #0000FF">();</span></li>
+<li><span style="color: #0000FF">echo&nbsp;</span><span style="color: #000000">$debug</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">generateOutput</span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><p>In this example, the debug options (see: <a href='/zetacomponents/documentation/trunk/Debug/phpdoc/ezcDebugOptions.html'>ezcDebugOptions</a>) are used to switch on stack traces globally. The effect is, that whenever a debug message is logged, a stack trace is logged in addition. When printing the debug information, stack traces in the manor of <a href="http://xdebug.org/docs/stack_trace">Xdebug</a> are included in the output.</p><p>Beside the $stackTrace option itself, the appearance of the stack traces is configured. This configuration only takes effect, if <a href="http://xdebug.org/docs/stack_trace">Xdebug</a> is not installed. In this case, an own implementation is used to retrieve stack traces that look almost exactly like the Xdebug version. If Xdebug is installed, its internal settings will be used.</p><p>The possible options for stack traces are:</p><dl><dt>$stackTraceDepth</dt><dd>Defines the number of nested function calls included in the trace (starting at the most recent one). This option also affects <a href="http://xdebug.org/docs/stack_trace">Xdebug</a> generated stack traces. The default is 5.</dd><dt>$stackTraceMaxData</dt><dd>Maximum bytes of data to be dumped for variable values. The default is 512.</dd><dt>$stackTraceMaxChildren</dt><dd>Defines the maximum number of child elements that will be dumped for array and object structures. The default value is 128.</dd><dt>$stackTraceMaxDepth</dt><dd>Maximum level of iteration that is performed when dumping nested array or object structures.</dd></dl><a name="local-stack-trace-switch"></a><a name="id9"></a><h5>2) Local stack trace switch</h5><p>If stack traces are not desired with every log message, it is also possible to activate them when the log message is issued:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li></li>
+<li><span style="color: #0000FF">require_once&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;...&nbsp;inside&nbsp;some&nbsp;function...</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Log&nbsp;with&nbsp;no&nbsp;explicit&nbsp;stacktrace&nbsp;indication</span></li>
+<li><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Debug/phpdoc/ezcDebug.html#getInstance'>ezcDebug::getInstance</a></span><span style="color: #0000FF">()-&gt;</span><span style="color: #000000">log</span><span style="color: #0000FF">(</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #335533">'Function&nbsp;testThis()&nbsp;has&nbsp;been&nbsp;called.'</span><span style="color: #0000FF">,</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Debug/phpdoc/ezcLog.html#constNOTICE'>ezcLog::NOTICE</a></span><span style="color: #0000FF">,</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;array(&nbsp;</span><span style="color: #335533">'additional'&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #335533">'info'&nbsp;</span><span style="color: #0000FF">),</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">//&nbsp;Enable&nbsp;stack&nbsp;trace</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">true</span></li>
+<li><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;...&nbsp;somewhere&nbsp;else&nbsp;...</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Print&nbsp;out&nbsp;log&nbsp;with&nbsp;stacktraces.</span></li>
+<li><span style="color: #000000">$debug&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Debug/phpdoc/ezcDebug.html#getInstance'>ezcDebug::getInstance</a></span><span style="color: #0000FF">();</span></li>
+<li><span style="color: #0000FF">echo&nbsp;</span><span style="color: #000000">$debug</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">generateOutput</span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><!--Local Variables:
+mode: rst
+fill-column: 79
+End:
+vim: et syn=rst tw=79-->
+
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

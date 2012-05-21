@@ -1,0 +1,833 @@
+/**
+ * Reset CSS, so that we start with the same in all browsers
+ */
+html, body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, p, blockquote, th, td {
+    margin: 0;
+    padding: 0;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+fieldset, img {
+    border: 0;
+}
+address, caption, cite, code, dfn, em, strong, th, var {
+    font-style: normal;
+    font-weight: normal;
+}
+ol, ul {
+    list-style: none;
+}
+caption, th {
+    text-align: left;
+}
+h1, h2, h3, h4, h5, h6 {
+    font-size: 100%;
+}
+q:before, q:after {
+    content: '';
+}
+
+/**
+ * Custom CSS starts here
+ */
+
+html {
+    overflow-x: auto;
+    overflow-y: scroll;
+}
+
+body {
+	width: 800px;
+	margin: 0 auto;
+
+	font-family: sans-serif;
+	font-size: .8em;
+
+	background-color: #ffffff;
+	color: #2e3436;
+    border-left: 1px solid #babdb6;
+    border-right: 1px solid #babdb6;
+}
+
+/* Images */
+#box-contribute-bg-png {
+    background: transparent url( '/zetacomponents/images/sprite.png' ) -0px -0px;
+	background-repeat: no-repeat;
+    width: 224px;
+    height: 85px;
+}
+
+#box-documentation-bg-png {
+    background: transparent url( '/zetacomponents/images/sprite.png' ) -0px -85px;
+	background-repeat: no-repeat;
+    width: 224px;
+    height: 70px;
+}
+
+#box-download-bg-png {
+    background: transparent url( '/zetacomponents/images/sprite.png' ) -0px -155px;
+	background-repeat: no-repeat;
+    width: 144px;
+    height: 95px;
+    padding-right: 80px;
+}
+
+#header-png {
+    background: transparent url( '/zetacomponents/images/sprite.png' ) -0px -250px;
+	background-repeat: no-repeat;
+}
+
+/* Layout */
+h1 {
+    margin: 0px;
+    padding: 0px;
+    display: block;
+}
+
+h1 a {
+	text-indent: -9999px;
+    display: block;
+	overflow: hidden;
+
+	margin: 0;
+	padding: 0px;
+	height: 98px;
+}
+
+p {
+	font-family: sans-serif;
+	font-size: 1em;
+	color: #2e3436;
+}
+
+a {
+	color: #204a87;
+}
+
+img {
+	border: none;
+}
+
+div.content {
+	margin: 0px;
+	padding: 10px 10px 10px 20px;
+
+    background: #ffffff url( '/zetacomponents/images/background.png' );
+	background-repeat: no-repeat;
+}
+
+div.footer {
+	clear: both;
+	padding: 3px 5px;
+
+	text-align: right;
+	font-size: 10px;
+	color: #888a85;
+
+    height: 16px;
+
+    background: url( '/zetacomponents/images/bar.png' );
+	background-repeat: repeat-x;
+}
+
+div.header {
+	margin: 0px auto;
+	padding: 2px 5px;
+	height: 12px;
+
+	color: #eeeeef;
+	font-size: 10px;
+
+	background-color: #555753;
+}
+
+/* Boxes */
+
+div.box {
+    width: 224px;
+    border: 1px solid #2e3436;
+    float: right;
+    clear: right;
+    margin: 0px 0px 10px 10px;
+    padding: 0px;
+}
+
+div.box > div {
+    margin: 0px;
+    padding: 0px;
+    color: #ffffff;
+    float: none;
+}
+
+div.box p {
+    margin: 0px;
+    padding: 2px;
+    color: #ffffff;
+    font-size: 12px;
+}
+
+div.content div.box h3 {
+    padding: 3px 2px 5px 2px;
+    margin: 0px;
+}
+
+div.content div.box h3 a {
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: normal;
+    text-decoration: none;
+}
+
+/* Forms */
+
+fieldset {
+}
+
+label {
+	display: block;
+	width: 150px;
+	text-align: right;
+	clear: both;
+	float: left;
+	padding: 1px 5px 1px 1px;
+}
+
+input,
+textarea {
+	width: 440px;
+	float: none;
+	float: right;
+
+	border: 1px solid #555753;
+	background-color: #ffffff;
+	color: #2e3436;
+}
+
+input[type="submit"] {
+	width: 200px;
+
+	border: 1px solid #555753;
+	background-color: #ffffff;
+}
+
+input[name="url"] {
+	/* Catching spam bots */
+	display: none;
+}
+
+/* Navigation */
+
+h2.navigation {
+	margin: 0px 0px 5px 0px;
+	font-size: 14px;
+    display: none;
+}
+
+ul.navigation {
+	margin: 0px;
+	padding: 2px 5px;
+    height: 18px;
+
+	list-style-type: none;
+    background: transparent url( '/zetacomponents/images/bar.png' );
+	background-repeat: repeat-x;
+}
+
+ul.navigation li {
+	font-weight: normal;
+    width: 120px;
+    float: left;
+    border-right: 1px solid #555753;
+    text-align: center;
+    margin: 1px 0px;
+}
+
+ul.navigation li.requested {
+	font-weight: bold;
+}
+
+ul.navigation li a {
+    display: block;
+	color: #2e3436;
+	text-decoration: none;
+}
+
+ul.navigation li a:hover {
+	color: #204a87;
+	text-decoration: underline;
+}
+
+ul.subnavigation {
+	margin: 0px;
+	padding: 2px 5px;
+    height: 18px;
+
+	list-style-type: none;
+    background-color: #babdb6;
+	color: #ffffff;
+}
+
+ul.subnavigation li {
+    display: inline;
+	font-weight: normal;
+    margin: 1px 0px;
+}
+
+ul.subnavigation li:before {
+    content: " | ";
+}
+
+ul.subnavigation li:first-child:before {
+    content: "";
+}
+
+ul.subnavigation li.requested {
+	font-weight: bold;
+}
+
+ul.subnavigation li a {
+	text-decoration: none;
+	color: #ffffff;
+}
+
+ul.subnavigation li a:hover {
+	text-decoration: underline;
+}
+
+div.content ul.tabs {
+	margin: 5px 0px 10px 0px;
+	padding: 0px;
+    height: 19px;
+
+    border-bottom: 1px solid #babdb6;
+
+	list-style-type: none;
+}
+
+ul.tabs li {
+	font-weight: normal;
+    width: 120px;
+    height: 18px;
+    float: left;
+    border: 1px solid #babdb6;
+    text-align: center;
+    margin: 0px 10px -1px 0px;
+    background-color: #eeeeef;
+}
+
+ul.tabs li.requested {
+	font-weight: bold;
+    background-color: #ffffff;
+    border-bottom: 1px solid #ffffff;
+}
+
+ul.tabs li a {
+    display: block;
+	text-decoration: none;
+	color: #2e3436;
+}
+
+ul.tabs li a:hover {
+	text-decoration: underline;
+}
+
+/**
+ * Content
+ */
+
+div.note {
+	border: 1px solid #c0c0c0;
+	margin: 30px;
+	padding: 10px 10px 0 27px;
+	background-image: url("/zetacomponents/images/icons/info.png");
+	background-repeat: no-repeat;
+	background-position: 5px 5px;
+}
+
+/**
+ * Blog templates
+ */
+
+div.content ul.blog {
+	padding: 0em;
+	margin: 0em;
+
+	list-style-type: none;
+}
+
+div.content ul.blog li {
+	margin: 1em 0em .5em 0em;
+	padding: 0em 0em 1em 0em;
+}
+
+div.content ul.blog li p {
+	padding-left: 1.5em;
+}
+
+div.content ul.blog li span.comment {
+	display: block;
+	padding: 0em .2em;
+
+	text-align: right;
+	text-decoration: none;
+}
+
+div.content ul.blog li h4 {
+    text-shadow: #babdb6 1px 1px 2px;
+    margin-bottom: .5em;
+}
+
+div.content ul.blog li h5 a {
+	color: #000000;
+    text-decoration: none;
+}
+
+div.content ul.blog li h5 {
+	font-size: 0.9em;
+    margin-bottom: .5em;
+	color: #204a87;
+}
+
+div.content ul.comments {
+	padding: 0em 1em;
+	margin: 0em;
+
+	list-style-type: none;
+}
+
+div.content ul.comments li {
+	margin: .5em;
+	border: 1px solid #babdb6;
+	padding: .1em;
+}
+
+div.content ul.comments li h4 {
+	margin: 0em 0em .1em 0em;
+	padding: 0em;
+
+	font-size: 1.1em;
+	font-weight: normal;
+	color: #204a87;
+}
+
+div.content ul.comments li h4 a {
+	display: inline;
+}
+
+div.content ul.comments li p {
+	margin: 0em;
+	padding: 0em;
+}
+
+div.content ul.comments li a.permalink {
+	display: block;
+	padding: 0em .1em;
+
+	font-size: 0.9em;
+	text-align: right;
+	text-decoration: none;
+}
+
+div.content ul.bookmark {
+	text-align: right;
+	list-style-type: none;
+	padding: .1em .3em;
+	height: 1.2em;
+}
+
+div.content ul.bookmark li,
+div.content ul.bookmark li a,
+div.content ul.bookmark li img {
+	margin: 0em;
+	padding: 0em;
+}
+
+div.content div.content ul.bookmark li a:after {
+	content: none;
+}
+
+div.content div.flattr {
+    float: right;
+}
+
+span.scroll {
+	display: block;
+	clear: both;
+
+	text-align: center;
+}
+
+span.scroll a {
+	text-decoration: none;
+}
+
+/**
+ * Table of Contents styles
+ */
+div.content div.toc {
+    margin: 0px 0px 2em 0px;
+}
+
+div.content div.toc ul {
+    padding: 0px 0px 0px 2em;
+    margin: 0px;
+    list-style-type: circle;
+}
+
+div.content div.toc ul li {
+    padding: 0px;
+    margin: 0px;
+}
+
+div.content div.toc ul li p {
+    padding: .1em 0px;
+    margin: 0px;
+}
+
+div.content div.toc ul li p a {
+    text-decoration: none;
+}
+
+/**
+ * Custom text rendering enhancements
+ */
+
+div.content li p:last-child {
+    margin: 0 0 .8em;
+}
+
+/**
+ * Text rendering definitions
+ *
+ * Inspired by blueprint.css
+ */
+
+/* typography.css */
+div.content h2,
+div.content h3,
+div.content h4,
+div.content h5,
+div.content h6 {
+    font-weight: normal;
+    color: #000000;
+}
+
+div.content h2 {
+	margin: 5px 0px 10px -10px;
+    padding: 0px 0px 0px 20px;
+    background: transparent url( "/zetacomponents/images/title_bg.png" ) bottom left;
+    background-repeat: no-repeat;
+    color: #204a87;
+}
+
+div.content hr {
+    border: none;
+    background-color: #babdb6;
+    height: 1px;
+    width: 80%;
+    margin: .5em auto;
+}
+
+div.content div.image {
+    border: 1px solid #d3d7cf;
+	padding: 1px;
+    margin: 0px 10px 10px 10px;
+}
+
+div.content div.image img {
+	display: block;
+}
+
+div.content div.image span.image_title {
+	font-size: .8em;
+}
+
+div.content .center {
+    text-align: center;
+    margin-left: 0px;
+    margin-right: 0px;
+	clear: both;
+}
+
+div.content .center img {
+    margin: auto;
+}
+
+div.content .right {
+    margin-right: 0px;
+	float: right;
+	clear: right;
+}
+
+div.content .left {
+    margin-left: 0px;
+	float: left;
+	clear: left;
+}
+
+div.content h2,
+div.content h3 {
+    text-shadow: #babdb6 1px 1px 2px;
+}
+
+div.content h2 {
+    font-size: 1.8em;
+    margin-bottom: 0.75em;
+}
+
+div.content h3 {
+    font-size: 1.5em;
+    line-height: 1;
+    margin-bottom: 1em;
+}
+
+div.content h4 {
+    font-size: 1.3em;
+    line-height: 1.25;
+    margin-bottom: 1.25em;
+}
+
+div.content h5 {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: 1.5em;
+}
+
+div.content h6 {
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+div.content h2 img,
+div.content h3 img,
+div.content h4 img,
+div.content h5 img,
+div.content h6 img {
+    margin: 0;
+}
+
+div.content p {
+    margin: 0 0 1.5em;
+}
+
+div.content dl.footnote dt {
+	float: left;
+	font-weight: normal;
+}
+
+div.content dl.footnote dt a {
+	text-decoration: none;
+	color: #000000;
+}
+
+div.content a.footnote {
+	vertical-align: super;
+	font-size: .7em;
+	text-decoration: none;
+}
+
+div.content p img.left {
+    float: left;
+    margin: 1.5em 1.5em 1.5em 0;
+    padding: 0;
+}
+
+div.content p img.right {
+    float: right;
+    margin: 1.5em 0 1.5em 1.5em;
+}
+
+div.content a:focus,
+div.content a:hover {
+    color: #000000;
+}
+
+div.content a {
+    color: #204a87;
+    text-decoration: underline;
+}
+
+div.content blockquote {
+    margin: 1.5em;
+    color: #555753;
+    font-style: italic;
+}
+
+div.content strong {
+    font-weight: bold;
+}
+
+div.content em,
+div.content dfn {
+    font-style: italic;
+}
+
+div.content dfn {
+    font-weight: bold;
+}
+
+div.content sup,
+div.content sub {
+    line-height: 0;
+}
+
+div.content abbr,
+div.content acronym {
+    border-bottom: 1px dotted #555753;
+}
+
+div.content address {
+    margin: 0 0 1.5em;
+    font-style: italic;
+}
+
+div.content del {
+    color: #555753;
+}
+
+div.content code.block,
+div.content pre {
+    display: block;
+    margin: 1.5em 0;
+    white-space: pre;
+
+    border: 1px dotted #babdb6;
+    padding: .3em;
+}
+
+div.content pre, 
+div.content .src-line,
+div.content .method-signature,
+div.content code,
+div.content tt {
+    font: 1em monospace;
+    line-height: 1.5;
+}
+
+div.content li ul,
+div.content li ol {
+    margin: 0;
+}
+
+div.content ul, ol {
+    margin: 0 1.5em 1.5em 0;
+    padding-left: 3.333em;
+}
+
+div.content ul {
+    list-style-type: circle;
+}
+
+div.content ol {
+    list-style-type: decimal;
+}
+
+div.content dl {
+    margin: 0 0 1.5em 0;
+}
+
+div.content ol.code {
+    font: 1em monospace;
+}
+
+div.content dl dt {
+    font-weight: bold;
+}
+
+div.content dd {
+    margin-left: 1.5em;
+}
+
+div.content table {
+    width: 100%;
+    margin: 0 1.5em 1.5em 0;
+	border: 2px solid #000000;
+	border-left: none;
+	border-right: none;
+}
+
+div.content th {
+    font-weight: bold;
+}
+
+div.content thead th {
+	border-bottom: 1px solid #000000;
+}
+
+div.content th,
+div.content td,
+div.content caption {
+    padding: 4px 10px 4px 5px;
+}
+
+div.content tr.even td {
+}
+
+div.content tfoot {
+    font-style: italic;
+}
+
+div.content caption {
+    background: #eee;
+}
+
+div.content .small {
+    font-size: .8em;
+    margin-bottom: 1.875em;
+    line-height: 1.875em;
+}
+
+div.content .large {
+    font-size: 1.2em;
+    line-height: 2.5em;
+    margin-bottom: 1.25em;
+}
+
+div.content .hide {
+    display: none;
+}
+
+div.content .quiet {
+    color: #555753;
+}
+
+div.content .loud {
+    color: #000;
+}
+
+div.content .highlight {
+    background: #ff0;
+}
+
+div.content .added {
+    background: #060;
+    color: #fff;
+}
+
+div.content .removed {
+    background: #900;
+    color: #fff;
+}
+
+div.content .first {
+    margin-left: 0;
+    padding-left: 0;
+}
+
+div.content .last {
+    margin-right: 0;
+    padding-right: 0;
+}
+
+div.content .top {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+div.content .bottom {
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+

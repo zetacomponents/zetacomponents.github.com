@@ -1,0 +1,202 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="PHP, apache, components, framework, quality" />
+	<meta name="author" content="dotxp" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Wed, 04 Aug 2010 13:07:09 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="Tutorial" />
+	<meta name="DC.creator" content="dotxp" />
+	<meta name="DC.date" content="Wed, 04 Aug 2010 13:07:09 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/WorkflowSignalSlotTiein/tutorial.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li class="requested">
+	<a href="/zetacomponents/documentation/trunk/WorkflowSignalSlotTiein/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/WorkflowSignalSlotTiein/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+
+</ul>
+
+		<h2>eZ Components - WorkflowSignalSlotTiein</h2><div class="toc"><h3>Table of Contents</h3><ul><li><p><a href="#introduction">Introduction</a></p></li><li><p><a href="#class-overview">Class overview</a></p></li><li><p><a href="#usage">Usage</a></p><ul><li><p><a href="#connect-all-signals-to-the-slots-provided-by-an-object">Connect all signals to the slots provided by an object</a></p></li></ul></li></ul></div><a name="introduction"></a><a name="id1"></a><h3>Introduction</h3><p>The WorkflowSignalSlotTiein component allows you to hook into the workflow execution into using the SignalSlot component.</p><a name="class-overview"></a><a name="id2"></a><h3>Class overview</h3><dl><dt>ezcWorkflowSignalSlotPlugin</dt><dd>Emits signals for the workflow engine's plugin hooks.</dd></dl><a name="usage"></a><a name="id3"></a><h3>Usage</h3><a name="connect-all-signals-to-the-slots-provided-by-an-object"></a><a name="id4"></a><h4>Connect all signals to the slots provided by an object</h4><p>This example shows how to connect all signals to the slots provided by an object.</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #007700">//&nbsp;Connect&nbsp;signals&nbsp;to&nbsp;slots.</span></li>
+<li><span style="color: #000000">$signals&nbsp;&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000">ezcSignalCollection</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000">$receiver&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000">MyReceiver</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #000000">$signals</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">connect</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'afterExecutionStarted'</span><span style="color: #0000FF">,&nbsp;array(&nbsp;</span><span style="color: #000000">$receiver</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'afterExecutionStarted'&nbsp;</span><span style="color: #0000FF">)&nbsp;);</span></li>
+<li><span style="color: #000000">$signals</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">connect</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'afterExecutionSuspended'</span><span style="color: #0000FF">,&nbsp;array(&nbsp;</span><span style="color: #000000">$receiver</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'afterExecutionSuspended'&nbsp;</span><span style="color: #0000FF">)&nbsp;);</span></li>
+<li><span style="color: #000000">$signals</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">connect</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'afterExecutionResumed'</span><span style="color: #0000FF">,&nbsp;array(&nbsp;</span><span style="color: #000000">$receiver</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'afterExecutionResumed'&nbsp;</span><span style="color: #0000FF">)&nbsp;);</span></li>
+<li><span style="color: #000000">$signals</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">connect</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'afterExecutionCancelled'</span><span style="color: #0000FF">,&nbsp;array(&nbsp;</span><span style="color: #000000">$receiver</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'afterExecutionCancelled'&nbsp;</span><span style="color: #0000FF">)&nbsp;);</span></li>
+<li><span style="color: #000000">$signals</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">connect</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'afterExecutionEnded'</span><span style="color: #0000FF">,&nbsp;array(&nbsp;</span><span style="color: #000000">$receiver</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'afterExecutionEnded'&nbsp;</span><span style="color: #0000FF">)&nbsp;);</span></li>
+<li><span style="color: #000000">$signals</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">connect</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'beforeNodeActivated'</span><span style="color: #0000FF">,&nbsp;array(&nbsp;</span><span style="color: #000000">$receiver</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'beforeNodeActivated'&nbsp;</span><span style="color: #0000FF">)&nbsp;);</span></li>
+<li><span style="color: #000000">$signals</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">connect</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'afterNodeActivated'</span><span style="color: #0000FF">,&nbsp;array(&nbsp;</span><span style="color: #000000">$receiver</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'afterNodeActivated'&nbsp;</span><span style="color: #0000FF">)&nbsp;);</span></li>
+<li><span style="color: #000000">$signals</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">connect</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'afterNodeExecuted'</span><span style="color: #0000FF">,&nbsp;array(&nbsp;</span><span style="color: #000000">$receiver</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'afterNodeExecuted'&nbsp;</span><span style="color: #0000FF">)&nbsp;);</span></li>
+<li><span style="color: #000000">$signals</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">connect</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'afterRolledBackServiceObject'</span><span style="color: #0000FF">,&nbsp;array(&nbsp;</span><span style="color: #000000">$receiver</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'afterRolledBackServiceObject'&nbsp;</span><span style="color: #0000FF">)&nbsp;);</span></li>
+<li><span style="color: #000000">$signals</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">connect</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'afterThreadStarted'</span><span style="color: #0000FF">,&nbsp;array(&nbsp;</span><span style="color: #000000">$receiver</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'afterThreadStarted'&nbsp;</span><span style="color: #0000FF">)&nbsp;);</span></li>
+<li><span style="color: #000000">$signals</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">connect</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'afterThreadEnded'</span><span style="color: #0000FF">,&nbsp;array(&nbsp;</span><span style="color: #000000">$receiver</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'afterThreadEnded'&nbsp;</span><span style="color: #0000FF">)&nbsp;);</span></li>
+<li><span style="color: #000000">$signals</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">connect</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'beforeVariableSet'</span><span style="color: #0000FF">,&nbsp;array(&nbsp;</span><span style="color: #000000">$receiver</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'beforeVariableSet'&nbsp;</span><span style="color: #0000FF">)&nbsp;);</span></li>
+<li><span style="color: #000000">$signals</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">connect</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'afterVariableSet'</span><span style="color: #0000FF">,&nbsp;array(&nbsp;</span><span style="color: #000000">$receiver</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'afterVariableSet'&nbsp;</span><span style="color: #0000FF">)&nbsp;);</span></li>
+<li><span style="color: #000000">$signals</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">connect</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'beforeVariableUnset'</span><span style="color: #0000FF">,&nbsp;array(&nbsp;</span><span style="color: #000000">$receiver</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'beforeVariableUnset'&nbsp;</span><span style="color: #0000FF">)&nbsp;);</span></li>
+<li><span style="color: #000000">$signals</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">connect</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'afterVariableUnset'</span><span style="color: #0000FF">,&nbsp;array(&nbsp;</span><span style="color: #000000">$receiver</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'afterVariableUnset'&nbsp;</span><span style="color: #0000FF">)&nbsp;);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Set&nbsp;up&nbsp;database&nbsp;connection.</span></li>
+<li><span style="color: #000000">$db&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/WorkflowSignalSlotTiein/phpdoc/ezcDbFactory.html#create'>ezcDbFactory::create</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'mysql://test@localhost/test'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Set&nbsp;up&nbsp;workflow&nbsp;definition&nbsp;storage&nbsp;(database).</span></li>
+<li><span style="color: #000000">$definition&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/WorkflowSignalSlotTiein/phpdoc/ezcWorkflowDatabaseDefinitionStorage.html'>ezcWorkflowDatabaseDefinitionStorage</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$db&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Load&nbsp;latest&nbsp;version&nbsp;of&nbsp;workflow&nbsp;named&nbsp;"Test".</span></li>
+<li><span style="color: #000000">$workflow&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$definition</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">loadByName</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'Test'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Set&nbsp;up&nbsp;database-based&nbsp;workflow&nbsp;executer.</span></li>
+<li><span style="color: #000000">$execution&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/WorkflowSignalSlotTiein/phpdoc/ezcWorkflowDatabaseExecution.html'>ezcWorkflowDatabaseExecution</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$db&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Pass&nbsp;workflow&nbsp;object&nbsp;to&nbsp;workflow&nbsp;executer.</span></li>
+<li><span style="color: #000000">$execution</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">workflow&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$workflow</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Register&nbsp;SignalSlot&nbsp;workflow&nbsp;engine&nbsp;plugin.</span></li>
+<li><span style="color: #000000">$plugin&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000">ezcWorkflowSignalSlotPlugin</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000">$plugin</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">signals&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$signals</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #000000">$execution</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">addPlugin</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$plugin&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Start&nbsp;workflow&nbsp;execution.</span></li>
+<li><span style="color: #000000">$id&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$execution</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">start</span><span style="color: #0000FF">();</span></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><p>This is a dummy implementation of the MyReceiver class.</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #0000FF">class&nbsp;</span><span style="color: #000000">MyReceiver</span></li>
+<li><span style="color: #0000FF">{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;function&nbsp;</span><span style="color: #000000">afterExecutionStarted</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">ezcWorkflowExecution&nbsp;$execution&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;}</span></li>
+<li></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;function&nbsp;</span><span style="color: #000000">afterExecutionSuspended</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">ezcWorkflowExecution&nbsp;$execution&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;}</span></li>
+<li></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;function&nbsp;</span><span style="color: #000000">afterExecutionResumed</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">ezcWorkflowExecution&nbsp;$execution&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;}</span></li>
+<li></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;function&nbsp;</span><span style="color: #000000">afterExecutionCancelled</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">ezcWorkflowExecution&nbsp;$execution&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;}</span></li>
+<li></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;function&nbsp;</span><span style="color: #000000">afterExecutionEnded</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">ezcWorkflowExecution&nbsp;$execution&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;}</span></li>
+<li></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;function&nbsp;</span><span style="color: #000000">beforeNodeActivated</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">ezcWorkflowExecution&nbsp;$execution</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">ezcWorkflowNode&nbsp;$node</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">ezcWorkflowSignalSlotReturnValue&nbsp;$return&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;}</span></li>
+<li></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;function&nbsp;</span><span style="color: #000000">afterNodeActivated</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">ezcWorkflowExecution&nbsp;$execution</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">ezcWorkflowNode&nbsp;$node&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;}</span></li>
+<li></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;function&nbsp;</span><span style="color: #000000">afterNodeExecuted</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">ezcWorkflowExecution&nbsp;$execution</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">ezcWorkflowNode&nbsp;$node&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;}</span></li>
+<li></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;function&nbsp;</span><span style="color: #000000">afterThreadStarted</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">ezcWorkflowExecution&nbsp;$execution</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">$threadId</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">$parentId</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">$numSiblings&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;}</span></li>
+<li></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;function&nbsp;</span><span style="color: #000000">afterThreadEnded</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">ezcWorkflowExecution&nbsp;$execution</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">$threadId&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;}</span></li>
+<li></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;function&nbsp;</span><span style="color: #000000">beforeVariableSet</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">ezcWorkflowExecution&nbsp;$execution</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">$variableName</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">$value</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">ezcWorkflowSignalSlotReturnValue&nbsp;$return&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;}</span></li>
+<li></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;function&nbsp;</span><span style="color: #000000">afterVariableSet</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">ezcWorkflowExecution&nbsp;$execution</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">$variableName</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">$value&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;}</span></li>
+<li></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;function&nbsp;</span><span style="color: #000000">beforeVariableUnset</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">ezcWorkflowExecution&nbsp;$execution</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">$variableName</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">ezcWorkflowSignalSlotReturnValue&nbsp;$return&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;}</span></li>
+<li></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;function&nbsp;</span><span style="color: #000000">afterVariableUnset</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">ezcWorkflowExecution&nbsp;$execution</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">$variableName&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;}</span></li>
+<li><span style="color: #0000FF">}</span></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><p>Slots that receive an <a href='/zetacomponents/documentation/trunk/WorkflowSignalSlotTiein/phpdoc/ezcWorkflowSignalSlotReturnValue.html'>ezcWorkflowSignalSlotReturnValue</a> object are special in the way that they can control if and how the current execution step will be performed. For more information on this advice mechanism please refer to the documentation of the workflow engine plugin system.</p><p>For more information on using the <a href="introduction_SignalSlot.html">SignalSlot</a> component please refer to its documentation.</p><!--Local Variables:
+mode: rst
+fill-column: 79
+End:
+vim: et syn=rst tw=79-->
+
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

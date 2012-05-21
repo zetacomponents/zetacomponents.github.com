@@ -1,0 +1,216 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="PHP, apache, components, framework, quality" />
+	<meta name="author" content="dotxp" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Wed, 04 Aug 2010 13:07:15 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="ezcBaseInit.html" />
+	<meta name="DC.creator" content="dotxp" />
+	<meta name="DC.date" content="Wed, 04 Aug 2010 13:07:15 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseInit.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/Base/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/trunk/Base/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+
+</ul>
+
+		
+  <div class="phpdoc">
+    <h2>Apache Zeta Components Manual :: Docs For Class ezcBaseInit</h2>
+
+                  <h3>Base::ezcBaseInit</h3>
+    
+<a name="sec-description"></a>
+<h3>Class ezcBaseInit</h3>
+
+<p>Provides a method to implement delayed initialization of objects.</p><div><p>With the methods in this class you can implement callbacks to configure  singleton classes. In order to do so you will have to change the  getInstance() method of your singleton class to include a call to  ezcBaseInit::fetchConfig() as in the following example:</p><p></p><ol><li><div class="src-line">&#8192;<span class="src-php">&lt;?php</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-key">public&#8192;</span><span class="src-key">static&#8192;</span><span class="src-key">function&#8192;</span><span class="src-id">getInstance</span><span class="src-sym">(</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">{</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-key">if&#8192;</span><span class="src-sym">(&#8192;</span><a href="http://www.php.net/is_null">is_null</a><span class="src-sym">(&#8192;</span><span class="src-id">self</span><span class="src-sym">::</span><span class="src-var">$instance&#8192;</span><span class="src-sym">)&#8192;)</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-sym">{</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-id">self</span><span class="src-sym">::</span><span class="src-var">$instance&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id">ezcConfigurationmanager</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-id"><a href="ezcBaseInit.html">ezcBaseInit</a></span><span class="src-sym">::</span><a href="ezcBaseInit.html#methodfetchConfig">fetchConfig</a><span class="src-sym">(&#8192;</span><span class="src-str">'ezcInitConfigurationManager'</span><span class="src-sym">,&#8192;</span><span class="src-id">self</span><span class="src-sym">::</span><span class="src-var">$instance&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-sym">}</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-key">return&#8192;</span><span class="src-id">self</span><span class="src-sym">::</span><span class="src-var">$instance</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">}</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-php">?&gt;</span></div></li>
+</ol><p>You will also need to configure which callback class to call. This you do  with the ezcBaseInit::setCallback() method. The following examples sets the  callback classname for the configuration identifier  'ezcInitConfigurationManager' to 'cfgConfigurationManager':</p><p></p><ol><li><div class="src-line">&#8192;<span class="src-php">&lt;?php</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-id"><a href="ezcBaseInit.html">ezcBaseInit</a></span><span class="src-sym">::</span><a href="ezcBaseInit.html#methodsetCallback">setCallback</a><span class="src-sym">(&#8192;</span><span class="src-str">'ezcInitConfigurationManager'</span><span class="src-sym">,&#8192;</span><span class="src-str">'cfgConfigurationManager'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-php">?&gt;</span></div></li>
+</ol><p>The class 'cfgConfigurationManager' is required to implement the  ezcBaseConfigurationInitializer interface, which defines only one method:  configureObject(). An example on how to implement such a class could be:</p><p></p><ol><li><div class="src-line">&#8192;<span class="src-php">&lt;?php</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-key">class&#8192;</span><span class="src-id">cfgConfigurationManager&#8192;</span><span class="src-key">implements&#8192;</span><span class="src-id">ezcBaseConfigurationInitializer</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">{</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-key">static&#8192;</span><span class="src-key">public&#8192;</span><span class="src-key">function&#8192;</span><span class="src-id">configureObject</span><span class="src-sym">(&#8192;</span><span class="src-id">ezcConfigurationManager&#8192;</span><span class="src-var">$cfgManagerObject&#8192;</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-sym">{</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-var">$cfgManagerObject</span><span class="src-sym">-&gt;</span><span class="src-id">init</span><span class="src-sym">(&#8192;</span><span class="src-str">'ezcConfigurationIniReader'</span><span class="src-sym">,&#8192;</span><span class="src-str">'settings'</span><span class="src-sym">,&#8192;</span><span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-str">'useComments'&#8192;</span>=&gt;&#8192;<span class="src-id">true&#8192;</span><span class="src-sym">)&#8192;)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-sym">}</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">}</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-php">?&gt;</span></div></li>
+</ol><p>Of course the implementation of this callback class is up to the application  developer that uses the component (in this example the Configuration  component's class ezcConfigurationManager).</p></div>
+<p>Source for this file: <a href="http://fisheye6.atlassian.com/browse/zetacomponents/trunk/Base/src/init.php?r=HEAD">/Base/src/init.php</a></p>
+       
+
+
+
+
+  <table><tr><td>
+            <strong>Version:</strong>&#8192;&#8192;
+          </td>
+          <td>//autogentag//</td>
+        </tr></table><a name="sec-method-summary"></a>
+  <h3>Method Summary</h3>
+  <table class="summary"><tr><td class="right">
+            <em>public</em>            static
+                        <em>mixed</em>          </td>
+          <td>
+            <code>
+              <a href="#fetchConfig"><b>fetchConfig</b></a>(
+                                                                                    $identifier
+                                                    ,                                     $object
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Uses the configured callback belonging to $identifier to configure the $object.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>            static
+                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#setCallback"><b>setCallback</b></a>(
+                                                                                    $identifier
+                                                    ,                                     $callbackClassname
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Adds the classname $callbackClassname as callback for the identifier $identifier.</div>          </td>
+        </tr></table><a name="sec-methods"></a>
+  <h3>Methods</h3>
+  <a name="method_detail"></a>
+      <a name="methodfetchConfig" id="fetchConfig"><!-- --></a>
+
+    <h4>fetchConfig</h4>
+
+    <div class="method-signature">
+      static mixed
+      fetchConfig(
+                                  string
+          $identifier
+                            ,           object
+          $object
+                        )
+    </div>
+
+      <p>Uses the configured callback belonging to $identifier to configure the $object.</p><div><p>The method will return the return value of the callback method, or null  in case there was no callback set for the specified $identifier.</p></div>      
+              <h5>Parameters:</h5>
+        <table class="detail"><thead><tr><th>Name</th>
+              <th>Type</th>
+              <th class="desc">Description</th>
+            </tr></thead><tbody><tr><td><code>$identifier</code></td>
+                <td><em>string</em></td>
+                <td>
+                                  </td>
+              </tr><tr><td><code>$object</code></td>
+                <td><em>object</em></td>
+                <td>
+                                  </td>
+              </tr></tbody></table><a name="methodsetCallback" id="setCallback"><!-- --></a>
+
+    <h4>setCallback</h4>
+
+    <div class="method-signature">
+      static void
+      setCallback(
+                                  string
+          $identifier
+                            ,           string
+          $callbackClassname
+                        )
+    </div>
+
+      <p>Adds the classname $callbackClassname as callback for the identifier $identifier.</p>      
+              <h5>Parameters:</h5>
+        <table class="detail"><thead><tr><th>Name</th>
+              <th>Type</th>
+              <th class="desc">Description</th>
+            </tr></thead><tbody><tr><td><code>$identifier</code></td>
+                <td><em>string</em></td>
+                <td>
+                                  </td>
+              </tr><tr><td><code>$callbackClassname</code></td>
+                <td><em>string</em></td>
+                <td>
+                                  </td>
+              </tr></tbody></table><div class="credit">
+      Documentation generated by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+    </div>
+  </div>
+  
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

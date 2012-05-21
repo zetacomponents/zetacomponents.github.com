@@ -1,0 +1,711 @@
+eZ Components - Mail
+~~~~~~~~~~~~~~~~~~~~
+
+.. contents:: Table of Contents
+
+
+Introduction
+============
+
+The Mail component provides functionality to send, retrieve and parse
+mail messages. If you require an easy way to send a mail, use the ezcMailComposer
+class, which allows you to send HTML mails with images, attachments and an
+optional text part. If you require more advanced mail messages, you can build the
+complete message yourself using the ezcMailPart derived classes. You can retrieve
+mail messages from different sources using the supported transports.
+
+
+Class overview
+==============
+
+This section gives you an overview of the main classes in the Mail
+component.
+
+ezcMailComposer
+   This is a convenience class that allows you to send plain text or
+   HTML messages with attachments, without having to construct the parts of
+   the message yourself. Most users will use this class.
+
+ezcMail
+   If ezcMailComposer does not have the functionality you require, you can use
+   the ezcMail class to build MIME-structured mail from scratch. This requires 
+   basic knowledge about how a mail is structured.
+
+ezcMailAddress
+  This small class represents a mail address with an optional name. It is used
+  by both ezcMailComposer and ezcMail to set recipient addresses.
+
+ezcMailParser
+  This class parses mail messages from text into ezcMail structures. You can
+  use it together with the mail retrieval transport classes.
+
+ezcMailSmtpTransport
+  Sends mails using an SMTP server. After sending a mail, the connection can be
+  kept alive so that the next mail sent uses the same connection, speeding up
+  the process.
+
+ezcMailMtaTransport
+  Sends mails using the PHP mail() function.
+
+ezcMailPop3Transport
+  Connects to a POP3 server and allows the fetching and deleting of mails.
+
+ezcMailImapTransport
+  Connects to an IMAP server and allows operations on mails in a mailbox
+  (fetch, delete) and operations on mailboxes (create, delete, rename, append).
+
+
+Usage
+=====
+
+Transport protocols
+-------------------
+
+The Mail component provides transport protocols for both sending and retrieving
+mail.
+
+For sending mail, the following protocols are supported:
+
+- SMTP (ezcMailSmtpTransport) - uses an SMTP server to send mail. Supports
+  plain and TLS/SSL/SSLv2/SSLv3 connections.
+- MTA (ezcMailMtaTransport) - wraps around the PHP mail() function.
+
+For mail retrieval we currently support the following protocols:
+
+- POP3 (ezcMailPop3Transport) - an old protocol but still used. SSL is supported.
+- IMAP (ezcMailImapTransport) - handles multiple mailboxes. SSL is supported.
+- MBOX (ezcMailMboxTransport) - handles Unix mailbox file formats.
+
+Mail retrieval from other sources include:
+
+- File (ezcMailFileSet) - handles mails stored in files.
+- Variable (ezcMailVariableSet) - handles mails stored in memory.
+
+Mail parsers
+------------
+
+After using a mail retrieval transport to fetch a set of mails, a mail parser
+can be used to go through the set and extract the needed information like
+subject, sender, date and attachments from each mail in the set. The ezcMailParser
+class is used for this purpose.
+
+Mail parts
+----------
+
+The ezcMail component supports a wide variety of mail parts that can be used
+when sending or retrieving mails:
+
+- ezcMailFile - mail attachment from an existing file
+- ezcMailStreamFile - mail attachment from an open stream
+- ezcMailVirtualFile - mail attachment from a string in memory
+- ezcMailMultipartAlternative - used to bundle a group of mail parts where only one should be shown
+- ezcMailMultipartDigest - used to bundle a list of mail objects
+- ezcMailMultipartMixed - used to bundle an ordered list of mail parts
+- ezcMailMultipartRelated - intended for mail parts consisting of several inter-related body parts
+- ezcMailMultipartReport - used for sending delivery status notifications
+- ezcMailDeliveryStatus - used for sending delivery status notifications
+- ezcMailRfc822Digest - used to insert another mail into a mail
+- ezcMailText - used for plain text
+
+Mail tools
+----------
+
+In the ezcMailTools class, you will find various useful static methods that can be
+used in your applications:
+
+- ezcMailTools::lineBreak() - returns one end-of-line character (default \\r\\n). Use ezcMailTools::setLineBreak() to change the default
+- ezcMailTools::composeEmailAddress() - returns the RFC822 representation of a mail address as a string. Use ezcMailTools::composeEmailAddresses() for an array of mail address objects
+- ezcMailTools::parseEmailAddress() - returns an ezcMailAddress object from a string mail address. Use ezcMailTools::parseEmailAddresses() for a string of mail addresses
+- ezcMailTools::generateMessageId() - returns a unique message ID to be used for a mail message
+- ezcMailTools::generateContentId() - returns a unique ID to be used for Content-ID headers
+- ezcMailTools::mimeDecode() - decodes MIME-encoded fields and tries to recover from errors
+- ezcMailTools::replyToMail() - returns a new ezcMail object that is a reply to the specified ezcMail object
+
+See the ezcMailTools example below for information on how to use these methods.
+
+
+Building and sending mail
+=========================
+
+eZ components provides two ways to create mail. The simplest is to use the
+composer class ezcMailComposer. Using the composer you can send plain text
+messages, HTML messages with images and messages with attachments.
+If you require more advanced messages you can also customize them entirely by
+building it from the scratch using the various part types in ezcMail. The part
+types are structured the same way as the underlying mail MIME types.
+
+Sending a mail with the composer
+--------------------------------
+
+Sending a mail using the composer is very straightforward. This small example
+displays how to send a normal text message.
+
+.. include:: tutorial/tutorial_composer.php
+   :literal:
+
+Sending a mail with HTML, inline images and attachments
+-------------------------------------------------------
+
+This example shows how to send a mail with HTML text, images and attachments
+using the ezcMailComposer class.
+
+.. include:: tutorial/tutorial_composer_attachments.php
+   :literal:
+
+The mime-type of the attachment can be specified if needed. See the
+documentation for the functions addFileAttachment() and addStringAttachment()
+for more details.
+
+Securing HTML mails which include file:// in image tags
+-------------------------------------------------------
+
+By default, if the htmlText property contains an HTML image tag with file://
+in href, that file will be included in the created message.
+
+Example::
+
+  <img src="file:///home/me/image.jpg" />
+
+This can be a security risk if a user links to another file, for example logs
+or password files. With the automaticImageInclude option (default value true)
+from ezcMailComposerOptions, the automatic inclusion of files can be turned
+off.
+
+Example::
+
+  $options = new ezcMailComposerOptions();
+  $options->automaticImageInclude = false; // default value is true
+
+  $mail = new ezcMailComposer( $options );
+
+  // ... add To, From, Subject, etc to $mail
+  $mail->htmlText = "<html>Here is the image: <img src="file:///etc/passwd" /></html>";
+
+  // ... send $mail
+
+After running the above code, the sent mail will not contain the file specified
+in the htmlText property.
+
+Building a mail from scratch
+----------------------------
+
+The class structure of the Mail component follows that of the mail MIME. This
+means that you can build advanced MIME messages part by part.
+
+The first example displays how to build a similar message to the one above.
+
+.. include:: tutorial/tutorial_mail_simple.php
+   :literal:
+
+As you can see, there is not much difference compared to the composer version.
+In the next example we will add an attachment to our manually built mail:
+
+.. include:: tutorial/tutorial_mail_attachments.php
+   :literal:
+
+By default the generated message will contain a text which is displayed by
+e-mail clients lacking MIME-support::
+
+    This message is in MIME format. Since your mail reader does not understand
+    this format, some or all of this message may not be legible.
+
+This text can be changed or removed by setting the property *noMimeMessage* on
+the multipart, before generating the mail or sending it. Example::
+
+    $part = new ezcMailMultipartMixed( $textPart, $fileAttachment );
+    $part->noMimeMessage = 'Your e-mail client does not understand MIME.';
+
+    $mail = new ezcMail();
+    $mail->body = $part;
+
+Building MIME structures that work
+----------------------------------
+
+When you build mail mail from scratch most combinations of MailParts will
+produce valid messages. Unfortunately, even though a message is valid 
+structurally that does not mean that all mail clients will display it 
+properly. This section gives a few hints on what to do and what not to do.
+
+1. Ommit Multipart/Mixed parts with only one part. Some mail clients like
+   Mozilla Thunderbird do not display these correctly. Of course, they are not
+   necessary either.
+
+2. Mail with alternative text/HTML parts and common attachments can be
+   implemented in many ways. However, we have only found one structure that
+   seems to work across all clients: 
+   MultipartMixed( MultipartAlternative( TextPart, TextPart ), FilePart, ... )
+
+
+Sending a mail using SMTP
+-------------------------
+
+This example shows how to send a mail with SMTP, by using an SSLv3
+connection:
+
+.. include:: tutorial/tutorial_smtp_ssl.php
+   :literal:
+
+
+Using stronger authentication methods with the SMTP transports
+--------------------------------------------------------------
+
+The SMTP transports supports various authentication methods: DIGEST-MD5,
+CRAM-MD5, NTLM, LOGIN, PLAIN. Not all methods are supported by all servers, and
+some servers don't support authentication at all. NTLM authentication requires
+the mcrypt PHP extension.
+
+By default, the SMTP transport tries to login anonymously to the SMTP server
+(if an empty username and password have been provided), or to authenticate with
+the strongest method supported by the server (if username and password have
+been provided). The preferred authentication method can be changed with the
+option preferredAuthMethod. See the ezcMailSmtpTransport class for a list of
+supported authentication methods.
+
+If the preferred method is specified via options, only that authentication
+method will be attempted on the SMTP server. If it fails, an exception will be
+thrown.
+
+.. include:: tutorial/tutorial_smtp_auth.php
+   :literal:
+
+Avoid Bcc headers appearing in the sent mails
+---------------------------------------------
+
+By default the Mail component leaves it to the SMTP server to strip the Bcc
+header from the sent mails. Some SMTP servers will not strip the Bcc header. If
+you want to be sure that the Bcc header will not appear in sent mails, use
+the stripBccHeader option from ezcMailOptions::
+
+    $options = new ezcMailOptions();
+    $options->stripBccHeader = true; // default is false
+
+    $mail = new ezcMail( $options );
+
+Character encoding
+------------------
+
+Most of the world does not speak and write US ASCII and thus requires more
+advanced character encoding to display mail correctly.
+
+The following example shows how to send a mail with the body and subject
+encoded with iso-8859-1 and a custom header encoded with iso-8859-1:
+
+.. include:: tutorial/tutorial_charset.php
+   :literal:
+
+You can of course choose and combine any available character sets. Make sure
+that the input text is encoded as specified, or you may get unexpected
+results.
+
+Extending the Mail component
+----------------------------
+
+It is possible to extend the Mail component if you require part types that are
+not supported by default. The following two examples shows how you can
+implement support for digest mail messages as attachments to your mail. This
+functionality is available through the ezcMailRfc822Digest class. For
+the sake of this example, we will recreate it in the MailRFC822Digest class.
+
+The mail system already supports sending attachments through the
+ezcMailMultipartMixed type. Unfortunately directly inserting an ezcMail object
+as a part does not work. This is because mail digests are a special case: they
+require two extra headers that are separated by the normal mail headers.
+
+To make it work, we create the class RFC822Digest to add these headers:
+
+.. include:: tutorial/tutorial_extend_create.php
+   :literal:
+
+Our new class extends the ezcMailPart class. This is required for all parts of
+a mail. ezcMailPart provides two important methods that we can override:
+ezcMailPart::generateHeaders() and ezcMailPart::generateBody(). These two
+methods are called in succession by the parent part and should return the
+headers and the body text of the part.
+
+We do not need to override generateHeaders() since we can simply set the headers
+we want directly on the object. We do need to override generateBody(),
+since we want to include the full text of the mail digest.
+
+The new class can be used directly when building a mail. The example assumes
+that a valid ezcMail object is available in the $digest variable.
+
+.. include:: tutorial/tutorial_extend_use.php
+   :literal:
+
+Using the ezcMailTools class
+----------------------------
+
+In this example, we use the various methods from the ezcMailTools class.
+
+.. include:: tutorial/tutorial_tools.php
+   :literal:
+
+
+Mail retrieval and parsing
+==========================
+
+Many applications need to interact with a message store. The Mail
+component makes this easy through the class ezcMailParser and the mail
+retrieval transport classes. Mail is fetched, parsed and returned to you in the
+same structure that is used to send mail.
+
+The Mail component currently allows you to fetch and parse mail messages from
+POP3, IMAP, mbox files, single mail files and from variables. The parser fully
+supports mail in all character sets, multipart mail (attachments), HTML mail,
+HTML mail with images and digest messages.
+
+Retrieving mail using POP3
+--------------------------
+
+The following example shows how to fetch messages from a POP3 account using
+various methods and to parse the messages for use.
+
+.. include:: tutorial/tutorial_pop3.php
+   :literal:
+
+The parser returns an array of ezcMail messages with parts organized according
+to the MIME structure of the mail.
+
+Retrieving mail using IMAP
+--------------------------
+
+The following example shows how to fetch messages from an IMAP account using
+various functions and to parse the messages for use.
+
+.. include:: tutorial/tutorial_imap.php
+   :literal:
+
+The parser returns an array of ezcMail messages with parts organized according
+to the MIME structure of the mail.
+
+Additional usage of the IMAP transport
+--------------------------------------
+
+The IMAP transport supports multiple mailboxes. In the following example, we
+work with mailboxes and flags.
+
+.. include:: tutorial/tutorial_imap_extra.php
+   :literal:
+
+Refering messages by their unique IDs in IMAP
+---------------------------------------------
+
+With IMAP it is possible to refer to messages using their unique IDs, which
+usually never change, unlike message numbers. Unfortunately this is not
+possible yet in POP3.
+
+The next example shows how to enable refering to messages by their unique IDs.
+To see the list of the methods which support unique IDs referencing, consult
+the documentation for the ezcMailImapTransport class.
+
+.. include:: tutorial/tutorial_imap_uids.php
+   :literal:
+
+Working with transport options
+------------------------------
+
+The POP3, IMAP and SMTP transports allow options to be specified when calling
+the transport constructors. These options are implemented in the classes
+ezcMailPop3TransportOptions, ezcMailImapTransportOptions and
+ezcMailSmtpTransportOptions. In the following example, we
+specify options when calling the POP3 transport constructor.
+
+.. include:: tutorial/tutorial_pop3_options.php
+   :literal:
+
+Using SSL with POP3 and IMAP
+----------------------------
+
+The POP3 and IMAP transports allow SSL connections (if the mail server supports
+them). In the following example, we connect to an IMAP server
+using an SSL connection.
+
+.. include:: tutorial/tutorial_imap_ssl.php
+   :literal:
+
+Retrieving mail from mbox files
+-------------------------------
+
+The following example shows how to fetch all messages from an mbox file and
+to parse the messages for use.
+
+.. include:: tutorial/tutorial_mbox.php
+   :literal:
+
+The parser returns an array of ezcMail messages with parts organized according
+to the MIME structure of the mail.
+
+Parsing a message set
+---------------------
+
+The following example shows how to parse a message set retrieved from an IMAP
+or POP3 account, an mbox file, a single mail file or a variable.
+
+.. include:: tutorial/tutorial_parse.php
+   :literal:
+
+Because the parser will delete the temporary attachments after the script ends,
+it is needed to save those files to another directory. On lines 19-26 a way of
+how to do this is shown. The *contentDisposition->displayFileName* property of
+$part was used, as the *fileName* property of $part contains the raw file name
+from the mail.
+
+For a more detailed example on how to use a mail object, please see the
+`display example`_.
+
+.. _display example: Mail_display-example.html
+
+For an example on how to display a listing of mails, please see the
+`mail listing example`_.
+
+.. _mail listing example: Mail_mail-listing-example.html
+
+For a list of supported mail-related RFCs, please see the `RFCs list`_.
+
+.. _RFCs list: Mail_rfcs.html
+
+Displaying HTML mail with inline images
+---------------------------------------
+
+In order to display HTML mail with inline images, you need to make sure that
+the attached images are accessible by the web server. Besides this, you also
+need to replace the internal mail references to the images with references to
+the file in the document root. In the following example we use
+ezcMailTools::replaceContentIdRefs() to do exactly this.
+
+.. include:: tutorial/tutorial_html_display.php
+   :literal:
+
+Using a custom mail class
+-------------------------
+
+When parsing a mail, an object of class ezcMail is created by default. You can
+change this by specifying a custom mail class to the parser before parsing. The
+custom mail class must extend ezcMail.
+
+Example::
+
+    $parser = new ezcMailParser();
+    $parser->options->mailClass = 'myCustomMailClass'; // extends ezcMail
+    $parser->parseMail( $set );
+
+Using a custom file class
+-------------------------
+
+When parsing a mail, an object of class ezcMailFile is created by default for
+each file attachment. You can change this by specifying a custom file class to
+the parser before parsing. The custom file class must extend ezcMailFile.
+
+Example::
+
+    $parser = new ezcMailParser();
+    $parser->options->fileClass = 'myCustomFileClass'; // extends ezcMailFile
+    $parser->parseMail( $set );
+
+
+Troubleshooting
+===============
+
+MTA: Qmail
+----------
+
+Qmail insists on only using "\\n" line breaks and will send garbled messages
+with the default "\\r\\n" setting. To fix this issue, use
+ezcMailTools::setLineBreak( "\\n" ) before sending mail.
+
+MTA: Sendmail relaying denied
+-----------------------------
+
+This can happen when the SMTP server you try to use has disabled
+the sending of mail from computers not connected to its network, or
+if it requires authentication. Talk to the administrator of the SMTP server to
+see what the requirements are to send mail.
+
+Check also that sendmail is installed and configured correctly.
+
+For Windows, you need to specify a valid SMTP server in php.ini, or you can
+download a "fake" sendmail from the internet.
+
+IMAP: Authentication failed
+---------------------------
+
+Sometimes the IMAP transport fails to authenticate, in which case the
+authenticate() method will return false. The application should detect when
+this occurs and attempt authentication again (for example, for a preset
+number of times such as three).
+
+IMAP: Could not read from the stream
+------------------------------------
+
+While using the IMAP methods, it is possible that an ezcMailTransportException
+is thrown, in which case the connection to the IMAP server is closed. The
+application should catch this exception and decide how to handle this
+situation (show an error, reconnect).
+
+Parsing: iconv() notices
+------------------------
+
+If the mail that you try to parse is not encoded properly, the `iconv`_ ()
+function will throw notices (from the function convertToUTF8Iconv() in
+ezcMailCharsetConverter).
+
+To avoid the notices you can use your own conversion function:
+
+1. Create a new function which is similar to convertToUTF8Iconv() from 
+ezcMailCharsetConverter, but which supresses notices and errors (with @ in
+front of `iconv`_ ()): ::
+
+  class myConverter
+  {
+       public static function convertToUTF8IconvNoNotices( $text, $originalCharset )
+       {
+           if ( $originalCharset === 'unknown-8bit' || $originalCharset === 'x-user-defined' )
+           {
+               $originalCharset = "latin1";
+           }
+           return @iconv( $originalCharset, 'utf-8', $text );
+       }
+  }
+
+2. Use the created function instead of the normal one (set this before parsing
+mail): ::
+
+  ezcMailCharsetConverter::setConvertMethod( array( 'myConverter', 'convertToUTF8IconvNoNotices' ) );
+
+Parsing: missing characters
+---------------------------
+
+If the mail that you try to parse is not encoded properly, the `iconv`_ ()
+function will throw notices (from the function convertToUTF8Iconv() in
+ezcMailCharsetConverter).
+
+To avoid the missing characters you can use your own conversion function:
+
+1. Create a new function which is similar to convertToUTF8Iconv() from 
+ezcMailCharsetConverter, but which uses one of the options //IGNORE or
+//TRANSLIT for `iconv`_ (): ::
+
+  class myConverter
+  {
+      public static function convertToUTF8IconvIgnore( $text, $originalCharset )
+      {
+          if ( $originalCharset === 'unknown-8bit' || $originalCharset === 'x-user-defined' )
+          {
+              $originalCharset = "latin1";
+          }
+          return iconv( $originalCharset, 'utf-8//TRANSLIT', $text );
+      }
+  }
+
+2. Use the created function instead of the normal one (set this before parsing
+mail): ::
+
+  ezcMailCharsetConverter::setConvertMethod( array( 'myConverter', 'convertToUTF8IconvIgnore' ) );
+
+See the other examples in ezcMailCharsetConverter, and see also the
+documentation for the `iconv`_ () function to find out how //IGNORE and
+//TRANSLIT work.
+
+Parsing: broken headers
+-----------------------
+
+If the mail contains headers with broken text (eg. 8-bit characters with no
+character set specified), then the parsed header will contain broken text or
+missing characters.
+
+For example, when parsing a mail with this header::
+
+    Subject: Un Fax a été émis
+
+Then $mail->subject will contain 'Un Fax a t mis' (because the 8-bit characters
+could not be parsed correctly by ezcMailTools::mimeDecode() due to the
+missing character set).
+
+In order to be able to get the correct value of the header, use
+$mail->getHeader( 'Subject' ), which is the raw value of the header
+(MIME-encoded). Other headers are available as raw through the getHeader()
+function.
+
+The raw headers (obtained via the function getHeader of ezcMailPart) are
+MIME-encoded for non-broken headers (eg. '=?iso-8859-1?Q?=E6=F8=E5?='), so if
+you want to decode them use ezcMailTools::mimeDecode() or implement your own
+MIME-decoding function.
+
+Parsing: multiple-value headers
+-------------------------------
+
+Mail headers such as **Received** can appear multiple times in a mail message.
+By default the mail parser will only recognize the first value of the header
+it encounters, and will disregard the others.
+
+To retrieve all the values of a header from a mail in an array, use the second
+argument for the function $mail->getHeader() with the value *true*.
+
+Example::
+
+    $mail->getHeader( 'Received', true );
+
+This will return an array which looks like this::
+
+    array(
+        "from punisher.example.com (punisher.example.com...",
+        "from localhost (localhost [127.0.0.1])...",
+        "from punisher.example.com ([127.0.0.1])...",
+        "from www.example.com (unknown [216.198.224.130]) by...",
+        "from localhost (localhost) by www.example.com..."
+         );
+
+instead of only the first value as a string if the second parameter to
+getHeader() was not specified.
+
+Parsing: text attachments as file parts
+---------------------------------------
+
+By default, the mail parser creates ezcMailTextPart objects for text
+attachments found in the mail.
+
+To create ezcMailFile objects instead (for example on servers where
+internal memory is limited), set this option to the mail parser before
+parsing::
+
+    $parser = new ezcMailParser();
+    $parser->options->parseTextAttachmentsAsFiles = true;
+    // call $parser->parseMail( $set );
+
+Parsing: attachment file names
+------------------------------
+
+When parsing a mail with attachments you can use a code similar to the one in
+section _`Parsing a message set`. The mail part that contains the attachment
+($part) has the *fileName* property which contains the raw file name, 
+*contentDisposition->displayFileName* which contain the MIME-decoded file name.
+Use the *contentDisposition->displayFileName* value to copy the temporary files
+saved during parsing which contain the attachments, and which will not be
+available on the next request.
+
+.. _iconv: http://php.net/manual/en/function.iconv.php
+
+
+Security
+========
+
+Excluding the User-Agent header
+-------------------------------
+
+By defaul the Mail component will add the "User-Agent" header containing the
+string "Apache Zeta Components". This can be considered a security issue. If
+you do not want to get this header sent along with the email you can use the
+following code: ::
+
+    $mail = new ezcMailComposer();
+    // [...]
+    $mail->appendExcludeHeaders(array('User-Agent'));
+
+
+
+..
+   Local Variables:
+   mode: rst
+   fill-column: 79
+   End: 
+   vim: et syn=rst tw=79

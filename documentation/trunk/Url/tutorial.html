@@ -1,0 +1,555 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="PHP, apache, components, framework, quality" />
+	<meta name="author" content="dotxp" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Wed, 04 Aug 2010 13:07:09 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="Tutorial" />
+	<meta name="DC.creator" content="dotxp" />
+	<meta name="DC.date" content="Wed, 04 Aug 2010 13:07:09 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/Url/tutorial.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li class="requested">
+	<a href="/zetacomponents/documentation/trunk/Url/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Url/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+
+</ul>
+
+		<h2>eZ Components - Url</h2><div class="toc"><h3>Table of Contents</h3><ul><li><p><a href="#introduction">Introduction</a></p></li><li><p><a href="#class-overview">Class overview</a></p></li><li><p><a href="#notes">Notes</a></p><ul><li><p><a href="#working-with-path-params-and-query-parts">Working with path, params and query parts</a></p></li><li><p><a href="#using-url-configurations">Using url configurations</a></p></li></ul></li><li><p><a href="#working-with-the-query-part">Working with the query part</a></p><ul><li><p><a href="#getting-the-query-part">Getting the query part</a></p></li><li><p><a href="#setting-the-query-part">Setting the query part</a></p></li></ul></li><li><p><a href="#working-with-url-configurations">Working with url configurations</a></p><ul><li><p><a href="#creating-and-using-a-custom-url-configuration">Creating and using a custom url configuration</a></p></li><li><p><a href="#lazy-initialization">Lazy initialization</a></p></li></ul></li><li><p><a href="#working-with-parameters">Working with parameters</a></p><ul><li><p><a href="#getting-parameters-using-a-url-configuration">Getting parameters using a url configuration</a></p></li><li><p><a href="#getting-parameters-by-aggregating-values-for-unordered-parameters">Getting parameters by aggregating values for unordered parameters</a></p></li><li><p><a href="#getting-unordered-parameters-without-name-delimiters">Getting unordered parameters without name delimiters</a></p></li><li><p><a href="#setting-parameters-using-a-url-configuration">Setting parameters using a url configuration</a></p></li><li><p><a href="#changing-a-url-configuration-dynamically">Changing a url configuration dynamically</a></p></li></ul></li><li><p><a href="#using-the-url-creator">Using the url creator</a></p><ul><li><p><a href="#appending-a-suffix-to-a-url">Appending a suffix to a url</a></p></li><li><p><a href="#using-formatting-for-a-url">Using formatting for a url</a></p></li></ul></li><li><p><a href="#other-url-functions">Other url functions</a></p><ul><li><p><a href="#getcurrenturl">getCurrentUrl</a></p></li><li><p><a href="#parsequerystring">parseQueryString</a></p></li></ul></li></ul></div><a name="introduction"></a><a name="id2"></a><h3>Introduction</h3><p>The Url component provides basic operations to handle urls (including parse, build, get/set path parameters, get/set query and create formatted urls).</p><a name="class-overview"></a><a name="id3"></a><h3>Class overview</h3><dl><dt>ezcUrl</dt><dd>This is the main class of this component. It contains methods for url parsing, url building, get/set parameters and get/set query.</dd><dt>ezcUrlConfiguration</dt><dd>This class allows the definition of url configurations (including basedir, script, ordered parameters, unordered parameters and delimiters for unordered parameter names).</dd><dt>ezcUrlCreator</dt><dd>This class allows you to register a url under an alias. You can then use that alias to generate another url suffixed with a value, or to create urls formatted using the syntax of the PHP function sprintf().</dd><dt>ezcUrlTools</dt><dd>This utility class contains useful functions for handling urls, like getCurrentUrl() which builds the current url from the $_SERVER array or another array source, and parseQueryString() which has the same functionality as the PHP function parse_str(), but without converting the dots to underscores in query parameter names.</dd></dl><a name="notes"></a><a name="id4"></a><h3>Notes</h3><a name="working-with-path-params-and-query-parts"></a><a name="id5"></a><h4>Working with path, params and query parts</h4><p>Do not work with the path, params and query properties directly, because this will not work in PHP 5.2.0 (that is, do not set/get $url-&gt;query[0], because a notice will be thrown: "Notice: Indirect modification of overloaded property <a href='/zetacomponents/documentation/trunk/Url/phpdoc/ezcUrl.html#$query'>ezcUrl::$query</a> has no effect"). Instead, use the following methods.</p><a name="using-url-configurations"></a><a name="id6"></a><h4>Using url configurations</h4><p>By using the <a href='/zetacomponents/documentation/trunk/Url/phpdoc/ezcUrlConfiguration.html'>ezcUrlConfiguration</a> class, you can specify a custom configuration that can be used to parse urls. The properties you can set in objects of this class are the default base directory, default script name (eg. index.php) (which will be hidden when building the url by default, but can be displayed by calling buildUrl( true )), delimiters for unordered parameter names and names for accepted parameters.</p><p>A URL is assumed to be of this form:</p><code class="block">scheme://host/basedir/script/ordered_parameters/unordered_parameters</code><p>Example:</p><code class="block">http://example.com/mydir/index.php/groups/Games/Adventure/Adult/(game)/Larry/7</code><p>Where:</p><code class="block">scheme = "http"
+host = "example.com"
+basedir = "mydir"
+script = "index.php"
+ordered parameters = "groups", "Games", "Adventure", "Adult"
+unordered parameters = array( "Larry", "7" )</code><p>When creating a configuration with ordered parameters, those parameters are required to be present in the parsed URL, in the same number as the configuration states. Having a different number of ordered parameters in the parsed URL will lead to wrong values assigned to the unordered parameters (if any follow the ordered parameters).</p><p>Working with a variable number of ordered parameters is explained in the <a href="#changing-a-url-configuration-dynamically">Changing a url configuration dynamically</a> section.</p><a name="working-with-the-query-part"></a><a name="id7"></a><h3>Working with the query part</h3><a name="getting-the-query-part"></a><a name="id8"></a><h4>Getting the query part</h4><p>Here is an example of getting the query part of urls:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #0000FF">require_once&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;create&nbsp;a&nbsp;new&nbsp;Url&nbsp;object&nbsp;from&nbsp;a&nbsp;string&nbsp;url</span></li>
+<li><span style="color: #000000">$url&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Url/phpdoc/ezcUrl.html'>ezcUrl</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'http://www.example.com/mydir/index.php/content/view/article/42/mode/print?user[name]=Bob+Smith&amp;user[age]=47&amp;user[sex]=M'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;get&nbsp;the&nbsp;query&nbsp;parts</span></li>
+<li><span style="color: #000000">var_dump</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$url</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">getQuery</span><span style="color: #0000FF">()&nbsp;);</span></li>
+<li></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><p>The output would be:</p><code class="block">array(1) {
+  ["user"]=&gt;
+  array(3) {
+    ["name"]=&gt;
+    string(9) "Bob Smith"
+    ["age"]=&gt;
+    string(2) "47"
+    ["sex"]=&gt;
+    string(1) "M"
+  }
+}</code><a name="setting-the-query-part"></a><a name="id9"></a><h4>Setting the query part</h4><p>Here is an example of setting the query part of urls:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #0000FF">require_once&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;create&nbsp;a&nbsp;new&nbsp;Url&nbsp;object&nbsp;from&nbsp;a&nbsp;string&nbsp;url</span></li>
+<li><span style="color: #000000">$url&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Url/phpdoc/ezcUrl.html'>ezcUrl</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'http://www.example.com/mydir/index.php/content/view/article/42/mode/print?user[name]=Bob+Smith&amp;user[age]=47&amp;user[sex]=M'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;create&nbsp;an&nbsp;array&nbsp;which&nbsp;will&nbsp;be&nbsp;used&nbsp;to&nbsp;set&nbsp;the&nbsp;query&nbsp;part</span></li>
+<li><span style="color: #000000">$query&nbsp;</span><span style="color: #0000FF">=&nbsp;array(&nbsp;</span><span style="color: #335533">'user'&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;array(&nbsp;</span><span style="color: #335533">'name'&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #335533">'Bob&nbsp;Smith'</span><span style="color: #0000FF">,</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #335533">'age'&nbsp;&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #335533">'47'</span><span style="color: #0000FF">,</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #335533">'sex'&nbsp;&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #335533">'M'</span><span style="color: #0000FF">,</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #335533">'dob'&nbsp;&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #335533">'5/12/1956'</span><span style="color: #0000FF">),</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;set&nbsp;the&nbsp;query&nbsp;part&nbsp;of&nbsp;the&nbsp;Url&nbsp;object</span></li>
+<li><span style="color: #000000">$url</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">setQuery</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$query&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">var_dump</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">rawurldecode</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$url&nbsp;</span><span style="color: #0000FF">)&nbsp;);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;add&nbsp;a&nbsp;query&nbsp;parameter&nbsp;to&nbsp;the&nbsp;query&nbsp;part</span></li>
+<li><span style="color: #000000">$url</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">setQuery</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">array_merge</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$url</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">getQuery</span><span style="color: #0000FF">(),&nbsp;array(&nbsp;</span><span style="color: #335533">'sort'&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #335533">'desc'&nbsp;</span><span style="color: #0000FF">)&nbsp;)&nbsp;);</span></li>
+<li><span style="color: #000000">var_dump</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">rawurldecode</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$url&nbsp;</span><span style="color: #0000FF">)&nbsp;);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;remove&nbsp;a&nbsp;query&nbsp;parameter&nbsp;from&nbsp;the&nbsp;query&nbsp;part</span></li>
+<li><span style="color: #000000">$url</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">setQuery</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">array_diff_key</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$url</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">getQuery</span><span style="color: #0000FF">(),&nbsp;array(&nbsp;</span><span style="color: #335533">'sort'&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #000000">null&nbsp;</span><span style="color: #0000FF">)&nbsp;)&nbsp;);</span></li>
+<li><span style="color: #000000">var_dump</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">rawurldecode</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$url&nbsp;</span><span style="color: #0000FF">)&nbsp;);</span></li>
+<li></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><p>The output would be as follows (wrapped for clarity):</p><code class="block">string(139) "http://www.example.com/mydir/index.php/content/view/article/
+42/mode/print?user[name]=Bob+Smith&amp;user[age]=47&amp;user[sex]=M&amp;user[dob]=
+5/12/1956"
+
+string(149) "http://www.example.com/mydir/index.php/content/view/article/
+42/mode/print?user[name]=Bob+Smith&amp;user[age]=47&amp;user[sex]=M&amp;user[dob]=
+5/12/1956&amp;sort=desc"
+
+string(139) "http://www.example.com/mydir/index.php/content/view/article/
+42/mode/print?user[name]=Bob+Smith&amp;user[age]=47&amp;user[sex]=M&amp;user[dob]=
+5/12/1956"</code><a name="working-with-url-configurations"></a><a name="id10"></a><h3>Working with url configurations</h3><a name="creating-and-using-a-custom-url-configuration"></a><a name="id11"></a><h4>Creating and using a custom url configuration</h4><p>The following example creates a custom url configuration and uses it when creating a new url object:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #0000FF">require_once&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;create&nbsp;an&nbsp;<a href='/zetacomponents/documentation/trunk/Url/phpdoc/ezcUrlConfiguration.html'>ezcUrlConfiguration</a>&nbsp;object</span></li>
+<li><span style="color: #000000">$urlCfg&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Url/phpdoc/ezcUrlConfiguration.html'>ezcUrlConfiguration</a></span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;set&nbsp;the&nbsp;basedir&nbsp;and&nbsp;script&nbsp;values</span></li>
+<li><span style="color: #000000">$urlCfg</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">basedir&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">'mydir'</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000">$urlCfg</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">script&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">'index.php'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;define&nbsp;delimiters&nbsp;for&nbsp;unordered&nbsp;parameter&nbsp;names</span></li>
+<li><span style="color: #000000">$urlCfg</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">unorderedDelimiters&nbsp;</span><span style="color: #0000FF">=&nbsp;array(&nbsp;</span><span style="color: #335533">'('</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">')'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;define&nbsp;ordered&nbsp;parameters</span></li>
+<li><span style="color: #000000">$urlCfg</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">addOrderedParameter</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'section'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$urlCfg</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">addOrderedParameter</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'group'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$urlCfg</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">addOrderedParameter</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'category'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$urlCfg</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">addOrderedParameter</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'subcategory'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;define&nbsp;unordered&nbsp;parameters</span></li>
+<li><span style="color: #000000">$urlCfg</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">addUnorderedParameter</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'game'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;visualize&nbsp;the&nbsp;$urlCfg&nbsp;object</span></li>
+<li><span style="color: #000000">var_dump</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$urlCfg&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;create&nbsp;a&nbsp;new&nbsp;<a href='/zetacomponents/documentation/trunk/Url/phpdoc/ezcUrl.html'>ezcUrl</a>&nbsp;object&nbsp;from&nbsp;a&nbsp;string&nbsp;url&nbsp;and&nbsp;use&nbsp;the&nbsp;above&nbsp;$urlCfg</span></li>
+<li><span style="color: #000000">$url&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Url/phpdoc/ezcUrl.html'>ezcUrl</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'http://www.example.com/mydir/index.php/groups/Games/Adventure/Adult/(game)/Larry/7'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">$urlCfg&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><p>The output would be:</p><code class="block">object(<a href='/zetacomponents/documentation/trunk/Url/phpdoc/ezcUrlConfiguration.html'>ezcUrlConfiguration</a>)#1 (1) {
+  ["properties:private"]=&gt;
+  array(5) {
+    ["basedir"]=&gt;
+    string(5) "mydir"
+    ["script"]=&gt;
+    string(9) "index.php"
+    ["unorderedDelimiters"]=&gt;
+    array(2) {
+      [0]=&gt;
+      string(1) "("
+      [1]=&gt;
+      string(1) ")"
+    }
+    ["orderedParameters"]=&gt;
+    array(4) {
+      ["section"]=&gt;
+      int(0)
+      ["group"]=&gt;
+      int(1)
+      ["category"]=&gt;
+      int(2)
+      ["subcategory"]=&gt;
+      int(3)
+    }
+    ["unorderedParameters"]=&gt;
+    array(1) {
+      ["game"]=&gt;
+      int(0)
+    }
+  }
+}</code><a name="lazy-initialization"></a><a name="id12"></a><h4>Lazy initialization</h4><p>Lazy initialization is a mechanism to load and configure a component, only when it is really used in your application. This mechanism saves time for parsing the classes and configuration, when the component is not used at all during one request. You can find a description how you can use it for your own components and how it works in the <a href="introduction_Base.html#lazy-initialization">ezcBase tutorial</a>. The keyword for the url component is <em>ezcUrlConfiguration</em>.</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #0000FF">require_once&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #0000FF">class&nbsp;</span><span style="color: #000000">customLazyUrlConfiguration&nbsp;</span><span style="color: #0000FF">implements&nbsp;</span><span style="color: #000000">ezcBaseConfigurationInitializer</span></li>
+<li><span style="color: #0000FF">{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;static&nbsp;function&nbsp;</span><span style="color: #000000">configureObject</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$urlCfg&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">//&nbsp;set&nbsp;the&nbsp;basedir&nbsp;and&nbsp;script&nbsp;values</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$urlCfg</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">basedir&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">'mydir'</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$urlCfg</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">script&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">'index.php'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">//&nbsp;define&nbsp;delimiters&nbsp;for&nbsp;unordered&nbsp;parameter&nbsp;names</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$urlCfg</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">unorderedDelimiters&nbsp;</span><span style="color: #0000FF">=&nbsp;array(&nbsp;</span><span style="color: #335533">'('</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">')'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">//&nbsp;define&nbsp;ordered&nbsp;parameters</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$urlCfg</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">addOrderedParameter</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'section'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$urlCfg</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">addOrderedParameter</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'group'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$urlCfg</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">addOrderedParameter</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'category'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$urlCfg</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">addOrderedParameter</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'subcategory'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">//&nbsp;define&nbsp;unordered&nbsp;parameters</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$urlCfg</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">addUnorderedParameter</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'game'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;}</span></li>
+<li><span style="color: #0000FF">}</span></li>
+<li></li>
+<li><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Url/phpdoc/ezcBaseInit.html#setCallback'>ezcBaseInit::setCallback</a></span><span style="color: #0000FF">(&nbsp;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #335533">'<a href='/zetacomponents/documentation/trunk/Url/phpdoc/ezcUrlConfiguration.html'>ezcUrlConfiguration</a>'</span><span style="color: #0000FF">,&nbsp;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #335533">'customLazyUrlConfiguration'</span></li>
+<li><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Classes&nbsp;loaded&nbsp;and&nbsp;configured&nbsp;on&nbsp;first&nbsp;request</span></li>
+<li><span style="color: #000000">$url&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Url/phpdoc/ezcUrl.html'>ezcUrl</a></span><span style="color: #0000FF">(&nbsp;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #335533">'http://www.example.com/mydir/index.php/groups/Games/Adventure/Adult/(game)/Larry/7'</span><span style="color: #0000FF">,</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Url/phpdoc/ezcUrlConfiguration.html#getInstance'>ezcUrlConfiguration::getInstance</a></span><span style="color: #0000FF">()</span></li>
+<li><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><p>This examples configures the URL component exactly like the example before. The main difference is, that we roll out the configuration to an own class, and define a callback using <a href='/zetacomponents/documentation/trunk/Url/phpdoc/ezcBaseInit.html'>ezcBaseInit</a>::setCallback to this class, which will be called with a url configuration instance as the first parameter on the first call on <a href='/zetacomponents/documentation/trunk/Url/phpdoc/ezcUrlConfiguration.html#getInstance'>ezcUrlConfiguration::getInstance</a>().</p><p>ezcBaseInit::setCallback accepts as a first parameter a component specific key, which lets the component later request the right configuration callback. The second parameter is the name of the class to perform the static callback on. This class must implement the <a href='/zetacomponents/documentation/trunk/Url/phpdoc/ezcBaseConfigurationInitializer.html'>ezcBaseConfigurationInitializer</a> class. Each component's lazy initialization calls the static method configureObject() on the referenced class.</p><p>When the URL is really parsed in your application, like shown in line 35 of the example, a new <a href='/zetacomponents/documentation/trunk/Url/phpdoc/ezcUrlConfiguration.html'>ezcUrlConfiguration</a> is instatiated an automatically configured by the configureObject() method.</p><a name="working-with-parameters"></a><a name="id13"></a><h3>Working with parameters</h3><a name="getting-parameters-using-a-url-configuration"></a><a name="id14"></a><h4>Getting parameters using a url configuration</h4><p>The following example uses the custom url configuration from before to get the parameters from the provided url:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #0000FF">require_once&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;create&nbsp;an&nbsp;<a href='/zetacomponents/documentation/trunk/Url/phpdoc/ezcUrlConfiguration.html'>ezcUrlConfiguration</a>&nbsp;object</span></li>
+<li><span style="color: #000000">$urlCfg&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Url/phpdoc/ezcUrlConfiguration.html'>ezcUrlConfiguration</a></span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;set&nbsp;the&nbsp;basedir&nbsp;and&nbsp;script&nbsp;values</span></li>
+<li><span style="color: #000000">$urlCfg</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">basedir&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">'mydir'</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000">$urlCfg</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">script&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">'index.php'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;define&nbsp;delimiters&nbsp;for&nbsp;unordered&nbsp;parameter&nbsp;names</span></li>
+<li><span style="color: #000000">$urlCfg</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">unorderedDelimiters&nbsp;</span><span style="color: #0000FF">=&nbsp;array(&nbsp;</span><span style="color: #335533">'('</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">')'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;define&nbsp;ordered&nbsp;parameters</span></li>
+<li><span style="color: #000000">$urlCfg</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">addOrderedParameter</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'section'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$urlCfg</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">addOrderedParameter</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'group'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$urlCfg</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">addOrderedParameter</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'category'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$urlCfg</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">addOrderedParameter</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'subcategory'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;define&nbsp;unordered&nbsp;parameters</span></li>
+<li><span style="color: #000000">$urlCfg</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">addUnorderedParameter</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'game'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Url/phpdoc/ezcUrlConfiguration.html#constMULTIPLE_ARGUMENTS'>ezcUrlConfiguration::MULTIPLE_ARGUMENTS</a>&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;create&nbsp;a&nbsp;new&nbsp;<a href='/zetacomponents/documentation/trunk/Url/phpdoc/ezcUrl.html'>ezcUrl</a>&nbsp;object&nbsp;from&nbsp;a&nbsp;string&nbsp;url&nbsp;and&nbsp;use&nbsp;the&nbsp;above&nbsp;$urlCfg</span></li>
+<li><span style="color: #000000">$url&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Url/phpdoc/ezcUrl.html'>ezcUrl</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'http://www.example.com/mydir/index.php/groups/Games/Adventure/Adult/(game)/Larry/7'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">$urlCfg&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;get&nbsp;the&nbsp;parameter&nbsp;values&nbsp;from&nbsp;the&nbsp;url</span></li>
+<li><span style="color: #000000">var_dump</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$url</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">getParam</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'section'&nbsp;</span><span style="color: #0000FF">)&nbsp;);</span></li>
+<li><span style="color: #000000">var_dump</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$url</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">getParam</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'group'&nbsp;</span><span style="color: #0000FF">)&nbsp;);</span></li>
+<li><span style="color: #000000">var_dump</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$url</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">getParam</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'category'&nbsp;</span><span style="color: #0000FF">)&nbsp;);</span></li>
+<li><span style="color: #000000">var_dump</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$url</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">getParam</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'subcategory'&nbsp;</span><span style="color: #0000FF">)&nbsp;);</span></li>
+<li><span style="color: #000000">var_dump</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$url</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">getParam</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'game'&nbsp;</span><span style="color: #0000FF">)&nbsp;);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;output&nbsp;the&nbsp;url&nbsp;(index.php&nbsp;will&nbsp;not&nbsp;be&nbsp;there)</span></li>
+<li><span style="color: #000000">var_dump</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$url</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">buildUrl</span><span style="color: #0000FF">()&nbsp;);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;output&nbsp;the&nbsp;url&nbsp;(with&nbsp;index.php&nbsp;included)</span></li>
+<li><span style="color: #000000">var_dump</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$url</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">buildUrl</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">true&nbsp;</span><span style="color: #0000FF">)&nbsp;);</span></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><p>The output would be as follows (wrapped for clarity):</p><code class="block">string(6) "groups"
+string(5) "Games"
+string(9) "Adventure"
+string(5) "Adult"
+array(2) {
+  [0]=&gt;
+  string(5) "Larry"
+  [1]=&gt;
+  string(1) "7"
+}
+string(72) "http://www.example.com/mydir/groups/Games/Adventure/Adult/
+(game)/Larry/7"
+string(82) "http://www.example.com/mydir/index.php/groups/Games/Adventure/
+Adult/(game)/Larry/7"</code><a name="getting-parameters-by-aggregating-values-for-unordered-parameters"></a><a name="id15"></a><h4>Getting parameters by aggregating values for unordered parameters</h4><p>If the URL contains multiple appearances of an unordered parameter (for example '<a href="http://www.example.com/(param1)/x/(param1)/y/z">http://www.example.com/(param1)/x/(param1)/y/z</a>'), then by default only the last encountered values are returned when calling getParam().</p><p>To return all the values (to aggregate values) as an array of arrays (for example, array( array( 'x' ), array( 'y', 'z' ) ) for the above URL), use <a href='/zetacomponents/documentation/trunk/Url/phpdoc/ezcUrlConfiguration.html#constAGGREGATE_ARGUMENTS'>ezcUrlConfiguration::AGGREGATE_ARGUMENTS</a> as the second parameter when calling addUnorderedParameter(), like in this example:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #0000FF">require_once&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;create&nbsp;an&nbsp;<a href='/zetacomponents/documentation/trunk/Url/phpdoc/ezcUrlConfiguration.html'>ezcUrlConfiguration</a>&nbsp;object</span></li>
+<li><span style="color: #000000">$urlCfg&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Url/phpdoc/ezcUrlConfiguration.html'>ezcUrlConfiguration</a></span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;single&nbsp;parameter&nbsp;value</span></li>
+<li><span style="color: #000000">$urlCfg</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">addUnorderedParameter</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'param1'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$url&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Url/phpdoc/ezcUrl.html'>ezcUrl</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'http://www.example.com/(param1)/x/(param1)/y/z'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">$urlCfg&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">var_dump</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$url</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">getParam</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'param1'&nbsp;</span><span style="color: #0000FF">)&nbsp;);&nbsp;</span><span style="color: #007700">//&nbsp;will&nbsp;output&nbsp;"y"</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;multiple&nbsp;parameter&nbsp;values</span></li>
+<li><span style="color: #000000">$urlCfg</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">addUnorderedParameter</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'param1'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Url/phpdoc/ezcUrlConfiguration.html#constMULTIPLE_ARGUMENTS'>ezcUrlConfiguration::MULTIPLE_ARGUMENTS</a>&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$url&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Url/phpdoc/ezcUrl.html'>ezcUrl</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'http://www.example.com/(param1)/x/(param1)/y/z'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">$urlCfg&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">var_dump</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$url</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">getParam</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'param1'&nbsp;</span><span style="color: #0000FF">)&nbsp;);&nbsp;</span><span style="color: #007700">//&nbsp;will&nbsp;output&nbsp;array(&nbsp;"y",&nbsp;"z"&nbsp;)</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;multiple&nbsp;parameter&nbsp;values&nbsp;with&nbsp;aggregation</span></li>
+<li><span style="color: #000000">$urlCfg</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">addUnorderedParameter</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'param1'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Url/phpdoc/ezcUrlConfiguration.html#constAGGREGATE_ARGUMENTS'>ezcUrlConfiguration::AGGREGATE_ARGUMENTS</a>&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$url&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Url/phpdoc/ezcUrl.html'>ezcUrl</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'http://www.example.com/(param1)/x/(param1)/y/z'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">$urlCfg&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">var_dump</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$url</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">getParam</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'param1'&nbsp;</span><span style="color: #0000FF">)&nbsp;);&nbsp;</span><span style="color: #007700">//&nbsp;will&nbsp;output&nbsp;array(&nbsp;array(&nbsp;"x"&nbsp;),&nbsp;array(&nbsp;"y",&nbsp;"z"&nbsp;)&nbsp;)</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;output&nbsp;the&nbsp;url&nbsp;(it&nbsp;will&nbsp;be&nbsp;similar&nbsp;to&nbsp;the&nbsp;input&nbsp;url)</span></li>
+<li><span style="color: #000000">var_dump</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$url</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">buildUrl</span><span style="color: #0000FF">()&nbsp;);</span></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><p>The output will be:</p><code class="block">string(1) "y"
+array(2) {
+  [0]=&gt;
+  string(1) "y"
+  [1]=&gt;
+  string(1) "z"
+}
+array(2) {
+  [0]=&gt;
+  array(1) {
+    [0]=&gt;
+    string(1) "x"
+  }
+  [1]=&gt;
+  array(2) {
+    [0]=&gt;
+    string(1) "y"
+    [1]=&gt;
+    string(1) "z"
+  }
+}
+string(46) "http://www.example.com/(param1)/x/(param1)/y/z"</code><a name="getting-unordered-parameters-without-name-delimiters"></a><a name="id16"></a><h4>Getting unordered parameters without name delimiters</h4><p>If the URL doesn't contain delimiters for unordered parameter names, then you can use the getParams() method to return the values after the basedir, script and ordered parameters as a flat array. This array can be parsed later by your application to make it an associative array.</p><p>Example:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #0000FF">require_once&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;create&nbsp;an&nbsp;<a href='/zetacomponents/documentation/trunk/Url/phpdoc/ezcUrlConfiguration.html'>ezcUrlConfiguration</a>&nbsp;object</span></li>
+<li><span style="color: #000000">$urlCfg&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Url/phpdoc/ezcUrlConfiguration.html'>ezcUrlConfiguration</a></span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #000000">$urlCfg</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">basedir&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">'/mydir/shop'</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000">$urlCfg</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">script&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">'index.php'</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000">$urlCfg</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">addOrderedParameter</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'module'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #000000">$url&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Url/phpdoc/ezcUrl.html'>ezcUrl</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'http://www.example.com/mydir/shop/index.php/order/Software/PHP/Version/5.2/Extension/XDebug/Extension/openssl'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">$urlCfg&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;get&nbsp;the&nbsp;unordered&nbsp;parameters&nbsp;as&nbsp;a&nbsp;flat&nbsp;array</span></li>
+<li><span style="color: #000000">var_dump</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$url</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">getParams</span><span style="color: #0000FF">()&nbsp;);&nbsp;</span><span style="color: #007700">//&nbsp;will&nbsp;output&nbsp;array(&nbsp;'Software',&nbsp;'PHP',&nbsp;'Version',&nbsp;'5.2',&nbsp;'Extension',&nbsp;'XDebug',&nbsp;'Extension',&nbsp;'openssl'&nbsp;)</span></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><p>The output will be:</p><code class="block">array(8) {
+  [0]=&gt;
+  string(8) "Software"
+  [1]=&gt;
+  string(3) "PHP"
+  [2]=&gt;
+  string(7) "Version"
+  [3]=&gt;
+  string(3) "5.2"
+  [4]=&gt;
+  string(9) "Extension"
+  [5]=&gt;
+  string(6) "XDebug"
+  [6]=&gt;
+  string(9) "Extension"
+  [7]=&gt;
+  string(7) "openssl"
+}</code><p>This array can then be translated by your application to this form (if needed):</p><code class="block">array( "Software" =&gt; array( "PHP" ),
+    "Version" =&gt; array( "5.2" ),
+    "Extension" =&gt; array( "XDebug", "openssl" )
+);</code><a name="setting-parameters-using-a-url-configuration"></a><a name="id17"></a><h4>Setting parameters using a url configuration</h4><p>The following example uses the custom url configuration from before to set the parameters into the provided url:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #0000FF">require_once&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;create&nbsp;an&nbsp;<a href='/zetacomponents/documentation/trunk/Url/phpdoc/ezcUrlConfiguration.html'>ezcUrlConfiguration</a>&nbsp;object</span></li>
+<li><span style="color: #000000">$urlCfg&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Url/phpdoc/ezcUrlConfiguration.html'>ezcUrlConfiguration</a></span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;set&nbsp;the&nbsp;basedir&nbsp;and&nbsp;script&nbsp;values</span></li>
+<li><span style="color: #000000">$urlCfg</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">basedir&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">'mydir'</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000">$urlCfg</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">script&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">'index.php'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;define&nbsp;delimiters&nbsp;for&nbsp;unordered&nbsp;parameter&nbsp;names</span></li>
+<li><span style="color: #000000">$urlCfg</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">unorderedDelimiters&nbsp;</span><span style="color: #0000FF">=&nbsp;array(&nbsp;</span><span style="color: #335533">'('</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">')'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;define&nbsp;ordered&nbsp;parameters</span></li>
+<li><span style="color: #000000">$urlCfg</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">addOrderedParameter</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'section'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$urlCfg</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">addOrderedParameter</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'group'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$urlCfg</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">addOrderedParameter</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'category'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$urlCfg</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">addOrderedParameter</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'subcategory'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;define&nbsp;unordered&nbsp;parameters</span></li>
+<li><span style="color: #000000">$urlCfg</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">addUnorderedParameter</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'game'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Url/phpdoc/ezcUrlConfiguration.html#constMULTIPLE_ARGUMENTS'>ezcUrlConfiguration::MULTIPLE_ARGUMENTS</a>&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$urlCfg</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">addUnorderedParameter</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'patches'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Url/phpdoc/ezcUrlConfiguration.html#constAGGREGATE_ARGUMENTS'>ezcUrlConfiguration::AGGREGATE_ARGUMENTS</a>&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;create&nbsp;a&nbsp;new&nbsp;<a href='/zetacomponents/documentation/trunk/Url/phpdoc/ezcUrl.html'>ezcUrl</a>&nbsp;object&nbsp;from&nbsp;a&nbsp;string&nbsp;url&nbsp;and&nbsp;use&nbsp;the&nbsp;above&nbsp;$urlCfg</span></li>
+<li><span style="color: #000000">$url&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Url/phpdoc/ezcUrl.html'>ezcUrl</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'http://www.example.com/mydir/index.php/groups/Games/Adventure/Adult/(game)/Larry/7'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">$urlCfg&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">var_dump</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$url</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">buildUrl</span><span style="color: #0000FF">()&nbsp;);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;set&nbsp;the&nbsp;parameter&nbsp;values&nbsp;in&nbsp;the&nbsp;url</span></li>
+<li><span style="color: #000000">$url</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">setParam</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'subcategory'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'Kids'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$url</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">setParam</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'game'</span><span style="color: #0000FF">,&nbsp;array(&nbsp;</span><span style="color: #335533">'Monkey_Island'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'3'&nbsp;</span><span style="color: #0000FF">)&nbsp;);</span></li>
+<li><span style="color: #000000">var_dump</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$url</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">buildUrl</span><span style="color: #0000FF">()&nbsp;);</span></li>
+<li></li>
+<li><span style="color: #000000">$url</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">setParam</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'patches'</span><span style="color: #0000FF">,&nbsp;array(&nbsp;array(&nbsp;</span><span style="color: #335533">'beta1'&nbsp;</span><span style="color: #0000FF">),&nbsp;array(&nbsp;</span><span style="color: #335533">'rc1'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'rc2'&nbsp;</span><span style="color: #0000FF">)&nbsp;)&nbsp;);</span></li>
+<li><span style="color: #000000">var_dump</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$url</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">buildUrl</span><span style="color: #0000FF">()&nbsp;);</span></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><p>The output would be as follows (wrapped for clarity):</p><code class="block">string(72) "http://www.example.com/mydir/groups/Games/Adventure/Adult/
+(game)/Larry/7"
+
+string(79) "http://www.example.com/mydir/groups/Games/Adventure/Kids/
+(game)/Monkey_Island/3"
+
+string(113) "http://www.example.com/mydir/groups/Games/Adventure/Kids/
+(game)/Monkey_Island/3/(patches)/beta1/(patches)/rc1/rc2"</code><a name="changing-a-url-configuration-dynamically"></a><a name="id18"></a><h4>Changing a url configuration dynamically</h4><p>The following example uses the custom url configuration from before to set the parameters into the provided url:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #0000FF">require_once&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;create&nbsp;a&nbsp;default&nbsp;url&nbsp;configuration</span></li>
+<li><span style="color: #000000">$urlCfgDefault&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Url/phpdoc/ezcUrlConfiguration.html'>ezcUrlConfiguration</a></span><span style="color: #0000FF">();</span></li>
+<li><span style="color: #000000">$urlCfgDefault</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">addOrderedParameter</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'section'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;create&nbsp;a&nbsp;configuration&nbsp;for&nbsp;artists</span></li>
+<li><span style="color: #000000">$urlCfgArtist&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Url/phpdoc/ezcUrlConfiguration.html'>ezcUrlConfiguration</a></span><span style="color: #0000FF">();</span></li>
+<li><span style="color: #000000">$urlCfgArtist</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">addOrderedParameter</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'section'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$urlCfgArtist</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">addOrderedParameter</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'artist_name'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;create&nbsp;a&nbsp;configuration&nbsp;for&nbsp;albums</span></li>
+<li><span style="color: #000000">$urlCfgAlbum&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Url/phpdoc/ezcUrlConfiguration.html'>ezcUrlConfiguration</a></span><span style="color: #0000FF">();</span></li>
+<li><span style="color: #000000">$urlCfgAlbum</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">addOrderedParameter</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'section'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$urlCfgAlbum</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">addOrderedParameter</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'artist_name'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$urlCfgAlbum</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">addOrderedParameter</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'album_name'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;create&nbsp;a&nbsp;configuration&nbsp;for&nbsp;music&nbsp;genres</span></li>
+<li><span style="color: #000000">$urlCfgGenre&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Url/phpdoc/ezcUrlConfiguration.html'>ezcUrlConfiguration</a></span><span style="color: #0000FF">();</span></li>
+<li><span style="color: #000000">$urlCfgGenre</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">addOrderedParameter</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'section'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$urlCfgGenre</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">addOrderedParameter</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'genre_name'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #000000">$url&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Url/phpdoc/ezcUrl.html'>ezcUrl</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'http://mymusicsite.com/showartist/Beatles'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">$urlCfgDefault&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #0000FF">switch&nbsp;(&nbsp;</span><span style="color: #000000">$url</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">getParam</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'section'&nbsp;</span><span style="color: #0000FF">)&nbsp;)</span></li>
+<li><span style="color: #0000FF">{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;</span><span style="color: #335533">'showartist'</span><span style="color: #0000FF">:</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$url</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">applyConfiguration</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$urlCfgArtist&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$artist&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$url</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">getParam</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'artist_name'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">//&nbsp;do&nbsp;stuff&nbsp;with&nbsp;$artist</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">var_dump</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$artist&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;</span><span style="color: #335533">'showalbum'</span><span style="color: #0000FF">:</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$url</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">applyConfiguration</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$urlCfgAlbum&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$artist&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$url</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">getParam</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'artist_name'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$album&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$url</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">getParam</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'album_name'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">//&nbsp;do&nbsp;stuff&nbsp;with&nbsp;$artist&nbsp;and&nbsp;$album</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">var_dump</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$artist&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">var_dump</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$album&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;</span><span style="color: #335533">'showgenre'</span><span style="color: #0000FF">:</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$url</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">applyConfiguration</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$urlCfgGenre&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$genre&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$url</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">getParam</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'genre_name'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">//&nbsp;do&nbsp;stuff&nbsp;with&nbsp;$genre</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">var_dump</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$genre&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;</span></li>
+<li><span style="color: #0000FF">}</span></li>
+<li></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><p>The output would be:</p><code class="block">string(7) "Beatles"</code><a name="using-the-url-creator"></a><a name="id19"></a><h3>Using the url creator</h3><a name="appending-a-suffix-to-a-url"></a><a name="id20"></a><h4>Appending a suffix to a url</h4><p>With the url creator, you can register a url under an alias, then use that alias when you want to prepend the url to a file name.</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #0000FF">require_once&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;register&nbsp;an&nbsp;url&nbsp;under&nbsp;the&nbsp;alias&nbsp;'map'</span></li>
+<li><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Url/phpdoc/ezcUrlCreator.html#registerUrl'>ezcUrlCreator::registerUrl</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'map'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'/images/geo?xsize=450&amp;ysize=450&amp;zoom=4'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;display&nbsp;the&nbsp;the&nbsp;url&nbsp;prepended&nbsp;to&nbsp;map_norway.gif</span></li>
+<li><span style="color: #000000">var_dump</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Url/phpdoc/ezcUrlCreator.html#prependUrl'>ezcUrlCreator::prependUrl</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'map'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'map_norway.gif'&nbsp;</span><span style="color: #0000FF">)&nbsp;);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;display&nbsp;the&nbsp;the&nbsp;url&nbsp;prepended&nbsp;to&nbsp;map_sweden.gif</span></li>
+<li><span style="color: #000000">var_dump</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Url/phpdoc/ezcUrlCreator.html#prependUrl'>ezcUrlCreator::prependUrl</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'map'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'map_sweden.gif'&nbsp;</span><span style="color: #0000FF">)&nbsp;);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;display&nbsp;the&nbsp;stored&nbsp;url&nbsp;under&nbsp;the&nbsp;alias&nbsp;'map'</span></li>
+<li><span style="color: #000000">var_dump</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Url/phpdoc/ezcUrlCreator.html#getUrl'>ezcUrlCreator::getUrl</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'map'&nbsp;</span><span style="color: #0000FF">)&nbsp;);</span></li>
+<li></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><p>The output would be:</p><code class="block">string(53) "/images/geo/map_norway.gif?xsize=450&amp;ysize=450&amp;zoom=4"
+
+string(53) "/images/geo/map_sweden.gif?xsize=450&amp;ysize=450&amp;zoom=4"
+
+string(38) "/images/geo?xsize=450&amp;ysize=450&amp;zoom=4"</code><a name="using-formatting-for-a-url"></a><a name="id21"></a><h4>Using formatting for a url</h4><p>With the url creator, you can register a url under an alias, then use that alias when you want to apply formatting to a url.</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #0000FF">require_once&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;register&nbsp;an&nbsp;url&nbsp;under&nbsp;the&nbsp;alias&nbsp;'map'</span></li>
+<li><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Url/phpdoc/ezcUrlCreator.html#registerUrl'>ezcUrlCreator::registerUrl</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'map'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'/images/geo/%s?xsize=%d&amp;ysize=%d&amp;zoom=%d'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;display&nbsp;the&nbsp;stored&nbsp;url&nbsp;under&nbsp;the&nbsp;alias&nbsp;'map'&nbsp;formatted&nbsp;with&nbsp;parameters</span></li>
+<li><span style="color: #000000">var_dump</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Url/phpdoc/ezcUrlCreator.html#getUrl'>ezcUrlCreator::getUrl</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'map'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'map_norway.gif'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">450</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">450</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">4&nbsp;</span><span style="color: #0000FF">)&nbsp;);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;display&nbsp;the&nbsp;stored&nbsp;url&nbsp;under&nbsp;the&nbsp;alias&nbsp;'map'&nbsp;formatted&nbsp;with&nbsp;other&nbsp;parameters</span></li>
+<li><span style="color: #000000">var_dump</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Url/phpdoc/ezcUrlCreator.html#getUrl'>ezcUrlCreator::getUrl</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'map'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'map_sweden.gif'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">450</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">450</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">4&nbsp;</span><span style="color: #0000FF">)&nbsp;);</span></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><p>The output would be:</p><code class="block">string(53) "/images/geo/map_norway.gif?xsize=450&amp;ysize=450&amp;zoom=4"
+
+string(53) "/images/geo/map_sweden.gif?xsize=450&amp;ysize=450&amp;zoom=4"</code><a name="other-url-functions"></a><a name="id22"></a><h3>Other url functions</h3><p>In the class <a href='/zetacomponents/documentation/trunk/Url/phpdoc/ezcUrlTools.html'>ezcUrlTools</a> there are some useful functions for handling urls.</p><a name="getcurrenturl"></a><a name="id23"></a><h4>getCurrentUrl</h4><p>This function builds the current url from the $_SERVER array or another array source. The $_SERVER array is used by default, but another array source can be specified as a parameter when calling the function.</p><p>For example, if the $_SERVER array has these fields:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #000000">$_SERVER&nbsp;</span><span style="color: #0000FF">=&nbsp;array(</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #335533">'HTTPS'&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #335533">'1'</span><span style="color: #0000FF">,</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #335533">'SERVER_NAME'&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #335533">'www.example.com'</span><span style="color: #0000FF">,</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #335533">'SERVER_PORT'&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #000000">80</span><span style="color: #0000FF">,</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #335533">'REQUEST_URI'&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #335533">'/index.php'</span></li>
+<li><span style="color: #335533">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #000000">$url&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Url/phpdoc/ezcUrlTools.html#getCurrentUrl'>ezcUrlTools::getCurrentUrl</a></span><span style="color: #0000FF">();</span></li>
+<span style="color: #000000">?&gt;</span>
+</ol><p>Then $url will be:</p><code class="block">https://www.example.com/index.php</code><a name="parsequerystring"></a><a name="id24"></a><h4>parseQueryString</h4><p>This function has the same functionality as the PHP function parse_str(), but without converting the dots to underscores in query parameter names.</p><p>Example:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #000000">$params&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Url/phpdoc/ezcUrlTools.html#parseQueryString'>ezcUrlTools::parseQueryString</a></span><span style="color: #0000FF">(</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #335533">'openid.nonce=123456&amp;foo[]=bar&amp;foo[]=baz'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<span style="color: #000000">?&gt;</span>
+</ol><p>Then $params will be:</p><code class="block">array(2) {
+  ["openid.nonce"]=&gt;
+  string(6) "123456"
+  ["foo"]=&gt;
+  array(2) {
+    [0]=&gt;
+    string(3) "bar"
+    [1]=&gt;
+    string(3) "baz"
+  }
+}</code><p>By calling parse_str() on the same string, instead of 'openid.nonce' as a key in $params there would have been 'openid_nonce'.</p><!--Local Variables:
+mode: rst
+fill-column: 79
+End:
+vim: et syn=rst tw=79-->
+
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

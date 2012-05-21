@@ -1,0 +1,1044 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="PHP, apache, components, framework, quality" />
+	<meta name="author" content="dotxp" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Wed, 04 Aug 2010 13:07:21 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="ezcConsoleInput.html" />
+	<meta name="DC.creator" content="dotxp" />
+	<meta name="DC.date" content="Wed, 04 Aug 2010 13:07:21 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleInput.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/ConsoleTools/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+
+</ul>
+
+		
+  <div class="phpdoc">
+    <h2>Apache Zeta Components Manual :: Docs For Class ezcConsoleInput</h2>
+
+                  <h3>ConsoleTools::ezcConsoleInput</h3>
+    
+<a name="sec-description"></a>
+<h3>Class ezcConsoleInput</h3>
+
+<p>The ezcConsoleInput class handles the given options and arguments on the console.</p><div><p>This class allows the complete handling of options and arguments submitted  to a console based application.</p><p>The next example demonstrate how to capture the console options:</p><p></p><ol><li><div class="src-line">&#8192;<span class="src-var">$optionHandler&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcConsoleInput.html">ezcConsoleInput</a></span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;Register&#8192;simple&#8192;parameter&#8192;-h/--help</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$optionHandler</span><span class="src-sym">-&gt;</span><a href="ezcConsoleInput.html#methodregisterOption">registerOption</a><span class="src-sym">(&#8192;</span><span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcConsoleOption.html">ezcConsoleOption</a></span><span class="src-sym">(&#8192;</span><span class="src-str">'h'</span><span class="src-sym">,&#8192;</span><span class="src-str">'help'&#8192;</span><span class="src-sym">)&#8192;)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;Register&#8192;complex&#8192;parameter&#8192;-f/--file</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$file&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcConsoleOption.html">ezcConsoleOption</a></span><span class="src-sym">(</span></div></li>
+<li><div class="src-line">&#8192;&#8192;<span class="src-str">'f'</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;<span class="src-str">'file'</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;<span class="src-id"><a href="ezcConsoleInput.html">ezcConsoleInput</a></span><span class="src-sym">::</span><span class="src-id">TYPE_STRING</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;<span class="src-id">null</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;<span class="src-id">false</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;<span class="src-str">'Process&#8192;a&#8192;file.'</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;<span class="src-str">'Processes&#8192;a&#8192;single&#8192;file.'</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$optionHandler</span><span class="src-sym">-&gt;</span><a href="ezcConsoleInput.html#methodregisterOption">registerOption</a><span class="src-sym">(&#8192;</span><span class="src-var">$file&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;Manipulate&#8192;parameter&#8192;-f/--file&#8192;after&#8192;registration</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$file</span><span class="src-sym">-&gt;</span><span class="src-id">multiple&#8192;</span>=&#8192;<span class="src-id">true</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;Register&#8192;another&#8192;complex&#8192;parameter&#8192;that&#8192;depends&#8192;on&#8192;-f&#8192;and&#8192;excludes&#8192;-h</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$dir&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcConsoleOption.html">ezcConsoleOption</a></span><span class="src-sym">(</span></div></li>
+<li><div class="src-line">&#8192;&#8192;<span class="src-str">'d'</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;<span class="src-str">'dir'</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;<span class="src-id"><a href="ezcConsoleInput.html">ezcConsoleInput</a></span><span class="src-sym">::</span><span class="src-id">TYPE_STRING</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;<span class="src-id">null</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;<span class="src-id">true</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;<span class="src-str">'Process&#8192;a&#8192;directory.'</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;<span class="src-str">'Processes&#8192;a&#8192;complete&#8192;directory.'</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;<span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcConsoleOptionRule.html">ezcConsoleOptionRule</a></span><span class="src-sym">(&#8192;</span><span class="src-var">$optionHandler</span><span class="src-sym">-&gt;</span><a href="ezcConsoleInput.html#methodgetOption">getOption</a><span class="src-sym">(&#8192;</span><span class="src-str">'f'&#8192;</span><span class="src-sym">)&#8192;)&#8192;)</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;<span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcConsoleOptionRule.html">ezcConsoleOptionRule</a></span><span class="src-sym">(&#8192;</span><span class="src-var">$optionHandler</span><span class="src-sym">-&gt;</span><a href="ezcConsoleInput.html#methodgetOption">getOption</a><span class="src-sym">(&#8192;</span><span class="src-str">'h'&#8192;</span><span class="src-sym">)&#8192;)&#8192;)</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$optionHandler</span><span class="src-sym">-&gt;</span><a href="ezcConsoleInput.html#methodregisterOption">registerOption</a><span class="src-sym">(&#8192;</span><span class="src-var">$dir&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;Register&#8192;an&#8192;alias&#8192;for&#8192;this&#8192;parameter</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$optionHandler</span><span class="src-sym">-&gt;</span><a href="ezcConsoleInput.html#methodregisterAlias">registerAlias</a><span class="src-sym">(&#8192;</span><span class="src-str">'e'</span><span class="src-sym">,&#8192;</span><span class="src-str">'extended-dir'</span><span class="src-sym">,&#8192;</span><span class="src-var">$dir&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;Process&#8192;registered&#8192;parameters&#8192;and&#8192;handle&#8192;errors</span></div></li>
+<li><div class="src-line">&#8192;try</div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">{</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-var">$optionHandler</span><span class="src-sym">-&gt;</span><a href="ezcConsoleInput.html#methodprocess">process</a><span class="src-sym">(&#8192;</span><span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-str">'example_input.php'</span><span class="src-sym">,&#8192;</span><span class="src-str">'-h'&#8192;</span><span class="src-sym">)&#8192;)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">}</span></div></li>
+<li><div class="src-line">&#8192;catch&#8192;<span class="src-sym">(&#8192;</span><span class="src-id"><a href="ezcConsoleOptionException.html">ezcConsoleOptionException</a>&#8192;</span><span class="src-var">$e&#8192;</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">{</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;echo&#8192;<span class="src-var">$e</span><span class="src-sym">-&gt;</span><span class="src-id">getMessage</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-key">exit</span><span class="src-sym">(&#8192;</span><span class="src-num">1&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">}</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;Process&#8192;a&#8192;single&#8192;parameter</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$file&#8192;</span>=&#8192;<span class="src-var">$optionHandler</span><span class="src-sym">-&gt;</span><a href="ezcConsoleInput.html#methodgetOption">getOption</a><span class="src-sym">(&#8192;</span><span class="src-str">'f'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-key">if&#8192;</span><span class="src-sym">(&#8192;</span><span class="src-var">$file</span><span class="src-sym">-&gt;</span><span class="src-id">value&#8192;</span>===&#8192;<span class="src-id">false&#8192;</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">{</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;echo&#8192;<span class="src-str">"</span><span class="src-str">Parameter&#8192;-{<span class="src-var">$file</span></span><span class="src-sym">-&gt;</span><span class="src-id">short</span><span class="src-str"></span><span class="src-sym">}</span>/--{<span class="src-var">$file</span><span class="src-sym">-&gt;</span><span class="src-id">long</span><span class="src-str"></span><span class="src-sym">}</span>&#8192;was&#8192;not&#8192;submitted.\n<span class="src-str">"</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">}</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-key">elseif&#8192;</span><span class="src-sym">(&#8192;</span><span class="src-var">$file</span><span class="src-sym">-&gt;</span><span class="src-id">value&#8192;</span>===&#8192;<span class="src-id">true&#8192;</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">{</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;echo&#8192;<span class="src-str">"</span><span class="src-str">Parameter&#8192;-{<span class="src-var">$file</span></span><span class="src-sym">-&gt;</span><span class="src-id">short</span><span class="src-str"></span><span class="src-sym">}</span>/--{<span class="src-var">$file</span><span class="src-sym">-&gt;</span><span class="src-id">long</span><span class="src-str"></span><span class="src-sym">}</span>&#8192;was&#8192;submitted&#8192;without&#8192;value.\n<span class="src-str">"</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">}</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-key">else</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">{</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;echo&#8192;<span class="src-str">"</span><span class="src-str">Parameter&#8192;-{<span class="src-var">$file</span></span><span class="src-sym">-&gt;</span><span class="src-id">short</span><span class="src-str"></span><span class="src-sym">}</span>/--{<span class="src-var">$file</span><span class="src-sym">-&gt;</span><span class="src-id">long</span><span class="src-str"></span><span class="src-sym">}</span>&#8192;was&#8192;submitted&#8192;with&#8192;value&#8192;'<span class="src-str">"</span>.<a href="http://www.php.net/var_export">var_export</a><span class="src-sym">(</span><span class="src-var">$file</span><span class="src-sym">-&gt;</span><span class="src-id">value</span><span class="src-sym">,&#8192;</span><span class="src-id">true</span><span class="src-sym">)</span>.<span class="src-str">"'.\n"</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">}</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;Process&#8192;all&#8192;parameters&#8192;at&#8192;once:</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-key">foreach&#8192;</span><span class="src-sym">(&#8192;</span><span class="src-var">$optionHandler</span><span class="src-sym">-&gt;</span><a href="ezcConsoleInput.html#methodgetOptionValues">getOptionValues</a><span class="src-sym">(</span><span class="src-sym">)&#8192;</span><span class="src-key">as&#8192;</span><span class="src-var">$paramShort&#8192;</span>=&gt;&#8192;<span class="src-var">$val&#8192;</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">{</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-key">switch&#8192;</span><span class="src-sym">(&#8192;</span><span class="src-id">true&#8192;</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-sym">{</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-key">case&#8192;</span><span class="src-var">$val&#8192;</span>===&#8192;<span class="src-id">false</span>:</div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;echo&#8192;<span class="src-str">"</span><span class="src-str">Parameter&#8192;<span class="src-var">$paramShort</span>&#8192;was&#8192;not&#8192;submitted.\n</span><span class="src-str">"</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-key">break</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-key">case&#8192;</span><span class="src-var">$val&#8192;</span>===&#8192;<span class="src-id">true</span>:</div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;echo&#8192;<span class="src-str">"</span><span class="src-str">Parameter&#8192;<span class="src-var">$paramShort</span>&#8192;was&#8192;submitted&#8192;without&#8192;a&#8192;value.\n</span><span class="src-str">"</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-key">break</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-key">case&#8192;</span><a href="http://www.php.net/is_array">is_array</a><span class="src-sym">(&#8192;</span><span class="src-var">$val&#8192;</span><span class="src-sym">)</span>:</div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;echo&#8192;<span class="src-str">"</span><span class="src-str">Parameter&#8192;<span class="src-var">$paramShort</span>&#8192;was&#8192;submitted&#8192;multiple&#8192;times&#8192;with&#8192;value:&#8192;'</span><span class="src-str">"</span>.<a href="http://www.php.net/implode">implode</a><span class="src-sym">(</span><span class="src-str">',&#8192;'</span><span class="src-sym">,&#8192;</span><span class="src-var">$val</span><span class="src-sym">)</span>.<span class="src-str">"'.\n"</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-key">break</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-key">default</span>:</div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;echo&#8192;<span class="src-str">"</span><span class="src-str">Parameter&#8192;<span class="src-var">$paramShort</span>&#8192;was&#8192;submitted&#8192;with&#8192;value:&#8192;'<span class="src-var">$val</span>'.\n</span><span class="src-str">"</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-key">break</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-sym">}</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">}</span></div></li>
+</ol></div>
+<p>Source for this file: <a href="http://fisheye6.atlassian.com/browse/zetacomponents/trunk/ConsoleTools/src/input.php?r=HEAD">/ConsoleTools/src/input.php</a></p>
+       
+
+
+
+
+  <table><tr><td>
+            <strong>Version:</strong>&#8192;&#8192;
+          </td>
+          <td>//autogen//</td>
+        </tr></table><a name="sec-const-summary"></a>
+  <h3>Constants</h3>
+  <table class="summary"><tr><td class="right">
+          <a name="const-TYPE_INT" id=""></a>
+          <code>
+            <a href="#const-TYPE_INT" title="details" class="const-name-summary">TYPE_INT</a>
+             =  2
+          </code>
+        </td>
+        <td>
+          Option takes an integer value.                  </td>
+      </tr><tr><td class="right">
+          <a name="const-TYPE_NONE" id=""></a>
+          <code>
+            <a href="#const-TYPE_NONE" title="details" class="const-name-summary">TYPE_NONE</a>
+             =  1
+          </code>
+        </td>
+        <td>
+          Option does not carry a value.                  </td>
+      </tr><tr><td class="right">
+          <a name="const-TYPE_STRING" id=""></a>
+          <code>
+            <a href="#const-TYPE_STRING" title="details" class="const-name-summary">TYPE_STRING</a>
+             =  3
+          </code>
+        </td>
+        <td>
+          Option takes a string value.                  </td>
+      </tr></table><a name="sec-prop-summary"></a>
+  <h3>Properties</h3>
+  <table class="summary"><tr><td class="right">
+          <a name="prop%24argumentDefinition" id="$argumentDefinition"></a>
+          <a name="prop-%24argumentDefinition" id="$argumentDefinition"></a>
+          <em><a href="ezcConsoleArguments.html">ezcConsoleArguments</a></em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24argumentDefinition" title="details" class="var-name-summary">$argumentDefinition</a>
+                      </code>
+          <br><div style="margin-left: 20px">Optional argument definition.</div>        </td>
+      </tr></table><a name="sec-var-summary"></a>
+  <h3>Member Variables</h3>
+  <table class="summary"><tr><td class="right">
+            <em>protected</em>            <em>array(string=&gt;mixed)</em>          </td>
+          <td>
+            <code>
+              $properties
+               = <span class="var-default">array()</span>            </code>
+            <br><div style="margin-left: 20px">Collection of properties.</div>                      </td>
+        </tr></table><a name="sec-method-summary"></a>
+  <h3>Method Summary</h3>
+  <table class="summary"><tr><td class="right">
+            <em>public</em>                        <em>ezcConsoleInput</em>          </td>
+          <td>
+            <code>
+              <a href="#__construct"><b>__construct</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Creates an input handler.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>bool</em>          </td>
+          <td>
+            <code>
+              <a href="#argumentsAllowed"><b>argumentsAllowed</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns if arguments are allowed with the current option submition.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#createOptionSynopsis"><b>createOptionSynopsis</b></a>(
+                                                                                    $option
+                                                    ,                                     &amp;$usedOptions
+                                                    ,                   [                  $depth
+                   = 0]                                  ,                                     $usedOptions
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns the synopsis string for a single option and its dependencies.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>array(string)</em>          </td>
+          <td>
+            <code>
+              <a href="#getArguments"><b>getArguments</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns arguments provided to the program.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>array(array(string))</em>          </td>
+          <td>
+            <code>
+              <a href="#getHelp"><b>getHelp</b></a>(
+                                                                  [                  $long
+                   = false]                                  ,                   [                  $params
+                   = array()]                                  ,                   [                  $paramGrouping
+                   = null]                               )
+            </code>
+            <br><div style="margin-left: 20px">Get help information for your options.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em><a href="ezcConsoleTable.html">ezcConsoleTable</a></em>          </td>
+          <td>
+            <code>
+              <a href="#getHelpTable"><b>getHelpTable</b></a>(
+                                                                                    $table
+                                                    ,                   [                  $long
+                   = false]                                  ,                   [                  $params
+                   = array()]                                  ,                   [                  $paramGrouping
+                   = null]                               )
+            </code>
+            <br><div style="margin-left: 20px">Get help information for your options as a table.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#getHelpText"><b>getHelpText</b></a>(
+                                                                                    $programDesc
+                                                    ,                   [                  $width
+                   = 80]                                  ,                   [                  $long
+                   = false]                                  ,                   [                  $params
+                   = null]                                  ,                   [                  $paramGrouping
+                   = null]                               )
+            </code>
+            <br><div style="margin-left: 20px">Returns a standard help output for your program.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em><a href="ezcConsoleOption.html">ezcConsoleOption</a></em>          </td>
+          <td>
+            <code>
+              <a href="#getOption"><b>getOption</b></a>(
+                                                                                    $name
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns the definition object for the option with the name $name.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>array(string=&gt;ezcConsoleOption)</em>          </td>
+          <td>
+            <code>
+              <a href="#getOptions"><b>getOptions</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns an array of all registered options.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>array(string=&gt;mixed)</em>          </td>
+          <td>
+            <code>
+              <a href="#getOptionValues"><b>getOptionValues</b></a>(
+                                                                  [                  $longnames
+                   = false]                               )
+            </code>
+            <br><div style="margin-left: 20px">Returns the values of all submitted options.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#getSynopsis"><b>getSynopsis</b></a>(
+                                                                  [                  $optionNames
+                   = null]                               )
+            </code>
+            <br><div style="margin-left: 20px">Returns the synopsis string for the program.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>bool</em>          </td>
+          <td>
+            <code>
+              <a href="#hasOption"><b>hasOption</b></a>(
+                                                                                    $name
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns true if an option with the given name exists, otherwise false.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>bool</em>          </td>
+          <td>
+            <code>
+              <a href="#helpOptionSet"><b>helpOptionSet</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns if a help option was set.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#process"><b>process</b></a>(
+                                                                  [                  $args
+                   = null]                               )
+            </code>
+            <br><div style="margin-left: 20px">Process the input parameters.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#registerAlias"><b>registerAlias</b></a>(
+                                                                                    $short
+                                                    ,                                     $long
+                                                    ,                                     $option
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Registers an alias for an option.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em><a href="ezcConsoleOption.html">ezcConsoleOption</a></em>          </td>
+          <td>
+            <code>
+              <a href="#registerOption"><b>registerOption</b></a>(
+                                                                                    $option
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Registers the new option $option.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#registerOptionString"><b>registerOptionString</b></a>(
+                                                                                    $optionDef
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Registers options according to a string specification.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#reset"><b>reset</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Resets all option and argument values.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#unregisterAlias"><b>unregisterAlias</b></a>(
+                                                                                    $short
+                                                    ,                                     $long
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Removes an alias to an option.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#unregisterOption"><b>unregisterOption</b></a>(
+                                                                                    $option
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Removes an option.</div>          </td>
+        </tr></table><a name="sec-methods"></a>
+  <h3>Methods</h3>
+  <a name="method_detail"></a>
+                                        
+      <a name="method__construct" id="__construct"><!-- --></a>
+
+    <h4>__construct</h4>
+
+    <div class="method-signature">
+      ezcConsoleInput
+      __construct(
+      )
+    </div>
+
+    <p>Creates an input handler.</p>
+    
+        
+
+    
+    
+    
+        <a name="methodargumentsAllowed" id="argumentsAllowed"><!-- --></a>
+
+    <h4>argumentsAllowed</h4>
+
+    <div class="method-signature">
+      bool
+      argumentsAllowed(
+      )
+    </div>
+
+    <p>Returns if arguments are allowed with the current option submition.</p>
+    
+        
+
+    
+    
+    
+        <a name="methodcreateOptionSynopsis" id="createOptionSynopsis"><!-- --></a>
+
+    <h4>createOptionSynopsis</h4>
+
+    <div class="method-signature">
+      string
+      createOptionSynopsis(
+                                  <a href="ezcConsoleOption.html">ezcConsoleOption</a>
+          $option
+                            ,           
+          &amp;$usedOptions
+                            ,           [int
+          $depth
+           = 0]                  ,           array(string)
+          $usedOptions
+                        )
+    </div>
+
+    <p>Returns the synopsis string for a single option and its dependencies.</p><div><p>This method returns a part of the program synopsis, specifically for a  certain parameter. The method recursively adds depending parameters up  to the 2nd depth level to the synopsis. The second parameter is used  to store the short names of all options that have already been used in  the synopsis (to avoid adding an option twice). The 3rd parameter  determines the actual deps in the option dependency recursion to  terminate that after 2 recursions.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$option</code></td>
+              <td><em><a href="ezcConsoleOption.html">ezcConsoleOption</a></em></td>
+              <td>
+                                  The option to include.
+                              </td>
+            </tr><tr><td><code>$usedOptions</code></td>
+              <td><em>array(string)</em></td>
+              <td>
+                                  Array of used option short names.
+                              </td>
+            </tr><tr><td><code>$depth</code></td>
+              <td><em>int</em></td>
+              <td>
+                                  Current recursion depth.
+                              </td>
+            </tr><tr><td><code>&amp;$usedOptions</code></td>
+              <td><em></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodgetArguments" id="getArguments"><!-- --></a>
+
+    <h4>getArguments</h4>
+
+    <div class="method-signature">
+      array(string)
+      getArguments(
+      )
+    </div>
+
+    <p>Returns arguments provided to the program.</p><div><p>This method returns all arguments provided to a program in an  int indexed array. Arguments are sorted in the way  they are submitted to the program. You can disable arguments  through the 'arguments' flag of a parameter, if you want  to disallow arguments.</p><p>Arguments are either the last part of the program call (if the  last parameter is not a 'multiple' one) or divided via the '--'  method which is commonly used on Unix (if the last parameter  accepts multiple values this is required).</p></div>
+    
+        
+
+    
+    
+    
+        <a name="methodgetHelp" id="getHelp"><!-- --></a>
+
+    <h4>getHelp</h4>
+
+    <div class="method-signature">
+      array(array(string))
+      getHelp(
+                                  [bool
+          $long
+           = false]                  ,           [
+          $params
+           = array()]                  ,           [
+          $paramGrouping
+           = null]              )
+    </div>
+
+    <p>Get help information for your options.</p><div><p>This method returns an array of help information for your options,  indexed by int. Each help info has 2 fields:</p><p></p><ol><li>=&gt; The options names ("&lt;short&gt; / &lt;long&gt;")</li><li>=&gt; The help text (depending on the $long parameter)</li></ol>  The $long options determines if you want to get the short or long help  texts. The array returned can be used by <a href="ezcConsoleTable.html">ezcConsoleTable</a>.<p>If using the second options, you can filter the options shown in the  help output (e.g. to show short help for related options). Provide  as simple number indexed array of short and/or long values to set a filter.</p><p>The $paramGrouping option can be used to group options in the help  output. The structure of this array parameter is as follows:</p><p></p><ol><li><div class="src-line">&#8192;&#8192;<span class="src-key">array</span><span class="src-sym">(</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'First&#8192;section'&#8192;</span>=&gt;&#8192;<span class="src-key">array</span><span class="src-sym">(</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'input'</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'output'</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'overwrite'</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-sym">)</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'Second&#8192;section'&#8192;</span>=&gt;&#8192;<span class="src-key">array</span><span class="src-sym">(</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'v'</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'h'</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-sym">)</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;<span class="src-sym">)</span></div></li>
+</ol><p>As can be seen, short option names are possible as well as long ones.  The key of the first array level is the name of the section, which is  assigned to an array of options to group under this section. The $params  parameter still influences if an option is displayed at all.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$long</code></td>
+              <td><em>bool</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$params</code></td>
+              <td><em>array(string)</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$paramGrouping</code></td>
+              <td><em>array(string=&gt;array(string))</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodgetHelpTable" id="getHelpTable"><!-- --></a>
+
+    <h4>getHelpTable</h4>
+
+    <div class="method-signature">
+      <a href="ezcConsoleTable.html">ezcConsoleTable</a>
+      getHelpTable(
+                                  <a href="ezcConsoleTable.html">ezcConsoleTable</a>
+          $table
+                            ,           [bool
+          $long
+           = false]                  ,           [
+          $params
+           = array()]                  ,           [array(string=&gt;array(string))
+          $paramGrouping
+           = null]              )
+    </div>
+
+    <p>Get help information for your options as a table.</p><div><p>This method provides the information returned by  <a href="ezcConsoleInput.html#methodgetHelp">ezcConsoleInput::getHelp()</a> in a table.</p><p>The $paramGrouping option can be used to group options in the help  output. The structure of this array parameter is as follows:</p><p></p><ol><li><div class="src-line">&#8192;&#8192;<span class="src-key">array</span><span class="src-sym">(</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'First&#8192;section'&#8192;</span>=&gt;&#8192;<span class="src-key">array</span><span class="src-sym">(</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'input'</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'output'</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'overwrite'</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-sym">)</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'Second&#8192;section'&#8192;</span>=&gt;&#8192;<span class="src-key">array</span><span class="src-sym">(</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'v'</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'h'</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-sym">)</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;<span class="src-sym">)</span></div></li>
+</ol><p>As can be seen, short option names are possible as well as long ones.  The key of the first array level is the name of the section, which is  assigned to an array of options to group under this section. The $params  parameter still influences if an option as displayed at all.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$table</code></td>
+              <td><em><a href="ezcConsoleTable.html">ezcConsoleTable</a></em></td>
+              <td>
+                                  The table object to fill.
+                              </td>
+            </tr><tr><td><code>$long</code></td>
+              <td><em>bool</em></td>
+              <td>
+                                  Set this to true for getting the                                    long help version.
+                              </td>
+            </tr><tr><td><code>$params</code></td>
+              <td><em>array(string)</em></td>
+              <td>
+                                  Set of option names to generate help                                    for, default is all.
+                              </td>
+            </tr><tr><td><code>$paramGrouping</code></td>
+              <td><em>array(string=&gt;array(string))</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodgetHelpText" id="getHelpText"><!-- --></a>
+
+    <h4>getHelpText</h4>
+
+    <div class="method-signature">
+      string
+      getHelpText(
+                                  string
+          $programDesc
+                            ,           [int
+          $width
+           = 80]                  ,           [bool
+          $long
+           = false]                  ,           [
+          $params
+           = null]                  ,           [array(string=&gt;array(string))
+          $paramGrouping
+           = null]              )
+    </div>
+
+    <p>Returns a standard help output for your program.</p><div><p>This method generates a help text as it's commonly known from Unix  command line programs. The output will contain the synopsis, your  provided program description and the selected parameter help  as also provided by <a href="ezcConsoleInput.html#methodgetHelp">ezcConsoleInput::getHelp()</a>. The returned  string can directly be printed to the console.</p><p>The $paramGrouping option can be used to group options in the help  output. The structure of this array parameter is as follows:</p><p></p><ol><li><div class="src-line">&#8192;&#8192;<span class="src-key">array</span><span class="src-sym">(</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'First&#8192;section'&#8192;</span>=&gt;&#8192;<span class="src-key">array</span><span class="src-sym">(</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'input'</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'output'</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'overwrite'</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-sym">)</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'Second&#8192;section'&#8192;</span>=&gt;&#8192;<span class="src-key">array</span><span class="src-sym">(</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'v'</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'h'</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-sym">)</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;<span class="src-sym">)</span></div></li>
+</ol><p>As can be seen, short option names are possible as well as long ones.  The key of the first array level is the name of the section, which is  assigned to an array of options to group under this section. The $params  parameter still influences if an option as displayed at all.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$programDesc</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  The description of your program.
+                              </td>
+            </tr><tr><td><code>$width</code></td>
+              <td><em>int</em></td>
+              <td>
+                                  The width to adjust the output text to.
+                              </td>
+            </tr><tr><td><code>$long</code></td>
+              <td><em>bool</em></td>
+              <td>
+                                  Set this to true for getting the long                                    help version.
+                              </td>
+            </tr><tr><td><code>$params</code></td>
+              <td><em>array(string)</em></td>
+              <td>
+                                  Set of option names to generate help                                    for, default is all.
+                              </td>
+            </tr><tr><td><code>$paramGrouping</code></td>
+              <td><em>array(string=&gt;array(string))</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodgetOption" id="getOption"><!-- --></a>
+
+    <h4>getOption</h4>
+
+    <div class="method-signature">
+      <a href="ezcConsoleOption.html">ezcConsoleOption</a>
+      getOption(
+                                  string
+          $name
+                        )
+    </div>
+
+    <p>Returns the definition object for the option with the name $name.</p><div><p>This method receives the long or short name of an option and  returns the ezcConsoleOption object.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$name</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  Short or long name of the option (without - or --).
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcConsoleOptionNotExistsException.html">ezcConsoleOptionNotExistsException</a></code></td>
+              <td>
+                                  If requesting a not registered parameter.
+                              </td>
+            </tr></tbody></table><a name="methodgetOptions" id="getOptions"><!-- --></a>
+
+    <h4>getOptions</h4>
+
+    <div class="method-signature">
+      array(string=&gt;ezcConsoleOption)
+      getOptions(
+      )
+    </div>
+
+    <p>Returns an array of all registered options.</p><div><p>Returns an array of all registered options in the following format:  </p><ol><li><div class="src-line">&#8192;<span class="src-key">array</span><span class="src-sym">(</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-num">0&#8192;</span>=&gt;&#8192;<span class="src-id"><a href="ezcConsoleOption.html">ezcConsoleOption</a></span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-num">1&#8192;</span>=&gt;&#8192;<span class="src-id"><a href="ezcConsoleOption.html">ezcConsoleOption</a></span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-num">2&#8192;</span>=&gt;&#8192;<span class="src-id"><a href="ezcConsoleOption.html">ezcConsoleOption</a></span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;...</div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol></div>
+    
+        
+
+    
+    
+    
+        <a name="methodgetOptionValues" id="getOptionValues"><!-- --></a>
+
+    <h4>getOptionValues</h4>
+
+    <div class="method-signature">
+      array(string=&gt;mixed)
+      getOptionValues(
+                                  [bool
+          $longnames
+           = false]              )
+    </div>
+
+    <p>Returns the values of all submitted options.</p><div><p>Returns an array of all values submitted to the options. The array is  indexed by the parameters short name (excluding the '-' prefix). The array  does not contain any parameter, which value is 'false' (meaning: the  parameter was not submitted).</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$longnames</code></td>
+              <td><em>bool</em></td>
+              <td>
+                                  Wheather to use longnames for indexing.
+                              </td>
+            </tr></tbody></table><a name="methodgetSynopsis" id="getSynopsis"><!-- --></a>
+
+    <h4>getSynopsis</h4>
+
+    <div class="method-signature">
+      string
+      getSynopsis(
+                                  [
+          $optionNames
+           = null]              )
+    </div>
+
+    <p>Returns the synopsis string for the program.</p><div><p>This gives you a synopsis definition for the options and arguments  defined with this instance of ezcConsoleInput. You can filter the  options named in the synopsis by submitting their short names in an  array as the parameter of this method. If the parameter $optionNames  is set, only those options are listed in the synopsis.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$optionNames</code></td>
+              <td><em>array(string)</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodhasOption" id="hasOption"><!-- --></a>
+
+    <h4>hasOption</h4>
+
+    <div class="method-signature">
+      bool
+      hasOption(
+                                  string
+          $name
+                        )
+    </div>
+
+    <p>Returns true if an option with the given name exists, otherwise false.</p><div><p>Checks if an option with the given name is registered.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$name</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  Short or long name of the option.
+                              </td>
+            </tr></tbody></table><a name="methodhelpOptionSet" id="helpOptionSet"><!-- --></a>
+
+    <h4>helpOptionSet</h4>
+
+    <div class="method-signature">
+      bool
+      helpOptionSet(
+      )
+    </div>
+
+    <p>Returns if a help option was set.</p><div><p>This method returns if an option was submitted, which was defined to be  a help option, using the isHelpOption flag.</p></div>
+    
+        
+
+    
+    
+    
+        <a name="methodprocess" id="process"><!-- --></a>
+
+    <h4>process</h4>
+
+    <div class="method-signature">
+      void
+      process(
+                                  [
+          $args
+           = null]              )
+    </div>
+
+    <p>Process the input parameters.</p><div><p>Actually process the input options and arguments according to the actual  settings.</p><p>Per default this method uses $argc and $argv for processing. You can  override this setting with your own input, if necessary, using the  parameters of this method. (Attention, first argument is always the pro  gram name itself!)</p><p>All exceptions thrown by this method contain an additional attribute "option"  which specifies the parameter on which the error occurred.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$args</code></td>
+              <td><em>array(string)</em></td>
+              <td>
+                                  The arguments
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcConsoleOptionNotExistsException.html">ezcConsoleOptionNotExistsException</a></code></td>
+              <td>
+                                  If an option that was submitted does not exist.
+                              </td>
+            </tr><tr><td><code><a href="ezcConsoleOptionArgumentsViolationException.html">ezcConsoleOptionArgumentsViolationException</a></code></td>
+              <td>
+                                  If arguments are passed although a parameter disallowed them.
+                              </td>
+            </tr><tr><td><code><a href="ezcConsoleOptionDependencyViolationException.html">ezcConsoleOptionDependencyViolationException</a></code></td>
+              <td>
+                                  If a dependency rule was violated.
+                              </td>
+            </tr><tr><td><code><a href="ezcConsoleOptionExclusionViolationException.html">ezcConsoleOptionExclusionViolationException</a></code></td>
+              <td>
+                                  If an exclusion rule was violated.
+                              </td>
+            </tr><tr><td><code><a href="ezcConsoleOptionTypeViolationException.html">ezcConsoleOptionTypeViolationException</a></code></td>
+              <td>
+                                  If the type of a submitted value violates the options type rule.
+                              </td>
+            </tr></tbody></table><a name="methodregisterAlias" id="registerAlias"><!-- --></a>
+
+    <h4>registerAlias</h4>
+
+    <div class="method-signature">
+      void
+      registerAlias(
+                                  string
+          $short
+                            ,           string
+          $long
+                            ,           <a href="ezcConsoleOption.html">ezcConsoleOption</a>
+          $option
+                        )
+    </div>
+
+    <p>Registers an alias for an option.</p><div><p>Registers a new alias for an existing option. Aliases can  be used as if they were a normal option.</p><p>The alias is registered with the short option name $short and the  long option name $long. The alias references to the existing  option $option.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$short</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$long</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$option</code></td>
+              <td><em><a href="ezcConsoleOption.html">ezcConsoleOption</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcConsoleOptionNotExistsException.html">ezcConsoleOptionNotExistsException</a></code></td>
+              <td>
+                                  If the referenced option is not registered.
+                              </td>
+            </tr><tr><td><code><a href="ezcConsoleOptionAlreadyRegisteredException.html">ezcConsoleOptionAlreadyRegisteredException</a></code></td>
+              <td>
+                                  If another option/alias has taken the provided short or long name.
+                              </td>
+            </tr></tbody></table><a name="methodregisterOption" id="registerOption"><!-- --></a>
+
+    <h4>registerOption</h4>
+
+    <div class="method-signature">
+      <a href="ezcConsoleOption.html">ezcConsoleOption</a>
+      registerOption(
+                                  <a href="ezcConsoleOption.html">ezcConsoleOption</a>
+          $option
+                        )
+    </div>
+
+    <p>Registers the new option $option.</p><div><p>This method adds the new option $option to your option collection. If  already an option with the assigned short or long value exists, an  exception will be thrown.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$option</code></td>
+              <td><em><a href="ezcConsoleOption.html">ezcConsoleOption</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodregisterOptionString" id="registerOptionString"><!-- --></a>
+
+    <h4>registerOptionString</h4>
+
+    <div class="method-signature">
+      void
+      registerOptionString(
+                                  string
+          $optionDef
+                        )
+    </div>
+
+    <p>Registers options according to a string specification.</p><div><p>Accepts a string to define parameters and registers all parameters as  options accordingly. String definition, specified in $optionDef, looks  like this:</p><p></p><ol><li><div class="src-line">&#8192;<span class="src-sym">[</span><span class="src-id">s</span>:|<span class="src-id">size</span>:<span class="src-sym">]</span><span class="src-sym">[</span><span class="src-id">u</span>:|<span class="src-id">user</span>:<span class="src-sym">]</span><span class="src-sym">[</span><span class="src-id">a</span>:|<span class="src-id">all</span>:<span class="src-sym">]</span></div></li>
+</ol><p>This string registers 3 parameters:  -s / --size  -u / --user  -a / --all</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$optionDef</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcConsoleOptionStringNotWellformedException.html">ezcConsoleOptionStringNotWellformedException</a></code></td>
+              <td>
+                                  If provided string does not have the correct format.
+                              </td>
+            </tr></tbody></table><a name="methodreset" id="reset"><!-- --></a>
+
+    <h4>reset</h4>
+
+    <div class="method-signature">
+      void
+      reset(
+      )
+    </div>
+
+    <p>Resets all option and argument values.</p><div><p>This method is called automatically by <a href="ezcConsoleInput.html#methodprocess">process()</a>, if this method  is called twice or more, and may also be used to manually reset the  values of all registered {@ezcConsoleOption} and <a href="ezcConsoleArgument.html">ezcConsoleArgument</a> objects.</p></div>
+    
+        
+
+    
+    
+    
+        <a name="methodunregisterAlias" id="unregisterAlias"><!-- --></a>
+
+    <h4>unregisterAlias</h4>
+
+    <div class="method-signature">
+      void
+      unregisterAlias(
+                                  string
+          $short
+                            ,           string
+          $long
+                        )
+    </div>
+
+    <p>Removes an alias to an option.</p><div><p>This function removes an alias with the short name $short and long  name $long.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$short</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$long</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcConsoleOptionNoAliasException.html">ezcConsoleOptionNoAliasException</a></code></td>
+              <td>
+                                  If the requested short/long name belongs to a real parameter instead.
+                              </td>
+            </tr></tbody></table><a name="methodunregisterOption" id="unregisterOption"><!-- --></a>
+
+    <h4>unregisterOption</h4>
+
+    <div class="method-signature">
+      void
+      unregisterOption(
+                                  <a href="ezcConsoleOption.html">ezcConsoleOption</a>
+          $option
+                        )
+    </div>
+
+    <p>Removes an option.</p><div><p>This function removes an option. All dependencies to that  specific option are removed completely from every other registered  option.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$option</code></td>
+              <td><em><a href="ezcConsoleOption.html">ezcConsoleOption</a></em></td>
+              <td>
+                                  The option object to unregister.
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcConsoleOptionNotExistsException.html">ezcConsoleOptionNotExistsException</a></code></td>
+              <td>
+                                  If requesting a not registered option.
+                              </td>
+            </tr></tbody></table><div class="credit">
+      Documentation generated by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+    </div>
+  </div>
+  
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

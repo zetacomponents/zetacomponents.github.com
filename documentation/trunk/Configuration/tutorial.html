@@ -1,0 +1,232 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="PHP, apache, components, framework, quality" />
+	<meta name="author" content="jerome" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Sun, 10 Jul 2011 11:10:39 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="Tutorial" />
+	<meta name="DC.creator" content="jerome" />
+	<meta name="DC.date" content="Sun, 10 Jul 2011 11:10:39 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/Configuration/tutorial.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li class="requested">
+	<a href="/zetacomponents/documentation/trunk/Configuration/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Configuration/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+
+</ul>
+
+		<h2>eZ Components - Configuration</h2><div class="toc"><h3>Table of Contents</h3><ul><li><p><a href="#introduction">Introduction</a></p></li><li><p><a href="#class-overview">Class overview</a></p></li><li><p><a href="#basic-usage">Basic usage</a></p><ul><li><p><a href="#using-the-manager">Using the manager</a></p></li><li><p><a href="#using-the-reader-classes-directly">Using the reader classes directly</a></p></li></ul></li><li><p><a href="#writing-configuration-files">Writing configuration files</a></p></li><li><p><a href="#file-format">File format</a></p><ul><li><p><a href="#general-information-regarding-configuration-data">General information regarding configuration data</a></p></li><li><p><a href="#ini-file-format">Ini file format</a></p></li><li><p><a href="#array-file-format">Array file format</a></p></li></ul></li><li><p><a href="#lazy-initialization">Lazy initialization</a></p></li></ul></div><a name="introduction"></a><a name="id2"></a><h3>Introduction</h3><p>The Configuration component allows you to read settings from configuration files. Those settings can come from any backend in theory, but currently there are two reader classes: <a href='/zetacomponents/documentation/trunk/Configuration/phpdoc/ezcConfigurationIniReader.html'>ezcConfigurationIniReader</a> for reading plain configuration files and <a href='/zetacomponents/documentation/trunk/Configuration/phpdoc/ezcConfigurationArrayReader.html'>ezcConfigurationArrayReader</a> for reading parsed configuration files in the form of a PHP array.</p><p>The Configuration component also allows you to modify settings in configuration files and write those changes back to disk. There are two writer classes: <a href='/zetacomponents/documentation/trunk/Configuration/phpdoc/ezcConfigurationIniWriter.html'>ezcConfigurationIniWriter</a> for writing plain configuration files and <a href='/zetacomponents/documentation/trunk/Configuration/phpdoc/ezcConfigurationArrayWriter.html'>ezcConfigurationArrayWriter</a> for writing parsed configuration files in the form of a PHP array.</p><p>The format for the plain configuration files can be found in the section <a href="#file-format">File format</a>.</p><a name="class-overview"></a><a name="id3"></a><h3>Class overview</h3><dl><dt>ezcConfigurationManager</dt><dd>This is the main class. It is responsible for calling the configured backends to read configuration data and return the settings to the application. It implements the singleton pattern and can be used in most situations where no special handling of configuration data is required.</dd><dt>ezcConfigurationIniReader and <a href='/zetacomponents/documentation/trunk/Configuration/phpdoc/ezcConfigurationArrayReader.html'>ezcConfigurationArrayReader</a></dt><dd>Both classes inherit from <a href='/zetacomponents/documentation/trunk/Configuration/phpdoc/ezcConfigurationFileReader.html'>ezcConfigurationFileReader</a> and provide lower-level access to reading configuration files. They also provide a method for validating configuration files.</dd><dt>ezcConfigurationIniWriter and <a href='/zetacomponents/documentation/trunk/Configuration/phpdoc/ezcConfigurationArrayWriter.html'>ezcConfigurationArrayWriter</a></dt><dd>These classes write configuration files in formats that <a href='/zetacomponents/documentation/trunk/Configuration/phpdoc/ezcConfigurationIniReader.html'>ezcConfigurationIniReader</a> and <a href='/zetacomponents/documentation/trunk/Configuration/phpdoc/ezcConfigurationArrayReader.html'>ezcConfigurationArrayReader</a> support.</dd><dt>ezcConfiguration</dt><dd>This is the basic class to query and modify configuration settings. Objects of this class are returned by <a href='/zetacomponents/documentation/trunk/Configuration/phpdoc/ezcConfigurationFileReader.html#getConfig'>ezcConfigurationFileReader::getConfig</a>() and can be stored in files through the <a href='/zetacomponents/documentation/trunk/Configuration/phpdoc/ezcConfigurationFileWriter.html#setConfig'>ezcConfigurationFileWriter::setConfig</a>() method.</dd></dl><a name="basic-usage"></a><a name="id4"></a><h3>Basic usage</h3><p>There are two basic ways to use Configuration. The first is through the manager class <a href='/zetacomponents/documentation/trunk/Configuration/phpdoc/ezcConfigurationManager.html'>ezcConfigurationManager</a>. This is suitable for most applications for retrieving configuration settings.</p><p>The second way is through the individual reader and writer classes themselves. They provide you with more finegrained control over the settings.</p><a name="using-the-manager"></a><a name="id5"></a><h4>Using the manager</h4><p>In this first example you see how configuration settings stored in the file "settings.ini" are accessed:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #0000FF">require_once&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #000000">$cfg&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Configuration/phpdoc/ezcConfigurationManager.html#getInstance'>ezcConfigurationManager::getInstance</a></span><span style="color: #0000FF">();</span></li>
+<li><span style="color: #000000">$cfg</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">init</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'<a href='/zetacomponents/documentation/trunk/Configuration/phpdoc/ezcConfigurationIniReader.html'>ezcConfigurationIniReader</a>'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">dirname</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">__FILE__&nbsp;</span><span style="color: #0000FF">)&nbsp;.&nbsp;</span><span style="color: #335533">'/examples'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #000000">$pw&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$cfg</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">getSetting</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'settings'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'db'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'password'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #0000FF">echo&nbsp;</span><span style="color: #335533">"The&nbsp;password&nbsp;is&nbsp;'</span><span style="color: #0000FF">{</span><span style="color: #000000">$pw</span><span style="color: #0000FF">}</span><span style="color: #335533">'.\n"</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #000000">$settings&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$cfg</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">getSettings</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'settings'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'db'</span><span style="color: #0000FF">,&nbsp;array(&nbsp;</span><span style="color: #335533">'user'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'password'&nbsp;</span><span style="color: #0000FF">)&nbsp;);</span></li>
+<li><span style="color: #0000FF">echo&nbsp;</span><span style="color: #335533">"Connecting&nbsp;with&nbsp;</span><span style="color: #0000FF">{</span><span style="color: #000000">$settings</span><span style="color: #0000FF">[</span><span style="color: #335533">'user'</span><span style="color: #0000FF">]}</span><span style="color: #335533">:</span><span style="color: #0000FF">{</span><span style="color: #000000">$settings</span><span style="color: #0000FF">[</span><span style="color: #335533">'password'</span><span style="color: #0000FF">]}</span><span style="color: #335533">.\n"</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #0000FF">list(&nbsp;</span><span style="color: #000000">$user</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">$pass&nbsp;</span><span style="color: #0000FF">)&nbsp;=&nbsp;</span><span style="color: #000000">$cfg</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">getSettingsAsList</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'settings'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'db'</span><span style="color: #0000FF">,&nbsp;array(&nbsp;</span><span style="color: #335533">'user'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'password'&nbsp;</span><span style="color: #0000FF">)&nbsp;);</span></li>
+<li><span style="color: #0000FF">echo&nbsp;</span><span style="color: #335533">"Connecting&nbsp;with&nbsp;</span><span style="color: #0000FF">{</span><span style="color: #000000">$user</span><span style="color: #0000FF">}</span><span style="color: #335533">:</span><span style="color: #0000FF">{</span><span style="color: #000000">$pass</span><span style="color: #0000FF">}</span><span style="color: #335533">.\n"</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><p>In line 4 and 5 we retrieve an instance of the <a href='/zetacomponents/documentation/trunk/Configuration/phpdoc/ezcConfigurationManager.html'>ezcConfigurationManager</a> class and initialize the system with the init() method. The two arguments specify which reader to use (<a href='/zetacomponents/documentation/trunk/Configuration/phpdoc/ezcConfigurationIniReader.html'>ezcConfigurationIniReader</a>) and where to find the configuration information. The second argument is the location, and its meaning is dependent on the reader class.</p><p>In line 7 we retrieve the setting "password" from the settings group "db" in the configuration named "settings". With <a href='/zetacomponents/documentation/trunk/Configuration/phpdoc/ezcConfigurationIniReader.html'>ezcConfigurationIniReader</a> and <a href='/zetacomponents/documentation/trunk/Configuration/phpdoc/ezcConfigurationArrayReader.html'>ezcConfigurationArrayReader</a>, the name of the configuration corresponds to a specific file on disk.</p><p>Lines 10-11 and 13-14 show two different ways to receive a list of settings. The first method returns an associative array, while the second method returns a numerical indexed array that you can use with, for example, the list() construct.</p><p>To return a setting, there is the <a href='/zetacomponents/documentation/trunk/Configuration/phpdoc/ezcConfigurationManager.html#getSetting'>ezcConfigurationManager::getSetting</a>() method and a number of additional methods. These alternative methods also check whether the type of setting is correct. See, for example, the <a href='/zetacomponents/documentation/trunk/Configuration/phpdoc/ezcConfigurationManager.html#fetchArraySetting'>ezcConfigurationManager::fetchArraySetting</a>() description in the API documentation.</p><p>The <a href='/zetacomponents/documentation/trunk/Configuration/phpdoc/ezcConfigurationManager.html#hasSetting'>ezcConfigurationManager::hasSetting</a>() method can be used to find out whether a specific setting exists and the <a href='/zetacomponents/documentation/trunk/Configuration/phpdoc/ezcConfigurationManager.html#hasSettings'>ezcConfigurationManager::hasSettings</a>() method verifies whether all of the settings in a specific list exist. It is recommended to use these methods to see if a setting or list of settings exists before accessing them with one of the get*Setting() methods. This will prevent errors and exceptions.</p><a name="using-the-reader-classes-directly"></a><a name="id6"></a><h4>Using the reader classes directly</h4><p>Instead of using the manager class, you can also retrieve the configuration data directly with the reader classes. The following example illustrates this:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #0000FF">require_once&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #000000">$reader&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Configuration/phpdoc/ezcConfigurationIniReader.html'>ezcConfigurationIniReader</a></span><span style="color: #0000FF">();</span></li>
+<li><span style="color: #000000">$reader</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">init</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">dirname</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">__FILE__&nbsp;</span><span style="color: #0000FF">),&nbsp;</span><span style="color: #335533">'settings'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;validate&nbsp;the&nbsp;settings&nbsp;file,&nbsp;and&nbsp;loop&nbsp;over&nbsp;all&nbsp;the&nbsp;validation&nbsp;errors&nbsp;and</span></li>
+<li><span style="color: #007700">//&nbsp;warnings</span></li>
+<li><span style="color: #000000">$result&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$reader</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">validate</span><span style="color: #0000FF">();</span></li>
+<li><span style="color: #0000FF">foreach&nbsp;(&nbsp;</span><span style="color: #000000">$result</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">getResultList</span><span style="color: #0000FF">()&nbsp;as&nbsp;</span><span style="color: #000000">$resultItem&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;print&nbsp;</span><span style="color: #000000">$resultItem</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">file&nbsp;</span><span style="color: #0000FF">.&nbsp;</span><span style="color: #335533">":"&nbsp;</span><span style="color: #0000FF">.&nbsp;</span><span style="color: #000000">$resultItem</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">line&nbsp;</span><span style="color: #0000FF">.&nbsp;</span><span style="color: #335533">":"&nbsp;</span><span style="color: #0000FF">.&nbsp;</span><span style="color: #000000">$resultItem</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">column</span><span style="color: #0000FF">.&nbsp;</span><span style="color: #335533">":"</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;print&nbsp;</span><span style="color: #335533">"&nbsp;"&nbsp;</span><span style="color: #0000FF">.&nbsp;</span><span style="color: #000000">$resultItem</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">details&nbsp;</span><span style="color: #0000FF">.&nbsp;</span><span style="color: #335533">"\n"</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">}</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;load&nbsp;the&nbsp;settings&nbsp;into&nbsp;an&nbsp;<a href='/zetacomponents/documentation/trunk/Configuration/phpdoc/ezcConfiguration.html'>ezcConfiguration</a>&nbsp;object</span></li>
+<li><span style="color: #000000">$cfg&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$reader</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">load</span><span style="color: #0000FF">();</span></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><p>In line 4, we instantiate an object of the <a href='/zetacomponents/documentation/trunk/Configuration/phpdoc/ezcConfigurationIniReader.html'>ezcConfigurationIniReader</a> class and initialize it in line 5. It is also possible to initialize the reader directly through the constructor but in that case you need to specify the full file name to the configuration file. In this example, you could simply change the classname to <a href='/zetacomponents/documentation/trunk/Configuration/phpdoc/ezcConfigurationArrayReader.html'>ezcConfigurationArrayReader</a>, for example. Lines 7 to 12 show how to use the validate() method to find out if your configuration file in in the correct format. Line 14 retrieves the settings from the configuration file and returns them as an <a href='/zetacomponents/documentation/trunk/Configuration/phpdoc/ezcConfiguration.html'>ezcConfiguration</a> object. You can then read and modify the settings. (See the API documentation of <a href='/zetacomponents/documentation/trunk/Configuration/phpdoc/ezcConfiguration.html'>ezcConfiguration</a> for the corresponding methods).</p><a name="writing-configuration-files"></a><a name="id7"></a><h3>Writing configuration files</h3><p>After modifying an <a href='/zetacomponents/documentation/trunk/Configuration/phpdoc/ezcConfiguration.html'>ezcConfiguration</a> object with the designated methods, there are multiple classes to write the configuration object back to disk. In the next example, we write an <a href='/zetacomponents/documentation/trunk/Configuration/phpdoc/ezcConfiguration.html'>ezcConfiguration</a> object stored in the variable $cfg to disk:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #0000FF">require_once&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #000000">$writer&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Configuration/phpdoc/ezcConfigurationArrayWriter.html'>ezcConfigurationArrayWriter</a></span><span style="color: #0000FF">();</span></li>
+<li><span style="color: #000000">$writer</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">init</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">dirname</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">__FILE__&nbsp;</span><span style="color: #0000FF">),&nbsp;</span><span style="color: #335533">"settings"</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">$cfg&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$writer</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">save</span><span style="color: #0000FF">();</span></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><p>In line 4 we instantiate the writer object, using <a href='/zetacomponents/documentation/trunk/Configuration/phpdoc/ezcConfigurationArrayWriter.html'>ezcConfigurationArrayWriter</a> to write the configuration data as a PHP structure. The component also provides a <a href='/zetacomponents/documentation/trunk/Configuration/phpdoc/ezcConfigurationIniWriter.html'>ezcConfigurationIniWriter</a> class that writes a file that <a href='/zetacomponents/documentation/trunk/Configuration/phpdoc/ezcConfigurationIniReader.html'>ezcConfigurationIniReader</a> can read. After initializing the object in line 5, we use the save() method in line 6 to write the configuration file.</p><a name="file-format"></a><a name="id8"></a><h3>File format</h3><a name="general-information-regarding-configuration-data"></a><a name="id9"></a><h4>General information regarding configuration data</h4><p>The configuration format consists of four elements:</p><ul><li><p>Groups allow you to group similar settings into one group and also allow you to have multiple settings with the same name but in different groups. This means that you don't have to prefix your settings with the group name.</p></li><li><p>Settings contain values and are identified by names.</p></li><li><p>Values can be of the following types: boolean, integers, floats, arrays and strings.</p></li><li><p>Comments belong to either a group or a setting and can be added to describe what the group contains or what a setting controls.</p></li></ul><p>Group and setting identifiers can only contain the characters a to z, A to Z, 0 to 9, underscore (_), dash (-) and dot (.). The case of settings are preserved, but accessing them can be done with any case. This means that you cannot have two identical settings identifiers that differ only in case.</p><p>The following are legal names:</p><code class="block">ASimpleName
+asimplename
+a_simple_name
+a.simple.name
+a-simple_and.longName</code><p>The following are illegal names:</p><code class="block">A simple name
+-=A simple name=-</code><p>In addition, the group names may contain forward slashes (/), for instance:</p><code class="block">a/simple/groupname</code><a name="ini-file-format"></a><a name="id10"></a><h4>Ini file format</h4><p>This is the format that is written by the <a href='/zetacomponents/documentation/trunk/Configuration/phpdoc/ezcConfigurationIniWriter.html'>ezcConfigurationIniWriter</a> class and read by the <a href='/zetacomponents/documentation/trunk/Configuration/phpdoc/ezcConfigurationIniReader.html'>ezcConfigurationIniReader</a> class. The parser itself is located in the <a href='/zetacomponents/documentation/trunk/Configuration/phpdoc/ezcConfigurationIniParser.html'>ezcConfigurationIniParser</a> class.</p><p>The parser will remove leading and trailing whitespace from group names, settings and setting values. If you wish to keep whitespace in a string, it will have to be quoted.</p><p>Comments are written using a # (hash) and must be placed at the start of the line. The whitespace block before the comment text on all the lines will be trimmed away while whitespace after this block is kept. Trailing whitespace is also trimmed. For instance, the follow comments:</p><code class="block"># A simple comment
+#  A simple comment
+#       A simple comment</code><p>will become:</p><code class="block">#A simple comment
+# A simple comment
+#      A simple comment</code><p>Multiple comment lines will be read as one comment with multiple lines. If there are empty lines in between comments, they will be read as empty lines in the comment itself:</p><code class="block"># A single line comment
+Setting = value
+
+# Multiple lines
+# for this
+# comment
+Setting = value
+
+# Multiple lines
+
+# with empty lines
+# for this comment
+Setting = value
+
+# Multiple lines
+#
+# with empty lines
+# for this comment
+# Actually same as above
+Setting = value</code><p>Comments are always placed <em>in front</em> of the group or setting. A line that only contains whitespace will be ignored.</p><p>Files are always encoded in UTF-8 format, meaning that they can contain Unicode characters or plain ASCII without specific encoding.</p><p>Groups are defined by placing an identifier inside square brackets. Any setting that is read after this will be placed as part of this group. Settings without groups are not allowed and will cause an error to be issued. The group name will have its leading and trailing whitespace trimmed away:</p><code class="block">[Group1]
+[Another group]
+[ Yet another group ]</code><p>Settings are defined by placing an identifier followed by an equal sign (=), finally followed by the value. The setting identifier and corresponding value must be on the same line, and cannot span multiple lines:</p><code class="block">Setting1 = Some example string
+Setting2 = 42</code><p>The values of settings are generally strings, with the exception of:</p><ol><li><p>Booleans, which can be written as <em>true</em> or <em>false</em>. If you need a string that contains the text <em>true</em> or <em>false</em> it must be quoted:</p><code class="block">SystemEnabled = true
+LogErrors = false</code></li><li><p>Numbers, which are written using English locale and can be in the following formats:</p></li></ol><blockquote/><ol><li><p>An explicit string, which is enclosed in double quotes ("). All whitespace is kept inside the quotes and characters are read literally with the exception of escaped characters. The escaped characters are:</p></li></ol><blockquote/><p>In addition, it is possible to define arrays in a second way by using square brackets ([]) after the setting name and before the equal (=) character. This will make the setting an array and the value is parsed as explained above. In addition, the square brackets may be enclosed around a string, turning the array into a hash (or associative array) with the text being used as the key.</p><code class="block">List[] = First string
+List[] = Second string
+List[] = 5
+Hash[abc] = 4
+Hash["def"] = 5</code><a name="array-file-format"></a><a name="id11"></a><h4>Array file format</h4><p>The <em>Array</em> format can be written using the <a href='/zetacomponents/documentation/trunk/Configuration/phpdoc/ezcConfigurationArrayWriter.html'>ezcConfigurationArrayWriter</a> class and read with the <a href='/zetacomponents/documentation/trunk/Configuration/phpdoc/ezcConfigurationArrayReader.html'>ezcConfigurationArrayReader</a> class. The format is a simple <a href="http://www.php.net/var_export">var_export</a> of the contained settings, which will be parsed for reading by PHP. The file contains an array with two elements: one for the groups and settings and one for the comments. The file could be as follows:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #0000FF">return&nbsp;array&nbsp;(</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;</span><span style="color: #335533">'settings'&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;array&nbsp;(</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #335533">'site'&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;array&nbsp;(</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #335533">'title'&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #335533">'Example&nbsp;site'</span><span style="color: #0000FF">,</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;),</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #335533">'db'&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;array&nbsp;(</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #335533">'host'&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #335533">'localhost'</span><span style="color: #0000FF">,</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #335533">'user'&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #335533">'root'</span><span style="color: #0000FF">,</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #335533">'password'&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #000000">42</span><span style="color: #0000FF">,</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #335533">'connection_retries'&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #335533">'five'</span><span style="color: #0000FF">,</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;),</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;),</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;</span><span style="color: #335533">'comments'&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;array&nbsp;(</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #335533">'site'&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;array&nbsp;(</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #335533">'#'&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #335533">'&nbsp;Settings&nbsp;for&nbsp;the&nbsp;site&nbsp;itself'</span><span style="color: #0000FF">,</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;),</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #335533">'db'&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;array&nbsp;(</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #335533">'#'&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #335533">'&nbsp;Database&nbsp;settings&nbsp;used&nbsp;for&nbsp;all&nbsp;connections'</span><span style="color: #0000FF">,</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #335533">'password'&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #335533">'&nbsp;Storing&nbsp;passwords&nbsp;in&nbsp;INI&nbsp;files&nbsp;is&nbsp;not&nbsp;a&nbsp;good&nbsp;idea,</span></li>
+<li><span style="color: #335533">&nbsp;is&nbsp;it?'</span><span style="color: #0000FF">,</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;),</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;),</span></li>
+<li><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><p>The # element in line 25 contains the comment for the group 'db' (line 23).</p><a name="lazy-initialization"></a><a name="id12"></a><h3>Lazy initialization</h3><p>Lazy initialization is a mechanism to load and configure a component, only when it is really used in your application. This mechanism saves time for parsing the classes and configuration, when the component is not used at all during one request. You can find a description how you can use it for your own components and how it works in the <a href="../Base/tutorial.html">ezcBase tutorial</a>. The keyword for the configuration component is <em>ezcInitConfigurationManager</em>.</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #0000FF">require_once&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #0000FF">class&nbsp;</span><span style="color: #000000">customLazyConfigurationConfiguration&nbsp;</span><span style="color: #0000FF">implements&nbsp;</span><span style="color: #000000">ezcBaseConfigurationInitializer</span></li>
+<li><span style="color: #0000FF">{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;static&nbsp;function&nbsp;</span><span style="color: #000000">configureObject</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$cfg&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$cfg</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">init</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'<a href='/zetacomponents/documentation/trunk/Configuration/phpdoc/ezcConfigurationIniReader.html'>ezcConfigurationIniReader</a>'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">dirname</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">__FILE__&nbsp;</span><span style="color: #0000FF">)&nbsp;.&nbsp;</span><span style="color: #335533">'/examples'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;}</span></li>
+<li><span style="color: #0000FF">}</span></li>
+<li></li>
+<li><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Configuration/phpdoc/ezcBaseInit.html#setCallback'>ezcBaseInit::setCallback</a></span><span style="color: #0000FF">(&nbsp;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #335533">'<a href='/zetacomponents/documentation/trunk/Configuration/phpdoc/ezcInitConfigurationManager.html'>ezcInitConfigurationManager</a>'</span><span style="color: #0000FF">,&nbsp;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #335533">'customLazyConfigurationConfiguration'</span></li>
+<li><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Classes&nbsp;loaded&nbsp;and&nbsp;configured&nbsp;on&nbsp;first&nbsp;request</span></li>
+<li><span style="color: #000000">$cfg&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Configuration/phpdoc/ezcConfigurationManager.html#getInstance'>ezcConfigurationManager::getInstance</a></span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #000000">$pw&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$cfg</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">getSetting</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'settings'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'db'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'password'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #0000FF">echo&nbsp;</span><span style="color: #335533">"The&nbsp;password&nbsp;is&nbsp;'</span><span style="color: #0000FF">{</span><span style="color: #000000">$pw</span><span style="color: #0000FF">}</span><span style="color: #335533">'.\n"</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><p>This example shows reading the database password like the first example in this chapter. The main difference is, that we roll out the configuration to an own class, and define a callback using <a href='/zetacomponents/documentation/trunk/Configuration/phpdoc/ezcBaseInit.html'>ezcBaseInit</a>::setCallback to this class, which will be called with the configuration manager instance on the first request for a yet uninitialized configuration manager.</p><p>ezcBaseInit::setCallback accepts as a first parameter a component specific key, which lets the component later request the right configuration callback. The second parameter is the name of the class to perform the static callback on. This class must implement the <a href='/zetacomponents/documentation/trunk/Configuration/phpdoc/ezcBaseConfigurationInitializer.html'>ezcBaseConfigurationInitializer</a> class. Each component's lazy initialization calls the static method configureObject() on the referenced class.</p><p>When the configuration manager is really required in the application, like shown in line 19 of the example, the configuration manager creates a new instance, checks if a configuration callback is provided, and uses the custom class to configure itself.</p><!--Local Variables:
+mode: rst
+fill-column: 79
+End:
+vim: et syn=rst tw=79-->
+
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

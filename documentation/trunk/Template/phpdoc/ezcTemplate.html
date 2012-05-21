@@ -1,0 +1,331 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="" />
+	<meta name="author" content="jerome" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Sun, 10 Jul 2011 11:11:07 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="ezcTemplate.html" />
+	<meta name="DC.creator" content="jerome" />
+	<meta name="DC.date" content="Sun, 10 Jul 2011 11:11:07 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/Template/phpdoc/ezcTemplate.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/Template/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/trunk/Template/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Template/functions.html" title="Functions ">Functions </a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Template/EBNF.html" title="EBNF ">EBNF </a>
+	</li>
+
+</ul>
+
+		
+  <div class="phpdoc">
+    <h2>Apache Zeta Components Manual :: Docs For Class ezcTemplate</h2>
+
+                  <h3>Template::ezcTemplate</h3>
+    
+<a name="sec-description"></a>
+<h3>Class ezcTemplate</h3>
+
+<p>The main class for processing templates.</p><div><p>The ezcTemplate class compiles a source template (*.ezt) to PHP code,  executes the PHP code, and returns the output. The generated PHP code  will be stored on disk as a compiled template.</p><p>If a compiled template already exists of the to process template, the  ezcTemplate class executes directly the compiled template; thus omitting  the compile step.</p><p>A simple invocation is simply to create the template object and call the  process() method, e.g.  </p><ol><li><div class="src-line">&#8192;<span class="src-var">$t&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcTemplate.html">ezcTemplate</a></span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;echo&#8192;<span class="src-var">$t</span><span class="src-sym">-&gt;</span><a href="ezcTemplate.html#methodprocess">process</a><span class="src-sym">(&#8192;</span><span class="src-str">"page.ezt"&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol><p>The location for the source templates and compiled templates among other things  are specified in the ezcTemplateConfiguration configuration object. A default  configuration is always present and can be accessed via the $configuration  property.</p><p>Usually one configuration object will be enough, since most of the templates  will use the same configuration settings. If for some reason, other configuration  settings are needed you can assign an ezcTemplateConfiguration object to the $configuration property.</p><p>The following example shows how to change the template and compilation  directory by creating a new configuration object.  </p><ol><li><div class="src-line">&#8192;<span class="src-var">$t&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcTemplate.html">ezcTemplate</a></span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$t</span><span class="src-sym">-&gt;</span><span class="src-id">configuration&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcTemplateConfiguration.html">ezcTemplateConfiguration</a></span><span class="src-sym">(&#8192;</span><span class="src-str">"design/templates"</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">"/tmp/compilation"&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;echo&#8192;<span class="src-var">$t</span><span class="src-sym">-&gt;</span><a href="ezcTemplate.html#methodprocess">process</a><span class="src-sym">(&#8192;</span><span class="src-str">"page.ezt"&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol><p>Another approach is to pass the ezcTemplateConfiguration object to the process method. This  method will use the given configuration instead.  </p><ol><li><div class="src-line">&#8192;<span class="src-var">$t&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcTemplate.html">ezcTemplate</a></span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$config&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcTemplateConfiguration.html">ezcTemplateConfiguration</a></span><span class="src-sym">(&#8192;</span><span class="src-str">"design/templates"</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">"/tmp/compilation"&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;echo&#8192;<span class="src-var">$t</span><span class="src-sym">-&gt;</span><a href="ezcTemplate.html#methodprocess">process</a><span class="src-sym">(&#8192;</span><span class="src-str">"page.ezt"</span><span class="src-sym">,&#8192;</span><span class="src-var">$config&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol><p>The properties ezcTemplate::send and  ezcTemplate::receive are available to set the variables that  are sent to and retrieved from the template.</p><p>The next example demonstrates how a template variable is set and retrieved:</p><p></p><ol><li><div class="src-line">&#8192;<span class="src-var">$t&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcTemplate.html">ezcTemplate</a></span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$t</span><span class="src-sym">-&gt;</span><span class="src-id">send</span><span class="src-sym">-&gt;</span><span class="src-id">mySentence&#8192;</span>=&#8192;<span class="src-str">"Hello&#8192;world"</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;echo&#8192;<span class="src-var">$t</span><span class="src-sym">-&gt;</span><a href="ezcTemplate.html#methodprocess">process</a><span class="src-sym">(&#8192;</span><span class="src-str">"calc_sentence_length.ezt"&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$number&#8192;</span>=&#8192;<span class="src-var">$t</span><span class="src-sym">-&gt;</span><span class="src-id">receive</span><span class="src-sym">-&gt;</span><span class="src-id">length</span><span class="src-sym">;</span></div></li>
+</ol><p>The template code:  </p><ol><li><div class="src-line">&#8192;<span class="src-sym">{</span>use&#8192;<span class="src-var">$mySentence&#8192;</span>=&#8192;<span class="src-str">""</span><span class="src-sym">}</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">{</span><span class="src-key">var&#8192;</span><span class="src-var">$length&#8192;</span>=&#8192;<span class="src-id">str_len</span><span class="src-sym">(&#8192;</span><span class="src-var">$mySentence&#8192;</span><span class="src-sym">)</span><span class="src-sym">}</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">{</span><span class="src-key">return&#8192;</span><span class="src-var">$length</span><span class="src-sym">}</span></div></li>
+</ol></div>
+<p>Source for this file: <a href="http://fisheye6.atlassian.com/browse/zetacomponents/trunk/Template/src/template.php?r=HEAD">/Template/src/template.php</a></p>
+       
+
+
+
+
+  <table><tr><td>
+            <strong>Version:</strong>&#8192;&#8192;
+          </td>
+          <td>//autogen//</td>
+        </tr></table><a name="sec-prop-summary"></a>
+  <h3>Properties</h3>
+  <table class="summary"><tr><td class="right">
+          <a name="prop%24astTree" id="$astTree"></a>
+          <a name="prop-%24astTree" id="$astTree"></a>
+          <em>ezcTemplateAstNode</em>        </td>
+        <td class="right">
+          <em>read</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24astTree" title="details" class="var-name-summary">$astTree</a>
+                      </code>
+          <br><div style="margin-left: 20px">The generated astTree (debug).</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24compiledTemplatePath" id="$compiledTemplatePath"></a>
+          <a name="prop-%24compiledTemplatePath" id="$compiledTemplatePath"></a>
+          <em>string</em>        </td>
+        <td class="right">
+          <em>read</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24compiledTemplatePath" title="details" class="var-name-summary">$compiledTemplatePath</a>
+                      </code>
+          <br><div style="margin-left: 20px">The path of the compiled template.</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24configuration" id="$configuration"></a>
+          <a name="prop-%24configuration" id="$configuration"></a>
+          <em><a href="ezcTemplateConfiguration.html">ezcTemplateConfiguration</a></em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24configuration" title="details" class="var-name-summary">$configuration</a>
+                      </code>
+          <br><div style="margin-left: 20px">Contains the template configuration.</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24output" id="$output"></a>
+          <a name="prop-%24output" id="$output"></a>
+          <em>string</em>        </td>
+        <td class="right">
+          <em>read</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24output" title="details" class="var-name-summary">$output</a>
+                      </code>
+          <br><div style="margin-left: 20px">The output of the last processed template.</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24receive" id="$receive"></a>
+          <a name="prop-%24receive" id="$receive"></a>
+          <em><a href="ezcTemplateVariableCollection.html">ezcTemplateVariableCollection</a></em>        </td>
+        <td class="right">
+          <em>read</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24receive" title="details" class="var-name-summary">$receive</a>
+                      </code>
+          <br><div style="margin-left: 20px">Contains the variables that are returned by the template.</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24send" id="$send"></a>
+          <a name="prop-%24send" id="$send"></a>
+          <em><a href="ezcTemplateVariableCollection.html">ezcTemplateVariableCollection</a></em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24send" title="details" class="var-name-summary">$send</a>
+                      </code>
+          <br><div style="margin-left: 20px">Contains the variables that are send to the template.</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24tstTree" id="$tstTree"></a>
+          <a name="prop-%24tstTree" id="$tstTree"></a>
+          <em>ezcTemplateTstNode</em>        </td>
+        <td class="right">
+          <em>read</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24tstTree" title="details" class="var-name-summary">$tstTree</a>
+                      </code>
+          <br><div style="margin-left: 20px">The generated tstTree (debug).</div>        </td>
+      </tr></table><a name="sec-method-summary"></a>
+  <h3>Method Summary</h3>
+  <table class="summary"><tr><td class="right">
+            <em>public</em>                        <em>ezcTemplate</em>          </td>
+          <td>
+            <code>
+              <a href="#__construct"><b>__construct</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Intializes the ezcTemplate with a default configuration and empty  $send and $receive properties.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#generateOptionHash"><b>generateOptionHash</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Generates a unique hash from the current options.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#process"><b>process</b></a>(
+                                                                                    $location
+                                                    ,                   [                  $config
+                   = null]                               )
+            </code>
+            <br><div style="margin-left: 20px">Processes the specified template source and returns the output string.</div>          </td>
+        </tr></table><a name="sec-methods"></a>
+  <h3>Methods</h3>
+  <a name="method_detail"></a>
+      
+      <a name="method__construct" id="__construct"><!-- --></a>
+
+    <h4>__construct</h4>
+
+    <div class="method-signature">
+      ezcTemplate
+      __construct(
+      )
+    </div>
+
+    <p>Intializes the ezcTemplate with a default configuration and empty  $send and $receive properties.</p><div><p>Configuration of the object must now be done through the properties: </p><ul><li>ezcTemplate::configuration</li><li>ezcTemplate::send</li><li>ezcTemplate::receive</li></ul></div>
+    
+        
+
+    
+    
+    
+        <a name="methodgenerateOptionHash" id="generateOptionHash"><!-- --></a>
+
+    <h4>generateOptionHash</h4>
+
+    <div class="method-signature">
+      string
+      generateOptionHash(
+      )
+    </div>
+
+    <p>Generates a unique hash from the current options.</p><div><p>For example the default values would return:  </p><ol><li><div class="src-line">&#8192;<span class="src-str">"updqr0"</span></div></li>
+</ol><p>Note: This is mostly useful for the template component,        relying on the output of this function is not a good idea.</p></div>
+    
+        
+
+    
+    
+    
+        <a name="methodprocess" id="process"><!-- --></a>
+
+    <h4>process</h4>
+
+    <div class="method-signature">
+      string
+      process(
+                                  string
+          $location
+                            ,           [<a href="ezcTemplateConfiguration.html">ezcTemplateConfiguration</a>
+          $config
+           = null]              )
+    </div>
+
+    <p>Processes the specified template source and returns the output string.</p><div><p>Note: The first time a template is accessed it needs to be compiled so the  execution time will be higher than subsequent calls.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$location</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  The path to the template file to process, can be a PHP stream.
+                              </td>
+            </tr><tr><td><code>$config</code></td>
+              <td><em><a href="ezcTemplateConfiguration.html">ezcTemplateConfiguration</a></em></td>
+              <td>
+                                  Optional configuration object which overrides                                          the default one defined in this object ($configuration).
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcTemplateFileNotWriteableException.html">ezcTemplateFileNotWriteableException</a></code></td>
+              <td>
+                                  If the directory could not be created.
+                              </td>
+            </tr><tr><td><code><a href="ezcTemplateParserException.html">ezcTemplateParserException</a></code></td>
+              <td>
+                                  If the template could not be compiled.
+                              </td>
+            </tr></tbody></table><div class="credit">
+      Documentation generated by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+    </div>
+  </div>
+  
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

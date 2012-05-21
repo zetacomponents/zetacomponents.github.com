@@ -1,0 +1,471 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="PHP, apache, components, framework, quality" />
+	<meta name="author" content="dotxp" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Wed, 04 Aug 2010 13:07:14 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="ezcAuthenticationGroupFilter.html" />
+	<meta name="DC.creator" content="dotxp" />
+	<meta name="DC.date" content="Wed, 04 Aug 2010 13:07:14 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationGroupFilter.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/Authentication/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/trunk/Authentication/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Authentication/security.html" title="Security ">Security </a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Authentication/rfcs.html" title="Rfcs ">Rfcs </a>
+	</li>
+
+</ul>
+
+		
+  <div class="phpdoc">
+    <h2>Apache Zeta Components Manual :: Docs For Class ezcAuthenticationGroupFilter</h2>
+
+                  <h3>Authentication::ezcAuthenticationGroupFilter</h3>
+    
+<a name="sec-description"></a>
+<h3>Class ezcAuthenticationGroupFilter</h3>
+
+<p>Group authentication filters together.</p><div><p>If there are no filters in the group, then the run() method will return  STATUS_OK.</p><p>The way of grouping the filters is specified with the mode option: </p><ul><li>ezcAuthenticationGroupFilter::MODE_OR (default): at least one filter
+    in the group needs to succeed in order for the group to succeed.</li><li>ezcAuthenticationGroupFilter::MODE_AND: all filters in the group
+    need to succeed in order for the group to succeed.</li></ul>  Example of using the mode option:  <ol><li><div class="src-line">&#8192;<span class="src-var">$options&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcAuthenticationGroupOptions.html">ezcAuthenticationGroupOptions</a></span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$options</span><span class="src-sym">-&gt;</span><span class="src-id">mode&#8192;</span>=&#8192;<span class="src-id"><a href="ezcAuthenticationGroupFilter.html">ezcAuthenticationGroupFilter</a></span><span class="src-sym">::</span><span class="src-id">MODE_AND</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;$filter1&#8192;and&#8192;$filter2&#8192;are&#8192;authentication&#8192;filters&#8192;which&#8192;all&#8192;need&#8192;to&#8192;succeed</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;in&#8192;order&#8192;for&#8192;the&#8192;group&#8192;to&#8192;succeed</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$filter&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcAuthenticationGroupFilter.html">ezcAuthenticationGroupFilter</a></span><span class="src-sym">(&#8192;</span><span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-var">$filter1</span><span class="src-sym">,&#8192;</span><span class="src-var">$filter2&#8192;</span><span class="src-sym">)</span><span class="src-sym">,&#8192;</span><span class="src-var">$options&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol><p>Example of using the group filter with LDAP and Database filters:  </p><ol><li><div class="src-line">&#8192;<span class="src-var">$credentials&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcAuthenticationPasswordCredentials.html">ezcAuthenticationPasswordCredentials</a></span><span class="src-sym">(&#8192;</span><span class="src-str">'jan.modaal'</span><span class="src-sym">,&#8192;</span><span class="src-str">'qwerty'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;create&#8192;a&#8192;database&#8192;filter</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$database&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="/zetacomponents/documentation/trunk/AuthenticationDatabaseTiein/phpdoc/ezcAuthenticationDatabaseInfo.html">ezcAuthenticationDatabaseInfo</a></span><span class="src-sym">(&#8192;</span><span class="src-id"><a href="/zetacomponents/documentation/trunk/Database/phpdoc/ezcDbInstance.html">ezcDbInstance</a></span><span class="src-sym">::</span><a href="/zetacomponents/documentation/trunk/Database/phpdoc/ezcDbInstance.html#methodget">get</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">,&#8192;</span><span class="src-str">'users'</span><span class="src-sym">,&#8192;</span><span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-str">'user'</span><span class="src-sym">,&#8192;</span><span class="src-str">'password'&#8192;</span><span class="src-sym">)&#8192;)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$databaseFilter&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="/zetacomponents/documentation/trunk/AuthenticationDatabaseTiein/phpdoc/ezcAuthenticationDatabaseFilter.html">ezcAuthenticationDatabaseFilter</a></span><span class="src-sym">(&#8192;</span><span class="src-var">$database&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;create&#8192;an&#8192;LDAP&#8192;filter</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$ldap&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcAuthenticationLdapInfo.html">ezcAuthenticationLdapInfo</a></span><span class="src-sym">(&#8192;</span><span class="src-str">'localhost'</span><span class="src-sym">,&#8192;</span><span class="src-str">'uid=%id%'</span><span class="src-sym">,&#8192;</span><span class="src-str">'dc=example,dc=com'</span><span class="src-sym">,&#8192;</span><span class="src-num">389&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$ldapFilter&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcAuthenticationLdapFilter.html">ezcAuthenticationLdapFilter</a></span><span class="src-sym">(&#8192;</span><span class="src-var">$ldap&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$authentication&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcAuthentication.html">ezcAuthentication</a></span><span class="src-sym">(&#8192;</span><span class="src-var">$credentials&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;use&#8192;the&#8192;database&#8192;and&#8192;LDAP&#8192;filters&#8192;in&#8192;paralel&#8192;(at&#8192;least&#8192;one&#8192;needs&#8192;to&#8192;succeed&#8192;in</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;order&#8192;for&#8192;the&#8192;user&#8192;to&#8192;be&#8192;authenticated)</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$authentication</span><span class="src-sym">-&gt;</span><a href="ezcAuthenticationGroupFilter.html#methodaddFilter">addFilter</a><span class="src-sym">(&#8192;</span><span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcAuthenticationGroupFilter.html">ezcAuthenticationGroupFilter</a></span><span class="src-sym">(&#8192;</span><span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-var">$databaseFilter</span><span class="src-sym">,&#8192;</span><span class="src-var">$ldapFilter&#8192;</span><span class="src-sym">)&#8192;)&#8192;)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;add&#8192;more&#8192;filters&#8192;if&#8192;needed</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-key">if&#8192;</span><span class="src-sym">(&#8192;</span><span class="src-sym">!</span><span class="src-var">$authentication</span><span class="src-sym">-&gt;</span><a href="ezcAuthenticationGroupFilter.html#methodrun">run</a><span class="src-sym">(</span><span class="src-sym">)&#8192;)</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">{</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-comm">//&#8192;authentication&#8192;did&#8192;not&#8192;succeed,&#8192;so&#8192;inform&#8192;the&#8192;user</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-var">$status&#8192;</span>=&#8192;<span class="src-var">$authentication</span><span class="src-sym">-&gt;</span><span class="src-id">getStatus</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-var">$err&#8192;</span>=&#8192;<span class="src-key">array</span><span class="src-sym">(</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-str">'ezcAuthenticationLdapFilter'&#8192;</span>=&gt;&#8192;<span class="src-key">array</span><span class="src-sym">(</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-id"><a href="ezcAuthenticationLdapFilter.html">ezcAuthenticationLdapFilter</a></span><span class="src-sym">::</span><span class="src-id">STATUS_USERNAME_INCORRECT&#8192;</span>=&gt;&#8192;<span class="src-str">'Incorrect&#8192;username'</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-id"><a href="ezcAuthenticationLdapFilter.html">ezcAuthenticationLdapFilter</a></span><span class="src-sym">::</span><span class="src-id">STATUS_PASSWORD_INCORRECT&#8192;</span>=&gt;&#8192;<span class="src-str">'Incorrect&#8192;password'</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-sym">)&#8192;)</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-str">'ezcAuthenticationDatabaseFilter'&#8192;</span>=&gt;&#8192;<span class="src-key">array</span><span class="src-sym">(</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-id"><a href="/zetacomponents/documentation/trunk/AuthenticationDatabaseTiein/phpdoc/ezcAuthenticationDatabaseFilter.html">ezcAuthenticationDatabaseFilter</a></span><span class="src-sym">::</span><span class="src-id">STATUS_USERNAME_INCORRECT&#8192;</span>=&gt;&#8192;<span class="src-str">'Incorrect&#8192;username'</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-id"><a href="/zetacomponents/documentation/trunk/AuthenticationDatabaseTiein/phpdoc/ezcAuthenticationDatabaseFilter.html">ezcAuthenticationDatabaseFilter</a></span><span class="src-sym">::</span><span class="src-id">STATUS_PASSWORD_INCORRECT&#8192;</span>=&gt;&#8192;<span class="src-str">'Incorrect&#8192;password'</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-sym">)&#8192;)</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-key">foreach&#8192;</span><span class="src-sym">(&#8192;</span><span class="src-var">$status&#8192;</span><span class="src-key">as&#8192;</span><span class="src-var">$line&#8192;</span>=&gt;&#8192;<span class="src-var">$error&#8192;</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-sym">{</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;list<span class="src-sym">(&#8192;</span><span class="src-var">$key</span><span class="src-sym">,&#8192;</span><span class="src-var">$value&#8192;</span><span class="src-sym">)&#8192;</span>=&#8192;<a href="http://www.php.net/each">each</a><span class="src-sym">(&#8192;</span><span class="src-var">$error&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;echo&#8192;<span class="src-var">$err</span><span class="src-sym">[</span><span class="src-var">$line</span><span class="src-sym">]</span><span class="src-sym">[</span><span class="src-var">$key</span><span class="src-sym">]</span><span class="src-sym">[</span><span class="src-var">$value</span><span class="src-sym">]&#8192;</span>.&#8192;<span class="src-str">"\n"</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-sym">}</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">}</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-key">else</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">{</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-comm">//&#8192;authentication&#8192;succeeded,&#8192;so&#8192;allow&#8192;the&#8192;user&#8192;to&#8192;see&#8192;his&#8192;content</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">}</span></div></li>
+</ol><p>It is possible to use multiple credentials when grouping filters together, by  enabling the option multipleCredentials for the Group filter object. When this  option is enabled, each filter added to the group must have a credentials  object passed along with it.</p><p>Example of using the Group filter to handle multiple credentials:  </p><ol><li><div class="src-line">&#8192;<span class="src-var">$credentials1&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcAuthenticationPasswordCredentials.html">ezcAuthenticationPasswordCredentials</a></span><span class="src-sym">(&#8192;</span><span class="src-str">'jan.modaal'</span><span class="src-sym">,&#8192;</span><span class="src-str">'b1b3773a05c0ed0176787a4f1574ff0075f7521e'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;&#8192;</span><span class="src-comm">//&#8192;incorrect&#8192;password</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$credentials2&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcAuthenticationPasswordCredentials.html">ezcAuthenticationPasswordCredentials</a></span><span class="src-sym">(&#8192;</span><span class="src-str">'john.doe'</span><span class="src-sym">,&#8192;</span><span class="src-str">'wpeE20wyWHnLE'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;&#8192;</span><span class="src-comm">//&#8192;correct&#8192;username&#8192;+&#8192;password</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$options&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcAuthenticationGroupOptions.html">ezcAuthenticationGroupOptions</a></span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$options</span><span class="src-sym">-&gt;</span><span class="src-id">multipleCredentials&#8192;</span>=&#8192;<span class="src-id">true</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$options</span><span class="src-sym">-&gt;</span><span class="src-id">mode&#8192;</span>=&#8192;<span class="src-id"><a href="ezcAuthenticationGroupFilter.html">ezcAuthenticationGroupFilter</a></span><span class="src-sym">::</span><span class="src-id">MODE_AND</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$group&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcAuthenticationGroupFilter.html">ezcAuthenticationGroupFilter</a></span><span class="src-sym">(&#8192;</span><span class="src-key">array</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">,&#8192;</span><span class="src-var">$options&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$group</span><span class="src-sym">-&gt;</span><a href="ezcAuthenticationGroupFilter.html#methodaddFilter">addFilter</a><span class="src-sym">(&#8192;</span><span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcAuthenticationHtpasswdFilter.html">ezcAuthenticationHtpasswdFilter</a></span><span class="src-sym">(&#8192;</span><span class="src-str">'../../tests/filters/htpasswd/data/htpasswd'&#8192;</span><span class="src-sym">)</span><span class="src-sym">,&#8192;</span><span class="src-var">$credentials1&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$group</span><span class="src-sym">-&gt;</span><a href="ezcAuthenticationGroupFilter.html#methodaddFilter">addFilter</a><span class="src-sym">(&#8192;</span><span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcAuthenticationHtpasswdFilter.html">ezcAuthenticationHtpasswdFilter</a></span><span class="src-sym">(&#8192;</span><span class="src-str">'../../tests/filters/htpasswd/data/htpasswd'&#8192;</span><span class="src-sym">)</span><span class="src-sym">,&#8192;</span><span class="src-var">$credentials2&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$authentication&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcAuthentication.html">ezcAuthentication</a></span><span class="src-sym">(&#8192;</span><span class="src-var">$credentials1&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$authentication</span><span class="src-sym">-&gt;</span><a href="ezcAuthenticationGroupFilter.html#methodaddFilter">addFilter</a><span class="src-sym">(&#8192;</span><span class="src-var">$group&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;add&#8192;more&#8192;filters&#8192;if&#8192;needed</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-key">if&#8192;</span><span class="src-sym">(&#8192;</span><span class="src-sym">!</span><span class="src-var">$authentication</span><span class="src-sym">-&gt;</span><a href="ezcAuthenticationGroupFilter.html#methodrun">run</a><span class="src-sym">(</span><span class="src-sym">)&#8192;)</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">{</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-comm">//&#8192;authentication&#8192;did&#8192;not&#8192;succeed,&#8192;so&#8192;inform&#8192;the&#8192;user</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-var">$status&#8192;</span>=&#8192;<span class="src-var">$authentication</span><span class="src-sym">-&gt;</span><span class="src-id">getStatus</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-var">$err&#8192;</span>=&#8192;<span class="src-key">array</span><span class="src-sym">(</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-str">'ezcAuthenticationHtpasswdFilter'&#8192;</span>=&gt;&#8192;<span class="src-key">array</span><span class="src-sym">(</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-id"><a href="ezcAuthenticationHtpasswdFilter.html">ezcAuthenticationHtpasswdFilter</a></span><span class="src-sym">::</span><span class="src-id">STATUS_OK&#8192;</span>=&gt;&#8192;<span class="src-str">''</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-id"><a href="ezcAuthenticationHtpasswdFilter.html">ezcAuthenticationHtpasswdFilter</a></span><span class="src-sym">::</span><span class="src-id">STATUS_USERNAME_INCORRECT&#8192;</span>=&gt;&#8192;<span class="src-str">'Incorrect&#8192;username&#8192;'&#8192;</span>.&#8192;<span class="src-var">$credentials1</span><span class="src-sym">-&gt;</span><span class="src-id">id</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-id"><a href="ezcAuthenticationHtpasswdFilter.html">ezcAuthenticationHtpasswdFilter</a></span><span class="src-sym">::</span><span class="src-id">STATUS_PASSWORD_INCORRECT&#8192;</span>=&gt;&#8192;<span class="src-str">'Incorrect&#8192;password&#8192;for&#8192;'&#8192;</span>.&#8192;<span class="src-var">$credentials1</span><span class="src-sym">-&gt;</span><span class="src-id">id</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-sym">)&#8192;)</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-str">'ezcAuthenticationHtpasswdFilter'&#8192;</span>=&gt;&#8192;<span class="src-key">array</span><span class="src-sym">(</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-id"><a href="ezcAuthenticationHtpasswdFilter.html">ezcAuthenticationHtpasswdFilter</a></span><span class="src-sym">::</span><span class="src-id">STATUS_OK&#8192;</span>=&gt;&#8192;<span class="src-str">''</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-id"><a href="ezcAuthenticationHtpasswdFilter.html">ezcAuthenticationHtpasswdFilter</a></span><span class="src-sym">::</span><span class="src-id">STATUS_USERNAME_INCORRECT&#8192;</span>=&gt;&#8192;<span class="src-str">'Incorrect&#8192;username&#8192;'&#8192;</span>.&#8192;<span class="src-var">$credentials2</span><span class="src-sym">-&gt;</span><span class="src-id">id</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-id"><a href="ezcAuthenticationHtpasswdFilter.html">ezcAuthenticationHtpasswdFilter</a></span><span class="src-sym">::</span><span class="src-id">STATUS_PASSWORD_INCORRECT&#8192;</span>=&gt;&#8192;<span class="src-str">'Incorrect&#8192;password&#8192;for&#8192;'&#8192;</span>.&#8192;<span class="src-var">$credentials2</span><span class="src-sym">-&gt;</span><span class="src-id">id</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-sym">)&#8192;)</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-key">foreach&#8192;</span><span class="src-sym">(&#8192;</span><span class="src-var">$status&#8192;</span><span class="src-key">as&#8192;</span><span class="src-var">$line&#8192;</span>=&gt;&#8192;<span class="src-var">$error&#8192;</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-sym">{</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;list<span class="src-sym">(&#8192;</span><span class="src-var">$key</span><span class="src-sym">,&#8192;</span><span class="src-var">$value&#8192;</span><span class="src-sym">)&#8192;</span>=&#8192;<a href="http://www.php.net/each">each</a><span class="src-sym">(&#8192;</span><span class="src-var">$error&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;echo&#8192;<span class="src-var">$err</span><span class="src-sym">[</span><span class="src-var">$line</span><span class="src-sym">]</span><span class="src-sym">[</span><span class="src-var">$key</span><span class="src-sym">]</span><span class="src-sym">[</span><span class="src-var">$value</span><span class="src-sym">]&#8192;</span>.&#8192;<span class="src-str">"\n"</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-sym">}</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">}</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-key">else</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">{</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-comm">//&#8192;authentication&#8192;succeeded,&#8192;so&#8192;allow&#8192;the&#8192;user&#8192;to&#8192;see&#8192;his&#8192;content</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">}</span></div></li>
+</ol></div>
+<p>Source for this file: <a href="http://fisheye6.atlassian.com/browse/zetacomponents/trunk/Authentication/src/filters/group/group_filter.php?r=HEAD">/Authentication/src/filters/group/group_filter.php</a></p>
+       
+
+
+<pre><a href="ezcAuthenticationFilter.html">ezcAuthenticationFilter</a>
+   |
+   --ezcAuthenticationGroupFilter</pre>
+
+
+  <table><tr><td>
+            <strong>Version:</strong>&#8192;&#8192;
+          </td>
+          <td>//autogen//</td>
+        </tr></table><a name="sec-const-summary"></a>
+  <h3>Constants</h3>
+  <table class="summary"><tr><td class="right">
+          <a name="const-MODE_AND" id=""></a>
+          <code>
+            <a href="#const-MODE_AND" title="details" class="const-name-summary">MODE_AND</a>
+             =  2
+          </code>
+        </td>
+        <td>
+          All the filters need to succeed in order for the group to succeed.                  </td>
+      </tr><tr><td class="right">
+          <a name="const-MODE_OR" id=""></a>
+          <code>
+            <a href="#const-MODE_OR" title="details" class="const-name-summary">MODE_OR</a>
+             =  1
+          </code>
+        </td>
+        <td>
+          At least one filter needs to succeed in order for the group to succeed.                  </td>
+      </tr><tr><td class="right">
+          <a name="const-STATUS_GROUP_FAILED" id=""></a>
+          <code>
+            <a href="#const-STATUS_GROUP_FAILED" title="details" class="const-name-summary">STATUS_GROUP_FAILED</a>
+             =  1
+          </code>
+        </td>
+        <td>
+          All or some of the filters in the group failed (depeding on the mode  option).                  </td>
+      </tr></table><a name="sec-inherited-consts"></a>
+  <h3>Inherited Constants</h3>
+  <table class="summary"><thead><tr><th colspan="2">
+              From <span class="classname"><a href="ezcAuthenticationFilter.html">ezcAuthenticationFilter</a></span>:
+            </th>
+          </tr></thead><tbody><tr><td class="right">
+                <code><a href="ezcAuthenticationFilter.html#constSTATUS_OK">ezcAuthenticationFilter::STATUS_OK</a></code>
+              </td>
+              <td>
+                &#8192;&#8192;&#8192;Successful authentication.              </td>
+            </tr></tbody></table><a name="sec-prop-summary"></a>
+  <h3>Properties</h3>
+  <table class="summary"><tr><td class="right">
+          <a name="prop%24status" id="$status"></a>
+          <a name="prop-%24status" id="$status"></a>
+          <em><a href="ezcAuthenticationStatus.html">ezcAuthenticationStatus</a></em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24status" title="details" class="var-name-summary">$status</a>
+                      </code>
+          <br><div style="margin-left: 20px">The status object which holds the status of the run filters.</div>        </td>
+      </tr></table><a name="sec-var-summary"></a>
+  <h3>Member Variables</h3>
+  <table class="summary"><tr><td class="right">
+            <em>protected</em>            <em>array(ezcAuthenticationFilter)</em>          </td>
+          <td>
+            <code>
+              $filters
+               = <span class="var-default">array()</span>            </code>
+            <br><div style="margin-left: 20px">Authentication filters.</div>                      </td>
+        </tr></table><h3>Inherited Member Variables</h3>
+  <table class="summary"><thead><tr><th colspan="2">
+            From <span class="classname"><a href="ezcAuthenticationFilter.html">ezcAuthenticationFilter</a></span>         
+          </th>
+        </tr></thead><tbody><tr><td class="right">
+              <em>protected</em>                          </td>
+            <td>
+              <code><a href="ezcAuthenticationFilter.html#var%24options">ezcAuthenticationFilter::$options</a></code>
+              
+            </td>
+          </tr></tbody></table><a name="sec-method-summary"></a>
+  <h3>Method Summary</h3>
+  <table class="summary"><tr><td class="right">
+            <em>public</em>                        <em>ezcAuthenticationGroupFilter</em>          </td>
+          <td>
+            <code>
+              <a href="#__construct"><b>__construct</b></a>(
+                                                                                    $filters
+                                                    ,                   [                  $options
+                   = null]                               )
+            </code>
+            <br><div style="margin-left: 20px">Creates a new object of this class.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#addFilter"><b>addFilter</b></a>(
+                                                                                    $filter
+                                                    ,                   [                  $credentials
+                   = null]                               )
+            </code>
+            <br><div style="margin-left: 20px">Adds an authentication filter at the end of the filter list.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>int</em>          </td>
+          <td>
+            <code>
+              <a href="#run"><b>run</b></a>(
+                                                                                    $credentials
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Runs the filter and returns a status code when finished.</div>          </td>
+        </tr></table><h3>Inherited Methods</h3>
+  <table class="summary"><thead><tr><th colspan="2">
+            From <span class="classname"><a href="ezcAuthenticationFilter.html">ezcAuthenticationFilter</a></span>
+          </th>
+        </tr></thead><tbody><tr><td class="right">
+              <em>public</em>                                          <em><a href="ezcAuthenticationFilterOptions.html">ezcAuthenticationFilterOptions</a></em>            </td>
+            <td>
+              <code><b><a href="ezcAuthenticationFilter.html#methodgetOptions">ezcAuthenticationFilter::getOptions()</a></b></code>
+              <br><div style="margin-left: 20px">Returns the options of this class.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>              abstract                            <em>int</em>            </td>
+            <td>
+              <code><b><a href="ezcAuthenticationFilter.html#methodrun">ezcAuthenticationFilter::run()</a></b></code>
+              <br><div style="margin-left: 20px">Runs the filter and returns a status code when finished.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b><a href="ezcAuthenticationFilter.html#methodsetOptions">ezcAuthenticationFilter::setOptions()</a></b></code>
+              <br><div style="margin-left: 20px">Sets the options of this class to $options.</div>                          </td>
+          </tr></tbody></table><a name="sec-methods"></a>
+  <h3>Methods</h3>
+  <a name="method_detail"></a>
+      
+      <a name="method__construct" id="__construct"><!-- --></a>
+
+    <h4>__construct</h4>
+
+    <div class="method-signature">
+      ezcAuthenticationGroupFilter
+      __construct(
+                                  
+          $filters
+                            ,           [<a href="ezcAuthenticationGroupOptions.html">ezcAuthenticationGroupOptions</a>
+          $options
+           = null]              )
+    </div>
+
+    <p>Creates a new object of this class.</p><div><p>The filters can be specified as an array of filter objects, or as an  array of array(fiter,credentials) when the multipleCredentials option is  enabled.</p><p>Example of using multipleCredentials:  </p><ol><li><div class="src-line">&#8192;<span class="src-var">$credentials1&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcAuthenticationPasswordCredentials.html">ezcAuthenticationPasswordCredentials</a></span><span class="src-sym">(&#8192;</span><span class="src-str">'john.doe'</span><span class="src-sym">,&#8192;</span><span class="src-str">'1234'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$credentials1&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcAuthenticationPasswordCredentials.html">ezcAuthenticationPasswordCredentials</a></span><span class="src-sym">(&#8192;</span><span class="src-str">'jan.modaal'</span><span class="src-sym">,&#8192;</span><span class="src-str">'qwerty'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$filter1&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcAuthenticationHtpasswdFilter.html">ezcAuthenticationHtpasswdFilter</a></span><span class="src-sym">(&#8192;</span><span class="src-str">'/etc/htpasswd1'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$filter2&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcAuthenticationHtpasswdFilter.html">ezcAuthenticationHtpasswdFilter</a></span><span class="src-sym">(&#8192;</span><span class="src-str">'/etc/htpasswd2'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;enable&#8192;multiple&#8192;credentials</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$options&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcAuthenticationGroupOptions.html">ezcAuthenticationGroupOptions</a></span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$options</span><span class="src-sym">-&gt;</span><span class="src-id">multipleCredentials&#8192;</span>=&#8192;<span class="src-id">true</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;add&#8192;the&#8192;filters&#8192;to&#8192;the&#8192;group&#8192;with&#8192;the&#8192;constructor</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$group&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcAuthenticationGroupFilter.html">ezcAuthenticationGroupFilter</a></span><span class="src-sym">(&#8192;</span><span class="src-key">array</span><span class="src-sym">(</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-var">$filter1</span><span class="src-sym">,&#8192;</span><span class="src-var">$credentials1&#8192;</span><span class="src-sym">)</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-var">$filter2</span><span class="src-sym">,&#8192;</span><span class="src-var">$credentials2&#8192;</span><span class="src-sym">)&#8192;)</span><span class="src-sym">,&#8192;</span><span class="src-var">$options&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;the&#8192;filters&#8192;can&#8192;also&#8192;be&#8192;added&#8192;to&#8192;the&#8192;group&#8192;with&#8192;addFilter()</span></div></li>
+</ol></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$filters</code></td>
+              <td><em>array(ezcAuthenticationFilter|mixed)</em></td>
+              <td>
+                                  Authentication filters
+                              </td>
+            </tr><tr><td><code>$options</code></td>
+              <td><em><a href="ezcAuthenticationGroupOptions.html">ezcAuthenticationGroupOptions</a></em></td>
+              <td>
+                                  Options for this class
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcAuthenticationException.html">ezcAuthenticationException</a></code></td>
+              <td>
+                                  if the multipleCredentials option is enabled and a credentials object was not specified
+                              </td>
+            </tr></tbody></table><a name="methodaddFilter" id="addFilter"><!-- --></a>
+
+    <h4>addFilter</h4>
+
+    <div class="method-signature">
+      void
+      addFilter(
+                                  <a href="ezcAuthenticationFilter.html">ezcAuthenticationFilter</a>
+          $filter
+                            ,           [<a href="ezcAuthenticationCredentials.html">ezcAuthenticationCredentials</a>
+          $credentials
+           = null]              )
+    </div>
+
+    <p>Adds an authentication filter at the end of the filter list.</p><div><p>Example of using multipleCredentials:  </p><ol><li><div class="src-line">&#8192;<span class="src-var">$credentials1&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcAuthenticationPasswordCredentials.html">ezcAuthenticationPasswordCredentials</a></span><span class="src-sym">(&#8192;</span><span class="src-str">'john.doe'</span><span class="src-sym">,&#8192;</span><span class="src-str">'1234'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$credentials1&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcAuthenticationPasswordCredentials.html">ezcAuthenticationPasswordCredentials</a></span><span class="src-sym">(&#8192;</span><span class="src-str">'jan.modaal'</span><span class="src-sym">,&#8192;</span><span class="src-str">'qwerty'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$filter1&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcAuthenticationHtpasswdFilter.html">ezcAuthenticationHtpasswdFilter</a></span><span class="src-sym">(&#8192;</span><span class="src-str">'/etc/htpasswd1'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$filter2&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcAuthenticationHtpasswdFilter.html">ezcAuthenticationHtpasswdFilter</a></span><span class="src-sym">(&#8192;</span><span class="src-str">'/etc/htpasswd2'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;enable&#8192;multiple&#8192;credentials</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$options&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcAuthenticationGroupOptions.html">ezcAuthenticationGroupOptions</a></span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$options</span><span class="src-sym">-&gt;</span><span class="src-id">multipleCredentials&#8192;</span>=&#8192;<span class="src-id">true</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;add&#8192;the&#8192;filters&#8192;to&#8192;the&#8192;group&#8192;with&#8192;addFilter()</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$group&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcAuthenticationGroupFilter.html">ezcAuthenticationGroupFilter</a></span><span class="src-sym">(&#8192;</span><span class="src-key">array</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">,&#8192;</span><span class="src-var">$options&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$group</span><span class="src-sym">-&gt;</span><a href="ezcAuthenticationGroupFilter.html#methodaddFilter">addFilter</a><span class="src-sym">(&#8192;</span><span class="src-var">$filter1</span><span class="src-sym">,&#8192;</span><span class="src-var">$credentials1&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$group</span><span class="src-sym">-&gt;</span><a href="ezcAuthenticationGroupFilter.html#methodaddFilter">addFilter</a><span class="src-sym">(&#8192;</span><span class="src-var">$filter2</span><span class="src-sym">,&#8192;</span><span class="src-var">$credentials2&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;the&#8192;filters&#8192;can&#8192;also&#8192;be&#8192;added&#8192;to&#8192;the&#8192;group&#8192;with&#8192;the&#8192;constructor</span></div></li>
+</ol></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$filter</code></td>
+              <td><em><a href="ezcAuthenticationFilter.html">ezcAuthenticationFilter</a></em></td>
+              <td>
+                                  The authentication filter to add
+                              </td>
+            </tr><tr><td><code>$credentials</code></td>
+              <td><em><a href="ezcAuthenticationCredentials.html">ezcAuthenticationCredentials</a></em></td>
+              <td>
+                                  Credentials object associated                                                   with $filter if the multipleCredentials                                                   option is enabled
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcAuthenticationGroupException.html">ezcAuthenticationGroupException</a></code></td>
+              <td>
+                                  if the multipleCredentials option is enabled and a credentials object was not specified
+                              </td>
+            </tr></tbody></table><a name="methodrun" id="run"><!-- --></a>
+
+    <h4>run</h4>
+
+    <div class="method-signature">
+      int
+      run(
+                                  <a href="ezcAuthenticationCredentials.html">ezcAuthenticationCredentials</a>
+          $credentials
+                        )
+    </div>
+
+    <p>Runs the filter and returns a status code when finished.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$credentials</code></td>
+              <td><em><a href="ezcAuthenticationCredentials.html">ezcAuthenticationCredentials</a></em></td>
+              <td>
+                                  Authentication credentials
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcAuthenticationFilter.html#methodrun">ezcAuthenticationFilter::run()</a></code></td>
+            <td>
+                              Runs the filter and returns a status code when finished.
+                          </td>
+          </tr></tbody></table><div class="credit">
+      Documentation generated by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+    </div>
+  </div>
+  
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

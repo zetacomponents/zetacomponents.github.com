@@ -1,0 +1,384 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="PHP, apache, components, framework, quality" />
+	<meta name="author" content="dotxp" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Wed, 04 Aug 2010 13:07:57 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="ezcSignalStaticConnections.html" />
+	<meta name="DC.creator" content="dotxp" />
+	<meta name="DC.date" content="Wed, 04 Aug 2010 13:07:57 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/SignalSlot/phpdoc/ezcSignalStaticConnections.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/SignalSlot/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/trunk/SignalSlot/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+
+</ul>
+
+		
+  <div class="phpdoc">
+    <h2>Apache Zeta Components Manual :: Docs For Class ezcSignalStaticConnections</h2>
+
+                  <h3>SignalSlot::ezcSignalStaticConnections</h3>
+    
+<a name="sec-description"></a>
+<h3>Class ezcSignalStaticConnections</h3>
+
+<p>ezcSignalStaticConnections makes it possible to connect to signals through the signals identifier.</p><div><p>The static connections allow you to: </p><ul><li>connect to a signal sent by any object signal collection with the same identifier. Usually the
+   identifier is set to the name of the class holding the collection. Using the static connections
+   you can connect to a signal sent by any object of that class.</li></ul><ul><li>connect to a signal that does not yet exist. This allows you to delay initialization of the
+   emitting object until it is needed.</li></ul></div>
+<p>Source for this file: <a href="http://fisheye6.atlassian.com/browse/zetacomponents/trunk/SignalSlot/src/static_connections.php?r=HEAD">/SignalSlot/src/static_connections.php</a></p>
+       
+  <h3>Implements interfaces:</h3>
+  <ul><li><a href="ezcSignalStaticConnectionsBase.html">ezcSignalStaticConnectionsBase</a></li>  </ul><table><tr><td>
+            <strong>Version:</strong>&#8192;&#8192;
+          </td>
+          <td>//autogen//</td>
+        </tr></table><a name="sec-prop-summary"></a>
+  <h3>Properties</h3>
+  <table class="summary"><tr><td class="right">
+          <a name="prop%24connections" id="$connections"></a>
+          <a name="prop-%24connections" id="$connections"></a>
+          <em>array</em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24connections" title="details" class="var-name-summary">$connections</a>
+                      </code>
+          <br><div style="margin-left: 20px">Holds the internal structure of signals. The format is                  array( identifier =&gt; array( signalName =&gt; array(priority=&gt;array(slots)) ) ).                  It can be both read and set in order                  to provide easy setup of the static connections from disk.</div>        </td>
+      </tr></table><a name="sec-method-summary"></a>
+  <h3>Method Summary</h3>
+  <table class="summary"><tr><td class="right">
+            <em>public</em>            static
+                        <em><a href="/zetacomponents/documentation/trunk/Configuration/phpdoc/ezcConfigurationManager.html">ezcConfigurationManager</a></em>          </td>
+          <td>
+            <code>
+              <a href="#getInstance"><b>getInstance</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns the instance of the ezcSignalStaticConnections..</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#connect"><b>connect</b></a>(
+                                                                                    $identifier
+                                                    ,                                     $signal
+                                                    ,                                     $slot
+                                                    ,                   [                  $priority
+                   = 1000]                               )
+            </code>
+            <br><div style="margin-left: 20px">Connects the signal $signal emited by any ezcSignalCollection with the identifier  $identifier to the slot $slot.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#disconnect"><b>disconnect</b></a>(
+                                                                                    $identifier
+                                                    ,                                     $signal
+                                                    ,                                     $slot
+                                                    ,                   [                  $priority
+                   = null]                               )
+            </code>
+            <br><div style="margin-left: 20px">Disconnects the $slot from the $signal with identifier $identifier..</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>array(int=&gt;array(callback))</em>          </td>
+          <td>
+            <code>
+              <a href="#getConnections"><b>getConnections</b></a>(
+                                                                                    $identifier
+                                                    ,                                     $signal
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns all the connections for signals $signal in signal collections  with the identifier $identifier.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>mixed</em>          </td>
+          <td>
+            <code>
+              <a href="#__get"><b>__get</b></a>(
+                                                                                    $name
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns the property $name.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#__set"><b>__set</b></a>(
+                                                                                    $name
+                                                    ,                                     $value
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Sets the property $name to $value.</div>          </td>
+        </tr></table><a name="sec-methods"></a>
+  <h3>Methods</h3>
+  <a name="method_detail"></a>
+            <a name="methodgetInstance" id="getInstance"><!-- --></a>
+
+    <h4>getInstance</h4>
+
+    <div class="method-signature">
+      static <a href="/zetacomponents/documentation/trunk/Configuration/phpdoc/ezcConfigurationManager.html">ezcConfigurationManager</a>
+      getInstance(
+      )
+    </div>
+
+      <p>Returns the instance of the ezcSignalStaticConnections..</p>      
+      
+      
+      
+      
+      
+      
+      <a name="methodconnect" id="connect"><!-- --></a>
+
+    <h4>connect</h4>
+
+    <div class="method-signature">
+      void
+      connect(
+                                  string
+          $identifier
+                            ,           string
+          $signal
+                            ,           callback
+          $slot
+                            ,           [int
+          $priority
+           = 1000]              )
+    </div>
+
+    <p>Connects the signal $signal emited by any ezcSignalCollection with the identifier  $identifier to the slot $slot.</p><div><p>To control the order in which slots are called you can set a priority  from 1 - 65 536. The lower the number the higher the priority. The default  priority is 1000.  Slots with the same priority may be called with in any order.</p><p>A slot will be called once for every time it is connected. It is possible  to connect a slot more than once.</p><p>See the PHP documentation for examples on the callback type.  http://php.net/callback</p><p>We reccommend avoiding excessive usage of the $priority parameter  since it makes it much harder to track how your program works.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$identifier</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$signal</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$slot</code></td>
+              <td><em>callback</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$priority</code></td>
+              <td><em>int</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methoddisconnect" id="disconnect"><!-- --></a>
+
+    <h4>disconnect</h4>
+
+    <div class="method-signature">
+      void
+      disconnect(
+                                  string
+          $identifier
+                            ,           string
+          $signal
+                            ,           callback
+          $slot
+                            ,           [int
+          $priority
+           = null]              )
+    </div>
+
+    <p>Disconnects the $slot from the $signal with identifier $identifier..</p><div><p>If the priority is given it will try to disconnect a slot with that priority.  If no such slot is found no slot will be disconnected.</p><p>If no priority is given it will disconnect the matching slot with the lowest priority.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$identifier</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$signal</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$slot</code></td>
+              <td><em>callback</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$priority</code></td>
+              <td><em>int</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodgetConnections" id="getConnections"><!-- --></a>
+
+    <h4>getConnections</h4>
+
+    <div class="method-signature">
+      array(int=&gt;array(callback))
+      getConnections(
+                                  string
+          $identifier
+                            ,           string
+          $signal
+                        )
+    </div>
+
+    <p>Returns all the connections for signals $signal in signal collections  with the identifier $identifier.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$identifier</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$signal</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Implementation of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcSignalStaticConnectionsBase.html#methodgetConnections">ezcSignalStaticConnectionsBase::getConnections()</a></code></td>
+              <td>
+                                  Returns all the connections for signals $signal in signal collections  with the identifier $identifier.
+                              </td>
+            </tr></tbody></table><a name="method__get" id="__get"><!-- --></a>
+
+    <h4>__get</h4>
+
+    <div class="method-signature">
+      mixed
+      __get(
+                                  string
+          $name
+                        )
+    </div>
+
+    <p>Returns the property $name.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$name</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBasePropertyNotFoundException.html">ezcBasePropertyNotFoundException</a></code></td>
+              <td>
+                                  if the property does not exist.
+                              </td>
+            </tr></tbody></table><a name="method__set" id="__set"><!-- --></a>
+
+    <h4>__set</h4>
+
+    <div class="method-signature">
+      void
+      __set(
+                                  string
+          $name
+                            ,           mixed
+          $value
+                        )
+    </div>
+
+    <p>Sets the property $name to $value.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$name</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$value</code></td>
+              <td><em>mixed</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBasePropertyNotFoundException.html">ezcBasePropertyNotFoundException</a></code></td>
+              <td>
+                                  if the property does not exist.
+                              </td>
+            </tr></tbody></table><div class="credit">
+      Documentation generated by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+    </div>
+  </div>
+  
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

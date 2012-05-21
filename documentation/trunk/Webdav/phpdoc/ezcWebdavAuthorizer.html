@@ -1,0 +1,202 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="" />
+	<meta name="author" content="jerome" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Sun, 10 Jul 2011 11:11:09 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="ezcWebdavAuthorizer.html" />
+	<meta name="DC.creator" content="jerome" />
+	<meta name="DC.date" content="Sun, 10 Jul 2011 11:11:09 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/Webdav/phpdoc/ezcWebdavAuthorizer.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/Webdav/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/trunk/Webdav/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Webdav/clients.html" title="Clients ">Clients </a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Webdav/plugin_architecture.html" title="Plugin_architecture ">Plugin_architecture </a>
+	</li>
+
+</ul>
+
+		
+  <div class="phpdoc">
+    <h2>Apache Zeta Components Manual :: Docs For Class ezcWebdavAuthorizer</h2>
+
+              
+              <h3>Webdav::ezcWebdavAuthorizer</h3>
+    
+<a name="sec-description"></a>
+<h3>Interface ezcWebdavAuthorizer</h3>
+
+<p>Interface for classes providing authorization.</p><div><p>This interface must be implemented by classes the provide authorization to  an <a href="ezcWebdavBackend.html">ezcWebdavBackend</a>. A back end will call the <a href="ezcWebdavAuthorizer.html#methodauthorize">authorize()</a>  method for each path that is affected by request.</p></div>
+<p>Source for this file: <a href="http://fisheye6.atlassian.com/browse/zetacomponents/trunk/Webdav/src/interfaces/authorizer.php?r=HEAD">/Webdav/src/interfaces/authorizer.php</a></p>
+       
+
+
+
+
+  <table><tr><td>
+            <strong>Version:</strong>&#8192;&#8192;
+          </td>
+          <td>//autogentag//</td>
+        </tr></table><a name="sec-descendants"></a>
+  <h3>Descendants</h3>
+  <table class="detail"><thead><tr><th>Child Class</th>
+        <th>Description</th>
+      </tr></thead><tbody><tr><td><a href="ezcWebdavLockAuthorizer.html">ezcWebdavLockAuthorizer</a></td>          <td>
+                          Interface to be implemented by authorization classes for the lock plugin.
+                      </td>
+        </tr></tbody></table><a name="sec-const-summary"></a>
+  <h3>Constants</h3>
+  <table class="summary"><tr><td class="right">
+          <a name="const-ACCESS_READ" id=""></a>
+          <code>
+            <a href="#const-ACCESS_READ" title="details" class="const-name-summary">ACCESS_READ</a>
+             =  1
+          </code>
+        </td>
+        <td>
+          User desires read access.                  </td>
+      </tr><tr><td class="right">
+          <a name="const-ACCESS_WRITE" id=""></a>
+          <code>
+            <a href="#const-ACCESS_WRITE" title="details" class="const-name-summary">ACCESS_WRITE</a>
+             =  2
+          </code>
+        </td>
+        <td>
+          User desires write access.                  </td>
+      </tr></table><a name="sec-method-summary"></a>
+  <h3>Method Summary</h3>
+  <table class="summary"><tr><td class="right">
+            <em>public</em>                        <em>bool</em>          </td>
+          <td>
+            <code>
+              <a href="#authorize"><b>authorize</b></a>(
+                                                                                    $user
+                                                    ,                                     $path
+                                                    ,                   [                  $access
+                   = self::ACCESS_READ]                               )
+            </code>
+            <br><div style="margin-left: 20px">Checks authorization of the given $user to a given $path.</div>          </td>
+        </tr></table><a name="sec-methods"></a>
+  <h3>Methods</h3>
+  <a name="method_detail"></a>
+  
+      <a name="methodauthorize" id="authorize"><!-- --></a>
+
+    <h4>authorize</h4>
+
+    <div class="method-signature">
+      bool
+      authorize(
+                                  string
+          $user
+                            ,           string
+          $path
+                            ,           [int
+          $access
+           = self::ACCESS_READ]              )
+    </div>
+
+    <p>Checks authorization of the given $user to a given $path.</p><div><p>This method checks if the given $user has the permission $access to the  resource identified by $path. The $path is the result of a translation  by the servers <a href="ezcWebdavPathFactory.html">ezcWebdavPathFactory</a> from the request URI.</p><p>The $access parameter can be one of  </p><ul><li><a href="ezcWebdavAuthorizer.html#constACCESS_WRITE">ezcWebdavAuthorizer::ACCESS_WRITE</a></li><li><a href="ezcWebdavAuthorizer.html#constACCESS_READ">ezcWebdavAuthorizer::ACCESS_READ</a></li></ul><p>The implementation of this method must only check the given $path, but  MUST not check descendant paths, since the back end will issue dedicated  calls for such paths. In contrast, the algoritm MUST ensure, that parent  permission constraints of the given $paths are met.</p><p>Examples:  Permission is rejected for the paths "/a", "/b/beamme" and "/c/connect":</p><p></p><ol><li><div class="src-line">&#8192;<span class="src-php">&lt;?php</span></div></li>
+<li><div class="src-line">&#8192;<a href="http://www.php.net/var_dump">var_dump</a><span class="src-sym">(&#8192;</span><span class="src-var">$auth</span><span class="src-sym">-&gt;</span><a href="ezcWebdavAuthorizer.html#methodauthorize">authorize</a><span class="src-sym">(&#8192;</span><span class="src-str">'johndoe'</span><span class="src-sym">,&#8192;</span><span class="src-str">'/a'&#8192;</span><span class="src-sym">)&#8192;)</span><span class="src-sym">;&#8192;</span><span class="src-comm">//&#8192;false</span></div></li>
+<li><div class="src-line">&#8192;<a href="http://www.php.net/var_dump">var_dump</a><span class="src-sym">(&#8192;</span><span class="src-var">$auth</span><span class="src-sym">-&gt;</span><a href="ezcWebdavAuthorizer.html#methodauthorize">authorize</a><span class="src-sym">(&#8192;</span><span class="src-str">'johndoe'</span><span class="src-sym">,&#8192;</span><span class="src-str">'/b'&#8192;</span><span class="src-sym">)&#8192;)</span><span class="src-sym">;&#8192;</span><span class="src-comm">//&#8192;true</span></div></li>
+<li><div class="src-line">&#8192;<a href="http://www.php.net/var_dump">var_dump</a><span class="src-sym">(&#8192;</span><span class="src-var">$auth</span><span class="src-sym">-&gt;</span><a href="ezcWebdavAuthorizer.html#methodauthorize">authorize</a><span class="src-sym">(&#8192;</span><span class="src-str">'johndoe'</span><span class="src-sym">,&#8192;</span><span class="src-str">'/b/beamme'&#8192;</span><span class="src-sym">)&#8192;)</span><span class="src-sym">;&#8192;</span><span class="src-comm">//&#8192;false</span></div></li>
+<li><div class="src-line">&#8192;<a href="http://www.php.net/var_dump">var_dump</a><span class="src-sym">(&#8192;</span><span class="src-var">$auth</span><span class="src-sym">-&gt;</span><a href="ezcWebdavAuthorizer.html#methodauthorize">authorize</a><span class="src-sym">(&#8192;</span><span class="src-str">'johndoe'</span><span class="src-sym">,&#8192;</span><span class="src-str">'/c/connect/some/deeper/path'&#8192;</span><span class="src-sym">)&#8192;)</span><span class="src-sym">;&#8192;</span><span class="src-comm">//&#8192;false</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-php">?&gt;</span></div></li>
+</ol></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$user</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$path</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$access</code></td>
+              <td><em>int</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><div class="credit">
+      Documentation generated by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+    </div>
+  </div>
+  
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

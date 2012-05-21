@@ -1,0 +1,350 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="PHP, apache, components, framework, quality" />
+	<meta name="author" content="dotxp" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Wed, 04 Aug 2010 13:07:08 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="Database" />
+	<meta name="DC.creator" content="dotxp" />
+	<meta name="DC.date" content="Wed, 04 Aug 2010 13:07:08 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/Database/tutorial.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/Database/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Database/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Database/oracle_setup.html" title="Oracle_setup ">Oracle_setup </a>
+	</li>
+
+</ul>
+
+		<h2>eZ Components - Database</h2><div class="toc"><h3>Table of Contents</h3><ul><li><p><a href="#introduction">Introduction</a></p><ul><li><p><a href="#supported-databases">Supported databases</a></p></li></ul></li><li><p><a href="#class-overview">Class overview</a></p><ul><li><p><a href="#handlers">Handlers</a></p></li><li><p><a href="#query-abstraction">Query abstraction</a></p></li></ul></li><li><p><a href="#handler-usage">Handler usage</a></p><ul><li><p><a href="#lazy-initialization">Lazy initialization</a></p></li></ul></li><li><p><a href="#query-abstraction-usage">Query abstraction usage</a></p><ul><li><p><a href="#bind-parameters">Bind parameters</a></p></li><li><p><a href="#multi-join-syntax">Multi-join syntax</a></p></li></ul></li><li><p><a href="#avoiding-sql-injection">Avoiding SQL injection</a></p></li><li><p><a href="#character-set-issues">Character set issues</a></p></li><li><p><a href="#notable-differences-between-databases">Notable differences between databases</a></p></li><li><p><a href="#restrictions">Restrictions</a></p></li><li><p><a href="#adding-support-for-a-new-database">Adding support for a new database</a></p></li></ul></div><a name="introduction"></a><a name="id4"></a><h3>Introduction</h3><p>Before attempting to use the Database component, you should familiarize yourself with the PHP Data Objects (PDO) <a href="http://www.php.net/pdo">documentation</a>. The Database component builds upon PDO and we do not provide examples or explanations of the PDO basics.</p><p>The Database component consists of two main parts:</p><ol><li><p>Database handlers derived from PDO with some added functionality. A database handler provides a common API for all databases to execute queries on a database. An introduction can be found in the PHP PDO documentation. Most importantly, the handlers in the components add support for nested <a href='/zetacomponents/documentation/trunk/Database/phpdoc/ezcDbHandler.html#beginTransaction'>ezcDbHandler::beginTransaction</a>() and <a href='/zetacomponents/documentation/trunk/Database/phpdoc/ezcDbHandler.html#commit'>ezcDbHandler::commit</a>() calls. The handlers also provide factory methods for the query abstraction layer.</p></li><li><p>The query abstraction layer. This layer provides an object-oriented API for creating SELECT, INSERT, UPDATE and DELETE queries. Using a single interface, you can create syntactically equal queries for the supported databases. This layer removes all need to do string processing in order to build your queries and helps to avoid syntax errors. Note that the query layer does not remove semantic/logical differences between databases.</p></li></ol><a name="supported-databases"></a><a name="id5"></a><h4>Supported databases</h4><p>The Database component currently supports:</p><ul><li><p>MSSQL</p></li><li><p>MySQL</p></li><li><p>PostgreSQL</p></li><li><p>Oracle</p></li><li><p>SQLite</p></li></ul><a name="class-overview"></a><a name="id6"></a><h3>Class overview</h3><p>This section gives you an overview of the main classes of the Database component.</p><a name="handlers"></a><a name="id7"></a><h4>Handlers</h4><dl><dt>ezcDbHandler</dt><dd>ezcDbHandler extends PDO and provides the common interface for all the component's database handlers. The handlers should be instantiated using <a href='/zetacomponents/documentation/trunk/Database/phpdoc/ezcDbFactory.html'>ezcDbFactory</a>.</dd><dt>ezcDbFactory</dt><dd>ezcDbFactory is exactly that: a factory for database handlers. It should always be used when instantiating a database handler.</dd><dt>ezcDbInstance</dt><dd>Usually, the database is used in several different places throughout your application. It is inconvenient to pass the handler around and insecure to store it in a global variable. The singleton <a href='/zetacomponents/documentation/trunk/Database/phpdoc/ezcDbInstance.html'>ezcDbInstance</a> allows you to store any number of database handlers and use these everywhere in your application.</dd></dl><a name="query-abstraction"></a><a name="id8"></a><h4>Query abstraction</h4><dl><dt>ezcQuerySelect</dt><dd>Interface to create SELECT queries. Instances of <a href='/zetacomponents/documentation/trunk/Database/phpdoc/ezcQuerySelect.html'>ezcQuerySelect</a> should be retrieved from the database handler factory method <a href='/zetacomponents/documentation/trunk/Database/phpdoc/ezcDbHandler.html#createSelectQuery'>ezcDbHandler::createSelectQuery</a>().</dd><dt>ezcQueryInsert</dt><dd>Interface to create INSERT queries. Instances of <a href='/zetacomponents/documentation/trunk/Database/phpdoc/ezcQueryInsert.html'>ezcQueryInsert</a> should be retrieved from the database handler factory method <a href='/zetacomponents/documentation/trunk/Database/phpdoc/ezcDbHandler.html#createInsertQuery'>ezcDbHandler::createInsertQuery</a>().</dd><dt>ezcQueryUpdate</dt><dd>Interface to create UPDATE queries. Instances of <a href='/zetacomponents/documentation/trunk/Database/phpdoc/ezcQueryUpdate.html'>ezcQueryUpdate</a> should be retrieved from the database handler factory method <a href='/zetacomponents/documentation/trunk/Database/phpdoc/ezcDbHandler.html#createUpdateQuery'>ezcDbHandler::createUpdateQuery</a>().</dd><dt>ezcQueryDelete</dt><dd>Interface to create DELETE queries. Instances of <a href='/zetacomponents/documentation/trunk/Database/phpdoc/ezcQueryDelete.html'>ezcQueryDelete</a> should be retrieved from the database handler factory method <a href='/zetacomponents/documentation/trunk/Database/phpdoc/ezcDbHandler.html#createDeleteQuery'>ezcDbHandler::createDeleteQuery</a>().</dd><dt>ezcQueryExpression</dt><dd>ezcQueryExpression provides the interface to create SQL statements common to SELECT, INSERT, UPDATE and DELETE queries. Examples are methods like <a href='/zetacomponents/documentation/trunk/Database/phpdoc/ezcQueryExpression.html#add'>ezcQueryExpression::add</a>() to add two or more numbers and <a href='/zetacomponents/documentation/trunk/Database/phpdoc/ezcQueryExpression.html#now'>ezcQueryExpression::now</a>() to create the current time. Each query has an expression object available through the variable $expr.</dd></dl><a name="handler-usage"></a><a name="id9"></a><h3>Handler usage</h3><p>This section shows how to use the factory and the instance as well as how to execute some typical queries. For more information on how to perform queries using the handlers, we recommend reading the PHP PDO <a href="http://www.php.net/pdo">documentation</a>.</p><p>In order to get started, you need a database handler. The first example shows how to create one using <a href='/zetacomponents/documentation/trunk/Database/phpdoc/ezcDbFactory.html'>ezcDbFactory</a> and how to store the handler in <a href='/zetacomponents/documentation/trunk/Database/phpdoc/ezcDbInstance.html'>ezcDbInstance</a> so it can be easily retrieved later:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li></li>
+<li><span style="color: #000000">$db&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Database/phpdoc/ezcDbFactory.html#create'>ezcDbFactory::create</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'mysql://user:password@host/database'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Database/phpdoc/ezcDbInstance.html#set'>ezcDbInstance::set</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$db&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;anywhere&nbsp;later&nbsp;in&nbsp;your&nbsp;program&nbsp;you&nbsp;can&nbsp;retrieve&nbsp;the&nbsp;db&nbsp;instance&nbsp;again&nbsp;using</span></li>
+<li><span style="color: #000000">$db&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Database/phpdoc/ezcDbInstance.html#get'>ezcDbInstance::get</a></span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><p>Executing a simple query and returning the result right away can be done with the PDO::query() method:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li></li>
+<li><span style="color: #000000">$db&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Database/phpdoc/ezcDbInstance.html#get'>ezcDbInstance::get</a></span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #000000">$rows&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$db</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">query</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'SELECT&nbsp;*&nbsp;FROM&nbsp;quotes'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Iterate&nbsp;over&nbsp;the&nbsp;rows&nbsp;and&nbsp;print&nbsp;the&nbsp;information&nbsp;from&nbsp;each&nbsp;result.</span></li>
+<li><span style="color: #0000FF">foreach(&nbsp;</span><span style="color: #000000">$rows&nbsp;</span><span style="color: #0000FF">as&nbsp;</span><span style="color: #000000">$row&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">print_r</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$row&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #0000FF">}</span></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><p>Next, we show a simple example with statements and the use of bind. Binding values can be very valuable both in terms of efficiency and security. The main difference with normal queries is that the bound value will be transferred to the SQL server independent of the main query. See the section 'Avoiding SQL injection' below.</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li></li>
+<li><span style="color: #000000">$db&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Database/phpdoc/ezcDbInstance.html#get'>ezcDbInstance::get</a></span><span style="color: #0000FF">();</span></li>
+<li><span style="color: #000000">$stmt&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$db</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">prepare</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'SELECT&nbsp;*&nbsp;FROM&nbsp;quotes&nbsp;where&nbsp;author&nbsp;=&nbsp;:author'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$stmt</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">bindValue</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">':author'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'Robert&nbsp;Foster'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #000000">$stmt</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">execute</span><span style="color: #0000FF">();</span></li>
+<li><span style="color: #000000">$rows&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$stmt</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">fetchAll</span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><a name="lazy-initialization"></a><a name="id10"></a><h4>Lazy initialization</h4><p>Lazy initialization is a mechanism to load and configure a component, only when it is really used in your application. This mechanism saves time for parsing the classes and configuration, when the component is not used at all during one request. You can find a description how you can use it for your own components and how it works in the <a href="introduction_Base.html#lazy-initialization">ezcBase tutorial</a>. The keyword for the database component is <em>ezcInitDatabaseInstance</em>.</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #0000FF">require_once&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #0000FF">class&nbsp;</span><span style="color: #000000">customLazyDatabaseConfiguration&nbsp;</span><span style="color: #0000FF">implements&nbsp;</span><span style="color: #000000">ezcBaseConfigurationInitializer</span></li>
+<li><span style="color: #0000FF">{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;static&nbsp;function&nbsp;</span><span style="color: #000000">configureObject</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$instance&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;switch&nbsp;(&nbsp;</span><span style="color: #000000">$instance&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;</span><span style="color: #000000">false</span><span style="color: #0000FF">:&nbsp;</span><span style="color: #007700">//&nbsp;Default&nbsp;instance</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000FF">return&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Database/phpdoc/ezcDbFactory.html#create'>ezcDbFactory::create</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'mysql://user:password@host/database'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;</span><span style="color: #335533">'sqlite'</span><span style="color: #0000FF">:</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Database/phpdoc/ezcDbFactory.html#create'>ezcDbFactory::create</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'sqlite://:memory:'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;}</span></li>
+<li><span style="color: #0000FF">}</span></li>
+<li></li>
+<li><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Database/phpdoc/ezcBaseInit.html#setCallback'>ezcBaseInit::setCallback</a></span><span style="color: #0000FF">(&nbsp;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #335533">'<a href='/zetacomponents/documentation/trunk/Database/phpdoc/ezcInitDatabaseInstance.html'>ezcInitDatabaseInstance</a>'</span><span style="color: #0000FF">,&nbsp;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #335533">'customLazyDatabaseConfiguration'</span></li>
+<li><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Create&nbsp;and&nbsp;configure&nbsp;default&nbsp;mysql&nbsp;connection</span></li>
+<li><span style="color: #000000">$db&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Database/phpdoc/ezcDbInstance.html#get'>ezcDbInstance::get</a></span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Create&nbsp;and&nbsp;configure&nbsp;additional&nbsp;sqlite&nbsp;connection</span></li>
+<li><span style="color: #000000">$sb&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Database/phpdoc/ezcDbInstance.html#get'>ezcDbInstance::get</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'sqlite'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><p>ezcBaseInit::setCallback accepts as a first parameter a component specific key, which lets the component later request the right configuration callback. The second parameter is the name of the class to perform the static callback on. This class must implement the <a href='/zetacomponents/documentation/trunk/Database/phpdoc/ezcBaseConfigurationInitializer.html'>ezcBaseConfigurationInitializer</a> class. Each component's lazy initialization calls the static method configureObject() on the referenced class.</p><p>This example shows a way to configure multiple database handlers, only when they are really requested in your application. The example does basicaly the same like the first example in this tutorial, but creates the connection not before it is really required.</p><p>In line 24 the default database handler is first requested in this example, which does not exist yet, so that the configuration class earlier referenced through the setCallback() call will be asked for a new instance for the current instance name, which is (bool) false for the default instance.</p><p>In the configureObject() method in line 8 we switch on the instance name and create and return the right newly created database handler. Line 27 shows, that this will also work with multiple database instances, creating an additional SQLite connection.</p><a name="query-abstraction-usage"></a><a name="id11"></a><h3>Query abstraction usage</h3><p>This section gives you a basic introduction on how to build queries using the query abstraction layer.</p><p>We will start out by recreating the first query example:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li></li>
+<li><span style="color: #000000">$db&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Database/phpdoc/ezcDbInstance.html#get'>ezcDbInstance::get</a></span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #000000">$q&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$db</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">createSelectQuery</span><span style="color: #0000FF">();</span></li>
+<li><span style="color: #000000">$q</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">select</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'*'&nbsp;</span><span style="color: #0000FF">)-&gt;</span><span style="color: #000000">from</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'quotes'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #000000">$stmt&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$q</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">prepare</span><span style="color: #0000FF">();</span></li>
+<li><span style="color: #000000">$stmt</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">execute</span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><p>As you can see, building the query itself follows the build-up of a normal query and is rather straightforward. The rest of the example is a bit more verbose; this is mainly due to the fact that you need to fetch the query object from the handler and that you are required to use prepared statements with the query abstraction layer. The factory methods in the handler to fetch the query object ensure that you get a query of the correct type, regardless of what database you use. Please note that if you want to use table/column names that are SQL keywords, such as <strong>group</strong>, you need to quote the table/column names manually with <a href='/zetacomponents/documentation/trunk/Database/phpdoc/ezcDbHandler.html#quoteIdentifier'>ezcDbHandler::quoteIdentifier</a>().</p><a name="bind-parameters"></a><a name="id12"></a><h4>Bind parameters</h4><p>The next example is based on the previous one, but builds a more complex query and introduces the usage of bind parameters in the query:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li></li>
+<li><span style="color: #000000">$db&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Database/phpdoc/ezcDbInstance.html#get'>ezcDbInstance::get</a></span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #000000">$q&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$db</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">createSelectQuery</span><span style="color: #0000FF">();</span></li>
+<li><span style="color: #000000">$e&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$q</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">expr</span><span style="color: #0000FF">;&nbsp;</span><span style="color: #007700">//&nbsp;fetch&nbsp;the&nbsp;expression&nbsp;object</span></li>
+<li><span style="color: #000000">$q</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">select</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'*'&nbsp;</span><span style="color: #0000FF">)-&gt;</span><span style="color: #000000">from</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'quotes'&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;-&gt;</span><span style="color: #000000">where</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$e</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">eq</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'author'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">$q</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">bindValue</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'Robert&nbsp;Foster'&nbsp;</span><span style="color: #0000FF">)&nbsp;)&nbsp;)</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;-&gt;</span><span style="color: #000000">orderBy</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'quote'&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;-&gt;</span><span style="color: #000000">limit</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">10</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">0&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #000000">$stmt&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$q</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">prepare</span><span style="color: #0000FF">();</span></li>
+<li><span style="color: #000000">$stmt</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">execute</span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><p>The query will fetch the first ten quotes by Robert Foster, sorted by the quote itself. Note that string parameters must either be bound using <a href='/zetacomponents/documentation/trunk/Database/phpdoc/ezcQuery.html#bindParam'>ezcQuery::bindParam</a>()/<a href='/zetacomponents/documentation/trunk/Database/phpdoc/ezcQuery.html#BindValue'>ezcQuery::BindValue</a>() or escaped and quoted manually.</p><p>As you can see, logical expressions are built up using the expression object of the type <a href='/zetacomponents/documentation/trunk/Database/phpdoc/ezcQueryExpression.html'>ezcQueryExpression</a>. Note that the methods for logical <em>or</em> and <em>and</em> are named lOr and lAnd, respectively. This is because <em>and</em> and <em>or</em> are reserved names in PHP and cannot be used in method names.</p><p>The next example shows that you can insert, update and delete rows from a table using the query abstraction layer, in a similar way to the SELECT query.</p><p>The example below shows how to create and use basic INSERT, UPDATE and DELETE query objects.</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li></li>
+<li><span style="color: #000000">$db&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Database/phpdoc/ezcDbInstance.html#get'>ezcDbInstance::get</a></span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Insert</span></li>
+<li><span style="color: #000000">$q&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$db</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">createInsertQuery</span><span style="color: #0000FF">();</span></li>
+<li><span style="color: #000000">$q</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">insertInto</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'quotes'&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;-&gt;</span><span style="color: #000000">set</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'id'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">1&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;-&gt;</span><span style="color: #000000">set</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'name'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">$q</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">bindValue</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'Robert&nbsp;Foster'&nbsp;</span><span style="color: #0000FF">)&nbsp;)</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;-&gt;</span><span style="color: #000000">set</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'quote'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">$q</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">bindValue</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">"It&nbsp;doesn't&nbsp;look&nbsp;as&nbsp;if&nbsp;it's&nbsp;ever&nbsp;used!"&nbsp;</span><span style="color: #0000FF">)&nbsp;);</span></li>
+<li><span style="color: #000000">$stmt&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$q</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">prepare</span><span style="color: #0000FF">();</span></li>
+<li><span style="color: #000000">$stmt</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">execute</span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;update</span></li>
+<li><span style="color: #000000">$q&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$db</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">createUpdateQuery</span><span style="color: #0000FF">();</span></li>
+<li><span style="color: #000000">$q</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">update</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'quotes'&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;-&gt;</span><span style="color: #000000">set</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'quote'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'His&nbsp;skin&nbsp;is&nbsp;cold...&nbsp;Like&nbsp;plastic...'&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;-&gt;</span><span style="color: #000000">where</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$q</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">expr</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">eq</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'id'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">1&nbsp;</span><span style="color: #0000FF">)&nbsp;);</span></li>
+<li><span style="color: #000000">$stmt&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$q</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">prepare</span><span style="color: #0000FF">();</span></li>
+<li><span style="color: #000000">$stmt</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">execute</span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;delete</span></li>
+<li><span style="color: #000000">$q&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$db</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">createDeleteQuery</span><span style="color: #0000FF">();</span></li>
+<li><span style="color: #000000">$q</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">deleteFrom</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'quotes'&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;-&gt;</span><span style="color: #000000">where</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$q</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">expr</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">eq</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'name'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">$q</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">bindValue</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'Robert&nbsp;Foster'&nbsp;</span><span style="color: #0000FF">)&nbsp;)&nbsp;);</span></li>
+<li><span style="color: #000000">$stmt&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$q</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">prepare</span><span style="color: #0000FF">();</span></li>
+<li><span style="color: #000000">$stmt</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">execute</span><span style="color: #0000FF">();</span></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><a name="multi-join-syntax"></a><a name="id13"></a><h4>Multi-join syntax</h4><p>The next examples show how to use multi-join syntax to build queries with several joined tables using inner, right or left join.</p><p>The innerJoin(), rightJoin() and leftJoin() methods can be used in three forms:</p><ol><li><p>The first form takes two string arguments (table name and join condition) and returns an <a href='/zetacomponents/documentation/trunk/Database/phpdoc/ezcQuery.html'>ezcQuery</a> object. Each invocation joins one table. You can invoke the *Join() method several times.</p></li></ol><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li></li>
+<li><span style="color: #000000">$db&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Database/phpdoc/ezcDbInstance.html#get'>ezcDbInstance::get</a></span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #000000">$q&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$db</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">createSelectQuery</span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Right&nbsp;join&nbsp;of&nbsp;two&nbsp;tables.&nbsp;Will&nbsp;produce&nbsp;SQL:</span></li>
+<li><span style="color: #007700">//&nbsp;"SELECT&nbsp;id&nbsp;FROM&nbsp;table1&nbsp;RIGHT&nbsp;JOIN&nbsp;table2&nbsp;ON&nbsp;table1.id&nbsp;=&nbsp;table2.id".</span></li>
+<li><span style="color: #000000">$q</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">select</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'id'&nbsp;</span><span style="color: #0000FF">)-&gt;</span><span style="color: #000000">from</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'table1'&nbsp;</span><span style="color: #0000FF">)-&gt;</span><span style="color: #000000">rightJoin</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'table2'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">$q</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">expr</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">eq</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'table1.id'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'table2.id'&nbsp;</span><span style="color: #0000FF">)&nbsp;);</span></li>
+<li></li>
+<li><span style="color: #000000">$stmt&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$q</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">prepare</span><span style="color: #0000FF">();</span></li>
+<li><span style="color: #000000">$stmt</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">execute</span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Right&nbsp;join&nbsp;of&nbsp;three&nbsp;tables.&nbsp;Will&nbsp;produce&nbsp;SQL:</span></li>
+<li><span style="color: #007700">//&nbsp;"SELECT&nbsp;id&nbsp;FROM&nbsp;table1&nbsp;RIGHT&nbsp;JOIN&nbsp;table2&nbsp;ON&nbsp;table1.id&nbsp;&lt;&nbsp;table2.id&nbsp;RIGHT&nbsp;JOIN&nbsp;table3&nbsp;ON&nbsp;table2.id&nbsp;&gt;&nbsp;table3.id".</span></li>
+<li><span style="color: #000000">$q</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">select</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'id'&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&gt;</span><span style="color: #000000">from</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'table1'&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&gt;</span><span style="color: #000000">rightJoin</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'table2'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">$q</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">expr</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">lt</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'table1.id'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'table2.id'&nbsp;</span><span style="color: #0000FF">)&nbsp;)</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&gt;</span><span style="color: #000000">rightJoin</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'table3'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">$q</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">expr</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">gt</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'table2.id'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'table3.id'&nbsp;</span><span style="color: #0000FF">)&nbsp;);</span></li>
+<li></li>
+<li><span style="color: #000000">$stmt&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$q</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">prepare</span><span style="color: #0000FF">();</span></li>
+<li><span style="color: #000000">$stmt</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">execute</span><span style="color: #0000FF">();</span></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><ol><li><p>This is a simplified version of form 1, where the join condition is always set to "equal".</p><p>rightJoin( 'table1', 'table1.id', 'table2.id' ) is a shorter equivalent of rightJoin( 'table1', $this-&gt;expr-&gt;eq('table1.id', 'table2.id' ) );</p></li></ol><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li></li>
+<li><span style="color: #000000">$db&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Database/phpdoc/ezcDbInstance.html#get'>ezcDbInstance::get</a></span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #000000">$q&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$db</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">createSelectQuery</span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Right&nbsp;join&nbsp;of&nbsp;three&nbsp;tables.&nbsp;Will&nbsp;produce&nbsp;SQL:</span></li>
+<li><span style="color: #007700">//&nbsp;"SELECT&nbsp;id&nbsp;FROM&nbsp;table1&nbsp;RIGHT&nbsp;JOIN&nbsp;table2&nbsp;ON&nbsp;table1.id&nbsp;=&nbsp;table2.id&nbsp;RIGHT&nbsp;JOIN&nbsp;table3&nbsp;ON&nbsp;table2.id&nbsp;=&nbsp;table3.id".</span></li>
+<li><span style="color: #000000">$q</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">select</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'id'&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&gt;</span><span style="color: #000000">from</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'table1'&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&gt;</span><span style="color: #000000">rightJoin</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'table2'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'table1.id'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'table2.id'&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&gt;</span><span style="color: #000000">rightJoin</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'table3'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'table2.id'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'table3.id'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #000000">$stmt&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$q</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">prepare</span><span style="color: #0000FF">();</span></li>
+<li><span style="color: #000000">$stmt</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">execute</span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><ol><li><p>This is a simple form that can join only two tables. It takes four string arguments and returns an SQL string. This exists mainly for backwards compatibility reasons.</p></li></ol><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li></li>
+<li><span style="color: #000000">$db&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Database/phpdoc/ezcDbInstance.html#get'>ezcDbInstance::get</a></span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #000000">$q&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$db</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">createSelectQuery</span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;$q-&gt;rightJoin(&nbsp;'table1',&nbsp;'table2',&nbsp;'table1.id',&nbsp;'table2.id'&nbsp;)&nbsp;will&nbsp;produce</span></li>
+<li><span style="color: #007700">//&nbsp;string&nbsp;"table1&nbsp;RIGHT&nbsp;JOIN&nbsp;table2&nbsp;ON&nbsp;table1.id&nbsp;=&nbsp;table2.id"</span></li>
+<li><span style="color: #007700">//&nbsp;that&nbsp;should&nbsp;be&nbsp;added&nbsp;to&nbsp;FROM&nbsp;clause&nbsp;of&nbsp;query.</span></li>
+<li><span style="color: #007700">//&nbsp;resulting&nbsp;query&nbsp;is&nbsp;"SELECT&nbsp;id&nbsp;FROM&nbsp;table1&nbsp;RIGHT&nbsp;JOIN&nbsp;table2&nbsp;ON&nbsp;table1.id&nbsp;=&nbsp;table2.id".</span></li>
+<li><span style="color: #000000">$q</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">select</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'id'&nbsp;</span><span style="color: #0000FF">)-&gt;</span><span style="color: #000000">from</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$q</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">rightJoin</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'table1'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'table2'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'table1.id'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'table2.id'&nbsp;</span><span style="color: #0000FF">)&nbsp;);</span></li>
+<li><span style="color: #000000">$stmt&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$q</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">prepare</span><span style="color: #0000FF">();</span></li>
+<li><span style="color: #000000">$stmt</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">execute</span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><p>This final example shows how to build subselect queries inside SELECT:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li></li>
+<li><span style="color: #000000">$name&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">'IBM'</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000">$q&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Database/phpdoc/ezcQuerySelect.html'>ezcQuerySelect</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Database/phpdoc/ezcDbInstance.html#get'>ezcDbInstance::get</a></span><span style="color: #0000FF">()&nbsp;);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Creating&nbsp;subselect&nbsp;object</span></li>
+<li><span style="color: #000000">$q2&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$q</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">subSelect</span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;$q2&nbsp;will&nbsp;build&nbsp;the&nbsp;subquery&nbsp;"SELECT&nbsp;company&nbsp;FROM&nbsp;query_test&nbsp;WHERE</span></li>
+<li><span style="color: #007700">//&nbsp;company&nbsp;=&nbsp;:<a href='/zetacomponents/documentation/trunk/Database/phpdoc/ezcValue1.html'>ezcValue1</a>&nbsp;AND&nbsp;id&nbsp;&gt;&nbsp;2".&nbsp;This&nbsp;query&nbsp;will&nbsp;be&nbsp;used&nbsp;inside&nbsp;the&nbsp;SQL&nbsp;for</span></li>
+<li><span style="color: #007700">//&nbsp;$q.</span></li>
+<li><span style="color: #000000">$q2</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">select</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'company'&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;-&gt;</span><span style="color: #000000">from</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'query_test'&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;-&gt;</span><span style="color: #000000">where</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$q2</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">expr</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">eq</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'company'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">$q2</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">bindParam</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$name&nbsp;</span><span style="color: #0000FF">)&nbsp;),&nbsp;</span><span style="color: #335533">'id&nbsp;&gt;&nbsp;2'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;$q&nbsp;the&nbsp;resulting&nbsp;query.&nbsp;It&nbsp;produces&nbsp;the&nbsp;following&nbsp;SQL:</span></li>
+<li><span style="color: #007700">//&nbsp;SELECT&nbsp;*&nbsp;FROM&nbsp;query_test</span></li>
+<li><span style="color: #007700">//&nbsp;WHERE&nbsp;&nbsp;id&nbsp;&gt;=&nbsp;1&nbsp;&nbsp;AND</span></li>
+<li><span style="color: #007700">//&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;company&nbsp;IN&nbsp;(&nbsp;(</span></li>
+<li><span style="color: #007700">//&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SELECT&nbsp;company&nbsp;FROM&nbsp;query_test</span></li>
+<li><span style="color: #007700">//&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WHERE&nbsp;company&nbsp;=&nbsp;:<a href='/zetacomponents/documentation/trunk/Database/phpdoc/ezcValue1.html'>ezcValue1</a>&nbsp;AND&nbsp;id&nbsp;&gt;&nbsp;2</span></li>
+<li><span style="color: #007700">//&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)&nbsp;)</span></li>
+<li><span style="color: #000000">$q</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">select</span><span style="color: #0000FF">(</span><span style="color: #335533">'*'</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;-&gt;</span><span style="color: #000000">from</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'query_test'&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;-&gt;</span><span style="color: #000000">where</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'&nbsp;id&nbsp;&gt;=&nbsp;1&nbsp;'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">$q</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">expr</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">in</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'company'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">$q2&nbsp;</span><span style="color: #0000FF">)&nbsp;);</span></li>
+<li></li>
+<li><span style="color: #000000">$stmt&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$q</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">prepare</span><span style="color: #0000FF">();</span></li>
+<li><span style="color: #000000">$stmt</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">execute</span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><a name="avoiding-sql-injection"></a><a name="id14"></a><h3>Avoiding SQL injection</h3><p>SQL injection is possibly the biggest single cause of major security problems in web applications. SQL injections are caused when building SQL statements that include untrusted data. If the untrusted data is not escaped properly or checked for proper input, you are susceptible to SQL injections.</p><p>With the introduction of bound values, it is possible to avoid SQL injection altogether. Simply use bind to insert untrusted data into a query. This is usually more efficient as well, since you do not need to escape the data and the SQL server does not have to parse it as part of the query string.</p><a name="character-set-issues"></a><a name="id15"></a><h3>Character set issues</h3><p>This component currently does not deal with character sets support. It relies on the different databases' own mechanisms to deal with this. For MySQL that means that you might have to set the character set yourself on the <a href='/zetacomponents/documentation/trunk/Database/phpdoc/ezcDatabaseHandler.html'>ezcDatabaseHandler</a> instance with something like:</p><code class="block">$db-&gt;query("SET NAMES utf8");</code><p>Oracle treats character sets totally different, and their driver needs to know which character set to use <em>before</em> connecting to the database, or starting the database. For this you need to make an environment setting. An example of such setting could be:</p><code class="block">export NLS_LANG=AMERICAN_AMERICA.AL32UTF8</code><p>The value of the NLS_LANG environment variable differs according to locale and character set, please see the <a href="http://download-uk.oracle.com/docs/cd/B19306_01/install.102/b14317/gblsupp.htm#BCEEEJGF">oracle website</a> for some default values and a <a href="http://www.oracle.com/technology/tech/globalization/htdocs/nls_lang%20faq.htm">FAQ</a>.</p><a name="notable-differences-between-databases"></a><a name="id16"></a><h3>Notable differences between databases</h3><p>Even though the query abstraction layer creates syntactically equal queries for the supported databases, the results may still differ. This is due to a large number of differences between the databases.</p><p>For example, SQLite does not support the rebinding of values. If you have an insert query and want to reuse it as outlined below, an error will be returned:</p><code class="block">$q-&gt;insertInto( 'query_test' )
+    -&gt;set( 'id', 1 )
+    -&gt;set( 'company', $q-&gt;bindValue( 'eZ systems' ) )
+    -&gt;set( 'section', $q-&gt;bindValue( 'Norway' ) )
+    -&gt;set( 'employees', 20 );
+$stmt = $q-&gt;prepare();
+$stmt-&gt;execute();
+
+$q-&gt;insertInto( 'query_test' );
+$q-&gt;set( 'id', 2 );
+$q-&gt;set( 'company', $q-&gt;bindValue( 'Trolltech' ) );
+$q-&gt;set( 'section', $q-&gt;bindValue( 'Norway' ) );
+$q-&gt;set( 'employees', 70 );
+$stmt = $q-&gt;prepare();
+$stmt-&gt;execute();</code><p>Instead, you should use bindParameter() to achieve the same effect:</p><code class="block">$company = 'eZ systems';
+$section = 'Norway';
+$q-&gt;insertInto( 'query_test' )
+     -&gt;set( 'id', 1 )
+     -&gt;set( 'company', $q-&gt;bindParam( $company ) )
+     -&gt;set( 'section', $q-&gt;bindParam( $section ) )
+     -&gt;set( 'employees', 20 );
+$stmt = $q-&gt;prepare();
+$stmt-&gt;execute();
+
+$q-&gt;insertInto( 'query_test' );
+$q-&gt;set( 'id', 2 );
+$q-&gt;set( 'employees', 70 );
+$company = 'Trolltech';
+$section = 'Norway';
+$stmt = $q-&gt;prepare();
+$stmt-&gt;execute();</code><!--- difference in case sensitivity
+- difference in allowed field length
+- difference in what you can compare (e.g TRUE =! 0)-->
+<a name="restrictions"></a><a name="id17"></a><h3>Restrictions</h3><p>To keep the compability between different relational database management systems, there are restrictions you have to cope with:</p><ul><li><p>Lowercase column names</p><p>As some RDBMS always do not store column names case sensitive, but return and strore them completely as upper case letters, <a href='/zetacomponents/documentation/trunk/Database/phpdoc/ezcDatabase.html'>ezcDatabase</a> converts all column names to lower case to offer a uniform interface.</p></li></ul><a name="adding-support-for-a-new-database"></a><a name="id18"></a><h3>Adding support for a new database</h3><p>This section explains the basic steps to take to create support for a new database. The following steps are rudimentary but should help you along the way.</p><ol><li><p>Check out the Database component from the eZ Systems SVN server. This is necessary in order to use the testing system. This allows you to easily see if your code works as it should.</p></li><li><p>Create a handler for the new database. The handler must inherit from <a href='/zetacomponents/documentation/trunk/Database/phpdoc/ezcDbHandler.html'>ezcDbHandler</a>. Do not reimplement the methods for the query abstraction layer; they will then default to MySQL syntax.</p></li><li><p>Run the test system and check whether any of them fail. If any tests fail, you have to extend the class and method in question and make sure that the generated query is correct for your database.</p></li></ol><!--Local Variables:
+mode: rst
+fill-column: 79
+End:
+vim: et syn=rst tw=79-->
+
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

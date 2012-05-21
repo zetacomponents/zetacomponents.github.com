@@ -1,0 +1,243 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="PHP, apache, components, framework, quality" />
+	<meta name="author" content="dotxp" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Wed, 04 Aug 2010 13:07:33 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="ezcDocumentPdfLiteralTokenizer.html" />
+	<meta name="DC.creator" content="dotxp" />
+	<meta name="DC.date" content="Wed, 04 Aug 2010 13:07:33 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/Document/phpdoc/ezcDocumentPdfLiteralTokenizer.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/Document/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/trunk/Document/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Document/conversion.html" title="Conversion ">Conversion </a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Document/styles.html" title="Styles ">Styles </a>
+	</li>
+
+</ul>
+
+		
+  <div class="phpdoc">
+    <h2>Apache Zeta Components Manual :: Docs For Class ezcDocumentPdfLiteralTokenizer</h2>
+
+                  <h3>Document::ezcDocumentPdfLiteralTokenizer</h3>
+    
+<a name="sec-description"></a>
+<h3>Class ezcDocumentPdfLiteralTokenizer</h3>
+
+<p>Tokenizer implementation for literal blocks, preserving whitespaces.</p>
+<p>Source for this file: <a href="http://fisheye6.atlassian.com/browse/zetacomponents/trunk/Document/src/document/pdf/tokenizer/literal.php?r=HEAD">/Document/src/document/pdf/tokenizer/literal.php</a></p>
+       
+
+
+<pre><a href="ezcDocumentPdfTokenizer.html">ezcDocumentPdfTokenizer</a>
+   |
+   --ezcDocumentPdfLiteralTokenizer</pre>
+
+
+  <table><tr><td>
+            <strong>Version:</strong>&#8192;&#8192;
+          </td>
+          <td>//autogen//</td>
+        </tr></table><a name="sec-inherited-consts"></a>
+  <h3>Inherited Constants</h3>
+  <table class="summary"><thead><tr><th colspan="2">
+              From <span class="classname"><a href="ezcDocumentPdfTokenizer.html">ezcDocumentPdfTokenizer</a></span>:
+            </th>
+          </tr></thead><tbody><tr><td class="right">
+                <code><a href="ezcDocumentPdfTokenizer.html#constFORCED">ezcDocumentPdfTokenizer::FORCED</a></code>
+              </td>
+              <td>
+                &#8192;&#8192;&#8192;Constant indicating a forced breaking point without rendering a space  character.              </td>
+            </tr><tr><td class="right">
+                <code><a href="ezcDocumentPdfTokenizer.html#constSPACE">ezcDocumentPdfTokenizer::SPACE</a></code>
+              </td>
+              <td>
+                &#8192;&#8192;&#8192;Constant indicating a breaking point, including a rendered space.              </td>
+            </tr><tr><td class="right">
+                <code><a href="ezcDocumentPdfTokenizer.html#constWRAP">ezcDocumentPdfTokenizer::WRAP</a></code>
+              </td>
+              <td>
+                &#8192;&#8192;&#8192;Constant indicating a possible breaking point without rendering a space  character.              </td>
+            </tr></tbody></table><a name="sec-method-summary"></a>
+  <h3>Method Summary</h3>
+  <table class="summary"><tr><td class="right">
+            <em>protected</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#convertTabs"><b>convertTabs</b></a>(
+                                                                                    $string
+                                                    ,                   [                  $tabwidth
+                   = 8]                                  ,                   [                  $offset
+                   = 0]                               )
+            </code>
+            <br><div style="margin-left: 20px">Convert tabs to spaces.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>array</em>          </td>
+          <td>
+            <code>
+              <a href="#tokenize"><b>tokenize</b></a>(
+                                                                                    $string
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Split string into words.</div>          </td>
+        </tr></table><h3>Inherited Methods</h3>
+  <table class="summary"><thead><tr><th colspan="2">
+            From <span class="classname"><a href="ezcDocumentPdfTokenizer.html">ezcDocumentPdfTokenizer</a></span>
+          </th>
+        </tr></thead><tbody><tr><td class="right">
+              <em>public</em>              abstract                            <em>array</em>            </td>
+            <td>
+              <code><b><a href="ezcDocumentPdfTokenizer.html#methodtokenize">ezcDocumentPdfTokenizer::tokenize()</a></b></code>
+              <br><div style="margin-left: 20px">Split string into words</div>                          </td>
+          </tr></tbody></table><a name="sec-methods"></a>
+  <h3>Methods</h3>
+  <a name="method_detail"></a>
+    
+      <a name="methodconvertTabs" id="convertTabs"><!-- --></a>
+
+    <h4>convertTabs</h4>
+
+    <div class="method-signature">
+      string
+      convertTabs(
+                                  string
+          $string
+                            ,           [int
+          $tabwidth
+           = 8]                  ,           [int
+          $offset
+           = 0]              )
+    </div>
+
+    <p>Convert tabs to spaces.</p><div><p>Convert all tabs to spaces, using a 8 spaces for a tab.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$string</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$tabwidth</code></td>
+              <td><em>int</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$offset</code></td>
+              <td><em>int</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodtokenize" id="tokenize"><!-- --></a>
+
+    <h4>tokenize</h4>
+
+    <div class="method-signature">
+      array
+      tokenize(
+                                  string
+          $string
+                        )
+    </div>
+
+    <p>Split string into words.</p><div><p>This function takes a string and splits it into words. There are  different mechanisms which indicate possible splitting points in the  resulting word stream:</p><p></p><ul><li>self:SPACE: The renderer might render a space</li><li>self:WRAP: The renderer might wrap the line at this position, but will
+   not render spaces.</li></ul>  A possible splitting of an english sentence might look like:<p></p><ol><li><div class="src-line">&#8192;&#8192;<span class="src-key">array</span><span class="src-sym">(</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'Hello'</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-id">self</span>:<span class="src-id"><a href="ezcDocumentPdfTokenizer.html#constSPACE">SPACE</a></span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'world!'</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;<span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol><p>Non breaking spaces should not be splitted into multiple words, so there  will be no break applied.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$string</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcDocumentPdfTokenizer.html#methodtokenize">ezcDocumentPdfTokenizer::tokenize()</a></code></td>
+            <td>
+                              Split string into words
+                          </td>
+          </tr></tbody></table><div class="credit">
+      Documentation generated by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+    </div>
+  </div>
+  
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,427 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="PHP, apache, components, framework, quality" />
+	<meta name="author" content="dotxp" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Wed, 04 Aug 2010 13:07:43 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="ezcGraphFontOptions.html" />
+	<meta name="DC.creator" content="dotxp" />
+	<meta name="DC.date" content="Wed, 04 Aug 2010 13:07:43 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/Graph/phpdoc/ezcGraphFontOptions.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/Graph/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/trunk/Graph/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Graph/gallery.html" title="Gallery ">Gallery </a>
+	</li>
+
+</ul>
+
+		
+  <div class="phpdoc">
+    <h2>Apache Zeta Components Manual :: Docs For Class ezcGraphFontOptions</h2>
+
+                  <h3>Graph::ezcGraphFontOptions</h3>
+    
+<a name="sec-description"></a>
+<h3>Class ezcGraphFontOptions</h3>
+
+<p>Class containing the options for font configuration.</p><div><p>We try to fulfill two goals regarding font configuration. First, there  should be a single point to configure the fonts used for the text areas  in the chart.  On the other hand, it should be possible to configure  the fonts independently for each chart element.</p><p>The solution is that you can modify the global font configuration by  accessing $graph-&gt;options-&gt;font. This takes effect on all chart  elements unless you intentionally access the font configuration of an  individual chart element. The following example shows, how this works.</p><p></p><ol><li><div class="src-line">&#8192;&#8192;<span class="src-var">$graph&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcGraphPieChart.html">ezcGraphPieChart</a></span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;&#8192;<span class="src-var">$graph</span><span class="src-sym">-&gt;</span><span class="src-id">title&#8192;</span>=&#8192;<span class="src-str">'Access&#8192;statistics'</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;&#8192;<span class="src-comm">//&#8192;Set&#8192;the&#8192;maximum&#8192;font&#8192;size&#8192;to&#8192;8&#8192;for&#8192;all&#8192;chart&#8192;elements</span></div></li>
+<li><div class="src-line">&#8192;&#8192;<span class="src-var">$graph</span><span class="src-sym">-&gt;</span><span class="src-id">options</span><span class="src-sym">-&gt;</span><span class="src-id">font</span><span class="src-sym">-&gt;</span><span class="src-id">maxFontSize&#8192;</span>=&#8192;<span class="src-num">8</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;&#8192;<span class="src-comm">//&#8192;Set&#8192;the&#8192;font&#8192;size&#8192;for&#8192;the&#8192;title&#8192;independently&#8192;to&#8192;14</span></div></li>
+<li><div class="src-line">&#8192;&#8192;<span class="src-var">$graph</span><span class="src-sym">-&gt;</span><span class="src-id">title</span><span class="src-sym">-&gt;</span><span class="src-id">font</span><span class="src-sym">-&gt;</span><span class="src-id">maxFontSize&#8192;</span>=&#8192;<span class="src-num">14</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;&#8192;<span class="src-comm">//&#8192;The&#8192;following&#8192;only&#8192;affects&#8192;all&#8192;elements&#8192;except&#8192;the&#8192;//&#8192;title&#8192;element,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;<span class="src-comm">//&#8192;which&#8192;now&#8192;has&#8192;its&#8192;own&#8192;font&#8192;configuration.</span></div></li>
+<li><div class="src-line">&#8192;&#8192;<span class="src-comm">//</span></div></li>
+<li><div class="src-line">&#8192;&#8192;<span class="src-comm">//&#8192;Keep&#8192;in&#8192;mind&#8192;that&#8192;the&#8192;specified&#8192;font&#8192;is&#8192;driver&#8192;specific.&#8192;A&#8192;pure&#8192;name</span></div></li>
+<li><div class="src-line">&#8192;&#8192;<span class="src-comm">//&#8192;works&#8192;for&#8192;the&#8192;SVG&#8192;driver,&#8192;used&#8192;here.&#8192;The&#8192;GD&#8192;driver&#8192;for&#8192;example</span></div></li>
+<li><div class="src-line">&#8192;&#8192;<span class="src-comm">//&#8192;requires&#8192;a&#8192;path&#8192;to&#8192;a&#8192;TTF&#8192;file.</span></div></li>
+<li><div class="src-line">&#8192;&#8192;<span class="src-var">$graph</span><span class="src-sym">-&gt;</span><span class="src-id">options</span><span class="src-sym">-&gt;</span><span class="src-id">font</span><span class="src-sym">-&gt;</span><span class="src-id">name&#8192;</span>=&#8192;<span class="src-str">'serif'</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;&#8192;<span class="src-var">$graph</span><span class="src-sym">-&gt;</span><span class="src-id">data</span><span class="src-sym">[</span><span class="src-str">'Access&#8192;statistics'</span><span class="src-sym">]&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcGraphArrayDataSet.html">ezcGraphArrayDataSet</a></span><span class="src-sym">(&#8192;</span><span class="src-key">array</span><span class="src-sym">(</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'Mozilla'&#8192;</span>=&gt;&#8192;<span class="src-num">19113</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'Explorer'&#8192;</span>=&gt;&#8192;<span class="src-num">10917</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'Opera'&#8192;</span>=&gt;&#8192;<span class="src-num">1464</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'Safari'&#8192;</span>=&gt;&#8192;<span class="src-num">652</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'Konqueror'&#8192;</span>=&gt;&#8192;<span class="src-num">474</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;<span class="src-sym">)&#8192;)</span><span class="src-sym">;</span></div></li>
+</ol></div>
+<p>Source for this file: <a href="http://fisheye6.atlassian.com/browse/zetacomponents/trunk/Graph/src/options/font.php?r=HEAD">/Graph/src/options/font.php</a></p>
+       
+
+
+<pre><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseOptions.html">ezcBaseOptions</a>
+   |
+   --ezcGraphFontOptions</pre>
+
+
+  <table><tr><td>
+            <strong>Version:</strong>&#8192;&#8192;
+          </td>
+          <td>//autogentag//</td>
+        </tr></table><a name="sec-prop-summary"></a>
+  <h3>Properties</h3>
+  <table class="summary"><tr><td class="right">
+          <a name="prop%24background" id="$background"></a>
+          <a name="prop-%24background" id="$background"></a>
+          <em><a href="ezcGraphColor.html">ezcGraphColor</a></em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24background" title="details" class="var-name-summary">$background</a>
+                      </code>
+          <br><div style="margin-left: 20px">Background color. The actual area filled with the background color            is influenced by the settings $padding and $minimizeBorder.</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24border" id="$border"></a>
+          <a name="prop-%24border" id="$border"></a>
+          <em><a href="ezcGraphColor.html">ezcGraphColor</a></em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24border" title="details" class="var-name-summary">$border</a>
+                      </code>
+          <br><div style="margin-left: 20px">Border color for the text. The distance between the text and            border is defined by the properties $padding and $minimizeBorder.</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24borderWidth" id="$borderWidth"></a>
+          <a name="prop-%24borderWidth" id="$borderWidth"></a>
+          <em>int</em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24borderWidth" title="details" class="var-name-summary">$borderWidth</a>
+                      </code>
+          <br><div style="margin-left: 20px">With of the border. To enable the border you need to set the            $border property to some color.</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24color" id="$color"></a>
+          <a name="prop-%24color" id="$color"></a>
+          <em><a href="ezcGraphColor.html">ezcGraphColor</a></em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24color" title="details" class="var-name-summary">$color</a>
+                      </code>
+          <br><div style="margin-left: 20px">Font color.</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24maxFontSize" id="$maxFontSize"></a>
+          <a name="prop-%24maxFontSize" id="$maxFontSize"></a>
+          <em>float</em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24maxFontSize" title="details" class="var-name-summary">$maxFontSize</a>
+                      </code>
+          <br><div style="margin-left: 20px">Maximum font size for displayed texts.</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24minFontSize" id="$minFontSize"></a>
+          <a name="prop-%24minFontSize" id="$minFontSize"></a>
+          <em>float</em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24minFontSize" title="details" class="var-name-summary">$minFontSize</a>
+                      </code>
+          <br><div style="margin-left: 20px">Minimum font size for displayed texts.</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24minimalUsedFont" id="$minimalUsedFont"></a>
+          <a name="prop-%24minimalUsedFont" id="$minimalUsedFont"></a>
+          <em>float</em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24minimalUsedFont" title="details" class="var-name-summary">$minimalUsedFont</a>
+                      </code>
+          <br><div style="margin-left: 20px">The minimal used font size for the current element group. This            property is set by the driver to maintain this information and            should not be used to configure the apperance of the chart. See            $minFontSize instead.</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24minimizeBorder" id="$minimizeBorder"></a>
+          <a name="prop-%24minimizeBorder" id="$minimizeBorder"></a>
+          <em>bool</em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24minimizeBorder" title="details" class="var-name-summary">$minimizeBorder</a>
+                      </code>
+          <br><div style="margin-left: 20px">Fit the border exactly around the text, or use the complete            possible space. This setting is only relevant, when a border            color has been set for the font.</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24name" id="$name"></a>
+          <a name="prop-%24name" id="$name"></a>
+          <em>string</em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24name" title="details" class="var-name-summary">$name</a>
+                      </code>
+          <br><div style="margin-left: 20px">Name of font.</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24padding" id="$padding"></a>
+          <a name="prop-%24padding" id="$padding"></a>
+          <em>int</em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24padding" title="details" class="var-name-summary">$padding</a>
+                      </code>
+          <br><div style="margin-left: 20px">Padding between text and border.</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24path" id="$path"></a>
+          <a name="prop-%24path" id="$path"></a>
+          <em>string</em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24path" title="details" class="var-name-summary">$path</a>
+                      </code>
+          <br><div style="margin-left: 20px">Path to font file.</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24textShadow" id="$textShadow"></a>
+          <a name="prop-%24textShadow" id="$textShadow"></a>
+          <em>bool</em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24textShadow" title="details" class="var-name-summary">$textShadow</a>
+                      </code>
+          <br><div style="margin-left: 20px">Draw shadow for texts. The color of the shadow is defined in            the property $textShadowColor.</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24textShadowColor" id="$textShadowColor"></a>
+          <a name="prop-%24textShadowColor" id="$textShadowColor"></a>
+          <em><a href="ezcGraphColor.html">ezcGraphColor</a></em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24textShadowColor" title="details" class="var-name-summary">$textShadowColor</a>
+                      </code>
+          <br><div style="margin-left: 20px">Color of text shadow. If left at the default value "false""            the inverse color of the text color will be used.</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24textShadowOffset" id="$textShadowOffset"></a>
+          <a name="prop-%24textShadowOffset" id="$textShadowOffset"></a>
+          <em>int</em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24textShadowOffset" title="details" class="var-name-summary">$textShadowOffset</a>
+                      </code>
+          <br><div style="margin-left: 20px">Offset for text shadow. This defines the distance the shadow            is moved to the bottom left relative from the text position.</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24type" id="$type"></a>
+          <a name="prop-%24type" id="$type"></a>
+          <em>int</em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24type" title="details" class="var-name-summary">$type</a>
+                      </code>
+          <br><div style="margin-left: 20px">Type of used font. May be one of the following: <ul><li>TTF_FONT    Native TTF fonts</li><li>PS_FONT     PostScript Type1 fonts</li><li>FT2_FONT    FreeType 2 fonts</li></ul>           The type is normally automatically detected when you set the path            to the font file.</div>        </td>
+      </tr></table><a name="sec-var-summary"></a>
+  <h3>Member Variables</h3>
+  <table class="summary"><tr><td class="right">
+            <em>protected</em>            <em>bool</em>          </td>
+          <td>
+            <code>
+              $pathChecked
+               = <span class="var-default"> false</span>            </code>
+            <br><div style="margin-left: 20px">Indicates if path already has been checked for correct font</div>                      </td>
+        </tr></table><h3>Inherited Member Variables</h3>
+  <table class="summary"><thead><tr><th colspan="2">
+            From <span class="classname"><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseOptions.html">ezcBaseOptions</a></span>         
+          </th>
+        </tr></thead><tbody><tr><td class="right">
+              <em>protected</em>                          </td>
+            <td>
+              <code><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseOptions.html#var%24properties">ezcBaseOptions::$properties</a></code>
+              
+            </td>
+          </tr></tbody></table><a name="sec-method-summary"></a>
+  <h3>Method Summary</h3>
+  <table class="summary"><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#__set"><b>__set</b></a>(
+                                                                                    $propertyName
+                                                    ,                                     $propertyValue
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Set an option value</div>          </td>
+        </tr></table><h3>Inherited Methods</h3>
+  <table class="summary"><thead><tr><th colspan="2">
+            From <span class="classname"><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseOptions.html">ezcBaseOptions</a></span>
+          </th>
+        </tr></thead><tbody><tr><td class="right">
+              <em>public</em>                                          <em>ezcBaseOptions</em>            </td>
+            <td>
+              <code><b><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseOptions.html#method__construct">ezcBaseOptions::__construct()</a></b></code>
+              <br><div style="margin-left: 20px">Construct a new options object.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseOptions.html#methodmerge">ezcBaseOptions::merge()</a></b></code>
+              <br><div style="margin-left: 20px">Merge an array into the actual options object.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>bool</em>            </td>
+            <td>
+              <code><b><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseOptions.html#methodoffsetExists">ezcBaseOptions::offsetExists()</a></b></code>
+              <br><div style="margin-left: 20px">Returns if an option exists.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>mixed</em>            </td>
+            <td>
+              <code><b><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseOptions.html#methodoffsetGet">ezcBaseOptions::offsetGet()</a></b></code>
+              <br><div style="margin-left: 20px">Returns an option value.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseOptions.html#methodoffsetSet">ezcBaseOptions::offsetSet()</a></b></code>
+              <br><div style="margin-left: 20px">Set an option.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseOptions.html#methodoffsetUnset">ezcBaseOptions::offsetUnset()</a></b></code>
+              <br><div style="margin-left: 20px">Unset an option.</div>                          </td>
+          </tr></tbody></table><a name="sec-methods"></a>
+  <h3>Methods</h3>
+  <a name="method_detail"></a>
+  
+      <a name="method__set" id="__set"><!-- --></a>
+
+    <h4>__set</h4>
+
+    <div class="method-signature">
+      void
+      __set(
+                                  string
+          $propertyName
+                            ,           mixed
+          $propertyValue
+                        )
+    </div>
+
+    <p>Set an option value</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$propertyName</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$propertyValue</code></td>
+              <td><em>mixed</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBasePropertyNotFoundException.html">ezcBasePropertyNotFoundException</a></code></td>
+              <td>
+                                  If a property is not defined in this class
+                              </td>
+            </tr></tbody></table><div class="credit">
+      Documentation generated by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+    </div>
+  </div>
+  
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

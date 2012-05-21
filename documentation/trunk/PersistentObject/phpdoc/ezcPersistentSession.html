@@ -1,0 +1,1518 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="PHP, apache, components, framework, quality" />
+	<meta name="author" content="dotxp" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Wed, 04 Aug 2010 13:07:53 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="ezcPersistentSession.html" />
+	<meta name="DC.creator" content="dotxp" />
+	<meta name="DC.date" content="Wed, 04 Aug 2010 13:07:53 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/PersistentObject/phpdoc/ezcPersistentSession.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/PersistentObject/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/trunk/PersistentObject/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+
+</ul>
+
+		
+  <div class="phpdoc">
+    <h2>Apache Zeta Components Manual :: Docs For Class ezcPersistentSession</h2>
+
+                  <h3>PersistentObject::ezcPersistentSession</h3>
+    
+<a name="sec-description"></a>
+<h3>Class ezcPersistentSession</h3>
+
+<p>ezcPersistentSession is the main runtime interface for manipulation of persistent objects.</p><div><p>Persistent objects can be stored calling save() resulting in an INSERT query. If  the object is already persistent you can store it using update() which results in  an UPDATE query. If you want to query persistent objects you can use the find methods.</p></div>
+<p>Source for this file: <a href="http://fisheye6.atlassian.com/browse/zetacomponents/trunk/PersistentObject/src/persistent_session.php?r=HEAD">/PersistentObject/src/persistent_session.php</a></p>
+       
+  <h3>Implements interfaces:</h3>
+  <ul><li><a href="ezcPersistentSessionFoundation.html">ezcPersistentSessionFoundation</a></li>  </ul><table><tr><td>
+            <strong>Version:</strong>&#8192;&#8192;
+          </td>
+          <td>//autogen//</td>
+        </tr></table><a name="sec-prop-summary"></a>
+  <h3>Properties</h3>
+  <table class="summary"><tr><td class="right">
+          <a name="prop%24database" id="$database"></a>
+          <a name="prop-%24database" id="$database"></a>
+          <em><a href="/zetacomponents/documentation/trunk/Database/phpdoc/ezcDbHandler.html">ezcDbHandler</a></em>        </td>
+        <td class="right">
+          <em>read</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24database" title="details" class="var-name-summary">$database</a>
+                      </code>
+          <br><div style="margin-left: 20px">The database handler set in the constructor.</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24definitionManager" id="$definitionManager"></a>
+          <a name="prop-%24definitionManager" id="$definitionManager"></a>
+          <em><a href="ezcPersistentDefinitionManager.html">ezcPersistentDefinitionManager</a></em>        </td>
+        <td class="right">
+          <em>read</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24definitionManager" title="details" class="var-name-summary">$definitionManager</a>
+                      </code>
+          <br><div style="margin-left: 20px">The persistent definition manager set in the constructor.</div>        </td>
+      </tr></table><a name="sec-method-summary"></a>
+  <h3>Method Summary</h3>
+  <table class="summary"><tr><td class="right">
+            <em>public</em>                        <em>ezcPersistentSession</em>          </td>
+          <td>
+            <code>
+              <a href="#__construct"><b>__construct</b></a>(
+                                                                                    $db
+                                                    ,                                     $manager
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Constructs a new persistent session that works on the database $db.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#addRelatedObject"><b>addRelatedObject</b></a>(
+                                                                                    $object
+                                                    ,                                     $relatedObject
+                                                    ,                   [                  $relationName
+                   = null]                               )
+            </code>
+            <br><div style="margin-left: 20px">Create a relation between $object and $relatedObject.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em><a href="/zetacomponents/documentation/trunk/Database/phpdoc/ezcQueryDelete.html">ezcQueryDelete</a></em>          </td>
+          <td>
+            <code>
+              <a href="#createDeleteQuery"><b>createDeleteQuery</b></a>(
+                                                                                    $class
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns a delete query for the given persistent object $class.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em><a href="/zetacomponents/documentation/trunk/Database/phpdoc/ezcQuerySelect.html">ezcQuerySelect</a></em>          </td>
+          <td>
+            <code>
+              <a href="#createFindQuery"><b>createFindQuery</b></a>(
+                                                                                    $class
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns a select query for the given persistent object $class.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em><a href="ezcPersistentFindQuery.html">ezcPersistentFindQuery</a></em>          </td>
+          <td>
+            <code>
+              <a href="#createRelationFindQuery"><b>createRelationFindQuery</b></a>(
+                                                                                    $object
+                                                    ,                                     $relatedClass
+                                                    ,                   [                  $relationName
+                   = null]                               )
+            </code>
+            <br><div style="margin-left: 20px">Returns the base query for retrieving related objects.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em><a href="/zetacomponents/documentation/trunk/Database/phpdoc/ezcQuerySubSelect.html">ezcQuerySubSelect</a></em>          </td>
+          <td>
+            <code>
+              <a href="#createSubQuery"><b>createSubQuery</b></a>(
+                                                                                    $parentQuery
+                                                    ,                                     $class
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns a sub-select for the given $class to be used with $parentQuery.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em><a href="/zetacomponents/documentation/trunk/Database/phpdoc/ezcQueryUpdate.html">ezcQueryUpdate</a></em>          </td>
+          <td>
+            <code>
+              <a href="#createUpdateQuery"><b>createUpdateQuery</b></a>(
+                                                                                    $class
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns an update query for the given persistent object $class.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#delete"><b>delete</b></a>(
+                                                                                    $object
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Deletes the persistent object $object.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#deleteFromQuery"><b>deleteFromQuery</b></a>(
+                                                                                    $query
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Deletes persistent objects using the query $query.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>array(object($class))</em>          </td>
+          <td>
+            <code>
+              <a href="#find"><b>find</b></a>(
+                                                                                    $query
+                                                    ,                   [                  $class
+                   = null]                               )
+            </code>
+            <br><div style="margin-left: 20px">Returns the result of the query $query as a list of objects.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em><a href="ezcPersistentFindIterator.html">ezcPersistentFindIterator</a></em>          </td>
+          <td>
+            <code>
+              <a href="#findIterator"><b>findIterator</b></a>(
+                                                                                    $query
+                                                    ,                   [                  $class
+                   = null]                               )
+            </code>
+            <br><div style="margin-left: 20px">Returns the result of $query for the $class as an iterator.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>array(string=&gt;string)</em>          </td>
+          <td>
+            <code>
+              <a href="#generateAliasMap"><b>generateAliasMap</b></a>(
+                                                                                    $def
+                                                    ,                   [                  $prefixTableName
+                   = true]                               )
+            </code>
+            <br><div style="margin-left: 20px">Returns a hash map between property and column name for the given  definition $def.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>array(int=&gt;string)</em>          </td>
+          <td>
+            <code>
+              <a href="#getColumnsFromDefinition"><b>getColumnsFromDefinition</b></a>(
+                                                                                    $def
+                                                    ,                   [                  $prefixTableName
+                   = true]                               )
+            </code>
+            <br><div style="margin-left: 20px">Returns all the columns defined in the persistent object.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>array</em>          </td>
+          <td>
+            <code>
+              <a href="#getObjectState"><b>getObjectState</b></a>(
+                                                                                    $object
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns the object state.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>object($relatedClass)</em>          </td>
+          <td>
+            <code>
+              <a href="#getRelatedObject"><b>getRelatedObject</b></a>(
+                                                                                    $object
+                                                    ,                                     $relatedClass
+                                                    ,                   [                  $relationName
+                   = null]                               )
+            </code>
+            <br><div style="margin-left: 20px">Returns the related object of a given $relatedClass for an $object.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>array(int=&gt;object($relatedClass))</em>          </td>
+          <td>
+            <code>
+              <a href="#getRelatedObjects"><b>getRelatedObjects</b></a>(
+                                                                                    $object
+                                                    ,                                     $relatedClass
+                                                    ,                   [                  $relationName
+                   = null]                               )
+            </code>
+            <br><div style="margin-left: 20px">Returns the related objects of a given $relatedClass for an $object.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>bool</em>          </td>
+          <td>
+            <code>
+              <a href="#isRelated"><b>isRelated</b></a>(
+                                                                                    $sourceObject
+                                                    ,                                     $relatedObject
+                                                    ,                   [                  $relationName
+                   = null]                                  ,                                     $sourceObj
+                                                    ,                                     $relatedObj
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns if $relatedObject is related to $sourceObject.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>object</em>          </td>
+          <td>
+            <code>
+              <a href="#load"><b>load</b></a>(
+                                                                                    $class
+                                                    ,                                     $id
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns the persistent object of class $class with id $id.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>object|null</em>          </td>
+          <td>
+            <code>
+              <a href="#loadIfExists"><b>loadIfExists</b></a>(
+                                                                                    $class
+                                                    ,                                     $id
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns the persistent object of class $class with id $id.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#loadIntoObject"><b>loadIntoObject</b></a>(
+                                                                                    $object
+                                                    ,                                     $id
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Loads the persistent object with the id $id into the object $object.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>PDOStatement</em>          </td>
+          <td>
+            <code>
+              <a href="#performQuery"><b>performQuery</b></a>(
+                                                                                    $q
+                                                    ,                   [                  $transaction
+                   = false]                               )
+            </code>
+            <br><div style="margin-left: 20px">Performs the given query.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#refresh"><b>refresh</b></a>(
+                                                                                    $object
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Syncronizes the contents of $object with those in the database.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#removeRelatedObject"><b>removeRelatedObject</b></a>(
+                                                                                    $object
+                                                    ,                                     $relatedObject
+                                                    ,                   [                  $relationName
+                   = null]                               )
+            </code>
+            <br><div style="margin-left: 20px">Removes the relation between $object and $relatedObject.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#save"><b>save</b></a>(
+                                                                                    $object
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Saves the new persistent object $object to the database using an INSERT INTO query.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#saveOrUpdate"><b>saveOrUpdate</b></a>(
+                                                                                    $object
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Saves or updates the persistent object $object to the database.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#update"><b>update</b></a>(
+                                                                                    $object
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Saves the new persistent object $object to the database using an UPDATE query.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#updateFromQuery"><b>updateFromQuery</b></a>(
+                                                                                    $query
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Updates persistent objects using the query $query.</div>          </td>
+        </tr></table><a name="sec-methods"></a>
+  <h3>Methods</h3>
+  <a name="method_detail"></a>
+                                                      
+      <a name="method__construct" id="__construct"><!-- --></a>
+
+    <h4>__construct</h4>
+
+    <div class="method-signature">
+      ezcPersistentSession
+      __construct(
+                                  
+          $db
+                            ,           <a href="ezcPersistentDefinitionManager.html">ezcPersistentDefinitionManager</a>
+          $manager
+                        )
+    </div>
+
+    <p>Constructs a new persistent session that works on the database $db.</p><div><p>The $manager provides valid persistent object definitions to the  session. The $db will be used to perform all database operations.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$db</code></td>
+              <td><em><a href="/zetacomponents/documentation/trunk/Database/phpdoc/ezcDbHandler.html">ezcDbHandler</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$manager</code></td>
+              <td><em><a href="ezcPersistentDefinitionManager.html">ezcPersistentDefinitionManager</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodaddRelatedObject" id="addRelatedObject"><!-- --></a>
+
+    <h4>addRelatedObject</h4>
+
+    <div class="method-signature">
+      void
+      addRelatedObject(
+                                  object
+          $object
+                            ,           object
+          $relatedObject
+                            ,           [string
+          $relationName
+           = null]              )
+    </div>
+
+    <p>Create a relation between $object and $relatedObject.</p><div><p>This method is used to create a relation between the given source  $object and the desired $relatedObject. The related object is not stored  in the database automatically, only the desired properties are set. An  exception is {@ezcPersistentManyToManyRelation}s, where the relation  record is stored automatically and there is no need to store  $relatedObject explicitly after establishing the relation.</p><p>If there are multiple relations defined between the class of $object and  $relatedObject (via ezcPersistentRelationCollection), the  $relationName parameter becomes mandatory to determine, which exact  relation should be used.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$object</code></td>
+              <td><em>object</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$relatedObject</code></td>
+              <td><em>object</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$relationName</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcPersistentRelationNotFoundException.html">ezcPersistentRelationNotFoundException</a></code></td>
+              <td>
+                                  if the deisred relation is not defined.
+                              </td>
+            </tr><tr><td><code><a href="ezcPersistentRelationOperationNotSupportedException.html">ezcPersistentRelationOperationNotSupportedException</a></code></td>
+              <td>
+                                  if a relation to create is marked as "reverse" ezcPersistentRelation-&gt;reverse.
+                              </td>
+            </tr></tbody></table><h5>Implementation of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcPersistentSessionFoundation.html#methodaddRelatedObject">ezcPersistentSessionFoundation::addRelatedObject()</a></code></td>
+              <td>
+                                  Create a relation between $object and $relatedObject.
+                              </td>
+            </tr></tbody></table><a name="methodcreateDeleteQuery" id="createDeleteQuery"><!-- --></a>
+
+    <h4>createDeleteQuery</h4>
+
+    <div class="method-signature">
+      <a href="/zetacomponents/documentation/trunk/Database/phpdoc/ezcQueryDelete.html">ezcQueryDelete</a>
+      createDeleteQuery(
+                                  string
+          $class
+                        )
+    </div>
+
+    <p>Returns a delete query for the given persistent object $class.</p><div><p>The query is initialized to delete from the correct table and  it is only neccessary to set the where clause.</p><p>Example:  </p><ol><li><div class="src-line">&#8192;<span class="src-var">$q&#8192;</span>=&#8192;<span class="src-var">$session</span><span class="src-sym">-&gt;</span><a href="ezcPersistentSession.html#methodcreateDeleteQuery">createDeleteQuery</a><span class="src-sym">(&#8192;</span><span class="src-str">'Person'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$q</span><span class="src-sym">-&gt;</span><span class="src-id">where</span><span class="src-sym">(&#8192;</span><span class="src-var">$q</span><span class="src-sym">-&gt;</span><span class="src-id">expr</span><span class="src-sym">-&gt;</span><span class="src-id">gt</span><span class="src-sym">(&#8192;</span><span class="src-str">'age'</span><span class="src-sym">,&#8192;</span><span class="src-var">$q</span><span class="src-sym">-&gt;</span><span class="src-id">bindValue</span><span class="src-sym">(&#8192;</span><span class="src-num">15&#8192;</span><span class="src-sym">)&#8192;)&#8192;)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$session</span><span class="src-sym">-&gt;</span><a href="ezcPersistentSession.html#methoddeleteFromQuery">deleteFromQuery</a><span class="src-sym">(&#8192;</span><span class="src-var">$q&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$class</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcPersistentObjectException.html">ezcPersistentObjectException</a></code></td>
+              <td>
+                                  if there is no such persistent class.
+                              </td>
+            </tr></tbody></table><h5>Implementation of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcPersistentSessionFoundation.html#methodcreateDeleteQuery">ezcPersistentSessionFoundation::createDeleteQuery()</a></code></td>
+              <td>
+                                  Returns a delete query for the given persistent object $class.
+                              </td>
+            </tr></tbody></table><a name="methodcreateFindQuery" id="createFindQuery"><!-- --></a>
+
+    <h4>createFindQuery</h4>
+
+    <div class="method-signature">
+      <a href="/zetacomponents/documentation/trunk/Database/phpdoc/ezcQuerySelect.html">ezcQuerySelect</a>
+      createFindQuery(
+                                  string
+          $class
+                        )
+    </div>
+
+    <p>Returns a select query for the given persistent object $class.</p><div><p>The query is initialized to fetch all columns from the correct table and  has correct alias mappings between columns and property names of the  persistent $class.</p><p>Example:  </p><ol><li><div class="src-line">&#8192;<span class="src-var">$q&#8192;</span>=&#8192;<span class="src-var">$session</span><span class="src-sym">-&gt;</span><a href="ezcPersistentSession.html#methodcreateFindQuery">createFindQuery</a><span class="src-sym">(&#8192;</span><span class="src-str">'Person'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$allPersons&#8192;</span>=&#8192;<span class="src-var">$session</span><span class="src-sym">-&gt;</span><a href="ezcPersistentSession.html#methodfind">find</a><span class="src-sym">(&#8192;</span><span class="src-var">$q</span><span class="src-sym">,&#8192;</span><span class="src-str">'Person'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$class</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcPersistentObjectException.html">ezcPersistentObjectException</a></code></td>
+              <td>
+                                  if there is no such persistent class.
+                              </td>
+            </tr></tbody></table><h5>Implementation of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcPersistentSessionFoundation.html#methodcreateFindQuery">ezcPersistentSessionFoundation::createFindQuery()</a></code></td>
+              <td>
+                                  Returns a select query for the given persistent object $class.
+                              </td>
+            </tr></tbody></table><a name="methodcreateRelationFindQuery" id="createRelationFindQuery"><!-- --></a>
+
+    <h4>createRelationFindQuery</h4>
+
+    <div class="method-signature">
+      <a href="ezcPersistentFindQuery.html">ezcPersistentFindQuery</a>
+      createRelationFindQuery(
+                                  object
+          $object
+                            ,           string
+          $relatedClass
+                            ,           [string
+          $relationName
+           = null]              )
+    </div>
+
+    <p>Returns the base query for retrieving related objects.</p><div><p>See <a href="ezcPersistentSession.html#methodgetRelatedObject">getRelatedObject()</a> and <a href="ezcPersistentSession.html#methodgetRelatedObjects">getRelatedObjects()</a>. Can be  modified by additional where conditions and simply be used with  <a href="ezcPersistentSession.html#methodfind">find()</a> and the related class name, to retrieve a sub-set of  related objects.</p><p>If multiple relations are defined for the $relatedClass (using ezcPersistentRelationCollection), the parameter $relationName becomes  mandatory to determine which relation definition to use. For normal  relations, this parameter is silently ignored.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$object</code></td>
+              <td><em>object</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$relatedClass</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$relationName</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcPersistentRelationNotFoundException.html">ezcPersistentRelationNotFoundException</a></code></td>
+              <td>
+                                  if the given $object does not have a relation to $relatedClass.
+                              </td>
+            </tr></tbody></table><h5>Implementation of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcPersistentSessionFoundation.html#methodcreateRelationFindQuery">ezcPersistentSessionFoundation::createRelationFindQuery()</a></code></td>
+              <td>
+                                  Returns the base query for retrieving related objects.
+                              </td>
+            </tr></tbody></table><a name="methodcreateSubQuery" id="createSubQuery"><!-- --></a>
+
+    <h4>createSubQuery</h4>
+
+    <div class="method-signature">
+      <a href="/zetacomponents/documentation/trunk/Database/phpdoc/ezcQuerySubSelect.html">ezcQuerySubSelect</a>
+      createSubQuery(
+                                  <a href="ezcPersistentFindQuery.html">ezcPersistentFindQuery</a>
+          $parentQuery
+                            ,           string
+          $class
+                        )
+    </div>
+
+    <p>Returns a sub-select for the given $class to be used with $parentQuery.</p><div><p>This method creates an <a href="ezcPersistentFindQuery.html">ezcPersistentFindQuery</a> as a <a href="/zetacomponents/documentation/trunk/Database/phpdoc/ezcQuerySubSelect.html">ezcQuerySubSelect</a> for the given $class. The returned query has already  set aliases for the properties of $class, but (in contrast to the query  returned by <a href="ezcPersistentSession.html#methodcreateFindQuery">createFindQuery()</a>) does not have the selection of all  properties set. You need to do</p><p></p><ol><li><div class="src-line">&#8192;<span class="src-php">&lt;?php</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$subSelect&#8192;</span>=&#8192;<span class="src-var">$session</span><span class="src-sym">-&gt;</span><span class="src-id">subSelect</span><span class="src-sym">(&#8192;</span><span class="src-var">$existingSelectQuery</span><span class="src-sym">,&#8192;</span><span class="src-str">'MyClass'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$subSelect</span><span class="src-sym">-&gt;</span><span class="src-id">select</span><span class="src-sym">(&#8192;</span><span class="src-str">'myField'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-php">?&gt;</span></div></li>
+</ol><p>manually to select the fields you desire.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$parentQuery</code></td>
+              <td><em><a href="ezcPersistentFindQuery.html">ezcPersistentFindQuery</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$class</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodcreateUpdateQuery" id="createUpdateQuery"><!-- --></a>
+
+    <h4>createUpdateQuery</h4>
+
+    <div class="method-signature">
+      <a href="/zetacomponents/documentation/trunk/Database/phpdoc/ezcQueryUpdate.html">ezcQueryUpdate</a>
+      createUpdateQuery(
+                                  string
+          $class
+                        )
+    </div>
+
+    <p>Returns an update query for the given persistent object $class.</p><div><p>The query is initialized to update the correct table and  it is only neccessary to set the correct values.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$class</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcPersistentDefinitionNotFoundException.html">ezcPersistentDefinitionNotFoundException</a></code></td>
+              <td>
+                                  if there is no such persistent class.
+                              </td>
+            </tr></tbody></table><h5>Implementation of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcPersistentSessionFoundation.html#methodcreateUpdateQuery">ezcPersistentSessionFoundation::createUpdateQuery()</a></code></td>
+              <td>
+                                  Returns an update query for the given persistent object $class.
+                              </td>
+            </tr></tbody></table><a name="methoddelete" id="delete"><!-- --></a>
+
+    <h4>delete</h4>
+
+    <div class="method-signature">
+      void
+      delete(
+                                  object
+          $object
+                        )
+    </div>
+
+    <p>Deletes the persistent object $object.</p><div><p>This method will perform a DELETE query based on the identifier of the  persistent object $object. After delete() the ID property of $object  will be reset to null. It is possible to <a href="ezcPersistentSession.html#methodsave">save()</a> $object  afterwards.  $object will then be stored with a new ID.</p><p>If you defined relations for the given object, these will be checked to  be defined as cascading. If cascading is configured, the related objects  with this relation will be deleted, too.</p><p>Relations that support cascading are:  </p><ul><li>ezcPersistenOneToManyRelation</li><li>ezcPersistenOneToOne</li></ul></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$object</code></td>
+              <td><em>object</em></td>
+              <td>
+                                  The persistent object to delete.
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>ezcPersistentDefinitionNotFoundxception</code></td>
+              <td>
+                                  if $the object is not recognized as a persistent object.
+                              </td>
+            </tr><tr><td><code><a href="ezcPersistentObjectNotPersistentException.html">ezcPersistentObjectNotPersistentException</a></code></td>
+              <td>
+                                  if the object is not persistent already.
+                              </td>
+            </tr><tr><td><code><a href="ezcPersistentQueryException.html">ezcPersistentQueryException</a></code></td>
+              <td>
+                                  if the object could not be deleted.
+                              </td>
+            </tr></tbody></table><h5>Implementation of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcPersistentSessionFoundation.html#methoddelete">ezcPersistentSessionFoundation::delete()</a></code></td>
+              <td>
+                                  Deletes the persistent object $object.
+                              </td>
+            </tr></tbody></table><a name="methoddeleteFromQuery" id="deleteFromQuery"><!-- --></a>
+
+    <h4>deleteFromQuery</h4>
+
+    <div class="method-signature">
+      void
+      deleteFromQuery(
+                                  
+          $query
+                        )
+    </div>
+
+    <p>Deletes persistent objects using the query $query.</p><div><p>The $query should be created using <a href="ezcPersistentSession.html#methodcreateDeleteQuery">createDeleteQuery()</a>.</p><p>Currently this method only executes the provided query. Future  releases PersistentSession may introduce caching of persistent objects.  When caching is introduced it will be required to use this method to run  cusom delete queries. To avoid being incompatible with future releases it is  advisable to always use this method when running custom delete queries on  persistent objects.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$query</code></td>
+              <td><em><a href="/zetacomponents/documentation/trunk/Database/phpdoc/ezcQueryDelete.html">ezcQueryDelete</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcPersistentQueryException.html">ezcPersistentQueryException</a></code></td>
+              <td>
+                                  if the delete query failed.
+                              </td>
+            </tr></tbody></table><h5>Implementation of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcPersistentSessionFoundation.html#methoddeleteFromQuery">ezcPersistentSessionFoundation::deleteFromQuery()</a></code></td>
+              <td>
+                                  Deletes persistent objects using the query $query.
+                              </td>
+            </tr></tbody></table><a name="methodfind" id="find"><!-- --></a>
+
+    <h4>find</h4>
+
+    <div class="method-signature">
+      array(object($class))
+      find(
+                                  <a href="ezcPersistentFindQuery.html">ezcPersistentFindQuery</a>|<a href="/zetacomponents/documentation/trunk/Database/phpdoc/ezcQuerySelect.html">ezcQuerySelect</a>
+          $query
+                            ,           [string
+          $class
+           = null]              )
+    </div>
+
+    <p>Returns the result of the query $query as a list of objects.</p><div><p>Returns the persistent objects found for $class using the submitted  $query. $query should be created using <a href="ezcPersistentSession.html#methodcreateFindQuery">createFindQuery()</a> to  ensure correct alias mappings and can be manipulated as needed.</p><p>Example:  </p><ol><li><div class="src-line">&#8192;<span class="src-var">$q&#8192;</span>=&#8192;<span class="src-var">$session</span><span class="src-sym">-&gt;</span><a href="ezcPersistentSession.html#methodcreateFindQuery">createFindQuery</a><span class="src-sym">(&#8192;</span><span class="src-str">'Person'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$allPersons&#8192;</span>=&#8192;<span class="src-var">$session</span><span class="src-sym">-&gt;</span><a href="ezcPersistentSession.html#methodfind">find</a><span class="src-sym">(&#8192;</span><span class="src-var">$q</span><span class="src-sym">,&#8192;</span><span class="src-str">'Person'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol><p>If you are retrieving large result set, consider using <a href="ezcPersistentSession.html#methodfindIterator">findIterator()</a> instead.</p><p>Example:  </p><ol><li><div class="src-line">&#8192;<span class="src-var">$q&#8192;</span>=&#8192;<span class="src-var">$session</span><span class="src-sym">-&gt;</span><a href="ezcPersistentSession.html#methodcreateFindQuery">createFindQuery</a><span class="src-sym">(&#8192;</span><span class="src-str">'Person'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$objects&#8192;</span>=&#8192;<span class="src-var">$session</span><span class="src-sym">-&gt;</span><a href="ezcPersistentSession.html#methodfindIterator">findIterator</a><span class="src-sym">(&#8192;</span><span class="src-var">$q</span><span class="src-sym">,&#8192;</span><span class="src-str">'Person'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-key">foreach</span><span class="src-sym">(&#8192;</span><span class="src-var">$objects&#8192;</span><span class="src-key">as&#8192;</span><span class="src-var">$object&#8192;</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">{</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-comm">//&#8192;...</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">}</span></div></li>
+</ol></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$query</code></td>
+              <td><em><a href="ezcPersistentFindQuery.html">ezcPersistentFindQuery</a>|<a href="/zetacomponents/documentation/trunk/Database/phpdoc/ezcQuerySelect.html">ezcQuerySelect</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$class</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcPersistentDefinitionNotFoundException.html">ezcPersistentDefinitionNotFoundException</a></code></td>
+              <td>
+                                  if there is no such persistent class.
+                              </td>
+            </tr><tr><td><code><a href="ezcPersistentQueryException.html">ezcPersistentQueryException</a></code></td>
+              <td>
+                                  if the find query failed.
+                              </td>
+            </tr><tr><td><code><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseValueException.html">ezcBaseValueException</a></code></td>
+              <td>
+                                  if $query parameter is not an instance of ezcPersistentFindQuery or ezcQuerySelect. Or if $class is missing if you use ezcQuerySelect.
+                              </td>
+            </tr></tbody></table><h5>Implementation of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcPersistentSessionFoundation.html#methodfind">ezcPersistentSessionFoundation::find()</a></code></td>
+              <td>
+                                  Returns the result of the query $query as a list of objects.
+                              </td>
+            </tr></tbody></table><a name="methodfindIterator" id="findIterator"><!-- --></a>
+
+    <h4>findIterator</h4>
+
+    <div class="method-signature">
+      <a href="ezcPersistentFindIterator.html">ezcPersistentFindIterator</a>
+      findIterator(
+                                  <a href="ezcPersistentFindQuery.html">ezcPersistentFindQuery</a>|<a href="/zetacomponents/documentation/trunk/Database/phpdoc/ezcQuerySelect.html">ezcQuerySelect</a>
+          $query
+                            ,           [string
+          $class
+           = null]              )
+    </div>
+
+    <p>Returns the result of $query for the $class as an iterator.</p><div><p>This method is similar to <a href="ezcPersistentSession.html#methodfind">find()</a> but returns an <a href="ezcPersistentFindIterator.html">ezcPersistentFindIterator</a> instead of an array of objects. This is  useful if you are going to loop over the objects and just need them one  at the time.  Because you only instantiate one object it is faster than  <a href="ezcPersistentSession.html#methodfind">find()</a>. In addition, only 1 record is retrieved from the  database in each iteration, which may reduce the data transfered between  the database and PHP, if you iterate only through a small subset of the  affected records.</p><p>Note that if you do not loop over the complete result set you must call  <a href="ezcPersistentFindIterator.html#methodflush">ezcPersistentFindIterator::flush()</a> before issuing another query.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$query</code></td>
+              <td><em><a href="ezcPersistentFindQuery.html">ezcPersistentFindQuery</a>|<a href="/zetacomponents/documentation/trunk/Database/phpdoc/ezcQuerySelect.html">ezcQuerySelect</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$class</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcPersistentDefinitionNotFoundException.html">ezcPersistentDefinitionNotFoundException</a></code></td>
+              <td>
+                                  if there is no such persistent class.
+                              </td>
+            </tr><tr><td><code><a href="ezcPersistentQueryException.html">ezcPersistentQueryException</a></code></td>
+              <td>
+                                  if the find query failed.
+                              </td>
+            </tr><tr><td><code><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseValueException.html">ezcBaseValueException</a></code></td>
+              <td>
+                                  if $query parameter is not an instance of ezcPersistentFindQuery or ezcQuerySelect. Or if $class is missing if you use ezcQuerySelect.
+                              </td>
+            </tr></tbody></table><h5>Implementation of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcPersistentSessionFoundation.html#methodfindIterator">ezcPersistentSessionFoundation::findIterator()</a></code></td>
+              <td>
+                                  Returns the result of $query for the $class as an iterator.
+                              </td>
+            </tr></tbody></table><a name="methodgenerateAliasMap" id="generateAliasMap"><!-- --></a>
+
+    <h4>generateAliasMap</h4>
+
+    <div class="method-signature">
+      array(string=&gt;string)
+      generateAliasMap(
+                                  <a href="ezcPersistentObjectDefinition.html">ezcPersistentObjectDefinition</a>
+          $def
+                            ,           [bool
+          $prefixTableName
+           = true]              )
+    </div>
+
+    <p>Returns a hash map between property and column name for the given  definition $def.</p><div><p>The alias map can be used with the query classes. If $prefixTableName is  set to false, only the column names are used as alias targets.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$def</code></td>
+              <td><em><a href="ezcPersistentObjectDefinition.html">ezcPersistentObjectDefinition</a></em></td>
+              <td>
+                                  Definition.
+                              </td>
+            </tr><tr><td><code>$prefixTableName</code></td>
+              <td><em>bool</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Implementation of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcPersistentSessionFoundation.html#methodgenerateAliasMap">ezcPersistentSessionFoundation::generateAliasMap()</a></code></td>
+              <td>
+                                  Returns a hash map between property and column name for the given  definition $def.
+                              </td>
+            </tr></tbody></table><a name="methodgetColumnsFromDefinition" id="getColumnsFromDefinition"><!-- --></a>
+
+    <h4>getColumnsFromDefinition</h4>
+
+    <div class="method-signature">
+      array(int=&gt;string)
+      getColumnsFromDefinition(
+                                  <a href="ezcPersistentObjectDefinition.html">ezcPersistentObjectDefinition</a>
+          $def
+                            ,           [bool
+          $prefixTableName
+           = true]              )
+    </div>
+
+    <p>Returns all the columns defined in the persistent object.</p><div><p>If $prefixTableName is set to false, raw column names will be used,  without prefixed table name.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$def</code></td>
+              <td><em><a href="ezcPersistentObjectDefinition.html">ezcPersistentObjectDefinition</a></em></td>
+              <td>
+                                  Defintion.
+                              </td>
+            </tr><tr><td><code>$prefixTableName</code></td>
+              <td><em>bool</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Implementation of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcPersistentSessionFoundation.html#methodgetColumnsFromDefinition">ezcPersistentSessionFoundation::getColumnsFromDefinition()</a></code></td>
+              <td>
+                                  Returns all the columns defined in the persistent object.
+                              </td>
+            </tr></tbody></table><a name="methodgetObjectState" id="getObjectState"><!-- --></a>
+
+    <h4>getObjectState</h4>
+
+    <div class="method-signature">
+      array
+      getObjectState(
+                                  object
+          $object
+                        )
+    </div>
+
+    <p>Returns the object state.</p><div><p>This method wraps around $object-&gt;getState() to add optional sanity  checks to this call, like a correct return type of getState() and  correct keys and values in the returned array.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$object</code></td>
+              <td><em>object</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodgetRelatedObject" id="getRelatedObject"><!-- --></a>
+
+    <h4>getRelatedObject</h4>
+
+    <div class="method-signature">
+      object($relatedClass)
+      getRelatedObject(
+                                  object
+          $object
+                            ,           string
+          $relatedClass
+                            ,           [string
+          $relationName
+           = null]              )
+    </div>
+
+    <p>Returns the related object of a given $relatedClass for an $object.</p><div><p>This method returns the related object of type $relatedClass for the  object $object. This method (in contrast to <a href="ezcPersistentSession.html#methodgetRelatedObjects">getRelatedObjects()</a>)  always returns a single result object, no matter if more related objects  could be found (e.g. <a href="ezcPersistentOneToManyRelation.html">ezcPersistentOneToManyRelation</a>). If no  related object is found, an exception is thrown, while <a href="ezcPersistentSession.html#methodgetRelatedObjects">getRelatedObjects()</a> just returns an empty array in this case.</p><p>Example:  </p><ol><li><div class="src-line">&#8192;<span class="src-var">$person&#8192;</span>=&#8192;<span class="src-var">$session</span><span class="src-sym">-&gt;</span><a href="ezcPersistentSession.html#methodload">load</a><span class="src-sym">(&#8192;</span><span class="src-str">"Person"</span><span class="src-sym">,&#8192;</span><span class="src-num">1&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$relatedAddress&#8192;</span>=&#8192;<span class="src-var">$session</span><span class="src-sym">-&gt;</span><a href="ezcPersistentSession.html#methodgetRelatedObject">getRelatedObject</a><span class="src-sym">(&#8192;</span><span class="src-var">$person</span><span class="src-sym">,&#8192;</span><span class="src-str">"Address"&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;echo&#8192;<span class="src-str">"Address&#8192;of&#8192;this&#8192;person:&#8192;"&#8192;</span>.&#8192;<span class="src-var">$relatedAddress</span><span class="src-sym">-&gt;</span><span class="src-id">__toString</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol><p>Relations that should preferably be used with this method are:  </p><ul><li><a href="ezcPersistentManyToOneRelation.html">ezcPersistentManyToOneRelation</a></li><li><a href="ezcPersistentOneToOneRelation.html">ezcPersistentOneToOneRelation</a></li></ul>  For other relation types <a href="ezcPersistentSession.html#methodgetRelatedObjects">getRelatedObjects()</a> is recommended.<p>If multiple relations are defined for the $relatedClass (using ezcPersistentRelationCollection), the parameter $relationName becomes  mandatory to determine which relation definition to use. For normal  relations, this parameter is silently ignored.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$object</code></td>
+              <td><em>object</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$relatedClass</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$relationName</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcPersistentRelationNotFoundException.html">ezcPersistentRelationNotFoundException</a></code></td>
+              <td>
+                                  if the given $object does not have a relation to $relatedClass.
+                              </td>
+            </tr></tbody></table><h5>Implementation of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcPersistentSessionFoundation.html#methodgetRelatedObject">ezcPersistentSessionFoundation::getRelatedObject()</a></code></td>
+              <td>
+                                  Returns the related object of a given $relatedClass for an $object.
+                              </td>
+            </tr></tbody></table><a name="methodgetRelatedObjects" id="getRelatedObjects"><!-- --></a>
+
+    <h4>getRelatedObjects</h4>
+
+    <div class="method-signature">
+      array(int=&gt;object($relatedClass))
+      getRelatedObjects(
+                                  object
+          $object
+                            ,           string
+          $relatedClass
+                            ,           [string
+          $relationName
+           = null]              )
+    </div>
+
+    <p>Returns the related objects of a given $relatedClass for an $object.</p><div><p>This method returns the related objects of type $relatedClass for the  given $object. This method (in contrast to <a href="ezcPersistentSession.html#methodgetRelatedObject">getRelatedObject()</a>)  always returns an array of found objects, no matter if only 1 object  was found (e.g. <a href="ezcPersistentManyToOneRelation.html">ezcPersistentManyToOneRelation</a>), none or several  (<a href="ezcPersistentManyToManyRelation.html">ezcPersistentManyToManyRelation</a>).</p><p>Example:  </p><ol><li><div class="src-line">&#8192;<span class="src-var">$person&#8192;</span>=&#8192;<span class="src-var">$session</span><span class="src-sym">-&gt;</span><a href="ezcPersistentSession.html#methodload">load</a><span class="src-sym">(&#8192;</span><span class="src-str">"Person"</span><span class="src-sym">,&#8192;</span><span class="src-num">1&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$relatedAddresses&#8192;</span>=&#8192;<span class="src-var">$session</span><span class="src-sym">-&gt;</span><a href="ezcPersistentSession.html#methodgetRelatedObjects">getRelatedObjects</a><span class="src-sym">(&#8192;</span><span class="src-var">$person</span><span class="src-sym">,&#8192;</span><span class="src-str">"Address"&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;echo&#8192;<span class="src-str">"Number&#8192;of&#8192;addresses&#8192;found:&#8192;"&#8192;</span>.&#8192;<a href="http://www.php.net/count">count</a><span class="src-sym">(&#8192;</span><span class="src-var">$relatedAddresses&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol><p>Relations that should preferably be used with this method are:  </p><ul><li><a href="ezcPersistentOneToManyRelation.html">ezcPersistentOneToManyRelation</a></li><li><a href="ezcPersistentManyToManyRelation.html">ezcPersistentManyToManyRelation</a></li></ul>  For other relation types <a href="ezcPersistentSession.html#methodgetRelatedObject">getRelatedObject()</a> is recommended.<p>If multiple relations are defined for the $relatedClass (using ezcPersistentRelationCollection), the parameter $relationName becomes  mandatory to determine which relation definition to use. For normal  relations, this parameter is silently ignored.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$object</code></td>
+              <td><em>object</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$relatedClass</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$relationName</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcPersistentRelationNotFoundException.html">ezcPersistentRelationNotFoundException</a></code></td>
+              <td>
+                                  if the given $object does not have a relation to $relatedClass.
+                              </td>
+            </tr></tbody></table><h5>Implementation of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcPersistentSessionFoundation.html#methodgetRelatedObjects">ezcPersistentSessionFoundation::getRelatedObjects()</a></code></td>
+              <td>
+                                  Returns the related objects of a given $relatedClass for an $object.
+                              </td>
+            </tr></tbody></table><a name="methodisRelated" id="isRelated"><!-- --></a>
+
+    <h4>isRelated</h4>
+
+    <div class="method-signature">
+      bool
+      isRelated(
+                                  
+          $sourceObject
+                            ,           
+          $relatedObject
+                            ,           [string
+          $relationName
+           = null]                  ,           <a href="ezcPersistentObject.html">ezcPersistentObject</a>
+          $sourceObj
+                            ,           <a href="ezcPersistentObject.html">ezcPersistentObject</a>
+          $relatedObj
+                        )
+    </div>
+
+    <p>Returns if $relatedObject is related to $sourceObject.</p><div><p>Checks the relation conditions between $sourceObject and $relatedObject  and returns true, if $relatedObject is related to $sourceObject,  otherwise false. In case multiple relations are defined between the  classes of $sourceObject and $relatedObject, the $relationName parameter  becomes mandatory. If it is not provided in this case, an <a href="ezcPersistentUndeterministicRelationException.html">ezcPersistentUndeterministicRelationException</a> is thrown.</p><p>Note that checking relations of type <a href="ezcPersistentManyToManyRelation.html">ezcPersistentManyToManyRelation</a> will issue a database query. Other relations will  not perform this.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$sourceObj</code></td>
+              <td><em><a href="ezcPersistentObject.html">ezcPersistentObject</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$relatedObj</code></td>
+              <td><em><a href="ezcPersistentObject.html">ezcPersistentObject</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$relationName</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$sourceObject</code></td>
+              <td><em></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$relatedObject</code></td>
+              <td><em></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodload" id="load"><!-- --></a>
+
+    <h4>load</h4>
+
+    <div class="method-signature">
+      object
+      load(
+                                  string
+          $class
+                            ,           int
+          $id
+                        )
+    </div>
+
+    <p>Returns the persistent object of class $class with id $id.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$class</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$id</code></td>
+              <td><em>int</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcPersistentObjectException.html">ezcPersistentObjectException</a></code></td>
+              <td>
+                                  if there is no such persistent class.
+                              </td>
+            </tr><tr><td><code><a href="ezcPersistentObjectException.html">ezcPersistentObjectException</a></code></td>
+              <td>
+                                  if the object is not available.
+                              </td>
+            </tr></tbody></table><h5>Implementation of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcPersistentSessionFoundation.html#methodload">ezcPersistentSessionFoundation::load()</a></code></td>
+              <td>
+                                  Returns the persistent object of class $class with id $id.
+                              </td>
+            </tr></tbody></table><a name="methodloadIfExists" id="loadIfExists"><!-- --></a>
+
+    <h4>loadIfExists</h4>
+
+    <div class="method-signature">
+      object|null
+      loadIfExists(
+                                  string
+          $class
+                            ,           int
+          $id
+                        )
+    </div>
+
+    <p>Returns the persistent object of class $class with id $id.</p><div><p>This method is equivalent to <a href="ezcPersistentSession.html#methodload">load()</a> except that it returns null  instead of throwing an exception if the object does not exist.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$class</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$id</code></td>
+              <td><em>int</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Implementation of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcPersistentSessionFoundation.html#methodloadIfExists">ezcPersistentSessionFoundation::loadIfExists()</a></code></td>
+              <td>
+                                  Returns the persistent object of class $class with id $id.
+                              </td>
+            </tr></tbody></table><a name="methodloadIntoObject" id="loadIntoObject"><!-- --></a>
+
+    <h4>loadIntoObject</h4>
+
+    <div class="method-signature">
+      void
+      loadIntoObject(
+                                  object
+          $object
+                            ,           int
+          $id
+                        )
+    </div>
+
+    <p>Loads the persistent object with the id $id into the object $object.</p><div><p>The class of the persistent object to load is determined by the class  of $object.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$object</code></td>
+              <td><em>object</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$id</code></td>
+              <td><em>int</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcPersistentObjectException.html">ezcPersistentObjectException</a></code></td>
+              <td>
+                                  if the object is not available.
+                              </td>
+            </tr><tr><td><code><a href="ezcPersistentDefinitionNotFoundException.html">ezcPersistentDefinitionNotFoundException</a></code></td>
+              <td>
+                                  if $object is not of a valid persistent object type.
+                              </td>
+            </tr><tr><td><code><a href="ezcPersistentQueryException.html">ezcPersistentQueryException</a></code></td>
+              <td>
+                                  if the find query failed.
+                              </td>
+            </tr></tbody></table><h5>Implementation of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcPersistentSessionFoundation.html#methodloadIntoObject">ezcPersistentSessionFoundation::loadIntoObject()</a></code></td>
+              <td>
+                                  Loads the persistent object with the id $id into the object $object.
+                              </td>
+            </tr></tbody></table><a name="methodperformQuery" id="performQuery"><!-- --></a>
+
+    <h4>performQuery</h4>
+
+    <div class="method-signature">
+      PDOStatement
+      performQuery(
+                                  
+          $q
+                            ,           [bool
+          $transaction
+           = false]              )
+    </div>
+
+    <p>Performs the given query.</p><div><p>Performs the $query, checks for errors and throws an exception in case.  Returns the generated statement object on success. If the $transaction  parameter is set to true, the query is excuted transaction save.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$q</code></td>
+              <td><em><a href="/zetacomponents/documentation/trunk/Database/phpdoc/ezcQuery.html">ezcQuery</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$transaction</code></td>
+              <td><em>bool</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodrefresh" id="refresh"><!-- --></a>
+
+    <h4>refresh</h4>
+
+    <div class="method-signature">
+      void
+      refresh(
+                                  object
+          $object
+                        )
+    </div>
+
+    <p>Syncronizes the contents of $object with those in the database.</p><div><p>Note that calling this method is equavalent with calling <a href="ezcPersistentSession.html#methodloadIntoObject">loadIntoObject()</a> on $object with the id of $object. Any changes made  to $object prior to calling refresh() will be discarded.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$object</code></td>
+              <td><em>object</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcPersistentObjectException.html">ezcPersistentObjectException</a></code></td>
+              <td>
+                                  if $object is not of a valid persistent object type.
+                              </td>
+            </tr><tr><td><code><a href="ezcPersistentObjectException.html">ezcPersistentObjectException</a></code></td>
+              <td>
+                                  if $object is not persistent already.
+                              </td>
+            </tr><tr><td><code><a href="ezcPersistentObjectException.html">ezcPersistentObjectException</a></code></td>
+              <td>
+                                  if the select query failed.
+                              </td>
+            </tr></tbody></table><h5>Implementation of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcPersistentSessionFoundation.html#methodrefresh">ezcPersistentSessionFoundation::refresh()</a></code></td>
+              <td>
+                                  Syncronizes the contents of $object with those in the database.
+                              </td>
+            </tr></tbody></table><a name="methodremoveRelatedObject" id="removeRelatedObject"><!-- --></a>
+
+    <h4>removeRelatedObject</h4>
+
+    <div class="method-signature">
+      void
+      removeRelatedObject(
+                                  object
+          $object
+                            ,           object
+          $relatedObject
+                            ,           [string
+          $relationName
+           = null]              )
+    </div>
+
+    <p>Removes the relation between $object and $relatedObject.</p><div><p>This method is used to delete an existing relation between 2 objects.  Like <a href="ezcPersistentSession.html#methodaddRelatedObject">addRelatedObject()</a> this method does not store the related  object after removing its relation properties (unset), except for ezcPersistentManyToManyRelation()s, for which the relation record is  deleted from the database.</p><p>If between the classes of $object and $relatedObject multiple relations  are defined using a ezcPersistentRelationCollection, the  $relationName parameter becomes necessary. It defines which exact  relation to affect here.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$object</code></td>
+              <td><em>object</em></td>
+              <td>
+                                  Source object of the relation.
+                              </td>
+            </tr><tr><td><code>$relatedObject</code></td>
+              <td><em>object</em></td>
+              <td>
+                                  Related object.
+                              </td>
+            </tr><tr><td><code>$relationName</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcPersistentRelationNotFoundException.html">ezcPersistentRelationNotFoundException</a></code></td>
+              <td>
+                                  if the deisred relation is not defined.
+                              </td>
+            </tr><tr><td><code><a href="ezcPersistentRelationOperationNotSupportedException.html">ezcPersistentRelationOperationNotSupportedException</a></code></td>
+              <td>
+                                  if a relation to create is marked as "reverse".
+                              </td>
+            </tr></tbody></table><h5>Implementation of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcPersistentSessionFoundation.html#methodremoveRelatedObject">ezcPersistentSessionFoundation::removeRelatedObject()</a></code></td>
+              <td>
+                                  Removes the relation between $object and $relatedObject.
+                              </td>
+            </tr></tbody></table><a name="methodsave" id="save"><!-- --></a>
+
+    <h4>save</h4>
+
+    <div class="method-signature">
+      void
+      save(
+                                  object
+          $object
+                        )
+    </div>
+
+    <p>Saves the new persistent object $object to the database using an INSERT INTO query.</p><div><p>The correct ID is set to $object.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$object</code></td>
+              <td><em>object</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcPersistentObjectException.html">ezcPersistentObjectException</a></code></td>
+              <td>
+                                  if $object is not of a valid persistent object type.
+                              </td>
+            </tr><tr><td><code><a href="ezcPersistentObjectException.html">ezcPersistentObjectException</a></code></td>
+              <td>
+                                  if the insert query failed.
+                              </td>
+            </tr><tr><td><code><a href="ezcPersistentObjectException.html">ezcPersistentObjectException</a></code></td>
+              <td>
+                                  if $object is already stored to the database.
+                              </td>
+            </tr><tr><td><code><a href="ezcPersistentObjectException.html">ezcPersistentObjectException</a></code></td>
+              <td>
+                                  if it was not possible to generate a unique identifier for the new object.
+                              </td>
+            </tr></tbody></table><h5>Implementation of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcPersistentSessionFoundation.html#methodsave">ezcPersistentSessionFoundation::save()</a></code></td>
+              <td>
+                                  Saves the new persistent object $object to the database using an INSERT INTO query.
+                              </td>
+            </tr></tbody></table><a name="methodsaveOrUpdate" id="saveOrUpdate"><!-- --></a>
+
+    <h4>saveOrUpdate</h4>
+
+    <div class="method-signature">
+      void
+      saveOrUpdate(
+                                  object
+          $object
+                        )
+    </div>
+
+    <p>Saves or updates the persistent object $object to the database.</p><div><p>If the object is a new object an INSERT INTO query will be executed. If  the object is persistent already it will be updated with an UPDATE  query.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$object</code></td>
+              <td><em>object</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcPersistentDefinitionNotFoundException.html">ezcPersistentDefinitionNotFoundException</a></code></td>
+              <td>
+                                  if the definition of the persistent object could not be loaded.
+                              </td>
+            </tr><tr><td><code><a href="ezcPersistentObjectException.html">ezcPersistentObjectException</a></code></td>
+              <td>
+                                  if the insert or update query failed.
+                              </td>
+            </tr><tr><td><code><a href="ezcPersistentObjectException.html">ezcPersistentObjectException</a></code></td>
+              <td>
+                                  if $object is not of a valid persistent object type.
+                              </td>
+            </tr><tr><td><code><a href="ezcPersistentObjectException.html">ezcPersistentObjectException</a></code></td>
+              <td>
+                                  if any of the definition requirements are not met.
+                              </td>
+            </tr></tbody></table><h5>Implementation of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcPersistentSessionFoundation.html#methodsaveOrUpdate">ezcPersistentSessionFoundation::saveOrUpdate()</a></code></td>
+              <td>
+                                  Saves or updates the persistent object $object to the database.
+                              </td>
+            </tr></tbody></table><a name="methodupdate" id="update"><!-- --></a>
+
+    <h4>update</h4>
+
+    <div class="method-signature">
+      void
+      update(
+                                  object
+          $object
+                        )
+    </div>
+
+    <p>Saves the new persistent object $object to the database using an UPDATE query.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$object</code></td>
+              <td><em>object</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcPersistentDefinitionNotFoundException.html">ezcPersistentDefinitionNotFoundException</a></code></td>
+              <td>
+                                  if $object is not of a valid persistent object type.
+                              </td>
+            </tr><tr><td><code><a href="ezcPersistentObjectNotPersistentException.html">ezcPersistentObjectNotPersistentException</a></code></td>
+              <td>
+                                  if $object is not stored in the database already.
+                              </td>
+            </tr><tr><td><code><a href="ezcPersistentQueryException.html">ezcPersistentQueryException</a></code></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Implementation of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcPersistentSessionFoundation.html#methodupdate">ezcPersistentSessionFoundation::update()</a></code></td>
+              <td>
+                                  Saves the new persistent object $object to the database using an UPDATE query.
+                              </td>
+            </tr></tbody></table><a name="methodupdateFromQuery" id="updateFromQuery"><!-- --></a>
+
+    <h4>updateFromQuery</h4>
+
+    <div class="method-signature">
+      void
+      updateFromQuery(
+                                  
+          $query
+                        )
+    </div>
+
+    <p>Updates persistent objects using the query $query.</p><div><p>The $query should be created using createUpdateQuery().</p><p>Currently this method only executes the provided query. Future  releases PersistentSession may introduce caching of persistent objects.  When caching is introduced it will be required to use this method to run  cusom delete queries. To avoid being incompatible with future releases it is  advisable to always use this method when running custom delete queries on  persistent objects.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$query</code></td>
+              <td><em><a href="/zetacomponents/documentation/trunk/Database/phpdoc/ezcQueryUpdate.html">ezcQueryUpdate</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcPersistentQueryException.html">ezcPersistentQueryException</a></code></td>
+              <td>
+                                  if the update query failed.
+                              </td>
+            </tr></tbody></table><h5>Implementation of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcPersistentSessionFoundation.html#methodupdateFromQuery">ezcPersistentSessionFoundation::updateFromQuery()</a></code></td>
+              <td>
+                                  Updates persistent objects using the query $query.
+                              </td>
+            </tr></tbody></table><div class="credit">
+      Documentation generated by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+    </div>
+  </div>
+  
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

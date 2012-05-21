@@ -1,0 +1,848 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="PHP, apache, components, framework, quality" />
+	<meta name="author" content="dotxp" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Wed, 04 Aug 2010 13:07:21 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="ezcConsoleTable.html" />
+	<meta name="DC.creator" content="dotxp" />
+	<meta name="DC.date" content="Wed, 04 Aug 2010 13:07:21 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleTable.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/ConsoleTools/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+
+</ul>
+
+		
+  <div class="phpdoc">
+    <h2>Apache Zeta Components Manual :: Docs For Class ezcConsoleTable</h2>
+
+                  <h3>ConsoleTools::ezcConsoleTable</h3>
+    
+<a name="sec-description"></a>
+<h3>Class ezcConsoleTable</h3>
+
+<p>Creating tables to be printed to the console.</p><div><p>Every ezcConsoleTable object can be accessed as if it was a multidimensional,  numerically indexed array. The first dimension represents the rows of the  table, so $table[0] gives you access to the first row of the table, which is  represented by a <a href="ezcConsoleTableRow.html">ezcConsoleTableRow</a> object. You can access its  properties directly, using e.g. $table[0]-&gt;format. The second dimension gives  you direct access to the cells of your table, like $table[0][0] accesses the  first cell in the first row of your table. You can access its properties  diretly here, too. This works like e.g. $table[0][0]-&gt;format. Table row and  cell objects are created on the fly, when you access them for the first time.  You can also create them as if you simply create new array elements. E.g.  $table[] creates a new row in the table.</p><p></p><ol><li><div class="src-line">&#8192;<span class="src-comm">//&#8192;Initialize&#8192;the&#8192;console&#8192;output&#8192;handler</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$out&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcConsoleOutput.html">ezcConsoleOutput</a></span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;Define&#8192;a&#8192;new&#8192;format&#8192;"headline"</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$out</span><span class="src-sym">-&gt;</span><span class="src-id">formats</span><span class="src-sym">-&gt;</span><span class="src-id">headline</span><span class="src-sym">-&gt;</span><span class="src-id">color&#8192;</span>=&#8192;<span class="src-str">'red'</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$out</span><span class="src-sym">-&gt;</span><span class="src-id">formats</span><span class="src-sym">-&gt;</span><span class="src-id">headline</span><span class="src-sym">-&gt;</span><span class="src-id">style&#8192;</span>=&#8192;<span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-str">'bold'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;Define&#8192;a&#8192;new&#8192;format&#8192;"sum"</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$out</span><span class="src-sym">-&gt;</span><span class="src-id">formats</span><span class="src-sym">-&gt;</span><span class="src-id">sum</span><span class="src-sym">-&gt;</span><span class="src-id">color&#8192;</span>=&#8192;<span class="src-str">'blue'</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$out</span><span class="src-sym">-&gt;</span><span class="src-id">formats</span><span class="src-sym">-&gt;</span><span class="src-id">sum</span><span class="src-sym">-&gt;</span><span class="src-id">style&#8192;</span>=&#8192;<span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-str">'negative'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;Create&#8192;a&#8192;new&#8192;table</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$table&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcConsoleTable.html">ezcConsoleTable</a></span><span class="src-sym">(&#8192;</span><span class="src-var">$out</span><span class="src-sym">,&#8192;</span><span class="src-num">60&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;Create&#8192;first&#8192;row&#8192;and&#8192;in&#8192;it&#8192;the&#8192;first&#8192;cell</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$table</span><span class="src-sym">[</span><span class="src-num">0</span><span class="src-sym">]</span><span class="src-sym">[</span><span class="src-num">0</span><span class="src-sym">]</span><span class="src-sym">-&gt;</span><span class="src-id">content&#8192;</span>=&#8192;<span class="src-str">'Headline&#8192;1'</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;Create&#8192;3&#8192;more&#8192;cells&#8192;in&#8192;row&#8192;0</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-key">for&#8192;</span><span class="src-sym">(&#8192;</span><span class="src-var">$i&#8192;</span>=&#8192;<span class="src-num">2</span><span class="src-sym">;&#8192;</span><span class="src-var">$i&#8192;</span>&lt;&#8192;<span class="src-num">5</span><span class="src-sym">;&#8192;</span><span class="src-var">$i</span>++&#8192;<span class="src-sym">)</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">{</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-var">$table</span><span class="src-sym">[</span><span class="src-num">0</span><span class="src-sym">]</span><span class="src-sym">[</span><span class="src-sym">]</span><span class="src-sym">-&gt;</span><span class="src-id">content&#8192;</span>=&#8192;<span class="src-str">"</span><span class="src-str">Headline&#8192;<span class="src-var">$i</span></span><span class="src-str">"</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">}</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$data&#8192;</span>=&#8192;<span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-num">1</span><span class="src-sym">,&#8192;</span><span class="src-num">2</span><span class="src-sym">,&#8192;</span><span class="src-num">3</span><span class="src-sym">,&#8192;</span><span class="src-num">4&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;Create&#8192;some&#8192;more&#8192;data&#8192;in&#8192;the&#8192;table...</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-key">foreach&#8192;</span><span class="src-sym">(&#8192;</span><span class="src-var">$data&#8192;</span><span class="src-key">as&#8192;</span><span class="src-var">$value&#8192;</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">{</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-comm">//&#8192;Create&#8192;a&#8192;new&#8192;row&#8192;each&#8192;time&#8192;and&#8192;set&#8192;it's&#8192;contents&#8192;to&#8192;the&#8192;actual&#8192;value</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-var">$table</span><span class="src-sym">[</span><span class="src-sym">]</span><span class="src-sym">[</span><span class="src-num">0</span><span class="src-sym">]</span><span class="src-sym">-&gt;</span><span class="src-id">content&#8192;</span>=&#8192;<span class="src-var">$value</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">}</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;Set&#8192;another&#8192;border&#8192;format&#8192;for&#8192;our&#8192;headline&#8192;row</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$table</span><span class="src-sym">[</span><span class="src-num">0</span><span class="src-sym">]</span><span class="src-sym">-&gt;</span><span class="src-id">borderFormat&#8192;</span>=&#8192;<span class="src-str">'headline'</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;Set&#8192;the&#8192;content&#8192;format&#8192;for&#8192;all&#8192;cells&#8192;of&#8192;the&#8192;3rd&#8192;row&#8192;to&#8192;"sum"</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$table</span><span class="src-sym">[</span><span class="src-num">2</span><span class="src-sym">]</span><span class="src-sym">-&gt;</span><span class="src-id">format&#8192;</span>=&#8192;<span class="src-str">'sum'</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$table</span><span class="src-sym">-&gt;</span><a href="ezcConsoleTable.html#methodoutputTable">outputTable</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol></div>
+<p>Source for this file: <a href="http://fisheye6.atlassian.com/browse/zetacomponents/trunk/ConsoleTools/src/table.php?r=HEAD">/ConsoleTools/src/table.php</a></p>
+       
+  <h3>Implements interfaces:</h3>
+  <ul><li>Countable (internal interface)</li><li>Iterator (internal interface)</li><li>ArrayAccess (internal interface)</li>  </ul><table><tr><td>
+            <strong>Version:</strong>&#8192;&#8192;
+          </td>
+          <td>//autogen//</td>
+        </tr></table><a name="sec-const-summary"></a>
+  <h3>Constants</h3>
+  <table class="summary"><tr><td class="right">
+          <a name="const-ALIGN_CENTER" id=""></a>
+          <code>
+            <a href="#const-ALIGN_CENTER" title="details" class="const-name-summary">ALIGN_CENTER</a>
+             =  STR_PAD_BOTH
+          </code>
+        </td>
+        <td>
+          Align text in cells to the center.                  </td>
+      </tr><tr><td class="right">
+          <a name="const-ALIGN_DEFAULT" id=""></a>
+          <code>
+            <a href="#const-ALIGN_DEFAULT" title="details" class="const-name-summary">ALIGN_DEFAULT</a>
+             =  -1
+          </code>
+        </td>
+        <td>
+          Align text in the default direction.                  </td>
+      </tr><tr><td class="right">
+          <a name="const-ALIGN_LEFT" id=""></a>
+          <code>
+            <a href="#const-ALIGN_LEFT" title="details" class="const-name-summary">ALIGN_LEFT</a>
+             =  STR_PAD_RIGHT
+          </code>
+        </td>
+        <td>
+          Align text in cells to the right.                  </td>
+      </tr><tr><td class="right">
+          <a name="const-ALIGN_RIGHT" id=""></a>
+          <code>
+            <a href="#const-ALIGN_RIGHT" title="details" class="const-name-summary">ALIGN_RIGHT</a>
+             =  STR_PAD_LEFT
+          </code>
+        </td>
+        <td>
+          Align text in cells to the left.                  </td>
+      </tr><tr><td class="right">
+          <a name="const-WIDTH_FIXED" id=""></a>
+          <code>
+            <a href="#const-WIDTH_FIXED" title="details" class="const-name-summary">WIDTH_FIXED</a>
+             =  1
+          </code>
+        </td>
+        <td>
+          The width given by settings must be used even if the data allows it smaller.                  </td>
+      </tr><tr><td class="right">
+          <a name="const-WIDTH_MAX" id=""></a>
+          <code>
+            <a href="#const-WIDTH_MAX" title="details" class="const-name-summary">WIDTH_MAX</a>
+             =  2
+          </code>
+        </td>
+        <td>
+          The width given by settings is a maximum value, if data allows it, the table gets smaller.                  </td>
+      </tr><tr><td class="right">
+          <a name="const-WRAP_AUTO" id=""></a>
+          <code>
+            <a href="#const-WRAP_AUTO" title="details" class="const-name-summary">WRAP_AUTO</a>
+             =  1
+          </code>
+        </td>
+        <td>
+          Automatically wrap text to fit into a column.                  </td>
+      </tr><tr><td class="right">
+          <a name="const-WRAP_CUT" id=""></a>
+          <code>
+            <a href="#const-WRAP_CUT" title="details" class="const-name-summary">WRAP_CUT</a>
+             =  3
+          </code>
+        </td>
+        <td>
+          Text will be cut to fit into a column.                  </td>
+      </tr><tr><td class="right">
+          <a name="const-WRAP_NONE" id=""></a>
+          <code>
+            <a href="#const-WRAP_NONE" title="details" class="const-name-summary">WRAP_NONE</a>
+             =  2
+          </code>
+        </td>
+        <td>
+          Do not wrap text. Columns will be extended to fit the largest text.          <p>ATTENTION: This is risky!</p>        </td>
+      </tr></table><a name="sec-prop-summary"></a>
+  <h3>Properties</h3>
+  <table class="summary"><tr><td class="right">
+          <a name="prop%24options" id="$options"></a>
+          <a name="prop-%24options" id="$options"></a>
+          <em><a href="ezcConsoleTableOptions.html">ezcConsoleTableOptions</a></em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24options" title="details" class="var-name-summary">$options</a>
+                      </code>
+          <br><div style="margin-left: 20px">Contains the options for this class.</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24width" id="$width"></a>
+          <a name="prop-%24width" id="$width"></a>
+          <em>int</em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24width" title="details" class="var-name-summary">$width</a>
+                      </code>
+          <br><div style="margin-left: 20px">Width of the table.</div>        </td>
+      </tr></table><a name="sec-var-summary"></a>
+  <h3>Member Variables</h3>
+  <table class="summary"><tr><td class="right">
+            <em>protected</em>            <em><a href="ezcConsoleOutput.html">ezcConsoleOutput</a></em>          </td>
+          <td>
+            <code>
+              $outputHandler
+                          </code>
+            <br><div style="margin-left: 20px">The ezcConsoleOutput object to use.</div>                      </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            <em>array(string=&gt;mixed)</em>          </td>
+          <td>
+            <code>
+              $properties
+                          </code>
+            <br><div style="margin-left: 20px">Container to hold the properties</div>                      </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            <em>array(ezcConsoleTableRow)</em>          </td>
+          <td>
+            <code>
+              $rows
+                          </code>
+            <br><div style="margin-left: 20px">Collection of the rows that are contained in the table.</div>                      </td>
+        </tr></table><a name="sec-method-summary"></a>
+  <h3>Method Summary</h3>
+  <table class="summary"><tr><td class="right">
+            <em>public</em>                        <em>ezcConsoleTable</em>          </td>
+          <td>
+            <code>
+              <a href="#__construct"><b>__construct</b></a>(
+                                                                                    $outHandler
+                                                    ,                                     $width
+                                                    ,                   [                  $options
+                   = array()]                               )
+            </code>
+            <br><div style="margin-left: 20px">Creates a new table.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>int</em>          </td>
+          <td>
+            <code>
+              <a href="#count"><b>count</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns the number of cells in the row.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em><a href="ezcConsoleTableCell.html">ezcConsoleTableCell</a></em>          </td>
+          <td>
+            <code>
+              <a href="#current"><b>current</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns the currently selected cell.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em><a href="ezcConsoleTableOptions.html">ezcConsoleTableOptions</a></em>          </td>
+          <td>
+            <code>
+              <a href="#getOptions"><b>getOptions</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns the current options.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>array</em>          </td>
+          <td>
+            <code>
+              <a href="#getTable"><b>getTable</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns the table in an array.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>int</em>          </td>
+          <td>
+            <code>
+              <a href="#key"><b>key</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns the key of the currently selected cell.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>mixed</em>          </td>
+          <td>
+            <code>
+              <a href="#next"><b>next</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns the next cell and selects it or false on the last cell.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>bool</em>          </td>
+          <td>
+            <code>
+              <a href="#offsetExists"><b>offsetExists</b></a>(
+                                                                                    $offset
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns if the given offset exists.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em><a href="ezcConsoleTableCell.html">ezcConsoleTableCell</a></em>          </td>
+          <td>
+            <code>
+              <a href="#offsetGet"><b>offsetGet</b></a>(
+                                                                                    $offset
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns the element with the given offset.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#offsetSet"><b>offsetSet</b></a>(
+                                                                                    $offset
+                                                    ,                                     $value
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Set the element with the given offset.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#offsetUnset"><b>offsetUnset</b></a>(
+                                                                                    $offset
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Unset the element with the given offset.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#outputTable"><b>outputTable</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Output the table.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em><a href="ezcConsoleTableCell.html">ezcConsoleTableCell</a></em>          </td>
+          <td>
+            <code>
+              <a href="#rewind"><b>rewind</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Selects the very first cell and returns it.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#setOptions"><b>setOptions</b></a>(
+                                                                  [                  $options
+                   = array()]                               )
+            </code>
+            <br><div style="margin-left: 20px">Set new options.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em><a href="ezcConsoleTableCell.html">ezcConsoleTableCell</a></em>          </td>
+          <td>
+            <code>
+              <a href="#valid"><b>valid</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns if the current cell is valid.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#__toString"><b>__toString</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns the table in a string.</div>          </td>
+        </tr></table><a name="sec-methods"></a>
+  <h3>Methods</h3>
+  <a name="method_detail"></a>
+                                
+      <a name="method__construct" id="__construct"><!-- --></a>
+
+    <h4>__construct</h4>
+
+    <div class="method-signature">
+      ezcConsoleTable
+      __construct(
+                                  <a href="ezcConsoleOutput.html">ezcConsoleOutput</a>
+          $outHandler
+                            ,           int
+          $width
+                            ,           [array
+          $options
+           = array()]              )
+    </div>
+
+    <p>Creates a new table.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$outHandler</code></td>
+              <td><em><a href="ezcConsoleOutput.html">ezcConsoleOutput</a></em></td>
+              <td>
+                                  Output handler to utilize
+                              </td>
+            </tr><tr><td><code>$width</code></td>
+              <td><em>int</em></td>
+              <td>
+                                  Overall width of the table (chars).
+                              </td>
+            </tr><tr><td><code>$options</code></td>
+              <td><em>array</em></td>
+              <td>
+                                  Options
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseValueException.html">ezcBaseValueException</a></code></td>
+              <td>
+                                  On an invalid setting.
+                              </td>
+            </tr></tbody></table><a name="methodcount" id="count"><!-- --></a>
+
+    <h4>count</h4>
+
+    <div class="method-signature">
+      int
+      count(
+      )
+    </div>
+
+    <p>Returns the number of cells in the row.</p><div><p>This method is part of the Countable interface to allow the usage of  PHP's count() function to check how many cells this row has.</p></div>
+    
+        
+
+    
+          <h5>Implementation of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>Countable::count</code></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodcurrent" id="current"><!-- --></a>
+
+    <h4>current</h4>
+
+    <div class="method-signature">
+      <a href="ezcConsoleTableCell.html">ezcConsoleTableCell</a>
+      current(
+      )
+    </div>
+
+    <p>Returns the currently selected cell.</p><div><p>This method is part of the Iterator interface to allow access to the  cells of this row by iterating over it like an array (e.g. using  foreach).</p></div>
+    
+        
+
+    
+          <h5>Implementation of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>Iterator::current</code></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodgetOptions" id="getOptions"><!-- --></a>
+
+    <h4>getOptions</h4>
+
+    <div class="method-signature">
+      <a href="ezcConsoleTableOptions.html">ezcConsoleTableOptions</a>
+      getOptions(
+      )
+    </div>
+
+    <p>Returns the current options.</p><div><p>Returns the options currently set for this table.</p></div>
+    
+        
+
+    
+    
+    
+        <a name="methodgetTable" id="getTable"><!-- --></a>
+
+    <h4>getTable</h4>
+
+    <div class="method-signature">
+      array
+      getTable(
+      )
+    </div>
+
+    <p>Returns the table in an array.</p><div><p>Returns the entire table as an array of printable lines. Each element of  the array represents a physical line of the drawn table, including all  borders and stuff, so you can simply print the table using  </p><ol><li><div class="src-line">&#8192;echo&#8192;<a href="http://www.php.net/implode">implode</a><span class="src-sym">(&#8192;</span><span class="src-str">"\n"&#8192;</span><span class="src-sym">,&#8192;</span><span class="src-var">$table</span><span class="src-sym">-&gt;</span><a href="ezcConsoleTable.html#methodgetTable">getTable</a><span class="src-sym">(</span><span class="src-sym">)&#8192;)</span>:</div></li>
+</ol>  which is basically what <a href="ezcConsoleTable.html#methodoutputTable">ezcConsoleTable::outputTable()</a> does.</div>
+    
+        
+
+    
+    
+    
+        <a name="methodkey" id="key"><!-- --></a>
+
+    <h4>key</h4>
+
+    <div class="method-signature">
+      int
+      key(
+      )
+    </div>
+
+    <p>Returns the key of the currently selected cell.</p><div><p>This method is part of the Iterator interface to allow access to the  cells of this row by iterating over it like an array (e.g. using  foreach).</p></div>
+    
+        
+
+    
+          <h5>Implementation of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>Iterator::key</code></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodnext" id="next"><!-- --></a>
+
+    <h4>next</h4>
+
+    <div class="method-signature">
+      mixed
+      next(
+      )
+    </div>
+
+    <p>Returns the next cell and selects it or false on the last cell.</p><div><p>This method is part of the Iterator interface to allow access to the  cells of this row by iterating over it like an array (e.g. using  foreach).</p></div>
+    
+        
+
+    
+          <h5>Implementation of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>Iterator::next</code></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodoffsetExists" id="offsetExists"><!-- --></a>
+
+    <h4>offsetExists</h4>
+
+    <div class="method-signature">
+      bool
+      offsetExists(
+                                  int
+          $offset
+                        )
+    </div>
+
+    <p>Returns if the given offset exists.</p><div><p>This method is part of the ArrayAccess interface to allow access to the  data of this object as if it was an array.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$offset</code></td>
+              <td><em>int</em></td>
+              <td>
+                                  The offset to check.
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseValueException.html">ezcBaseValueException</a></code></td>
+              <td>
+                                  If a non numeric row ID is requested.
+                              </td>
+            </tr></tbody></table><h5>Implementation of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>ArrayAccess::offsetExists</code></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodoffsetGet" id="offsetGet"><!-- --></a>
+
+    <h4>offsetGet</h4>
+
+    <div class="method-signature">
+      <a href="ezcConsoleTableCell.html">ezcConsoleTableCell</a>
+      offsetGet(
+                                  int
+          $offset
+                        )
+    </div>
+
+    <p>Returns the element with the given offset.</p><div><p>This method is part of the ArrayAccess interface to allow access to the  data of this object as if it was an array. In case of the  ezcConsoleTable class this method always returns a valid row object  since it creates them on the fly, if a given item does not exist.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$offset</code></td>
+              <td><em>int</em></td>
+              <td>
+                                  The offset to check.
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseValueException.html">ezcBaseValueException</a></code></td>
+              <td>
+                                  If a non numeric row ID is requested.
+                              </td>
+            </tr></tbody></table><h5>Implementation of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>ArrayAccess::offsetGet</code></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodoffsetSet" id="offsetSet"><!-- --></a>
+
+    <h4>offsetSet</h4>
+
+    <div class="method-signature">
+      void
+      offsetSet(
+                                  int
+          $offset
+                            ,           <a href="ezcConsoleTableRow.html">ezcConsoleTableRow</a>
+          $value
+                        )
+    </div>
+
+    <p>Set the element with the given offset.</p><div><p>This method is part of the ArrayAccess interface to allow access to the  data of this object as if it was an array.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$offset</code></td>
+              <td><em>int</em></td>
+              <td>
+                                  The offset to assign an item to.
+                              </td>
+            </tr><tr><td><code>$value</code></td>
+              <td><em><a href="ezcConsoleTableRow.html">ezcConsoleTableRow</a></em></td>
+              <td>
+                                  The row to assign.
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseValueException.html">ezcBaseValueException</a></code></td>
+              <td>
+                                  If the provided value is not of type <a href="ezcConsoleTableRow.html">ezcConsoleTableRow</a>.
+                              </td>
+            </tr><tr><td><code><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseValueException.html">ezcBaseValueException</a></code></td>
+              <td>
+                                  If a non numeric row ID is requested.
+                              </td>
+            </tr></tbody></table><h5>Implementation of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>ArrayAccess::offsetSet</code></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodoffsetUnset" id="offsetUnset"><!-- --></a>
+
+    <h4>offsetUnset</h4>
+
+    <div class="method-signature">
+      void
+      offsetUnset(
+                                  int
+          $offset
+                        )
+    </div>
+
+    <p>Unset the element with the given offset.</p><div><p>This method is part of the ArrayAccess interface to allow access to the  data of this object as if it was an array.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$offset</code></td>
+              <td><em>int</em></td>
+              <td>
+                                  The offset to unset the value for.
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseValueException.html">ezcBaseValueException</a></code></td>
+              <td>
+                                  If a non numeric row ID is requested.
+                              </td>
+            </tr></tbody></table><h5>Implementation of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>ArrayAccess::offsetUnset</code></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodoutputTable" id="outputTable"><!-- --></a>
+
+    <h4>outputTable</h4>
+
+    <div class="method-signature">
+      void
+      outputTable(
+      )
+    </div>
+
+    <p>Output the table.</p><div><p>Prints the complete table to the console.</p></div>
+    
+        
+
+    
+    
+    
+        <a name="methodrewind" id="rewind"><!-- --></a>
+
+    <h4>rewind</h4>
+
+    <div class="method-signature">
+      <a href="ezcConsoleTableCell.html">ezcConsoleTableCell</a>
+      rewind(
+      )
+    </div>
+
+    <p>Selects the very first cell and returns it.</p><div><p>This method is part of the Iterator interface to allow access to the  cells of this row by iterating over it like an array (e.g. using  foreach).</p></div>
+    
+        
+
+    
+          <h5>Implementation of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>Iterator::rewind</code></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodsetOptions" id="setOptions"><!-- --></a>
+
+    <h4>setOptions</h4>
+
+    <div class="method-signature">
+      void
+      setOptions(
+                                  [<a href="ezcConsoleTableOptions.html">ezcConsoleTableOptions</a>
+          $options
+           = array()]              )
+    </div>
+
+    <p>Set new options.</p><div><p>This method allows you to change the options of the table.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$options</code></td>
+              <td><em><a href="ezcConsoleTableOptions.html">ezcConsoleTableOptions</a></em></td>
+              <td>
+                                  The options to set.
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseSettingNotFoundException.html">ezcBaseSettingNotFoundException</a></code></td>
+              <td>
+                                  If you tried to set a non-existent option value.
+                              </td>
+            </tr><tr><td><code><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseSettingValueException.html">ezcBaseSettingValueException</a></code></td>
+              <td>
+                                  If the value is not valid for the desired option.
+                              </td>
+            </tr><tr><td><code><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseValueException.html">ezcBaseValueException</a></code></td>
+              <td>
+                                  If you submit neither an array nor an instance of ezcConsoleTableOptions.
+                              </td>
+            </tr></tbody></table><a name="methodvalid" id="valid"><!-- --></a>
+
+    <h4>valid</h4>
+
+    <div class="method-signature">
+      <a href="ezcConsoleTableCell.html">ezcConsoleTableCell</a>
+      valid(
+      )
+    </div>
+
+    <p>Returns if the current cell is valid.</p><div><p>This method is part of the Iterator interface to allow access to the  cells of this row by iterating over it like an array (e.g. using  foreach).</p></div>
+    
+        
+
+    
+          <h5>Implementation of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>Iterator::valid</code></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="method__toString" id="__toString"><!-- --></a>
+
+    <h4>__toString</h4>
+
+    <div class="method-signature">
+      string
+      __toString(
+      )
+    </div>
+
+    <p>Returns the table in a string.</p>
+    
+        
+
+    
+    
+    
+  
+    <div class="credit">
+      Documentation generated by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+    </div>
+  </div>
+  
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

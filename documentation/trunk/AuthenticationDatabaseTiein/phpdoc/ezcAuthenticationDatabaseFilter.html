@@ -1,0 +1,382 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="PHP, apache, components, framework, quality" />
+	<meta name="author" content="dotxp" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Wed, 04 Aug 2010 13:07:15 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="ezcAuthenticationDatabaseFilter.html" />
+	<meta name="DC.creator" content="dotxp" />
+	<meta name="DC.date" content="Wed, 04 Aug 2010 13:07:15 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/AuthenticationDatabaseTiein/phpdoc/ezcAuthenticationDatabaseFilter.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/AuthenticationDatabaseTiein/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/trunk/AuthenticationDatabaseTiein/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+
+</ul>
+
+		
+  <div class="phpdoc">
+    <h2>Apache Zeta Components Manual :: Docs For Class ezcAuthenticationDatabaseFilter</h2>
+
+                  <h3>AuthenticationDatabaseTiein::ezcAuthenticationDatabaseFilter</h3>
+    
+<a name="sec-description"></a>
+<h3>Class ezcAuthenticationDatabaseFilter</h3>
+
+<p>Filter to authenticate against a database.</p><div><p>The database instance to use is specified using a ezcAuthenticationDatabaseInfo  structure. Table name and field names are specified in the same structure.</p><p>Example:  </p><ol><li><div class="src-line">&#8192;<span class="src-var">$credentials&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationPasswordCredentials.html">ezcAuthenticationPasswordCredentials</a></span><span class="src-sym">(&#8192;</span><span class="src-str">'jan.modaal'</span><span class="src-sym">,&#8192;</span><span class="src-str">'b1b3773a05c0ed0176787a4f1574ff0075f7521e'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$database&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcAuthenticationDatabaseInfo.html">ezcAuthenticationDatabaseInfo</a></span><span class="src-sym">(&#8192;</span><span class="src-id"><a href="/zetacomponents/documentation/trunk/Database/phpdoc/ezcDbInstance.html">ezcDbInstance</a></span><span class="src-sym">::</span><a href="/zetacomponents/documentation/trunk/Database/phpdoc/ezcDbInstance.html#methodget">get</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">,&#8192;</span><span class="src-str">'users'</span><span class="src-sym">,&#8192;</span><span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-str">'user'</span><span class="src-sym">,&#8192;</span><span class="src-str">'password'&#8192;</span><span class="src-sym">)&#8192;)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$authentication&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthentication.html">ezcAuthentication</a></span><span class="src-sym">(&#8192;</span><span class="src-var">$credentials&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$authentication</span><span class="src-sym">-&gt;</span><span class="src-id">addFilter</span><span class="src-sym">(&#8192;</span><span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcAuthenticationDatabaseFilter.html">ezcAuthenticationDatabaseFilter</a></span><span class="src-sym">(&#8192;</span><span class="src-var">$database&#8192;</span><span class="src-sym">)&#8192;)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-key">if&#8192;</span><span class="src-sym">(&#8192;</span><span class="src-sym">!</span><span class="src-var">$authentication</span><span class="src-sym">-&gt;</span><a href="ezcAuthenticationDatabaseFilter.html#methodrun">run</a><span class="src-sym">(</span><span class="src-sym">)&#8192;)</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">{</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-comm">//&#8192;authentication&#8192;did&#8192;not&#8192;succeed,&#8192;so&#8192;inform&#8192;the&#8192;user</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-var">$status&#8192;</span>=&#8192;<span class="src-var">$authentication</span><span class="src-sym">-&gt;</span><span class="src-id">getStatus</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-var">$err&#8192;</span>=&#8192;<span class="src-key">array</span><span class="src-sym">(</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'ezcAuthenticationDatabaseFilter'&#8192;</span>=&gt;&#8192;<span class="src-key">array</span><span class="src-sym">(</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-id"><a href="ezcAuthenticationDatabaseFilter.html">ezcAuthenticationDatabaseFilter</a></span><span class="src-sym">::</span><span class="src-id">STATUS_USERNAME_INCORRECT&#8192;</span>=&gt;&#8192;<span class="src-str">'Incorrect&#8192;username'</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-id"><a href="ezcAuthenticationDatabaseFilter.html">ezcAuthenticationDatabaseFilter</a></span><span class="src-sym">::</span><span class="src-id">STATUS_PASSWORD_INCORRECT&#8192;</span>=&gt;&#8192;<span class="src-str">'Incorrect&#8192;password'</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-sym">)</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-key">foreach&#8192;</span><span class="src-sym">(&#8192;</span><span class="src-var">$status&#8192;</span><span class="src-key">as&#8192;</span><span class="src-var">$line&#8192;</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-sym">{</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;list<span class="src-sym">(&#8192;</span><span class="src-var">$key</span><span class="src-sym">,&#8192;</span><span class="src-var">$value&#8192;</span><span class="src-sym">)&#8192;</span>=&#8192;<a href="http://www.php.net/each">each</a><span class="src-sym">(&#8192;</span><span class="src-var">$line&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;echo&#8192;<span class="src-var">$err</span><span class="src-sym">[</span><span class="src-var">$key</span><span class="src-sym">]</span><span class="src-sym">[</span><span class="src-var">$value</span><span class="src-sym">]&#8192;</span>.&#8192;<span class="src-str">"\n"</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-sym">}</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">}</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-key">else</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">{</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-comm">//&#8192;authentication&#8192;succeeded,&#8192;so&#8192;allow&#8192;the&#8192;user&#8192;to&#8192;see&#8192;his&#8192;content</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">}</span></div></li>
+</ol><p>Extra data can be fetched from the database during the authentication process,  by registering the data to be fetched before calling run(). Example:  </p><ol><li><div class="src-line">&#8192;<span class="src-comm">//&#8192;$filter&#8192;is&#8192;an&#8192;ezcAuthenticationDatabaseFilter&#8192;object</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$filter</span><span class="src-sym">-&gt;</span><a href="ezcAuthenticationDatabaseFilter.html#methodregisterFetchData">registerFetchData</a><span class="src-sym">(&#8192;</span><span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-str">'name'</span><span class="src-sym">,&#8192;</span><span class="src-str">'country'&#8192;</span><span class="src-sym">)&#8192;)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;after&#8192;run()</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$data&#8192;</span>=&#8192;<span class="src-var">$filter</span><span class="src-sym">-&gt;</span><a href="ezcAuthenticationDatabaseFilter.html#methodfetchData">fetchData</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol><p>The $data array will be something like:  </p><ol><li><div class="src-line">&#8192;<span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-str">'name'&#8192;</span>=&gt;&#8192;<span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-str">'John&#8192;Doe'&#8192;</span><span class="src-sym">)</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'country'&#8192;</span>=&gt;&#8192;<span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-str">'US'&#8192;</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol></div>
+<p>Source for this file: <a href="http://fisheye6.atlassian.com/browse/zetacomponents/trunk/AuthenticationDatabaseTiein/src/filters/database/database_filter.php?r=HEAD">/AuthenticationDatabaseTiein/src/filters/database/database_filter.php</a></p>
+       
+  <h3>Implements interfaces:</h3>
+  <ul><li><a href="/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationDataFetch.html">ezcAuthenticationDataFetch</a></li>  </ul><pre><a href="/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationFilter.html">ezcAuthenticationFilter</a>
+   |
+   --ezcAuthenticationDatabaseFilter</pre>
+
+
+  <table><tr><td>
+            <strong>Version:</strong>&#8192;&#8192;
+          </td>
+          <td>//autogentag//</td>
+        </tr></table><a name="sec-const-summary"></a>
+  <h3>Constants</h3>
+  <table class="summary"><tr><td class="right">
+          <a name="const-STATUS_PASSWORD_INCORRECT" id=""></a>
+          <code>
+            <a href="#const-STATUS_PASSWORD_INCORRECT" title="details" class="const-name-summary">STATUS_PASSWORD_INCORRECT</a>
+             =  2
+          </code>
+        </td>
+        <td>
+          Password is incorrect.                  </td>
+      </tr><tr><td class="right">
+          <a name="const-STATUS_USERNAME_INCORRECT" id=""></a>
+          <code>
+            <a href="#const-STATUS_USERNAME_INCORRECT" title="details" class="const-name-summary">STATUS_USERNAME_INCORRECT</a>
+             =  1
+          </code>
+        </td>
+        <td>
+          Username is not found in the database.                  </td>
+      </tr></table><a name="sec-inherited-consts"></a>
+  <h3>Inherited Constants</h3>
+  <table class="summary"><thead><tr><th colspan="2">
+              From <span class="classname"><a href="/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationFilter.html">ezcAuthenticationFilter</a></span>:
+            </th>
+          </tr></thead><tbody><tr><td class="right">
+                <code><a href="/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationFilter.html#constSTATUS_OK">ezcAuthenticationFilter::STATUS_OK</a></code>
+              </td>
+              <td>
+                &#8192;&#8192;&#8192;Successful authentication.              </td>
+            </tr></tbody></table><a name="sec-prop-summary"></a>
+  <h3>Properties</h3>
+  <table class="summary"><tr><td class="right">
+          <a name="prop%24database" id="$database"></a>
+          <a name="prop-%24database" id="$database"></a>
+          <em><a href="ezcAuthenticationDatabaseInfo.html">ezcAuthenticationDatabaseInfo</a></em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24database" title="details" class="var-name-summary">$database</a>
+                      </code>
+          <br><div style="margin-left: 20px">Structure which holds a database instance, table name and fields            which are used for authentication.</div>        </td>
+      </tr></table><a name="sec-var-summary"></a>
+  <h3>Member Variables</h3>
+  <table class="summary"><tr><td class="right">
+            <em>protected</em>            <em>array(string=&gt;mixed)</em>          </td>
+          <td>
+            <code>
+              $data
+               = <span class="var-default">array()</span>            </code>
+            <br><div style="margin-left: 20px">Holds the extra data fetched during the authentication process.</div>            <br><div style="margin-left: 20px"><p>Usually it has this structure:  </p><ol><li><div class="src-line">&#8192;<span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-str">'name'&#8192;</span>=&gt;&#8192;<span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-str">'John&#8192;Doe'&#8192;</span><span class="src-sym">)</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'country'&#8192;</span>=&gt;&#8192;<span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-str">'US'&#8192;</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol></div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            <em>array(string)</em>          </td>
+          <td>
+            <code>
+              $requestedData
+               = <span class="var-default">array()</span>            </code>
+            <br><div style="margin-left: 20px">Holds the attributes which will be requested during the authentication  process.</div>            <br><div style="margin-left: 20px"><p>Usually it has this structure:  </p><ol><li><div class="src-line">&#8192;<span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-str">'fullname'</span><span class="src-sym">,&#8192;</span><span class="src-str">'gender'</span><span class="src-sym">,&#8192;</span><span class="src-str">'country'</span><span class="src-sym">,&#8192;</span><span class="src-str">'language'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol></div>          </td>
+        </tr></table><h3>Inherited Member Variables</h3>
+  <table class="summary"><thead><tr><th colspan="2">
+            From <span class="classname"><a href="/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationFilter.html">ezcAuthenticationFilter</a></span>         
+          </th>
+        </tr></thead><tbody><tr><td class="right">
+              <em>protected</em>                          </td>
+            <td>
+              <code><a href="/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationFilter.html#var%24options">ezcAuthenticationFilter::$options</a></code>
+              
+            </td>
+          </tr></tbody></table><a name="sec-method-summary"></a>
+  <h3>Method Summary</h3>
+  <table class="summary"><tr><td class="right">
+            <em>public</em>                        <em>ezcAuthenticationDatabaseFilter</em>          </td>
+          <td>
+            <code>
+              <a href="#__construct"><b>__construct</b></a>(
+                                                                                    $database
+                                                    ,                   [                  $options
+                   = null]                               )
+            </code>
+            <br><div style="margin-left: 20px">Creates a new object of this class.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>array(string=&gt;mixed)</em>          </td>
+          <td>
+            <code>
+              <a href="#fetchData"><b>fetchData</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns the extra data which was fetched during the authentication process.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#registerFetchData"><b>registerFetchData</b></a>(
+                                                                  [                  $data
+                   = array()]                               )
+            </code>
+            <br><div style="margin-left: 20px">Registers the extra data which will be fetched by the filter during the  authentication process.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>int</em>          </td>
+          <td>
+            <code>
+              <a href="#run"><b>run</b></a>(
+                                                                                    $credentials
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Runs the filter and returns a status code when finished.</div>          </td>
+        </tr></table><h3>Inherited Methods</h3>
+  <table class="summary"><thead><tr><th colspan="2">
+            From <span class="classname"><a href="/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationFilter.html">ezcAuthenticationFilter</a></span>
+          </th>
+        </tr></thead><tbody><tr><td class="right">
+              <em>public</em>                                          <em><a href="/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationFilterOptions.html">ezcAuthenticationFilterOptions</a></em>            </td>
+            <td>
+              <code><b><a href="/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationFilter.html#methodgetOptions">ezcAuthenticationFilter::getOptions()</a></b></code>
+              <br><div style="margin-left: 20px">Returns the options of this class.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>              abstract                            <em>int</em>            </td>
+            <td>
+              <code><b><a href="/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationFilter.html#methodrun">ezcAuthenticationFilter::run()</a></b></code>
+              <br><div style="margin-left: 20px">Runs the filter and returns a status code when finished.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b><a href="/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationFilter.html#methodsetOptions">ezcAuthenticationFilter::setOptions()</a></b></code>
+              <br><div style="margin-left: 20px">Sets the options of this class to $options.</div>                          </td>
+          </tr></tbody></table><a name="sec-methods"></a>
+  <h3>Methods</h3>
+  <a name="method_detail"></a>
+        
+      <a name="method__construct" id="__construct"><!-- --></a>
+
+    <h4>__construct</h4>
+
+    <div class="method-signature">
+      ezcAuthenticationDatabaseFilter
+      __construct(
+                                  <a href="ezcAuthenticationDatabaseInfo.html">ezcAuthenticationDatabaseInfo</a>
+          $database
+                            ,           [<a href="ezcAuthenticationDatabaseOptions.html">ezcAuthenticationDatabaseOptions</a>
+          $options
+           = null]              )
+    </div>
+
+    <p>Creates a new object of this class.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$database</code></td>
+              <td><em><a href="ezcAuthenticationDatabaseInfo.html">ezcAuthenticationDatabaseInfo</a></em></td>
+              <td>
+                                  Database to use in authentication
+                              </td>
+            </tr><tr><td><code>$options</code></td>
+              <td><em><a href="ezcAuthenticationDatabaseOptions.html">ezcAuthenticationDatabaseOptions</a></em></td>
+              <td>
+                                  Options for this class
+                              </td>
+            </tr></tbody></table><a name="methodfetchData" id="fetchData"><!-- --></a>
+
+    <h4>fetchData</h4>
+
+    <div class="method-signature">
+      array(string=&gt;mixed)
+      fetchData(
+      )
+    </div>
+
+    <p>Returns the extra data which was fetched during the authentication process.</p><div><p>Example of returned array:  </p><ol><li><div class="src-line">&#8192;<span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-str">'name'&#8192;</span>=&gt;&#8192;<span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-str">'John&#8192;Doe'&#8192;</span><span class="src-sym">)</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'country'&#8192;</span>=&gt;&#8192;<span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-str">'US'&#8192;</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol></div>
+    
+        
+
+    
+    
+    
+        <a name="methodregisterFetchData" id="registerFetchData"><!-- --></a>
+
+    <h4>registerFetchData</h4>
+
+    <div class="method-signature">
+      void
+      registerFetchData(
+                                  [
+          $data
+           = array()]              )
+    </div>
+
+    <p>Registers the extra data which will be fetched by the filter during the  authentication process.</p><div><p>The input $data should be an array of attributes, for example:  </p><ol><li><div class="src-line">&#8192;<span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-str">'name'</span><span class="src-sym">,&#8192;</span><span class="src-str">'country'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$data</code></td>
+              <td><em>array(string)</em></td>
+              <td>
+                                  The extra data to fetch during authentication
+                              </td>
+            </tr></tbody></table><a name="methodrun" id="run"><!-- --></a>
+
+    <h4>run</h4>
+
+    <div class="method-signature">
+      int
+      run(
+                                  <a href="/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationPasswordCredentials.html">ezcAuthenticationPasswordCredentials</a>
+          $credentials
+                        )
+    </div>
+
+    <p>Runs the filter and returns a status code when finished.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$credentials</code></td>
+              <td><em><a href="/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationPasswordCredentials.html">ezcAuthenticationPasswordCredentials</a></em></td>
+              <td>
+                                  Authentication credentials
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationFilter.html#methodrun">ezcAuthenticationFilter::run()</a></code></td>
+            <td>
+                              Runs the filter and returns a status code when finished.
+                          </td>
+          </tr></tbody></table><div class="credit">
+      Documentation generated by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+    </div>
+  </div>
+  
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

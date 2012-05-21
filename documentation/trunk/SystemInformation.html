@@ -1,0 +1,103 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="PHP, apache, components, framework, quality" />
+	<meta name="author" content="dotxp" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Wed, 04 Aug 2010 13:07:08 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="SystemInformation" />
+	<meta name="DC.creator" content="dotxp" />
+	<meta name="DC.date" content="Wed, 04 Aug 2010 13:07:08 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/SystemInformation/tutorial.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/SystemInformation/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/SystemInformation/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+
+</ul>
+
+		<h2>eZ Components - SystemInformation</h2><div class="toc"><h3>Table of Contents</h3><ul><li><p><a href="#introduction">Introduction</a></p></li><li><p><a href="#class-overview">Class overview</a></p></li><li><p><a href="#usage">Usage</a></p><ul><li><p><a href="#getting-cpu-type-and-cpu-speed-for-the-current-system">Getting CPU type and CPU speed for the current system</a></p></li></ul></li><li><p><a href="#more-information">More information</a></p></li></ul></div><a name="introduction"></a><a name="id1"></a><h3>Introduction</h3><p>The SystemInformation component provides access to common system variables, such as CPU type and speed and amount of available memory. Currently, SystemInformation supports Linux, FreeBSD and Windows systems.</p><a name="class-overview"></a><a name="id2"></a><h3>Class overview</h3><dl><dt>ezcSystemInfo</dt><dd>This class provides the main API for accessing common system variables. Variables that are not available directly from PHP are fetched using readers specific to each supported system. The corresponding reader is automatically detected and used to scan system information.</dd><dt>ezcSystemInfoReader</dt><dd>ezcSystemInfoReader represents a common abstract interface for operating system (OS) information readers. A particular reader implements the <a href='/zetacomponents/documentation/trunk/SystemInformation/phpdoc/ezcSystemInfoReader.html'>ezcSystemInfoReader</a> interface and scans system information specifically for each supported OS.</dd></dl><p>More information about these classes can be found in the documentation of the classes.</p><a name="usage"></a><a name="id3"></a><h3>Usage</h3><p>The following example demonstrates how to use the SystemInformation component.</p><a name="getting-cpu-type-and-cpu-speed-for-the-current-system"></a><a name="id4"></a><h4>Getting CPU type and CPU speed for the current system</h4><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #0000FF">require_once&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #000000">$info&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/SystemInformation/phpdoc/ezcSystemInfo.html#getInstance'>ezcSystemInfo::getInstance</a></span><span style="color: #0000FF">();</span></li>
+<li><span style="color: #0000FF">echo&nbsp;</span><span style="color: #000000">$info</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">cpuType</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">"\n"</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">echo&nbsp;</span><span style="color: #000000">$info</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">cpuSpeed</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">"\n"</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><a name="more-information"></a><a name="id5"></a><h3>More information</h3><p>For more information, see the SystemInformation API documentation.</p><!--Local Variables:
+mode: rst
+fill-column: 79
+End:
+vim: et syn=rst tw=79-->
+
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

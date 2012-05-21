@@ -1,0 +1,390 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="PHP, apache, components, framework, quality" />
+	<meta name="author" content="dotxp" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Wed, 04 Aug 2010 13:07:37 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="ezcLogDatabaseWriter.html" />
+	<meta name="DC.creator" content="dotxp" />
+	<meta name="DC.date" content="Wed, 04 Aug 2010 13:07:37 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/EventLogDatabaseTiein/phpdoc/ezcLogDatabaseWriter.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/EventLogDatabaseTiein/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/trunk/EventLogDatabaseTiein/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+
+</ul>
+
+		
+  <div class="phpdoc">
+    <h2>Apache Zeta Components Manual :: Docs For Class ezcLogDatabaseWriter</h2>
+
+                  <h3>EventLogDatabaseTiein::ezcLogDatabaseWriter</h3>
+    
+<a name="sec-description"></a>
+<h3>Class ezcLogDatabaseWriter</h3>
+
+<p>The ezcLogDatabaseWriter provides an implementation to write log messages to the database.</p><div><p>Example to use the ezcLogDatabaseWriter:  </p><ol><li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-comm">//&#8192;Get&#8192;the&#8192;database&#8192;instance</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-var">$db&#8192;</span>=&#8192;<span class="src-id"><a href="/zetacomponents/documentation/trunk/Database/phpdoc/ezcDbInstance.html">ezcDbInstance</a></span><span class="src-sym">::</span><a href="/zetacomponents/documentation/trunk/Database/phpdoc/ezcDbInstance.html#methodget">get</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-comm">//&#8192;Get&#8192;the&#8192;log&#8192;instance</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-var">$log&#8192;</span>=&#8192;<span class="src-id"><a href="/zetacomponents/documentation/trunk/EventLog/phpdoc/ezcLog.html">ezcLog</a></span><span class="src-sym">::</span><a href="/zetacomponents/documentation/trunk/EventLog/phpdoc/ezcLog.html#methodgetInstance">getInstance</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-comm">//&#8192;Create&#8192;a&#8192;new&#8192;ezcLogDatabaseWriter&#8192;object&#8192;based&#8192;on&#8192;the&#8192;database&#8192;instance</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-comm">//&#8192;and&#8192;with&#8192;the&#8192;default&#8192;table&#8192;name&#8192;"log".</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-comm">//&#8192;The&#8192;"log"&#8192;table&#8192;must&#8192;exist&#8192;already&#8192;in&#8192;the&#8192;database,&#8192;and&#8192;must&#8192;have&#8192;a&#8192;compatible&#8192;structure,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-comm">//&#8192;with&#8192;any&#8192;additional&#8192;fields&#8192;that&#8192;you&#8192;may&#8192;require,&#8192;eg.&#8192;you&#8192;can&#8192;use&#8192;this&#8192;example&#8192;schema,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-comm">//&#8192;where&#8192;the&#8192;default&#8192;fields&#8192;are:&#8192;id,&#8192;category,&#8192;message,&#8192;severity,&#8192;source,&#8192;time</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-comm">//&#8192;and&#8192;the&#8192;additional&#8192;fields&#8192;are:&#8192;file,&#8192;line</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-comm">//&#8192;DROP&#8192;TABLE&#8192;IF&#8192;EXISTS&#8192;log;</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-comm">//&#8192;CREATE&#8192;TABLE&#8192;log&#8192;(</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-comm">//&#8192;&#8192;&#8192;category&#8192;varchar(255)&#8192;NOT&#8192;NULL,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-comm">//&#8192;&#8192;&#8192;file&#8192;varchar(255),</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-comm">//&#8192;&#8192;&#8192;id&#8192;bigint&#8192;NOT&#8192;NULL&#8192;AUTO_INCREMENT&#8192;PRIMARY&#8192;KEY,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-comm">//&#8192;&#8192;&#8192;line&#8192;bigint,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-comm">//&#8192;&#8192;&#8192;message&#8192;varchar(255)&#8192;NOT&#8192;NULL,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-comm">//&#8192;&#8192;&#8192;severity&#8192;varchar(255)&#8192;NOT&#8192;NULL,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-comm">//&#8192;&#8192;&#8192;source&#8192;varchar(255)&#8192;NOT&#8192;NULL,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-comm">//&#8192;&#8192;&#8192;time&#8192;timestamp&#8192;NOT&#8192;NULL</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-comm">//&#8192;);</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-var">$writer&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcLogDatabaseWriter.html">ezcLogDatabaseWriter</a></span><span class="src-sym">(&#8192;</span><span class="src-var">$db</span><span class="src-sym">,&#8192;</span><span class="src-str">"log"&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-comm">//&#8192;Specify&#8192;that&#8192;log&#8192;messages&#8192;will&#8192;be&#8192;written&#8192;to&#8192;the&#8192;database</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-var">$log</span><span class="src-sym">-&gt;</span><span class="src-id">getMapper</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">-&gt;</span><span class="src-id">appendRule</span><span class="src-sym">(&#8192;</span><span class="src-key">new&#8192;</span><span class="src-id"><a href="/zetacomponents/documentation/trunk/EventLog/phpdoc/ezcLogFilterRule.html">ezcLogFilterRule</a></span><span class="src-sym">(&#8192;</span><span class="src-key">new&#8192;</span><span class="src-id"><a href="/zetacomponents/documentation/trunk/EventLog/phpdoc/ezcLogFilter.html">ezcLogFilter</a></span><span class="src-sym">,&#8192;</span><span class="src-var">$writer</span><span class="src-sym">,&#8192;</span><span class="src-id">true&#8192;</span><span class="src-sym">)&#8192;)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-comm">//&#8192;Write&#8192;a&#8192;log&#8192;entry&#8192;(&#8192;message,&#8192;severity,&#8192;source,&#8192;category&#8192;)</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-var">$log</span><span class="src-sym">-&gt;</span><a href="http://www.php.net/log">log</a><span class="src-sym">(&#8192;</span><span class="src-str">"File&#8192;'/images/spacer.gif'&#8192;does&#8192;not&#8192;exist."</span><span class="src-sym">,&#8192;</span><span class="src-id"><a href="/zetacomponents/documentation/trunk/EventLog/phpdoc/ezcLog.html">ezcLog</a></span><span class="src-sym">::</span><span class="src-id">WARNING</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-str">"source"&#8192;</span>=&gt;&#8192;<span class="src-str">"Application"</span><span class="src-sym">,&#8192;</span><span class="src-str">"category"&#8192;</span>=&gt;&#8192;<span class="src-str">"Design"&#8192;</span><span class="src-sym">)&#8192;)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-comm">//&#8192;Write&#8192;a&#8192;log&#8192;entry&#8192;(&#8192;message,&#8192;severity,&#8192;source,&#8192;category,&#8192;file,&#8192;line&#8192;)</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-var">$log</span><span class="src-sym">-&gt;</span><a href="http://www.php.net/log">log</a><span class="src-sym">(&#8192;</span><span class="src-str">"File&#8192;'/images/spacer.gif'&#8192;does&#8192;not&#8192;exist."</span><span class="src-sym">,&#8192;</span><span class="src-id"><a href="/zetacomponents/documentation/trunk/EventLog/phpdoc/ezcLog.html">ezcLog</a></span><span class="src-sym">::</span><span class="src-id">WARNING</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-str">"source"&#8192;</span>=&gt;&#8192;<span class="src-str">"Application"</span><span class="src-sym">,&#8192;</span><span class="src-str">"category"&#8192;</span>=&gt;&#8192;<span class="src-str">"Design"&#8192;</span><span class="src-sym">)</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-str">"file"&#8192;</span>=&gt;&#8192;<span class="src-str">"/index.php"</span><span class="src-sym">,&#8192;</span><span class="src-str">"line"&#8192;</span>=&gt;&#8192;<span class="src-num">123&#8192;</span><span class="src-sym">)&#8192;)</span><span class="src-sym">;</span></div></li>
+</ol></div>
+<p>Source for this file: <a href="http://fisheye6.atlassian.com/browse/zetacomponents/trunk/EventLogDatabaseTiein/src/writers/writer_database.php?r=HEAD">/EventLogDatabaseTiein/src/writers/writer_database.php</a></p>
+       
+  <h3>Implements interfaces:</h3>
+  <ul><li><a href="/zetacomponents/documentation/trunk/EventLog/phpdoc/ezcLogWriter.html">ezcLogWriter</a></li>  </ul><table><tr><td>
+            <strong>Version:</strong>&#8192;&#8192;
+          </td>
+          <td>//autogentag//</td>
+        </tr></table><a name="sec-prop-summary"></a>
+  <h3>Properties</h3>
+  <table class="summary"><tr><td class="right">
+          <a name="prop%24category" id="$category"></a>
+          <a name="prop-%24category" id="$category"></a>
+          <em>string</em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24category" title="details" class="var-name-summary">$category</a>
+                      </code>
+          <br><div style="margin-left: 20px">The name of the column category.</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24datetime" id="$datetime"></a>
+          <a name="prop-%24datetime" id="$datetime"></a>
+          <em>string</em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24datetime" title="details" class="var-name-summary">$datetime</a>
+                      </code>
+          <br><div style="margin-left: 20px">The name of the column datetime.</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24message" id="$message"></a>
+          <a name="prop-%24message" id="$message"></a>
+          <em>string</em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24message" title="details" class="var-name-summary">$message</a>
+                      </code>
+          <br><div style="margin-left: 20px">The name of the column message.</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24severity" id="$severity"></a>
+          <a name="prop-%24severity" id="$severity"></a>
+          <em>string</em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24severity" title="details" class="var-name-summary">$severity</a>
+                      </code>
+          <br><div style="margin-left: 20px">The name of the column severity.</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24source" id="$source"></a>
+          <a name="prop-%24source" id="$source"></a>
+          <em>string</em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24source" title="details" class="var-name-summary">$source</a>
+                      </code>
+          <br><div style="margin-left: 20px">The name of the column source.</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24table" id="$table"></a>
+          <a name="prop-%24table" id="$table"></a>
+          <em>string</em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24table" title="details" class="var-name-summary">$table</a>
+                      </code>
+          <br><div style="margin-left: 20px">The table name.</div>        </td>
+      </tr></table><a name="sec-method-summary"></a>
+  <h3>Method Summary</h3>
+  <table class="summary"><tr><td class="right">
+            <em>public</em>                        <em>ezcLogDatabaseWriter</em>          </td>
+          <td>
+            <code>
+              <a href="#__construct"><b>__construct</b></a>(
+                                                                                    $databaseInstance
+                                                    ,                   [                  $defaultTable
+                   = false]                               )
+            </code>
+            <br><div style="margin-left: 20px">Construct a new database log-writer.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>array(string=&gt;string)</em>          </td>
+          <td>
+            <code>
+              <a href="#getColumnTranslations"><b>getColumnTranslations</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns an array that describes the coupling between the logMessage  information and the columns in the database.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#setTable"><b>setTable</b></a>(
+                                                                                    $logFilter
+                                                    ,                                     $tableName
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Maps the table $tableName to the messages specified by the <a href="/zetacomponents/documentation/trunk/EventLog/phpdoc/ezcLogFilter.html">ezcLogFilter</a> $logFilter.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#writeLogMessage"><b>writeLogMessage</b></a>(
+                                                                                    $message
+                                                    ,                                     $severity
+                                                    ,                                     $source
+                                                    ,                                     $category
+                                                    ,                   [                  $optional
+                   = array()]                               )
+            </code>
+            <br><div style="margin-left: 20px">Writes the message $message to the log.</div>          </td>
+        </tr></table><a name="sec-methods"></a>
+  <h3>Methods</h3>
+  <a name="method_detail"></a>
+        
+      <a name="method__construct" id="__construct"><!-- --></a>
+
+    <h4>__construct</h4>
+
+    <div class="method-signature">
+      ezcLogDatabaseWriter
+      __construct(
+                                  
+          $databaseInstance
+                            ,           [string
+          $defaultTable
+           = false]              )
+    </div>
+
+    <p>Construct a new database log-writer.</p><div><p>If $databaseInstance is given, that instance will be used for writing. If it  is omitted the default database instance will be retrieved.</p><p>This constructor is a tie-in.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$databaseInstance</code></td>
+              <td><em><a href="/zetacomponents/documentation/trunk/Database/phpdoc/ezcDbHandler.html">ezcDbHandler</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$defaultTable</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodgetColumnTranslations" id="getColumnTranslations"><!-- --></a>
+
+    <h4>getColumnTranslations</h4>
+
+    <div class="method-signature">
+      array(string=&gt;string)
+      getColumnTranslations(
+      )
+    </div>
+
+    <p>Returns an array that describes the coupling between the logMessage  information and the columns in the database.</p>
+    
+        
+
+    
+    
+    
+        <a name="methodsetTable" id="setTable"><!-- --></a>
+
+    <h4>setTable</h4>
+
+    <div class="method-signature">
+      void
+      setTable(
+                                  
+          $logFilter
+                            ,           string
+          $tableName
+                        )
+    </div>
+
+    <p>Maps the table $tableName to the messages specified by the <a href="/zetacomponents/documentation/trunk/EventLog/phpdoc/ezcLogFilter.html">ezcLogFilter</a> $logFilter.</p><div><p>Log messages that matches with the filter are written to the table $tableName.  This method works the same as ezclog::map().</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$logFilter</code></td>
+              <td><em><a href="/zetacomponents/documentation/trunk/EventLog/phpdoc/ezcLogFilter.html">ezcLogFilter</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$tableName</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodwriteLogMessage" id="writeLogMessage"><!-- --></a>
+
+    <h4>writeLogMessage</h4>
+
+    <div class="method-signature">
+      void
+      writeLogMessage(
+                                  string
+          $message
+                            ,           int
+          $severity
+                            ,           
+          $source
+                            ,           string
+          $category
+                            ,           [array(string=&gt;string)
+          $optional
+           = array()]              )
+    </div>
+
+    <p>Writes the message $message to the log.</p><div><p>The writer can use the severity, source, and category to filter the  incoming messages and determine the location where the messages should  be written.</p><p>$optional may contain extra information that can be added to the log. For example:  line numbers, file names, usernames, etc.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$message</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$severity</code></td>
+              <td><em>int</em></td>
+              <td>
+                                  ezcLog:: DEBUG, SUCCES_AUDIT, FAILED_AUDIT, INFO, NOTICE, WARNING, ERROR or FATAL.  $param string $source
+                              </td>
+            </tr><tr><td><code>$category</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$optional</code></td>
+              <td><em>array(string=&gt;string)</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$source</code></td>
+              <td><em></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="/zetacomponents/documentation/trunk/EventLog/phpdoc/ezcLogWriterException.html">ezcLogWriterException</a></code></td>
+              <td>
+                                  If the log writer was unable to write the log message
+                              </td>
+            </tr></tbody></table><div class="credit">
+      Documentation generated by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+    </div>
+  </div>
+  
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

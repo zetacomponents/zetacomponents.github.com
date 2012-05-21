@@ -1,0 +1,1293 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="" />
+	<meta name="author" content="jerome" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Sun, 10 Jul 2011 11:11:10 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="ezcWebdavTransport.html" />
+	<meta name="DC.creator" content="jerome" />
+	<meta name="DC.date" content="Sun, 10 Jul 2011 11:11:10 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/Webdav/phpdoc/ezcWebdavTransport.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/Webdav/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/trunk/Webdav/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Webdav/clients.html" title="Clients ">Clients </a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Webdav/plugin_architecture.html" title="Plugin_architecture ">Plugin_architecture </a>
+	</li>
+
+</ul>
+
+		
+  <div class="phpdoc">
+    <h2>Apache Zeta Components Manual :: Docs For Class ezcWebdavTransport</h2>
+
+                  <h3>Webdav::ezcWebdavTransport</h3>
+    
+<a name="sec-description"></a>
+<h3>Class ezcWebdavTransport</h3>
+
+<p>Transport layer mainclass that implements RFC compliant client communication.</p><div><p>This basis transport class is able to interact with RFC 2518 compliant  WebDAV clients. It can parse all request types defined in the RFC into the  abstraction layer of the Webdav component, defined by the base classes  mentioned below. An exception are LOCK related requests, which will be  handled by a plugin.</p><p>To adjust this base transport layer main class to the needs of  RFC-2518-inconform client implementations, there is the powerful  possibility of extending this class and overwriting certain necessary  protected methods. The easier way to adjust smaller issues is to replace one  of the helper components during construction of via property access.</p><p>The ezcWebdavServer-&gt;xmlTool property will be used which is  accessed for different XML related operations. Exchanging this one will  allow you to manipulate the XML handling for the transport layer in  general.</p><p>The ezcWebdavServer-&gt;propertyHandler property, of type <a href="ezcWebdavPropertyHandler.html">ezcWebdavPropertyHandler</a> will be used in the accordingly named property and  is responsible for extracting WebDAV properties from a DOMElement  and to serialize them back to one.</p><p>The ezcWebdavServer-&gt;pathFactory property must be an instance of  <a href="ezcWebdavPathFactory.html">ezcWebdavPathFactory</a> and is used to convert between internal WebDAV  paths (resource locations understood by the <a href="ezcWebdavBackend.html">ezcWebdavBackend</a>) and  URIs that reference a resource on the web.</p><p>An instance of this class is by default capable of parsing the follwoing  HTTP request methods:  </p><ul><li>COPY</li><li>DELETE</li><li>GET</li><li>HEAD</li><li>MKCOL</li><li>MOVE</li><li>OPTIONS</li><li>PROPFIND</li><li>PROPPATCH'</li><li>PUT</li></ul><p>The transport implementation is capable of handling the following response  classes and output the to the client:  </p><ul><li><a href="ezcWebdavCopyResponse.html">ezcWebdavCopyResponse</a></li><li><a href="ezcWebdavDeleteResponse.html">ezcWebdavDeleteResponse</a></li><li><a href="ezcWebdavErrorResponse.html">ezcWebdavErrorResponse</a></li><li><a href="ezcWebdavGetCollectionResponse.html">ezcWebdavGetCollectionResponse</a></li><li><a href="ezcWebdavGetResourceResponse.html">ezcWebdavGetResourceResponse</a></li><li><a href="ezcWebdavHeadResponse.html">ezcWebdavHeadResponse</a></li><li><a href="ezcWebdavMakeCollectionResponse.html">ezcWebdavMakeCollectionResponse</a></li><li><a href="ezcWebdavMoveResponse.html">ezcWebdavMoveResponse</a></li><li>ezcWebdavMultiStatusResponse</li><li><a href="ezcWebdavOptionsResponse.html">ezcWebdavOptionsResponse</a></li><li><a href="ezcWebdavPropFindResponse.html">ezcWebdavPropFindResponse</a></li><li><a href="ezcWebdavPropPatchResponse.html">ezcWebdavPropPatchResponse</a></li><li><a href="ezcWebdavPutResponse.html">ezcWebdavPutResponse</a></li></ul></div>
+<p>Source for this file: <a href="http://fisheye6.atlassian.com/browse/zetacomponents/trunk/Webdav/src/transport.php?r=HEAD">/Webdav/src/transport.php</a></p>
+       
+
+
+
+
+  <table><tr><td>
+            <strong>Version:</strong>&#8192;&#8192;
+          </td>
+          <td>//autogentag//</td>
+        </tr><tr><td>
+            <strong>Link:</strong>&#8192;&#8192;
+          </td>
+          <td><a href="http://tools.ietf.org/html/rfc2518">RFC 2518</a></td>
+        </tr></table><a name="sec-descendants"></a>
+  <h3>Descendants</h3>
+  <table class="detail"><thead><tr><th>Child Class</th>
+        <th>Description</th>
+      </tr></thead><tbody><tr><td><a href="ezcWebdavKonquerorCompatibleTransport.html">ezcWebdavKonquerorCompatibleTransport</a></td>          <td>
+                          Transport layer for the Konqueror web browser (KDE).
+                      </td>
+        </tr><tr><td><a href="ezcWebdavMicrosoftCompatibleTransport.html">ezcWebdavMicrosoftCompatibleTransport</a></td>          <td>
+                          Transport layer for Microsoft clients with RFC incompatiblities.
+                      </td>
+        </tr></tbody></table><a name="sec-const-summary"></a>
+  <h3>Constants</h3>
+  <table class="summary"><tr><td class="right">
+          <a name="const-VERSION" id=""></a>
+          <code>
+            <a href="#const-VERSION" title="details" class="const-name-summary">VERSION</a>
+             =  '//autogentag//'
+          </code>
+        </td>
+        <td>
+          Used for server software string in Server header.                  </td>
+      </tr></table><a name="sec-var-summary"></a>
+  <h3>Member Variables</h3>
+  <table class="summary"><tr><td class="right">
+            <em>public</em>            static
+            <em>array(string=&gt;string)</em>          </td>
+          <td>
+            <code>
+              $handlingMap
+                          </code>
+            <br><div style="margin-left: 20px">Map of response objects to handling methods.</div>            <br><div style="margin-left: 20px"><p>Need public access here to retrieve this in <a href="ezcWebdavPluginRegistry.html">ezcWebdavPluginRegistry</a>.</p></div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>            static
+            <em>array(string=&gt;string)</em>          </td>
+          <td>
+            <code>
+              $parsingMap
+                          </code>
+            <br><div style="margin-left: 20px">Map of HTTP methods to object method names for parsing.</div>            <br><div style="margin-left: 20px"><p>Need public access here to retrieve this in <a href="ezcWebdavPluginRegistry.html">ezcWebdavPluginRegistry</a>.</p></div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            <em>array(string=&gt;mixed)</em>          </td>
+          <td>
+            <code>
+              $properties
+               = <span class="var-default">array()</span>            </code>
+            <br><div style="margin-left: 20px">Properties.</div>                      </td>
+        </tr></table><a name="sec-method-summary"></a>
+  <h3>Method Summary</h3>
+  <table class="summary"><tr><td class="right">
+            <em>protected</em>                        <em><a href="ezcWebdavOutputResult.html">ezcWebdavOutputResult</a></em>          </td>
+          <td>
+            <code>
+              <a href="#flattenResponse"><b>flattenResponse</b></a>(
+                                                                                    $info
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Flattens a processed response object to headers and body.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em><a href="ezcWebdavErrorResponse.html">ezcWebdavErrorResponse</a></em>          </td>
+          <td>
+            <code>
+              <a href="#handleException"><b>handleException</b></a>(
+                                                                                    $e
+                                                    ,                   [                  $uri
+                   = null]                               )
+            </code>
+            <br><div style="margin-left: 20px">Handle a thrown exception and generate an error response from it.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#handleResponse"><b>handleResponse</b></a>(
+                                                                                    $response
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Handle a response and send it to the WebDAV client.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em><a href="ezcWebdavCopyRequest.html">ezcWebdavCopyRequest</a></em>          </td>
+          <td>
+            <code>
+              <a href="#parseCopyRequest"><b>parseCopyRequest</b></a>(
+                                                                                    $path
+                                                    ,                                     $body
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Parses the COPY request and returns a request object.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em><a href="ezcWebdavDeleteRequest.html">ezcWebdavDeleteRequest</a></em>          </td>
+          <td>
+            <code>
+              <a href="#parseDeleteRequest"><b>parseDeleteRequest</b></a>(
+                                                                                    $path
+                                                    ,                                     $body
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Parses the DELETE request and returns a request object.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em><a href="ezcWebdavGetRequest.html">ezcWebdavGetRequest</a></em>          </td>
+          <td>
+            <code>
+              <a href="#parseGetRequest"><b>parseGetRequest</b></a>(
+                                                                                    $path
+                                                    ,                                     $body
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Parses the GET request and returns a request object.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em><a href="ezcWebdavHeadRequest.html">ezcWebdavHeadRequest</a></em>          </td>
+          <td>
+            <code>
+              <a href="#parseHeadRequest"><b>parseHeadRequest</b></a>(
+                                                                                    $path
+                                                    ,                                     $body
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Parses the HEAD request and returns a request object.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em><a href="ezcWebdavMakeCollectionRequest.html">ezcWebdavMakeCollectionRequest</a></em>          </td>
+          <td>
+            <code>
+              <a href="#parseMakeCollectionRequest"><b>parseMakeCollectionRequest</b></a>(
+                                                                                    $path
+                                                    ,                                     $body
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Parses the MKCOL request and returns a request object.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em><a href="ezcWebdavMoveRequest.html">ezcWebdavMoveRequest</a></em>          </td>
+          <td>
+            <code>
+              <a href="#parseMoveRequest"><b>parseMoveRequest</b></a>(
+                                                                                    $path
+                                                    ,                                     $body
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Parses the MOVE request and returns a request object.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em><a href="ezcWebdavOptionsRequest.html">ezcWebdavOptionsRequest</a></em>          </td>
+          <td>
+            <code>
+              <a href="#parseOptionsRequest"><b>parseOptionsRequest</b></a>(
+                                                                                    $path
+                                                    ,                                     $body
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Parses the OPTIONS request and returns a request object.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em><a href="ezcWebdavCopyRequest.html">ezcWebdavCopyRequest</a>|<a href="ezcWebdavMoveRequest.html">ezcWebdavMoveRequest</a></em>          </td>
+          <td>
+            <code>
+              <a href="#parsePropertyBehaviourContent"><b>parsePropertyBehaviourContent</b></a>(
+                                                                                    $dom
+                                                    ,                                     $request
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Parses the &lt;propertybehavior /&gt; XML element.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em><a href="ezcWebdavPropFindRequest.html">ezcWebdavPropFindRequest</a></em>          </td>
+          <td>
+            <code>
+              <a href="#parsePropFindRequest"><b>parsePropFindRequest</b></a>(
+                                                                                    $path
+                                                    ,                                     $body
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Parses the PROPFIND request and returns a request object.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em><a href="ezcWebdavPropPatchRequest.html">ezcWebdavPropPatchRequest</a></em>          </td>
+          <td>
+            <code>
+              <a href="#parsePropPatchRequest"><b>parsePropPatchRequest</b></a>(
+                                                                                    $path
+                                                    ,                                     $body
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Parses the PROPPATCH request and returns a request object.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em><a href="ezcWebdavPutRequest.html">ezcWebdavPutRequest</a></em>          </td>
+          <td>
+            <code>
+              <a href="#parsePutRequest"><b>parsePutRequest</b></a>(
+                                                                                    $path
+                                                    ,                                     $body
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Parses the PUT request and returns a request object.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em><a href="ezcWebdavRequest.html">ezcWebdavRequest</a>|<a href="ezcWebdavResponse.html">ezcWebdavResponse</a></em>          </td>
+          <td>
+            <code>
+              <a href="#parseRequest"><b>parseRequest</b></a>(
+                                                                                    $uri
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Parses the incoming request into a fitting request abstraction object.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em><a href="ezcWebdavEmptyDisplayInformation.html">ezcWebdavEmptyDisplayInformation</a></em>          </td>
+          <td>
+            <code>
+              <a href="#processCopyResponse"><b>processCopyResponse</b></a>(
+                                                                                    $response
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns display information for a copy response object.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em><a href="ezcWebdavEmptyDisplayInformation.html">ezcWebdavEmptyDisplayInformation</a></em>          </td>
+          <td>
+            <code>
+              <a href="#processDeleteResponse"><b>processDeleteResponse</b></a>(
+                                                                                    $response
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns display information for a delete response object.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em><a href="ezcWebdavXmlDisplayInformation.html">ezcWebdavXmlDisplayInformation</a>|<a href="ezcWebdavEmptyDisplayInformation.html">ezcWebdavEmptyDisplayInformation</a></em>          </td>
+          <td>
+            <code>
+              <a href="#processErrorResponse"><b>processErrorResponse</b></a>(
+                                                                                    $response
+                                                    ,                   [                  $xml
+                   = false]                               )
+            </code>
+            <br><div style="margin-left: 20px">Returns display information for a error response object.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em><a href="ezcWebdavEmptyDisplayInformation.html">ezcWebdavEmptyDisplayInformation</a></em>          </td>
+          <td>
+            <code>
+              <a href="#processGetCollectionResponse"><b>processGetCollectionResponse</b></a>(
+                                                                                    $response
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns display information for a get response for a collection.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em><a href="ezcWebdavStringDisplayInformation.html">ezcWebdavStringDisplayInformation</a></em>          </td>
+          <td>
+            <code>
+              <a href="#processGetResourceResponse"><b>processGetResourceResponse</b></a>(
+                                                                                    $response
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns display information for a get response on a non-collection.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em><a href="ezcWebdavEmptyDisplayInformation.html">ezcWebdavEmptyDisplayInformation</a></em>          </td>
+          <td>
+            <code>
+              <a href="#processHeadResponse"><b>processHeadResponse</b></a>(
+                                                                                    $response
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns display information for a head response object.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em><a href="ezcWebdavEmptyDisplayInformation.html">ezcWebdavEmptyDisplayInformation</a></em>          </td>
+          <td>
+            <code>
+              <a href="#processMakeCollectionResponse"><b>processMakeCollectionResponse</b></a>(
+                                                                                    $response
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns display information for a make collection response object.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em><a href="ezcWebdavEmptyDisplayInformation.html">ezcWebdavEmptyDisplayInformation</a></em>          </td>
+          <td>
+            <code>
+              <a href="#processMoveResponse"><b>processMoveResponse</b></a>(
+                                                                                    $response
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns display information for a move response object.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em><a href="ezcWebdavXmlDisplayInformation.html">ezcWebdavXmlDisplayInformation</a></em>          </td>
+          <td>
+            <code>
+              <a href="#processMultiStatusResponse"><b>processMultiStatusResponse</b></a>(
+                                                                                    $response
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns display information for a multistatus response object.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em><a href="ezcWebdavEmptyDisplayInformation.html">ezcWebdavEmptyDisplayInformation</a></em>          </td>
+          <td>
+            <code>
+              <a href="#processOptionsResponse"><b>processOptionsResponse</b></a>(
+                                                                                    $response
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns display information for a options response object.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em><a href="ezcWebdavXmlDisplayInformation.html">ezcWebdavXmlDisplayInformation</a></em>          </td>
+          <td>
+            <code>
+              <a href="#processPropFindResponse"><b>processPropFindResponse</b></a>(
+                                                                                    $response
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns display information for a prop find response object.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em><a href="ezcWebdavEmptyDisplayInformation.html">ezcWebdavEmptyDisplayInformation</a></em>          </td>
+          <td>
+            <code>
+              <a href="#processPropPatchResponse"><b>processPropPatchResponse</b></a>(
+                                                                                    $response
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns display information for a prop patch response object.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em><a href="ezcWebdavXmlDisplayInformation.html">ezcWebdavXmlDisplayInformation</a></em>          </td>
+          <td>
+            <code>
+              <a href="#processPropStatResponse"><b>processPropStatResponse</b></a>(
+                                                                                    $response
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns display information for a prop stat response object.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em><a href="ezcWebdavEmptyDisplayInformation.html">ezcWebdavEmptyDisplayInformation</a></em>          </td>
+          <td>
+            <code>
+              <a href="#processPutResponse"><b>processPutResponse</b></a>(
+                                                                                    $response
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns display information for a put response object.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#retreiveBody"><b>retreiveBody</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns the body content of the request.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#retrieveBody"><b>retrieveBody</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns the body content of the request.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#retrievePath"><b>retrievePath</b></a>(
+                                                                                    $uri
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns the translated request path.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#sendResponse"><b>sendResponse</b></a>(
+                                                                                    $output
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Finally sends out the response.</div>          </td>
+        </tr></table><a name="sec-methods"></a>
+  <h3>Methods</h3>
+  <a name="method_detail"></a>
+                                                                  
+      <a name="methodflattenResponse" id="flattenResponse"><!-- --></a>
+
+    <h4>flattenResponse</h4>
+
+    <div class="method-signature">
+      <a href="ezcWebdavOutputResult.html">ezcWebdavOutputResult</a>
+      flattenResponse(
+                                  <a href="ezcWebdavDisplayInformation.html">ezcWebdavDisplayInformation</a>
+          $info
+                        )
+    </div>
+
+    <p>Flattens a processed response object to headers and body.</p><div><p>Takes a given <a href="ezcWebdavDisplayInformation.html">ezcWebdavDisplayInformation</a> object and returns an  array containg the headers and body it represents.</p><p>The returned information can be processed (send out to the client) by  <a href="ezcWebdavTransport.html#methodsendResponse">ezcWebdavTransport::sendResponse()</a>.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$info</code></td>
+              <td><em><a href="ezcWebdavDisplayInformation.html">ezcWebdavDisplayInformation</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcWebdavInvalidHeaderException.html">ezcWebdavInvalidHeaderException</a></code></td>
+              <td>
+                                  if the generated result is an <a href="ezcWebdavEmptyDisplayInformation.html">ezcWebdavEmptyDisplayInformation</a> and the contained <a href="ezcWebdavResponse.html">ezcWebdavResponse</a> object has a Content-Type or a Content-Length header set.
+                              </td>
+            </tr><tr><td><code><a href="ezcWebdavMissingHeaderException.html">ezcWebdavMissingHeaderException</a></code></td>
+              <td>
+                                  if the generated result is an <a href="ezcWebdavStringDisplayInformation.html">ezcWebdavStringDisplayInformation</a> struct and the contained <a href="ezcWebdavResponse.html">ezcWebdavResponse</a> object has no Content-Type header set.
+                              </td>
+            </tr></tbody></table><h5>Redefined in descendants as:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcWebdavMicrosoftCompatibleTransport.html#methodflattenResponse">ezcWebdavMicrosoftCompatibleTransport::flattenResponse()</a></code></td>
+              <td>
+                Flattens a processed response object to headers and body.&#8192;
+              </td>
+            </tr></tbody></table><a name="methodhandleException" id="handleException"><!-- --></a>
+
+    <h4>handleException</h4>
+
+    <div class="method-signature">
+      <a href="ezcWebdavErrorResponse.html">ezcWebdavErrorResponse</a>
+      handleException(
+                                  
+          $e
+                            ,           [string
+          $uri
+           = null]              )
+    </div>
+
+    <p>Handle a thrown exception and generate an error response from it.</p><div><p>Takes the given exception $e and generates a response object from it.  The $uri parameter will be given to <a href="ezcWebdavErrorResponse.html#method__construct">ezcWebdavErrorResponse::__construct()</a>.</p><p>For special exceptions, special responses will be generated:  </p><ul><li>ezcWebdavBadRequestException: 400 Bad Request</li><li>ezcWebdavInvalidRequestMethodException: 501 Not Implemented</li></ul><p>Per default, a 500 Internal Server Error response will be generated.</p><p>Depending on where this is called, the generatedResponse hook will be  issued (if during request parsing), but the processErrorResponse hooks  will allways be called. NOTE: The plugin API is not public, yet, and  will be part of a next release.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$e</code></td>
+              <td><em>Exception</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$uri</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodhandleResponse" id="handleResponse"><!-- --></a>
+
+    <h4>handleResponse</h4>
+
+    <div class="method-signature">
+      void
+      handleResponse(
+                                  <a href="ezcWebdavResponse.html">ezcWebdavResponse</a>
+          $response
+                        )
+    </div>
+
+    <p>Handle a response and send it to the WebDAV client.</p><div><p>This method is part of the integral communication API between the WebDAV  client and the <a href="ezcWebdavServer.html">ezcWebdavServer</a>. It is declared final to ensure a  minimal compatibile API between the extended classes and it is  responsible to dispatch the <a href="ezcWebdavPluginRegistry.html">ezcWebdavPluginRegistry</a> hooks. NOTE:  The plugin API is not public, yet, and will be part of a next release.</p><p>It currently just maps internally to processResponse() and  passes the result to {@ $this-&gt;sendResponse()}. It is not recommended  that the $this-&gt;processResponse() method is overwritten, because  this one takes care about the dispatching. The $this-&gt;sendResponse() may be overwritten, mainly for debugging, testing  and logging purposes.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$response</code></td>
+              <td><em><a href="ezcWebdavResponse.html">ezcWebdavResponse</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodparseCopyRequest" id="parseCopyRequest"><!-- --></a>
+
+    <h4>parseCopyRequest</h4>
+
+    <div class="method-signature">
+      <a href="ezcWebdavCopyRequest.html">ezcWebdavCopyRequest</a>
+      parseCopyRequest(
+                                  string
+          $path
+                            ,           string
+          $body
+                        )
+    </div>
+
+    <p>Parses the COPY request and returns a request object.</p><div><p>This method is responsible for parsing the COPY request. It retrieves  the current request URI in $path and the request body as $body.  The  return value, if no exception is thrown, is a valid <a href="ezcWebdavCopyRequest.html">ezcWebdavCopyRequest</a> object.</p><p>This method may be overwritten to adjust it to special client behaviour.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$path</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$body</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcWebdavInvalidRequestBodyException.html">ezcWebdavInvalidRequestBodyException</a></code></td>
+              <td>
+                                  if the body of the copy request is invalid (XML wise or RFC wise).
+                              </td>
+            </tr></tbody></table><a name="methodparseDeleteRequest" id="parseDeleteRequest"><!-- --></a>
+
+    <h4>parseDeleteRequest</h4>
+
+    <div class="method-signature">
+      <a href="ezcWebdavDeleteRequest.html">ezcWebdavDeleteRequest</a>
+      parseDeleteRequest(
+                                  string
+          $path
+                            ,           string
+          $body
+                        )
+    </div>
+
+    <p>Parses the DELETE request and returns a request object.</p><div><p>This method is responsible for parsing the DELETE request. It retrieves  the current request URI in $path and the request body as $body.  The  return value, if no exception is thrown, is a valid <a href="ezcWebdavDeleteRequest.html">ezcWebdavDeleteRequest</a> object.</p><p>This method may be overwritten to adjust it to special client behaviour.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$path</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$body</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodparseGetRequest" id="parseGetRequest"><!-- --></a>
+
+    <h4>parseGetRequest</h4>
+
+    <div class="method-signature">
+      <a href="ezcWebdavGetRequest.html">ezcWebdavGetRequest</a>
+      parseGetRequest(
+                                  string
+          $path
+                            ,           string
+          $body
+                        )
+    </div>
+
+    <p>Parses the GET request and returns a request object.</p><div><p>This method is responsible for parsing the GET request. It retrieves the  current request URI in $path and the request body as $body. The return  value, if no exception is thrown, is a valid <a href="ezcWebdavGetResourceResponse.html">ezcWebdavGetResourceResponse</a> object.</p><p>This method may be overwritten to adjust it to special client behaviour.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$path</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$body</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodparseHeadRequest" id="parseHeadRequest"><!-- --></a>
+
+    <h4>parseHeadRequest</h4>
+
+    <div class="method-signature">
+      <a href="ezcWebdavHeadRequest.html">ezcWebdavHeadRequest</a>
+      parseHeadRequest(
+                                  string
+          $path
+                            ,           string
+          $body
+                        )
+    </div>
+
+    <p>Parses the HEAD request and returns a request object.</p><div><p>This method is responsible for parsing the HEAD request. It retrieves  the current request URI in $path and the request body as $body.  The  return value, if no exception is thrown, is a valid <a href="ezcWebdavHeadRequest.html">ezcWebdavHeadRequest</a> object.</p><p>This method may be overwritten to adjust it to special client behaviour.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$path</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$body</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodparseMakeCollectionRequest" id="parseMakeCollectionRequest"><!-- --></a>
+
+    <h4>parseMakeCollectionRequest</h4>
+
+    <div class="method-signature">
+      <a href="ezcWebdavMakeCollectionRequest.html">ezcWebdavMakeCollectionRequest</a>
+      parseMakeCollectionRequest(
+                                  string
+          $path
+                            ,           string
+          $body
+                        )
+    </div>
+
+    <p>Parses the MKCOL request and returns a request object.</p><div><p>This method is responsible for parsing the MKCOL request. It retrieves  the current request URI in $path and the request body as $body.  The  return value, if no exception is thrown, is a valid <a href="ezcWebdavMakeCollectionRequest.html">ezcWebdavMakeCollectionRequest</a> object.</p><p>This method may be overwritten to adjust it to special client behaviour.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$path</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$body</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodparseMoveRequest" id="parseMoveRequest"><!-- --></a>
+
+    <h4>parseMoveRequest</h4>
+
+    <div class="method-signature">
+      <a href="ezcWebdavMoveRequest.html">ezcWebdavMoveRequest</a>
+      parseMoveRequest(
+                                  string
+          $path
+                            ,           string
+          $body
+                        )
+    </div>
+
+    <p>Parses the MOVE request and returns a request object.</p><div><p>This method is responsible for parsing the MOVE request. It retrieves  the current request URI in $path and the request body as $body.  The  return value, if no exception is thrown, is a valid <a href="ezcWebdavMoveRequest.html">ezcWebdavMoveRequest</a> object.</p><p>This method may be overwritten to adjust it to special client behaviour.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$path</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$body</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodparseOptionsRequest" id="parseOptionsRequest"><!-- --></a>
+
+    <h4>parseOptionsRequest</h4>
+
+    <div class="method-signature">
+      <a href="ezcWebdavOptionsRequest.html">ezcWebdavOptionsRequest</a>
+      parseOptionsRequest(
+                                  string
+          $path
+                            ,           string
+          $body
+                        )
+    </div>
+
+    <p>Parses the OPTIONS request and returns a request object.</p><div><p>This method is responsible for parsing the OPTIONS request. It retrieves  the current request URI in $path and the request body as $body.  The  return value, if no exception is thrown, is a valid <a href="ezcWebdavOptionsRequest.html">ezcWebdavOptionsRequest</a> object.</p><p>This method may be overwritten to adjust it to special client behaviour.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$path</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$body</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodparsePropertyBehaviourContent" id="parsePropertyBehaviourContent"><!-- --></a>
+
+    <h4>parsePropertyBehaviourContent</h4>
+
+    <div class="method-signature">
+      <a href="ezcWebdavCopyRequest.html">ezcWebdavCopyRequest</a>|<a href="ezcWebdavMoveRequest.html">ezcWebdavMoveRequest</a>
+      parsePropertyBehaviourContent(
+                                  
+          $dom
+                            ,           <a href="ezcWebdavRequest.html">ezcWebdavRequest</a>
+          $request
+                        )
+    </div>
+
+    <p>Parses the &lt;propertybehavior /&gt; XML element.</p><div><p>This element is part of the COPY and MOVE requests, which are handled by  $this-&gt;parseCopyRequest() respectivly $this-&gt;parseMoveRequest().</p><p>The $dom parameter is the DOMDocument where the &lt;propertybehavior /&gt;  content should be parsed from. The $request object submitted will get  the resulting <a href="ezcWebdavRequestPropertyBehaviourContent.html">ezcWebdavRequestPropertyBehaviourContent</a> set into  its $propertyBehavior property.</p><p>This method may be overwritten to adjust it to special client behaviour.  If you overwrite the $this-&gt;processCopyResponse() or $this-&gt;parseMoveRequest() methods, you might disable this method  accedentally. You should explicitly use it there and overwrite it, if  necessary. This makes extending your extended transport easier.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$dom</code></td>
+              <td><em>DOMDocument</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$request</code></td>
+              <td><em><a href="ezcWebdavRequest.html">ezcWebdavRequest</a></em></td>
+              <td>
+                                  ezcWebdavCopyRequest or ezcWebdavMoveRequest
+                              </td>
+            </tr></tbody></table><a name="methodparsePropFindRequest" id="parsePropFindRequest"><!-- --></a>
+
+    <h4>parsePropFindRequest</h4>
+
+    <div class="method-signature">
+      <a href="ezcWebdavPropFindRequest.html">ezcWebdavPropFindRequest</a>
+      parsePropFindRequest(
+                                  string
+          $path
+                            ,           string
+          $body
+                        )
+    </div>
+
+    <p>Parses the PROPFIND request and returns a request object.</p><div><p>This method is responsible for parsing the PROPFIND request. It  retrieves the current request URI in $path and the request body as  $body.  The return value, if no exception is thrown, is a valid <a href="ezcWebdavPropFindRequest.html">ezcWebdavPropFindRequest</a> object.</p><p>This method may be overwritten to adjust it to special client behaviour.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$path</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$body</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefined in descendants as:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcWebdavMicrosoftCompatibleTransport.html#methodparsePropFindRequest">ezcWebdavMicrosoftCompatibleTransport::parsePropFindRequest()</a></code></td>
+              <td>
+                Parses the PROPFIND request and returns a request object.&#8192;
+              </td>
+            </tr></tbody></table><a name="methodparsePropPatchRequest" id="parsePropPatchRequest"><!-- --></a>
+
+    <h4>parsePropPatchRequest</h4>
+
+    <div class="method-signature">
+      <a href="ezcWebdavPropPatchRequest.html">ezcWebdavPropPatchRequest</a>
+      parsePropPatchRequest(
+                                  string
+          $path
+                            ,           string
+          $body
+                        )
+    </div>
+
+    <p>Parses the PROPPATCH request and returns a request object.</p><div><p>This method is responsible for parsing the PROPPATCH request. It  retrieves the current request URI in $path and the request body as  $body.  The return value, if no exception is thrown, is a valid <a href="ezcWebdavPropPatchRequest.html">ezcWebdavPropPatchRequest</a> object.</p><p>This method may be overwritten to adjust it to special client behaviour.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$path</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$body</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodparsePutRequest" id="parsePutRequest"><!-- --></a>
+
+    <h4>parsePutRequest</h4>
+
+    <div class="method-signature">
+      <a href="ezcWebdavPutRequest.html">ezcWebdavPutRequest</a>
+      parsePutRequest(
+                                  string
+          $path
+                            ,           string
+          $body
+                        )
+    </div>
+
+    <p>Parses the PUT request and returns a request object.</p><div><p>This method is responsible for parsing the PUT request. It retrieves the  current request URI in $path and the request body as $body.  The return  value, if no exception is thrown, is a valid <a href="ezcWebdavPutRequest.html">ezcWebdavPutRequest</a>  object.</p><p>This method may be overwritten to adjust it to special client behaviour.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$path</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$body</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodparseRequest" id="parseRequest"><!-- --></a>
+
+    <h4>parseRequest</h4>
+
+    <div class="method-signature">
+      <a href="ezcWebdavRequest.html">ezcWebdavRequest</a>|<a href="ezcWebdavResponse.html">ezcWebdavResponse</a>
+      parseRequest(
+                                  string
+          $uri
+                        )
+    </div>
+
+    <p>Parses the incoming request into a fitting request abstraction object.</p><div><p>This method is the main entry point of <a href="ezcWebdavServer.html">ezcWebdavServer</a> and is  utilized by it to parse the incoming request into an instance of <a href="ezcWebdavRequest.html">ezcWebdavRequest</a>.</p><p>The submitted $uri must be formatted in a way, that the <a href="ezcWebdavPathFactory.html">ezcWebdavPathFactory</a> (by default this is <a href="ezcWebdavAutomaticPathFactory.html">ezcWebdavAutomaticPathFactory</a>) can convert it into a path absolute to  the base of the WebDAV repository.</p><p>The retrieval of the request body is performed by the <a href="ezcWebdavTransport.html#methodretrieveBody">retrieveBody()</a> method, the request method from $_SERVER['REQUEST_METHOD']. The latter one is mapped through the  self::$parsingMap attribute to a local object method.</p><p>This method is marked final and may not be overwritten, because it  belongs to the essential communication API with <a href="ezcWebdavServer.html">ezcWebdavServer</a>  and is responsible to dispatch the <a href="ezcWebdavPluginRegistry.html">ezcWebdavPluginRegistry</a> hooks  of the transport layer. NOTE: The plugin API is not public, yet, and  will be part of a next release.</p><p>If an error occurs during request parsing, an instance of <a href="ezcWebdavResponse.html">ezcWebdavResponse</a> may be returned instead of an instance of <a href="ezcWebdavRequest.html">ezcWebdavRequest</a>. <a href="ezcWebdavServer.html">ezcWebdavServer</a> will handle this correctly.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$uri</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodprocessCopyResponse" id="processCopyResponse"><!-- --></a>
+
+    <h4>processCopyResponse</h4>
+
+    <div class="method-signature">
+      <a href="ezcWebdavEmptyDisplayInformation.html">ezcWebdavEmptyDisplayInformation</a>
+      processCopyResponse(
+                                  <a href="ezcWebdavCopyResponse.html">ezcWebdavCopyResponse</a>
+          $response
+                        )
+    </div>
+
+    <p>Returns display information for a copy response object.</p><div><p>This method returns the display information generated for a $response  object of type <a href="ezcWebdavCopyResponse.html">ezcWebdavCopyResponse</a>. It returns an  instance of <a href="ezcWebdavDisplayInformation.html">ezcWebdavDisplayInformation</a> containing the  post-processed response object and the appropriate body.</p><p>The display information returned by this method indicates, that only  headers, but no response body, should be send.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$response</code></td>
+              <td><em><a href="ezcWebdavCopyResponse.html">ezcWebdavCopyResponse</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodprocessDeleteResponse" id="processDeleteResponse"><!-- --></a>
+
+    <h4>processDeleteResponse</h4>
+
+    <div class="method-signature">
+      <a href="ezcWebdavEmptyDisplayInformation.html">ezcWebdavEmptyDisplayInformation</a>
+      processDeleteResponse(
+                                  <a href="ezcWebdavDeleteResponse.html">ezcWebdavDeleteResponse</a>
+          $response
+                        )
+    </div>
+
+    <p>Returns display information for a delete response object.</p><div><p>This method returns the display information generated for a $response  object of type <a href="ezcWebdavDeleteResponse.html">ezcWebdavDeleteResponse</a>. It returns an  instance of <a href="ezcWebdavDisplayInformation.html">ezcWebdavDisplayInformation</a> containing the  post-processed response object and the appropriate body.</p><p>The display information returned by this method indicates, that only  headers, but no response body, should be send.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$response</code></td>
+              <td><em><a href="ezcWebdavDeleteResponse.html">ezcWebdavDeleteResponse</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodprocessErrorResponse" id="processErrorResponse"><!-- --></a>
+
+    <h4>processErrorResponse</h4>
+
+    <div class="method-signature">
+      <a href="ezcWebdavXmlDisplayInformation.html">ezcWebdavXmlDisplayInformation</a>|<a href="ezcWebdavEmptyDisplayInformation.html">ezcWebdavEmptyDisplayInformation</a>
+      processErrorResponse(
+                                  <a href="ezcWebdavErrorResponse.html">ezcWebdavErrorResponse</a>
+          $response
+                            ,           [bool
+          $xml
+           = false]              )
+    </div>
+
+    <p>Returns display information for a error response object.</p><div><p>This method returns the display information generated for a $response  object of type <a href="ezcWebdavErrorResponse.html">ezcWebdavErrorResponse</a>. It returns an  instance of <a href="ezcWebdavDisplayInformation.html">ezcWebdavDisplayInformation</a> containing the  post-processed response object and the appropriate body.</p><p>The $xml parameter defines, if an XML representation should be  generated, too (for use in $this-&gt;processMultiStatusResponse()),  or if only the headers should be manipulated and an empty response body  should be used.</p><p>The display information generated by this response contains the post  processed $response and a DOMDocument representing the XML  response body. If the $xml parameter is set to false, an empty display  information is generated, to indicate that only headers should be send.</p><p>This method utilizes ezcWebdavServer-&gt;xmlTool to  perform basic XML operations, so this is the place to perform such  changeds. You should overwrite this method, if your client has problems  specifically with the <a href="ezcWebdavErrorResponse.html">ezcWebdavErrorResponse</a> response.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$response</code></td>
+              <td><em><a href="ezcWebdavErrorResponse.html">ezcWebdavErrorResponse</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$xml</code></td>
+              <td><em>bool</em></td>
+              <td>
+                                  DOMDocument in result only generated of true.
+                              </td>
+            </tr></tbody></table><h5>Redefined in descendants as:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcWebdavKonquerorCompatibleTransport.html#methodprocessErrorResponse">ezcWebdavKonquerorCompatibleTransport::processErrorResponse()</a></code></td>
+              <td>
+                Returns display information for a error response object.&#8192;
+              </td>
+            </tr></tbody></table><a name="methodprocessGetCollectionResponse" id="processGetCollectionResponse"><!-- --></a>
+
+    <h4>processGetCollectionResponse</h4>
+
+    <div class="method-signature">
+      <a href="ezcWebdavEmptyDisplayInformation.html">ezcWebdavEmptyDisplayInformation</a>
+      processGetCollectionResponse(
+                                  <a href="ezcWebdavGetCollectionResponse.html">ezcWebdavGetCollectionResponse</a>
+          $response
+                        )
+    </div>
+
+    <p>Returns display information for a get response for a collection.</p><div><p>This method returns the display information generated for a $response  object of type <a href="ezcWebdavGetCollectionResponse.html">ezcWebdavGetCollectionResponse</a>. It returns an  instance of <a href="ezcWebdavDisplayInformation.html">ezcWebdavDisplayInformation</a> containing the  post-processed response object and the appropriate body.</p><p>The display information returned by this method indicates, that only  headers, but no response body, should be send.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$response</code></td>
+              <td><em><a href="ezcWebdavGetCollectionResponse.html">ezcWebdavGetCollectionResponse</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodprocessGetResourceResponse" id="processGetResourceResponse"><!-- --></a>
+
+    <h4>processGetResourceResponse</h4>
+
+    <div class="method-signature">
+      <a href="ezcWebdavStringDisplayInformation.html">ezcWebdavStringDisplayInformation</a>
+      processGetResourceResponse(
+                                  <a href="ezcWebdavGetResourceResponse.html">ezcWebdavGetResourceResponse</a>
+          $response
+                        )
+    </div>
+
+    <p>Returns display information for a get response on a non-collection.</p><div><p>This method returns the display information generated for a $response  object of type <a href="ezcWebdavGetResourceResponse.html">ezcWebdavGetResourceResponse</a>. It returns an  instance of <a href="ezcWebdavDisplayInformation.html">ezcWebdavDisplayInformation</a> containing the  post-processed response object and the appropriate body.</p><p>This response returns a very seldom (for this component) string  response, since it returns the raw content of the requested resource.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$response</code></td>
+              <td><em><a href="ezcWebdavGetResourceResponse.html">ezcWebdavGetResourceResponse</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodprocessHeadResponse" id="processHeadResponse"><!-- --></a>
+
+    <h4>processHeadResponse</h4>
+
+    <div class="method-signature">
+      <a href="ezcWebdavEmptyDisplayInformation.html">ezcWebdavEmptyDisplayInformation</a>
+      processHeadResponse(
+                                  <a href="ezcWebdavHeadResponse.html">ezcWebdavHeadResponse</a>
+          $response
+                        )
+    </div>
+
+    <p>Returns display information for a head response object.</p><div><p>This method returns the display information generated for a $response  object of type <a href="ezcWebdavHeadResponse.html">ezcWebdavHeadResponse</a>. It returns an  instance of <a href="ezcWebdavDisplayInformation.html">ezcWebdavDisplayInformation</a> containing the  post-processed response object and the appropriate body.</p><p>The display information returned by this method indicates, that only  headers, but no response body, should be send.</p><p>This method always must be structured quite similar to $this-&gt;processGetCollectionResponse or $this-&gt;processGetResourceResponse(), since HEAD is more or less GET  without a body.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$response</code></td>
+              <td><em><a href="ezcWebdavHeadResponse.html">ezcWebdavHeadResponse</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodprocessMakeCollectionResponse" id="processMakeCollectionResponse"><!-- --></a>
+
+    <h4>processMakeCollectionResponse</h4>
+
+    <div class="method-signature">
+      <a href="ezcWebdavEmptyDisplayInformation.html">ezcWebdavEmptyDisplayInformation</a>
+      processMakeCollectionResponse(
+                                  <a href="ezcWebdavMakeCollectionResponse.html">ezcWebdavMakeCollectionResponse</a>
+          $response
+                        )
+    </div>
+
+    <p>Returns display information for a make collection response object.</p><div><p>This method returns the display information generated for a $response  object of type <a href="ezcWebdavMakeCollectionResponse.html">ezcWebdavMakeCollectionResponse</a>. It returns an  instance of <a href="ezcWebdavDisplayInformation.html">ezcWebdavDisplayInformation</a> containing the  post-processed response object and the appropriate body.</p><p>The display information returned by this method indicates, that only  headers, but no response body, should be send.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$response</code></td>
+              <td><em><a href="ezcWebdavMakeCollectionResponse.html">ezcWebdavMakeCollectionResponse</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodprocessMoveResponse" id="processMoveResponse"><!-- --></a>
+
+    <h4>processMoveResponse</h4>
+
+    <div class="method-signature">
+      <a href="ezcWebdavEmptyDisplayInformation.html">ezcWebdavEmptyDisplayInformation</a>
+      processMoveResponse(
+                                  <a href="ezcWebdavMoveResponse.html">ezcWebdavMoveResponse</a>
+          $response
+                        )
+    </div>
+
+    <p>Returns display information for a move response object.</p><div><p>This method returns the display information generated for a $response  object of type <a href="ezcWebdavMoveResponse.html">ezcWebdavMoveResponse</a>. It returns an  instance of <a href="ezcWebdavDisplayInformation.html">ezcWebdavDisplayInformation</a> containing the  post-processed response object and the appropriate body.</p><p>The display information returned by this method indicates, that only  headers, but no response body, should be send.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$response</code></td>
+              <td><em><a href="ezcWebdavMoveResponse.html">ezcWebdavMoveResponse</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodprocessMultiStatusResponse" id="processMultiStatusResponse"><!-- --></a>
+
+    <h4>processMultiStatusResponse</h4>
+
+    <div class="method-signature">
+      <a href="ezcWebdavXmlDisplayInformation.html">ezcWebdavXmlDisplayInformation</a>
+      processMultiStatusResponse(
+                                  <a href="ezcWebdavMultistatusResponse.html">ezcWebdavMultistatusResponse</a>
+          $response
+                        )
+    </div>
+
+    <p>Returns display information for a multistatus response object.</p><div><p>This method returns the display information generated for a $response  object of type ezcWebdavMultiStatusResponse. It returns an  instance of <a href="ezcWebdavDisplayInformation.html">ezcWebdavDisplayInformation</a> containing the  post-processed response object and the appropriate body.</p><p>The display information generated by this response contains the post  processed $response and a DOMDocument representing the XML  response body.</p><p>This method utilizes ezcWebdavServer-&gt;xmlTool to  perform basic XML operations, so this is the place to perform such  changeds. You should overwrite this method, if your client has problems  specifically with the ezcWebdavMultiStatusResponse response.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$response</code></td>
+              <td><em><a href="ezcWebdavMultistatusResponse.html">ezcWebdavMultistatusResponse</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodprocessOptionsResponse" id="processOptionsResponse"><!-- --></a>
+
+    <h4>processOptionsResponse</h4>
+
+    <div class="method-signature">
+      <a href="ezcWebdavEmptyDisplayInformation.html">ezcWebdavEmptyDisplayInformation</a>
+      processOptionsResponse(
+                                  <a href="ezcWebdavOptionsResponse.html">ezcWebdavOptionsResponse</a>
+          $response
+                        )
+    </div>
+
+    <p>Returns display information for a options response object.</p><div><p>This method returns the display information generated for a $response  object of type <a href="ezcWebdavOptionsResponse.html">ezcWebdavOptionsResponse</a>. It returns an  instance of <a href="ezcWebdavDisplayInformation.html">ezcWebdavDisplayInformation</a> containing the  post-processed response object and the appropriate body.</p><p>The display information returned by this method indicates, that only  headers, but no response body, should be send.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$response</code></td>
+              <td><em><a href="ezcWebdavOptionsResponse.html">ezcWebdavOptionsResponse</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodprocessPropFindResponse" id="processPropFindResponse"><!-- --></a>
+
+    <h4>processPropFindResponse</h4>
+
+    <div class="method-signature">
+      <a href="ezcWebdavXmlDisplayInformation.html">ezcWebdavXmlDisplayInformation</a>
+      processPropFindResponse(
+                                  <a href="ezcWebdavPropFindResponse.html">ezcWebdavPropFindResponse</a>
+          $response
+                        )
+    </div>
+
+    <p>Returns display information for a prop find response object.</p><div><p>This method returns the display information generated for a $response  object of type <a href="ezcWebdavPropFindResponse.html">ezcWebdavPropFindResponse</a>. It returns an  instance of <a href="ezcWebdavDisplayInformation.html">ezcWebdavDisplayInformation</a> containing the  post-processed response object and the appropriate body.</p><p>The display information generated by this response contains the post  processed $response and a DOMDocument representing the XML  response body.</p><p>This method utilizes ezcWebdavServer-&gt;xmlTool to  perform basic XML operations, so this is the place to perform such  changeds. You should overwrite this method, if your client has problems  specifically with the <a href="ezcWebdavPropFindResponse.html">ezcWebdavPropFindResponse</a> response.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$response</code></td>
+              <td><em><a href="ezcWebdavPropFindResponse.html">ezcWebdavPropFindResponse</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefined in descendants as:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcWebdavKonquerorCompatibleTransport.html#methodprocessPropFindResponse">ezcWebdavKonquerorCompatibleTransport::processPropFindResponse()</a></code></td>
+              <td>
+                Decodes the URLs in href attributes of PROPFIND responses.&#8192;
+              </td>
+            </tr></tbody></table><a name="methodprocessPropPatchResponse" id="processPropPatchResponse"><!-- --></a>
+
+    <h4>processPropPatchResponse</h4>
+
+    <div class="method-signature">
+      <a href="ezcWebdavEmptyDisplayInformation.html">ezcWebdavEmptyDisplayInformation</a>
+      processPropPatchResponse(
+                                  <a href="ezcWebdavPropPatchResponse.html">ezcWebdavPropPatchResponse</a>
+          $response
+                        )
+    </div>
+
+    <p>Returns display information for a prop patch response object.</p><div><p>This method returns the display information generated for a $response  object of type <a href="ezcWebdavPropPatchResponse.html">ezcWebdavPropPatchResponse</a>. It returns an  instance of <a href="ezcWebdavDisplayInformation.html">ezcWebdavDisplayInformation</a> containing the  post-processed response object and the appropriate body.</p><p>The display information returned by this method indicates, that only  headers, but no response body, should be send.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$response</code></td>
+              <td><em><a href="ezcWebdavPropPatchResponse.html">ezcWebdavPropPatchResponse</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodprocessPropStatResponse" id="processPropStatResponse"><!-- --></a>
+
+    <h4>processPropStatResponse</h4>
+
+    <div class="method-signature">
+      <a href="ezcWebdavXmlDisplayInformation.html">ezcWebdavXmlDisplayInformation</a>
+      processPropStatResponse(
+                                  <a href="ezcWebdavPropStatResponse.html">ezcWebdavPropStatResponse</a>
+          $response
+                        )
+    </div>
+
+    <p>Returns display information for a prop stat response object.</p><div><p>This method returns the display information generated for a $response  object of type <a href="ezcWebdavPropStatResponse.html">ezcWebdavPropStatResponse</a>. It returns an  instance of <a href="ezcWebdavDisplayInformation.html">ezcWebdavDisplayInformation</a> containing the  post-processed response object and the appropriate body.</p><p>The display information generated by this response contains the post  processed $response and a DOMDocument representing the XML  response body.</p><p>This method utilizes ezcWebdavServer-&gt;xmlTool to  perform basic XML operations, so this is the place to perform such  changeds. You should overwrite this method, if your client has problems  specifically with the <a href="ezcWebdavPropStatResponse.html">ezcWebdavPropStatResponse</a> response.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$response</code></td>
+              <td><em><a href="ezcWebdavPropStatResponse.html">ezcWebdavPropStatResponse</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodprocessPutResponse" id="processPutResponse"><!-- --></a>
+
+    <h4>processPutResponse</h4>
+
+    <div class="method-signature">
+      <a href="ezcWebdavEmptyDisplayInformation.html">ezcWebdavEmptyDisplayInformation</a>
+      processPutResponse(
+                                  <a href="ezcWebdavPutResponse.html">ezcWebdavPutResponse</a>
+          $response
+                        )
+    </div>
+
+    <p>Returns display information for a put response object.</p><div><p>This method returns the display information generated for a $response  object of type <a href="ezcWebdavPutResponse.html">ezcWebdavPutResponse</a>. It returns an  instance of <a href="ezcWebdavDisplayInformation.html">ezcWebdavDisplayInformation</a> containing the  post-processed response object and the appropriate body.</p><p>The display information returned by this method indicates, that only  headers, but no response body, should be send.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$response</code></td>
+              <td><em><a href="ezcWebdavPutResponse.html">ezcWebdavPutResponse</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodretreiveBody" id="retreiveBody"><!-- --></a>
+
+    <h4>retreiveBody</h4>
+
+    <div class="method-signature">
+      string
+      retreiveBody(
+      )
+    </div>
+
+    <p>Returns the body content of the request.</p><div><p>This method is only kept for BC reasons. Please refer to <a href="ezcWebdavTransport.html#methodretrieveBody">retrieveBody()</a>.</p></div>
+    
+        
+
+    
+    
+    
+        <a name="methodretrieveBody" id="retrieveBody"><!-- --></a>
+
+    <h4>retrieveBody</h4>
+
+    <div class="method-signature">
+      string
+      retrieveBody(
+      )
+    </div>
+
+    <p>Returns the body content of the request.</p><div><p>This method mainly exists for unit testing purpose. It reads the request  body and returns the contents as a string. This method can also be  usefull to be overriden during inheritence to filter the body of  missbehaving WebDAV clients.</p></div>
+    
+        
+
+    
+    
+    
+        <a name="methodretrievePath" id="retrievePath"><!-- --></a>
+
+    <h4>retrievePath</h4>
+
+    <div class="method-signature">
+      string
+      retrievePath(
+                                  string
+          $uri
+                        )
+    </div>
+
+    <p>Returns the translated request path.</p><div><p>This method calls the configured path factory to translate the  submitted $uri into a local path. It can be overwritten to perform client  specific path adjustments.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$uri</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodsendResponse" id="sendResponse"><!-- --></a>
+
+    <h4>sendResponse</h4>
+
+    <div class="method-signature">
+      void
+      sendResponse(
+                                  <a href="ezcWebdavOutputResult.html">ezcWebdavOutputResult</a>
+          $output
+                        )
+    </div>
+
+    <p>Finally sends out the response.</p><div><p>This method is called to finally send the response to the client. It  can be overwritten in test cases to change the behaviour of printing out  the result and sending the headers.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$output</code></td>
+              <td><em><a href="ezcWebdavOutputResult.html">ezcWebdavOutputResult</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><div class="credit">
+      Documentation generated by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+    </div>
+  </div>
+  
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,1446 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="" />
+	<meta name="author" content="jerome" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Sun, 10 Jul 2011 11:11:10 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="ezcWebdavSimpleBackend.html" />
+	<meta name="DC.creator" content="jerome" />
+	<meta name="DC.date" content="Sun, 10 Jul 2011 11:11:10 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/Webdav/phpdoc/ezcWebdavSimpleBackend.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/Webdav/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/trunk/Webdav/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Webdav/clients.html" title="Clients ">Clients </a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Webdav/plugin_architecture.html" title="Plugin_architecture ">Plugin_architecture </a>
+	</li>
+
+</ul>
+
+		
+  <div class="phpdoc">
+    <h2>Apache Zeta Components Manual :: Docs For Class ezcWebdavSimpleBackend</h2>
+
+                  <h3>Webdav::ezcWebdavSimpleBackend</h3>
+    
+<a name="sec-description"></a>
+<h3>Class ezcWebdavSimpleBackend</h3>
+
+<p>Abstract base class for common backend operations.</p><div><p>This base backend provides the generic handling of requests and dispatches the  required actions to some basic manipulation methods, which you are required  to implement, when extending this base class.</p><p>This backend does not provide support for extended Webdav features, like  compression, or lock handling by the backend, therefore the <a href="ezcWebdavSimpleBackend.html#methodgetFeatures">getFeatures()</a> method is final. If you want to develop a backend which is  capable of manual handling those features directly extend from <a href="ezcWebdavBackend.html">ezcWebdavBackend</a>.</p></div>
+<p>Source for this file: <a href="http://fisheye6.atlassian.com/browse/zetacomponents/trunk/Webdav/src/backends/simple.php?r=HEAD">/Webdav/src/backends/simple.php</a></p>
+       
+  <h3>Implements interfaces:</h3>
+  <ul><li><a href="ezcWebdavBackendPut.html">ezcWebdavBackendPut</a></li><li><a href="ezcWebdavBackendChange.html">ezcWebdavBackendChange</a></li><li><a href="ezcWebdavBackendMakeCollection.html">ezcWebdavBackendMakeCollection</a></li>  </ul><pre><a href="ezcWebdavBackend.html">ezcWebdavBackend</a>
+   |
+   --ezcWebdavSimpleBackend</pre>
+
+
+  <table><tr><td>
+            <strong>Version:</strong>&#8192;&#8192;
+          </td>
+          <td>//autogentag//</td>
+        </tr></table><a name="sec-descendants"></a>
+  <h3>Descendants</h3>
+  <table class="detail"><thead><tr><th>Child Class</th>
+        <th>Description</th>
+      </tr></thead><tbody><tr><td><a href="ezcWebdavFileBackend.html">ezcWebdavFileBackend</a></td>          <td>
+                          File system based backend.
+                      </td>
+        </tr></tbody></table><a name="sec-inherited-consts"></a>
+  <h3>Inherited Constants</h3>
+  <table class="summary"><thead><tr><th colspan="2">
+              From <span class="classname"><a href="ezcWebdavBackend.html">ezcWebdavBackend</a></span>:
+            </th>
+          </tr></thead><tbody><tr><td class="right">
+                <code><a href="ezcWebdavBackend.html#constCOMPRESSION_BZIP2">ezcWebdavBackend::COMPRESSION_BZIP2</a></code>
+              </td>
+              <td>
+                &#8192;&#8192;&#8192;Backend has native support for bzip2 compression.              </td>
+            </tr><tr><td class="right">
+                <code><a href="ezcWebdavBackend.html#constCOMPRESSION_GZIP">ezcWebdavBackend::COMPRESSION_GZIP</a></code>
+              </td>
+              <td>
+                &#8192;&#8192;&#8192;Backend has native support for gzip compression.              </td>
+            </tr><tr><td class="right">
+                <code><a href="ezcWebdavBackend.html#constCUSTOM_LOCK">ezcWebdavBackend::CUSTOM_LOCK</a></code>
+              </td>
+              <td>
+                &#8192;&#8192;&#8192;Backend performs locking itself - no handling by server is required.              </td>
+            </tr><tr><td class="right">
+                <code><a href="ezcWebdavBackend.html#constMULTIPART">ezcWebdavBackend::MULTIPART</a></code>
+              </td>
+              <td>
+                &#8192;&#8192;&#8192;Backend has native support for multipart requests.              </td>
+            </tr><tr><td class="right">
+                <code><a href="ezcWebdavBackend.html#constPARTIAL">ezcWebdavBackend::PARTIAL</a></code>
+              </td>
+              <td>
+                &#8192;&#8192;&#8192;Backend has native support for partial requests.              </td>
+            </tr></tbody></table><a name="sec-method-summary"></a>
+  <h3>Method Summary</h3>
+  <table class="summary"><tr><td class="right">
+            <em>protected</em>                        <em><a href="ezcWebdavErrorResponse.html">ezcWebdavErrorResponse</a>|null</em>          </td>
+          <td>
+            <code>
+              <a href="#checkIfMatchHeaders"><b>checkIfMatchHeaders</b></a>(
+                                                                                    $req
+                                                    ,                                     $path
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Checks the If-Match and If-None-Match headers.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em><a href="ezcWebdavResponse.html">ezcWebdavResponse</a></em>          </td>
+          <td>
+            <code>
+              <a href="#copy"><b>copy</b></a>(
+                                                                                    $request
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Serves COPY requests.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            abstract            <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#createCollection"><b>createCollection</b></a>(
+                                                                                    $path
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Create a new collection.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            abstract            <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#createResource"><b>createResource</b></a>(
+                                                                                    $path
+                                                    ,                   [                  $content
+                   = null]                               )
+            </code>
+            <br><div style="margin-left: 20px">Create a new resource.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em><a href="ezcWebdavResponse.html">ezcWebdavResponse</a></em>          </td>
+          <td>
+            <code>
+              <a href="#delete"><b>delete</b></a>(
+                                                                                    $request
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Serves DELETE requests.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em><a href="ezcWebdavMultistatusResponse.html">ezcWebdavMultistatusResponse</a></em>          </td>
+          <td>
+            <code>
+              <a href="#fetchAllProperties"><b>fetchAllProperties</b></a>(
+                                                                                    $request
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns all available properties for a resource.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em><a href="ezcWebdavResponse.html">ezcWebdavResponse</a></em>          </td>
+          <td>
+            <code>
+              <a href="#fetchProperties"><b>fetchProperties</b></a>(
+                                                                                    $request
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns properties, fetched by name.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em><a href="ezcWebdavResponse.html">ezcWebdavResponse</a></em>          </td>
+          <td>
+            <code>
+              <a href="#fetchPropertyNames"><b>fetchPropertyNames</b></a>(
+                                                                                    $request
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns names of all available properties for a resource.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em><a href="ezcWebdavResponse.html">ezcWebdavResponse</a></em>          </td>
+          <td>
+            <code>
+              <a href="#get"><b>get</b></a>(
+                                                                                    $request
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Serves GET requests.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>            abstract            <em><a href="ezcWebdavPropertyStorage.html">ezcWebdavPropertyStorage</a></em>          </td>
+          <td>
+            <code>
+              <a href="#getAllProperties"><b>getAllProperties</b></a>(
+                                                                                    $path
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns all properties for a resource.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            abstract            <em>array(ezcWebdavResource|ezcWebdavCollection)</em>          </td>
+          <td>
+            <code>
+              <a href="#getCollectionMembers"><b>getCollectionMembers</b></a>(
+                                                                                    $path
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns members of collection.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#getETag"><b>getETag</b></a>(
+                                                                                    $path
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns the etag representing the current state of $path.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>int</em>          </td>
+          <td>
+            <code>
+              <a href="#getFeatures"><b>getFeatures</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns additional features supported by the backend.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>array(ezcWebdavResource|ezcWebdavCollection)</em>          </td>
+          <td>
+            <code>
+              <a href="#getNodes"><b>getNodes</b></a>(
+                                                                                    $source
+                                                    ,                                     $depth
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns all child nodes.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>            abstract            <em><a href="ezcWebdavProperty.html">ezcWebdavProperty</a></em>          </td>
+          <td>
+            <code>
+              <a href="#getProperty"><b>getProperty</b></a>(
+                                                                                    $path
+                                                    ,                                     $propertyName
+                                                    ,                   [                  $namespace
+                   = 'DAV:']                               )
+            </code>
+            <br><div style="margin-left: 20px">Returns a property of a resource.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            abstract            <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#getResourceContents"><b>getResourceContents</b></a>(
+                                                                                    $path
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns the content of a resource.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em><a href="ezcWebdavResponse.html">ezcWebdavResponse</a></em>          </td>
+          <td>
+            <code>
+              <a href="#head"><b>head</b></a>(
+                                                                                    $request
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Serves HEAD requests.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            abstract            <em>bool</em>          </td>
+          <td>
+            <code>
+              <a href="#isCollection"><b>isCollection</b></a>(
+                                                                                    $path
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns if resource is a collection.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em><a href="ezcWebdavResponse.html">ezcWebdavResponse</a></em>          </td>
+          <td>
+            <code>
+              <a href="#makeCollection"><b>makeCollection</b></a>(
+                                                                                    $request
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Serves MKCOL (make collection) requests.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em><a href="ezcWebdavResponse.html">ezcWebdavResponse</a></em>          </td>
+          <td>
+            <code>
+              <a href="#move"><b>move</b></a>(
+                                                                                    $request
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Serves MOVE requests.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            abstract            <em>bool</em>          </td>
+          <td>
+            <code>
+              <a href="#nodeExists"><b>nodeExists</b></a>(
+                                                                                    $path
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns if a resource exists.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em><a href="ezcWebdavOptionsResponse.html">ezcWebdavOptionsResponse</a></em>          </td>
+          <td>
+            <code>
+              <a href="#options"><b>options</b></a>(
+                                                                                    $request
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Handles the OPTIONS request.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            abstract            <em>array(ezcWebdavErrorResponse)</em>          </td>
+          <td>
+            <code>
+              <a href="#performCopy"><b>performCopy</b></a>(
+                                                                                    $fromPath
+                                                    ,                                     $toPath
+                                                    ,                   [                  $depth
+                   = ezcWebdavRequest::DEPTH_INFINITY]                               )
+            </code>
+            <br><div style="margin-left: 20px">Copies resources recursively from one path to another.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            abstract            <em>ezcWebdavMultitstatusResponse|null</em>          </td>
+          <td>
+            <code>
+              <a href="#performDelete"><b>performDelete</b></a>(
+                                                                                    $path
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Deletes everything below a path.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em><a href="ezcWebdavResponse.html">ezcWebdavResponse</a></em>          </td>
+          <td>
+            <code>
+              <a href="#propFind"><b>propFind</b></a>(
+                                                                                    $request
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Serves PROPFIND requests.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em><a href="ezcWebdavResponse.html">ezcWebdavResponse</a></em>          </td>
+          <td>
+            <code>
+              <a href="#propPatch"><b>propPatch</b></a>(
+                                                                                    $request
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Serves PROPPATCH requests.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em><a href="ezcWebdavResponse.html">ezcWebdavResponse</a></em>          </td>
+          <td>
+            <code>
+              <a href="#put"><b>put</b></a>(
+                                                                                    $request
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Serves PUT requests.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>            abstract            <em>bool</em>          </td>
+          <td>
+            <code>
+              <a href="#removeProperty"><b>removeProperty</b></a>(
+                                                                                    $path
+                                                    ,                                     $property
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Manually removes a property from a resource.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>            abstract            <em>bool</em>          </td>
+          <td>
+            <code>
+              <a href="#resetProperties"><b>resetProperties</b></a>(
+                                                                                    $path
+                                                    ,                                     $properties
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Resets the property storage for a resource.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>            abstract            <em>bool</em>          </td>
+          <td>
+            <code>
+              <a href="#setProperty"><b>setProperty</b></a>(
+                                                                                    $path
+                                                    ,                                     $property
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Manually sets a property on a resource.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            abstract            <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#setResourceContents"><b>setResourceContents</b></a>(
+                                                                                    $path
+                                                    ,                                     $content
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Changes contents of a resource.</div>          </td>
+        </tr></table><h3>Inherited Methods</h3>
+  <table class="summary"><thead><tr><th colspan="2">
+            From <span class="classname"><a href="ezcWebdavBackend.html">ezcWebdavBackend</a></span>
+          </th>
+        </tr></thead><tbody><tr><td class="right">
+              <em>public</em>              abstract                            <em><a href="ezcWebdavResponse.html">ezcWebdavResponse</a></em>            </td>
+            <td>
+              <code><b><a href="ezcWebdavBackend.html#methodget">ezcWebdavBackend::get()</a></b></code>
+              <br><div style="margin-left: 20px">Serves GET requests.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>int</em>            </td>
+            <td>
+              <code><b><a href="ezcWebdavBackend.html#methodgetFeatures">ezcWebdavBackend::getFeatures()</a></b></code>
+              <br><div style="margin-left: 20px">Returns additional features supported by the backend.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>              abstract                            <em><a href="ezcWebdavResponse.html">ezcWebdavResponse</a></em>            </td>
+            <td>
+              <code><b><a href="ezcWebdavBackend.html#methodhead">ezcWebdavBackend::head()</a></b></code>
+              <br><div style="margin-left: 20px">Serves HEAD requests.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em><a href="ezcWebdavResponse.html">ezcWebdavResponse</a></em>            </td>
+            <td>
+              <code><b><a href="ezcWebdavBackend.html#methodoptions">ezcWebdavBackend::options()</a></b></code>
+              <br><div style="margin-left: 20px">Required method to serve OPTIONS requests.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em><a href="ezcWebdavResponse.html">ezcWebdavResponse</a></em>            </td>
+            <td>
+              <code><b><a href="ezcWebdavBackend.html#methodperformRequest">ezcWebdavBackend::performRequest()</a></b></code>
+              <br><div style="margin-left: 20px">Performs the given request.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>              abstract                            <em><a href="ezcWebdavResponse.html">ezcWebdavResponse</a></em>            </td>
+            <td>
+              <code><b><a href="ezcWebdavBackend.html#methodpropFind">ezcWebdavBackend::propFind()</a></b></code>
+              <br><div style="margin-left: 20px">Serves PROPFIND requests.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>              abstract                            <em><a href="ezcWebdavResponse.html">ezcWebdavResponse</a></em>            </td>
+            <td>
+              <code><b><a href="ezcWebdavBackend.html#methodpropPatch">ezcWebdavBackend::propPatch()</a></b></code>
+              <br><div style="margin-left: 20px">Serves PROPPATCH requests.</div>                          </td>
+          </tr></tbody></table><a name="sec-methods"></a>
+  <h3>Methods</h3>
+  <a name="method_detail"></a>
+                                                              
+      <a name="methodcheckIfMatchHeaders" id="checkIfMatchHeaders"><!-- --></a>
+
+    <h4>checkIfMatchHeaders</h4>
+
+    <div class="method-signature">
+      <a href="ezcWebdavErrorResponse.html">ezcWebdavErrorResponse</a>|null
+      checkIfMatchHeaders(
+                                  <a href="ezcWebdavRequest.html">ezcWebdavRequest</a>
+          $req
+                            ,           string
+          $path
+                        )
+    </div>
+
+    <p>Checks the If-Match and If-None-Match headers.</p><div><p>Checks if the If-Match and If-None-Match headers (potentially) provided  by $req are valid for the resource identified by $path.</p><p>Returns null if everything is alright, ezcWebdavErrorResponse if any  ETag check failed.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$req</code></td>
+              <td><em><a href="ezcWebdavRequest.html">ezcWebdavRequest</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$path</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodcopy" id="copy"><!-- --></a>
+
+    <h4>copy</h4>
+
+    <div class="method-signature">
+      <a href="ezcWebdavResponse.html">ezcWebdavResponse</a>
+      copy(
+                                  <a href="ezcWebdavCopyRequest.html">ezcWebdavCopyRequest</a>
+          $request
+                        )
+    </div>
+
+    <p>Serves COPY requests.</p><div><p>The method receives a <a href="ezcWebdavCopyRequest.html">ezcWebdavCopyRequest</a> objects containing  all relevant information obout the clients request and will return an  instance of <a href="ezcWebdavErrorResponse.html">ezcWebdavErrorResponse</a> on error or <a href="ezcWebdavCopyResponse.html">ezcWebdavCopyResponse</a> on success. If only some operations failed, this  method may return an instance of <a href="ezcWebdavMultistatusResponse.html">ezcWebdavMultistatusResponse</a>.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$request</code></td>
+              <td><em><a href="ezcWebdavCopyRequest.html">ezcWebdavCopyRequest</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Implementation of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcWebdavBackendChange.html#methodcopy">ezcWebdavBackendChange::copy()</a></code></td>
+              <td>
+                                  Serves COPY requests.
+                              </td>
+            </tr></tbody></table><h5>Redefined in descendants as:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcWebdavFileBackend.html#methodcopy">ezcWebdavFileBackend::copy()</a></code></td>
+              <td>
+                Serves COPY requests.&#8192;
+              </td>
+            </tr></tbody></table><a name="methodcreateCollection" id="createCollection"><!-- --></a>
+
+    <h4>createCollection</h4>
+
+    <div class="method-signature">
+      void
+      createCollection(
+                                  string
+          $path
+                        )
+    </div>
+
+    <p>Create a new collection.</p><div><p>Creates a new collection at the given $path.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$path</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefined in descendants as:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcWebdavFileBackend.html#methodcreateCollection">ezcWebdavFileBackend::createCollection()</a></code></td>
+              <td>
+                Creates a new collection.&#8192;
+              </td>
+            </tr></tbody></table><a name="methodcreateResource" id="createResource"><!-- --></a>
+
+    <h4>createResource</h4>
+
+    <div class="method-signature">
+      void
+      createResource(
+                                  string
+          $path
+                            ,           [string
+          $content
+           = null]              )
+    </div>
+
+    <p>Create a new resource.</p><div><p>Creates a new resource at the given $path, optionally with the given  $content.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$path</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$content</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefined in descendants as:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcWebdavFileBackend.html#methodcreateResource">ezcWebdavFileBackend::createResource()</a></code></td>
+              <td>
+                Creates a new resource.&#8192;
+              </td>
+            </tr></tbody></table><a name="methoddelete" id="delete"><!-- --></a>
+
+    <h4>delete</h4>
+
+    <div class="method-signature">
+      <a href="ezcWebdavResponse.html">ezcWebdavResponse</a>
+      delete(
+                                  <a href="ezcWebdavDeleteRequest.html">ezcWebdavDeleteRequest</a>
+          $request
+                        )
+    </div>
+
+    <p>Serves DELETE requests.</p><div><p>The method receives a <a href="ezcWebdavDeleteRequest.html">ezcWebdavDeleteRequest</a> objects containing  all relevant information obout the clients request and will return an  instance of <a href="ezcWebdavErrorResponse.html">ezcWebdavErrorResponse</a> on error or <a href="ezcWebdavDeleteResponse.html">ezcWebdavDeleteResponse</a> on success.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$request</code></td>
+              <td><em><a href="ezcWebdavDeleteRequest.html">ezcWebdavDeleteRequest</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Implementation of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcWebdavBackendChange.html#methoddelete">ezcWebdavBackendChange::delete()</a></code></td>
+              <td>
+                                  Serves DELETE requests.
+                              </td>
+            </tr></tbody></table><h5>Redefined in descendants as:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcWebdavFileBackend.html#methoddelete">ezcWebdavFileBackend::delete()</a></code></td>
+              <td>
+                Serves DELETE requests.&#8192;
+              </td>
+            </tr></tbody></table><a name="methodfetchAllProperties" id="fetchAllProperties"><!-- --></a>
+
+    <h4>fetchAllProperties</h4>
+
+    <div class="method-signature">
+      <a href="ezcWebdavMultistatusResponse.html">ezcWebdavMultistatusResponse</a>
+      fetchAllProperties(
+                                  <a href="ezcWebdavPropFindRequest.html">ezcWebdavPropFindRequest</a>
+          $request
+                        )
+    </div>
+
+    <p>Returns all available properties for a resource.</p><div><p>Fetches all available properties assigned to the reosource referenced in  $request and, if the resource is a collection, also returns properties  for its children, depending on the depth header of the $request. The  instances of <a href="ezcWebdavPropFindResponse.html">ezcWebdavPropFindResponse</a> generated by this method  are encapsulated in a <a href="ezcWebdavMultistatusResponse.html">ezcWebdavMultistatusResponse</a> object.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$request</code></td>
+              <td><em><a href="ezcWebdavPropFindRequest.html">ezcWebdavPropFindRequest</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodfetchProperties" id="fetchProperties"><!-- --></a>
+
+    <h4>fetchProperties</h4>
+
+    <div class="method-signature">
+      <a href="ezcWebdavResponse.html">ezcWebdavResponse</a>
+      fetchProperties(
+                                  <a href="ezcWebdavPropFindRequest.html">ezcWebdavPropFindRequest</a>
+          $request
+                        )
+    </div>
+
+    <p>Returns properties, fetched by name.</p><div><p>Fetch properties as defined by the passed $request for the resource  referenced. Properties are fetched by their names.</p><p>This method checks also for each of the nodes affected by the request if  authorization suceeds.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$request</code></td>
+              <td><em><a href="ezcWebdavPropFindRequest.html">ezcWebdavPropFindRequest</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodfetchPropertyNames" id="fetchPropertyNames"><!-- --></a>
+
+    <h4>fetchPropertyNames</h4>
+
+    <div class="method-signature">
+      <a href="ezcWebdavResponse.html">ezcWebdavResponse</a>
+      fetchPropertyNames(
+                                  <a href="ezcWebdavPropFindRequest.html">ezcWebdavPropFindRequest</a>
+          $request
+                        )
+    </div>
+
+    <p>Returns names of all available properties for a resource.</p><div><p>Fetches the names of all properties assigned to the reosource referenced  in $request and, if the resozurce is a collection, also returns property  names for its children, depending on the depth header of the $request.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$request</code></td>
+              <td><em><a href="ezcWebdavPropFindRequest.html">ezcWebdavPropFindRequest</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodget" id="get"><!-- --></a>
+
+    <h4>get</h4>
+
+    <div class="method-signature">
+      <a href="ezcWebdavResponse.html">ezcWebdavResponse</a>
+      get(
+                                  <a href="ezcWebdavGetRequest.html">ezcWebdavGetRequest</a>
+          $request
+                        )
+    </div>
+
+    <p>Serves GET requests.</p><div><p>The method receives a <a href="ezcWebdavGetRequest.html">ezcWebdavGetRequest</a> object containing all  relevant information obout the clients request and will return an <a href="ezcWebdavErrorResponse.html">ezcWebdavErrorResponse</a> instance on error or an instance of <a href="ezcWebdavGetResourceResponse.html">ezcWebdavGetResourceResponse</a> or <a href="ezcWebdavGetCollectionResponse.html">ezcWebdavGetCollectionResponse</a>  on success, depending on the type of resource that is referenced by the  request.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$request</code></td>
+              <td><em><a href="ezcWebdavGetRequest.html">ezcWebdavGetRequest</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcWebdavBackend.html#methodget">ezcWebdavBackend::get()</a></code></td>
+            <td>
+                              Serves GET requests.
+                          </td>
+          </tr></tbody></table><h5>Redefined in descendants as:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcWebdavFileBackend.html#methodget">ezcWebdavFileBackend::get()</a></code></td>
+              <td>
+                Serves GET requests.&#8192;
+              </td>
+            </tr></tbody></table><a name="methodgetAllProperties" id="getAllProperties"><!-- --></a>
+
+    <h4>getAllProperties</h4>
+
+    <div class="method-signature">
+      <a href="ezcWebdavPropertyStorage.html">ezcWebdavPropertyStorage</a>
+      getAllProperties(
+                                  string
+          $path
+                        )
+    </div>
+
+    <p>Returns all properties for a resource.</p><div><p>Returns all properties for the resource identified by $path as a <a href="ezcWebdavBasicPropertyStorage.html">ezcWebdavBasicPropertyStorage</a>.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$path</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefined in descendants as:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcWebdavFileBackend.html#methodgetAllProperties">ezcWebdavFileBackend::getAllProperties()</a></code></td>
+              <td>
+                Returns all properties for a resource.&#8192;
+              </td>
+            </tr></tbody></table><a name="methodgetCollectionMembers" id="getCollectionMembers"><!-- --></a>
+
+    <h4>getCollectionMembers</h4>
+
+    <div class="method-signature">
+      array(ezcWebdavResource|ezcWebdavCollection)
+      getCollectionMembers(
+                                  string
+          $path
+                        )
+    </div>
+
+    <p>Returns members of collection.</p><div><p>Returns an array with the members of the collection identified by $path.  The returned array can contain <a href="ezcWebdavCollection.html">ezcWebdavCollection</a>, and <a href="ezcWebdavResource.html">ezcWebdavResource</a> instances and might also be empty, if the collection  has no members.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$path</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefined in descendants as:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcWebdavFileBackend.html#methodgetCollectionMembers">ezcWebdavFileBackend::getCollectionMembers()</a></code></td>
+              <td>
+                Returns members of collection.&#8192;
+              </td>
+            </tr></tbody></table><a name="methodgetETag" id="getETag"><!-- --></a>
+
+    <h4>getETag</h4>
+
+    <div class="method-signature">
+      void
+      getETag(
+                                  mixed
+          $path
+                        )
+    </div>
+
+    <p>Returns the etag representing the current state of $path.</p><div><p>Calculates and returns the ETag for the resource represented by $path.  The ETag is calculated from the $path itself and the following  properties, which are concatenated and md5 hashed:</p><p></p><ul><li>getcontentlength</li><li>getlastmodified</li></ul><p>This method can be overwritten in custom backend implementations to  access the information needed directly without using the way around  properties.</p><p>Custom backend implementations are encouraged to use the same mechanism  (or this method itself) to determine and generate ETags.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$path</code></td>
+              <td><em>mixed</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefined in descendants as:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcWebdavFileBackend.html#methodgetETag">ezcWebdavFileBackend::getETag()</a></code></td>
+              <td>
+                Returns the etag representing the current state of $path.&#8192;
+              </td>
+            </tr></tbody></table><a name="methodgetFeatures" id="getFeatures"><!-- --></a>
+
+    <h4>getFeatures</h4>
+
+    <div class="method-signature">
+      int
+      getFeatures(
+      )
+    </div>
+
+    <p>Returns additional features supported by the backend.</p><div><p>Returns a bitmap of additional features supported by the backend, referenced  by constants from the basic <a href="ezcWebdavBackend.html">ezcWebdavBackend</a> class.</p></div>
+    
+        
+
+          <h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcWebdavBackend.html#methodgetFeatures">ezcWebdavBackend::getFeatures()</a></code></td>
+            <td>
+                              Returns additional features supported by the backend.
+                          </td>
+          </tr></tbody></table><a name="methodgetNodes" id="getNodes"><!-- --></a>
+
+    <h4>getNodes</h4>
+
+    <div class="method-signature">
+      array(ezcWebdavResource|ezcWebdavCollection)
+      getNodes(
+                                  string
+          $source
+                            ,           int
+          $depth
+                        )
+    </div>
+
+    <p>Returns all child nodes.</p><div><p>Get all nodes from the resource identified by $source up to the given  depth. Reuses the method <a href="ezcWebdavSimpleBackend.html#methodgetCollectionMembers">getCollectionMembers()</a>, but you may  want to overwrite this implementation by somethings which fits better  with your backend.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$source</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$depth</code></td>
+              <td><em>int</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodgetProperty" id="getProperty"><!-- --></a>
+
+    <h4>getProperty</h4>
+
+    <div class="method-signature">
+      <a href="ezcWebdavProperty.html">ezcWebdavProperty</a>
+      getProperty(
+                                  string
+          $path
+                            ,           string
+          $propertyName
+                            ,           [string
+          $namespace
+           = 'DAV:']              )
+    </div>
+
+    <p>Returns a property of a resource.</p><div><p>Returns the property with the given $propertyName, from the resource  identified by $path. You may optionally define a $namespace to receive  the property from.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$path</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$propertyName</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$namespace</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefined in descendants as:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcWebdavFileBackend.html#methodgetProperty">ezcWebdavFileBackend::getProperty()</a></code></td>
+              <td>
+                Returns a property of a resource.&#8192;
+              </td>
+            </tr></tbody></table><a name="methodgetResourceContents" id="getResourceContents"><!-- --></a>
+
+    <h4>getResourceContents</h4>
+
+    <div class="method-signature">
+      string
+      getResourceContents(
+                                  string
+          $path
+                        )
+    </div>
+
+    <p>Returns the content of a resource.</p><div><p>Returns the content of the resource identified by $path.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$path</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefined in descendants as:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcWebdavFileBackend.html#methodgetResourceContents">ezcWebdavFileBackend::getResourceContents()</a></code></td>
+              <td>
+                Returns the contents of a resource.&#8192;
+              </td>
+            </tr></tbody></table><a name="methodhead" id="head"><!-- --></a>
+
+    <h4>head</h4>
+
+    <div class="method-signature">
+      <a href="ezcWebdavResponse.html">ezcWebdavResponse</a>
+      head(
+                                  <a href="ezcWebdavHeadRequest.html">ezcWebdavHeadRequest</a>
+          $request
+                        )
+    </div>
+
+    <p>Serves HEAD requests.</p><div><p>The method receives a <a href="ezcWebdavHeadRequest.html">ezcWebdavHeadRequest</a> object containing all  relevant information obout the clients request and will return an <a href="ezcWebdavErrorResponse.html">ezcWebdavErrorResponse</a> instance on error or an instance of <a href="ezcWebdavHeadResponse.html">ezcWebdavHeadResponse</a> on success.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$request</code></td>
+              <td><em><a href="ezcWebdavHeadRequest.html">ezcWebdavHeadRequest</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcWebdavBackend.html#methodhead">ezcWebdavBackend::head()</a></code></td>
+            <td>
+                              Serves HEAD requests.
+                          </td>
+          </tr></tbody></table><h5>Redefined in descendants as:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcWebdavFileBackend.html#methodhead">ezcWebdavFileBackend::head()</a></code></td>
+              <td>
+                Serves HEAD requests.&#8192;
+              </td>
+            </tr></tbody></table><a name="methodisCollection" id="isCollection"><!-- --></a>
+
+    <h4>isCollection</h4>
+
+    <div class="method-signature">
+      bool
+      isCollection(
+                                  string
+          $path
+                        )
+    </div>
+
+    <p>Returns if resource is a collection.</p><div><p>Returns if the resource identified by $path is a collection resource  (true) or a non-collection one (false).</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$path</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefined in descendants as:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcWebdavFileBackend.html#methodisCollection">ezcWebdavFileBackend::isCollection()</a></code></td>
+              <td>
+                Returns if resource is a collection.&#8192;
+              </td>
+            </tr></tbody></table><a name="methodmakeCollection" id="makeCollection"><!-- --></a>
+
+    <h4>makeCollection</h4>
+
+    <div class="method-signature">
+      <a href="ezcWebdavResponse.html">ezcWebdavResponse</a>
+      makeCollection(
+                                  <a href="ezcWebdavMakeCollectionRequest.html">ezcWebdavMakeCollectionRequest</a>
+          $request
+                        )
+    </div>
+
+    <p>Serves MKCOL (make collection) requests.</p><div><p>The method receives a <a href="ezcWebdavMakeCollectionRequest.html">ezcWebdavMakeCollectionRequest</a> objects  containing all relevant information obout the clients request and will  return an instance of <a href="ezcWebdavErrorResponse.html">ezcWebdavErrorResponse</a> on error or <a href="ezcWebdavMakeCollectionResponse.html">ezcWebdavMakeCollectionResponse</a> on success.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$request</code></td>
+              <td><em><a href="ezcWebdavMakeCollectionRequest.html">ezcWebdavMakeCollectionRequest</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Implementation of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcWebdavBackendMakeCollection.html#methodmakeCollection">ezcWebdavBackendMakeCollection::makeCollection()</a></code></td>
+              <td>
+                                  Serves MKCOL (make collection) requests.
+                              </td>
+            </tr></tbody></table><h5>Redefined in descendants as:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcWebdavFileBackend.html#methodmakeCollection">ezcWebdavFileBackend::makeCollection()</a></code></td>
+              <td>
+                Serves MKCOL (make collection) requests.&#8192;
+              </td>
+            </tr></tbody></table><a name="methodmove" id="move"><!-- --></a>
+
+    <h4>move</h4>
+
+    <div class="method-signature">
+      <a href="ezcWebdavResponse.html">ezcWebdavResponse</a>
+      move(
+                                  <a href="ezcWebdavMoveRequest.html">ezcWebdavMoveRequest</a>
+          $request
+                        )
+    </div>
+
+    <p>Serves MOVE requests.</p><div><p>The method receives a <a href="ezcWebdavMoveRequest.html">ezcWebdavMoveRequest</a> objects containing  all relevant information obout the clients request and will return an  instance of <a href="ezcWebdavErrorResponse.html">ezcWebdavErrorResponse</a> on error or <a href="ezcWebdavMoveResponse.html">ezcWebdavMoveResponse</a> on success. If only some operations failed, this  method may return an instance of <a href="ezcWebdavMultistatusResponse.html">ezcWebdavMultistatusResponse</a>.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$request</code></td>
+              <td><em><a href="ezcWebdavMoveRequest.html">ezcWebdavMoveRequest</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Implementation of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcWebdavBackendChange.html#methodmove">ezcWebdavBackendChange::move()</a></code></td>
+              <td>
+                                  Serves MOVE requests.
+                              </td>
+            </tr></tbody></table><h5>Redefined in descendants as:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcWebdavFileBackend.html#methodmove">ezcWebdavFileBackend::move()</a></code></td>
+              <td>
+                Serves MOVE requests.&#8192;
+              </td>
+            </tr></tbody></table><a name="methodnodeExists" id="nodeExists"><!-- --></a>
+
+    <h4>nodeExists</h4>
+
+    <div class="method-signature">
+      bool
+      nodeExists(
+                                  string
+          $path
+                        )
+    </div>
+
+    <p>Returns if a resource exists.</p><div><p>Returns if a the resource identified by $path exists.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$path</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefined in descendants as:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcWebdavFileBackend.html#methodnodeExists">ezcWebdavFileBackend::nodeExists()</a></code></td>
+              <td>
+                Returns if a resource exists.&#8192;
+              </td>
+            </tr></tbody></table><a name="methodoptions" id="options"><!-- --></a>
+
+    <h4>options</h4>
+
+    <div class="method-signature">
+      <a href="ezcWebdavOptionsResponse.html">ezcWebdavOptionsResponse</a>
+      options(
+                                  <a href="ezcWebdavOptionsRequest.html">ezcWebdavOptionsRequest</a>
+          $request
+                        )
+    </div>
+
+    <p>Handles the OPTIONS request.</p><div><p>Applies authorization checking to the OPTIONS request and returns the  parent response.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$request</code></td>
+              <td><em><a href="ezcWebdavOptionsRequest.html">ezcWebdavOptionsRequest</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcWebdavBackend.html#methodoptions">ezcWebdavBackend::options()</a></code></td>
+            <td>
+                              Required method to serve OPTIONS requests.
+                          </td>
+          </tr></tbody></table><a name="methodperformCopy" id="performCopy"><!-- --></a>
+
+    <h4>performCopy</h4>
+
+    <div class="method-signature">
+      array(ezcWebdavErrorResponse)
+      performCopy(
+                                  string
+          $fromPath
+                            ,           string
+          $toPath
+                            ,           [int
+          $depth
+           = ezcWebdavRequest::DEPTH_INFINITY]              )
+    </div>
+
+    <p>Copies resources recursively from one path to another.</p><div><p>Copies the resourced identified by $fromPath recursively to $toPath with  the given $depth, where $depth is one of <a href="ezcWebdavRequest.html#constDEPTH_ZERO">ezcWebdavRequest::DEPTH_ZERO</a>, <a href="ezcWebdavRequest.html#constDEPTH_ONE">ezcWebdavRequest::DEPTH_ONE</a>,  <a href="ezcWebdavRequest.html#constDEPTH_INFINITY">ezcWebdavRequest::DEPTH_INFINITY</a>.</p><p>Returns an array with <a href="ezcWebdavErrorResponse.html">ezcWebdavErrorResponse</a>s for all subtrees,  where the copy operation failed. Errors for subsequent resources in a  subtree should be ommitted.</p><p>If an empty array is return, the operation has been completed  successfully.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$fromPath</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$toPath</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$depth</code></td>
+              <td><em>int</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefined in descendants as:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcWebdavFileBackend.html#methodperformCopy">ezcWebdavFileBackend::performCopy()</a></code></td>
+              <td>
+                Copies resources recursively from one path to another.&#8192;
+              </td>
+            </tr></tbody></table><a name="methodperformDelete" id="performDelete"><!-- --></a>
+
+    <h4>performDelete</h4>
+
+    <div class="method-signature">
+      ezcWebdavMultitstatusResponse|null
+      performDelete(
+                                  string
+          $path
+                        )
+    </div>
+
+    <p>Deletes everything below a path.</p><div><p>Deletes the resource identified by $path recursively. Returns an  instance of <a href="ezcWebdavMultistatusResponse.html">ezcWebdavMultistatusResponse</a> if the deletion failed,  and null on success.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$path</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefined in descendants as:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcWebdavFileBackend.html#methodperformDelete">ezcWebdavFileBackend::performDelete()</a></code></td>
+              <td>
+                Deletes everything below a path.&#8192;
+              </td>
+            </tr></tbody></table><a name="methodpropFind" id="propFind"><!-- --></a>
+
+    <h4>propFind</h4>
+
+    <div class="method-signature">
+      <a href="ezcWebdavResponse.html">ezcWebdavResponse</a>
+      propFind(
+                                  <a href="ezcWebdavPropFindRequest.html">ezcWebdavPropFindRequest</a>
+          $request
+                        )
+    </div>
+
+    <p>Serves PROPFIND requests.</p><div><p>The method receives a <a href="ezcWebdavPropFindRequest.html">ezcWebdavPropFindRequest</a> object containing  all relevant information obout the clients request and will either  return an instance of <a href="ezcWebdavErrorResponse.html">ezcWebdavErrorResponse</a> to indicate an error  or a <a href="ezcWebdavPropFindResponse.html">ezcWebdavPropFindResponse</a> on success. If the referenced  resource is a collection or if some properties produced errors, an  instance of <a href="ezcWebdavMultistatusResponse.html">ezcWebdavMultistatusResponse</a> may be returned.</p><p>The <a href="ezcWebdavPropFindRequest.html">ezcWebdavPropFindRequest</a> object contains a definition to  find one or more properties of a given collection or non-collection  resource.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$request</code></td>
+              <td><em><a href="ezcWebdavPropFindRequest.html">ezcWebdavPropFindRequest</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcWebdavBackend.html#methodpropFind">ezcWebdavBackend::propFind()</a></code></td>
+            <td>
+                              Serves PROPFIND requests.
+                          </td>
+          </tr></tbody></table><h5>Redefined in descendants as:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcWebdavFileBackend.html#methodpropFind">ezcWebdavFileBackend::propFind()</a></code></td>
+              <td>
+                Serves PROPFIND requests.&#8192;
+              </td>
+            </tr></tbody></table><a name="methodpropPatch" id="propPatch"><!-- --></a>
+
+    <h4>propPatch</h4>
+
+    <div class="method-signature">
+      <a href="ezcWebdavResponse.html">ezcWebdavResponse</a>
+      propPatch(
+                                  <a href="ezcWebdavPropPatchRequest.html">ezcWebdavPropPatchRequest</a>
+          $request
+                        )
+    </div>
+
+    <p>Serves PROPPATCH requests.</p><div><p>The method receives a <a href="ezcWebdavPropPatchRequest.html">ezcWebdavPropPatchRequest</a> object  containing all relevant information obout the clients request and will  return an instance of <a href="ezcWebdavErrorResponse.html">ezcWebdavErrorResponse</a> on error or a  <a href="ezcWebdavPropPatchResponse.html">ezcWebdavPropPatchResponse</a> response on success. If the  referenced resource is a collection or if only some properties produced  errors, an instance of <a href="ezcWebdavMultistatusResponse.html">ezcWebdavMultistatusResponse</a> may be  returned.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$request</code></td>
+              <td><em><a href="ezcWebdavPropPatchRequest.html">ezcWebdavPropPatchRequest</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcWebdavBackend.html#methodpropPatch">ezcWebdavBackend::propPatch()</a></code></td>
+            <td>
+                              Serves PROPPATCH requests.
+                          </td>
+          </tr></tbody></table><h5>Redefined in descendants as:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcWebdavFileBackend.html#methodpropPatch">ezcWebdavFileBackend::propPatch()</a></code></td>
+              <td>
+                Serves PROPPATCH requests.&#8192;
+              </td>
+            </tr></tbody></table><a name="methodput" id="put"><!-- --></a>
+
+    <h4>put</h4>
+
+    <div class="method-signature">
+      <a href="ezcWebdavResponse.html">ezcWebdavResponse</a>
+      put(
+                                  <a href="ezcWebdavPutRequest.html">ezcWebdavPutRequest</a>
+          $request
+                        )
+    </div>
+
+    <p>Serves PUT requests.</p><div><p>The method receives a <a href="ezcWebdavPutRequest.html">ezcWebdavPutRequest</a> objects containing all  relevant information obout the clients request and will return an  instance of <a href="ezcWebdavErrorResponse.html">ezcWebdavErrorResponse</a> on error or <a href="ezcWebdavPutResponse.html">ezcWebdavPutResponse</a> on success.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$request</code></td>
+              <td><em><a href="ezcWebdavPutRequest.html">ezcWebdavPutRequest</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Implementation of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcWebdavBackendPut.html#methodput">ezcWebdavBackendPut::put()</a></code></td>
+              <td>
+                                  Serves PUT requests.
+                              </td>
+            </tr></tbody></table><h5>Redefined in descendants as:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcWebdavFileBackend.html#methodput">ezcWebdavFileBackend::put()</a></code></td>
+              <td>
+                Serves PUT requests.&#8192;
+              </td>
+            </tr></tbody></table><a name="methodremoveProperty" id="removeProperty"><!-- --></a>
+
+    <h4>removeProperty</h4>
+
+    <div class="method-signature">
+      bool
+      removeProperty(
+                                  string
+          $path
+                            ,           <a href="ezcWebdavProperty.html">ezcWebdavProperty</a>
+          $property
+                        )
+    </div>
+
+    <p>Manually removes a property from a resource.</p><div><p>Removes the given $property form the resource identified by $path.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$path</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$property</code></td>
+              <td><em><a href="ezcWebdavProperty.html">ezcWebdavProperty</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefined in descendants as:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcWebdavFileBackend.html#methodremoveProperty">ezcWebdavFileBackend::removeProperty()</a></code></td>
+              <td>
+                Manually removes a property from a resource.&#8192;
+              </td>
+            </tr></tbody></table><a name="methodresetProperties" id="resetProperties"><!-- --></a>
+
+    <h4>resetProperties</h4>
+
+    <div class="method-signature">
+      bool
+      resetProperties(
+                                  string
+          $path
+                            ,           <a href="ezcWebdavPropertyStorage.html">ezcWebdavPropertyStorage</a>
+          $properties
+                        )
+    </div>
+
+    <p>Resets the property storage for a resource.</p><div><p>Discardes the current <a href="ezcWebdavPropertyStorage.html">ezcWebdavPropertyStorage</a> of the resource  identified by $path and replaces it with the given $properties.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$path</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$properties</code></td>
+              <td><em><a href="ezcWebdavPropertyStorage.html">ezcWebdavPropertyStorage</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefined in descendants as:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcWebdavFileBackend.html#methodresetProperties">ezcWebdavFileBackend::resetProperties()</a></code></td>
+              <td>
+                Resets the property storage for a resource.&#8192;
+              </td>
+            </tr></tbody></table><a name="methodsetProperty" id="setProperty"><!-- --></a>
+
+    <h4>setProperty</h4>
+
+    <div class="method-signature">
+      bool
+      setProperty(
+                                  string
+          $path
+                            ,           <a href="ezcWebdavProperty.html">ezcWebdavProperty</a>
+          $property
+                        )
+    </div>
+
+    <p>Manually sets a property on a resource.</p><div><p>Sets the given $propertyBackup for the resource identified by $path.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$path</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$property</code></td>
+              <td><em><a href="ezcWebdavProperty.html">ezcWebdavProperty</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefined in descendants as:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcWebdavFileBackend.html#methodsetProperty">ezcWebdavFileBackend::setProperty()</a></code></td>
+              <td>
+                Manually sets a property on a resource.&#8192;
+              </td>
+            </tr></tbody></table><a name="methodsetResourceContents" id="setResourceContents"><!-- --></a>
+
+    <h4>setResourceContents</h4>
+
+    <div class="method-signature">
+      void
+      setResourceContents(
+                                  string
+          $path
+                            ,           string
+          $content
+                        )
+    </div>
+
+    <p>Changes contents of a resource.</p><div><p>This method is used to change the contents of the resource identified by  $path to the given $content.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$path</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$content</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefined in descendants as:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcWebdavFileBackend.html#methodsetResourceContents">ezcWebdavFileBackend::setResourceContents()</a></code></td>
+              <td>
+                Sets the contents of a resource.&#8192;
+              </td>
+            </tr></tbody></table><div class="credit">
+      Documentation generated by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+    </div>
+  </div>
+  
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

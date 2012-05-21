@@ -1,0 +1,2106 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="PHP, apache, components, framework, quality" />
+	<meta name="author" content="dotxp" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Wed, 04 Aug 2010 13:07:23 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="ezcQueryExpression.html" />
+	<meta name="DC.creator" content="dotxp" />
+	<meta name="DC.date" content="Wed, 04 Aug 2010 13:07:23 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/Database/phpdoc/ezcQueryExpression.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/Database/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/trunk/Database/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Database/oracle_setup.html" title="Oracle_setup ">Oracle_setup </a>
+	</li>
+
+</ul>
+
+		
+  <div class="phpdoc">
+    <h2>Apache Zeta Components Manual :: Docs For Class ezcQueryExpression</h2>
+
+                  <h3>Database::ezcQueryExpression</h3>
+    
+<a name="sec-description"></a>
+<h3>Class ezcQueryExpression</h3>
+
+<p>The ezcQueryExpression class is used to create database independent SQL expression.</p><div><p>The QueryExpression class is usually used through the 'expr' variable in  one of the Select, Insert, Update or Delete classes.</p><p>Note that the methods for logical or and and are  named lOr and lAnd respectively. This is because and and or are reserved names  in PHP and can not be used in method names.</p></div>
+<p>Source for this file: <a href="http://fisheye6.atlassian.com/browse/zetacomponents/trunk/Database/src/sqlabstraction/expression.php?r=HEAD">/Database/src/sqlabstraction/expression.php</a></p>
+       
+
+
+
+
+  <table><tr><td>
+            <strong>Version:</strong>&#8192;&#8192;
+          </td>
+          <td>//autogentag//</td>
+        </tr></table><a name="sec-descendants"></a>
+  <h3>Descendants</h3>
+  <table class="detail"><thead><tr><th>Child Class</th>
+        <th>Description</th>
+      </tr></thead><tbody><tr><td><a href="ezcQueryExpressionOracle.html">ezcQueryExpressionOracle</a></td>          <td>
+                          The ezcQueryExpressionOracle class is used to create SQL expression for Oracle.
+                      </td>
+        </tr><tr><td><a href="ezcQueryExpressionPgsql.html">ezcQueryExpressionPgsql</a></td>          <td>
+                          The ezcQueryExpressionPgsql class is used to create SQL expression for PostgreSQL.
+                      </td>
+        </tr><tr><td><a href="ezcQueryExpressionSqlite.html">ezcQueryExpressionSqlite</a></td>          <td>
+                          The ezcQueryExpressionSqlite class is used to create SQL expression for SQLite.
+                      </td>
+        </tr><tr><td><a href="ezcQueryExpressionMssql.html">ezcQueryExpressionMssql</a></td>          <td>
+                          The ezcQueryExpressionMssql class is used to create SQL expression for SQL Server.
+                      </td>
+        </tr></tbody></table><a name="sec-var-summary"></a>
+  <h3>Member Variables</h3>
+  <table class="summary"><tr><td class="right">
+            <em>protected</em>            <em>PDO</em>          </td>
+          <td>
+            <code>
+              $db
+                          </code>
+            <br><div style="margin-left: 20px">A pointer to the database handler to use for this query.</div>                      </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            <em>array(string=&gt;string)</em>          </td>
+          <td>
+            <code>
+              $intervalMap
+               = <span class="var-default">array(<br>        'SECOND' =&gt; 'SECOND',<br>        'MINUTE' =&gt; 'MINUTE',<br>        'HOUR' =&gt; 'HOUR',<br>        'DAY' =&gt; 'DAY',<br>        'MONTH' =&gt; 'MONTH',<br>        'YEAR' =&gt; 'YEAR',<br>    )</span>            </code>
+            <br><div style="margin-left: 20px">Contains an interval map from generic intervals to MySQL native intervals.</div>                      </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            <em>boolean</em>          </td>
+          <td>
+            <code>
+              $quoteValues
+               = <span class="var-default"> true</span>            </code>
+            <br><div style="margin-left: 20px">The flag that switch quoting mode for  values provided by user in miscelaneous SQL functions.</div>                      </td>
+        </tr></table><a name="sec-method-summary"></a>
+  <h3>Method Summary</h3>
+  <table class="summary"><tr><td class="right">
+            <em>public</em>                        <em>ezcQueryExpression</em>          </td>
+          <td>
+            <code>
+              <a href="#__construct"><b>__construct</b></a>(
+                                                                                    $db
+                                                    ,                   [                  $aliases
+                   = array()]                               )
+            </code>
+            <br><div style="margin-left: 20px">Constructs an empty ezcQueryExpression</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#add"><b>add</b></a>(
+                                                                                    $...
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns the SQL to add values or expressions together.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#avg"><b>avg</b></a>(
+                                                                                    $column
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns the average value of a column</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#between"><b>between</b></a>(
+                                                                                    $expression
+                                                    ,                                     $value1
+                                                    ,                                     $value2
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns SQL that checks if an expression evaluates to a value between  two values.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#bitAnd"><b>bitAnd</b></a>(
+                                                                                    $value1
+                                                    ,                                     $value2
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns the SQL that performs the bitwise AND on two values.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#bitOr"><b>bitOr</b></a>(
+                                                                                    $value1
+                                                    ,                                     $value2
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns the SQL that performs the bitwise OR on two values.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#bitXor"><b>bitXor</b></a>(
+                                                                                    $value1
+                                                    ,                                     $value2
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns the SQL that performs the bitwise XOR on two values.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#ceil"><b>ceil</b></a>(
+                                                                                    $number
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns the SQL to calculate the next highest integer value from the number.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#concat"><b>concat</b></a>(
+                                                                                    $...
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns a series of strings concatinated</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#count"><b>count</b></a>(
+                                                                                    $column
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns the number of rows (without a NULL value) of a column</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#dateAdd"><b>dateAdd</b></a>(
+                                                                                    $column
+                                                    ,                                     $expr
+                                                    ,                                     $type
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns the SQL that adds an interval to a timestamp value.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#dateExtract"><b>dateExtract</b></a>(
+                                                                                    $column
+                                                    ,                                     $type
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns the SQL that extracts parts from a timestamp value.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#dateSub"><b>dateSub</b></a>(
+                                                                                    $column
+                                                    ,                                     $expr
+                                                    ,                                     $type
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns the SQL that subtracts an interval from a timestamp value.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#div"><b>div</b></a>(
+                                                                                    $...
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns the SQL to divide values or expressions by eachother.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#eq"><b>eq</b></a>(
+                                                                                    $value1
+                                                    ,                                     $value2
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns the SQL to check if two values are equal.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#floor"><b>floor</b></a>(
+                                                                                    $number
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns the SQL to calculate the next lowest integer value from the number.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#getIdentifier"><b>getIdentifier</b></a>(
+                                                                                    $alias
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns the correct identifier for the alias $alias.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>array(string)</em>          </td>
+          <td>
+            <code>
+              <a href="#getIdentifiers"><b>getIdentifiers</b></a>(
+                                                                                    $aliasList
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns the correct identifiers for the aliases found in $aliases.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#gt"><b>gt</b></a>(
+                                                                                    $value1
+                                                    ,                                     $value2
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns the SQL to check if one value is greater than another value.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#gte"><b>gte</b></a>(
+                                                                                    $value1
+                                                    ,                                     $value2
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns the SQL to check if one value is greater than or equal to  another value.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>bool</em>          </td>
+          <td>
+            <code>
+              <a href="#hasAliases"><b>hasAliases</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns true if this object has aliases.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#in"><b>in</b></a>(
+                                                                                    $column
+                                                    ,                                     $...
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns the SQL to check if a value is one in a set of  given values..</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#isNull"><b>isNull</b></a>(
+                                                                                    $expression
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns SQL that checks if a expression is null.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#lAnd"><b>lAnd</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns the SQL to bind logical expressions together using a logical and.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#length"><b>length</b></a>(
+                                                                                    $column
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns the length of text field $column</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#like"><b>like</b></a>(
+                                                                                    $expression
+                                                    ,                                     $pattern
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Match a partial string in a column.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#lOr"><b>lOr</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns the SQL to bind logical expressions together using a logical or.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#lower"><b>lower</b></a>(
+                                                                                    $value
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns the SQL to change all characters to lowercase</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#lt"><b>lt</b></a>(
+                                                                                    $value1
+                                                    ,                                     $value2
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns the SQL to check if one value is less than another value.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#lte"><b>lte</b></a>(
+                                                                                    $value1
+                                                    ,                                     $value2
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns the SQL to check if one value is less than or equal to  another value.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#max"><b>max</b></a>(
+                                                                                    $column
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns the highest value of a column</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#md5"><b>md5</b></a>(
+                                                                                    $column
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns the md5 sum of $column.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#min"><b>min</b></a>(
+                                                                                    $column
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns the lowest value of a column</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#mod"><b>mod</b></a>(
+                                                                                    $expression1
+                                                    ,                                     $expression2
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns the remainder of the division operation  $expression1 / $expression2.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#mul"><b>mul</b></a>(
+                                                                                    $...
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns the SQL to multiply values or expressions by eachother.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#neq"><b>neq</b></a>(
+                                                                                    $value1
+                                                    ,                                     $value2
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns the SQL to check if two values are unequal.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#not"><b>not</b></a>(
+                                                                                    $expression
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns the SQL for a logical not, negating the $expression.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#now"><b>now</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns the current system date and time in the database internal  format.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#position"><b>position</b></a>(
+                                                                                    $substr
+                                                    ,                                     $value
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns the SQL to locate the position of the first occurrence of a substring</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#round"><b>round</b></a>(
+                                                                                    $column
+                                                    ,                                     $decimals
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Rounds a numeric field to the number of decimals specified.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#searchedCase"><b>searchedCase</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns a searched CASE statement.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#setAliases"><b>setAliases</b></a>(
+                                                                                    $aliases
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Sets the aliases $aliases for this object.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#setValuesQuoting"><b>setValuesQuoting</b></a>(
+                                                                                    $doQuoting
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Sets the mode of quoting for parameters passed  to SQL functions and operators.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#sub"><b>sub</b></a>(
+                                                                                    $...
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns the SQL to subtract values or expressions from eachother.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#subString"><b>subString</b></a>(
+                                                                                    $value
+                                                    ,                                     $from
+                                                    ,                   [                  $len
+                   = null]                               )
+            </code>
+            <br><div style="margin-left: 20px">Returns part of a string.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#sum"><b>sum</b></a>(
+                                                                                    $column
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns the total sum of a column</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#unixTimestamp"><b>unixTimestamp</b></a>(
+                                                                                    $column
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns the SQL that converts a timestamp value to a unix timestamp.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#upper"><b>upper</b></a>(
+                                                                                    $value
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns the SQL to change all characters to uppercase</div>          </td>
+        </tr></table><a name="sec-methods"></a>
+  <h3>Methods</h3>
+  <a name="method_detail"></a>
+                                                                                                
+      <a name="method__construct" id="__construct"><!-- --></a>
+
+    <h4>__construct</h4>
+
+    <div class="method-signature">
+      ezcQueryExpression
+      __construct(
+                                  
+          $db
+                            ,           [
+          $aliases
+           = array()]              )
+    </div>
+
+    <p>Constructs an empty ezcQueryExpression</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$db</code></td>
+              <td><em>PDO</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$aliases</code></td>
+              <td><em>array(string=&gt;string)</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefined in descendants as:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcQueryExpressionOracle.html#method__construct">ezcQueryExpressionOracle::__construct()</a></code></td>
+              <td>
+                Constructs an empty ezcQueryExpression&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcQueryExpressionPgsql.html#method__construct">ezcQueryExpressionPgsql::__construct()</a></code></td>
+              <td>
+                Constructs an pgsql expression object using the db $db.&#8192;
+              </td>
+            </tr></tbody></table><a name="methodadd" id="add"><!-- --></a>
+
+    <h4>add</h4>
+
+    <div class="method-signature">
+      string
+      add(
+                                  string|array(string)
+          $...
+                        )
+    </div>
+
+    <p>Returns the SQL to add values or expressions together.</p><div><p>add() accepts an arbitrary number of parameters. Each parameter  must contain a value or an expression or an array with values or  expressions.</p><p>Example:  </p><ol><li><div class="src-line">&#8192;<span class="src-var">$q&#8192;</span>=&#8192;<span class="src-id"><a href="ezcDbInstance.html">ezcDbInstance</a></span><span class="src-sym">::</span><a href="ezcDbInstance.html#methodget">get</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">-&gt;</span><span class="src-id">createSelectQuery</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$q</span><span class="src-sym">-&gt;</span><span class="src-id">select</span><span class="src-sym">(&#8192;</span><span class="src-str">'*'&#8192;</span><span class="src-sym">)</span><span class="src-sym">-&gt;</span><span class="src-id">from</span><span class="src-sym">(&#8192;</span><span class="src-str">'table'&#8192;</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-sym">-&gt;</span><span class="src-id">where</span><span class="src-sym">(&#8192;</span><span class="src-var">$q</span><span class="src-sym">-&gt;</span><span class="src-id">expr</span><span class="src-sym">-&gt;</span><a href="ezcQueryExpression.html#methodadd">add</a><span class="src-sym">(&#8192;</span><span class="src-str">'id'</span><span class="src-sym">,&#8192;</span><span class="src-num">2&#8192;</span><span class="src-sym">)&#8192;&#8192;)</span><span class="src-sym">;</span></div></li>
+</ol></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$...</code></td>
+              <td><em>string|array(string)</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>ezcDbAbstractionException</code></td>
+              <td>
+                                  if called with no parameters.
+                              </td>
+            </tr></tbody></table><a name="methodavg" id="avg"><!-- --></a>
+
+    <h4>avg</h4>
+
+    <div class="method-signature">
+      string
+      avg(
+                                  string
+          $column
+                        )
+    </div>
+
+    <p>Returns the average value of a column</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$column</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  the column to use
+                              </td>
+            </tr></tbody></table><a name="methodbetween" id="between"><!-- --></a>
+
+    <h4>between</h4>
+
+    <div class="method-signature">
+      string
+      between(
+                                  string
+          $expression
+                            ,           string
+          $value1
+                            ,           string
+          $value2
+                        )
+    </div>
+
+    <p>Returns SQL that checks if an expression evaluates to a value between  two values.</p><div><p>The parameter $expression is checked if it is between $value1 and $value2.</p><p>Note: There is a slight difference in the way BETWEEN works on some databases.  http://www.w3schools.com/sql/sql_between.asp. If you want complete database  independence you should avoid using between().</p><p>Example:  </p><ol><li><div class="src-line">&#8192;<span class="src-var">$q&#8192;</span>=&#8192;<span class="src-id"><a href="ezcDbInstance.html">ezcDbInstance</a></span><span class="src-sym">::</span><a href="ezcDbInstance.html#methodget">get</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">-&gt;</span><span class="src-id">createSelectQuery</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$q</span><span class="src-sym">-&gt;</span><span class="src-id">select</span><span class="src-sym">(&#8192;</span><span class="src-str">'*'&#8192;</span><span class="src-sym">)</span><span class="src-sym">-&gt;</span><span class="src-id">from</span><span class="src-sym">(&#8192;</span><span class="src-str">'table'&#8192;</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-sym">-&gt;</span><span class="src-id">where</span><span class="src-sym">(&#8192;</span><span class="src-var">$q</span><span class="src-sym">-&gt;</span><span class="src-id">expr</span><span class="src-sym">-&gt;</span><a href="ezcQueryExpression.html#methodbetween">between</a><span class="src-sym">(&#8192;</span><span class="src-str">'id'</span><span class="src-sym">,&#8192;</span><span class="src-var">$q</span><span class="src-sym">-&gt;</span><span class="src-id">bindValue</span><span class="src-sym">(&#8192;</span><span class="src-num">1&#8192;</span><span class="src-sym">)</span><span class="src-sym">,&#8192;</span><span class="src-var">$q</span><span class="src-sym">-&gt;</span><span class="src-id">bindValue</span><span class="src-sym">(&#8192;</span><span class="src-num">5&#8192;</span><span class="src-sym">)&#8192;)&#8192;)</span><span class="src-sym">;</span></div></li>
+</ol></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$expression</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  the value to compare to
+                              </td>
+            </tr><tr><td><code>$value1</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  the lower value to compare with
+                              </td>
+            </tr><tr><td><code>$value2</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  the higher value to compare with
+                              </td>
+            </tr></tbody></table><a name="methodbitAnd" id="bitAnd"><!-- --></a>
+
+    <h4>bitAnd</h4>
+
+    <div class="method-signature">
+      string
+      bitAnd(
+                                  string
+          $value1
+                            ,           string
+          $value2
+                        )
+    </div>
+
+    <p>Returns the SQL that performs the bitwise AND on two values.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$value1</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$value2</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefined in descendants as:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcQueryExpressionOracle.html#methodbitAnd">ezcQueryExpressionOracle::bitAnd()</a></code></td>
+              <td>
+                Returns the SQL that performs the bitwise AND on two values.&#8192;
+              </td>
+            </tr></tbody></table><a name="methodbitOr" id="bitOr"><!-- --></a>
+
+    <h4>bitOr</h4>
+
+    <div class="method-signature">
+      string
+      bitOr(
+                                  string
+          $value1
+                            ,           string
+          $value2
+                        )
+    </div>
+
+    <p>Returns the SQL that performs the bitwise OR on two values.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$value1</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$value2</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefined in descendants as:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcQueryExpressionOracle.html#methodbitOr">ezcQueryExpressionOracle::bitOr()</a></code></td>
+              <td>
+                Returns the SQL that performs the bitwise OR on two values.&#8192;
+              </td>
+            </tr></tbody></table><a name="methodbitXor" id="bitXor"><!-- --></a>
+
+    <h4>bitXor</h4>
+
+    <div class="method-signature">
+      string
+      bitXor(
+                                  string
+          $value1
+                            ,           string
+          $value2
+                        )
+    </div>
+
+    <p>Returns the SQL that performs the bitwise XOR on two values.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$value1</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$value2</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefined in descendants as:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcQueryExpressionOracle.html#methodbitXor">ezcQueryExpressionOracle::bitXor()</a></code></td>
+              <td>
+                Returns the SQL that performs the bitwise XOR on two values.&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcQueryExpressionPgsql.html#methodbitXor">ezcQueryExpressionPgsql::bitXor()</a></code></td>
+              <td>
+                Returns the SQL that performs the bitwise XOR on two values.&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcQueryExpressionSqlite.html#methodbitXor">ezcQueryExpressionSqlite::bitXor()</a></code></td>
+              <td>
+                Returns the SQL that performs the bitwise XOR on two values.&#8192;
+              </td>
+            </tr></tbody></table><a name="methodceil" id="ceil"><!-- --></a>
+
+    <h4>ceil</h4>
+
+    <div class="method-signature">
+      string
+      ceil(
+                                  string
+          $number
+                        )
+    </div>
+
+    <p>Returns the SQL to calculate the next highest integer value from the number.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$number</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefined in descendants as:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcQueryExpressionMssql.html#methodceil">ezcQueryExpressionMssql::ceil()</a></code></td>
+              <td>
+                Returns the SQL to calculate the next highest integer value from the number.&#8192;
+              </td>
+            </tr></tbody></table><a name="methodconcat" id="concat"><!-- --></a>
+
+    <h4>concat</h4>
+
+    <div class="method-signature">
+      void
+      concat(
+                                  string|array(string)
+          $...
+                        )
+    </div>
+
+    <p>Returns a series of strings concatinated</p><div><p>concat() accepts an arbitrary number of parameters. Each parameter  must contain an expression or an array with expressions.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$...</code></td>
+              <td><em>string|array(string)</em></td>
+              <td>
+                                  strings that will be concatinated.
+                              </td>
+            </tr></tbody></table><h5>Redefined in descendants as:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcQueryExpressionOracle.html#methodconcat">ezcQueryExpressionOracle::concat()</a></code></td>
+              <td>
+                Returns a series of strings concatinated&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcQueryExpressionPgsql.html#methodconcat">ezcQueryExpressionPgsql::concat()</a></code></td>
+              <td>
+                Returns a series of strings concatinated&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcQueryExpressionMssql.html#methodconcat">ezcQueryExpressionMssql::concat()</a></code></td>
+              <td>
+                Returns a series of strings concatinated&#8192;
+              </td>
+            </tr></tbody></table><a name="methodcount" id="count"><!-- --></a>
+
+    <h4>count</h4>
+
+    <div class="method-signature">
+      string
+      count(
+                                  string
+          $column
+                        )
+    </div>
+
+    <p>Returns the number of rows (without a NULL value) of a column</p><div><p>If a '*' is used instead of a column the number of selected rows  is returned.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$column</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  the column to use
+                              </td>
+            </tr></tbody></table><a name="methoddateAdd" id="dateAdd"><!-- --></a>
+
+    <h4>dateAdd</h4>
+
+    <div class="method-signature">
+      string
+      dateAdd(
+                                  string
+          $column
+                            ,           numeric
+          $expr
+                            ,           string
+          $type
+                        )
+    </div>
+
+    <p>Returns the SQL that adds an interval to a timestamp value.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$column</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$expr</code></td>
+              <td><em>numeric</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$type</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  one of SECOND, MINUTE, HOUR, DAY, MONTH, or YEAR
+                              </td>
+            </tr></tbody></table><h5>Redefined in descendants as:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcQueryExpressionOracle.html#methoddateAdd">ezcQueryExpressionOracle::dateAdd()</a></code></td>
+              <td>
+                Returns the SQL that adds an interval to a timestamp value.&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcQueryExpressionPgsql.html#methoddateAdd">ezcQueryExpressionPgsql::dateAdd()</a></code></td>
+              <td>
+                Returns the SQL that adds an interval to a timestamp value.&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcQueryExpressionSqlite.html#methoddateAdd">ezcQueryExpressionSqlite::dateAdd()</a></code></td>
+              <td>
+                Returns the SQL that adds an interval to a timestamp value.&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcQueryExpressionMssql.html#methoddateAdd">ezcQueryExpressionMssql::dateAdd()</a></code></td>
+              <td>
+                Returns the SQL that adds an interval to a timestamp value.&#8192;
+              </td>
+            </tr></tbody></table><a name="methoddateExtract" id="dateExtract"><!-- --></a>
+
+    <h4>dateExtract</h4>
+
+    <div class="method-signature">
+      string
+      dateExtract(
+                                  string
+          $column
+                            ,           string
+          $type
+                        )
+    </div>
+
+    <p>Returns the SQL that extracts parts from a timestamp value.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$column</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  The column to operate on
+                              </td>
+            </tr><tr><td><code>$type</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  one of SECOND, MINUTE, HOUR, DAY, MONTH, or YEAR
+                              </td>
+            </tr></tbody></table><h5>Redefined in descendants as:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcQueryExpressionOracle.html#methoddateExtract">ezcQueryExpressionOracle::dateExtract()</a></code></td>
+              <td>
+                Returns the SQL that extracts parts from a timestamp value.&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcQueryExpressionPgsql.html#methoddateExtract">ezcQueryExpressionPgsql::dateExtract()</a></code></td>
+              <td>
+                Returns the SQL that extracts parts from a timestamp value.&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcQueryExpressionSqlite.html#methoddateExtract">ezcQueryExpressionSqlite::dateExtract()</a></code></td>
+              <td>
+                Returns the SQL that extracts parts from a timestamp value.&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcQueryExpressionMssql.html#methoddateExtract">ezcQueryExpressionMssql::dateExtract()</a></code></td>
+              <td>
+                Returns the SQL that extracts parts from a timestamp value from a column.&#8192;
+              </td>
+            </tr></tbody></table><a name="methoddateSub" id="dateSub"><!-- --></a>
+
+    <h4>dateSub</h4>
+
+    <div class="method-signature">
+      string
+      dateSub(
+                                  string
+          $column
+                            ,           numeric
+          $expr
+                            ,           string
+          $type
+                        )
+    </div>
+
+    <p>Returns the SQL that subtracts an interval from a timestamp value.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$column</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$expr</code></td>
+              <td><em>numeric</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$type</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  one of SECOND, MINUTE, HOUR, DAY, MONTH, or YEAR
+                              </td>
+            </tr></tbody></table><h5>Redefined in descendants as:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcQueryExpressionOracle.html#methoddateSub">ezcQueryExpressionOracle::dateSub()</a></code></td>
+              <td>
+                Returns the SQL that subtracts an interval from a timestamp value.&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcQueryExpressionPgsql.html#methoddateSub">ezcQueryExpressionPgsql::dateSub()</a></code></td>
+              <td>
+                Returns the SQL that subtracts an interval from a timestamp value.&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcQueryExpressionSqlite.html#methoddateSub">ezcQueryExpressionSqlite::dateSub()</a></code></td>
+              <td>
+                Returns the SQL that subtracts an interval from a timestamp value.&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcQueryExpressionMssql.html#methoddateSub">ezcQueryExpressionMssql::dateSub()</a></code></td>
+              <td>
+                Returns the SQL that subtracts an interval from a timestamp value.&#8192;
+              </td>
+            </tr></tbody></table><a name="methoddiv" id="div"><!-- --></a>
+
+    <h4>div</h4>
+
+    <div class="method-signature">
+      string
+      div(
+                                  string|array(string)
+          $...
+                        )
+    </div>
+
+    <p>Returns the SQL to divide values or expressions by eachother.</p><div><p>divide() accepts an arbitrary number of parameters. Each parameter  must contain a value or an expression or an array with values or  expressions.</p><p>Example:  </p><ol><li><div class="src-line">&#8192;<span class="src-var">$q&#8192;</span>=&#8192;<span class="src-id"><a href="ezcDbInstance.html">ezcDbInstance</a></span><span class="src-sym">::</span><a href="ezcDbInstance.html#methodget">get</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">-&gt;</span><span class="src-id">createSelectQuery</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$q</span><span class="src-sym">-&gt;</span><span class="src-id">select</span><span class="src-sym">(&#8192;</span><span class="src-str">'*'&#8192;</span><span class="src-sym">)</span><span class="src-sym">-&gt;</span><span class="src-id">from</span><span class="src-sym">(&#8192;</span><span class="src-str">'table'&#8192;</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-sym">-&gt;</span><span class="src-id">where</span><span class="src-sym">(&#8192;</span><span class="src-var">$q</span><span class="src-sym">-&gt;</span><span class="src-id">expr</span><span class="src-sym">-&gt;</span><span class="src-id">divide</span><span class="src-sym">(&#8192;</span><span class="src-str">'id'</span><span class="src-sym">,&#8192;</span><span class="src-num">2&#8192;</span><span class="src-sym">)&#8192;&#8192;)</span><span class="src-sym">;</span></div></li>
+</ol></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$...</code></td>
+              <td><em>string|array(string)</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>ezcDbAbstractionException</code></td>
+              <td>
+                                  if called with no parameters.
+                              </td>
+            </tr></tbody></table><a name="methodeq" id="eq"><!-- --></a>
+
+    <h4>eq</h4>
+
+    <div class="method-signature">
+      string
+      eq(
+                                  string
+          $value1
+                            ,           string
+          $value2
+                        )
+    </div>
+
+    <p>Returns the SQL to check if two values are equal.</p><div><p>Example:  </p><ol><li><div class="src-line">&#8192;<span class="src-var">$q&#8192;</span>=&#8192;<span class="src-id"><a href="ezcDbInstance.html">ezcDbInstance</a></span><span class="src-sym">::</span><a href="ezcDbInstance.html#methodget">get</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">-&gt;</span><span class="src-id">createSelectQuery</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$q</span><span class="src-sym">-&gt;</span><span class="src-id">select</span><span class="src-sym">(&#8192;</span><span class="src-str">'*'&#8192;</span><span class="src-sym">)</span><span class="src-sym">-&gt;</span><span class="src-id">from</span><span class="src-sym">(&#8192;</span><span class="src-str">'table'&#8192;</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-sym">-&gt;</span><span class="src-id">where</span><span class="src-sym">(&#8192;</span><span class="src-var">$q</span><span class="src-sym">-&gt;</span><span class="src-id">expr</span><span class="src-sym">-&gt;</span><a href="ezcQueryExpression.html#methodeq">eq</a><span class="src-sym">(&#8192;</span><span class="src-str">'id'</span><span class="src-sym">,&#8192;</span><span class="src-var">$q</span><span class="src-sym">-&gt;</span><span class="src-id">bindValue</span><span class="src-sym">(&#8192;</span><span class="src-num">1&#8192;</span><span class="src-sym">)&#8192;)&#8192;)</span><span class="src-sym">;</span></div></li>
+</ol></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$value1</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  logical expression to compare
+                              </td>
+            </tr><tr><td><code>$value2</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  logical expression to compare with
+                              </td>
+            </tr></tbody></table><a name="methodfloor" id="floor"><!-- --></a>
+
+    <h4>floor</h4>
+
+    <div class="method-signature">
+      string
+      floor(
+                                  string
+          $number
+                        )
+    </div>
+
+    <p>Returns the SQL to calculate the next lowest integer value from the number.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$number</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodgetIdentifier" id="getIdentifier"><!-- --></a>
+
+    <h4>getIdentifier</h4>
+
+    <div class="method-signature">
+      string
+      getIdentifier(
+                                  string
+          $alias
+                        )
+    </div>
+
+    <p>Returns the correct identifier for the alias $alias.</p><div><p>If the alias does not exists in the list of aliases  it is returned unchanged.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$alias</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodgetIdentifiers" id="getIdentifiers"><!-- --></a>
+
+    <h4>getIdentifiers</h4>
+
+    <div class="method-signature">
+      array(string)
+      getIdentifiers(
+                                  
+          $aliasList
+                        )
+    </div>
+
+    <p>Returns the correct identifiers for the aliases found in $aliases.</p><div><p>This method is similar to getIdentifier except that it works on an array.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$aliasList</code></td>
+              <td><em>array(string)</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodgt" id="gt"><!-- --></a>
+
+    <h4>gt</h4>
+
+    <div class="method-signature">
+      string
+      gt(
+                                  string
+          $value1
+                            ,           string
+          $value2
+                        )
+    </div>
+
+    <p>Returns the SQL to check if one value is greater than another value.</p><div><p>Example:  </p><ol><li><div class="src-line">&#8192;<span class="src-var">$q&#8192;</span>=&#8192;<span class="src-id"><a href="ezcDbInstance.html">ezcDbInstance</a></span><span class="src-sym">::</span><a href="ezcDbInstance.html#methodget">get</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">-&gt;</span><span class="src-id">createSelectQuery</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$q</span><span class="src-sym">-&gt;</span><span class="src-id">select</span><span class="src-sym">(&#8192;</span><span class="src-str">'*'&#8192;</span><span class="src-sym">)</span><span class="src-sym">-&gt;</span><span class="src-id">from</span><span class="src-sym">(&#8192;</span><span class="src-str">'table'&#8192;</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-sym">-&gt;</span><span class="src-id">where</span><span class="src-sym">(&#8192;</span><span class="src-var">$q</span><span class="src-sym">-&gt;</span><span class="src-id">expr</span><span class="src-sym">-&gt;</span><a href="ezcQueryExpression.html#methodgt">gt</a><span class="src-sym">(&#8192;</span><span class="src-str">'id'</span><span class="src-sym">,&#8192;</span><span class="src-var">$q</span><span class="src-sym">-&gt;</span><span class="src-id">bindValue</span><span class="src-sym">(&#8192;</span><span class="src-num">1&#8192;</span><span class="src-sym">)&#8192;)&#8192;)</span><span class="src-sym">;</span></div></li>
+</ol></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$value1</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  logical expression to compare
+                              </td>
+            </tr><tr><td><code>$value2</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  logical expression to compare with
+                              </td>
+            </tr></tbody></table><a name="methodgte" id="gte"><!-- --></a>
+
+    <h4>gte</h4>
+
+    <div class="method-signature">
+      string
+      gte(
+                                  string
+          $value1
+                            ,           string
+          $value2
+                        )
+    </div>
+
+    <p>Returns the SQL to check if one value is greater than or equal to  another value.</p><div><p>Example:  </p><ol><li><div class="src-line">&#8192;<span class="src-var">$q&#8192;</span>=&#8192;<span class="src-id"><a href="ezcDbInstance.html">ezcDbInstance</a></span><span class="src-sym">::</span><a href="ezcDbInstance.html#methodget">get</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">-&gt;</span><span class="src-id">createSelectQuery</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$q</span><span class="src-sym">-&gt;</span><span class="src-id">select</span><span class="src-sym">(&#8192;</span><span class="src-str">'*'&#8192;</span><span class="src-sym">)</span><span class="src-sym">-&gt;</span><span class="src-id">from</span><span class="src-sym">(&#8192;</span><span class="src-str">'table'&#8192;</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-sym">-&gt;</span><span class="src-id">where</span><span class="src-sym">(&#8192;</span><span class="src-var">$q</span><span class="src-sym">-&gt;</span><span class="src-id">expr</span><span class="src-sym">-&gt;</span><a href="ezcQueryExpression.html#methodgte">gte</a><span class="src-sym">(&#8192;</span><span class="src-str">'id'</span><span class="src-sym">,&#8192;</span><span class="src-var">$q</span><span class="src-sym">-&gt;</span><span class="src-id">bindValue</span><span class="src-sym">(&#8192;</span><span class="src-num">1&#8192;</span><span class="src-sym">)&#8192;)&#8192;)</span><span class="src-sym">;</span></div></li>
+</ol></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$value1</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  logical expression to compare
+                              </td>
+            </tr><tr><td><code>$value2</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  logical expression to compare with
+                              </td>
+            </tr></tbody></table><a name="methodhasAliases" id="hasAliases"><!-- --></a>
+
+    <h4>hasAliases</h4>
+
+    <div class="method-signature">
+      bool
+      hasAliases(
+      )
+    </div>
+
+    <p>Returns true if this object has aliases.</p>
+    
+        
+
+    
+    
+    
+        <a name="methodin" id="in"><!-- --></a>
+
+    <h4>in</h4>
+
+    <div class="method-signature">
+      string
+      in(
+                                  string
+          $column
+                            ,           string|array(string)
+          $...
+                        )
+    </div>
+
+    <p>Returns the SQL to check if a value is one in a set of  given values..</p><div><p>in() accepts an arbitrary number of parameters. The first parameter  must always specify the value that should be matched against. Successive  parameters must contain a logical expression or an array with logical  expressions.  These expressions will be matched against the first  parameter.</p><p>Example:  </p><ol><li><div class="src-line">&#8192;<span class="src-var">$q</span><span class="src-sym">-&gt;</span><span class="src-id">select</span><span class="src-sym">(&#8192;</span><span class="src-str">'*'&#8192;</span><span class="src-sym">)</span><span class="src-sym">-&gt;</span><span class="src-id">from</span><span class="src-sym">(&#8192;</span><span class="src-str">'table'&#8192;</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-sym">-&gt;</span><span class="src-id">where</span><span class="src-sym">(&#8192;</span><span class="src-var">$q</span><span class="src-sym">-&gt;</span><span class="src-id">expr</span><span class="src-sym">-&gt;</span><a href="ezcQueryExpression.html#methodin">in</a><span class="src-sym">(&#8192;</span><span class="src-str">'id'</span><span class="src-sym">,&#8192;</span><span class="src-num">1</span><span class="src-sym">,&#8192;</span><span class="src-num">2</span><span class="src-sym">,&#8192;</span><span class="src-num">3&#8192;</span><span class="src-sym">)&#8192;)</span><span class="src-sym">;</span></div></li>
+</ol><p>Optimization note: Call setQuotingValues( false ) before using in() with  big lists of numeric parameters. This avoid redundant quoting of numbers  in resulting SQL query and saves time of converting strings to  numbers inside RDBMS.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$column</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  the value that should be matched against
+                              </td>
+            </tr><tr><td><code>$...</code></td>
+              <td><em>string|array(string)</em></td>
+              <td>
+                                  values that will be matched against $column
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcQueryInvalidParameterException.html">ezcQueryInvalidParameterException</a></code></td>
+              <td>
+                                  if the 2nd parameter is an empty array.
+                              </td>
+            </tr><tr><td><code><a href="ezcQueryVariableParameterException.html">ezcQueryVariableParameterException</a></code></td>
+              <td>
+                                  if called with less than two parameters.
+                              </td>
+            </tr></tbody></table><h5>Redefined in descendants as:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcQueryExpressionOracle.html#methodin">ezcQueryExpressionOracle::in()</a></code></td>
+              <td>
+                Returns the SQL to check if a value is one in a set of  given values.&#8192;
+              </td>
+            </tr></tbody></table><a name="methodisNull" id="isNull"><!-- --></a>
+
+    <h4>isNull</h4>
+
+    <div class="method-signature">
+      string
+      isNull(
+                                  string
+          $expression
+                        )
+    </div>
+
+    <p>Returns SQL that checks if a expression is null.</p><div><p>Example:  </p><ol><li><div class="src-line">&#8192;<span class="src-var">$q&#8192;</span>=&#8192;<span class="src-id"><a href="ezcDbInstance.html">ezcDbInstance</a></span><span class="src-sym">::</span><a href="ezcDbInstance.html#methodget">get</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">-&gt;</span><span class="src-id">createSelectQuery</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$q</span><span class="src-sym">-&gt;</span><span class="src-id">select</span><span class="src-sym">(&#8192;</span><span class="src-str">'*'&#8192;</span><span class="src-sym">)</span><span class="src-sym">-&gt;</span><span class="src-id">from</span><span class="src-sym">(&#8192;</span><span class="src-str">'table'&#8192;</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-sym">-&gt;</span><span class="src-id">where</span><span class="src-sym">(&#8192;</span><span class="src-var">$q</span><span class="src-sym">-&gt;</span><span class="src-id">expr</span><span class="src-sym">-&gt;</span><a href="ezcQueryExpression.html#methodisNull">isNull</a><span class="src-sym">(&#8192;</span><span class="src-str">'id'&#8192;</span><span class="src-sym">)&#8192;)</span><span class="src-sym">;</span></div></li>
+</ol></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$expression</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  the expression that should be compared to null
+                              </td>
+            </tr></tbody></table><a name="methodlAnd" id="lAnd"><!-- --></a>
+
+    <h4>lAnd</h4>
+
+    <div class="method-signature">
+      string
+      lAnd(
+      )
+    </div>
+
+    <p>Returns the SQL to bind logical expressions together using a logical and.</p><div><p>lAnd() accepts an arbitrary number of parameters. Each parameter  must contain a logical expression or an array with logical expressions.</p><p>Example:  </p><ol><li><div class="src-line">&#8192;<span class="src-var">$q&#8192;</span>=&#8192;<span class="src-id"><a href="ezcDbInstance.html">ezcDbInstance</a></span><span class="src-sym">::</span><a href="ezcDbInstance.html#methodget">get</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">-&gt;</span><span class="src-id">createSelectQuery</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$e&#8192;</span>=&#8192;<span class="src-var">$q</span><span class="src-sym">-&gt;</span><span class="src-id">expr</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$q</span><span class="src-sym">-&gt;</span><span class="src-id">select</span><span class="src-sym">(&#8192;</span><span class="src-str">'*'&#8192;</span><span class="src-sym">)</span><span class="src-sym">-&gt;</span><span class="src-id">from</span><span class="src-sym">(&#8192;</span><span class="src-str">'table'&#8192;</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-sym">-&gt;</span><span class="src-id">where</span><span class="src-sym">(&#8192;</span><span class="src-var">$e</span><span class="src-sym">-&gt;</span><a href="ezcQueryExpression.html#methodlAnd">lAnd</a><span class="src-sym">(&#8192;</span><span class="src-var">$e</span><span class="src-sym">-&gt;</span><a href="ezcQueryExpression.html#methodeq">eq</a><span class="src-sym">(&#8192;</span><span class="src-str">'id'</span><span class="src-sym">,&#8192;</span><span class="src-var">$q</span><span class="src-sym">-&gt;</span><span class="src-id">bindValue</span><span class="src-sym">(&#8192;</span><span class="src-num">1&#8192;</span><span class="src-sym">)&#8192;)</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-var">$e</span><span class="src-sym">-&gt;</span><a href="ezcQueryExpression.html#methodeq">eq</a><span class="src-sym">(&#8192;</span><span class="src-str">'id'</span><span class="src-sym">,&#8192;</span><span class="src-var">$q</span><span class="src-sym">-&gt;</span><span class="src-id">bindValue</span><span class="src-sym">(&#8192;</span><span class="src-num">2&#8192;</span><span class="src-sym">)&#8192;)&#8192;)&#8192;)</span><span class="src-sym">;</span></div></li>
+</ol></div>
+    
+          <h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>ezcDbAbstractionException</code></td>
+              <td>
+                                  if called with no parameters.
+                              </td>
+            </tr></tbody></table><a name="methodlength" id="length"><!-- --></a>
+
+    <h4>length</h4>
+
+    <div class="method-signature">
+      string
+      length(
+                                  string
+          $column
+                        )
+    </div>
+
+    <p>Returns the length of text field $column</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$column</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefined in descendants as:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcQueryExpressionMssql.html#methodlength">ezcQueryExpressionMssql::length()</a></code></td>
+              <td>
+                Returns the length of a text field.&#8192;
+              </td>
+            </tr></tbody></table><a name="methodlike" id="like"><!-- --></a>
+
+    <h4>like</h4>
+
+    <div class="method-signature">
+      void
+      like(
+                                  string
+          $expression
+                            ,           string
+          $pattern
+                        )
+    </div>
+
+    <p>Match a partial string in a column.</p><div><p>Like will look for the pattern in the column given. Like accepts  the wildcards '_' matching a single character and '%' matching  any number of characters.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$expression</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  the name of the expression to match on
+                              </td>
+            </tr><tr><td><code>$pattern</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  the pattern to match with.
+                              </td>
+            </tr></tbody></table><a name="methodlOr" id="lOr"><!-- --></a>
+
+    <h4>lOr</h4>
+
+    <div class="method-signature">
+      string
+      lOr(
+      )
+    </div>
+
+    <p>Returns the SQL to bind logical expressions together using a logical or.</p><div><p>lOr() accepts an arbitrary number of parameters. Each parameter  must contain a logical expression or an array with logical expressions.</p><p>Example:  </p><ol><li><div class="src-line">&#8192;<span class="src-var">$q&#8192;</span>=&#8192;<span class="src-id"><a href="ezcDbInstance.html">ezcDbInstance</a></span><span class="src-sym">::</span><a href="ezcDbInstance.html#methodget">get</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">-&gt;</span><span class="src-id">createSelectQuery</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$e&#8192;</span>=&#8192;<span class="src-var">$q</span><span class="src-sym">-&gt;</span><span class="src-id">expr</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$q</span><span class="src-sym">-&gt;</span><span class="src-id">select</span><span class="src-sym">(&#8192;</span><span class="src-str">'*'&#8192;</span><span class="src-sym">)</span><span class="src-sym">-&gt;</span><span class="src-id">from</span><span class="src-sym">(&#8192;</span><span class="src-str">'table'&#8192;</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-sym">-&gt;</span><span class="src-id">where</span><span class="src-sym">(&#8192;</span><span class="src-var">$e</span><span class="src-sym">-&gt;</span><a href="ezcQueryExpression.html#methodlOr">lOr</a><span class="src-sym">(&#8192;</span><span class="src-var">$e</span><span class="src-sym">-&gt;</span><a href="ezcQueryExpression.html#methodeq">eq</a><span class="src-sym">(&#8192;</span><span class="src-str">'id'</span><span class="src-sym">,&#8192;</span><span class="src-var">$q</span><span class="src-sym">-&gt;</span><span class="src-id">bindValue</span><span class="src-sym">(&#8192;</span><span class="src-num">1&#8192;</span><span class="src-sym">)&#8192;)</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-var">$e</span><span class="src-sym">-&gt;</span><a href="ezcQueryExpression.html#methodeq">eq</a><span class="src-sym">(&#8192;</span><span class="src-str">'id'</span><span class="src-sym">,&#8192;</span><span class="src-var">$q</span><span class="src-sym">-&gt;</span><span class="src-id">bindValue</span><span class="src-sym">(&#8192;</span><span class="src-num">2&#8192;</span><span class="src-sym">)&#8192;)&#8192;)&#8192;)</span><span class="src-sym">;</span></div></li>
+</ol></div>
+    
+          <h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>ezcDbAbstractionException</code></td>
+              <td>
+                                  if called with no parameters.
+                              </td>
+            </tr></tbody></table><a name="methodlower" id="lower"><!-- --></a>
+
+    <h4>lower</h4>
+
+    <div class="method-signature">
+      string
+      lower(
+                                  string
+          $value
+                        )
+    </div>
+
+    <p>Returns the SQL to change all characters to lowercase</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$value</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodlt" id="lt"><!-- --></a>
+
+    <h4>lt</h4>
+
+    <div class="method-signature">
+      string
+      lt(
+                                  string
+          $value1
+                            ,           string
+          $value2
+                        )
+    </div>
+
+    <p>Returns the SQL to check if one value is less than another value.</p><div><p>Example:  </p><ol><li><div class="src-line">&#8192;<span class="src-var">$q&#8192;</span>=&#8192;<span class="src-id"><a href="ezcDbInstance.html">ezcDbInstance</a></span><span class="src-sym">::</span><a href="ezcDbInstance.html#methodget">get</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">-&gt;</span><span class="src-id">createSelectQuery</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$q</span><span class="src-sym">-&gt;</span><span class="src-id">select</span><span class="src-sym">(&#8192;</span><span class="src-str">'*'&#8192;</span><span class="src-sym">)</span><span class="src-sym">-&gt;</span><span class="src-id">from</span><span class="src-sym">(&#8192;</span><span class="src-str">'table'&#8192;</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-sym">-&gt;</span><span class="src-id">where</span><span class="src-sym">(&#8192;</span><span class="src-var">$q</span><span class="src-sym">-&gt;</span><span class="src-id">expr</span><span class="src-sym">-&gt;</span><a href="ezcQueryExpression.html#methodlt">lt</a><span class="src-sym">(&#8192;</span><span class="src-str">'id'</span><span class="src-sym">,&#8192;</span><span class="src-var">$q</span><span class="src-sym">-&gt;</span><span class="src-id">bindValue</span><span class="src-sym">(&#8192;</span><span class="src-num">1&#8192;</span><span class="src-sym">)&#8192;)&#8192;)</span><span class="src-sym">;</span></div></li>
+</ol></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$value1</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  logical expression to compare
+                              </td>
+            </tr><tr><td><code>$value2</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  logical expression to compare with
+                              </td>
+            </tr></tbody></table><a name="methodlte" id="lte"><!-- --></a>
+
+    <h4>lte</h4>
+
+    <div class="method-signature">
+      string
+      lte(
+                                  string
+          $value1
+                            ,           string
+          $value2
+                        )
+    </div>
+
+    <p>Returns the SQL to check if one value is less than or equal to  another value.</p><div><p>Example:  </p><ol><li><div class="src-line">&#8192;<span class="src-var">$q&#8192;</span>=&#8192;<span class="src-id"><a href="ezcDbInstance.html">ezcDbInstance</a></span><span class="src-sym">::</span><a href="ezcDbInstance.html#methodget">get</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">-&gt;</span><span class="src-id">createSelectQuery</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$q</span><span class="src-sym">-&gt;</span><span class="src-id">select</span><span class="src-sym">(&#8192;</span><span class="src-str">'*'&#8192;</span><span class="src-sym">)</span><span class="src-sym">-&gt;</span><span class="src-id">from</span><span class="src-sym">(&#8192;</span><span class="src-str">'table'&#8192;</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-sym">-&gt;</span><span class="src-id">where</span><span class="src-sym">(&#8192;</span><span class="src-var">$q</span><span class="src-sym">-&gt;</span><span class="src-id">expr</span><span class="src-sym">-&gt;</span><a href="ezcQueryExpression.html#methodlte">lte</a><span class="src-sym">(&#8192;</span><span class="src-str">'id'</span><span class="src-sym">,&#8192;</span><span class="src-var">$q</span><span class="src-sym">-&gt;</span><span class="src-id">bindValue</span><span class="src-sym">(&#8192;</span><span class="src-num">1&#8192;</span><span class="src-sym">)&#8192;)&#8192;)</span><span class="src-sym">;</span></div></li>
+</ol></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$value1</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  logical expression to compare
+                              </td>
+            </tr><tr><td><code>$value2</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  logical expression to compare with
+                              </td>
+            </tr></tbody></table><a name="methodmax" id="max"><!-- --></a>
+
+    <h4>max</h4>
+
+    <div class="method-signature">
+      string
+      max(
+                                  string
+          $column
+                        )
+    </div>
+
+    <p>Returns the highest value of a column</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$column</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  the column to use
+                              </td>
+            </tr></tbody></table><a name="methodmd5" id="md5"><!-- --></a>
+
+    <h4>md5</h4>
+
+    <div class="method-signature">
+      string
+      md5(
+                                  string
+          $column
+                        )
+    </div>
+
+    <p>Returns the md5 sum of $column.</p><div><p>Note: Not SQL92, but common functionality</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$column</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefined in descendants as:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcQueryExpressionPgsql.html#methodmd5">ezcQueryExpressionPgsql::md5()</a></code></td>
+              <td>
+                Returns the md5 sum of the field $column.&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcQueryExpressionMssql.html#methodmd5">ezcQueryExpressionMssql::md5()</a></code></td>
+              <td>
+                Returns the md5 sum of a field.&#8192;
+              </td>
+            </tr></tbody></table><a name="methodmin" id="min"><!-- --></a>
+
+    <h4>min</h4>
+
+    <div class="method-signature">
+      string
+      min(
+                                  string
+          $column
+                        )
+    </div>
+
+    <p>Returns the lowest value of a column</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$column</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  the column to use
+                              </td>
+            </tr></tbody></table><a name="methodmod" id="mod"><!-- --></a>
+
+    <h4>mod</h4>
+
+    <div class="method-signature">
+      string
+      mod(
+                                  string
+          $expression1
+                            ,           string
+          $expression2
+                        )
+    </div>
+
+    <p>Returns the remainder of the division operation  $expression1 / $expression2.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$expression1</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$expression2</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefined in descendants as:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcQueryExpressionMssql.html#methodmod">ezcQueryExpressionMssql::mod()</a></code></td>
+              <td>
+                Returns the remainder of the division operation  $expression1 / $expression2.&#8192;
+              </td>
+            </tr></tbody></table><a name="methodmul" id="mul"><!-- --></a>
+
+    <h4>mul</h4>
+
+    <div class="method-signature">
+      string
+      mul(
+                                  string|array(string)
+          $...
+                        )
+    </div>
+
+    <p>Returns the SQL to multiply values or expressions by eachother.</p><div><p>multiply() accepts an arbitrary number of parameters. Each parameter  must contain a value or an expression or an array with values or  expressions.</p><p>Example:  </p><ol><li><div class="src-line">&#8192;<span class="src-var">$q&#8192;</span>=&#8192;<span class="src-id"><a href="ezcDbInstance.html">ezcDbInstance</a></span><span class="src-sym">::</span><a href="ezcDbInstance.html#methodget">get</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">-&gt;</span><span class="src-id">createSelectQuery</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$q</span><span class="src-sym">-&gt;</span><span class="src-id">select</span><span class="src-sym">(&#8192;</span><span class="src-str">'*'&#8192;</span><span class="src-sym">)</span><span class="src-sym">-&gt;</span><span class="src-id">from</span><span class="src-sym">(&#8192;</span><span class="src-str">'table'&#8192;</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-sym">-&gt;</span><span class="src-id">where</span><span class="src-sym">(&#8192;</span><span class="src-var">$q</span><span class="src-sym">-&gt;</span><span class="src-id">expr</span><span class="src-sym">-&gt;</span><span class="src-id">multiply</span><span class="src-sym">(&#8192;</span><span class="src-str">'id'</span><span class="src-sym">,&#8192;</span><span class="src-num">2&#8192;</span><span class="src-sym">)&#8192;&#8192;)</span><span class="src-sym">;</span></div></li>
+</ol></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$...</code></td>
+              <td><em>string|array(string)</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>ezcDbAbstractionException</code></td>
+              <td>
+                                  if called with no parameters.
+                              </td>
+            </tr></tbody></table><a name="methodneq" id="neq"><!-- --></a>
+
+    <h4>neq</h4>
+
+    <div class="method-signature">
+      string
+      neq(
+                                  string
+          $value1
+                            ,           string
+          $value2
+                        )
+    </div>
+
+    <p>Returns the SQL to check if two values are unequal.</p><div><p>Example:  </p><ol><li><div class="src-line">&#8192;<span class="src-var">$q&#8192;</span>=&#8192;<span class="src-id"><a href="ezcDbInstance.html">ezcDbInstance</a></span><span class="src-sym">::</span><a href="ezcDbInstance.html#methodget">get</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">-&gt;</span><span class="src-id">createSelectQuery</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$q</span><span class="src-sym">-&gt;</span><span class="src-id">select</span><span class="src-sym">(&#8192;</span><span class="src-str">'*'&#8192;</span><span class="src-sym">)</span><span class="src-sym">-&gt;</span><span class="src-id">from</span><span class="src-sym">(&#8192;</span><span class="src-str">'table'&#8192;</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-sym">-&gt;</span><span class="src-id">where</span><span class="src-sym">(&#8192;</span><span class="src-var">$q</span><span class="src-sym">-&gt;</span><span class="src-id">expr</span><span class="src-sym">-&gt;</span><a href="ezcQueryExpression.html#methodneq">neq</a><span class="src-sym">(&#8192;</span><span class="src-str">'id'</span><span class="src-sym">,&#8192;</span><span class="src-var">$q</span><span class="src-sym">-&gt;</span><span class="src-id">bindValue</span><span class="src-sym">(&#8192;</span><span class="src-num">1&#8192;</span><span class="src-sym">)&#8192;)&#8192;)</span><span class="src-sym">;</span></div></li>
+</ol></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$value1</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  logical expression to compare
+                              </td>
+            </tr><tr><td><code>$value2</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  logical expression to compare with
+                              </td>
+            </tr></tbody></table><a name="methodnot" id="not"><!-- --></a>
+
+    <h4>not</h4>
+
+    <div class="method-signature">
+      string
+      not(
+                                  string
+          $expression
+                        )
+    </div>
+
+    <p>Returns the SQL for a logical not, negating the $expression.</p><div><p>Example:  </p><ol><li><div class="src-line">&#8192;<span class="src-var">$q&#8192;</span>=&#8192;<span class="src-id"><a href="ezcDbInstance.html">ezcDbInstance</a></span><span class="src-sym">::</span><a href="ezcDbInstance.html#methodget">get</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">-&gt;</span><span class="src-id">createSelectQuery</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$e&#8192;</span>=&#8192;<span class="src-var">$q</span><span class="src-sym">-&gt;</span><span class="src-id">expr</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$q</span><span class="src-sym">-&gt;</span><span class="src-id">select</span><span class="src-sym">(&#8192;</span><span class="src-str">'*'&#8192;</span><span class="src-sym">)</span><span class="src-sym">-&gt;</span><span class="src-id">from</span><span class="src-sym">(&#8192;</span><span class="src-str">'table'&#8192;</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-sym">-&gt;</span><span class="src-id">where</span><span class="src-sym">(&#8192;</span><span class="src-var">$e</span><span class="src-sym">-&gt;</span><a href="ezcQueryExpression.html#methodeq">eq</a><span class="src-sym">(&#8192;</span><span class="src-str">'id'</span><span class="src-sym">,&#8192;</span><span class="src-var">$e</span><span class="src-sym">-&gt;</span><a href="ezcQueryExpression.html#methodnot">not</a><span class="src-sym">(&#8192;</span><span class="src-str">'null'&#8192;</span><span class="src-sym">)&#8192;)&#8192;)</span><span class="src-sym">;</span></div></li>
+</ol></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$expression</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodnow" id="now"><!-- --></a>
+
+    <h4>now</h4>
+
+    <div class="method-signature">
+      string
+      now(
+      )
+    </div>
+
+    <p>Returns the current system date and time in the database internal  format.</p>
+    
+        
+
+    
+    
+          <h5>Redefined in descendants as:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcQueryExpressionOracle.html#methodnow">ezcQueryExpressionOracle::now()</a></code></td>
+              <td>
+                Returns the current system date and time in the database internal  format.&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcQueryExpressionPgsql.html#methodnow">ezcQueryExpressionPgsql::now()</a></code></td>
+              <td>
+                Returns the current system date and time in the database internal  format.&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcQueryExpressionSqlite.html#methodnow">ezcQueryExpressionSqlite::now()</a></code></td>
+              <td>
+                Returns the current system date and time in the database internal  format.&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcQueryExpressionMssql.html#methodnow">ezcQueryExpressionMssql::now()</a></code></td>
+              <td>
+                Returns the current system date and time in the database internal  format.&#8192;
+              </td>
+            </tr></tbody></table><a name="methodposition" id="position"><!-- --></a>
+
+    <h4>position</h4>
+
+    <div class="method-signature">
+      string
+      position(
+                                  string
+          $substr
+                            ,           string
+          $value
+                        )
+    </div>
+
+    <p>Returns the SQL to locate the position of the first occurrence of a substring</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$substr</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$value</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefined in descendants as:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcQueryExpressionOracle.html#methodposition">ezcQueryExpressionOracle::position()</a></code></td>
+              <td>
+                Returns the SQL to locate the position of the first occurrence of a substring&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcQueryExpressionPgsql.html#methodposition">ezcQueryExpressionPgsql::position()</a></code></td>
+              <td>
+                Returns the SQL to locate the position of the first occurrence of a substring&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcQueryExpressionMssql.html#methodposition">ezcQueryExpressionMssql::position()</a></code></td>
+              <td>
+                Returns the SQL to locate the position of the first occurrence of a substring&#8192;
+              </td>
+            </tr></tbody></table><a name="methodround" id="round"><!-- --></a>
+
+    <h4>round</h4>
+
+    <div class="method-signature">
+      string
+      round(
+                                  string
+          $column
+                            ,           int
+          $decimals
+                        )
+    </div>
+
+    <p>Rounds a numeric field to the number of decimals specified.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$column</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$decimals</code></td>
+              <td><em>int</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodsearchedCase" id="searchedCase"><!-- --></a>
+
+    <h4>searchedCase</h4>
+
+    <div class="method-signature">
+      string
+      searchedCase(
+      )
+    </div>
+
+    <p>Returns a searched CASE statement.</p><div><p>Accepts an arbitrary number of parameters.  The first parameter (array) must always be specified, the last  parameter (string) specifies the ELSE result.</p><p>Example:  </p><ol><li><div class="src-line">&#8192;<span class="src-var">$q&#8192;</span>=&#8192;<span class="src-id"><a href="ezcDbInstance.html">ezcDbInstance</a></span><span class="src-sym">::</span><a href="ezcDbInstance.html#methodget">get</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">-&gt;</span><span class="src-id">createSelectQuery</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$q</span><span class="src-sym">-&gt;</span><span class="src-id">select</span><span class="src-sym">(</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-var">$q</span><span class="src-sym">-&gt;</span><span class="src-id">expr</span><span class="src-sym">-&gt;</span><a href="ezcQueryExpression.html#methodsearchedCase">searchedCase</a><span class="src-sym">(</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-var">$q</span><span class="src-sym">-&gt;</span><span class="src-id">expr</span><span class="src-sym">-&gt;</span><a href="ezcQueryExpression.html#methodgte">gte</a><span class="src-sym">(&#8192;</span><span class="src-str">'column1'</span><span class="src-sym">,&#8192;</span><span class="src-num">20&#8192;</span><span class="src-sym">)</span><span class="src-sym">,&#8192;</span><span class="src-str">'column1'&#8192;</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-sym">,&#8192;</span><span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-var">$q</span><span class="src-sym">-&gt;</span><span class="src-id">expr</span><span class="src-sym">-&gt;</span><a href="ezcQueryExpression.html#methodgte">gte</a><span class="src-sym">(&#8192;</span><span class="src-str">'column2'</span><span class="src-sym">,&#8192;</span><span class="src-num">50&#8192;</span><span class="src-sym">)</span><span class="src-sym">,&#8192;</span><span class="src-str">'column2'&#8192;</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-sym">,&#8192;</span><span class="src-str">'column3'</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-sym">)</span></div></li>
+<li><div class="src-line">&#8192;&#8192;<span class="src-sym">)</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-sym">-&gt;</span><span class="src-id">from</span><span class="src-sym">(&#8192;</span><span class="src-str">'table'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol></div>
+    
+          <h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcQueryVariableParameterException.html">ezcQueryVariableParameterException</a></code></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodsetAliases" id="setAliases"><!-- --></a>
+
+    <h4>setAliases</h4>
+
+    <div class="method-signature">
+      void
+      setAliases(
+                                  
+          $aliases
+                        )
+    </div>
+
+    <p>Sets the aliases $aliases for this object.</p><div><p>The aliases can be used to substitute the column and table names with more  friendly names. E.g PersistentObject uses it to allow using property and class  names instead of column and table names.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$aliases</code></td>
+              <td><em>array(string=&gt;string)</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodsetValuesQuoting" id="setValuesQuoting"><!-- --></a>
+
+    <h4>setValuesQuoting</h4>
+
+    <div class="method-signature">
+      void
+      setValuesQuoting(
+                                  boolean
+          $doQuoting
+                        )
+    </div>
+
+    <p>Sets the mode of quoting for parameters passed  to SQL functions and operators.</p><div><p>Quoting mode is set to ON by default.  $q-&gt;expr-&gt;in( 'column1', 'Hello', 'world' ) will  produce SQL "column1 IN ( 'Hello', 'world' )"  ( note quotes in SQL ).</p><p>User must execute setValuesQuoting( false ) before call  to function where quoting of parameters is not desirable.  Example:  </p><ol><li><div class="src-line">&#8192;<span class="src-var">$q</span><span class="src-sym">-&gt;</span><span class="src-id">expr</span><span class="src-sym">-&gt;</span><a href="ezcQueryExpression.html#methodsetValuesQuoting">setValuesQuoting</a><span class="src-sym">(&#8192;</span><span class="src-id">false&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$q</span><span class="src-sym">-&gt;</span><span class="src-id">expr</span><span class="src-sym">-&gt;</span><a href="ezcQueryExpression.html#methodin">in</a><span class="src-sym">(&#8192;</span><span class="src-str">'column1'</span><span class="src-sym">,&#8192;</span><span class="src-str">'SELECT&#8192;*&#8192;FROM&#8192;table'&#8192;</span><span class="src-sym">)</span></div></li>
+</ol>  This will produce SQL "column1 IN ( SELECT * FROM table )".<p>Quoting mode will remain unchanged until next call  to setValuesQuoting().</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$doQuoting</code></td>
+              <td><em>boolean</em></td>
+              <td>
+                                  - flag that switch quoting.
+                              </td>
+            </tr></tbody></table><a name="methodsub" id="sub"><!-- --></a>
+
+    <h4>sub</h4>
+
+    <div class="method-signature">
+      string
+      sub(
+                                  string|array(string)
+          $...
+                        )
+    </div>
+
+    <p>Returns the SQL to subtract values or expressions from eachother.</p><div><p>subtract() accepts an arbitrary number of parameters. Each parameter  must contain a value or an expression or an array with values or  expressions.</p><p>Example:  </p><ol><li><div class="src-line">&#8192;<span class="src-var">$q&#8192;</span>=&#8192;<span class="src-id"><a href="ezcDbInstance.html">ezcDbInstance</a></span><span class="src-sym">::</span><a href="ezcDbInstance.html#methodget">get</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">-&gt;</span><span class="src-id">createSelectQuery</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$q</span><span class="src-sym">-&gt;</span><span class="src-id">select</span><span class="src-sym">(&#8192;</span><span class="src-str">'*'&#8192;</span><span class="src-sym">)</span><span class="src-sym">-&gt;</span><span class="src-id">from</span><span class="src-sym">(&#8192;</span><span class="src-str">'table'&#8192;</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-sym">-&gt;</span><span class="src-id">where</span><span class="src-sym">(&#8192;</span><span class="src-var">$q</span><span class="src-sym">-&gt;</span><span class="src-id">expr</span><span class="src-sym">-&gt;</span><span class="src-id">subtract</span><span class="src-sym">(&#8192;</span><span class="src-str">'id'</span><span class="src-sym">,&#8192;</span><span class="src-num">2&#8192;</span><span class="src-sym">)&#8192;&#8192;)</span><span class="src-sym">;</span></div></li>
+</ol></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$...</code></td>
+              <td><em>string|array(string)</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>ezcDbAbstractionException</code></td>
+              <td>
+                                  if called with no parameters.
+                              </td>
+            </tr></tbody></table><a name="methodsubString" id="subString"><!-- --></a>
+
+    <h4>subString</h4>
+
+    <div class="method-signature">
+      string
+      subString(
+                                  string
+          $value
+                            ,           int
+          $from
+                            ,           [int
+          $len
+           = null]              )
+    </div>
+
+    <p>Returns part of a string.</p><div><p>Note: Not SQL92, but common functionality.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$value</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  the target $value the string or the string column.
+                              </td>
+            </tr><tr><td><code>$from</code></td>
+              <td><em>int</em></td>
+              <td>
+                                  extract from this characeter.
+                              </td>
+            </tr><tr><td><code>$len</code></td>
+              <td><em>int</em></td>
+              <td>
+                                  extract this amount of characters.
+                              </td>
+            </tr></tbody></table><h5>Redefined in descendants as:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcQueryExpressionOracle.html#methodsubString">ezcQueryExpressionOracle::subString()</a></code></td>
+              <td>
+                Returns part of a string.&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcQueryExpressionPgsql.html#methodsubString">ezcQueryExpressionPgsql::subString()</a></code></td>
+              <td>
+                Returns part of a string.&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcQueryExpressionSqlite.html#methodsubString">ezcQueryExpressionSqlite::subString()</a></code></td>
+              <td>
+                Returns part of a string.&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcQueryExpressionMssql.html#methodsubString">ezcQueryExpressionMssql::subString()</a></code></td>
+              <td>
+                Returns part of a string.&#8192;
+              </td>
+            </tr></tbody></table><a name="methodsum" id="sum"><!-- --></a>
+
+    <h4>sum</h4>
+
+    <div class="method-signature">
+      string
+      sum(
+                                  string
+          $column
+                        )
+    </div>
+
+    <p>Returns the total sum of a column</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$column</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  the column to use
+                              </td>
+            </tr></tbody></table><a name="methodunixTimestamp" id="unixTimestamp"><!-- --></a>
+
+    <h4>unixTimestamp</h4>
+
+    <div class="method-signature">
+      string
+      unixTimestamp(
+                                  string
+          $column
+                        )
+    </div>
+
+    <p>Returns the SQL that converts a timestamp value to a unix timestamp.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$column</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefined in descendants as:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcQueryExpressionOracle.html#methodunixTimestamp">ezcQueryExpressionOracle::unixTimestamp()</a></code></td>
+              <td>
+                Returns the SQL that converts a timestamp value to a unix timestamp.&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcQueryExpressionPgsql.html#methodunixTimestamp">ezcQueryExpressionPgsql::unixTimestamp()</a></code></td>
+              <td>
+                Returns the SQL that converts a timestamp value to a unix timestamp.&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcQueryExpressionSqlite.html#methodunixTimestamp">ezcQueryExpressionSqlite::unixTimestamp()</a></code></td>
+              <td>
+                Returns the SQL that converts a timestamp value to a unix timestamp.&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcQueryExpressionMssql.html#methodunixTimestamp">ezcQueryExpressionMssql::unixTimestamp()</a></code></td>
+              <td>
+                Returns the SQL that converts a timestamp value to number of seconds since 1970-01-01 00:00:00-00.&#8192;
+              </td>
+            </tr></tbody></table><a name="methodupper" id="upper"><!-- --></a>
+
+    <h4>upper</h4>
+
+    <div class="method-signature">
+      string
+      upper(
+                                  string
+          $value
+                        )
+    </div>
+
+    <p>Returns the SQL to change all characters to uppercase</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$value</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><div class="credit">
+      Documentation generated by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+    </div>
+  </div>
+  
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

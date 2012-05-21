@@ -1,0 +1,4312 @@
+Feed specifications
+~~~~~~~~~~~~~~~~~~~
+
+This document lists the various feed types supported by the Feed component,
+general information about each feed type, and the related specifications
+documents and RFCs.
+
+.. contents:: Table of Contents
+   :depth: 2
+
+
+========
+Overview
+========
+
+Feeds equivalence
+=================
+
+Feed elements
+-------------
+
++----------------------------+-------------------------+----------------------------+---------------------------+
+|         ezcFeed            |           ATOM          |            RSS1            |           RSS2            |
++============================+=========================+============================+===========================+
+| |ezcFeed-author|_ *        | |ATOM-author|_ !*       | x                          | |RSS2-managingEditor|_ ?  |
++----------------------------+-------------------------+----------------------------+---------------------------+
+| |ezcFeed-category|_ *      | |ATOM-category|_ ?*     | x                          | |RSS2-category|_ ?*       |
++----------------------------+-------------------------+----------------------------+---------------------------+
+| |ezcFeed-cloud|_           | x                       | x                          | |RSS2-cloud|_ ?           |
++----------------------------+-------------------------+----------------------------+---------------------------+
+| |ezcFeed-contributor|_ *   | |ATOM-contributor|_ ?*  | x                          | x                         |
++----------------------------+-------------------------+----------------------------+---------------------------+
+| |ezcFeed-copyright|_       | |ATOM-rights|_ ?        | x                          | |RSS2-copyright|_ ?       |
++----------------------------+-------------------------+----------------------------+---------------------------+
+| |ezcFeed-description|_     | |ATOM-subtitle|_ ?      | |RSS1-description|_ !      | |RSS2-description|_ !     |
++----------------------------+-------------------------+----------------------------+---------------------------+
+| |ezcFeed-docs|_            | x                       | x                          | |RSS2-docs|_ ?            |
++----------------------------+-------------------------+----------------------------+---------------------------+
+| |ezcFeed-generator|_       | |ATOM-generator|_ ?     | x                          | |RSS2-generator|_ ?       |
++----------------------------+-------------------------+----------------------------+---------------------------+
+| |ezcFeed-icon|_            | |ATOM-icon|_ ?          | x                          | x                         |
++----------------------------+-------------------------+----------------------------+---------------------------+
+| |ezcFeed-id|_              | |ATOM-id|_ !            | |RSS1-about|_ !            | |RSS2-id|_ ?              |
++----------------------------+-------------------------+----------------------------+---------------------------+
+| |ezcFeed-image|_           | |ATOM-logo|_ ?          | |RSS1-image|_ ?            | |RSS2-image|_ ?           |
++----------------------------+-------------------------+----------------------------+---------------------------+
+| |ezcFeed-item|_ *          | |ATOM-entry|_ ?*        | |RSS1-item|_ !*            | |RSS2-item|_ !*           |
++----------------------------+-------------------------+----------------------------+---------------------------+
+| |ezcFeed-language|_        | |ATOM-language|_ ?      | |RSS1-language|_ ?         | |RSS2-language|_ ?        |
++----------------------------+-------------------------+----------------------------+---------------------------+
+| |ezcFeed-link|_ *          | |ATOM-link|_ !*         | |RSS1-link|_ !             | |RSS2-link|_ !            |
++----------------------------+-------------------------+----------------------------+---------------------------+
+| |ezcFeed-published|_       | x                       | x                          | |RSS2-pubDate|_ ?         |
++----------------------------+-------------------------+----------------------------+---------------------------+
+| |ezcFeed-rating|_          | x                       | x                          | |RSS2-rating|_ ?          |
++----------------------------+-------------------------+----------------------------+---------------------------+
+| |ezcFeed-skipDays|_        | x                       | x                          | |RSS2-skipDays|_ ?        |
++----------------------------+-------------------------+----------------------------+---------------------------+
+| |ezcFeed-skipHours|_       | x                       | x                          | |RSS2-skipHours|_ ?       |
++----------------------------+-------------------------+----------------------------+---------------------------+
+| |ezcFeed-textInput|_       | x                       | |RSS1-textinput|_ ?        | |RSS2-textInput|_ ?       |
++----------------------------+-------------------------+----------------------------+---------------------------+
+| |ezcFeed-title|_           | |ATOM-title|_ !         | |RSS1-title|_ !            | |RSS2-title|_ !           |
++----------------------------+-------------------------+----------------------------+---------------------------+
+| |ezcFeed-ttl|_             | x                       | x                          | |RSS2-ttl|_ ?             |
++----------------------------+-------------------------+----------------------------+---------------------------+
+| |ezcFeed-updated|_         | |ATOM-updated|_ !       | x                          | |RSS2-lastBuildDate|_ ?   |
++----------------------------+-------------------------+----------------------------+---------------------------+
+| |ezcFeed-webMaster|_       | x                       | x                          | |RSS2-webMaster|_ ?       |
++----------------------------+-------------------------+----------------------------+---------------------------+
+
+| ! = required
+| ? = optional
+| * = can appear multiple times
+| x = no equivalence
+
+In order to generate all 3 feed types from the same ezcFeed data, these
+elements must be added to an ezcFeed object:
+
+- |ezcFeed-author|_
+- |ezcFeed-description|_
+- |ezcFeed-id|_
+- at least one |ezcFeed-item|_ with all required elements
+- |ezcFeed-link|_
+- |ezcFeed-title|_
+- |ezcFeed-updated|_
+
+
+Item elements
+-------------
+
++---------------------------------+-------------------------------+------------------------------+------------------------------+
+|           ezcFeed               |            ATOM               |             RSS1             |            RSS2              |
++=================================+===============================+==============================+==============================+
+| |ezcFeed-item-author|_ *        | |ATOM-entry-author|_ !*       | x                            | |RSS2-item-author|_ ?        |
++---------------------------------+-------------------------------+------------------------------+------------------------------+
+| |ezcFeed-item-category|_ *      | |ATOM-entry-category|_ ?*     | x                            | |RSS2-item-category|_ ?*     |
++---------------------------------+-------------------------------+------------------------------+------------------------------+
+| |ezcFeed-item-comments|_        | x                             | x                            | |RSS2-item-comments|_ ?      |
++---------------------------------+-------------------------------+------------------------------+------------------------------+
+| |ezcFeed-item-content|_         | |ATOM-entry-content|_ ?       | x                            | x                            |
++---------------------------------+-------------------------------+------------------------------+------------------------------+
+| |ezcFeed-item-contributor|_ *   | |ATOM-entry-contributor|_ ?*  | x                            | x                            |
++---------------------------------+-------------------------------+------------------------------+------------------------------+
+| |ezcFeed-item-copyright|_       | |ATOM-entry-rights|_ ?        | x                            | x                            |
++---------------------------------+-------------------------------+------------------------------+------------------------------+
+| |ezcFeed-item-description|_     | |ATOM-entry-summary|_ !       | |RSS1-item-description|_ !   | |RSS2-item-description|_ !   |
++---------------------------------+-------------------------------+------------------------------+------------------------------+
+| |ezcFeed-item-enclosure|_ *     | |ATOM-entry-link|_ ?*         | x                            | |RSS2-item-enclosure|_ ?     |
++---------------------------------+-------------------------------+------------------------------+------------------------------+
+| |ezcFeed-item-id|_              | |ATOM-entry-id|_ !            | |RSS1-item-about|_ !         | |RSS2-item-guid|_ ?          |
++---------------------------------+-------------------------------+------------------------------+------------------------------+
+| |ezcFeed-item-language|_ ?      | |ATOM-entry-language|_ ?      | |RSS1-item-language|_ ?      | |RSS2-item-language|_ ?      |
++---------------------------------+-------------------------------+------------------------------+------------------------------+
+| |ezcFeed-item-link|_ *          | |ATOM-entry-link|_ !*         | |RSS1-item-link|_ !          | |RSS2-item-link|_ !          |
++---------------------------------+-------------------------------+------------------------------+------------------------------+
+| |ezcFeed-item-published|_       | |ATOM-entry-published|_ ?     | x                            | |RSS2-item-pubDate|_ ?       |
++---------------------------------+-------------------------------+------------------------------+------------------------------+
+| |ezcFeed-item-source|_          | |ATOM-entry-source|_ ?        | x                            | |RSS2-item-source|_ ?        |
++---------------------------------+-------------------------------+------------------------------+------------------------------+
+| |ezcFeed-item-title|_           | |ATOM-entry-title|_ !         | |RSS1-item-title|_ !         | |RSS2-item-title|_ !         |
++---------------------------------+-------------------------------+------------------------------++-----------------------------+
+| |ezcFeed-item-updated|_         | |ATOM-entry-updated|_ !       | x                            | x                            |
++---------------------------------+-------------------------------+------------------------------+------------------------------+
+
+| ! = required
+| ? = optional
+| * = can appear multiple times
+| x = no equivalence
+
+The language element for an item in any feed type is rendered in XML as an
+*xml:lang* attribute for the item or entry XML element. Parsing an XML file
+which contains *xml:lang* attributes for the item/entry XML elements will
+result in the language attribute to be filled with the contents of the
+*xml:lang* attribute.
+
+In order to generate all 3 feed types from the same ezcFeed data, these
+elements must be added to an ezcFeedEntryElement object:
+
+- |ezcFeed-item-author|_
+- |ezcFeed-item-description|_
+- |ezcFeed-item-id|_
+- |ezcFeed-item-link|_
+- |ezcFeed-item-title|_
+- |ezcFeed-item-updated|_
+
+This is a minimal script to be able to generate all 3 feed types from the same
+ezcFeed data::
+
+    <?php
+    // use eZ Components autoload mechanism
+    require_once 'tutorial_autoload.php';
+
+    $feed = new ezcFeed();
+
+    $author = $feed->add( 'author' );
+    $author->name = "Indiana Jones";
+    $author->email = "indy@example.com";
+
+    $feed->description = "This feed shows Indiana Jones movie releases";
+    $feed->id = "http://indy.example.com/";
+
+    $link = $feed->add( 'link' );
+    $link->href = "http://indy.example.com/";
+
+    $feed->title = "Indiana Jones movie releases";
+    $feed->updated = time();
+
+    // add a feed item
+    $item = $feed->add( 'item' );
+
+    $author = $item->add( 'author' );
+    $author->name = "Indiana Jones";
+    $author->email = "indy@example.com";
+
+    $item->description = "Indy meets ****** and has a hell of an adventure";
+    $item->id = "http://indy.example.com/4";
+
+    $link = $item->add( 'link' );
+    $link->href = "http://indy.example.com/4";
+
+    $item->title = "Indiana Jones and the Kingdom of the Crystal Skull";
+    $item->updated = time();
+
+    $atom = $feed->generate( 'atom' );
+    $rss1 = $feed->generate( 'rss1 );
+    $rss2 = $feed->generate( 'rss2' );
+    ?>
+
+
+ezcFeed
+=======
+
+Feed elements
+-------------
+
+ezcFeed-author
+``````````````
+
+Type: array(ezcFeedPersonElement).
+
+One author of the feed.
+
+Required in `ATOM`_: one author must be present at feed-level if there is one
+entry which does not have an author. Optional in `RSS2`_ (recommended). Ignored
+for `RSS1`_ feeds.
+
+Multiple authors can appear in `ATOM`_ (not recommended). Can appear only once
+in `RSS2`_ feeds.
+
+`ATOM`_ has required elements: *name*. Optional elements: *uri* (ignored in
+`RSS2`_) and *email*.
+
+In `RSS2`_ the generated XML element value will be ``email (name)``.
+
+Create example::
+
+    <?php
+    // $feed is an ezcFeed object
+    $author = $feed->add( 'author' );
+    $author->name = 'Guybrush Threepwood';
+    $author->email = 'guybrush@monkey-island.com';
+    $author->uri = 'http://example.com/~guybrush'; // ATOM only
+    ?>
+
+The resulting ATOM XML element will be::
+
+  <author>
+    <name>Guybrush Threepwood</name>
+    <email>guybrush@monkey-island.com</email>
+    <uri>http://example.com/~guybrush</uri>
+  </author>
+
+The resulting RSS2 XML element will be::
+
+  <managingEditor>guybrush@monkey-island.com (Guybrush Threepwood)</managingEditor>
+
+Parse example::
+
+    <?php
+    $authors = array();
+
+    // $feed is an ezcFeed object
+    if ( isset( $feed->author ) )
+    {
+        foreach ( $feed->author as $author )
+        {
+            $authors[] = array(
+              'name' => isset( $author->name ) ? $author->name : null,
+              'uri' => isset( $author->uri ) ? $author->uri : null, // ATOM only
+              'email' => isset( $author->email ) ? $author->email : null // ATOM only
+              );
+        }
+    }
+    ?>
+
+Equivalents: `ezcFeed-author`_, `ATOM-author`_, RSS1-none,
+`RSS2-managingEditor`_.
+
+
+ezcFeed-category
+````````````````
+
+Type: array(ezcFeedCategoryElement).
+
+A category for the feed.
+
+Optional. Only `ATOM`_ and `RSS2`_ feeds will have this element after
+generating the feed. It will be ignored for `RSS1`_ feeds.
+
+Multiple categories can appear in `ATOM`_ and `RSS2`_ feeds.
+
+`ATOM`_ has one required attribute: *term*. It also has 2 optional attributes:
+*scheme* (equivalent to `RSS2`_ *domain* attribute), *label*. The *label*
+attribute will be ignored for `RSS2`_ feeds.
+
+`RSS2`_ has one optional attribute: *domain* (equivalent to `ATOM`_ *scheme*
+attribute).
+
+Create example::
+
+    <?php
+    // $feed is an ezcFeed object
+    $category = $feed->add( 'category' );
+    $category->term = 'holiday';
+    $category->scheme = 'http://example.com/categories/holiday'; // scheme = RSS2 domain
+    $category->label = 'Holiday'; // ATOM only
+    ?>
+
+Parse example::
+
+    <?php
+    $categories = array();
+
+    // $feed is an ezcFeed object
+    if ( isset( $feed->category ) )
+    {
+        foreach ( $feed->category as $category )
+        {
+            $categories[] = array(
+              'term' => isset( $category->term ) ? $category->term : null,
+              'scheme' => isset( $category->scheme ) ? $category->scheme : null,
+                  // scheme = RSS2 domain
+              'label' => isset( $category->label ) ? $category->label : null // ATOM only
+              );
+        }
+    }
+    ?>
+
+Equivalents: `ezcFeed-category`_, `ATOM-category`_, RSS1-none,
+`RSS2-category`_.
+
+
+ezcFeed-cloud
+`````````````
+
+Type: ezcFeedCloudElement.
+
+Allows processes to register with a cloud to be notified of updates to the
+channel, implementing a lightweight publish-subscribe protocol for RSS feeds.
+
+Optional (not recommended). Only `RSS2`_ feeds will have this element after
+generating the feed. It will be ignored for `RSS1`_ and `ATOM`_.
+
+Can appear only once.
+
+Has the required attributes: *domain*, *port*, *path*, *registerProcedure*,
+*protocol*.
+
+Create example::
+
+    <?php
+    // $feed is an ezcFeed object
+    $cloud = $feed->add( 'cloud' );
+    $cloud->domain = 'rpc.sys.com';
+    $cloud->port = 80;
+    $cloud->path = '/RPC2';
+    $cloud->registerProcedure = 'myCloud.rssPleaseNotify';
+    $cloud->protocol = 'xml-rpc';
+    ?>
+
+Parse example::
+
+    <?php
+    // $feed is an ezcFeed object
+    if ( isset( $feed->cloud ) )
+    {
+        $cloud = $feed->cloud;
+        $domain = isset( $cloud->domain ) ? $cloud->domain : null;
+        $port = isset( $cloud->port ) ? $cloud->port : null;
+        $path = isset( $cloud->path ) ? $cloud->path : null;
+        $procedure = isset( $cloud->registerProcedure ) ? $cloud->registerProcedure : null;
+        $protocol = isset( $cloud->protocol ) ? $cloud->protocol : null;
+    }
+    ?>
+
+Equivalents: `ezcFeed-cloud`_, ATOM-none, RSS1-none, `RSS2-cloud`_.
+
+
+ezcFeed-contributor
+```````````````````
+
+Type: array(ezcFeedPersonElement).
+
+One contributor of the feed.
+
+Optional (not recommended). Only `ATOM`_ feeds will have this element after
+generating the feed. It will be ignored for `RSS1`_ and `RSS2`_ feeds.
+
+Multiple contributors can appear.
+
+Required elements: *name*. Optional elements: *uri*, *email*.
+
+Create example::
+
+    <?php
+    // $feed is an ezcFeed object
+    $contributor = $feed->add( 'contributor' );
+    $contributor->name = 'Guybrush Threepwood';
+    $contributor->email = 'guybrush@monkey-island.com';
+    $contributor->uri = 'http://example.com/~guybrush';
+    ?>
+
+Parse example::
+
+    <?php
+    $contributors = array();
+
+    // $feed is an ezcFeed object
+    if ( isset( $feed->contributor ) )
+    {
+        foreach ( $feed->contributor as $contributor )
+        {
+            $contributors[] = array(
+              'name' => isset( $contributor->name ) ? $contributor->name : null,
+              'uri' => isset( $contributor->uri ) ? $contributor->uri : null,
+              'email' => isset( $contributor->email ) ? $contributor->email : null
+              );
+        }
+    }
+    ?>
+
+Equivalents: `ezcFeed-contributor`_, `ATOM-contributor`_, RSS1-none,
+RSS2-none.
+
+
+ezcFeed-copyright
+`````````````````
+
+Type: ezcFeedTextElement.
+
+Copyright information for the feed.
+
+Optional. Only `ATOM`_ and `RSS2`_ feeds will have this element after
+generating the feed. It will be ignored for `RSS1`_ feeds.
+
+Can appear only once.
+
+`ATOM`_ has an optional attribute *type* with possible values ``text``
+(default), ``html``, ``xhtml``. This attribute will be ignored for `RSS1`_ and
+`RSS2`_ feeds.
+
+`ATOM`_ has an optional attribute *xml:lang* which specifies the language of
+the text. A list of allowed languages can be found here:
+`RSS language codes`_. This attribute is accessed through ezcFeed as
+*language*. This attribute will be ignored for `RSS1`_ and `RSS2`_ feeds.
+
+Create example::
+
+    <?php
+    // $feed is an ezcFeed object
+    $feed->copyright = 'Copyright <company name>';
+    $feed->copyright->type = 'text'; // ATOM only, ignored in RSS1 and RSS2
+    $feed->copyright->language = 'de'; // ATOM only, ignored in RSS1 and RSS2
+    ?>
+
+Parse example::
+
+    <?php
+    // $feed is an ezcFeed object
+    if ( isset( $feed->copyright ) )
+    {
+        $copyrightElement = $feed->copyright;
+        $copyright = $copyrightElement->text;
+        $type = isset( $copyrightElement->type ) ? $copyrightElement->type : null;  // ATOM only
+        $language = isset( $copyrightElement->language ) ? $copyrightElement->language : null;  // ATOM only
+    }
+    ?>
+
+Equivalents: `ezcFeed-copyright`_, `ATOM-rights`_, RSS1-none,
+`RSS2-copyright`_.
+
+
+ezcFeed-description
+```````````````````
+
+Type: ezcFeedTextElement.
+
+A short description of the feed.
+
+Required.
+
+Can appear only once.
+
+`ATOM`_ has an optional attribute *type* with possible values ``text``
+(default), ``html``, ``xhtml``. This attribute will be ignored for `RSS1`_ and
+`RSS2`_ feeds.
+
+`ATOM`_ has an optional attribute *xml:lang* which specifies the language of
+the text. A list of allowed languages can be found here:
+`RSS language codes`_. This attribute is accessed through ezcFeed as
+*language*. This attribute will be ignored for `RSS1`_ and `RSS2`_ feeds.
+
+Create example::
+
+    <?php
+    // $feed is an ezcFeed object
+    $feed->description = 'Feed description';
+    $feed->description->type = 'text'; // ATOM only, ignored in RSS1 and RSS2
+    $feed->description->language = 'de'; // ATOM only, ignored in RSS1 and RSS2
+    ?>
+
+Parse example::
+
+    <?php
+    // $feed is an ezcFeed object
+    if ( isset( $feed->description ) )
+    {
+        $descriptionElement = $feed->description;
+        $description = $descriptionElement->text;
+        $type = isset( $descriptionElement->type ) ? $descriptionElement->type : null; // ATOM only
+        $language = isset( $descriptionElement->language ) ? $descriptionElement->language : null; // ATOM only
+    }
+    ?>
+
+Equivalents: `ezcFeed-description`_, `ATOM-subtitle`_, `RSS1-description`_,
+`RSS2-description`_.
+
+
+ezcFeed-docs
+````````````
+
+Type: ezcFeedTextElement.
+
+An URL that points to the documentation for the format used in the feed file.
+
+Optional. Only `RSS2`_ feeds will have this element after generating the feed.
+It will be ignored for `RSS1`_ and `ATOM`_ feeds.
+
+Can appear only once.
+
+Create example::
+
+    <?php
+    // $feed is an ezcFeed object
+    $feed->docs = 'http://www.rssboard.org/rss-specification';
+    ?>
+
+Parse example::
+
+    <?php
+    // $feed is an ezcFeed object
+    $docs = isset( $feed->docs ) ? $feed->docs->__toString() : null;
+    ?>
+
+Equivalents: `ezcFeed-docs`_, ATOM-none, RSS1-none, `RSS2-docs`_.
+
+
+ezcFeed-generator
+`````````````````
+
+Type: ezcFeedGeneratorElement.
+
+Indicates the software used to generate the feed.
+
+Optional. Only `ATOM`_ and `RSS2`_ feeds will have this element after
+generating the feed. It will be ignored for `RSS1`_ feeds.
+
+Can appear only once.
+
+`ATOM`_ has 2 optional attributes: *url*, *version*. These attributes are
+used in `RSS2`_ to generate the string ``name version (url)``. This element
+and its attributes will be filled automatically by ezcFeed when generating
+the feed with the values ``eZComponents Feed``,
+``http://ezcomponents.org/docs/tutorials/Feed`` and ``<version>``
+respectively, where the version is the current version of the Feed component
+(``dev`` for pre-alpha1).
+
+`RSS2`_ will get this value automatically when generating the feed:
+``eZ Components Feed <version> (http://ezcomponents.org/docs/tutorials/Feed)``,
+where the version is the current version of the Feed component (``dev`` for
+pre-alpha1)
+
+Create example - this is automatically done by ezcFeed when calling the
+**generate()** method::
+
+    <?php
+    // $feed is an ezcFeed object
+    $generator = $feed->add( 'generator' );
+    $generator->name = 'eZ Components Feed';
+    $generator->url = 'http://ezcomponents.org/docs/tutorials/Feed';
+    $generator->version = '1.0';
+    ?>
+
+Parse example::
+
+    <?php
+    // $feed is an ezcFeed object
+    if ( isset( $feed->generator ) )
+    {
+        $name = isset( $feed->generator->name ) ? $feed->generator->name : null;
+        $url = isset( $feed->generator->url ) ? $feed->generator->url : null; // ATOM only
+        $version = isset( $feed->generator->version ) ? $feed->generator->version : null; // ATOM only
+    }
+    ?>
+
+Equivalents: `ezcFeed-generator`_, `ATOM-generator`_, RSS1-none,
+`RSS2-generator`_.
+
+
+ezcFeed-icon
+````````````
+
+Type: ezcFeedImageElement.
+
+An icon for a feed, similar with ``favicon.ico`` for websites.
+
+Optional. Only `ATOM`_ feeds will have this element after generating the
+feed. It will be ignored for `RSS1`_ and `RSS2`_ feeds.
+
+Can appear only once.
+
+Create example::
+
+    <?php
+    // $feed is an ezcFeed object
+    $feed->icon = 'http://example.com/favicon.ico';
+    ?>
+
+Parse example::
+
+    <?php
+    // $feed is an ezcFeed object
+    $icon = isset( $feed->icon ) ? $feed->icon->__toString : null;
+    ?>
+
+Equivalents: `ezcFeed-icon`_, `ATOM-icon`_, RSS1-none, RSS2-none.
+
+
+ezcFeed-id
+``````````
+
+Type: ezcFeedIdElement.
+
+A universally unique and permanent URI for a feed. For example, it can be an
+Internet domain name.
+
+Required. `RSS1`_ and `ATOM`_ feeds will have this element after generating
+the feed. It will be rendered as an *atom:link* element in `RSS2`_ feeds
+(together with the *xmlns:atom* namespace).
+
+Can appear only once.
+
+Create example::
+
+    <?php
+    // $feed is an ezcFeed object
+    $feed->id = 'ID value';
+    ?>
+
+Parse example::
+
+    <?php
+    // $feed is an ezcFeed object
+    $id = isset( $feed->id ) ? $feed->id->__toString() : null;
+    ?>
+
+Equivalents: `ezcFeed-id`_, `ATOM-id`_, `RSS1-about`_, `RSS2-id`_.
+
+
+ezcFeed-image
+`````````````
+
+Type: ezcFeedImageElement.
+
+An image associated with the feed.
+
+Optional.
+
+Can appear only once.
+
+`RSS1`_ has the required attribute *about*, which should have the same value
+as the *url* sub-element.
+
+`RSS1`_ and `RSS2`_ have 3 required sub-elements: *title*, *link*, *url*
+(same for both feed types). These attributes will be ignored for `ATOM`_ feeds.
+
+`RSS2`_ has 3 optional sub-elements: *width*, *height*, *description*. These
+attributes will be ignored for `RSS1`_ and `ATOM`_ feeds.
+
+Create example::
+
+    <?php
+    // $feed is an ezcFeed object
+    $image = $feed->add( 'image' );
+    $image->link = 'http://example.com/target_for_image_click.html';
+    $image->url = 'http://example.com/image.jpg'; // RSS1 and RSS2 only
+    $image->title = 'Click here to go to the link'; // RSS1 and RSS2 only
+    $image->width = 100; // RSS2 only
+    $image->height = 200; // RSS2 only
+    $image->description = 'This image is cool'; // RSS2 only
+    $image->about = 'http://example.com/image.jpg'; // RSS1 only
+    ?>
+
+Parse example (`RSS1`_ and `RSS2`_)::
+
+    <?php
+    // $feed is an ezcFeed object
+    if ( isset( $feed->image ) )
+    {
+        $image = $feed->image;
+        $link = isset( $image->link ) ? $image->link : null;
+        $url = isset( $image->url ) ? $image->url : null; // RSS1 and RSS2 only
+        $title = isset( $image->title ) ? $image->title : null; // RSS1 and RSS2 only
+        $width = isset( $image->width ) ? $image->width : null; // RSS2 only
+        $height = isset( $image->height ) ? $image->height : null; // RSS2 only
+        $description = isset( $image->description ) ? $image->description : null; // RSS2 only
+        $about = isset( $image->about ) ? $image->about : null; // RSS1 only
+    }
+    ?>
+
+Equivalents: `ezcFeed-image`_, `ATOM-logo`_, `RSS1-image`_, `RSS2-image`_.
+
+
+ezcFeed-item
+````````````
+
+Type: array(ezcFeedEntryElement).
+
+Feed entry.
+
+Required for `RSS1`_ and `RSS2`_ feeds. Optional (recommended) for `ATOM`_
+feeds.
+
+Multiple entries can appear.
+
+Create example::
+
+    <?php
+    // $feed is an ezcFeed object
+    $item = $feed->add( 'item' );
+
+    // set $item properties, for example:
+    $item->title = 'Item title';
+    ?>
+
+Parse example::
+
+    <?php
+    // $feed is an ezcFeed object
+    foreach ( $feed->item as $item )
+    {
+        // get $item properties, for example:
+        $title = isset( $item->title ) ? $item->title->__toString() : null;
+    }
+    ?>
+
+Equivalents: `ezcFeed-item`_, `ATOM-entry`_, `RSS1-item`_, `RSS2-item`_.
+
+
+ezcFeed-language
+````````````````
+
+Type: ezcFeedTextElement.
+
+The language for the feed.
+
+Optional (recommended). Only `RSS2`_ feeds will have this element after
+generating the feed. It will be ignored for `RSS1`_ and `ATOM`_ feeds.
+
+Can appear only once.
+
+In `ATOM`_ you can assign the language to each element instead.
+
+A list of allowed languages can be found here: `RSS language codes`_.
+
+Create example::
+
+    <?php
+    // $feed is an ezcFeed object
+    $feed->language = 'en';
+    ?>
+
+Parse example::
+
+    <?php
+    // $feed is an ezcFeed object
+    $language = isset( $feed->language ) ? $feed->language->__toString() : null;
+    ?>
+
+Equivalents: `ezcFeed-language`_, ATOM-*xml:lang* for each element, RSS1-none,
+`RSS2-language`_.
+
+
+ezcFeed-link
+````````````
+
+Type: array(ezcFeedLinkElement).
+
+An URL to the HTML website corresponding to the feed.
+
+Required for all feed types. In `ATOM`_ a link back to the feed itself must be
+present (with ``rel="self"``).
+
+Multiple links can appear in `ATOM`_ (not recommended).
+
+Required attributes: *href*. Optional attributes for `ATOM`_: *rel* (possible
+values: ``alternate`` (default), ``enclosure``, ``related``, ``self``,
+``via``), *type*, *hreflang*, *title*, *length*.
+
+A maximum of one link with ``rel="alternate"`` can appear per *type* and
+*hreflang*.
+
+These attributes will be ignored for `RSS1`_ and `RSS2`_ feeds.
+
+Create example::
+
+    <?php
+    // $feed is an ezcFeed object
+    $link = $feed->add( 'link' );
+    $link->href = 'http://example.com';
+    $link->rel = 'self'; // ATOM only
+    $link->type = 'text/html'; // ATOM only
+    $link->hreflang = 'en'; // ATOM only
+    $link->title = 'Link to the homepage'; // ATOM only
+    $link->length = 12345;  // ATOM only
+    ?>
+
+Parse example::
+
+    <?php
+    $links = array();
+
+    // $feed is an ezcFeed object
+    foreach ( $feed->link as $link )
+    {
+        $links[] = array(
+          'href' => isset( $link->href ) ? $link->href : null,
+          'rel' => isset( $link->rel ) ? $link->rel : null, // ATOM only
+          'type' => isset( $link->type ) ? $link->type : null, // ATOM only
+          'hreflang' => isset( $link->hreflang ) ? $link->hreflang : null, // ATOM only
+          'title' => isset( $link->title ) ? $link->title : null, // ATOM only
+          'length' => isset( $link->length ) ? $link->length : null, // ATOM only
+          );
+    }
+    ?>
+
+Equivalents: `ezcFeed-link`_, `ATOM-link`_, `RSS1-link`_, `RSS2-link`_.
+
+
+ezcFeed-published
+`````````````````
+
+Type: ezcFeedDateElement.
+
+The time the feed was published.
+
+Optional (not recommended). Only `RSS2`_ feeds will have this element after
+generating the feed. It will be ignored for `RSS1`_ and `ATOM`_ feeds.
+
+Can appear only once.
+
+Can be assigned with an integer timestamp, a string date or a DateTime object.
+
+Create example::
+
+    <?php
+    // $feed is an ezcFeed object
+    $feed->published = time();
+    ?>
+
+Parse example::
+
+    <?php
+    // $feed is an ezcFeed object
+    $published = isset( $feed->published ) ? $feed->published->date->format( 'c' ) : null;
+    ?>
+
+Other formats can be used also instead of ``'c'``, see the documentation for
+`date_format()`_.
+
+Equivalents: `ezcFeed-published`_, ATOM-none, RSS1-none, `RSS2-pubDate`_.
+
+
+ezcFeed-rating
+``````````````
+
+Type: ezcFeedTextElement.
+
+The `PICS`_ rating for the channel.
+
+Optional (not recommended). Only `RSS2`_ feeds will have this element after
+generating the feed. It will be ignored for `RSS1`_ and `ATOM`_ feeds.
+
+Can appear only once.
+
+Create example::
+
+    <?php
+    // $feed is an ezcFeed object
+    $feed->rating = '(PICS-1.1 "http://www.gcf.org/v2.5" labels 
+                      on "1994.11.05T08:15-0500" 
+                      exp "1995.12.31T23:59-0000" 
+                      for "http://www.greatdocs.com/foo.html" 
+                      by "George Sanderson, Jr." 
+                      ratings (suds 0.5 density 0 color/hue 1))';
+    ?>
+
+Parse example::
+
+    <?php
+    // $feed is an ezcFeed object
+    $rating = isset( $feed->rating ) ? $feed->rating->__toString() : null;
+    ?>
+
+Equivalents: `ezcFeed-rating`_, ATOM-none, RSS1-none, `RSS2-rating`_.
+
+
+ezcFeed-skipDays
+````````````````
+
+Type: ezcFeedSkipDaysElement.
+
+A hint for aggregators telling them which days they can skip when reading the
+feed.
+
+Optional (not recommended). Only `RSS2`_ feeds will have this element after
+generating the feed. It will be ignored for `RSS1`_ and `ATOM`_ feeds.
+
+Can appear only once.
+
+Can have up to 7 *day* elements, each with a value from ``Monday`` to ``Sunday``.
+
+Create example::
+
+    <?php
+    // $feed is an ezcFeed object
+    $skip = $feed->add( 'skipDays' );
+    $skip->days = array( 'Saturday', 'Sunday' );
+    ?>
+
+Parse example::
+
+    <?php
+    // $feed is an ezcFeed object
+    $days = array( 'Monday' => false, /*...*/ 'Sunday' => false );
+    foreach ( $feed->skipDays->days as $skip )
+    {
+        $days[$skip] = true;
+    }
+    ?>
+
+Equivalents: `ezcFeed-skipDays`_, ATOM-none, RSS1-none, `RSS2-skipDays`_.
+
+
+ezcFeed-skipHours
+`````````````````
+
+Type: ezcFeedSkipHoursElement.
+
+A hint for aggregators telling them which hours they can skip when reading the
+feed.
+
+Optional (not recommended). Only `RSS2`_ feeds will have this element after
+generating the feed. It will be ignored for `RSS1`_ and `ATOM`_ feeds.
+
+Can appear only once.
+
+Can have up to 24 *hour* elements, each with an integer value from ``0``
+(midnight) to ``23``. The value ``24`` can also be used for midnight.
+
+Create example::
+
+    <?php
+    // $feed is an ezcFeed object
+    $skip = $feed->add( 'skipHours' );
+    $skip->hours = array( 1, 2, 3, 4, 5 );
+    ?>
+
+Parse example::
+
+    <?php
+    // $feed is an ezcFeed object
+    $hours = array( '0' => false, /*...*/ '24' => false );
+    foreach ( $feed->skipHours->hours as $skip )
+    {
+        $hours[$skip] = true;
+    }
+    ?>
+
+Equivalents: `ezcFeed-skipHours`_, ATOM-none, RSS1-none, `RSS2-skipHours`_.
+
+
+ezcFeed-textInput
+`````````````````
+
+Type: ezcFeedTextInputElement.
+
+Specifies a text input box that can be displayed with the feed.
+
+Optional (not recommended). Only `RSS1`_ and `RSS2`_ feeds will have this
+element after generating the feed. It will be ignored for `ATOM`_ feeds.
+
+Can appear only once.
+
+For `RSS1`_ it has the required attribute *about*, which should have the same
+value as the *link* sub-element.
+
+Has four required sub-elements: *title*, *description*, *name*, *link* (same
+for `RSS1`_ and `RSS2`_).
+
+Create example::
+
+    <?php
+    // $feed is an ezcFeed object
+    $textInput = $feed->add( 'textInput' );
+    $textInput->title = 'Text input title';
+    $textInput->description = 'Text input description';
+    $textInput->name = 'Text input name';
+    $textInput->link = 'Text input link';
+    $textInput->about = 'Text input link'; // RSS1 only, ignored in RSS2
+    ?>
+
+Parse example::
+
+    <?php
+    // $feed is an ezcFeed object
+    if ( isset( $feed->textInput ) )
+    {
+        $textInput = $feed->textInput;
+        $title = isset( $textInput->title ) ? $textInput->title : null;
+        $description = isset( $textInput->description ) ? $textInput->description : null;
+        $name = isset( $textInput->name ) ? $textInput->name : null;
+        $link = isset( $textInput->link ) ? $textInput->link : null;
+        $about = isset( $textInput->about ) ? $textInput->about : null; // RSS1 only
+    }
+    ?>
+
+Equivalents: `ezcFeed-textInput`_, ATOM-none, `RSS1-textinput`_,
+`RSS2-textInput`_.
+
+
+ezcFeed-title
+`````````````
+
+Type: ezcFeedTextElement.
+
+Human readable title for the feed. For example, it can be the same as the
+website title.
+
+Required.
+
+Can appear only once.
+
+`ATOM`_ has an optional attribute *type* with possible values ``text``
+(default), ``html``, ``xhtml``. This attribute will be ignored for `RSS1`_ and
+`RSS2`_ feeds.
+
+`ATOM`_ has an optional attribute *xml:lang* which specifies the language of
+the text. A list of allowed languages can be found here:
+`RSS language codes`_. This attribute is accessed through ezcFeed as *language*.
+This attribute will be ignored for `RSS1`_ and `RSS2`_ feeds.
+
+Create example::
+
+    <?php
+    // $feed is an ezcFeed object
+    $feed->title = 'Feed title';
+    $feed->title->type = 'text'; // ATOM only, ignored in RSS1 and RSS2
+    $feed->title->language = 'de'; // ATOM only, ignored in RSS1 and RSS2
+    ?>
+
+Parse example::
+
+    <?php
+    // $feed is an ezcFeed object
+    if ( isset( $feed->title ) )
+    {
+        $element = $feed->title;
+        $title = isset( $element->text ) ? $element->text : null;
+        $type = isset( $element->type ) ? $element->type : null; // ATOM only
+        $language = isset( $element->language ) ? $element->language : null; // ATOM only
+    }
+    ?>
+
+Equivalents: `ezcFeed-title`_, `ATOM-title`_, `RSS1-title`_, `RSS2-title`_.
+
+
+ezcFeed-ttl
+```````````
+
+Type: ezcFeedTextElement.
+
+Number of minutes that indicates how long a channel can be cached before
+refreshing from the source.
+
+Optional (not recommended). Only `RSS2`_ feeds will have this element after
+generating the feed. It will be ignored `RSS1`_ and `ATOM`_ feeds.
+
+Can appear only once.
+
+Create example::
+
+    <?php
+    // $feed is an ezcFeed object
+    $feed->ttl = '60'; // minutes
+    ?>
+
+Parse example::
+
+    <?php
+    // $feed is an ezcFeed object
+    $ttl = isset( $feed->ttl ) ? $feed->ttl->__toString() : null;
+    ?>
+
+Equivalents: `ezcFeed-ttl`_, ATOM-none, RSS1-none, `RSS2-ttl`_.
+
+
+ezcFeed-updated
+```````````````
+
+Type: ezcFeedDateElement.
+
+The last time the feed was updated.
+
+Required for `ATOM`_. Optional for `RSS2`_. It will be ignored for `RSS1`_
+feeds. ezcFeed will add automatically the *updated* element with the value the
+current time in `ATOM`_ and `RSS2`_ feeds.
+
+Can appear only once.
+
+Can be assigned with an integer timestamp, a string date or a DateTime object.
+
+Create example::
+
+    <?php
+    // $feed is an ezcFeed object
+    $feed->updated = 'Tue, 10 Jun 2003 04:00:00 GMT';
+    ?>
+
+Parse example::
+
+    <?php
+    // $feed is an ezcFeed object
+    $updated = isset( $feed->updated ) ? $feed->updated->date->format( 'c' ) : null;
+    ?>
+
+Other formats can be used also instead of ``'c'``, see the documentation for
+`date_format()`_.
+
+Equivalents: `ezcFeed-updated`_, `ATOM-updated`_, RSS1-none, `RSS2-lastBuildDate`_.
+
+
+ezcFeed-webMaster
+`````````````````
+
+Type: ezcFeedPersonElement.
+
+The email address of the webmaster responsible for the feed.
+
+Optional (not recommended). Only `RSS2`_ feeds will have this element after
+generating the feed. It will be ignored for `RSS1`_ and `ATOM`_ feeds.
+
+Can appear only once.
+
+It is a good practice to include the name and email of the webmaster,
+for example ``john.doe@example.com (John Doe)``.
+
+Create example::
+
+    <?php
+    // $feed is an ezcFeed object
+    $webMaster = $feed->add( 'webMaster' );
+    $webMaster->name = 'John Doe';
+    $webMaster->email = 'john.doe@example.com';
+    ?>
+
+Parse example::
+
+    <?php
+    // $feed is an ezcFeed object
+    if ( isset( $feed->webMaster ) )
+    {
+        $name = isset( $feed->webMaster->name ) ? $feed->webMaster->name : null;
+    }
+    ?>
+
+Equivalents: `ezcFeed-webMaster`_, ATOM-none, RSS1-none, `RSS2-webMaster`_.
+
+
+Item elements
+-------------
+
+ezcFeed-item-author
+```````````````````
+
+Type: array(ezcFeedPersonElement).
+
+One author of the feed entry.
+
+Required in `ATOM`_: one author must be present in each entry in case the feed
+does not contain an author. Optional in `RSS2`_ (recommended). Ignored for
+`RSS1`_ feeds.
+
+Multiple authors can appear in `ATOM`_ (not recommended). Can appear only once
+in `RSS2`_ feeds.
+
+`ATOM`_ has required elements: *name*. Optional elements: *uri* (ignored in
+`RSS2`_) and *email*.
+
+In `RSS2`_ the generated XML element value will be ``email (name)``.
+
+Create example::
+
+    <?php
+    // $item is an ezcFeedEntryElement object
+    $author = $item->add( 'author' );
+    $author->name = 'Guybrush Threepwood';
+    $author->email = 'guybrush@monkey-island.com';
+    $author->uri = 'http://example.com/~guybrush'; // ATOM only
+    ?>
+
+The resulting ATOM XML element will be::
+
+  <author>
+    <name>Guybrush Threepwood</name>
+    <email>guybrush@monkey-island.com</email>
+    <uri>http://example.com/~guybrush</uri>
+  </author>
+
+The resulting RSS2 XML element will be::
+
+  <author>guybrush@monkey-island.com (Guybrush Threepwood)</author>
+  
+Parse example::
+
+    <?php
+    $authors = array();
+
+    // $item is an ezcFeedEntryElement object
+    if ( isset( $item->author ) )
+    {
+        foreach ( $item->author as $author )
+        {
+            $authors[] = array(
+              'name' => isset( $author->name ) ? $author->name : null,
+              'uri' => isset( $author->uri ) ? $author->uri : null, // ATOM only
+              'email' => isset( $author->email ) ? $author->email : null // ATOM only
+              );
+        }
+    }
+    ?>
+
+Equivalents: `ezcFeed-item-author`_, `ATOM-entry-author`_, RSS1-none,
+`RSS2-item-author`_.
+
+
+ezcFeed-item-category
+`````````````````````
+
+Type: array(ezcFeedCategoryElement).
+
+A category for the feed entry.
+
+Optional. Only `ATOM`_ and `RSS2`_ feeds will have this element after
+generating the feed. It will be ignored for `RSS1`_ feeds.
+
+Multiple categories can appear in `ATOM`_ and `RSS2`_ feeds.
+
+`ATOM`_ has one required attribute: *term*. Optional attributes: *scheme*
+(*domain* in `RSS2`_) and *label* (ignored in `RSS2`_).
+
+Create example::
+
+    <?php
+    // $item is an ezcFeedEntryElement object
+    $category = $item->add( 'category' );
+    $category->term = 'holiday';
+    $category->scheme = 'http://example.com/categories/holiday'; // scheme = RSS2 domain
+    $category->label = 'Holiday'; // ATOM only
+    ?>
+
+Parse example::
+
+    <?php
+    $categories = array();
+
+    // $item is an ezcFeedEntryElement object
+    if ( isset( $item->category ) )
+    {
+        foreach ( $item->category as $category )
+        {
+            $categories[] = array(
+              'term' => isset( $category->term ) ? $category->term : null,
+              'scheme' => isset( $category->scheme ) ? $category->scheme : null, // scheme = RSS2 domain
+              'label' => isset( $category->label ) ? $category->label : null // ATOM only
+              );
+        }
+    }
+    ?>
+
+Equivalents: `ezcFeed-item-category`_, `ATOM-entry-category`_, RSS1-none,
+`RSS2-item-category`_.
+
+
+ezcFeed-item-comments
+`````````````````````
+
+Type: ezcFeedTextElement.
+
+A link to a webpage for comments.
+
+Optional (not recommended). Only `RSS2`_ feeds will have this element after
+generating the feed. It will be ignored for `RSS1`_ and `ATOM`_ feeds.
+
+Can appear only once.
+
+Create example::
+
+    <?php
+    // $item is an ezcFeedEntryElement object
+    $item->comments = 'http://www.example.com/comments.php';
+    ?>
+
+Parse example::
+
+    <?php
+    // $item is an ezcFeedEntryElement object
+    $comments = isset( $item->comments ) ? $item->comments->__toString() : null;
+    ?>
+
+Equivalents: `ezcFeed-item-comments`_, ATOM-none, RSS1-none,
+`RSS2-item-comments`_.
+
+
+ezcFeed-item-content
+````````````````````
+
+Type: ezcFeedContentElement.
+
+A short description for the feed item.
+
+Optional (not recommended). Only `ATOM`_ feeds will have this element after
+generating the feed. It will be ignored for `RSS1`_ and `RSS2`_ feeds. Can be
+substituted with |ezcFeed-item-description|_ (recommended).
+
+Can appear only once.
+
+Has an optional attribute *type* with possible values ``text`` (default),
+``html``, ``xhtml``, or other mime values, depending on the data it contains.
+
+Has an optional attribute *src* which specifies the URI where the full content
+is located.
+
+Has an optional attribute *xml:lang* which specifies the language of the text.
+This attribute is accessed through ezcFeed as *language*. A list of allowed
+languages can be found here: `RSS language codes`_.
+
+If *src* is present, the *type* attribute, if present, is the media type of the
+content.
+
+Otherwise, if the type attribute ends in ``+xml`` or ``/xml``, then an XML
+document of this type is contained inline.
+
+Otherwise, if the type attribute starts with ``text``, then an escaped document
+of this type is contained inline.
+
+Otherwise, a base64 encoded document of the indicated media type is contained
+inline.
+
+Create example::
+
+    <?php
+    // $item is an ezcFeedEntryElement object
+    $item->content = 'Content';
+    $item->content->type = 'text';
+    $item->content->language = 'de';
+    $item->content->src = 'http://example.com/content_src.html';
+    ?>
+
+Parse example::
+
+    <?php
+    // $item is an ezcFeedEntryElement object
+    if ( isset( $item->content ) )
+    {
+        $contentElement = $item->content;
+        $content = $descriptionElement->text;
+        $type = isset( $contentElement->type ) ? $contentElement->type : null;
+        $language = isset( $contentElement->language ) ? $contentElement->language : null;
+        $src = isset( $contentElement->src ) ? $contentElement->src : null;
+    }
+    ?>
+
+Equivalents: `ezcFeed-item-content`_/`ezcFeed-item-description`_,
+`ATOM-entry-content`_, RSS1-none, RSS2-none.
+
+
+ezcFeed-item-contributor
+````````````````````````
+
+Type: array(ezcFeedPersonElement).
+
+One contributor of the feed entry.
+
+Optional (not recommended). Only `ATOM`_ feeds will have this element after
+generating the feed. It will be ignored for `RSS1`_ and `RSS2`_ feeds.
+
+Multiple contributors can appear.
+
+Required elements: *name*. Optional elements: *uri*, *email*.
+
+Create example::
+
+    <?php
+    // $item is an ezcFeedEntryElement object
+    $contributor = $item->add( 'contributor' );
+    $contributor->name = 'Guybrush Threepwood';
+    $contributor->uri = 'http://example.com/~guybrush';
+    $contributor->email = 'guybrush@monkey-island.com';
+    ?>
+
+Parse example::
+
+    <?php
+    $contributors = array();
+
+    // $item is an ezcFeedEntryElement object
+    if ( isset( $item->contributor ) )
+    {
+        foreach ( $item->contributor as $contributor )
+        {
+            $contributors[] = array(
+              'name' => isset( $contributor->name ) ? $contributor->name : null,
+              'uri' => isset( $contributor->uri ) ? $contributor->uri : null,
+              'email' => isset( $contributor->email ) ? $contributor->email : null
+              );
+        }
+    }
+    ?>
+
+Equivalents: `ezcFeed-item-contributor`_, `ATOM-entry-contributor`_,
+RSS1-none, RSS2-none.
+
+
+ezcFeed-item-copyright
+``````````````````````
+
+Type: ezcFeedTextElement.
+
+Copyright information for the feed entry.
+
+Optional. Only `ATOM`_ feeds will have this element after generating the feed.
+It will be ignored for `RSS1`_ and `RSS2`_ feeds. For `RSS2`_ the copyright is
+specified for the whole feed, not for any feed items (see
+`ezcFeed-copyright`_).
+
+Can appear only once.
+
+`ATOM`_ has an optional attribute *type* with possible values ``text``
+(default), ``html``, ``xhtml``. This attribute will be ignored for `RSS1`_ and
+`RSS2`_ feeds.
+
+`ATOM`_ has an optional attribute *xml:lang* which specifies the language of
+the text. A list of allowed languages can be found here:
+`RSS language codes`_. This attribute is accessed through ezcFeed as
+*language*. This attribute will be ignored for `RSS1`_ and `RSS2`_ feeds.
+
+Create example::
+
+    <?php
+    // $item is an ezcFeedEntryElement object
+    $item->copyright = 'Copyright <company name>';
+    $item->copyright->type = 'text'; // ATOM only
+    $item->copyright->language = 'de'; // ATOM only
+    ?>
+
+Parse example::
+
+    <?php
+    // $item is an ezcFeedEntryElement object
+    if ( isset( $item->copyright ) )
+    {
+        $copyrightElement = $item->copyright;
+        $copyright = $copyrightElement->text;
+        $type = isset( $copyrightElement->type ) ? $copyrightElement->type : null; // ATOM only
+        $language = isset( $copyrightElement->language ) ? $copyrightElement->language : null; // ATOM only
+    }
+    ?>
+
+Equivalents: `ezcFeed-item-copyright`_, `ATOM-entry-rights`_, RSS1-none,
+RSS2-none (`RSS2-copyright`_ for the whole feed).
+
+
+ezcFeed-item-description
+````````````````````````
+
+Type: ezcFeedTextElement.
+
+A short description of the feed item.
+
+Required. In `ATOM`_ it can be substituted with `ATOM-entry-content`_ (not
+recommended) (see `ezcFeed-item-content`_).
+
+Can appear only once.
+
+`ATOM`_ has an optional attribute *type* with possible values ``text``
+(default), ``html``, ``xhtml``. This attribute will be ignored for `RSS1`_ and
+`RSS2`_ feeds.
+
+`ATOM`_ has an optional attribute *xml:lang* which specifies the language of
+the text. A list of allowed languages can be found here:
+`RSS language codes`_. This attribute is accessed through ezcFeed as
+*language*. This attribute will ignored for `RSS1`_ and `RSS2`_ feeds.
+
+Create example::
+
+    <?php
+    // $item is an ezcFeedEntryElement object
+    $item->description = 'Feed description';
+    $item->description->type = 'text'; // ATOM only, ignored in RSS1 and RSS2
+    $item->description->language = 'de'; // ATOM only, ignored in RSS1 and RSS2
+    ?>
+
+Parse example::
+
+    <?php
+    // $item is an ezcFeedEntryElement object
+    if ( isset( $item->description ) )
+    {
+        $desc = $item->description;
+        $description = $desc->text;
+        $type = isset( $desc->type ) ? $desc->type : null; // ATOM only
+        $language = isset( $desc->language ) ? $desc->language : null; // ATOM only
+    }
+    ?>
+
+Equivalents: `ezcFeed-item-description`_, `ATOM-entry-summary`_,
+`RSS1-item-description`_, `RSS2-item-description`_.
+
+
+ezcFeed-item-enclosure
+``````````````````````
+
+Type: array(ezcFeedEnclosureElement).
+
+A link to a multimedia file attached to the feed item.
+
+Optional. Only `RSS2`_ feeds will have this element after generating the feed.
+It will be ignored for `RSS1`_. For `ATOM`_ feeds the enclosure elements will
+be converted to |ATOM-entry-link|_ elements with the attribute
+``rel="enclosure"``.
+
+Can appear only once in `RSS2`_ and multiple times in `ATOM`_ (as
+|ATOM-entry-link|_).
+
+Has 3 required attributes: *url*, *length*, *type*.
+
+Create example::
+
+    <?php
+    // $item is an ezcFeedEntryElement object
+    $enclosure = $item->add( 'enclosure' );  
+    $enclosure->url = 'http://example.com/media/episode_001.mp3';
+    $enclosure->length = 49099054; // bytes
+    $enclosure->type = 'audio/x-mp3';
+    ?>
+
+`RSS2`_ output::
+
+  <enclosure url="http://example.com/media/episode_001.mp3"
+             length="49099054"
+             type="audio/x-mp3"/>
+
+`ATOM`_ output::
+
+  <link href="http://example.com/media/episode_001.mp3"
+        rel="enclosure"
+        length="49099054"
+        type="audio/x-mp3"/>
+
+Parse example (`RSS2`_)::
+
+    <?php
+    // $item is an ezcFeedEntryElement object
+    if ( isset( $item->enclosure ) )
+    {
+        $enclosure = $item->enclosure[0];
+        $url = isset( $enclosure->url ) ? $enclosure->url : null;
+        $length = isset( $enclosure->length ) ? $enclosure->length : null;
+        $type = isset( $enclosure->type ) ? $enclosure->type : null;
+    }
+    ?>
+
+Equivalents: `ezcFeed-item-enclosure`_, ATOM-none (`ATOM-entry-link`_ for
+similar functionality), RSS1-none, `RSS2-item-enclosure`_.
+
+
+ezcFeed-item-id
+```````````````
+
+Type: ezcFeedIdElement.
+
+A unique identifier in respect to other *id* values of entries in the feed. It
+identifies the entry.
+
+Required for `ATOM`_ and `RSS1`_. Optional for `RSS2`_ (recommended).
+
+`RSS2`_ has the optional attribute *isPermLink*. This attribute is ignored for
+`RSS1`_ and `ATOM`_.
+
+Can appear only once.
+
+Create example::
+
+    <?php
+    // $item is an ezcFeedEntryElement object
+    $item->id = 'ID value';
+    $item->id->isPermLink = false; // RSS2 only, it will be ignored for RSS1 and ATOM
+    ?>
+
+Parse example::
+
+    <?php
+    // $item is an ezcFeedEntryElement object
+    if ( isset( $item->id ) )
+    {
+        $id = isset( $feed->id->id ) : $feed->id->id : null;
+        $isPermLink = isset( $feed->id->isPermLink ) ? $feed->id->isPermLink : null; // RSS2 only
+    }
+    ?>
+
+Equivalents: `ezcFeed-item-id`_, `ATOM-entry-id`_, `RSS1-item-about`_,
+`RSS2-item-guid`_.
+
+
+ezcFeed-item-link
+`````````````````
+
+Type: array(ezcFeedLinkElement).
+
+A link to a resource related to the feed entry.
+
+Required.
+
+Multiple links can appear in `ATOM`_ (not recommended). Can appear only once
+in `RSS1`_ and `RSS2`_ feeds.
+
+Enclosures of media files (used mainly for podcasts) can be added with this
+element. In `RSS2`_ use `ezcFeed-item-enclosure`_. `RSS1`_ does not support
+enclosures.
+
+`ATOM`_ has required attributes: *href*. Optional attributes: *rel* (possible
+values: ``alternate`` (default), ``enclosure``, ``related``, ``self``,
+``via``), *type*, *hreflang*, *title*, *length*.
+
+A maximum of one link with ``rel="alternate"`` can appear per *type* and
+*hreflang*.
+
+Recommended only one ``rel="enclosure"`` link to keep compatibility with
+`RSS2`_ |RSS2-item-enclosure|_.
+
+These attributes are ignored for `RSS1`_ and `RSS2`_ feeds.
+
+Create example::
+
+    <?php
+    // $item is an ezcFeedEntryElement object
+    $link = $item->add( 'link' );
+    $link->href = 'http://example.com';
+    $link->rel = 'self'; // ATOM only
+    $link->type = 'text/html'; // ATOM only
+    $link->hreflang = 'en'; // ATOM only
+    $link->title = 'Link to the article'; // ATOM only
+    $link->length = '20:14';  // ATOM only
+    ?>
+
+Parse example::
+
+    <?php
+    $links = array();
+
+    // $item is an ezcFeedEntryElement object
+    foreach ( $item->link as $link )
+    {
+        $links[] = array(
+          'href' => isset( $link->href ) ? $link->href : null,
+          'rel' => isset( $link->rel ) ? $link->rel : null, // ATOM only
+          'type' => isset( $link->type ) ? $link->type : null, // ATOM only
+          'hreflang' => isset( $link->hreflang ) ? $link->hreflang : null, // ATOM only
+          'title' => isset( $link->title ) ? $link->title : null, // ATOM only
+          'length' => isset( $link->length ) ? $link->length : null, // ATOM only
+          );
+    }
+    ?>
+
+Equivalents: `ezcFeed-item-link`_/`ezcFeed-item-enclosure`_,
+`ATOM-entry-link`_, `RSS1-item-link`_, `RSS2-item-link`_/
+`RSS2-item-enclosure`_.
+
+
+ezcFeed-item-published
+``````````````````````
+
+Type: ezcFeedDateElement.
+
+The time the feed item was published.
+
+Optional (recommended). Only `ATOM`_ and `RSS2`_ feeds will have this
+element after generating the feed. It will be ignored for `RSS1`_ feeds.
+
+Can appear only once.
+
+Can be assigned with an integer timestamp, a string date or a DateTime object.
+
+Create example::
+
+    <?php
+    // $item is an ezcFeedEntryElement object
+    $item->published = time();
+    ?>
+
+Parse example::
+
+    <?php
+    // $item is an ezcFeedEntryElement object
+    $published = isset( $item->published ) ? $item->published->date->format( 'c' ) : null;
+    ?>
+
+Equivalents: `ezcFeed-item-published`_, `ATOM-entry-published`_, RSS1-none,
+`RSS2-item-pubDate`_.
+
+
+ezcFeed-item-source
+```````````````````
+
+Type: ezcFeedSourceElement.
+
+The source (another feed) of the feed item.
+
+Optional (not recommended). Only `ATOM`_ and `RSS2`_ feeds will have this
+element after generating the feed. It will be ignored for `RSS1`_ feeds.
+
+For `ATOM`_ feeds, all `ATOM`_ feed-level elements can be added, minus the
+|ezcFeed-item|_ element. `RSS2`_ feeds have the attributes *source* and *url*.
+
+Can appear only once.
+
+Create example::
+
+    <?php
+    // $item is an ezcFeedEntryElement object
+    $source = $item->add( 'source' );
+    $source->source = 'Source feed name'; // RSS2 only, ignored for ATOM
+    $source->url = 'http://source.feed.url/'; // RSS2 only, ignored for ATOM
+
+    $author = $source->add( 'author' ); // ATOM only, ignored for RSS2
+    $author->name = 'Author of the source feed';
+    $author->email = 'Email address of the author of the source feed';
+
+    // more elements which pertain to ATOM feeds can be added
+    ?>
+
+Parse example::
+
+    <?php
+    // $item is an ezcFeedSourceElement object
+    if ( isset( $item->source ) )
+    {
+        $source = $item->source;
+
+        $rss2SourceName = isset( $source->source ) ? $source->source : null;
+        $rss2SourceUrl = isset( $source->url ) ? $source->url : null;
+
+        $atomSourceTitle = isset( $source->title ) ? $source->title->__toString() : null;
+    }
+    ?>
+
+Equivalents: `ezcFeed-item-source`_, `ATOM-entry-source`_, RSS1-none,
+`RSS2-item-source`_.
+
+
+ezcFeed-item-title
+``````````````````
+
+Type: ezcFeedTextElement.
+
+Human readable title for the feed item.
+
+Required.
+
+Can appear only once.
+
+`ATOM`_ has an optional attribute *type* with possible values ``text``
+(default), ``html``, ``xhtml``. This attribute will be ignored for `RSS1`_ and
+`RSS2`_ feeds.
+
+`ATOM`_ has an optional attribute *xml:lang* which specifies the language of
+the text. A list of allowed languages can be found here:
+`RSS language codes`_. This attribute is accessed through ezcFeed as
+*language*. This attribute will be ignored for `RSS1`_ and `RSS2`_ feeds.
+
+Create example::
+
+    <?php
+    // $item is an ezcFeedEntryElement object
+    $item->title = 'Feed title';
+    $item->title->type = 'text'; // ATOM only, ignored in RSS1 and RSS2
+    $item->title->language = 'de'; // ATOM only, ignored in RSS1 and RSS2
+    ?>
+
+Parse example::
+
+    <?php
+    // $item is an ezcFeedEntryElement object
+    if ( isset( $item->title ) )
+    {
+        $titleElement = $item->title;
+        $title = $titleElement->text;
+        $type = isset( $titleElement->type ) ? $titleElement->type : null; // ATOM only
+        $language = isset( $titleElement->language ) ? $titleElement->language : null; // ATOM only
+    }
+    ?>
+
+Equivalents: `ezcFeed-item-title`_, `ATOM-entry-title`_, `RSS1-item-title`_,
+`RSS2-item-title`_.
+
+
+ezcFeed-item-updated
+````````````````````
+
+Type: ezcFeedDateElement.
+
+The last time the feed entry was updated.
+
+Required. Only `ATOM`_ feeds will have this element after generating the
+feed. It will be ignored for `RSS1`_ and `RSS2`_ feeds.
+
+Can appear only once.
+
+Can be assigned with an integer timestamp, a string date or a DateTime object.
+
+Create example::
+
+    <?php
+    // $item is an ezcFeedEntryElement object
+    $item->updated = 'Tue, 10 Jun 2003 04:00:00 GMT';
+    ?>
+
+Parse example::
+
+    <?php
+    // $item is an ezcFeedEntryElement object
+    $updated = isset( $item->updated ) ? $item->updated->date->format( 'c' ) : null;
+    ?>
+
+Equivalents: `ezcFeed-item-updated`_, `ATOM-entry-updated`_, RSS1-none,
+RSS2-none.
+
+
+==========
+Feed types
+==========
+
+ATOM
+====
+
+Specifications
+--------------
+
+`RFC 4287`_
+
+
+Content type
+------------
+
+All ATOM feeds should be identified with the ``application/atom+xml`` content
+type.
+
+
+Structure
+---------
+
+General information:
+ - All elements must be in the http://www.w3.org/2005/Atom namespace
+ - The top level element is called *feed*
+ - All timestamps must conform to `RFC 3339`_ (eg. ``2003-12-13T18:30:02Z``)
+ - Unless otherwise specified, all values must be plain text
+ - *xml:lang* may be used to identify the language of text (the property
+   *language* for the ATOM elements |ATOM-rights|_, |ATOM-subtitle|_,
+   |ATOM-title|_, |ATOM-entry-content|_, |ATOM-entry-rights|_,
+   |ATOM-entry-summary|_, |ATOM-entry-title|_).
+ - *xml:base* may be used to control how relative URIs are resolved (not
+   recommended)
+
+Sample ATOM feed:
+
+.. include:: tutorial/atom_example.xml
+   :literal:
+
+
+Feed elements
+-------------
+
+ATOM-author
+```````````
+
+One author of the feed.
+
+Required: one author must be present unless all items contain at least one
+author.
+
+Multiple authors can appear.
+
+Required elements: *name*. Optional elements: *uri*, *email*.
+
+Example::
+
+  <author>
+    <name>John Doe</name>
+    <uri>http://example.com/~johndoe</uri>
+    <email>JohnDoe@example.com</email>
+  </author>
+
+Equivalents: `ezcFeed-author`_, `ATOM-author`_, RSS1-none,
+`RSS2-managingEditor`_.
+
+
+ATOM-category
+`````````````
+
+A category for the feed.
+
+Optional.
+
+Multiple categories can appear.
+
+Has one required attribute: *term*. Has 2 optional attributes: *scheme*,
+*label*.
+
+Equivalents: `ezcFeed-category`_, `ATOM-category`_, RSS1-none,
+`RSS2-category`_.
+
+
+ATOM-contributor
+````````````````
+
+One contributor of the feed.
+
+Optional (not recommended).
+
+Multiple contributors can appear.
+
+Required elements: *name*. Optional elements: *uri*, *email*.
+
+Example::
+
+  <contributor>
+    <name>John Doe</name>
+    <uri>http://example.com/~johndoe</uri>
+    <email>JohnDoe@example.com</email>
+  </contributor>
+
+Equivalents: `ezcFeed-contributor`_, `ATOM-contributor`_, RSS1-none,
+RSS2-none.
+
+
+ATOM-entry
+``````````
+
+Feed entry.
+
+Optional (recommended).
+
+Multiple entries can appear.
+
+Equivalents: `ezcFeed-item`_, `ATOM-entry`_, `RSS1-item`_, `RSS2-item`_.
+
+
+ATOM-generator
+``````````````
+
+Indicates the software used to generate the feed.
+
+Optional.
+
+Can appear only once.
+
+Has 2 optional attributes: *url*, *version*.
+
+Equivalents: `ezcFeed-generator`_, `ATOM-generator`_, RSS1-none,
+`RSS2-generator`_.
+
+
+ATOM-icon
+`````````
+
+An icon for a feed, similar with ``favicon.ico`` for websites.
+
+Optional.
+
+Can appear only once.
+
+Equivalents: `ezcFeed-icon`_, `ATOM-icon`_, RSS1-none, RSS2-none.
+
+
+ATOM-id
+```````
+
+A universally unique and permanent URI for a feed. For example, it can be an
+Internet domain name.
+
+Required.
+
+Can appear only once.
+
+Equivalents: `ezcFeed-id`_, `ATOM-id`_, `RSS1-about`_, `RSS2-id`_.
+
+
+ATOM-link
+`````````
+
+An URL to the HTML website corresponding to the feed.
+
+Required: a link back to the feed itself must be present (with ``rel="self"``).
+
+Multiple links can appear.
+
+Required attributes: *href*. Optional attributes: *rel* (possible values:
+``alternate`` (default), ``enclosure``, ``related``, ``self``, ``via``),
+*type*, *hreflang*, *title*, *length*.
+
+A maximum of one link with ``rel="alternate"`` can appear per *type* and
+*hreflang*.
+
+Equivalents: `ezcFeed-link`_, `ATOM-link`_, `RSS1-link`_, `RSS2-link`_.
+
+
+ATOM-logo
+`````````
+
+An image associated with the feed. The value is an URL to an image.
+
+Optional.
+
+Can appear only once.
+
+Equivalents: `ezcFeed-image`_, `ATOM-logo`_, `RSS1-image`_, `RSS2-image`_.
+
+
+ATOM-rights
+```````````
+
+Copyright information for the feed.
+
+Optional.
+
+Can appear only once.
+
+Has an optional attribute *type* with possible values ``text`` (default),
+``html``, ``xhtml``.
+
+Has an optional attribute *xml:lang* which specifies the language of the text.
+A list of allowed languages can be found here: `RSS language codes`_.
+
+Equivalents: `ezcFeed-copyright`_, `ATOM-rights`_, RSS1-none,
+`RSS2-copyright`_.
+
+
+ATOM-subtitle
+`````````````
+
+A short description of the feed.
+
+Optional (recommended).
+
+Can appear only once.
+
+Has an optional attribute *type* with possible values ``text`` (default),
+``html``, ``xhtml``.
+
+Has an optional attribute *xml:lang* which specifies the language of the text.
+A list of allowed languages can be found here: `RSS language codes`_.
+
+Equivalents: `ezcFeed-description`_, `ATOM-subtitle`_, `RSS1-description`_,
+`RSS2-description`_.
+
+
+ATOM-title
+``````````
+
+Human readable title for the feed. For example, it can be the same as the
+website title.
+
+Required.
+
+Can appear only once.
+
+Has an optional attribute *type* with possible values ``text`` (default),
+``html``, ``xhtml``.
+
+Has an optional attribute *xml:lang* which specifies the language of the text.
+A list of allowed languages can be found here: `RSS language codes`_.
+
+Equivalents: `ezcFeed-title`_, `ATOM-title`_, `RSS1-title`_, `RSS2-title`_.
+
+
+ATOM-updated
+````````````
+
+The last time the feed was updated.
+
+Required.
+
+Can appear only once.
+
+Must conform to `RFC 3339`_ (eg. ``2003-12-13T18:30:02Z``).
+
+Equivalents: `ezcFeed-updated`_, `ATOM-updated`_, RSS1-none, `RSS2-lastBuildDate`_.
+
+
+Item elements
+-------------
+
+ATOM-entry-author
+`````````````````
+
+One author of the feed entry.
+
+Required: one author must be present in each entry in case the feed does not
+contain an author.
+
+Multiple authors can appear.
+
+Required elements: *name*. Optional elements: *uri*, *email*.
+
+Example::
+
+  <author>
+    <name>John Doe</name>
+    <uri>http://example.com/~johndoe</uri>
+    <email>JohnDoe@example.com</email>
+  </author>
+
+Equivalents: `ezcFeed-item-author`_, `ATOM-entry-author`_, RSS1-none,
+`RSS2-item-author`_.
+
+
+ATOM-entry-category
+```````````````````
+
+A category for the feed entry.
+
+Optional.
+
+Multiple categories can appear.
+
+Has one required attribute: *term*. Has 2 optional attributes: *scheme*,
+*label*.
+
+Equivalents: `ezcFeed-item-category`_, `ATOM-entry-category`_, RSS1-none,
+`RSS2-item-category`_.
+
+
+ATOM-entry-content
+``````````````````
+
+A short description for the feed item.
+
+Optional (not recommended). It is required if |ATOM-entry-summary|_ is
+absent). Can be substituted with |ATOM-entry-summary|_ (recommended).
+
+Can appear only once.
+
+Has an optional attribute *type* with possible values ``text`` (default),
+``html``, ``xhtml``, or other mime values, depending on the data it contains.
+
+Has an optional attribute *src* which specifies the URI where the full content
+is located.
+
+Has an optional attribute *xml:lang* which specifies the language of the text.
+A list of allowed languages can be found here:
+`RSS language codes`_.
+
+If *src* is present, the *type* attribute, if present, is the media type of the
+content.
+
+Otherwise, if the type attribute ends in ``+xml`` or ``/xml``, then an XML
+document of this type is contained inline.
+
+Otherwise, if the type attribute starts with ``text``, then an escaped document
+of this type is contained inline.
+
+Otherwise, a base64 encoded document of the indicated media type is contained
+inline.
+
+Equivalents: `ezcFeed-item-description`_, `ATOM-entry-summary`_/
+`ATOM-entry-content`_, `RSS1-item-description`_, `RSS2-item-description`_.
+
+
+ATOM-entry-contributor
+``````````````````````
+
+One contributor of the feed entry.
+
+Optional (not recommended).
+
+Multiple contributors can appear.
+
+Required elements: *name*. Optional elements: *uri*, *email*.
+
+Example::
+
+  <contributor>
+    <name>John Doe</name>
+    <uri>http://example.com/~johndoe</uri>
+    <email>JohnDoe@example.com</email>
+  </contributor>
+
+Equivalents: `ezcFeed-item-contributor`_, `ATOM-entry-contributor`_,
+RSS1-none, RSS2-none.
+
+
+ATOM-entry-id
+`````````````
+
+A unique identifier in respect to other *id* values of entries in the feed. It
+identifies the entry.
+
+Required.
+
+Can appear only once.
+
+Equivalents: `ezcFeed-item-id`_, `ATOM-entry-id`_, `RSS1-item-about`_,
+`RSS2-item-guid`_.
+
+
+ATOM-entry-link
+```````````````
+
+A link to a resource related to the feed entry.
+
+Required.
+
+Multiple links can appear.
+
+Required attributes: *href*. Optional attributes: *rel* (possible values:
+``alternate`` (default), ``enclosure``, ``related``, ``self``, ``via``),
+*type*, *hreflang*, *title*, *length*.
+
+A maximum of one link with ``rel="alternate"`` can appear per *type* and
+*hreflang*.
+
+Recommended only one ``rel="enclosure"`` link to keep compatibility with RSS2
+|RSS2-item-enclosure|_.
+
+Equivalents: `ezcFeed-item-link`_/`ezcFeed-item-enclosure`_,
+`ATOM-entry-link`_, `RSS1-item-link`_, `RSS2-item-link`_/
+`RSS2-item-enclosure`_.
+
+
+ATOM-entry-published
+````````````````````
+
+The time the feed item was published.
+
+Optional (recommended).
+
+Can appear only once.
+
+Must conform to `RFC 3339`_ (eg. ``2003-12-13T18:30:02Z``).
+
+Equivalents: `ezcFeed-item-published`_, `ATOM-entry-published`_, RSS1-none,
+`RSS2-item-pubDate`_.
+
+
+ATOM-entry-rights
+`````````````````
+
+Copyright information for the feed entry.
+
+Optional.
+
+Can appear only once.
+
+Has an optional attribute *type* with possible values ``text`` (default),
+``html``, ``xhtml``.
+
+Has an optional attribute *xml:lang* which specifies the language of the text.
+A list of allowed languages can be found here: `RSS language codes`_.
+
+Equivalents: `ezcFeed-item-copyright`_, `ATOM-entry-rights`_, RSS1-none,
+RSS2-none (`RSS2-copyright`_ for the whole feed).
+
+
+ATOM-entry-summary
+``````````````````
+
+A short description for the feed item.
+
+Required. Can be substituted with |ATOM-entry-content|_ (not recommended).
+
+Can appear only once.
+
+Has an optional attribute *type* with possible values ``text`` (default),
+``html``, ``xhtml``.
+
+Has an optional attribute *xml:lang* which specifies the language of the text.
+A list of allowed languages can be found here: `RSS language codes`_.
+
+Equivalents: `ezcFeed-item-description`_, `ATOM-entry-summary`_/
+`ATOM-entry-content`_, `RSS1-item-description`_, `RSS2-item-description`_.
+
+
+ATOM-entry-source
+`````````````````
+
+The source feed of the feed item.
+
+Optional (not recommended).
+
+Can appear only once.
+
+Can have the same elements which are present at feed-level in ATOM, minus the
+|ATOM-entry|_ element:
+
+- |ATOM-author|_
+- |ATOM-category|_
+- |ATOM-contributor|_
+- |ATOM-rights|_
+- |ATOM-subtitle|_
+- |ATOM-generator|_
+- |ATOM-icon|_
+- |ATOM-id|_
+- |ATOM-logo|_
+- |ATOM-link|_
+- |ATOM-title|_
+- |ATOM-updated|_
+
+Equivalents: `ezcFeed-item-source`_, `ATOM-entry-source`_, RSS1-none,
+`RSS2-item-source`_.
+
+
+ATOM-entry-title
+````````````````
+
+A title for the feed item.
+
+Required.
+
+Can appear only once.
+
+Has an optional attribute *type* with possible values ``text`` (default),
+``html``, ``xhtml``.
+
+Has an optional attribute *xml:lang* which specifies the language of the text.
+A list of allowed languages can be found here: `RSS language codes`_.
+
+Equivalents: `ezcFeed-item-title`_, `ATOM-entry-title`_, `RSS1-item-title`_,
+`RSS2-item-title`_.
+
+
+ATOM-entry-updated
+``````````````````
+
+The last time the feed entry was updated.
+
+Required.
+
+Can appear only once.
+
+Must conform to `RFC 3339`_ (eg. ``2003-12-13T18:30:02Z``).
+
+Equivalents: `ezcFeed-item-updated`_, `ATOM-entry-updated`_, RSS1-none,
+RSS2-none.
+
+
+RSS1
+====
+
+Specifications
+--------------
+
+RSS1 = RDF Site Summary
+RDF = Resource Description Framework
+
+`RSS1 specifications`_
+
+
+Content type
+------------
+
+All RSS1 feeds should be identified with the ``application/rss+xml`` content
+type (not a standard yet).
+
+
+Structure
+---------
+
+Sample RSS1 feed:
+
+.. include:: tutorial/rss1_example.xml
+   :literal:
+
+
+Feed elements
+-------------
+
+RSS1-about
+``````````
+
+A universally unique and permanent URI for a feed. For example, it can be an
+Internet domain name.
+
+Required.
+
+Can appear only once.
+
+Equivalents: `ezcFeed-id`_, `ATOM-id`_, `RSS1-about`_, `RSS2-id`_.
+
+
+RSS1-description
+````````````````
+
+A short description of the feed.
+
+Required.
+
+Can appear only once.
+
+Equivalents: `ezcFeed-description`_, `ATOM-subtitle`_, `RSS1-description`_,
+`RSS2-description`_.
+
+
+RSS1-image
+``````````
+
+An image associated with the feed.
+
+Optional.
+
+Can appear only once.
+
+Has the required attribute *about*, which should have the same value as the
+*url* sub-element.
+
+Has 3 required sub-elements: *title*, *link*, *url*.
+
+Equivalents: `ezcFeed-image`_, `ATOM-logo`_, `RSS1-image`_, `RSS2-image`_.
+
+
+RSS1-item
+`````````
+
+A feed entry.
+
+Required.
+
+Multiple entries can appear.
+
+Equivalents: `ezcFeed-item`_, `ATOM-entry`_, `RSS1-item`_, `RSS2-item`_.
+
+
+RSS1-link
+`````````
+
+The URL to the HTML website corresponding to the feed.
+
+Required.
+
+Can appear only once.
+
+Equivalents: `ezcFeed-link`_, `ATOM-link`_, `RSS1-link`_, `RSS2-link`_.
+
+
+RSS1-textinput
+``````````````
+
+Specifies a text input box that can be displayed with the feed.
+
+Optional (not recommended).
+
+Can appear only once.
+
+Has the required attribute *about*, which should have the same value as the
+*link* sub-element.
+
+Has four required sub-elements: *title*, *description*, *name*, *link*.
+
+Equivalents: `ezcFeed-textInput`_, ATOM-none, `RSS1-textinput`_,
+`RSS2-textInput`_.
+
+
+RSS1-title
+``````````
+
+Human readable title for the feed. For example, it can be the same as the
+website title.
+
+Required.
+
+Can appear only once.
+
+Equivalents: `ezcFeed-title`_, `ATOM-title`_, `RSS1-title`_, `RSS2-title`_.
+
+
+Item elements
+-------------
+
+RSS1-item-about
+```````````````
+
+A unique identifier in respect to other *about* values in the feed. It
+identifies the item. Should be identical to the *link* value of the item, if
+possible.
+
+Required.
+
+Can appear only once.
+
+Equivalents: `ezcFeed-item-id`_, `ATOM-entry-id`_, `RSS1-item-about`_,
+`RSS2-item-guid`_.
+
+
+RSS1-item-description
+`````````````````````
+
+A short description of the feed item.
+
+Required.
+
+Can appear only once.
+
+Equivalents: `ezcFeed-item-description`_, `ATOM-entry-summary`_,
+`RSS1-item-description`_, `RSS2-item-description`_.
+
+
+RSS1-item-link
+``````````````
+
+The URL to the HTML website corresponding to the feed item.
+
+Required.
+
+Can appear only once.
+
+Equivalents: `ezcFeed-item-link`_, `ATOM-entry-link`_, `RSS1-item-link`_,
+`RSS2-item-link`_.
+
+
+RSS1-item-title
+```````````````
+
+A title for the feed item.
+
+Required.
+
+Can appear only once.
+
+Equivalents: `ezcFeed-item-title`_, `ATOM-entry-title`_, `RSS1-item-title`_,
+`RSS2-item-title`_.
+
+
+RSS2
+====
+
+Specifications
+--------------
+
+RSS2 = Really Simple Syndication
+
+`RSS2 specifications`_
+
+
+Content type
+------------
+
+All RSS2 feeds should be identified with the ``application/rss+xml`` content
+type (not a standard yet).
+
+
+Structure
+---------
+
+Sample RSS2 feed:
+
+.. include:: tutorial/rss2_example.xml
+   :literal:
+
+
+Feed elements
+-------------
+
+RSS2-category
+`````````````
+
+A category for the feed.
+
+Optional.
+
+Multiple categories can appear.
+
+Has one optional attribute: *domain*.
+
+The value of the category element must be specified.
+
+Equivalents: `ezcFeed-category`_, `ATOM-category`_, RSS1-none,
+`RSS2-category`_.
+
+
+RSS2-cloud
+``````````
+
+Allows processes to register with a cloud to be notified of updates to the
+channel, implementing a lightweight publish-subscribe protocol for RSS feeds.
+
+Optional (not recommended).
+
+Can appear only once.
+
+Has the required attributes: *domain*, *port*, *path*, *registerProcedure*,
+*protocol*.
+
+Example::
+
+  <cloud domain="rpc.sys.com" port="80" path="/RPC2" registerProcedure="myCloud.rssPleaseNotify" protocol="xml-rpc" />
+
+Equivalents: `ezcFeed-cloud`_, ATOM-none, RSS1-none, `RSS2-cloud`_.
+
+
+RSS2-copyright
+``````````````
+
+Copyright information for the feed.
+
+Optional.
+
+Can appear only once.
+
+Equivalents: `ezcFeed-copyright`_, `ATOM-rights`_, RSS1-none,
+`RSS2-copyright`_.
+
+
+RSS2-description
+````````````````
+
+A short description of the feed.
+
+Required.
+
+Can appear only once.
+
+Equivalents: `ezcFeed-description`_, `ATOM-subtitle`_, `RSS1-description`_,
+`RSS2-description`_.
+
+
+RSS2-docs
+`````````
+
+An URL that points to the documentation for the format used in the RSS file. It
+is usually http://www.rssboard.org/rss-specification.
+
+Optional.
+
+Can appear only once.
+
+Equivalents: `ezcFeed-docs`_, ATOM-none, RSS1-none, `RSS2-docs`_.
+
+
+RSS2-generator
+``````````````
+
+Indicates the software used to generate the feed.
+
+Optional.
+
+Can appear only once.
+
+Equivalents: `ezcFeed-generator`_, `ATOM-generator`_, RSS1-none,
+`RSS2-generator`_.
+
+
+RSS2-id
+```````
+
+Most `feed validator`_ applications will recommend to include in an RSS2 feed
+a link to the location of the feed. For example, if the XML document
+containing the RSS2 feed is located at 'http://example.com/rss/', then this
+URL should be contained in the feed itself in an *atom:link* element, since
+RSS2 does not offer a mechanism to specify self-links.
+
+Use the `ezcFeed-id`_ to specify this self-link::
+
+    $feed->id = 'http://example.com/rss/';
+
+This will be rendered in XML as::
+
+    <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    ...
+    <atom:link href="http://example.com/" rel="self" type="application/rss+xml"/>
+
+Optional (although recommended because `ezcFeed-id`_ is recommended). The
+*id* feed element does not appear in the `RSS2 specifications`_, but it is
+added to comply with `feed validator`_ recommendations and it is rendered as
+an `ATOM`_ element as discussed above.
+
+Can appear only once.
+
+Equivalents: `ezcFeed-id`_, `ATOM-id`_, `RSS1-about`_, `RSS2-id`_.
+
+
+RSS2-image
+``````````
+
+An image associated with the feed.
+
+Optional.
+
+Can appear only once.
+
+Has 3 required sub-elements: *title*, *link*, *url*.
+
+Has 3 optional sub-elements: *width*, *height*, *description*.
+
+Equivalents: `ezcFeed-image`_, `ATOM-logo`_, `RSS1-image`_, `RSS2-image`_.
+
+
+RSS2-item
+`````````
+
+Feed entry.
+
+Required.
+
+Multiple entries can appear.
+
+Equivalents: `ezcFeed-item`_, `ATOM-entry`_, `RSS1-item`_, `RSS2-item`_.
+
+
+RSS2-language
+`````````````
+
+The language for the feed.
+
+Optional (recommended).
+
+Can appear only once.
+
+A list of allowed languages can be found here: `RSS language codes`_.
+
+Equivalents: `ezcFeed-language`_, ATOM-*xml:lang* for each element, RSS1-none,
+`RSS2-language`_.
+
+
+RSS2-lastBuildDate
+``````````````````
+
+The last time the feed was updated.
+
+Optional (recommended).
+
+Can appear only once.
+
+Must conform to `RFC 822`_ (eg. ``Sat, 07 Sep 2002 09:42:31 GMT``).
+
+Equivalents: `ezcFeed-updated`_, `ATOM-updated`_, RSS1-none,
+`RSS2-lastBuildDate`_.
+
+
+RSS2-link
+`````````
+
+The URL to the HTML website corresponding to the feed.
+
+Required.
+
+Can appear only once.
+
+Equivalents: `ezcFeed-link`_, `ATOM-link`_, `RSS1-link`_, `RSS2-link`_.
+
+
+RSS2-managingEditor
+```````````````````
+
+One author of the feed.
+
+Optional (recommended).
+
+Can appear only once.
+
+It is a good practice to include the name and email of the managing editor,
+for example ``john.doe@example.com (John Doe)``.
+
+Equivalents: `ezcFeed-author`_, `ATOM-author`_, RSS1-none,
+`RSS2-managingEditor`_.
+
+
+RSS2-pubDate
+````````````
+
+The time the feed was published.
+
+Optional (not recommended).
+
+Can appear only once.
+
+Must conform to `RFC 822`_ (eg. ``Sat, 07 Sep 2002 09:42:31 GMT``).
+
+Equivalents: `ezcFeed-published`_, ATOM-none, RSS1-none, `RSS2-pubDate`_.
+
+
+RSS2-rating
+```````````
+
+The `PICS`_ rating for the channel.
+
+Optional (not recommended).
+
+Can appear only once.
+
+Equivalents: `ezcFeed-rating`_, ATOM-none, RSS1-none, `RSS2-rating`_.
+
+
+RSS2-skipDays
+`````````````
+
+A hint for aggregators telling them which days they can skip when reading the
+feed.
+
+Optional (not recommended).
+
+Can appear only once.
+
+Can have up to 7 *day* elements, each with a value from ``Monday`` to ``Sunday``.
+
+Equivalents: `ezcFeed-skipDays`_, ATOM-none, RSS1-none, `RSS2-skipDays`_.
+
+
+RSS2-skipHours
+``````````````
+
+A hint for aggregators telling them which hours they can skip when reading the
+feed.
+
+Optional (not recommended).
+
+Can appear only once.
+
+Can have up to 24 *hour* elements, each with an integer value from ``0``
+(midnight) to ``23``. The value ``24`` can also be used for midnight.
+
+Equivalents: `ezcFeed-skipHours`_, ATOM-none, RSS1-none, `RSS2-skipHours`_.
+
+
+RSS2-textInput
+``````````````
+
+Specifies a text input box that can be displayed with the feed.
+
+Optional (not recommended).
+
+Can appear only once.
+
+Has four required sub-elements: *title*, *description*, *name*, *link*.
+
+Equivalents: `ezcFeed-textInput`_, ATOM-none, `RSS1-textinput`_,
+`RSS2-textInput`_.
+
+
+RSS2-title
+``````````
+
+Human readable title for the feed. For example, it can be the same as the
+website title.
+
+Required.
+
+Can appear only once.
+
+Equivalents: `ezcFeed-title`_, `ATOM-title`_, `RSS1-title`_, `RSS2-title`_.
+
+
+RSS2-ttl
+````````
+
+Number of minutes that indicates how long a channel can be cached before
+refreshing from the source.
+
+Optional (not recommended).
+
+Can appear only once.
+
+Equivalents: `ezcFeed-ttl`_, ATOM-none, RSS1-none, `RSS2-ttl`_.
+
+
+RSS2-webMaster
+``````````````
+
+The email address of the webmaster responsible for the feed.
+
+Optional (not recommended).
+
+Can appear only once.
+
+It is a good practice to include the name and email of the webmaster,
+for example ``john.doe@example.com (John Doe)</webMaster>``.
+
+Equivalents: `ezcFeed-webMaster`_, ATOM-none, RSS1-none, `RSS2-webMaster`_.
+
+
+Item elements
+-------------
+
+RSS2-item-author
+````````````````
+
+The email address of the person who created the feed item.
+
+Optional (recommended).
+
+Can appear only once.
+
+It is a good practice to include the name and email of the author, for
+example ``john.doe@example.com (John Doe)</author>``.
+
+Equivalents: `ezcFeed-item-author`_, `ATOM-entry-author`_, RSS1-none,
+`RSS2-item-author`_.
+
+
+RSS2-item-category
+``````````````````
+
+A category for the feed.
+
+Optional.
+
+Multiple categories can appear.
+
+Has one optional attribute: *domain*.
+
+The value of the category element must be specified.
+
+Equivalents: `ezcFeed-item-category`_, `ATOM-entry-category`_, RSS1-none,
+`RSS2-item-category`_.
+
+
+RSS2-item-comments
+``````````````````
+
+A link to a webpage for comments.
+
+Optional (not recommended).
+
+Can appear only once.
+
+Equivalents: `ezcFeed-item-comments`_, ATOM-none, RSS1-none,
+`RSS2-item-comments`_.
+
+
+RSS2-item-description
+`````````````````````
+
+A short description of the feed item.
+
+Required.
+
+Can appear only once.
+
+Equivalents: `ezcFeed-item-description`_, `ATOM-entry-summary`_,
+`RSS1-item-description`_, `RSS2-item-description`_.
+
+
+RSS2-item-enclosure
+```````````````````
+
+A link to a multimedia file attached to the feed item.
+
+Optional.
+
+Can appear only once.
+
+Has 3 required attributes: *url*, *length*, *type*.
+
+Equivalents: `ezcFeed-item-enclosure`_, ATOM-none (`ATOM-entry-link`_ for
+similar functionality), RSS1-none, `RSS2-item-enclosure`_.
+
+
+RSS2-item-guid
+``````````````
+
+A unique identifier in respect to other *guid* values of items in the feed. It
+identifies the item.
+
+Optional (recommended).
+
+Can appear only once.
+
+Has an optional attribute *isPermaLink* with possible values ``true`` or
+``false`` (default), which specifies if the *guid* value is an URL.
+
+Equivalents: `ezcFeed-item-id`_, `ATOM-entry-id`_, `RSS1-item-about`_,
+`RSS2-item-guid`_.
+
+
+RSS2-item-link
+``````````````
+
+The URL to the HTML website corresponding to the feed item.
+
+Required.
+
+Can appear only once.
+
+Equivalents: `ezcFeed-item-link`_, `ATOM-entry-link`_, `RSS1-item-link`_,
+`RSS2-item-link`_.
+
+
+RSS2-item-pubDate
+`````````````````
+
+The time the feed item was published.
+
+Optional (recommended).
+
+Can appear only once.
+
+Must conform to `RFC 822`_ (eg. ``Sat, 07 Sep 2002 09:42:31 GMT``).
+
+Equivalents: `ezcFeed-item-published`_, `ATOM-entry-published`_, RSS1-none,
+`RSS2-item-pubDate`_.
+
+
+RSS2-item-source
+````````````````
+
+The source feed of the feed item.
+
+Optional (not recommended).
+
+Can appear only once.
+
+Has 2 optional attributes: *source*, *url*.
+
+Equivalents: `ezcFeed-item-source`_, `ATOM-entry-source`_, RSS1-none,
+`RSS2-item-source`_.
+
+
+RSS2-item-title
+```````````````
+
+A title for the feed item.
+
+Required.
+
+Can appear only once.
+
+Equivalents: `ezcFeed-item-title`_, `ATOM-entry-title`_, `RSS1-item-title`_,
+`RSS2-item-title`_.
+
+
+=======
+Modules
+=======
+
+Content
+=======
+
+Specifications
+--------------
+
+`Content specifications`_
+
+
+Feed elements
+-------------
+
+
+Item elements
+-------------
+
+Content-item-encoded
+````````````````````
+
+Type: ezcFeedContentElement.
+
+HTML-encoded text.
+
+Optional.
+
+Can appear only once.
+
+Create example::
+
+    <?php
+    // use eZ Components autoload mechanism
+    require_once 'tutorial_autoload.php';
+
+    $feed = new ezcFeed( 'rss2' );
+    $item = $feed->add( 'item' );
+    $module = $item->addModule( 'Content' );
+    $module->encoded = 'text content';
+    ?>
+
+Parse example::
+
+    <?php
+    // $item is a feed item (ezcFeedEntryElement)
+    $text = $item->Content->encoded->__toString();
+    ?>
+
+
+CreativeCommons
+===============
+
+Specifications
+--------------
+
+`CreativeCommons specifications`_
+
+
+Feed elements
+-------------
+
+CreativeCommons-license
+```````````````````````
+
+Type: ezcFeedTextElement.
+
+An URL to a license description.
+
+Optional.
+
+Can appear only once.
+
+A list of possible licenses are found on the `CreativeCommons licenses`_ page,
+but other licenses can be used as well.
+
+Create example::
+
+    <?php
+    // use eZ Components autoload mechanism
+    require_once 'tutorial_autoload.php';
+
+    $feed = new ezcFeed( 'rss2' );
+    $module = $feed->addModule( 'CreativeCommons' );
+    $module->license = 'text content';
+    ?>
+
+Parse example::
+
+    <?php
+    // $item is a feed object (ezcFeed)
+    $text = $feed->CreativeCommons->license->__toString();
+    ?>
+
+
+Item elements
+-------------
+
+CreativeCommons-item-license
+````````````````````````````
+
+Type: ezcFeedTextElement.
+
+An URL to a license description.
+
+Optional.
+
+Can appear only once.
+
+A list of possible licenses are found on the `CreativeCommons licenses`_ page,
+but other licenses can be used as well.
+
+Create example::
+
+    <?php
+    // use eZ Components autoload mechanism
+    require_once 'tutorial_autoload.php';
+
+    $feed = new ezcFeed( 'rss2' );
+    $item = $feed->add( 'item' );
+    $module = $item->addModule( 'CreativeCommons' );
+    $module->license = 'text content';
+    ?>
+
+Parse example::
+
+    <?php
+    // $item is a feed item (ezcFeedEntryElement)
+    $text = $item->CreativeCommons->license->__toString();
+    ?>
+
+
+DublinCore
+==========
+
+Specifications
+--------------
+
+`DublinCore specifications`_
+
+
+Feed elements
+-------------
+
+DublinCore-contributor
+``````````````````````
+
+Type: array(ezcFeedPersonElement).
+
+An entity responsible for making contributions to the resource. Usually the
+name of a person, organization or service.
+
+Optional.
+
+Can appear multiple times.
+
+Has an optional attribute *xml:lang* which specifies the language of the text.
+A list of allowed languages can be found here: `RSS language codes`_. This
+attribute is accessed as *language*.
+
+Create example::
+
+    <?php
+    // use eZ Components autoload mechanism
+    require_once 'tutorial_autoload.php';
+
+    $feed = new ezcFeed( 'rss2' );
+    $module = $feed->addModule( 'DublinCore' );
+    $element = $module->add( 'contributor' );
+    $element->name = 'Contributor name';
+    $element->language = 'no'; // optional language specification
+    ?>
+
+Parse example::
+
+    <?php
+    // $feed is an ezcFeed object
+    foreach ( $feed->DublinCore->contributor as $element )
+    {
+        echo $element->name;
+        echo $element->language;
+    }
+    ?>
+
+
+DublinCore-coverage
+```````````````````
+
+Type: array(ezcFeedTextElement).
+
+The spatial or temporal topic of the resource, the spatial applicability of
+the resource, or the jurisdiction under which the resource is relevant. A
+recommended practice is to use a controlled vocabulary such as `TGN`_.
+
+Optional.
+
+Can appear multiple times.
+
+Has an optional attribute *xml:lang* which specifies the language of the text.
+A list of allowed languages can be found here: `RSS language codes`_. This
+attribute is accessed as *language*.
+
+
+DublinCore-creator
+``````````````````
+
+Type: array(ezcFeedPersonElement).
+
+An entity responsible for making the resource. Usually the name of a person or
+organization.
+
+Optional.
+
+Can appear multiple times.
+
+Has an optional attribute *xml:lang* which specifies the language of the text.
+A list of allowed languages can be found here: `RSS language codes`_. This
+attribute is accessed as *language*.
+
+
+DublinCore-date
+```````````````
+
+Type: array(ezcFeedDateElement).
+
+A point or period of time associated with an event in the lifecycle of the
+resource. Usual date format is `ISO 8601`_.
+
+Optional.
+
+Can appear multiple times.
+
+Has an optional attribute *xml:lang* which specifies the language of the text.
+A list of allowed languages can be found here: `RSS language codes`_. This
+attribute is accessed as *language*.
+
+
+DublinCore-description
+``````````````````````
+
+Type: array(ezcFeedTextElement).
+
+A description of the resource.
+
+Optional.
+
+Can appear multiple times.
+
+Has an optional attribute *xml:lang* which specifies the language of the text.
+A list of allowed languages can be found here: `RSS language codes`_. This
+attribute is accessed as *language*.
+
+
+DublinCore-format
+`````````````````
+
+Type: array(ezcFeedTextElement).
+
+The file format, physical medium, or dimensions of the resource. Recommended
+best practices is to use a controlled vocabulary such as the list of
+`Internet Media Types`_ (MIME).
+
+Optional.
+
+Can appear multiple times.
+
+Has an optional attribute *xml:lang* which specifies the language of the text.
+A list of allowed languages can be found here: `RSS language codes`_. This
+attribute is accessed as *language*.
+
+
+DublinCore-identifier
+`````````````````````
+
+Type: array(ezcFeedIdElement).
+
+An unambiguous reference to the resource within a given context.
+
+Optional.
+
+Can appear multiple times.
+
+Has an optional attribute *xml:lang* which specifies the language of the text.
+A list of allowed languages can be found here: `RSS language codes`_. This
+attribute is accessed as *language*.
+
+
+DublinCore-language
+```````````````````
+
+Type: array(ezcFeedTextElement).
+
+A language of the resource. Recommended best practice is to use a controlled
+vocabulary such as `RFC 4646`_.
+
+Optional.
+
+Can appear multiple times.
+
+Has an optional attribute *xml:lang* which specifies the language of the text.
+A list of allowed languages can be found here: `RSS language codes`_. This
+attribute is accessed as *language*.
+
+
+DublinCore-publisher
+````````````````````
+
+Type: array(ezcFeedPersonElement).
+
+An entity responsible for making the resource available. Usually the name of a
+person, organization or service.
+
+Optional.
+
+Can appear multiple times.
+
+Has an optional attribute *xml:lang* which specifies the language of the text.
+A list of allowed languages can be found here: `RSS language codes`_. This
+attribute is accessed as *language*.
+
+
+DublinCore--relation
+````````````````````
+
+Type: array(ezcFeedTextElement).
+
+A related resource.
+
+Optional.
+
+Can appear multiple times.
+
+Has an optional attribute *xml:lang* which specifies the language of the text.
+A list of allowed languages can be found here: `RSS language codes`_. This
+attribute is accessed as *language*.
+
+
+DublinCore-rights
+`````````````````
+
+Type: array(ezcFeedTextElement).
+
+Information about rights held in and over the resource.
+
+Optional.
+
+Can appear multiple times.
+
+Has an optional attribute *xml:lang* which specifies the language of the text.
+A list of allowed languages can be found here: `RSS language codes`_. This
+attribute is accessed as *language*.
+
+
+DublinCore-source
+`````````````````
+
+Type: array(ezcFeedSourceElement).
+
+A related resource from which the described resource is derived.
+
+Optional.
+
+Can appear multiple times.
+
+Has an optional attribute *xml:lang* which specifies the language of the text.
+A list of allowed languages can be found here: `RSS language codes`_. This
+attribute is accessed as *language*.
+
+
+DublinCore-subject
+``````````````````
+
+Type: array(ezcFeedTextElement).
+
+The topic of the resource.
+
+Optional.
+
+Can appear multiple times.
+
+Has an optional attribute *xml:lang* which specifies the language of the text.
+A list of allowed languages can be found here: `RSS language codes`_. This
+attribute is accessed as *language*.
+
+
+DublinCore-title
+````````````````
+
+Type: array(ezcFeedTextElement).
+
+The name given to the resource.
+
+Optional.
+
+Can appear multiple times.
+
+Has an optional attribute *xml:lang* which specifies the language of the text.
+A list of allowed languages can be found here: `RSS language codes`_. This
+attribute is accessed as *language*.
+
+
+DublinCore-type
+```````````````
+
+Type: array(ezcFeedTextElement).
+
+The nature or genre of the resource. Recommended best practice is to use a
+controlled vocabulary such as the `DCMI Type Vocabulary`_.
+
+Optional.
+
+Can appear multiple times.
+
+Has an optional attribute *xml:lang* which specifies the language of the text.
+A list of allowed languages can be found here: `RSS language codes`_. This
+attribute is accessed as *language*.
+
+
+Item elements
+-------------
+
+DublinCore-item-contributor
+```````````````````````````
+
+Type: array(ezcFeedPersonElement).
+
+An entity responsible for making contributions to the resource. Usually the
+name of a person, organization or service.
+
+Optional.
+
+Can appear multiple times.
+
+Has an optional attribute *xml:lang* which specifies the language of the text.
+A list of allowed languages can be found here: `RSS language codes`_. This
+attribute is accessed as *language*.
+
+Create example::
+
+    <?php
+    // use eZ Components autoload mechanism
+    require_once 'tutorial_autoload.php';
+
+    $feed = new ezcFeed();
+    $item = $feed->add( 'item' );
+    $module = $item->addModule( 'DublinCore' );
+    $element = $module->add( 'contributor' );
+    $element->name = 'Contributor name';
+    $element->language = 'no'; // optional language specification
+    ?>
+
+Parse example::
+
+    <?php
+    // $item is a feed item (ezcFeedEntryElement) object
+    foreach ( $item->DublinCore->contributor as $element )
+    {
+        echo $element->name;
+        echo $element->language;
+    }
+    ?>
+
+
+DublinCore-item-coverage
+````````````````````````
+
+Type: array(ezcFeedTextElement).
+
+The spatial or temporal topic of the resource, the spatial applicability of
+the resource, or the jurisdiction under which the resource is relevant. A
+recommended practice is to use a controlled vocabulary such as `TGN`_.
+
+Optional.
+
+Can appear multiple times.
+
+Has an optional attribute *xml:lang* which specifies the language of the text.
+A list of allowed languages can be found here: `RSS language codes`_. This
+attribute is accessed as *language*.
+
+
+DublinCore-item-creator
+```````````````````````
+
+Type: array(ezcFeedPersonElement).
+
+An entity responsible for making the resource. Usually the name of a person or
+organization.
+
+Optional.
+
+Can appear multiple times.
+
+Has an optional attribute *xml:lang* which specifies the language of the text.
+A list of allowed languages can be found here: `RSS language codes`_. This
+attribute is accessed as *language*.
+
+
+DublinCore-item-date
+````````````````````
+
+Type: array(ezcFeedDateElement).
+
+A point or period of time associated with an event in the lifecycle of the
+resource. Usual date format is `ISO 8601`_.
+
+Optional.
+
+Can appear multiple times.
+
+Has an optional attribute *xml:lang* which specifies the language of the text.
+A list of allowed languages can be found here: `RSS language codes`_. This
+attribute is accessed as *language*.
+
+
+DublinCore-item-description
+```````````````````````````
+
+Type: array(ezcFeedTextElement).
+
+A description of the resource.
+
+Optional.
+
+Can appear multiple times.
+
+Has an optional attribute *xml:lang* which specifies the language of the text.
+A list of allowed languages can be found here: `RSS language codes`_. This
+attribute is accessed as *language*.
+
+
+DublinCore-item-format
+``````````````````````
+
+Type: array(ezcFeedTextElement).
+
+The file format, physical medium, or dimensions of the resource. Recommended
+best practices is to use a controlled vocabulary such as the list of
+`Internet Media Types`_ (MIME).
+
+Optional.
+
+Can appear multiple times.
+
+Has an optional attribute *xml:lang* which specifies the language of the text.
+A list of allowed languages can be found here: `RSS language codes`_. This
+attribute is accessed as *language*.
+
+
+DublinCore-item-identifier
+``````````````````````````
+
+Type: array(ezcFeedIdElement).
+
+An unambiguous reference to the resource within a given context.
+
+Optional.
+
+Can appear multiple times.
+
+Has an optional attribute *xml:lang* which specifies the language of the text.
+A list of allowed languages can be found here: `RSS language codes`_. This
+attribute is accessed as *language*.
+
+
+DublinCore-item-language
+````````````````````````
+
+Type: array(ezcFeedTextElement).
+
+A language of the resource. Recommended best practice is to use a controlled
+vocabulary such as `RFC 4646`_.
+
+Optional.
+
+Can appear multiple times.
+
+Has an optional attribute *xml:lang* which specifies the language of the text.
+A list of allowed languages can be found here: `RSS language codes`_. This
+attribute is accessed as *language*.
+
+
+DublinCore-item-publisher
+`````````````````````````
+
+Type: array(ezcFeedPersonElement).
+
+An entity responsible for making the resource available. Usually the name of a
+person, organization or service.
+
+Optional.
+
+Can appear multiple times.
+
+Has an optional attribute *xml:lang* which specifies the language of the text.
+A list of allowed languages can be found here: `RSS language codes`_. This
+attribute is accessed as *language*.
+
+
+DublinCore-item-relation
+````````````````````````
+
+Type: array(ezcFeedTextElement).
+
+A related resource.
+
+Optional.
+
+Can appear multiple times.
+
+Has an optional attribute *xml:lang* which specifies the language of the text.
+A list of allowed languages can be found here: `RSS language codes`_. This
+attribute is accessed as *language*.
+
+
+DublinCore-item-rights
+``````````````````````
+
+Type: array(ezcFeedTextElement).
+
+Information about rights held in and over the resource.
+
+Optional.
+
+Can appear multiple times.
+
+Has an optional attribute *xml:lang* which specifies the language of the text.
+A list of allowed languages can be found here: `RSS language codes`_. This
+attribute is accessed as *language*.
+
+
+DublinCore-item-source
+``````````````````````
+
+Type: array(ezcFeedSourceElement).
+
+A related resource from which the described resource is derived.
+
+Optional.
+
+Can appear multiple times.
+
+Has an optional attribute *xml:lang* which specifies the language of the text.
+A list of allowed languages can be found here: `RSS language codes`_. This
+attribute is accessed as *language*.
+
+
+DublinCore-item-subject
+```````````````````````
+
+Type: array(ezcFeedTextElement).
+
+The topic of the resource.
+
+Optional.
+
+Can appear multiple times.
+
+Has an optional attribute *xml:lang* which specifies the language of the text.
+A list of allowed languages can be found here: `RSS language codes`_. This
+attribute is accessed as *language*.
+
+
+DublinCore-item-title
+`````````````````````
+
+Type: array(ezcFeedTextElement).
+
+The name given to the resource.
+
+Optional.
+
+Can appear multiple times.
+
+Has an optional attribute *xml:lang* which specifies the language of the text.
+A list of allowed languages can be found here: `RSS language codes`_. This
+attribute is accessed as *language*.
+
+
+DublinCore-item-type
+````````````````````
+
+Type: array(ezcFeedTextElement).
+
+The nature or genre of the resource. Recommended best practice is to use a
+controlled vocabulary such as the `DCMI Type Vocabulary`_.
+
+Optional.
+
+Can appear multiple times.
+
+Has an optional attribute *xml:lang* which specifies the language of the text.
+A list of allowed languages can be found here: `RSS language codes`_. This
+attribute is accessed as *language*.
+
+
+Geo
+===
+
+Specifications
+--------------
+
+`Geo specifications`_
+
+
+Feed elements
+-------------
+
+
+Item elements
+-------------
+
+Geo-item-alt
+````````````
+
+Type: ezcFeedTextElement.
+
+Altitude in decimal meters above the local reference ellipsoid.
+
+Optional.
+
+Can appear only once.
+
+Create example::
+
+    <?php
+    // use eZ Components autoload mechanism
+    require_once 'tutorial_autoload.php';
+
+    $feed = new ezcFeed( 'rss2' );
+    $item = $feed->add( 'item' );
+    $module = $item->addModule( 'Geo' );
+    $module->alt = 509.2;
+    ?>
+
+Parse example::
+
+    <?php
+    $locations = array();
+
+    // $feed is an ezcFeed object
+    foreach ( $feed->item as $item )
+    {
+        if ( isset( $item->Geo ) )
+        {
+            $locations[] = array(
+              'title' => $item->title->__toString(),
+              'alt' => isset( $item->Geo->alt ) ? $item->Geo->alt->__toString() : null,
+              'lat' => isset( $item->Geo->lat ) ? $item->Geo->lat->__toString() : null,
+              'long' => isset( $item->Geo->long ) ? $item->Geo->long->__toString() : null
+              );
+        }
+    }
+    ?>
+
+
+Geo-item-lat
+````````````
+
+Type: ezcFeedTextElement.
+
+`WGS84`_ latitude on the globe as decimal degrees (eg. 25.03358300).
+
+Optional.
+
+Can appear only once.
+
+
+Geo-item-long
+`````````````
+
+Type: ezcFeedTextElement.
+
+`WGS84`_ longitude on the globe as decimal degrees (eg. 121.56430000).
+
+Optional.
+
+Can appear only once.
+
+
+
+iTunes
+======
+
+Specifications
+--------------
+
+`iTunes specifications`_
+
+
+Recommendations
+---------------
+
+- All values should be plain text (no markup or HTML)
+- Values are limited to 255 characters, except for *summary* which can be up
+  to 4000 characters
+- Whitespace in values is significant, i.e. it will show in `iTunes`_, so
+  don't add leading or trailing whitespace to your values
+- CDATA sections are strongly discouraged
+
+
+Feed elements
+-------------
+
+iTunes-author
+`````````````
+
+Type: ezcFeedPersonElement.
+
+The author of a podcast.
+
+Optional.
+
+Can appear only once.
+
+If missing, `iTunes`_ will use the |ezcFeed-author|_ element from the feed.
+
+
+iTunes-block
+````````````
+
+Type: ezcFeedTextElement.
+
+Prevents a podcast to appear in the podcast listing.
+
+Optional.
+
+Can appear only once.
+
+Valid values are ``yes`` and ``no``, default ``no``.
+
+
+iTunes-category
+```````````````
+
+Type: array(ezcFeedCategoryElement).
+
+Categories for a podcast.
+
+Optional.
+
+Can appear multiple times. Categories can have sub-categories (*category* in
+ezcFeedCategory).
+
+The category name is specified in the attribute *text* (*term* in
+ezcFeedCategoryElement).
+
+The ampersands (``&``) in categories must be escaped to ``&amp;``.
+
+Valid values for categories are found in the `iTunes categories`_ section of
+the `iTunes specifications`_. A maximum of 3 categories are recommended.
+
+Create example::
+
+    <?php
+    // $feed is an ezcFeed object
+    $iTunes = $feed->addModule( 'iTunes' );
+
+    // add the podcast in one or more categories + sub-categories
+    $category = $iTunes->add( 'category' );
+    $category->term = 'iTunes category';
+    $subCategory = $category->add( 'category' );
+    $subCategory->term = 'iTunes sub-category';
+    ?>
+
+Parse example::
+
+    <?php
+    // $feed is an ezcFeed object
+    if ( isset( $feed->iTunes ) )
+    {
+        $iTunes = $feed->iTunes;
+        if ( isset( $iTunes->category ) )
+        {
+            foreach ( $iTunes->category as $category )
+            {
+                echo $category->term;
+                if ( isset( $category->category ) )
+                {
+                    foreach ( $category->category as $subCategory )
+                    {
+                        echo $subCategory->term;
+                    }
+                }
+            }
+        }
+    }
+    ?>
+
+
+iTunes-explicit
+```````````````
+
+Type: ezcFeedTextElement.
+
+Specifies if a podcast contains explicit content.
+
+Optional.
+
+Can appear only once.
+
+Valid values are ``clean``, ``no`` and ``yes``, default ``no``.
+
+
+iTunes-image
+````````````
+
+Type: ezcFeedImageElement.
+
+A link to an image for the podcast.
+
+Optional.
+
+Can appear only once.
+
+The URL to the image is specified in the attribute *href*.
+
+If missing, `iTunes`_ will use the |ezcFeed-image|_ element from the feed.
+
+
+iTunes-keywords
+```````````````
+
+Type: ezcFeedTextElement.
+
+A list of keywords for a podcast.
+
+Optional.
+
+Can appear only once.
+
+The keywords should be separated by commas. A maximum of 12 keywords is
+recommended.
+
+
+iTunes-new-feed-url
+```````````````````
+
+Type: ezcFeedLinkElement.
+
+A new URL for the podcast.
+
+Optional.
+
+Can appear only once.
+
+Accessed as *newfeedurl*.
+
+Recommendation: the old URL of the podcast should redirect to the new URL.
+
+
+iTunes-owner
+````````````
+
+Type: ezcFeedPersonElement.
+
+The owner of the podcast.
+
+Optional.
+
+Can appear only once.
+
+Has the sub-elements *email* and *name*.
+
+
+iTunes-subtitle
+```````````````
+
+Type: ezcFeedTextElement.
+
+Short description of the podcast.
+
+Optional.
+
+Can appear only once.
+
+
+iTunes-summary
+``````````````
+
+Type: ezcFeedTextElement.
+
+Longer description of a podcast.
+
+Optional.
+
+Can appear only once.
+
+If missing, `iTunes`_ will use the |ezcFeed-description|_ element from the
+feed.
+
+
+Item elements
+-------------
+
+iTunes-item-author
+``````````````````
+
+Type: ezcFeedPersonElement.
+
+The author of a podcast entry.
+
+Optional.
+
+Can appear only once.
+
+
+iTunes-item-block
+`````````````````
+
+Type: ezcFeedTextElement.
+
+Prevents a podcast entry to appear in the podcast listing.
+
+Optional.
+
+Can appear only once.
+
+Valid values are ``yes`` and ``no``, default ``no``.
+
+
+iTunes-item-duration
+````````````````````
+
+Type: ezcFeedTextElement.
+
+The duration of a podcast entry.
+
+Optional.
+
+Can appear only once.
+
+Can be specified as ``S``, ``M:SS``, ``MM:SS``, ``H:MM:SS`` or ``HH:MM:SS``
+(H = hours, M = minutes, S = seconds).
+
+
+iTunes-item-explicit
+````````````````````
+
+Type: ezcFeedTextElement.
+
+Specifies if a podcast entry contains explicit content.
+
+Optional.
+
+Can appear only once.
+
+Valid values are ``clean``, ``no`` and ``yes``, default ``no``.
+
+
+iTunes-item-image
+`````````````````
+
+Type: ezcFeedImageElement.
+
+A link to an image for the podcast entry.
+
+Optional.
+
+Can appear only once.
+
+The URL to the image is specified in the attribute *href*.
+
+NOTE: The `iTunes specifications`_ say that image is supported at
+podcast-level only, but there are many podcasts using image at podcast entry
+(item) level also, and there are software applications supporting that too.
+Use *image* at item-level at your own risk, as some software applications
+might not support it. The Feed component supports parsing and generating
+feeds with image at both podcast-level and item-level.
+
+
+iTunes-item-keywords
+````````````````````
+
+Type: ezcFeedTextElement.
+
+A list of keywords for a podcast entry.
+
+Optional.
+
+Can appear only once.
+
+The keywords should be separated by commas. A maximum of 12 keywords is
+recommended.
+
+
+iTunes-item-subtitle
+````````````````````
+
+Type: ezcFeedTextElement.
+
+Short description of a podcast entry.
+
+Optional.
+
+Can appear only once.
+
+
+iTunes-item-summary
+```````````````````
+
+Type: ezcFeedTextElement.
+
+Longer description of a podcast entry.
+
+Optional.
+
+Can appear only once.
+
+If missing, `iTunes`_ will use the |ezcFeed-item-description|_ element from
+the feed.
+
+
+=========
+Resources
+=========
+
+Feed
+====
+
+- `RFC 4287`_ ATOM specifications.
+- `RSS1 specifications`_.
+- `RSS2 specifications`_.
+
+
+Modules
+=======
+
+- `Content specifications`_.
+- `CreativeCommons specifications`_.
+- `DublinCore specifications`_.
+- `Geo specifications`_.
+- `iTunes specifications`_.
+
+
+.. _RSS1 specifications: http://web.resource.org/rss/1.0/spec
+.. _RSS2 specifications: http://www.rssboard.org/rss-specification
+.. _RFC 4287: http://atompub.org/rfc4287.html
+
+.. _Content specifications: http://purl.org/rss/1.0/modules/content/
+.. _CreativeCommons specifications: http://backend.userland.com/creativeCommonsRssModule
+.. _DublinCore specifications: http://dublincore.org/documents/dces/
+.. _Geo specifications: http://www.w3.org/2003/01/geo/
+.. _iTunes specifications: http://www.apple.com/itunes/store/podcaststechspecs.html
+
+.. _RFC 3339: http://www.faqs.org/rfcs/rfc3339.html
+.. _RFC 822: http://www.faqs.org/rfcs/rfc822.html
+.. _PICS: http://www.w3.org/PICS/
+.. _TGN: http://www.getty.edu/research/tools/vocabulary/tgn/index.html
+.. _ISO 8601: http://www.w3.org/TR/NOTE-datetime
+.. _Internet Media Types: http://www.iana.org/assignments/media-types/
+.. _RFC 4646: http://www.faqs.org/rfcs/rfc4646.html
+.. _DCMI Type Vocabulary: http://dublincore.org/documents/dcmi-type-vocabulary/
+.. _RSS language codes: http://www.rssboard.org/rss-language-codes
+.. _iTunes categories: http://www.apple.com/itunes/store/podcaststechspecs.html#categories
+.. _iTunes: http://www.apple.com/itunes/
+.. _CreativeCommons licenses: http://creativecommons.org/licenses/
+.. _WGS84: http://en.wikipedia.org/wiki/WGS84
+.. _date_format(): http://php.net/manual/en/function.date-format.php
+
+.. _feed validator: http://validator.w3.org/feed/
+
+.. |ezcFeed-author| replace:: author
+.. |ezcFeed-category| replace:: category
+.. |ezcFeed-cloud| replace:: cloud
+.. |ezcFeed-contributor| replace:: contributor
+.. |ezcFeed-copyright| replace:: copyright
+.. |ezcFeed-description| replace:: description
+.. |ezcFeed-docs| replace:: docs
+.. |ezcFeed-generator| replace:: generator
+.. |ezcFeed-icon| replace:: icon
+.. |ezcFeed-id| replace:: id
+.. |ezcFeed-image| replace:: image
+.. |ezcFeed-item| replace:: item
+.. |ezcFeed-language| replace:: language
+.. |ezcFeed-link| replace:: link
+.. |ezcFeed-published| replace:: published
+.. |ezcFeed-rating| replace:: rating
+.. |ezcFeed-skipDays| replace:: skipDays
+.. |ezcFeed-skipHours| replace:: skipHours
+.. |ezcFeed-textInput| replace:: textInput
+.. |ezcFeed-title| replace:: title
+.. |ezcFeed-ttl| replace:: ttl
+.. |ezcFeed-updated| replace:: updated
+.. |ezcFeed-webMaster| replace:: webMaster
+
+.. |ezcFeed-item-author| replace:: author
+.. |ezcFeed-item-category| replace:: category
+.. |ezcFeed-item-comments| replace:: comments
+.. |ezcFeed-item-content| replace:: content
+.. |ezcFeed-item-contributor| replace:: contributor
+.. |ezcFeed-item-copyright| replace:: copyright
+.. |ezcFeed-item-description| replace:: description
+.. |ezcFeed-item-enclosure| replace:: enclosure
+.. |ezcFeed-item-id| replace:: id
+.. |ezcFeed-item-link| replace:: link
+.. |ezcFeed-item-published| replace:: published
+.. |ezcFeed-item-source| replace:: source
+.. |ezcFeed-item-title| replace:: title
+.. |ezcFeed-item-updated| replace:: updated
+
+.. |ATOM-author| replace:: author
+.. |ATOM-category| replace:: category
+.. |ATOM-contributor| replace:: contributor
+.. |ATOM-entry| replace:: entry
+.. |ATOM-generator| replace:: generator
+.. |ATOM-icon| replace:: icon
+.. |ATOM-id| replace:: id
+.. |ATOM-link| replace:: link
+.. |ATOM-logo| replace:: logo
+.. |ATOM-rights| replace:: rights
+.. |ATOM-subtitle| replace:: subtitle
+.. |ATOM-title| replace:: title
+.. |ATOM-updated| replace:: updated
+
+.. |ATOM-entry-author| replace:: author
+.. |ATOM-entry-category| replace:: category
+.. |ATOM-entry-content| replace:: content
+.. |ATOM-entry-contributor| replace:: contributor
+.. |ATOM-entry-id| replace:: id
+.. |ATOM-entry-link| replace:: link
+.. |ATOM-entry-published| replace:: published
+.. |ATOM-entry-rights| replace:: rights
+.. |ATOM-entry-source| replace:: source
+.. |ATOM-entry-summary| replace:: summary
+.. |ATOM-entry-title| replace:: title
+.. |ATOM-entry-updated| replace:: updated
+
+.. |RSS1-about| replace:: about
+.. |RSS1-description| replace:: description
+.. |RSS1-image| replace:: image
+.. |RSS1-item| replace:: item
+.. |RSS1-link| replace:: link
+.. |RSS1-textinput| replace:: textinput
+.. |RSS1-title| replace:: title
+
+.. |RSS1-item-about| replace:: about
+.. |RSS1-item-description| replace:: description
+.. |RSS1-item-link| replace:: link
+.. |RSS1-item-title| replace:: title
+
+.. |RSS2-cloud| replace:: cloud
+.. |RSS2-category| replace:: category
+.. |RSS2-copyright| replace:: copyright
+.. |RSS2-description| replace:: description
+.. |RSS2-docs| replace:: docs
+.. |RSS2-generator| replace:: generator
+.. |RSS2-image| replace:: image
+.. |RSS2-item| replace:: item
+.. |RSS2-language| replace:: language
+.. |RSS2-lastBuildDate| replace:: lastBuildDate
+.. |RSS2-link| replace:: link
+.. |RSS2-managingEditor| replace:: managingEditor
+.. |RSS2-pubDate| replace:: pubDate
+.. |RSS2-rating| replace:: rating
+.. |RSS2-skipDays| replace:: skipDays
+.. |RSS2-skipHours| replace:: skipHours
+.. |RSS2-textInput| replace:: textInput
+.. |RSS2-title| replace:: title
+.. |RSS2-ttl| replace:: ttl
+.. |RSS2-webMaster| replace:: webMaster
+
+.. |RSS2-item-author| replace:: author
+.. |RSS2-item-category| replace:: category
+.. |RSS2-item-comments| replace:: comments
+.. |RSS2-item-description| replace:: description
+.. |RSS2-item-enclosure| replace:: enclosure
+.. |RSS2-item-guid| replace:: guid
+.. |RSS2-item-link| replace:: link
+.. |RSS2-item-pubDate| replace:: pubDate
+.. |RSS2-item-source| replace:: source
+.. |RSS2-item-title| replace:: title
+
+
+
+..
+   Local Variables:
+   mode: rst
+   fill-column: 79
+   End:
+   vim: et syn=rst tw=79 nocin

@@ -1,0 +1,727 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="" />
+	<meta name="author" content="jerome" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Sun, 10 Jul 2011 11:10:50 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="ezcCacheStack.html" />
+	<meta name="DC.creator" content="jerome" />
+	<meta name="DC.date" content="Sun, 10 Jul 2011 11:10:50 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/Cache/phpdoc/ezcCacheStack.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/Cache/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/trunk/Cache/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+
+</ul>
+
+		
+  <div class="phpdoc">
+    <h2>Apache Zeta Components Manual :: Docs For Class ezcCacheStack</h2>
+
+                  <h3>Cache::ezcCacheStack</h3>
+    
+<a name="sec-description"></a>
+<h3>Class ezcCacheStack</h3>
+
+<p>Hierarchical caching class using multiple storages.</p><div><p>An instance of this class can be used to achieve so called "hierarchical  caching". A cache stack consists of an arbitrary number of cache storages,  being sorted from top to bottom. Usually this order reflects the speed of  access for the caches: The fastest cache is at the top, the slowest at the  bottom. Whenever data is stored in the stack, it is stored in all contained  storages. When data is to be restored, the stack will restore it from the  highest storage it is found in. Data is removed from a storage, whenever the  storage reached a configured number of items, using a <a href="ezcCacheStackReplacementStrategy.html">ezcCacheStackReplacementStrategy</a>.</p><p>To create a cache stack, multiple storages are necessary. The following  examples assume that $storage1, $storage2 and $storage3 contain objects that  implement the <a href="ezcCacheStackableStorage.html">ezcCacheStackableStorage</a> interface.</p><p>The slowest cache should be at the very bottom of the stack, so that items  don't need to be restored from it that frequently.  </p><ol><li><div class="src-line">&#8192;<span class="src-php">&lt;?php</span></div></li>
+<li><div class="src-line">&#8192;&#8192;<span class="src-var">$stack&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcCacheStack.html">ezcCacheStack</a></span><span class="src-sym">(&#8192;</span><span class="src-str">'stack_id'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;&#8192;<span class="src-var">$stack</span><span class="src-sym">-&gt;</span><a href="ezcCacheStack.html#methodpushStorage">pushStorage</a><span class="src-sym">(</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcCacheStackStorageConfiguration.html">ezcCacheStackStorageConfiguration</a></span><span class="src-sym">(</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'filesystem_cache'</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-var">$storage1</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-num">1000000</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-num">.5</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-sym">)</span></div></li>
+<li><div class="src-line">&#8192;&#8192;<span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-php">?&gt;</span></div></li>
+</ol>  This operations create a new cache stack and add $storage1 to its very  bottom. The first parameter for {@linke ezcCacheStackStorageConfiguration}  are a unique ID for the storage inside the stack, which should never change.  The second parameter is the storage object itself. Parameter 3 is the  maximum number of items the storage might contain. As soon as this limit ist  reached, 500000 items will be purged from the cache. The latter number is  defined through the fourth parameter, indicating the fraction of the stored  item number, that is to be freed. For freeing, first already outdated items  will be purged. If this does not last, more items will be freed using the  <a href="ezcCacheStackReplacementStrategy.html">ezcCacheStackReplacementStrategy</a> used by the stack.<p>The following code adds the other 2 storages to the stack, where $storage2  is a memory storage ezcCacheStackMemoryStorage and $storage3 is a  custom storage implementation, that stores objects in the current requests  memory.  </p><ol><li><div class="src-line">&#8192;<span class="src-php">&lt;?php</span></div></li>
+<li><div class="src-line">&#8192;&#8192;<span class="src-var">$stack</span><span class="src-sym">-&gt;</span><a href="ezcCacheStack.html#methodpushStorage">pushStorage</a><span class="src-sym">(</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcCacheStackStorageConfiguration.html">ezcCacheStackStorageConfiguration</a></span><span class="src-sym">(</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'apc_storage'</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-var">$storage2</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-num">10000</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-num">.8</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-sym">)</span></div></li>
+<li><div class="src-line">&#8192;&#8192;<span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;&#8192;<span class="src-var">$stack</span><span class="src-sym">-&gt;</span><a href="ezcCacheStack.html#methodpushStorage">pushStorage</a><span class="src-sym">(</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcCacheStackStorageConfiguration.html">ezcCacheStackStorageConfiguration</a></span><span class="src-sym">(</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'custom_storage'</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-var">$storage3</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-num">50</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-num">.3</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-sym">)</span></div></li>
+<li><div class="src-line">&#8192;&#8192;<span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-php">?&gt;</span></div></li>
+</ol>  The second level of the cache build by $storage2. This storage will contain  10000 items maximum and when it runs full, 8000 items will be deleted from  it. The top level of the cache is the custom cache storage, that will only  contain 50 objects in the currently processed request. If this storage ever  runs full, which should not happen within a request, 15 items will be  removed from it.<p>Since the top most storage in this example does not implement <a href="ezcCacheStackMetaDataStorage.html">ezcCacheStackMetaDataStorage</a>, another storage must be defined to be used  for storing meta data about the stack:  </p><ol><li><div class="src-line">&#8192;<span class="src-php">&lt;?php</span></div></li>
+<li><div class="src-line">&#8192;&#8192;<span class="src-var">$stack</span><span class="src-sym">-&gt;</span><span class="src-id">options</span><span class="src-sym">-&gt;</span><span class="src-id">metaStorage&#8192;</span>=&#8192;<span class="src-var">$storage2</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;&#8192;<span class="src-var">$stack</span><span class="src-sym">-&gt;</span><span class="src-id">options</span><span class="src-sym">-&gt;</span><span class="src-id">replacementStrategy&#8192;</span>=&#8192;<span class="src-str">'ezcCacheStackLfuReplacementStrategy'</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-php">?&gt;</span></div></li>
+</ol>  $storage2 is defined to store the meta information for the stack. In  addition, a different replacement strategy than the default <a href="ezcCacheStackLruReplacementStrategy.html">ezcCacheStackLruReplacementStrategy</a> replacement strategy is defined. LFU  removes least frequently used items, while LRU deletes least recently used  items from a storage, if it runs full.<p>Using the $bubbleUpOnRestore option you can determine, that data which is  restored from a lower storage will be automatically stored in all higher  storages again. The problem with this is, that only the attributes that are  used for restoring will be assigned to the item in higher storages. In  addition, the items will be stored with a fresh TTL. Therefore, this  behavior is not recommended.</p><p>If you want to use a cache stack in combination with {@ezcCacheManager}, you  will most likely want to use <a href="ezcCacheStackConfigurator.html">ezcCacheStackConfigurator</a>. This allows  you to let the stack be configured on the fly, when it is used for the first  time in a request.</p><p>Beware, that whenever you change the structure of your stack or the  replacement strategy between 2 requests, you should always perform a  complete <a href="ezcCacheStack.html#methodreset">ezcCacheStack::reset()</a> on it. Otherwise, your cache data  might be seriously broken which will result in undefined behaviour of the  stack. Changing the replacement strategy will most possibly result in an  <a href="ezcCacheInvalidMetaDataException.html">ezcCacheInvalidMetaDataException</a>.</p></div>
+<p>Source for this file: <a href="http://fisheye6.atlassian.com/browse/zetacomponents/trunk/Cache/src/stack.php?r=HEAD">/Cache/src/stack.php</a></p>
+       
+
+
+<pre><a href="ezcCacheStorage.html">ezcCacheStorage</a>
+   |
+   --ezcCacheStack</pre>
+
+
+  <table><tr><td>
+            <strong>Version:</strong>&#8192;&#8192;
+          </td>
+          <td>//autogentag//</td>
+        </tr></table><a name="sec-prop-summary"></a>
+  <h3>Properties</h3>
+  <table class="summary"><tr><td class="right">
+          <a name="prop%24location" id="$location"></a>
+          <a name="prop-%24location" id="$location"></a>
+          <em>string</em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24location" title="details" class="var-name-summary">$location</a>
+                      </code>
+          <br><div style="margin-left: 20px">Location of this stack. Unused.</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24options" id="$options"></a>
+          <a name="prop-%24options" id="$options"></a>
+          <em><a href="ezcCacheStackOptions.html">ezcCacheStackOptions</a></em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24options" title="details" class="var-name-summary">$options</a>
+                      </code>
+          <br><div style="margin-left: 20px">Options for the cache stack.</div>        </td>
+      </tr></table><h3>Inherited Member Variables</h3>
+  <table class="summary"><thead><tr><th colspan="2">
+            From <span class="classname"><a href="ezcCacheStorage.html">ezcCacheStorage</a></span>         
+          </th>
+        </tr></thead><tbody><tr><td class="right">
+              <em>protected</em>                          </td>
+            <td>
+              <code><a href="ezcCacheStorage.html#var%24properties">ezcCacheStorage::$properties</a></code>
+              
+            </td>
+          </tr></tbody></table><a name="sec-method-summary"></a>
+  <h3>Method Summary</h3>
+  <table class="summary"><tr><td class="right">
+            <em>public</em>                        <em>ezcCacheStack</em>          </td>
+          <td>
+            <code>
+              <a href="#__construct"><b>__construct</b></a>(
+                                                                                    $location
+                                                    ,                   [                  $options
+                   = null]                               )
+            </code>
+            <br><div style="margin-left: 20px">Creates a new cache stack.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>int</em>          </td>
+          <td>
+            <code>
+              <a href="#countDataItems"><b>countDataItems</b></a>(
+                                                                  [                  $id
+                   = null]                                  ,                   [                  $attributes
+                   = array()]                               )
+            </code>
+            <br><div style="margin-left: 20px">Counts how many items are stored, fulfilling certain criteria.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>int</em>          </td>
+          <td>
+            <code>
+              <a href="#countStorages"><b>countStorages</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns the number of storages on the stack.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>array(string)</em>          </td>
+          <td>
+            <code>
+              <a href="#delete"><b>delete</b></a>(
+                                                                  [                  $id
+                   = null]                                  ,                   [                  $attributes
+                   = array()]                                  ,                   [                  $search
+                   = false]                               )
+            </code>
+            <br><div style="margin-left: 20px">Deletes an item from the stack.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>int</em>          </td>
+          <td>
+            <code>
+              <a href="#getRemainingLifetime"><b>getRemainingLifetime</b></a>(
+                                                                                    $id
+                                                    ,                   [                  $attributes
+                   = array()]                               )
+            </code>
+            <br><div style="margin-left: 20px">Returns the remaining lifetime for the given item ID.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>array(ezcCacheStackableStorage)</em>          </td>
+          <td>
+            <code>
+              <a href="#getStorages"><b>getStorages</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns all stacked storages.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em><a href="ezcCacheStackStorageConfiguration.html">ezcCacheStackStorageConfiguration</a></em>          </td>
+          <td>
+            <code>
+              <a href="#popStorage"><b>popStorage</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Removes a storage from the top of the stack.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#pushStorage"><b>pushStorage</b></a>(
+                                                                                    $storageConf
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Add a storage to the top of the stack.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#reset"><b>reset</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Resets the complete stack.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>mixed</em>          </td>
+          <td>
+            <code>
+              <a href="#restore"><b>restore</b></a>(
+                                                                                    $id
+                                                    ,                   [                  $attributes
+                   = array()]                                  ,                   [                  $search
+                   = false]                               )
+            </code>
+            <br><div style="margin-left: 20px">Restores an item from the stack.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#setOptions"><b>setOptions</b></a>(
+                                                                                    $options
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Sets the options for this stack instance.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#store"><b>store</b></a>(
+                                                                                    $id
+                                                    ,                                     $data
+                                                    ,                   [                  $attributes
+                   = array()]                               )
+            </code>
+            <br><div style="margin-left: 20px">Stores data in the cache stack.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>bool</em>          </td>
+          <td>
+            <code>
+              <a href="#validateLocation"><b>validateLocation</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Validates the $location parameter of the constructor.</div>          </td>
+        </tr></table><h3>Inherited Methods</h3>
+  <table class="summary"><thead><tr><th colspan="2">
+            From <span class="classname"><a href="ezcCacheStorage.html">ezcCacheStorage</a></span>
+          </th>
+        </tr></thead><tbody><tr><td class="right">
+              <em>public</em>                                          <em>ezcCacheStorage</em>            </td>
+            <td>
+              <code><b><a href="ezcCacheStorage.html#method__construct">ezcCacheStorage::__construct()</a></b></code>
+              <br><div style="margin-left: 20px">Creates a new cache storage in the given location.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>              abstract                            <em>int</em>            </td>
+            <td>
+              <code><b><a href="ezcCacheStorage.html#methodcountDataItems">ezcCacheStorage::countDataItems()</a></b></code>
+              <br><div style="margin-left: 20px">Return the number of items in the cache matching a certain criteria.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>              abstract                            <em>void</em>            </td>
+            <td>
+              <code><b><a href="ezcCacheStorage.html#methoddelete">ezcCacheStorage::delete()</a></b></code>
+              <br><div style="margin-left: 20px">Delete data from the cache.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>string</em>            </td>
+            <td>
+              <code><b><a href="ezcCacheStorage.html#methodgetLocation">ezcCacheStorage::getLocation()</a></b></code>
+              <br><div style="margin-left: 20px">Returns the location.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em><a href="ezcCacheStorageOptions.html">ezcCacheStorageOptions</a></em>            </td>
+            <td>
+              <code><b><a href="ezcCacheStorage.html#methodgetOptions">ezcCacheStorage::getOptions()</a></b></code>
+              <br><div style="margin-left: 20px">Return the currently set options.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>              abstract                            <em>int</em>            </td>
+            <td>
+              <code><b><a href="ezcCacheStorage.html#methodgetRemainingLifetime">ezcCacheStorage::getRemainingLifetime()</a></b></code>
+              <br><div style="margin-left: 20px">Returns the time ( in seconds ) that remains for a cache object,  before it gets outdated. In case the cache object is already  outdated or does not exist, this method returns 0.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>              abstract                            <em>mixed</em>            </td>
+            <td>
+              <code><b><a href="ezcCacheStorage.html#methodrestore">ezcCacheStorage::restore()</a></b></code>
+              <br><div style="margin-left: 20px">Restore data from the cache.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b><a href="ezcCacheStorage.html#methodsetOptions">ezcCacheStorage::setOptions()</a></b></code>
+              <br><div style="margin-left: 20px">Set new options.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>              abstract                            <em>string</em>            </td>
+            <td>
+              <code><b><a href="ezcCacheStorage.html#methodstore">ezcCacheStorage::store()</a></b></code>
+              <br><div style="margin-left: 20px">Store data to the cache storage.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>protected</em>              abstract                            <em>void</em>            </td>
+            <td>
+              <code><b><a href="ezcCacheStorage.html#methodvalidateLocation">ezcCacheStorage::validateLocation()</a></b></code>
+              <br><div style="margin-left: 20px">Checks if the location property is valid.</div>                          </td>
+          </tr></tbody></table><a name="sec-methods"></a>
+  <h3>Methods</h3>
+  <a name="method_detail"></a>
+                          
+      <a name="method__construct" id="__construct"><!-- --></a>
+
+    <h4>__construct</h4>
+
+    <div class="method-signature">
+      ezcCacheStack
+      __construct(
+                                  string
+          $location
+                            ,           [<a href="ezcCacheStackOptions.html">ezcCacheStackOptions</a>
+          $options
+           = null]              )
+    </div>
+
+    <p>Creates a new cache stack.</p><div><p>Usually you will want to use the <a href="ezcCacheManager.html">ezcCacheManager</a> to take care of  your caches. The $options (<a href="ezcCacheStackOptions.html">ezcCacheStackOptions</a>) stored in the  manager and given here can contain a class reference to an  implementation of <a href="ezcCacheStackConfigurator.html">ezcCacheStackConfigurator</a> that will be used to  initially configure the stack instance directly after construction.</p><p>To perform manual configuration of the stack the <a href="ezcCacheStack.html#methodpushStorage">ezcCacheStack::pushStorage()</a> and <a href="ezcCacheStack.html#methodpopStorage">ezcCacheStack::popStorage()</a>  methods can be used.</p><p>The location can be a free form string that identifies the stack  uniquely in the <a href="ezcCacheManager.html">ezcCacheManager</a>. It is currently not used  internally in the stack.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$location</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$options</code></td>
+              <td><em><a href="ezcCacheStackOptions.html">ezcCacheStackOptions</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcCacheStorage.html#method__construct">ezcCacheStorage::__construct()</a></code></td>
+            <td>
+                              Creates a new cache storage in the given location.
+                          </td>
+          </tr></tbody></table><a name="methodcountDataItems" id="countDataItems"><!-- --></a>
+
+    <h4>countDataItems</h4>
+
+    <div class="method-signature">
+      int
+      countDataItems(
+                                  [string
+          $id
+           = null]                  ,           [array
+          $attributes
+           = array()]              )
+    </div>
+
+    <p>Counts how many items are stored, fulfilling certain criteria.</p><div><p>This method counts how many data items fulfilling the given criteria are  stored overall. Note: The items of all contained storages are counted  independantly and summarized.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$id</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$attributes</code></td>
+              <td><em>array</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcCacheStorage.html#methodcountDataItems">ezcCacheStorage::countDataItems()</a></code></td>
+            <td>
+                              Return the number of items in the cache matching a certain criteria.
+                          </td>
+          </tr></tbody></table><a name="methodcountStorages" id="countStorages"><!-- --></a>
+
+    <h4>countStorages</h4>
+
+    <div class="method-signature">
+      int
+      countStorages(
+      )
+    </div>
+
+    <p>Returns the number of storages on the stack.</p><div><p>Returns the number of storages currently on the stack.</p></div>
+    
+        
+
+    
+    
+    
+        <a name="methoddelete" id="delete"><!-- --></a>
+
+    <h4>delete</h4>
+
+    <div class="method-signature">
+      array(string)
+      delete(
+                                  [string
+          $id
+           = null]                  ,           [array
+          $attributes
+           = array()]                  ,           [bool
+          $search
+           = false]              )
+    </div>
+
+    <p>Deletes an item from the stack.</p><div><p>This method deletes an item from the cache stack. The item will  afterwards no more be stored in any of the inner cache storages. Giving  the ID of the cache item will delete exactly 1 desired item. Giving an  attribute array, describing the desired item in more detail, can speed  up the deletion in some caches.</p><p>Giving null as the ID and just an attribibute array, with the $search  attribute in addition, will delete *all* items that comply to the  attributes from all storages. This might be much slower than just  deleting a single item.</p><p>Deleting items from a cache stack is not recommended at all. Instead,  items should expire on their own or be overwritten with more actual  data.</p><p>The method returns an array containing all deleted item IDs.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$id</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$attributes</code></td>
+              <td><em>array</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$search</code></td>
+              <td><em>bool</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcCacheStorage.html#methoddelete">ezcCacheStorage::delete()</a></code></td>
+            <td>
+                              Delete data from the cache.
+                          </td>
+          </tr></tbody></table><a name="methodgetRemainingLifetime" id="getRemainingLifetime"><!-- --></a>
+
+    <h4>getRemainingLifetime</h4>
+
+    <div class="method-signature">
+      int
+      getRemainingLifetime(
+                                  string
+          $id
+                            ,           [array
+          $attributes
+           = array()]              )
+    </div>
+
+    <p>Returns the remaining lifetime for the given item ID.</p><div><p>This method returns the lifetime in seconds for the item identified by $item  and optionally described by $attributes. Definining the $attributes  might lead to faster results with some caches.</p><p>The first internal storage that is found for the data item is chosen to  detemine the lifetime. If no storage contains the item or the item is  outdated in all found caches, 0 is returned.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$id</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$attributes</code></td>
+              <td><em>array</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcCacheStorage.html#methodgetRemainingLifetime">ezcCacheStorage::getRemainingLifetime()</a></code></td>
+            <td>
+                              Returns the time ( in seconds ) that remains for a cache object,  before it gets outdated. In case the cache object is already  outdated or does not exist, this method returns 0.
+                          </td>
+          </tr></tbody></table><a name="methodgetStorages" id="getStorages"><!-- --></a>
+
+    <h4>getStorages</h4>
+
+    <div class="method-signature">
+      array(ezcCacheStackableStorage)
+      getStorages(
+      )
+    </div>
+
+    <p>Returns all stacked storages.</p><div><p>This method returns the whole stack of <a href="ezcCacheStackableStorage.html">ezcCacheStackableStorage</a>  as an array. This maybe useful to adjust options of the storages after  they have been added to the stack. However, it is not recommended to  perform any drastical changes to the configurations. Performing manual  stores, restores and deletes on the storages is *highly discouraged*,  since it may lead to irrepairable inconsistencies of the stack.</p></div>
+    
+        
+
+    
+    
+    
+        <a name="methodpopStorage" id="popStorage"><!-- --></a>
+
+    <h4>popStorage</h4>
+
+    <div class="method-signature">
+      <a href="ezcCacheStackStorageConfiguration.html">ezcCacheStackStorageConfiguration</a>
+      popStorage(
+      )
+    </div>
+
+    <p>Removes a storage from the top of the stack.</p><div><p>This method can be used to remove the top most <a href="ezcCacheStackableStorage.html">ezcCacheStackableStorage</a> from the stack. This is commonly done to  remove caches or to insert new ones into lower positions. In both cases,  it is recommended to <a href="ezcCacheStack.html#methodreset">ezcCacheStack::reset()</a> the whole cache  afterwards to avoid any kind of inconsistency.</p></div>
+    
+          <h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcCacheStackUnderflowException.html">ezcCacheStackUnderflowException</a></code></td>
+              <td>
+                                  if called on an empty stack.
+                              </td>
+            </tr></tbody></table><a name="methodpushStorage" id="pushStorage"><!-- --></a>
+
+    <h4>pushStorage</h4>
+
+    <div class="method-signature">
+      void
+      pushStorage(
+                                  <a href="ezcCacheStackStorageConfiguration.html">ezcCacheStackStorageConfiguration</a>
+          $storageConf
+                        )
+    </div>
+
+    <p>Add a storage to the top of the stack.</p><div><p>This method is used to add a new storage to the top of the cache. The  $storageConf of type <a href="ezcCacheStackStorageConfiguration.html">ezcCacheStackStorageConfiguration</a> consists  of the actual <a href="ezcCacheStackableStorage.html">ezcCacheStackableStorage</a> and other information.</p><p>Most importantly, the configuration object contains an ID, which must be  unique within the whole storage. The itemLimit setting determines how  many items might be stored in the storage at all. freeRate determines  which fraction of itemLimit will be freed by the ezcCacheStackStackReplacementStrategy of the stack, when the storage  runs full.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$storageConf</code></td>
+              <td><em><a href="ezcCacheStackStorageConfiguration.html">ezcCacheStackStorageConfiguration</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodreset" id="reset"><!-- --></a>
+
+    <h4>reset</h4>
+
+    <div class="method-signature">
+      void
+      reset(
+      )
+    </div>
+
+    <p>Resets the complete stack.</p><div><p>This method is used to reset the complete stack of storages. It will  reset all storages, using <a href="ezcCacheStackableStorage.html#methodreset">ezcCacheStackableStorage::reset()</a>, and  therefore purge the complete content of the stack. In addition, it will  kill the complete meta data.</p><p>The stack is in a consistent, but empty, state afterwards.</p></div>
+    
+        
+
+    
+    
+    
+        <a name="methodrestore" id="restore"><!-- --></a>
+
+    <h4>restore</h4>
+
+    <div class="method-signature">
+      mixed
+      restore(
+                                  string
+          $id
+                            ,           [array
+          $attributes
+           = array()]                  ,           [bool
+          $search
+           = false]              )
+    </div>
+
+    <p>Restores an item from the stack.</p><div><p>This method tries to restore an item from the cache stack and returns  the found data, if any. If no data is found, boolean false is returned.  Given the ID of an object will restore exactly the desired object. If  additional $attributes are given, this may speed up the restore process  for some caches. If only attributes are given, the $search parameter  makes sense, since it will instruct the inner cach storages to search  their content for the given attribute combination and will restore the  first item found. However, this process is much slower then restoring  with an ID and therefore is not recommended.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$id</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$attributes</code></td>
+              <td><em>array</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$search</code></td>
+              <td><em>bool</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcCacheStorage.html#methodrestore">ezcCacheStorage::restore()</a></code></td>
+            <td>
+                              Restore data from the cache.
+                          </td>
+          </tr></tbody></table><a name="methodsetOptions" id="setOptions"><!-- --></a>
+
+    <h4>setOptions</h4>
+
+    <div class="method-signature">
+      void
+      setOptions(
+                                  <a href="ezcCacheStackOptions.html">ezcCacheStackOptions</a>
+          $options
+                        )
+    </div>
+
+    <p>Sets the options for this stack instance.</p><div><p>Overwrites the parent implementation to only allow instances of <a href="ezcCacheStackOptions.html">ezcCacheStackOptions</a>.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$options</code></td>
+              <td><em><a href="ezcCacheStackOptions.html">ezcCacheStackOptions</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcCacheStorage.html#methodsetOptions">ezcCacheStorage::setOptions()</a></code></td>
+            <td>
+                              Set new options.
+                          </td>
+          </tr></tbody></table><a name="methodstore" id="store"><!-- --></a>
+
+    <h4>store</h4>
+
+    <div class="method-signature">
+      void
+      store(
+                                  string
+          $id
+                            ,           mixed
+          $data
+                            ,           [array
+          $attributes
+           = array()]              )
+    </div>
+
+    <p>Stores data in the cache stack.</p><div><p>This method will store the given data across the complete stack. It can  afterwards be restored using the <a href="ezcCacheStack.html#methodrestore">ezcCacheStack::restore()</a> method  and be deleted through the <a href="ezcCacheStack.html#methoddelete">ezcCacheStack::delete()</a> method.</p><p>The data that can be stored in the cache depends on the configured  storages. Usually it is save to store arrays and scalars. However, some  caches support objects or do not even support arrays. You need to make  sure that the inner caches of the stack *all* support the data you want  to store!</p><p>The $attributes array is optional and can be used to describe the stack  further.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$id</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$data</code></td>
+              <td><em>mixed</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$attributes</code></td>
+              <td><em>array</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcCacheStorage.html#methodstore">ezcCacheStorage::store()</a></code></td>
+            <td>
+                              Store data to the cache storage.
+                          </td>
+          </tr></tbody></table><a name="methodvalidateLocation" id="validateLocation"><!-- --></a>
+
+    <h4>validateLocation</h4>
+
+    <div class="method-signature">
+      bool
+      validateLocation(
+      )
+    </div>
+
+    <p>Validates the $location parameter of the constructor.</p><div><p>Returns true, since $location is not necessary for this storage.</p></div>
+    
+        
+
+          <h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcCacheStorage.html#methodvalidateLocation">ezcCacheStorage::validateLocation()</a></code></td>
+            <td>
+                              Checks if the location property is valid.
+                          </td>
+          </tr></tbody></table><div class="credit">
+      Documentation generated by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+    </div>
+  </div>
+  
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

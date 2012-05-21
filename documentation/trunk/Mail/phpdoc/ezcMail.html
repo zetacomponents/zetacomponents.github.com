@@ -1,0 +1,726 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="" />
+	<meta name="author" content="jerome" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Sun, 10 Jul 2011 11:11:01 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="ezcMail.html" />
+	<meta name="DC.creator" content="jerome" />
+	<meta name="DC.date" content="Sun, 10 Jul 2011 11:11:01 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMail.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/Mail/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/trunk/Mail/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Mail/mail-listing-example.html" title="Mail-listing-example ">Mail-listing-example </a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Mail/display-example.html" title="Display-example ">Display-example </a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Mail/rfcs.html" title="Rfcs ">Rfcs </a>
+	</li>
+
+</ul>
+
+		
+  <div class="phpdoc">
+    <h2>Apache Zeta Components Manual :: Docs For Class ezcMail</h2>
+
+                  <h3>Mail::ezcMail</h3>
+    
+<a name="sec-description"></a>
+<h3>Class ezcMail</h3>
+
+<p>The main mail class.</p><div><p>You can use ezcMail together with the other classes derived from ezcMailPart  to build email messages. When the mail is built, use the Transport classes  to send the mail.</p><p>This example builds and sends a simple text mail message:  </p><ol><li><div class="src-line">&#8192;<span class="src-var">$mail&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcMail.html">ezcMail</a></span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$mail</span><span class="src-sym">-&gt;</span><span class="src-id">from&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcMailAddress.html">ezcMailAddress</a></span><span class="src-sym">(&#8192;</span><span class="src-str">'sender@example.com'</span><span class="src-sym">,&#8192;</span><span class="src-str">'Adrian&#8192;Ripburger'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$mail</span><span class="src-sym">-&gt;</span><a href="ezcMail.html#methodaddTo">addTo</a><span class="src-sym">(&#8192;</span><span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcMailAddress.html">ezcMailAddress</a></span><span class="src-sym">(&#8192;</span><span class="src-str">'receiver@example.com'</span><span class="src-sym">,&#8192;</span><span class="src-str">'Maureen&#8192;Corley'&#8192;</span><span class="src-sym">)&#8192;)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$mail</span><span class="src-sym">-&gt;</span><span class="src-id">subject&#8192;</span>=&#8192;<span class="src-str">"Hi"</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$mail</span><span class="src-sym">-&gt;</span><span class="src-id">body&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcMailText.html">ezcMailText</a></span><span class="src-sym">(&#8192;</span><span class="src-str">"I&#8192;just&#8192;mail&#8192;to&#8192;say&#8192;I&#8192;love&#8192;you!"&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$transport&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcMailMtaTransport.html">ezcMailMtaTransport</a></span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$transport</span><span class="src-sym">-&gt;</span><span class="src-id">send</span><span class="src-sym">(&#8192;</span><span class="src-var">$mail&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol><p>By default, the ezcMail class will generate a mail with the Bcc header inside,  and leave it to the SMTP server to strip the Bcc header. This can pose a  problem with some SMTP servers which do not strip the Bcc header  (issue #16154: Bcc headers are not stripped when using SMTP). Use the option  stripBccHeader from <a href="ezcMailOptions.html">ezcMailOptions</a> to delete the Bcc header from  the mail before it is sent.</p><p>Example:</p></div>
+<p>Source for this file: <a href="http://fisheye6.atlassian.com/browse/zetacomponents/trunk/Mail/src/mail.php?r=HEAD">/Mail/src/mail.php</a></p>
+       
+
+
+<pre><a href="ezcMailPart.html">ezcMailPart</a>
+   |
+   --ezcMail</pre>
+
+
+  <table><tr><td>
+            <strong>Version:</strong>&#8192;&#8192;
+          </td>
+          <td>//autogen//</td>
+        </tr></table><a name="sec-descendants"></a>
+  <h3>Descendants</h3>
+  <table class="detail"><thead><tr><th>Child Class</th>
+        <th>Description</th>
+      </tr></thead><tbody><tr><td><a href="ezcMailComposer.html">ezcMailComposer</a></td>          <td>
+                          Convenience class for writing mail.
+                      </td>
+        </tr></tbody></table><a name="sec-const-summary"></a>
+  <h3>Constants</h3>
+  <table class="summary"><tr><td class="right">
+          <a name="const-BASE64" id=""></a>
+          <code>
+            <a href="#const-BASE64" title="details" class="const-name-summary">BASE64</a>
+             =  "base64"
+          </code>
+        </td>
+        <td>
+          Base 64 encoding.                  </td>
+      </tr><tr><td class="right">
+          <a name="const-BINARY" id=""></a>
+          <code>
+            <a href="#const-BINARY" title="details" class="const-name-summary">BINARY</a>
+             =  "binary"
+          </code>
+        </td>
+        <td>
+          Binary encoding.                  </td>
+      </tr><tr><td class="right">
+          <a name="const-EIGHT_BIT" id=""></a>
+          <code>
+            <a href="#const-EIGHT_BIT" title="details" class="const-name-summary">EIGHT_BIT</a>
+             =  "8bit"
+          </code>
+        </td>
+        <td>
+          8 bit encoding.                  </td>
+      </tr><tr><td class="right">
+          <a name="const-QUOTED_PRINTABLE" id=""></a>
+          <code>
+            <a href="#const-QUOTED_PRINTABLE" title="details" class="const-name-summary">QUOTED_PRINTABLE</a>
+             =  "quoted-printable"
+          </code>
+        </td>
+        <td>
+          Quoted printable encoding.                  </td>
+      </tr><tr><td class="right">
+          <a name="const-SEVEN_BIT" id=""></a>
+          <code>
+            <a href="#const-SEVEN_BIT" title="details" class="const-name-summary">SEVEN_BIT</a>
+             =  "7bit"
+          </code>
+        </td>
+        <td>
+          7 bit encoding.                  </td>
+      </tr></table><a name="sec-prop-summary"></a>
+  <h3>Properties</h3>
+  <table class="summary"><tr><td class="right">
+          <a name="prop%24bcc" id="$bcc"></a>
+          <a name="prop-%24bcc" id="$bcc"></a>
+          <em>array(ezcMailAddress)</em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24bcc" title="details" class="var-name-summary">$bcc</a>
+                      </code>
+          <br><div style="margin-left: 20px">Contains an array of ezcMailAddress objects.</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24body" id="$body"></a>
+          <a name="prop-%24body" id="$body"></a>
+          <em><a href="ezcMailPart.html">ezcMailPart</a></em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24body" title="details" class="var-name-summary">$body</a>
+                      </code>
+          <br><div style="margin-left: 20px">The body part of the message.</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24cc" id="$cc"></a>
+          <a name="prop-%24cc" id="$cc"></a>
+          <em>array(ezcMailAddress)</em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24cc" title="details" class="var-name-summary">$cc</a>
+                      </code>
+          <br><div style="margin-left: 20px">Contains an array of ezcMailAddress objects.</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24from" id="$from"></a>
+          <a name="prop-%24from" id="$from"></a>
+          <em><a href="ezcMailAddress.html">ezcMailAddress</a></em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24from" title="details" class="var-name-summary">$from</a>
+                      </code>
+          <br><div style="margin-left: 20px">Contains the from address as an                                        ezcMailAddress object.</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24messageId" id="$messageId"></a>
+          <a name="prop-%24messageId" id="$messageId"></a>
+          <em>string</em>        </td>
+        <td class="right">
+          <em>read</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24messageId" title="details" class="var-name-summary">$messageId</a>
+                      </code>
+          <br><div style="margin-left: 20px">The message ID of the message. Treat                                        as read-only unless you're 100% sure                                        what you're doing. Also accessible through                                        the deprecated property messageID.</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24options" id="$options"></a>
+          <a name="prop-%24options" id="$options"></a>
+          <em><a href="ezcMailOptions.html">ezcMailOptions</a></em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24options" title="details" class="var-name-summary">$options</a>
+                      </code>
+          <br><div style="margin-left: 20px">Options for generating mail. See <a href="ezcMailOptions.html">ezcMailOptions</a>.</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24returnPath" id="$returnPath"></a>
+          <a name="prop-%24returnPath" id="$returnPath"></a>
+          <em><a href="ezcMailAddress.html">ezcMailAddress</a></em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24returnPath" title="details" class="var-name-summary">$returnPath</a>
+                      </code>
+          <br><div style="margin-left: 20px">Contains the Return-Path address as an                                              ezcMailAddress object.</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24subject" id="$subject"></a>
+          <a name="prop-%24subject" id="$subject"></a>
+          <em>string</em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24subject" title="details" class="var-name-summary">$subject</a>
+                      </code>
+          <br><div style="margin-left: 20px">Contains the subject of the e-mail.                                        Use setSubject if you require a                                        special encoding.</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24subjectCharset" id="$subjectCharset"></a>
+          <a name="prop-%24subjectCharset" id="$subjectCharset"></a>
+          <em>string</em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24subjectCharset" title="details" class="var-name-summary">$subjectCharset</a>
+                      </code>
+          <br><div style="margin-left: 20px">The encoding of the subject.</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24timestamp" id="$timestamp"></a>
+          <a name="prop-%24timestamp" id="$timestamp"></a>
+          <em>integer</em>        </td>
+        <td class="right">
+          <em>read</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24timestamp" title="details" class="var-name-summary">$timestamp</a>
+                      </code>
+          <br><div style="margin-left: 20px">The date/time of when the message was                                        sent as Unix Timestamp.</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24to" id="$to"></a>
+          <a name="prop-%24to" id="$to"></a>
+          <em>array(ezcMailAddress)</em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24to" title="details" class="var-name-summary">$to</a>
+                      </code>
+          <br><div style="margin-left: 20px">Contains an array of ezcMailAddress objects.</div>        </td>
+      </tr></table><a name="sec-var-summary"></a>
+  <h3>Member Variables</h3>
+  <table class="summary"><tr><td class="right">
+            <em>protected</em>            <em><a href="ezcMailOptions.html">ezcMailOptions</a></em>          </td>
+          <td>
+            <code>
+              $options
+                          </code>
+            <br><div style="margin-left: 20px">Holds the options for this class.</div>                      </td>
+        </tr></table><h3>Inherited Member Variables</h3>
+  <table class="summary"><thead><tr><th colspan="2">
+            From <span class="classname"><a href="ezcMailPart.html">ezcMailPart</a></span>         
+          </th>
+        </tr></thead><tbody><tr><td class="right">
+              <em>protected</em>                          </td>
+            <td>
+              <code><a href="ezcMailPart.html#var%24properties">ezcMailPart::$properties</a></code>
+              
+            </td>
+          </tr></tbody></table><a name="sec-method-summary"></a>
+  <h3>Method Summary</h3>
+  <table class="summary"><tr><td class="right">
+            <em>protected</em>            static
+                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#collectPart"><b>collectPart</b></a>(
+                                                                                    $context
+                                                    ,                                     $mail
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Saves $mail in the $context object.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>ezcMail</em>          </td>
+          <td>
+            <code>
+              <a href="#__construct"><b>__construct</b></a>(
+                                                                  [                  $options
+                   = null]                               )
+            </code>
+            <br><div style="margin-left: 20px">Constructs an empty ezcMail object.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#addBcc"><b>addBcc</b></a>(
+                                                                                    $address
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Adds the ezcMailAddress $address to the list of 'bcc' recipients.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#addCc"><b>addCc</b></a>(
+                                                                                    $address
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Adds the ezcMailAddress $address to the list of 'cc' recipients.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#addTo"><b>addTo</b></a>(
+                                                                                    $address
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Adds the ezcMailAddress $address to the list of 'to' recipients.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>array(ezcMailPart)</em>          </td>
+          <td>
+            <code>
+              <a href="#fetchParts"><b>fetchParts</b></a>(
+                                                                  [                  $filter
+                   = null]                                  ,                   [                  $includeDigests
+                   = false]                               )
+            </code>
+            <br><div style="margin-left: 20px">Returns an array of mail parts from the current mail.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#generateBody"><b>generateBody</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns the generated body part of this mail.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#generateHeaders"><b>generateHeaders</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns the generated headers for the mail.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#walkParts"><b>walkParts</b></a>(
+                                                                                    $context
+                                                    ,                                     $mail
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Walks recursively through the mail parts in the specified mail object.</div>          </td>
+        </tr></table><h3>Inherited Methods</h3>
+  <table class="summary"><thead><tr><th colspan="2">
+            From <span class="classname"><a href="ezcMailPart.html">ezcMailPart</a></span>
+          </th>
+        </tr></thead><tbody><tr><td class="right">
+              <em>public</em>                                          <em>ezcMailPart</em>            </td>
+            <td>
+              <code><b><a href="ezcMailPart.html#method__construct">ezcMailPart::__construct()</a></b></code>
+              <br><div style="margin-left: 20px">Constructs a new mail part.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b><a href="ezcMailPart.html#methodappendExcludeHeaders">ezcMailPart::appendExcludeHeaders()</a></b></code>
+              <br><div style="margin-left: 20px">The array $headers will be excluded when the headers are generated.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>string</em>            </td>
+            <td>
+              <code><b><a href="ezcMailPart.html#methodgenerate">ezcMailPart::generate()</a></b></code>
+              <br><div style="margin-left: 20px">Returns the complete mail part including both the header and the body  as a string.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>              abstract                            <em>string</em>            </td>
+            <td>
+              <code><b><a href="ezcMailPart.html#methodgenerateBody">ezcMailPart::generateBody()</a></b></code>
+              <br><div style="margin-left: 20px">Returns the body of this part as a string.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>string</em>            </td>
+            <td>
+              <code><b><a href="ezcMailPart.html#methodgenerateHeaders">ezcMailPart::generateHeaders()</a></b></code>
+              <br><div style="margin-left: 20px">Returns the headers set for this part as a RFC 822 string.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>mixed</em>            </td>
+            <td>
+              <code><b><a href="ezcMailPart.html#methodgetHeader">ezcMailPart::getHeader()</a></b></code>
+              <br><div style="margin-left: 20px">Returns the RAW value of the header $name.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>protected</em>                                          <em>string</em>            </td>
+            <td>
+              <code><b><a href="ezcMailPart.html#methodgetHeaderCharset">ezcMailPart::getHeaderCharset()</a></b></code>
+              <br><div style="margin-left: 20px">Returns the charset registered for the header $name.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b><a href="ezcMailPart.html#methodsetHeader">ezcMailPart::setHeader()</a></b></code>
+              <br><div style="margin-left: 20px">Sets the header $name to the value $value and its charset to $charset.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>protected</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b><a href="ezcMailPart.html#methodsetHeaderCharset">ezcMailPart::setHeaderCharset()</a></b></code>
+              <br><div style="margin-left: 20px">Sets the charset of the header $name to $value.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b><a href="ezcMailPart.html#methodsetHeaders">ezcMailPart::setHeaders()</a></b></code>
+              <br><div style="margin-left: 20px">Adds the headers $headers.</div>                          </td>
+          </tr></tbody></table><a name="sec-methods"></a>
+  <h3>Methods</h3>
+  <a name="method_detail"></a>
+              <a name="methodcollectPart" id="collectPart"><!-- --></a>
+
+    <h4>collectPart</h4>
+
+    <div class="method-signature">
+      static void
+      collectPart(
+                                  <a href="ezcMailPartWalkContext.html">ezcMailPartWalkContext</a>
+          $context
+                            ,           <a href="ezcMailPart.html">ezcMailPart</a>
+          $mail
+                        )
+    </div>
+
+      <p>Saves $mail in the $context object.</p><div><p>This function is used as a callback in the fetchParts() method.</p></div>      
+              <h5>Parameters:</h5>
+        <table class="detail"><thead><tr><th>Name</th>
+              <th>Type</th>
+              <th class="desc">Description</th>
+            </tr></thead><tbody><tr><td><code>$context</code></td>
+                <td><em><a href="ezcMailPartWalkContext.html">ezcMailPartWalkContext</a></em></td>
+                <td>
+                                  </td>
+              </tr><tr><td><code>$mail</code></td>
+                <td><em><a href="ezcMailPart.html">ezcMailPart</a></em></td>
+                <td>
+                                  </td>
+              </tr></tbody></table><a name="method__construct" id="__construct"><!-- --></a>
+
+    <h4>__construct</h4>
+
+    <div class="method-signature">
+      ezcMail
+      __construct(
+                                  [<a href="ezcMailOptions.html">ezcMailOptions</a>
+          $options
+           = null]              )
+    </div>
+
+    <p>Constructs an empty ezcMail object.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$options</code></td>
+              <td><em><a href="ezcMailOptions.html">ezcMailOptions</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcMailPart.html#method__construct">ezcMailPart::__construct()</a></code></td>
+            <td>
+                              Constructs a new mail part.
+                          </td>
+          </tr></tbody></table><h5>Redefined in descendants as:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcMailComposer.html#method__construct">ezcMailComposer::__construct()</a></code></td>
+              <td>
+                Constructs an empty ezcMailComposer object.&#8192;
+              </td>
+            </tr></tbody></table><a name="methodaddBcc" id="addBcc"><!-- --></a>
+
+    <h4>addBcc</h4>
+
+    <div class="method-signature">
+      void
+      addBcc(
+                                  <a href="ezcMailAddress.html">ezcMailAddress</a>
+          $address
+                        )
+    </div>
+
+    <p>Adds the ezcMailAddress $address to the list of 'bcc' recipients.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$address</code></td>
+              <td><em><a href="ezcMailAddress.html">ezcMailAddress</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodaddCc" id="addCc"><!-- --></a>
+
+    <h4>addCc</h4>
+
+    <div class="method-signature">
+      void
+      addCc(
+                                  <a href="ezcMailAddress.html">ezcMailAddress</a>
+          $address
+                        )
+    </div>
+
+    <p>Adds the ezcMailAddress $address to the list of 'cc' recipients.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$address</code></td>
+              <td><em><a href="ezcMailAddress.html">ezcMailAddress</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodaddTo" id="addTo"><!-- --></a>
+
+    <h4>addTo</h4>
+
+    <div class="method-signature">
+      void
+      addTo(
+                                  <a href="ezcMailAddress.html">ezcMailAddress</a>
+          $address
+                        )
+    </div>
+
+    <p>Adds the ezcMailAddress $address to the list of 'to' recipients.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$address</code></td>
+              <td><em><a href="ezcMailAddress.html">ezcMailAddress</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodfetchParts" id="fetchParts"><!-- --></a>
+
+    <h4>fetchParts</h4>
+
+    <div class="method-signature">
+      array(ezcMailPart)
+      fetchParts(
+                                  [array(string)
+          $filter
+           = null]                  ,           [bool
+          $includeDigests
+           = false]              )
+    </div>
+
+    <p>Returns an array of mail parts from the current mail.</p><div><p>The array returned contains objects of classes: </p><ul><li>ezcMailText</li><li>ezcMailFile</li><li>ezcMailRfc822Digest</li></ul> If the method is called with $includeDigests as true, then the returned  array will not contain ezcMailRfc822Digest objects, but instead the mail  parts inside the digests.  The parameter $filter can be used to restrict the returned mail parts,  eg. $filter = array( 'ezcMailFile' ) to return only file mail parts.<p>A typical use for this function is to get a list of attachments from a mail.  Example:  </p><ol><li><div class="src-line">&#8192;<span class="src-comm">//&#8192;$mail&#8192;is&#8192;an&#8192;ezcMail&#8192;object</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$parts&#8192;</span>=&#8192;<span class="src-var">$mail</span><span class="src-sym">-&gt;</span><a href="ezcMail.html#methodfetchParts">fetchParts</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;after&#8192;the&#8192;above&#8192;line&#8192;is&#8192;executed,&#8192;$parts&#8192;will&#8192;contain&#8192;an&#8192;array&#8192;of&#8192;mail&#8192;parts&#8192;objects,</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;for&#8192;example&#8192;one&#8192;ezcMailText&#8192;object&#8192;($parts[0])&#8192;and&#8192;two&#8192;ezcMailRfc822Digest&#8192;objects&#8192;($parts[1]&#8192;and&#8192;$parts[2]).</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;the&#8192;ezcMailText&#8192;object&#8192;will&#8192;be&#8192;used&#8192;to&#8192;render&#8192;the&#8192;mail&#8192;text,&#8192;and&#8192;the</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;other&#8192;two&#8192;objects&#8192;will&#8192;be&#8192;displayed&#8192;as&#8192;links&#8192;("view&#8192;attachment")</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;when&#8192;user&#8192;clicks&#8192;on&#8192;one&#8192;of&#8192;the&#8192;two&#8192;attachments,&#8192;the&#8192;parts&#8192;of&#8192;that&#8192;attachment</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;must&#8192;be&#8192;retrieved&#8192;in&#8192;order&#8192;to&#8192;render&#8192;the&#8192;attached&#8192;digest:</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$subparts&#8192;</span>=&#8192;<span class="src-var">$parts</span><span class="src-sym">[</span><span class="src-num">1</span><span class="src-sym">]</span><span class="src-sym">-&gt;</span><a href="http://www.php.net/mail">mail</a><span class="src-sym">-&gt;</span><a href="ezcMail.html#methodfetchParts">fetchParts</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;after&#8192;the&#8192;above&#8192;line&#8192;is&#8192;executed,&#8192;$subparts&#8192;will&#8192;contain&#8192;an&#8192;array&#8192;of&#8192;mail&#8192;parts&#8192;objects,</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;for&#8192;example&#8192;one&#8192;ezcMailText&#8192;object&#8192;and&#8192;one&#8192;ezcMailFile&#8192;object</span></div></li>
+</ol></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$filter</code></td>
+              <td><em>array(string)</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$includeDigests</code></td>
+              <td><em>bool</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodgenerateBody" id="generateBody"><!-- --></a>
+
+    <h4>generateBody</h4>
+
+    <div class="method-signature">
+      string
+      generateBody(
+      )
+    </div>
+
+    <p>Returns the generated body part of this mail.</p><div><p>Returns an empty string if no body has been set.</p></div>
+    
+        
+
+          <h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcMailPart.html#methodgenerateBody">ezcMailPart::generateBody()</a></code></td>
+            <td>
+                              Returns the body of this part as a string.
+                          </td>
+          </tr></tbody></table><a name="methodgenerateHeaders" id="generateHeaders"><!-- --></a>
+
+    <h4>generateHeaders</h4>
+
+    <div class="method-signature">
+      string
+      generateHeaders(
+      )
+    </div>
+
+    <p>Returns the generated headers for the mail.</p><div><p>This method is called automatically when the mail message is built.  You can re-implement this method in subclasses if you wish to set  different mail headers than ezcMail.</p></div>
+    
+        
+
+          <h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcMailPart.html#methodgenerateHeaders">ezcMailPart::generateHeaders()</a></code></td>
+            <td>
+                              Returns the headers set for this part as a RFC 822 string.
+                          </td>
+          </tr></tbody></table><a name="methodwalkParts" id="walkParts"><!-- --></a>
+
+    <h4>walkParts</h4>
+
+    <div class="method-signature">
+      void
+      walkParts(
+                                  <a href="ezcMailPartWalkContext.html">ezcMailPartWalkContext</a>
+          $context
+                            ,           <a href="ezcMailPart.html">ezcMailPart</a>
+          $mail
+                        )
+    </div>
+
+    <p>Walks recursively through the mail parts in the specified mail object.</p><div><p>$context is an object of class ezcMailPartWalkContext, which must contain  a valid callback function name to be applied to all mail parts. You can use  the collectPart() method, or create your own callback function which can  for example save the mail parts to disk or to a database.</p><p>For the properties you can set to the walk context see: <a href="ezcMailPartWalkContext.html">ezcMailPartWalkContext</a></p><p>Example:  </p><ol><li><div class="src-line">&#8192;<span class="src-key">class&#8192;</span><span class="src-id">App</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">{</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-key">public&#8192;</span><span class="src-key">static&#8192;</span><span class="src-key">function&#8192;</span><span class="src-id">saveMailPart</span><span class="src-sym">(&#8192;</span><span class="src-var">$context</span><span class="src-sym">,&#8192;</span><span class="src-var">$mailPart&#8192;</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-sym">{</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-comm">//&#8192;code&#8192;to&#8192;save&#8192;the&#8192;$mailPart&#8192;object&#8192;to&#8192;disk</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-sym">}</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">}</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;use&#8192;the&#8192;saveMailPart()&#8192;function&#8192;as&#8192;a&#8192;callback&#8192;in&#8192;walkParts()</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;where&#8192;$mail&#8192;is&#8192;an&#8192;ezcMail&#8192;object.</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$context&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcMailPartWalkContext.html">ezcMailPartWalkContext</a></span><span class="src-sym">(&#8192;</span><span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-str">'App'</span><span class="src-sym">,&#8192;</span><span class="src-str">'saveMailPart'&#8192;</span><span class="src-sym">)&#8192;)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$context</span><span class="src-sym">-&gt;</span><span class="src-id">includeDigests&#8192;</span>=&#8192;<span class="src-id">true</span><span class="src-sym">;&#8192;</span><span class="src-comm">//&#8192;if&#8192;you&#8192;want&#8192;to&#8192;go&#8192;through&#8192;the&#8192;digests&#8192;in&#8192;the&#8192;mail</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$mail</span><span class="src-sym">-&gt;</span><span class="src-id">walkParts</span><span class="src-sym">(&#8192;</span><span class="src-var">$context</span><span class="src-sym">,&#8192;</span><span class="src-var">$mail&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$context</code></td>
+              <td><em><a href="ezcMailPartWalkContext.html">ezcMailPartWalkContext</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$mail</code></td>
+              <td><em><a href="ezcMailPart.html">ezcMailPart</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><div class="credit">
+      Documentation generated by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+    </div>
+  </div>
+  
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

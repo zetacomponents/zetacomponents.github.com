@@ -1,0 +1,1168 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="" />
+	<meta name="author" content="jerome" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Sun, 10 Jul 2011 11:10:50 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="ezcCacheStorageFile.html" />
+	<meta name="DC.creator" content="jerome" />
+	<meta name="DC.date" content="Sun, 10 Jul 2011 11:10:50 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/Cache/phpdoc/ezcCacheStorageFile.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/Cache/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/trunk/Cache/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+
+</ul>
+
+		
+  <div class="phpdoc">
+    <h2>Apache Zeta Components Manual :: Docs For Class ezcCacheStorageFile</h2>
+
+                  <h3>Cache::ezcCacheStorageFile</h3>
+    
+<a name="sec-description"></a>
+<h3>Class ezcCacheStorageFile</h3>
+
+<p>This class implements most of the methods which have been declared abstract  in <a href="ezcCacheStorage.html">ezcCacheStorage</a>, but also declares 2 new methods abstract, which  have to be implemented by storage driver itself.</p><div><p>This class is a common base class for all file system based storage classes.  To implement a file system based cache storage, you simply have to derive  from this class and implement the <a href="ezcCacheStorageFile.html#methodfetchData">ezcCacheStorageFile::fetchData()</a>  and <a href="ezcCacheStorageFile.html#methodprepareData">ezcCacheStorageFile::prepareData()</a> methods. Everything else is  done for you by the ezcCacheStorageFile base class.</p><p>For example code of using a cache storage, see <a href="ezcCacheManager.html">ezcCacheManager</a>.</p><p>The Cache package already contains several implementations of  <a href="ezcCacheStorageFile.html">ezcCacheStorageFile</a>. As there are:</p><p></p><ul><li>ezcCacheStorageFileArray</li><li>ezcCacheStorageFileEvalArray</li><li>ezcCacheStorageFilePlain</li></ul></div>
+<p>Source for this file: <a href="http://fisheye6.atlassian.com/browse/zetacomponents/trunk/Cache/src/storage/file.php?r=HEAD">/Cache/src/storage/file.php</a></p>
+       
+  <h3>Implements interfaces:</h3>
+  <ul><li><a href="ezcCacheStackableStorage.html">ezcCacheStackableStorage</a></li><li><a href="ezcCacheStackMetaDataStorage.html">ezcCacheStackMetaDataStorage</a></li>  </ul><pre><a href="ezcCacheStorage.html">ezcCacheStorage</a>
+   |
+   --ezcCacheStorageFile</pre>
+
+
+  <table><tr><td>
+            <strong>Version:</strong>&#8192;&#8192;
+          </td>
+          <td>//autogentag//</td>
+        </tr></table><a name="sec-descendants"></a>
+  <h3>Descendants</h3>
+  <table class="detail"><thead><tr><th>Child Class</th>
+        <th>Description</th>
+      </tr></thead><tbody><tr><td><a href="ezcCacheStorageFileEvalArray.html">ezcCacheStorageFileEvalArray</a></td>          <td>
+                          This cache storage implementation stores arrays and scalar values (int,
+                      </td>
+        </tr><tr><td><a href="ezcCacheStorageFileArray.html">ezcCacheStorageFileArray</a></td>          <td>
+                          This cache storage implementation stores arrays and scalar values
+                      </td>
+        </tr><tr><td><a href="ezcCacheStorageFilePlain.html">ezcCacheStorageFilePlain</a></td>          <td>
+                          This class implements a simple storage to cache plain text  on the filesystem. It takes its base methods from the extended  storage base class <a href="ezcCacheStorageFile.html">ezcCacheStorageFile</a>.
+                      </td>
+        </tr><tr><td><a href="ezcCacheStorageFileObject.html">ezcCacheStorageFileObject</a></td>          <td>
+                          This cache storage implementation stores arrays, scalar values
+                      </td>
+        </tr></tbody></table><a name="sec-var-summary"></a>
+  <h3>Member Variables</h3>
+  <table class="summary"><tr><td class="right">
+            <em>protected</em>            <em>resource(file)</em>          </td>
+          <td>
+            <code>
+              $lockResource
+               = <span class="var-default"> false</span>            </code>
+            <br><div style="margin-left: 20px">Resource used for the lock file.</div>                      </td>
+        </tr></table><h3>Inherited Member Variables</h3>
+  <table class="summary"><thead><tr><th colspan="2">
+            From <span class="classname"><a href="ezcCacheStorage.html">ezcCacheStorage</a></span>         
+          </th>
+        </tr></thead><tbody><tr><td class="right">
+              <em>protected</em>                          </td>
+            <td>
+              <code><a href="ezcCacheStorage.html#var%24properties">ezcCacheStorage::$properties</a></code>
+              
+            </td>
+          </tr></tbody></table><a name="sec-method-summary"></a>
+  <h3>Method Summary</h3>
+  <table class="summary"><tr><td class="right">
+            <em>public</em>                        <em>ezcCacheStorageFile</em>          </td>
+          <td>
+            <code>
+              <a href="#__construct"><b>__construct</b></a>(
+                                                                                    $location
+                                                    ,                   [                  $options
+                   = array()]                               )
+            </code>
+            <br><div style="margin-left: 20px">Creates a new cache storage in the given location.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>int</em>          </td>
+          <td>
+            <code>
+              <a href="#calcLifetime"><b>calcLifetime</b></a>(
+                                                                                    $file
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Calculates the lifetime remaining for a cache object.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>int</em>          </td>
+          <td>
+            <code>
+              <a href="#countDataItems"><b>countDataItems</b></a>(
+                                                                  [                  $id
+                   = null]                                  ,                   [                  $attributes
+                   = array()]                               )
+            </code>
+            <br><div style="margin-left: 20px">Return the number of items in the cache matching a certain criteria.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#delete"><b>delete</b></a>(
+                                                                  [                  $id
+                   = null]                                  ,                   [                  $attributes
+                   = array()]                                  ,                   [                  $search
+                   = false]                               )
+            </code>
+            <br><div style="margin-left: 20px">Delete data from the cache.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            abstract            <em>mixed</em>          </td>
+          <td>
+            <code>
+              <a href="#fetchData"><b>fetchData</b></a>(
+                                                                                    $filename
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Fetch data from the cache.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#generateIdentifier"><b>generateIdentifier</b></a>(
+                                                                                    $id
+                                                    ,                   [                  $attributes
+                   = null]                               )
+            </code>
+            <br><div style="margin-left: 20px">Generate the storage internal identifier from ID and attributes.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>int</em>          </td>
+          <td>
+            <code>
+              <a href="#getRemainingLifetime"><b>getRemainingLifetime</b></a>(
+                                                                                    $id
+                                                    ,                   [                  $attributes
+                   = array()]                               )
+            </code>
+            <br><div style="margin-left: 20px">Returns the time ( in seconds ) which remains for a cache object,  before it gets outdated. In case the cache object is already  outdated or does not exist, this method returns 0.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#lock"><b>lock</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Acquire a lock on the storage.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            abstract            <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#prepareData"><b>prepareData</b></a>(
+                                                                                    $data
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Serialize the data for storing.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>array(string)</em>          </td>
+          <td>
+            <code>
+              <a href="#purge"><b>purge</b></a>(
+                                                                  [                  $limit
+                   = null]                               )
+            </code>
+            <br><div style="margin-left: 20px">Purges the given number of cache items.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#reset"><b>reset</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Resets the whole storage.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>mixed|bool</em>          </td>
+          <td>
+            <code>
+              <a href="#restore"><b>restore</b></a>(
+                                                                                    $id
+                                                    ,                   [                  $attributes
+                   = array()]                                  ,                   [                  $search
+                   = false]                               )
+            </code>
+            <br><div style="margin-left: 20px">Restore data from the cache.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em><a href="ezcCacheStackMetaData.html">ezcCacheStackMetaData</a>|null</em>          </td>
+          <td>
+            <code>
+              <a href="#restoreMetaData"><b>restoreMetaData</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Restores and returns the meta data struct.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>array(int=&gt;string)</em>          </td>
+          <td>
+            <code>
+              <a href="#search"><b>search</b></a>(
+                                                                  [                  $id
+                   = null]                                  ,                   [                  $attributes
+                   = array()]                               )
+            </code>
+            <br><div style="margin-left: 20px">Search the storage for data.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>array(int=&gt;string)</em>          </td>
+          <td>
+            <code>
+              <a href="#searchRecursive"><b>searchRecursive</b></a>(
+                                                                                    $pattern
+                                                    ,                                     $directory
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Search the storage for data recursively.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#setOptions"><b>setOptions</b></a>(
+                                                                                    $options
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Set new options.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#store"><b>store</b></a>(
+                                                                                    $id
+                                                    ,                                     $data
+                                                    ,                   [                  $attributes
+                   = array()]                               )
+            </code>
+            <br><div style="margin-left: 20px">Store data to the cache storage.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#storeMetaData"><b>storeMetaData</b></a>(
+                                                                                    $metaData
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Stores the given meta data struct.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#storeRawData"><b>storeRawData</b></a>(
+                                                                                    $filename
+                                                    ,                                     $data
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Actually stores the given data.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#unlock"><b>unlock</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Release a lock on the storage.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#validateLocation"><b>validateLocation</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Checks the path in the location property exists, and is read-/writable. It  throws an exception if not.</div>          </td>
+        </tr></table><h3>Inherited Methods</h3>
+  <table class="summary"><thead><tr><th colspan="2">
+            From <span class="classname"><a href="ezcCacheStorage.html">ezcCacheStorage</a></span>
+          </th>
+        </tr></thead><tbody><tr><td class="right">
+              <em>public</em>                                          <em>ezcCacheStorage</em>            </td>
+            <td>
+              <code><b><a href="ezcCacheStorage.html#method__construct">ezcCacheStorage::__construct()</a></b></code>
+              <br><div style="margin-left: 20px">Creates a new cache storage in the given location.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>              abstract                            <em>int</em>            </td>
+            <td>
+              <code><b><a href="ezcCacheStorage.html#methodcountDataItems">ezcCacheStorage::countDataItems()</a></b></code>
+              <br><div style="margin-left: 20px">Return the number of items in the cache matching a certain criteria.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>              abstract                            <em>void</em>            </td>
+            <td>
+              <code><b><a href="ezcCacheStorage.html#methoddelete">ezcCacheStorage::delete()</a></b></code>
+              <br><div style="margin-left: 20px">Delete data from the cache.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>string</em>            </td>
+            <td>
+              <code><b><a href="ezcCacheStorage.html#methodgetLocation">ezcCacheStorage::getLocation()</a></b></code>
+              <br><div style="margin-left: 20px">Returns the location.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em><a href="ezcCacheStorageOptions.html">ezcCacheStorageOptions</a></em>            </td>
+            <td>
+              <code><b><a href="ezcCacheStorage.html#methodgetOptions">ezcCacheStorage::getOptions()</a></b></code>
+              <br><div style="margin-left: 20px">Return the currently set options.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>              abstract                            <em>int</em>            </td>
+            <td>
+              <code><b><a href="ezcCacheStorage.html#methodgetRemainingLifetime">ezcCacheStorage::getRemainingLifetime()</a></b></code>
+              <br><div style="margin-left: 20px">Returns the time ( in seconds ) that remains for a cache object,  before it gets outdated. In case the cache object is already  outdated or does not exist, this method returns 0.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>              abstract                            <em>mixed</em>            </td>
+            <td>
+              <code><b><a href="ezcCacheStorage.html#methodrestore">ezcCacheStorage::restore()</a></b></code>
+              <br><div style="margin-left: 20px">Restore data from the cache.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b><a href="ezcCacheStorage.html#methodsetOptions">ezcCacheStorage::setOptions()</a></b></code>
+              <br><div style="margin-left: 20px">Set new options.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>              abstract                            <em>string</em>            </td>
+            <td>
+              <code><b><a href="ezcCacheStorage.html#methodstore">ezcCacheStorage::store()</a></b></code>
+              <br><div style="margin-left: 20px">Store data to the cache storage.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>protected</em>              abstract                            <em>void</em>            </td>
+            <td>
+              <code><b><a href="ezcCacheStorage.html#methodvalidateLocation">ezcCacheStorage::validateLocation()</a></b></code>
+              <br><div style="margin-left: 20px">Checks if the location property is valid.</div>                          </td>
+          </tr></tbody></table><a name="sec-methods"></a>
+  <h3>Methods</h3>
+  <a name="method_detail"></a>
+                                          
+      <a name="method__construct" id="__construct"><!-- --></a>
+
+    <h4>__construct</h4>
+
+    <div class="method-signature">
+      ezcCacheStorageFile
+      __construct(
+                                  string
+          $location
+                            ,           [array(string=&gt;string)
+          $options
+           = array()]              )
+    </div>
+
+    <p>Creates a new cache storage in the given location.</p><div><p>Creates a new cache storage for a given location. The location in case  of this storage class is a valid file system directory.</p><p>Options can contain the 'ttl' ( Time-To-Life ). This is per default set  to 1 day. The option 'permissions' can be used to define the file  permissions of created cache items. Specific ezcCacheStorageFile  implementations can have additional options.</p><p>For details about the options see <a href="ezcCacheStorageFileOptions.html">ezcCacheStorageFileOptions</a>.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$location</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  Path to the cache location
+                              </td>
+            </tr><tr><td><code>$options</code></td>
+              <td><em>array(string=&gt;string)</em></td>
+              <td>
+                                  Options for the cache.
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseFileNotFoundException.html">ezcBaseFileNotFoundException</a></code></td>
+              <td>
+                                  If the storage location does not exist. This should usually not happen, since <a href="ezcCacheManager.html#methodcreateCache">ezcCacheManager::createCache()</a> already performs sanity checks for the cache location. In case this exception is thrown, your cache location has been corrupted after the cache was configured.
+                              </td>
+            </tr><tr><td><code><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBasePropertyNotFoundException.html">ezcBasePropertyNotFoundException</a></code></td>
+              <td>
+                                  If you tried to set a non-existent option value. The accepted options depend on the ezcCacheStorage implementation and may vary.
+                              </td>
+            </tr><tr><td><code><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseFileNotFoundException.html">ezcBaseFileNotFoundException</a></code></td>
+              <td>
+                                  If the storage location is not a directory. This should usually not happen, since <a href="ezcCacheManager.html#methodcreateCache">ezcCacheManager::createCache()</a> already performs sanity checks for the cache location. In case this exception is thrown, your cache location has been corrupted after the cache was configured.
+                              </td>
+            </tr><tr><td><code><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseFilePermissionException.html">ezcBaseFilePermissionException</a></code></td>
+              <td>
+                                  If the storage location is not writeable. This should usually not happen, since <a href="ezcCacheManager.html#methodcreateCache">ezcCacheManager::createCache()</a> already performs sanity checks for the cache location. In case this exception is thrown, your cache location has been corrupted after the cache was configured.
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcCacheStorage.html#method__construct">ezcCacheStorage::__construct()</a></code></td>
+            <td>
+                              Creates a new cache storage in the given location.
+                          </td>
+          </tr></tbody></table><a name="methodcalcLifetime" id="calcLifetime"><!-- --></a>
+
+    <h4>calcLifetime</h4>
+
+    <div class="method-signature">
+      int
+      calcLifetime(
+                                  string
+          $file
+                        )
+    </div>
+
+    <p>Calculates the lifetime remaining for a cache object.</p><div><p>This calculates the time a cached object stays valid and returns it. In  case the TTL is set to false, this method always returns a value of 1.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$file</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  The file to calculate the remaining lifetime for.
+                              </td>
+            </tr></tbody></table><a name="methodcountDataItems" id="countDataItems"><!-- --></a>
+
+    <h4>countDataItems</h4>
+
+    <div class="method-signature">
+      int
+      countDataItems(
+                                  [string
+          $id
+           = null]                  ,           [array(string=&gt;string)
+          $attributes
+           = array()]              )
+    </div>
+
+    <p>Return the number of items in the cache matching a certain criteria.</p><div><p>This method determines if cache data described by the given ID and/or  attributes exists. It returns the number of cache data items found.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$id</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  The item ID.
+                              </td>
+            </tr><tr><td><code>$attributes</code></td>
+              <td><em>array(string=&gt;string)</em></td>
+              <td>
+                                  Attributes describing the                                            data to restore.
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcCacheStorage.html#methodcountDataItems">ezcCacheStorage::countDataItems()</a></code></td>
+            <td>
+                              Return the number of items in the cache matching a certain criteria.
+                          </td>
+          </tr></tbody></table><a name="methoddelete" id="delete"><!-- --></a>
+
+    <h4>delete</h4>
+
+    <div class="method-signature">
+      void
+      delete(
+                                  [string
+          $id
+           = null]                  ,           [array(string=&gt;string)
+          $attributes
+           = array()]                  ,           [bool
+          $search
+           = false]              )
+    </div>
+
+    <p>Delete data from the cache.</p><div><p>Purges the cached data for a given ID and or attributes. Using an ID  purges only the cache data for just this ID.</p><p>Additional attributes provided will matched additionally. This can give  you an immense speed improvement against just searching for ID ( see  <a href="ezcCacheStorage.html#methodrestore">ezcCacheStorage::restore()</a> ).</p><p>If you only provide attributes for deletion of cache data, all cache  data matching these attributes will be purged.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$id</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  The item ID to purge.
+                              </td>
+            </tr><tr><td><code>$attributes</code></td>
+              <td><em>array(string=&gt;string)</em></td>
+              <td>
+                                  Attributes describing the                                            data to restore.
+                              </td>
+            </tr><tr><td><code>$search</code></td>
+              <td><em>bool</em></td>
+              <td>
+                                  Whether to search for items                                            if not found directly.
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseFilePermissionException.html">ezcBaseFilePermissionException</a></code></td>
+              <td>
+                                  If an already existsing cache file could not be unlinked. This exception means most likely that your cache directory has been corrupted by external influences (file permission change).
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcCacheStorage.html#methoddelete">ezcCacheStorage::delete()</a></code></td>
+            <td>
+                              Delete data from the cache.
+                          </td>
+          </tr></tbody></table><a name="methodfetchData" id="fetchData"><!-- --></a>
+
+    <h4>fetchData</h4>
+
+    <div class="method-signature">
+      mixed
+      fetchData(
+                                  string
+          $filename
+                        )
+    </div>
+
+    <p>Fetch data from the cache.</p><div><p>This method does the fetching of the data itself. In this case, the  method simply includes the file and returns the value returned by the  include ( or false on failure ).</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$filename</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  The file to fetch data from.
+                              </td>
+            </tr></tbody></table><h5>Redefined in descendants as:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcCacheStorageFileEvalArray.html#methodfetchData">ezcCacheStorageFileEvalArray::fetchData()</a></code></td>
+              <td>
+                Fetch data from a given file name.&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcCacheStorageFileArray.html#methodfetchData">ezcCacheStorageFileArray::fetchData()</a></code></td>
+              <td>
+                Fetch data from the cache.&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcCacheStorageFilePlain.html#methodfetchData">ezcCacheStorageFilePlain::fetchData()</a></code></td>
+              <td>
+                Fetch data from the cache.&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcCacheStorageFileObject.html#methodfetchData">ezcCacheStorageFileObject::fetchData()</a></code></td>
+              <td>
+                Fetch data from the cache.&#8192;
+              </td>
+            </tr></tbody></table><a name="methodgenerateIdentifier" id="generateIdentifier"><!-- --></a>
+
+    <h4>generateIdentifier</h4>
+
+    <div class="method-signature">
+      string
+      generateIdentifier(
+                                  string
+          $id
+                            ,           [array(string=&gt;string)
+          $attributes
+           = null]              )
+    </div>
+
+    <p>Generate the storage internal identifier from ID and attributes.</p><div><p>Generates the storage internal identifier out of the provided ID and the  attributes. This is the default implementation and can be overloaded if  necessary.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$id</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  The ID.
+                              </td>
+            </tr><tr><td><code>$attributes</code></td>
+              <td><em>array(string=&gt;string)</em></td>
+              <td>
+                                  Attributes describing the                                            data to restore.
+                              </td>
+            </tr></tbody></table><a name="methodgetRemainingLifetime" id="getRemainingLifetime"><!-- --></a>
+
+    <h4>getRemainingLifetime</h4>
+
+    <div class="method-signature">
+      int
+      getRemainingLifetime(
+                                  string
+          $id
+                            ,           [array(string=&gt;string)
+          $attributes
+           = array()]              )
+    </div>
+
+    <p>Returns the time ( in seconds ) which remains for a cache object,  before it gets outdated. In case the cache object is already  outdated or does not exist, this method returns 0.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$id</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  The item ID.
+                              </td>
+            </tr><tr><td><code>$attributes</code></td>
+              <td><em>array(string=&gt;string)</em></td>
+              <td>
+                                  Attributes describing the                                            data to restore.
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcCacheStorage.html#methodgetRemainingLifetime">ezcCacheStorage::getRemainingLifetime()</a></code></td>
+            <td>
+                              Returns the time ( in seconds ) that remains for a cache object,  before it gets outdated. In case the cache object is already  outdated or does not exist, this method returns 0.
+                          </td>
+          </tr></tbody></table><a name="methodlock" id="lock"><!-- --></a>
+
+    <h4>lock</h4>
+
+    <div class="method-signature">
+      void
+      lock(
+      )
+    </div>
+
+    <p>Acquire a lock on the storage.</p><div><p>This method acquires a lock on the storage. If locked, the storage must  block all other method calls until the lock is freed again using <a href="ezcCacheStackMetaDataStorage.html#methodunlock">ezcCacheStackMetaDataStorage::unlock()</a>. Methods that are called within  the request that successfully acquired the lock must succeed as usual.</p></div>
+    
+        
+
+    
+          <h5>Implementation of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcCacheStackMetaDataStorage.html#methodlock">ezcCacheStackMetaDataStorage::lock()</a></code></td>
+              <td>
+                                  Acquire a lock on the storage.
+                              </td>
+            </tr></tbody></table><a name="methodprepareData" id="prepareData"><!-- --></a>
+
+    <h4>prepareData</h4>
+
+    <div class="method-signature">
+      string
+      prepareData(
+                                  mixed
+          $data
+                        )
+    </div>
+
+    <p>Serialize the data for storing.</p><div><p>Serializes a PHP variable ( except type resource and object ) to a  executable PHP code representation string.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$data</code></td>
+              <td><em>mixed</em></td>
+              <td>
+                                  Simple type or array
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcCacheInvalidDataException.html">ezcCacheInvalidDataException</a></code></td>
+              <td>
+                                  If the data submitted can not be handled by the implementation of <a href="ezcCacheStorageFile.html">ezcCacheStorageFile</a>. Most implementations can not handle objects and resources.
+                              </td>
+            </tr></tbody></table><h5>Redefined in descendants as:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcCacheStorageFileEvalArray.html#methodprepareData">ezcCacheStorageFileEvalArray::prepareData()</a></code></td>
+              <td>
+                Serialize the data for storing.&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcCacheStorageFileArray.html#methodprepareData">ezcCacheStorageFileArray::prepareData()</a></code></td>
+              <td>
+                Serialize the data for storing.&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcCacheStorageFilePlain.html#methodprepareData">ezcCacheStorageFilePlain::prepareData()</a></code></td>
+              <td>
+                Serialize the data for storing.&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcCacheStorageFileObject.html#methodprepareData">ezcCacheStorageFileObject::prepareData()</a></code></td>
+              <td>
+                Serialize the data for storing.&#8192;
+              </td>
+            </tr></tbody></table><a name="methodpurge" id="purge"><!-- --></a>
+
+    <h4>purge</h4>
+
+    <div class="method-signature">
+      array(string)
+      purge(
+                                  [int
+          $limit
+           = null]              )
+    </div>
+
+    <p>Purges the given number of cache items.</p><div><p>This method minimally purges the $limit number of outdated cache items  from the storage. If limit is left out, all outdated items are purged.  The purged item IDs are returned.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$limit</code></td>
+              <td><em>int</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Implementation of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcCacheStackableStorage.html#methodpurge">ezcCacheStackableStorage::purge()</a></code></td>
+              <td>
+                                  Purge outdated data from the storage.
+                              </td>
+            </tr></tbody></table><a name="methodreset" id="reset"><!-- --></a>
+
+    <h4>reset</h4>
+
+    <div class="method-signature">
+      void
+      reset(
+      )
+    </div>
+
+    <p>Resets the whole storage.</p><div><p>Deletes all data in the storage including <a href="ezcCacheStackMetaData.html">ezcCacheStackMetaData</a>  that was stored using <a href="ezcCacheStorageFile.html#methodstoreMetaData">storeMetaData()</a>.</p></div>
+    
+        
+
+    
+          <h5>Implementation of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcCacheStackableStorage.html#methodreset">ezcCacheStackableStorage::reset()</a></code></td>
+              <td>
+                                  Reset the complete storage.
+                              </td>
+            </tr></tbody></table><a name="methodrestore" id="restore"><!-- --></a>
+
+    <h4>restore</h4>
+
+    <div class="method-signature">
+      mixed|bool
+      restore(
+                                  string
+          $id
+                            ,           [array(string=&gt;string)
+          $attributes
+           = array()]                  ,           [bool
+          $search
+           = false]              )
+    </div>
+
+    <p>Restore data from the cache.</p><div><p>Restores the data associated with the given cache and  returns it. Please see <a href="ezcCacheStorage.html#methodstore">ezcCacheStorage::store()</a>  for more detailed information of cachable datatypes.</p><p>During access to cached data the caches are automatically  expired. This means, that the ezcCacheStorage object checks  before returning the data if it's still actual. If the cache  has expired, data will be deleted and false is returned.</p><p>You should always provide the attributes you assigned, although  the cache storages must be able to find a cache ID even without  them. BEWARE: Finding cache data only by ID can be much  slower than finding it by ID and attributes.</p><p>Note that with the <a href="ezcCacheStorageFilePlain.html">ezcCacheStorageFilePlain</a> all restored data  will be of type string. If you expect a different data type you need to  perform a cast after restoring.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$id</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  The item ID to restore.
+                              </td>
+            </tr><tr><td><code>$attributes</code></td>
+              <td><em>array(string=&gt;string)</em></td>
+              <td>
+                                  Attributes describing the                                            data to restore.
+                              </td>
+            </tr><tr><td><code>$search</code></td>
+              <td><em>bool</em></td>
+              <td>
+                                  Whether to search for items                                            if not found directly.
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseFilePermissionException.html">ezcBaseFilePermissionException</a></code></td>
+              <td>
+                                  If an already existsing cache file could not be unlinked. This exception means most likely that your cache directory has been corrupted by external influences (file permission change).
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcCacheStorage.html#methodrestore">ezcCacheStorage::restore()</a></code></td>
+            <td>
+                              Restore data from the cache.
+                          </td>
+          </tr></tbody></table><a name="methodrestoreMetaData" id="restoreMetaData"><!-- --></a>
+
+    <h4>restoreMetaData</h4>
+
+    <div class="method-signature">
+      <a href="ezcCacheStackMetaData.html">ezcCacheStackMetaData</a>|null
+      restoreMetaData(
+      )
+    </div>
+
+    <p>Restores and returns the meta data struct.</p><div><p>This method fetches the meta data stored in the storage and returns the  according struct of type <a href="ezcCacheStackMetaData.html">ezcCacheStackMetaData</a>. The meta data  must be stored inside the storage, but should not be visible as normal  cache items to the user.</p></div>
+    
+        
+
+    
+          <h5>Implementation of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcCacheStackMetaDataStorage.html#methodrestoreMetaData">ezcCacheStackMetaDataStorage::restoreMetaData()</a></code></td>
+              <td>
+                                  Restores and returns the meta data struct.
+                              </td>
+            </tr></tbody></table><h5>Redefined in descendants as:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcCacheStorageFilePlain.html#methodrestoreMetaData">ezcCacheStorageFilePlain::restoreMetaData()</a></code></td>
+              <td>
+                Restores and returns the meta data struct.&#8192;
+              </td>
+            </tr></tbody></table><a name="methodsearch" id="search"><!-- --></a>
+
+    <h4>search</h4>
+
+    <div class="method-signature">
+      array(int=&gt;string)
+      search(
+                                  [string
+          $id
+           = null]                  ,           [array(string=&gt;string)
+          $attributes
+           = array()]              )
+    </div>
+
+    <p>Search the storage for data.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$id</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  An item ID.
+                              </td>
+            </tr><tr><td><code>$attributes</code></td>
+              <td><em>array(string=&gt;string)</em></td>
+              <td>
+                                  Attributes describing the                                            data to restore.
+                              </td>
+            </tr></tbody></table><a name="methodsearchRecursive" id="searchRecursive"><!-- --></a>
+
+    <h4>searchRecursive</h4>
+
+    <div class="method-signature">
+      array(int=&gt;string)
+      searchRecursive(
+                                  string
+          $pattern
+                            ,           mixed
+          $directory
+                        )
+    </div>
+
+    <p>Search the storage for data recursively.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$pattern</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  Pattern used with <a href="http://www.php.net/glob">http://www.php.net/glob</a>.
+                              </td>
+            </tr><tr><td><code>$directory</code></td>
+              <td><em>mixed</em></td>
+              <td>
+                                  Directory to search in.
+                              </td>
+            </tr></tbody></table><a name="methodsetOptions" id="setOptions"><!-- --></a>
+
+    <h4>setOptions</h4>
+
+    <div class="method-signature">
+      void
+      setOptions(
+                                  <a href="ezcCacheStorageFileOptions.html">ezcCacheStorageFileOptions</a>
+          $options
+                        )
+    </div>
+
+    <p>Set new options.</p><div><p>This method allows you to change the options of a cache file storage. Change  of options take effect directly after this method has been called. The  available options depend on the ezcCacheStorageFile implementation. All  implementations have to offer the following options:</p><p></p><ul><li>ttl         The time-to-life. After this time span, a cache item becomes
+               invalid and will be purged. The
+               <a href="ezcCacheStorage.html#methodrestore">ezcCacheStorage::restore()</a> method will then return
+               false.</li><li>extension   The "extension" for your cache items. This is usually the
+               file name extension, when you deal with file system based
+               caches or e.g. a database ID extension.</li><li>permissions The file permissions to set for new files.</li></ul>  The usage of ezcCacheStorageOptions and arrays for setting options is  deprecated, but still supported. You should migrate to  ezcCacheStorageFileOptions.</div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$options</code></td>
+              <td><em><a href="ezcCacheStorageFileOptions.html">ezcCacheStorageFileOptions</a></em></td>
+              <td>
+                                  The options to set (accepts                                             ezcCacheStorageOptions or                                             array for compatibility                                             reasons, too).
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBasePropertyNotFoundException.html">ezcBasePropertyNotFoundException</a></code></td>
+              <td>
+                                  If you tried to set a non-existent option value. The accepted options depend on the ezcCacheStorage implementation and may vary.
+                              </td>
+            </tr><tr><td><code><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseValueException.html">ezcBaseValueException</a></code></td>
+              <td>
+                                  If the value is not valid for the desired option.
+                              </td>
+            </tr><tr><td><code><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseValueException.html">ezcBaseValueException</a></code></td>
+              <td>
+                                  If you submit neither an instance of ezcCacheStorageFileOptions, nor an instance of ezcCacheStorageOptions nor an array.
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcCacheStorage.html#methodsetOptions">ezcCacheStorage::setOptions()</a></code></td>
+            <td>
+                              Set new options.
+                          </td>
+          </tr></tbody></table><a name="methodstore" id="store"><!-- --></a>
+
+    <h4>store</h4>
+
+    <div class="method-signature">
+      string
+      store(
+                                  string
+          $id
+                            ,           mixed
+          $data
+                            ,           [array(string=&gt;string)
+          $attributes
+           = array()]              )
+    </div>
+
+    <p>Store data to the cache storage.</p><div><p>This method stores the given cache data into the cache, assigning the  ID given to it.</p><p>The type of cache data which is expected by a ezcCacheStorage depends on  its implementation. In most cases strings and arrays will be accepted,  in some rare cases only strings might be accepted.</p><p>Using attributes you can describe your cache data further. This allows  you to deal with multiple cache data at once later. Some ezcCacheStorage  implementations also use the attributes for storage purposes. Attributes  form some kind of "extended ID".</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$id</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  Unique identifier for the data.
+                              </td>
+            </tr><tr><td><code>$data</code></td>
+              <td><em>mixed</em></td>
+              <td>
+                                  The data to store.
+                              </td>
+            </tr><tr><td><code>$attributes</code></td>
+              <td><em>array(string=&gt;string)</em></td>
+              <td>
+                                  Attributes describing the                                           cached data.
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseFilePermissionException.html">ezcBaseFilePermissionException</a></code></td>
+              <td>
+                                  If an already existsing cache file could not be unlinked to store the new data (may occur, when a cache item's TTL has expired and the file should be stored with more actual data). This exception means most likely that your cache directory has been corrupted by external influences (file permission change).
+                              </td>
+            </tr><tr><td><code><a href="ezcCacheInvalidDataException.html">ezcCacheInvalidDataException</a></code></td>
+              <td>
+                                  If the data submitted can not be handled by the implementation of <a href="ezcCacheStorageFile.html">ezcCacheStorageFile</a>. Most implementations can not handle objects and resources.
+                              </td>
+            </tr><tr><td><code><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseFilePermissionException.html">ezcBaseFilePermissionException</a></code></td>
+              <td>
+                                  If the directory to store the cache file could not be created. This exception means most likely that your cache directory has been corrupted by external influences (file permission change).
+                              </td>
+            </tr><tr><td><code><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseFileIoException.html">ezcBaseFileIoException</a></code></td>
+              <td>
+                                  If an error occured while writing the data to the cache. If this exception occurs, a serious error occured and your storage might be corruped (e.g. broken network connection, file system broken, ...).
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcCacheStorage.html#methodstore">ezcCacheStorage::store()</a></code></td>
+            <td>
+                              Store data to the cache storage.
+                          </td>
+          </tr></tbody></table><a name="methodstoreMetaData" id="storeMetaData"><!-- --></a>
+
+    <h4>storeMetaData</h4>
+
+    <div class="method-signature">
+      void
+      storeMetaData(
+                                  <a href="ezcCacheStackMetaData.html">ezcCacheStackMetaData</a>
+          $metaData
+                        )
+    </div>
+
+    <p>Stores the given meta data struct.</p><div><p>This method stores the given $metaData inside the storage. The data must  be stored with the same mechanism that the storage itself uses. However,  it should not be stored as a normal cache item, if possible, to avoid  accedental user manipulation.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$metaData</code></td>
+              <td><em><a href="ezcCacheStackMetaData.html">ezcCacheStackMetaData</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Implementation of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcCacheStackMetaDataStorage.html#methodstoreMetaData">ezcCacheStackMetaDataStorage::storeMetaData()</a></code></td>
+              <td>
+                                  Stores the given meta data struct.
+                              </td>
+            </tr></tbody></table><h5>Redefined in descendants as:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcCacheStorageFilePlain.html#methodstoreMetaData">ezcCacheStorageFilePlain::storeMetaData()</a></code></td>
+              <td>
+                Stores the given meta data struct.&#8192;
+              </td>
+            </tr></tbody></table><a name="methodstoreRawData" id="storeRawData"><!-- --></a>
+
+    <h4>storeRawData</h4>
+
+    <div class="method-signature">
+      void
+      storeRawData(
+                                  string
+          $filename
+                            ,           string
+          $data
+                        )
+    </div>
+
+    <p>Actually stores the given data.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$filename</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$data</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseFileIoException.html">ezcBaseFileIoException</a></code></td>
+              <td>
+                                  if the store fails.
+                              </td>
+            </tr></tbody></table><a name="methodunlock" id="unlock"><!-- --></a>
+
+    <h4>unlock</h4>
+
+    <div class="method-signature">
+      void
+      unlock(
+      )
+    </div>
+
+    <p>Release a lock on the storage.</p><div><p>This method releases the lock of the storage, that has been acquired via  <a href="ezcCacheStackMetaDataStorage.html#methodlock">ezcCacheStackMetaDataStorage::lock()</a>. After this method has been  called, blocked method calls (including calls to lock()) can suceed  again.</p></div>
+    
+        
+
+    
+          <h5>Implementation of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcCacheStackMetaDataStorage.html#methodunlock">ezcCacheStackMetaDataStorage::unlock()</a></code></td>
+              <td>
+                                  Release a lock on the storage.
+                              </td>
+            </tr></tbody></table><a name="methodvalidateLocation" id="validateLocation"><!-- --></a>
+
+    <h4>validateLocation</h4>
+
+    <div class="method-signature">
+      void
+      validateLocation(
+      )
+    </div>
+
+    <p>Checks the path in the location property exists, and is read-/writable. It  throws an exception if not.</p>
+    
+          <h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseFileNotFoundException.html">ezcBaseFileNotFoundException</a></code></td>
+              <td>
+                                  If the storage location does not exist. This should usually not happen, since <a href="ezcCacheManager.html#methodcreateCache">ezcCacheManager::createCache()</a> already performs sanity checks for the cache location. In case this exception is thrown, your cache location has been corrupted after the cache was configured.
+                              </td>
+            </tr><tr><td><code><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseFileNotFoundException.html">ezcBaseFileNotFoundException</a></code></td>
+              <td>
+                                  If the storage location is not a directory. This should usually not happen, since <a href="ezcCacheManager.html#methodcreateCache">ezcCacheManager::createCache()</a> already performs sanity checks for the cache location. In case this exception is thrown, your cache location has been corrupted after the cache was configured.
+                              </td>
+            </tr><tr><td><code><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseFilePermissionException.html">ezcBaseFilePermissionException</a></code></td>
+              <td>
+                                  If the storage location is not writeable. This should usually not happen, since <a href="ezcCacheManager.html#methodcreateCache">ezcCacheManager::createCache()</a> already performs sanity checks for the cache location. In case this exception is thrown, your cache location has been corrupted after the cache was configured.
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcCacheStorage.html#methodvalidateLocation">ezcCacheStorage::validateLocation()</a></code></td>
+            <td>
+                              Checks if the location property is valid.
+                          </td>
+          </tr></tbody></table><div class="credit">
+      Documentation generated by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+    </div>
+  </div>
+  
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

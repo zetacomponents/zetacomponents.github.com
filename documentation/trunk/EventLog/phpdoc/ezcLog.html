@@ -1,0 +1,692 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="PHP, apache, components, framework, quality" />
+	<meta name="author" content="dotxp" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Wed, 04 Aug 2010 13:07:37 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="ezcLog.html" />
+	<meta name="DC.creator" content="dotxp" />
+	<meta name="DC.date" content="Wed, 04 Aug 2010 13:07:37 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/EventLog/phpdoc/ezcLog.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/EventLog/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/trunk/EventLog/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+
+</ul>
+
+		
+  <div class="phpdoc">
+    <h2>Apache Zeta Components Manual :: Docs For Class ezcLog</h2>
+
+                  <h3>EventLog::ezcLog</h3>
+    
+<a name="sec-description"></a>
+<h3>Class ezcLog</h3>
+
+<p>The ezcLog class records log messages and audit trails to one or multiple  writers.</p><div><p>Available writers are: </p><ul><li><a href="ezcLogUnixFileWriter.html">Unix File</a> writer</li><li><a href="/zetacomponents/documentation/trunk/EventLogDatabaseTiein/phpdoc/ezcLogDatabaseWriter.html">Database</a> writer</li></ul>  Extra writers can be added by implementing the <a href="ezcLogWriter.html">ezcLogWriter</a> interface.<p>Use the <a href="ezcLog.html#methodgetMapper">getMapper()</a> method to get an instance of the ezcLogMapper.  The ezcLogMapper classes specifies incoming log messages with the <a href="ezcLogFilter.html">ezcLogFilter</a>.  Log messages that are accepted, match with the filter, are sent to the  <a href="ezcLogWriter.html">ezcLogWriter</a>.</p><p>The following example demonstrates how all log messages, except for the  audit trailing and debug messages, are written to a file.  </p><ol><li><div class="src-line">&#8192;<span class="src-var">$filter&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcLogFilter.html">ezcLogFilter</a></span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$filter</span><span class="src-sym">-&gt;</span><span class="src-id">severity&#8192;</span>=&#8192;<span class="src-id"><a href="ezcLog.html">ezcLog</a></span><span class="src-sym">::</span><span class="src-id">INFO&#8192;</span>|&#8192;<span class="src-id"><a href="ezcLog.html">ezcLog</a></span><span class="src-sym">::</span><span class="src-id">NOTICE&#8192;</span>|&#8192;<span class="src-id"><a href="ezcLog.html">ezcLog</a></span><span class="src-sym">::</span><span class="src-id">WARNING&#8192;</span>|&#8192;<span class="src-id"><a href="ezcLog.html">ezcLog</a></span><span class="src-sym">::</span><span class="src-id">ERROR&#8192;</span>|&#8192;<span class="src-id"><a href="ezcLog.html">ezcLog</a></span><span class="src-sym">::</span><span class="src-id">FATAL</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$log&#8192;</span>=&#8192;<span class="src-id"><a href="ezcLog.html">ezcLog</a></span><span class="src-sym">::</span><a href="ezcLog.html#methodgetInstance">getInstance</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$log</span><span class="src-sym">-&gt;</span><a href="ezcLog.html#methodgetMapper">getMapper</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">-&gt;</span><span class="src-id">appendRule</span><span class="src-sym">(&#8192;</span><span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcLogFilterRule.html">ezcLogFilterRule</a></span><span class="src-sym">(&#8192;</span><span class="src-var">$filter</span><span class="src-sym">,&#8192;</span><span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcLogUnixFileWriter.html">ezcLogUnixFileWriter</a></span><span class="src-sym">(&#8192;</span><span class="src-str">"/tmp/logs/"</span><span class="src-sym">,&#8192;</span><span class="src-str">"error.log"&#8192;</span><span class="src-sym">)</span><span class="src-sym">,&#8192;</span><span class="src-id">true&#8192;</span><span class="src-sym">)&#8192;)</span><span class="src-sym">;</span></div></li>
+</ol><p>The log messages with the severity: INFO, NOTICE, WARNING, ERROR, and FATAL will  be written to the file: "/tmp/logs/error.log". See <a href="ezcLogUnixFileWriter.html">ezcLogUnixFileWriter</a> for  the description of the file format.</p><p>The following example will write the audit trails to the database:  </p><ol><li><div class="src-line">&#8192;<span class="src-var">$filter&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcLogFilter.html">ezcLogFilter</a></span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$filter</span><span class="src-sym">-&gt;</span><span class="src-id">severity&#8192;</span>=&#8192;<span class="src-id"><a href="ezcLog.html">ezcLog</a></span><span class="src-sym">::</span><span class="src-id">SUCCESS_AUDIT&#8192;</span>|&#8192;<span class="src-id"><a href="ezcLog.html">ezcLog</a></span><span class="src-sym">::</span><span class="src-id">FAILED_AUDIT</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$log&#8192;</span>=&#8192;<span class="src-id"><a href="ezcLog.html">ezcLog</a></span><span class="src-sym">::</span><a href="ezcLog.html#methodgetInstance">getInstance</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$log</span><span class="src-sym">-&gt;</span><a href="ezcLog.html#methodgetMapper">getMapper</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">-&gt;</span><span class="src-id">appendRule</span><span class="src-sym">(&#8192;</span><span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcLogFilterRule.html">ezcLogFilterRule</a></span><span class="src-sym">(&#8192;</span><span class="src-var">$filter</span><span class="src-sym">,&#8192;</span><span class="src-key">new&#8192;</span><span class="src-id"><a href="/zetacomponents/documentation/trunk/EventLogDatabaseTiein/phpdoc/ezcLogDatabaseWriter.html">ezcLogDatabaseWriter</a></span><span class="src-sym">(&#8192;</span><span class="src-str">"audits"&#8192;</span><span class="src-sym">)</span><span class="src-sym">,&#8192;</span><span class="src-id">true&#8192;</span><span class="src-sym">)&#8192;)</span><span class="src-sym">;</span></div></li>
+</ol><p>The audit trails will be stored in the table "audits". See <a href="/zetacomponents/documentation/trunk/EventLogDatabaseTiein/phpdoc/ezcLogDatabaseWriter.html">ezcLogDatabaseWriter</a>  for creating the appropriate tables and setting up the database. See the <a href="ezcLogFilter.html">ezcLogFilter</a>  for more details.</p><p>Use the <a href="ezcLog.html#methodlog">log()</a> method to log messages at the specified writers. This  method expects a: </p><ul><li>Message, contains a single log message.</li><li>Severity, indicates the level of importance.</li><li>Extra attributes (optional).</li></ul>  Although the interpretation of the severity levels are up to the programmer,  the most common interpretations are: <ul><li>DEBUG: Records information about the progress in the program and references
+   source code functions. Knowledge of the source code is needed to interpret
+   this log message.</li><li>INFO: Informative logging at a detailed level. This logging method produces a
+   high level of logging, which is unmanageable on a production environment.
+   Usually INFO logging is only enabled to help by analysing a problem.</li><li>NOTICE: Informative logging at a lower detail level than INFO logging.
+   Only major stages are recorded and is useful to monitor a low volume system.</li><li>WARNING: Something unexpected happened, but did not cause any loss of service.</li><li>ERROR: An error occured, which may cause partial loss of service. Usually the
+   system can recover.</li><li>FATAL: An serious error occured and the system is unlikely to recover.</li><li>SUCCESS_AUDIT: Informative logging about a successful completion of work by
+   a module completed. Useful to trace system changes directly or indirectly
+   done by a user.</li><li>FAILED_AUDIT: Informative logging about an action from a module
+   with a negative result. A failed login will most likely added to this severity.</li></ul>  The next example logs a fatal error and has no extra attributes:  <ol><li><div class="src-line">&#8192;<span class="src-id"><a href="ezcLog.html">ezcLog</a></span><span class="src-sym">::</span><a href="ezcLog.html#methodgetInstance">getInstance</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">-&gt;</span><a href="ezcLog.html#methodlog">log</a><span class="src-sym">(&#8192;</span><span class="src-str">"</span><span class="src-str">Cannot&#8192;open&#8192;ini&#8192;file:&#8192;&lt;<span class="src-var">$file</span>&gt;</span><span class="src-str">"</span><span class="src-sym">,&#8192;</span><span class="src-id"><a href="ezcLog.html">ezcLog</a></span><span class="src-sym">::</span><span class="src-id">FATAL&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol><p>The log message will get by default the category and source: "default". The  default values can be modified by changing, respectively, the properties  $category and $source.</p><p>An example of a Payment checker is as follows:  </p><ol><li><div class="src-line">&#8192;<span class="src-comm">//&#8192;The&#8192;start&#8192;of&#8192;the&#8192;Payment&#8192;module.</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$log&#8192;</span>=&#8192;<span class="src-id"><a href="ezcLog.html">ezcLog</a></span><span class="src-sym">::</span><a href="ezcLog.html#methodgetInstance">getInstance</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$log</span><span class="src-sym">-&gt;</span><span class="src-id">source&#8192;</span>=&#8192;<span class="src-str">"Payment&#8192;checker"</span><span class="src-sym">;&#8192;</span><span class="src-comm">//&#8192;Change&#8192;the&#8192;default&#8192;source.</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$log</span><span class="src-sym">-&gt;</span><a href="ezcLog.html#methodlog">log</a><span class="src-sym">(&#8192;</span><span class="src-str">"Checking&#8192;the&#8192;received&#8192;amount"</span><span class="src-sym">,&#8192;</span><span class="src-id"><a href="ezcLog.html">ezcLog</a></span><span class="src-sym">::</span><span class="src-id">INFO</span><span class="src-sym">,&#8192;</span><span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-str">"shop"&#8192;</span><span class="src-sym">)&#8192;)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-key">if&#8192;</span><span class="src-sym">(&#8192;</span><span class="src-sym">!</span><span class="src-var">$eZPay</span><span class="src-sym">-&gt;</span><span class="src-id">receivedAmount</span><span class="src-sym">(</span><span class="src-sym">)&#8192;</span>!=&#8192;<span class="src-var">$requiredAmount&#8192;</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">{</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-var">$log</span><span class="src-sym">-&gt;</span><a href="ezcLog.html#methodlog">log</a><span class="src-sym">(&#8192;</span><span class="src-str">"Received&#8192;amount:&#8192;&lt;"</span>.<span class="src-var">$eZPay</span><span class="src-sym">-&gt;</span><span class="src-id">receivedAmount</span><span class="src-sym">(</span><span class="src-sym">)</span>.<span class="src-str">"</span><span class="src-str">&gt;&#8192;expected:&#8192;&lt;<span class="src-var">$requiredAmount</span>&gt;.</span><span class="src-str">"</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-id"><a href="ezcLog.html">ezcLog</a></span><span class="src-sym">::</span><span class="src-id">DEBUG</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-str">"category"&#8192;</span>=&gt;&#8192;<span class="src-str">"shop"</span><span class="src-sym">,&#8192;</span><span class="src-str">"file"&#8192;</span>=&gt;&#8192;__FILE__<span class="src-sym">,&#8192;</span><span class="src-str">"line"&#8192;</span>=&gt;&#8192;<span class="src-id">__LINE&#8192;</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-var">$log</span><span class="src-sym">-&gt;</span><a href="ezcLog.html#methodlog">log</a><span class="src-sym">(&#8192;</span><span class="src-str">"Insufficient&#8192;amount."</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-id"><a href="ezcLog.html">ezcLog</a></span><span class="src-sym">::</span><span class="src-id">FAILED_AUDIT</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-str">"UserName"&#8192;</span>=&gt;&#8192;<span class="src-id">getCurrentUser</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">,&#8192;</span><span class="src-id">category&#8192;</span>=&gt;&#8192;<span class="src-str">"Payment"&#8192;</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-sym">)</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-var">$log</span><span class="src-sym">-&gt;</span><a href="ezcLog.html#methodlog">log</a><span class="src-sym">(&#8192;</span><span class="src-str">"</span><span class="src-str">Rollback&#8192;amount&#8192;not&#8192;implemented,&#8192;cannot&#8192;recover,&#8192;ezcLog::FATAL&#8192;);</span></div></li>
+<li><div class="src-line"><span class="src-str">&#8192;&#8192;&#8192;&#8192;&#8192;exit();</span></div></li>
+</ol><p>Sometimes information repeats for specific severities or categories. For example that  for the audit trails an username is required. Convenience methods like:  <a href="ezcLog.html#methodsetSeverityAttributes">setSeverityAttributes()</a> and <a href="ezcLog.html#methodsetSourceAttributes">setSourceAttributes()</a> exist to append  information automatically to the log message.</p><p>The ezcLog class provides a <a href="http://www.php.net/trigger_error">http://www.php.net/trigger_error</a> log handler: <a href="ezcLog.html#methodlogHandler">ezcLog::logHandler()</a>.  Using the trigger_error method makes your code less Log package dependent and  produces less overhead when logging is disabled.</p><p>See the <a href="ezcLog.html#methodlogHandler">ezcLog::logHandler()</a> method for more information about how to set up the  trigger_error functionality.</p><p>See the <a href="/zetacomponents/documentation/trunk/Debug/phpdoc/ezcDebug.html">ezcDebug</a> package for more detailed information about writing DEBUG  messages.</p></div>
+<p>Source for this file: <a href="http://fisheye6.atlassian.com/browse/zetacomponents/trunk/EventLog/src/log.php?r=HEAD">/EventLog/src/log.php</a></p>
+       
+
+
+
+
+  <table><tr><td>
+            <strong>Version:</strong>&#8192;&#8192;
+          </td>
+          <td>//autogentag//</td>
+        </tr></table><a name="sec-const-summary"></a>
+  <h3>Constants</h3>
+  <table class="summary"><tr><td class="right">
+          <a name="const-DEBUG" id=""></a>
+          <code>
+            <a href="#const-DEBUG" title="details" class="const-name-summary">DEBUG</a>
+             =  1
+          </code>
+        </td>
+        <td>
+          Debug severity constant.                  </td>
+      </tr><tr><td class="right">
+          <a name="const-ERROR" id=""></a>
+          <code>
+            <a href="#const-ERROR" title="details" class="const-name-summary">ERROR</a>
+             =  64
+          </code>
+        </td>
+        <td>
+          Error severity constant.                  </td>
+      </tr><tr><td class="right">
+          <a name="const-FAILED_AUDIT" id=""></a>
+          <code>
+            <a href="#const-FAILED_AUDIT" title="details" class="const-name-summary">FAILED_AUDIT</a>
+             =  4
+          </code>
+        </td>
+        <td>
+          Failed audit severity constant.                  </td>
+      </tr><tr><td class="right">
+          <a name="const-FATAL" id=""></a>
+          <code>
+            <a href="#const-FATAL" title="details" class="const-name-summary">FATAL</a>
+             =  128
+          </code>
+        </td>
+        <td>
+          Fatal severity constant.                  </td>
+      </tr><tr><td class="right">
+          <a name="const-INFO" id=""></a>
+          <code>
+            <a href="#const-INFO" title="details" class="const-name-summary">INFO</a>
+             =  8
+          </code>
+        </td>
+        <td>
+          Info severity constant.                  </td>
+      </tr><tr><td class="right">
+          <a name="const-NOTICE" id=""></a>
+          <code>
+            <a href="#const-NOTICE" title="details" class="const-name-summary">NOTICE</a>
+             =  16
+          </code>
+        </td>
+        <td>
+          Notice severity constant.                  </td>
+      </tr><tr><td class="right">
+          <a name="const-SUCCESS_AUDIT" id=""></a>
+          <code>
+            <a href="#const-SUCCESS_AUDIT" title="details" class="const-name-summary">SUCCESS_AUDIT</a>
+             =  2
+          </code>
+        </td>
+        <td>
+          Success audit severity constant.                  </td>
+      </tr><tr><td class="right">
+          <a name="const-WARNING" id=""></a>
+          <code>
+            <a href="#const-WARNING" title="details" class="const-name-summary">WARNING</a>
+             =  32
+          </code>
+        </td>
+        <td>
+          Warning severity constant.                  </td>
+      </tr></table><a name="sec-prop-summary"></a>
+  <h3>Properties</h3>
+  <table class="summary"><tr><td class="right">
+          <a name="prop%24category" id="$category"></a>
+          <a name="prop-%24category" id="$category"></a>
+          <em>string</em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24category" title="details" class="var-name-summary">$category</a>
+                      </code>
+          <br><div style="margin-left: 20px">Definition of the message group. Again the category is related to            the severity. The non audit trails can group the log messages            like: Database (or even the database types), Templates, etc. For            audit trails it makes much sense to categorize the actions. For            example: security, modified content, published content, shop, etc.</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24source" id="$source"></a>
+          <a name="prop-%24source" id="$source"></a>
+          <em>string</em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24source" title="details" class="var-name-summary">$source</a>
+                      </code>
+          <br><div style="margin-left: 20px">Definition of the global location where the log message comes            from.  Some examples are: module, source file, extension, etc. The            source depends also on the severity of the message. For DEBUG            messages is the source file more important whereas for a FATAL            error the module is sufficient.</div>        </td>
+      </tr></table><a name="sec-var-summary"></a>
+  <h3>Member Variables</h3>
+  <table class="summary"><tr><td class="right">
+            <em>protected</em>            <em>mixed</em>          </td>
+          <td>
+            <code>
+              $context
+                          </code>
+            <br><div style="margin-left: 20px">Stores the attributes from the eventTypes and eventSources.</div>            <br><div style="margin-left: 20px"><p>$var ezcLogContext</p></div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            <em><a href="ezcLogFilterSet.html">ezcLogFilterSet</a></em>          </td>
+          <td>
+            <code>
+              $writers
+                          </code>
+            <br><div style="margin-left: 20px">Contains the logic of mapping an incoming log message to the writer.</div>                      </td>
+        </tr></table><a name="sec-method-summary"></a>
+  <h3>Method Summary</h3>
+  <table class="summary"><tr><td class="right">
+            <em>public</em>            static
+                        <em><a href="ezcLog.html">ezcLog</a></em>          </td>
+          <td>
+            <code>
+              <a href="#getInstance"><b>getInstance</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns the instance of the class.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>            static
+                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#logHandler"><b>logHandler</b></a>(
+                                                                                    $errno
+                                                    ,                                     $errstr
+                                                    ,                                     $errfile
+                                                    ,                                     $errline
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">This method can be set as error_handler to log using <a href="http://www.php.net/trigger_error">http://www.php.net/trigger_error</a>.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>            static
+                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#translateSeverityName"><b>translateSeverityName</b></a>(
+                                                                                    $severity
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Translates the severity constant to a string and returns this.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em><a href="ezcLogMapper.html">ezcLogMapper</a></em>          </td>
+          <td>
+            <code>
+              <a href="#getMapper"><b>getMapper</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns an instance of the current ezcLogMapper.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#log"><b>log</b></a>(
+                                                                                    $message
+                                                    ,                                     $severity
+                                                    ,                   [                  $attributes
+                   = array()]                               )
+            </code>
+            <br><div style="margin-left: 20px">Write the message $message with additional information to one or multiple log writers.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#reset"><b>reset</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Resets the log instance to its initial state.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#setDefaults"><b>setDefaults</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Sets the source and category defaults to "default".</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#setMapper"><b>setMapper</b></a>(
+                                                                                    $mapper
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Sets the given ezcLogMapper $mapper as the log message to writer map.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#setSeverityAttributes"><b>setSeverityAttributes</b></a>(
+                                                                                    $severityMask
+                                                    ,                                     $attributes
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Sets the attributes $attributes for a group of severities $severityMask.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#setSourceAttributes"><b>setSourceAttributes</b></a>(
+                                                                                    $sources
+                                                    ,                                     $attributes
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Sets the attributes $attributes for a group of sources $sources.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#throwWriterExceptions"><b>throwWriterExceptions</b></a>(
+                                                                                    $enable
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Enables or disables writer exceptions with the boolean $enable.</div>          </td>
+        </tr></table><a name="sec-methods"></a>
+  <h3>Methods</h3>
+  <a name="method_detail"></a>
+      <a name="methodgetInstance" id="getInstance"><!-- --></a>
+
+    <h4>getInstance</h4>
+
+    <div class="method-signature">
+      static <a href="ezcLog.html">ezcLog</a>
+      getInstance(
+      )
+    </div>
+
+      <p>Returns the instance of the class.</p>      
+      
+      
+      
+      
+      
+            <a name="methodlogHandler" id="logHandler"><!-- --></a>
+
+    <h4>logHandler</h4>
+
+    <div class="method-signature">
+      static void
+      logHandler(
+                                  int
+          $errno
+                            ,           int
+          $errstr
+                            ,           string
+          $errfile
+                            ,           int
+          $errline
+                        )
+    </div>
+
+      <p>This method can be set as error_handler to log using <a href="http://www.php.net/trigger_error">http://www.php.net/trigger_error</a>.</p><div><p>This method can be assigned with the <a href="http://www.php.net/set_error_handler">http://www.php.net/set_error_handler</a> to handle the  trigger_error calls. This method will get the log instance and forward the  message. But includes the following information: </p><ul><li>The file and linenumber are automatically added.</li><li>Source and category can be 'encoded' in the message.</li></ul>  The message format is as follows:  <pre> [ source, category ] Message</pre><p>When one name is given between the brackets, the category will be set and the message has a default source:  </p><pre> [ category ] Message</pre><p>Without any names between the brackets, the default category and source are used:  </p><pre> Message</pre><p>The following example creates manually an error handler and forwards the  ERROR, WARNING and NOTICE severities.  </p><ol><li><div class="src-line">&#8192;<span class="src-key">function&#8192;</span><span class="src-id">myLogHandler</span><span class="src-sym">(</span><span class="src-var">$errno</span><span class="src-sym">,&#8192;</span><span class="src-var">$errstr</span><span class="src-sym">,&#8192;</span><span class="src-var">$errfile</span><span class="src-sym">,&#8192;</span><span class="src-var">$errline</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">{</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-key">switch&#8192;</span><span class="src-sym">(</span><span class="src-var">$errno</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-sym">{</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-key">case&#8192;</span><span class="src-id">E_USER_ERROR</span>:</div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-key">case&#8192;</span><span class="src-id">E_USER_WARNING</span>:</div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-key">case&#8192;</span><span class="src-id">E_USER_NOTICE</span>:</div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-key">if&#8192;</span><span class="src-sym">(&#8192;</span><span class="src-var">$loggingEnabled&#8192;</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-sym">{&#8192;&#8192;&#8192;</span><span class="src-comm">//&#8192;Forward&#8192;the&#8192;message&#8192;to&#8192;the&#8192;log&#8192;handler.</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-id"><a href="ezcLog.html">ezcLog</a></span><span class="src-sym">::</span><span class="src-id">LogHandler</span><span class="src-sym">(&#8192;</span><span class="src-var">$errno</span><span class="src-sym">,&#8192;</span><span class="src-var">$errstr</span><span class="src-sym">,&#8192;</span><span class="src-var">$errfile</span><span class="src-sym">,&#8192;</span><span class="src-var">$errline&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-sym">}</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-key">break</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-key">default</span>:</div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;print<span class="src-sym">(&#8192;</span><span class="src-str">"</span><span class="src-str"><span class="src-var">$errstr</span>&#8192;in&#8192;<span class="src-var">$errfile</span>&#8192;on&#8192;line&#8192;<span class="src-var">$errline</span>\n</span><span class="src-str">"&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-key">break</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-sym">}</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">}</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;Register&#8192;myLogHandler</span></div></li>
+<li><div class="src-line">&#8192;<a href="http://www.php.net/set_error_handler">set_error_handler</a><span class="src-sym">(&#8192;</span><span class="src-str">"myLogHandler"&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;Write&#8192;an&#8192;warning&#8192;to&#8192;the&#8192;log.</span></div></li>
+<li><div class="src-line">&#8192;<a href="http://www.php.net/trigger_error">trigger_error</a><span class="src-sym">(&#8192;</span><span class="src-str">"[paynet,&#8192;transaction]&#8192;Didn't&#8192;get&#8192;a&#8192;callback&#8192;from&#8192;the&#8192;Paynet&#8192;service"</span><span class="src-sym">,&#8192;</span><span class="src-id">E_USER_WARNING&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;Add&#8192;a&#8192;notice.</span></div></li>
+<li><div class="src-line">&#8192;<a href="http://www.php.net/trigger_error">trigger_error</a><span class="src-sym">(&#8192;</span><span class="src-str">"Getting&#8192;paynet&#8192;status&#8192;information"</span><span class="src-sym">,&#8192;</span><span class="src-id">E_USER_NOTICE&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol><p>Notice that the ezcLog component is not loaded at all when the logging is disabled.</p></div>      
+              <h5>Parameters:</h5>
+        <table class="detail"><thead><tr><th>Name</th>
+              <th>Type</th>
+              <th class="desc">Description</th>
+            </tr></thead><tbody><tr><td><code>$errno</code></td>
+                <td><em>int</em></td>
+                <td>
+                                  </td>
+              </tr><tr><td><code>$errstr</code></td>
+                <td><em>int</em></td>
+                <td>
+                                  </td>
+              </tr><tr><td><code>$errfile</code></td>
+                <td><em>string</em></td>
+                <td>
+                                  </td>
+              </tr><tr><td><code>$errline</code></td>
+                <td><em>int</em></td>
+                <td>
+                                  </td>
+              </tr></tbody></table><a name="methodtranslateSeverityName" id="translateSeverityName"><!-- --></a>
+
+    <h4>translateSeverityName</h4>
+
+    <div class="method-signature">
+      static string
+      translateSeverityName(
+                                  int
+          $severity
+                        )
+    </div>
+
+      <p>Translates the severity constant to a string and returns this.</p><div><p>Null is returned when the severity constant is invalid.</p></div>      
+              <h5>Parameters:</h5>
+        <table class="detail"><thead><tr><th>Name</th>
+              <th>Type</th>
+              <th class="desc">Description</th>
+            </tr></thead><tbody><tr><td><code>$severity</code></td>
+                <td><em>int</em></td>
+                <td>
+                                  </td>
+              </tr></tbody></table><a name="methodgetMapper" id="getMapper"><!-- --></a>
+
+    <h4>getMapper</h4>
+
+    <div class="method-signature">
+      <a href="ezcLogMapper.html">ezcLogMapper</a>
+      getMapper(
+      )
+    </div>
+
+    <p>Returns an instance of the current ezcLogMapper.</p>
+    
+        
+
+    
+    
+    
+        <a name="methodlog" id="log"><!-- --></a>
+
+    <h4>log</h4>
+
+    <div class="method-signature">
+      void
+      log(
+                                  string
+          $message
+                            ,           int
+          $severity
+                            ,           [
+          $attributes
+           = array()]              )
+    </div>
+
+    <p>Write the message $message with additional information to one or multiple log writers.</p><div><p>The log message $message, severity $severity, and extra attributes $attributes are sent to  the writers that matches with the <a href="ezcLogFilter.html">ezcLogFilter</a>. The following parameters are  taken in the comparation with the ezcLogFilter: </p><ul><li>$severity: the severity of the log message.</li><li>$attributes[ "source" ]: the source from where the log message comes.</li><li>$attributes[ "category" ]: the category of the log message.</li></ul>  See for more information about filter matching the classes <a href="ezcLog.html">ezcLog</a> and  <a href="ezcLogFilter.html">ezcLogFilter</a>.<p>The message $message describes what happened. The severity $severity is one of the ezcLog constants: </p><ul><li>DEBUG: Records information about the progress in the program and references
+   source code functions. Knowledge of the source code is needed to interpret
+   this log message.</li><li>INFO: Informative logging at a detailed level. This logging method produces a
+   high level of logging, which is unmanageable on a production environment.
+   Usually INFO logging is only enabled to help by analysing a problem.</li><li>NOTICE: Informative logging at a lower detail level than INFO logging.
+   Only major stages are recorded and is useful to monitor a low volume system.</li><li>WARNING: Something unexpected happened, but did not cause any loss of service.</li><li>ERROR: An error occured, which may cause partial loss of service. Usually the
+   system can recover.</li><li>FATAL: An serious error occured and the system is unlikely to recover.</li><li>SUCCESS_AUDIT: Informative logging about a successful completion of work by
+   a module completed. Useful to trace system changes directly or indirectly
+   done by a user.</li><li>FAILED_AUDIT: Informative logging about an action from a module
+   with a negative result. A failed login will most likely added to this severity.</li></ul>  The attributes array $attributes can have one or multiple attributes that will  be added to the log. If source and category are given, they will override the default  source or category given as property to this object. Further more it is up to the  application what to include in the log. It may be useful to add the  file and linenumber to the attributes array. Use the magic PHP constants: __FILE__  and __LINE__  for this purpose. The next example adds an warning to the log.<p></p><ol><li><div class="src-line">&#8192;<span class="src-id"><a href="ezcLog.html">ezcLog</a></span><span class="src-sym">::</span><a href="ezcLog.html#methodgetInstance">getInstance</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">-&gt;</span><span class="src-id">source&#8192;</span>=&#8192;<span class="src-str">"templateEngine"</span><span class="src-sym">;&#8192;</span><span class="src-comm">//&#8192;Set&#8192;the&#8192;default&#8192;source.</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-id"><a href="ezcLog.html">ezcLog</a></span><span class="src-sym">::</span><a href="ezcLog.html#methodgetInstance">getInstance</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">-&gt;</span><a href="ezcLog.html#methodlog">log</a><span class="src-sym">(&#8192;</span><span class="src-str">"</span><span class="src-str">ezcPersistentObject&#8192;&lt;<span class="src-var">$obj</span>&gt;&#8192;does&#8192;not&#8192;exist.</span><span class="src-str">"</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-id"><a href="ezcLog.html">ezcLog</a></span><span class="src-sym">::</span><span class="src-id">WARNING</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-str">"category"&#8192;</span>=&gt;&#8192;<span class="src-str">"Database"</span><span class="src-sym">,&#8192;</span><span class="src-str">"line"&#8192;</span>=&gt;&#8192;__LINE__<span class="src-sym">,&#8192;</span><span class="src-str">"file"&#8192;</span>=&gt;&#8192;__FILE__<span class="src-sym">,&#8192;</span><span class="src-str">"code"&#8192;</span>=&gt;&#8192;<span class="src-num">123&#8192;</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol><p>The methods <a href="ezcLog.html#methodsetSeverityAttributes">setSeverityAttributes()</a> and <a href="ezcLog.html#methodsetSourceAttributes">setSourceAttributes()</a> can automatically  add attributes to log messages based on, respectively, the severity and source.</p><p>See also <a href="ezcLog.html#methodlogHandler">logHandler()</a> on how to use <a href="http://www.php.net/trigger_error">http://www.php.net/trigger_error</a> to write log messages.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$message</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$severity</code></td>
+              <td><em>int</em></td>
+              <td>
+                                  One of the following severity constants:                        DEBUG, SUCCES_AUDIT, FAIL_AUDIT, INFO, NOTICE, WARNING, ERROR, or FATAL.
+                              </td>
+            </tr><tr><td><code>$attributes</code></td>
+              <td><em>array(string=&gt;string)</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcLogWriterException.html">ezcLogWriterException</a></code></td>
+              <td>
+                                  if <a href="ezcLog.html#methodthrowWriterExceptions">throwWriterExceptions</a> are enabled and a log entry could not be written.
+                              </td>
+            </tr></tbody></table><a name="methodreset" id="reset"><!-- --></a>
+
+    <h4>reset</h4>
+
+    <div class="method-signature">
+      void
+      reset(
+      )
+    </div>
+
+    <p>Resets the log instance to its initial state.</p><div><p>All sourceAttributes, severityAttributes, and writers will be removed.  The default source and category are also reset.</p></div>
+    
+        
+
+    
+    
+    
+        <a name="methodsetDefaults" id="setDefaults"><!-- --></a>
+
+    <h4>setDefaults</h4>
+
+    <div class="method-signature">
+      void
+      setDefaults(
+      )
+    </div>
+
+    <p>Sets the source and category defaults to "default".</p>
+    
+        
+
+    
+    
+    
+        <a name="methodsetMapper" id="setMapper"><!-- --></a>
+
+    <h4>setMapper</h4>
+
+    <div class="method-signature">
+      void
+      setMapper(
+                                  <a href="ezcLogMapper.html">ezcLogMapper</a>
+          $mapper
+                        )
+    </div>
+
+    <p>Sets the given ezcLogMapper $mapper as the log message to writer map.</p><div><p>By default the ezcLogFilterSet is the default writer map. The default  ezcLogMapper can be replaced with this method.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$mapper</code></td>
+              <td><em><a href="ezcLogMapper.html">ezcLogMapper</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodsetSeverityAttributes" id="setSeverityAttributes"><!-- --></a>
+
+    <h4>setSeverityAttributes</h4>
+
+    <div class="method-signature">
+      void
+      setSeverityAttributes(
+                                  integer
+          $severityMask
+                            ,           array(string=&gt;string)
+          $attributes
+                        )
+    </div>
+
+    <p>Sets the attributes $attributes for a group of severities $severityMask.</p><div><p>The severities are specified with a bit mask. These attributes will be  added to the log message when the log severity is the same as specified  here.</p><p>Example:  </p><ol><li><div class="src-line">&#8192;<span class="src-id"><a href="ezcLog.html">ezcLog</a></span><span class="src-sym">::</span><a href="ezcLog.html#methodgetInstance">getInstance</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">-&gt;</span><a href="ezcLog.html#methodsetSeverityAttributes">setSeverityAttributes</a><span class="src-sym">(</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-id"><a href="ezcLog.html">ezcLog</a></span><span class="src-sym">::</span><span class="src-id">SUCCESS_AUDIT&#8192;</span>|&#8192;<span class="src-id"><a href="ezcLog.html">ezcLog</a></span><span class="src-sym">::</span><span class="src-id">FAILED_AUDIT</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-str">"username"&#8192;</span>=&gt;&#8192;<span class="src-str">"Jan&#8192;K.&#8192;Doodle"&#8192;</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol><p>Every log message that has the severity SUCCESS_AUDIT or FAILED_AUDIT  includes the user name: "Jan K. Doodle".</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$severityMask</code></td>
+              <td><em>integer</em></td>
+              <td>
+                                  Multiple severities are specified with a logic-or.
+                              </td>
+            </tr><tr><td><code>$attributes</code></td>
+              <td><em>array(string=&gt;string)</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodsetSourceAttributes" id="setSourceAttributes"><!-- --></a>
+
+    <h4>setSourceAttributes</h4>
+
+    <div class="method-signature">
+      void
+      setSourceAttributes(
+                                  array(string)
+          $sources
+                            ,           array(string=&gt;string)
+          $attributes
+                        )
+    </div>
+
+    <p>Sets the attributes $attributes for a group of sources $sources.</p><div><p>The sources are specified in an array. These attributes will be added to the  log message when it matches with the given $sources.</p><p>Example:  </p><ol><li><div class="src-line">&#8192;<span class="src-id"><a href="ezcLog.html">ezcLog</a></span><span class="src-sym">::</span><a href="ezcLog.html#methodgetInstance">getInstance</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">-&gt;</span><a href="ezcLog.html#methodsetSourceAttributes">setSourceAttributes</a><span class="src-sym">(</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-str">"Paynet"</span><span class="src-sym">,&#8192;</span><span class="src-str">"Bibit"</span><span class="src-sym">,&#8192;</span><span class="src-str">"Paypal"&#8192;</span><span class="src-sym">)</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-str">"MerchantID"&#8192;</span>=&gt;&#8192;<span class="src-var">$merchantID&#8192;</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol><p>Every log message that comes from the payment module: Paynet, Bibit, or Paypal  includes the Merchant ID.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$sources</code></td>
+              <td><em>array(string)</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$attributes</code></td>
+              <td><em>array(string=&gt;string)</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodthrowWriterExceptions" id="throwWriterExceptions"><!-- --></a>
+
+    <h4>throwWriterExceptions</h4>
+
+    <div class="method-signature">
+      void
+      throwWriterExceptions(
+                                  bool
+          $enable
+                        )
+    </div>
+
+    <p>Enables or disables writer exceptions with the boolean $enable.</p><div><p>Typically you want to have exceptions enabled while developing your application  in order to catch potential problems. A live server however, should not throw  a deadly exception when a relatively unimportant debug message could not be written to  the log file. For these setups you can disable writer exceptions.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$enable</code></td>
+              <td><em>bool</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><div class="credit">
+      Documentation generated by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+    </div>
+  </div>
+  
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

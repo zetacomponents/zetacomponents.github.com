@@ -1,0 +1,864 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="PHP, apache, components, framework, quality" />
+	<meta name="author" content="dotxp" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Wed, 04 Aug 2010 13:07:42 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="ezcGraphAxisLabelRenderer.html" />
+	<meta name="DC.creator" content="dotxp" />
+	<meta name="DC.date" content="Wed, 04 Aug 2010 13:07:42 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/Graph/phpdoc/ezcGraphAxisLabelRenderer.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/Graph/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/trunk/Graph/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Graph/gallery.html" title="Gallery ">Gallery </a>
+	</li>
+
+</ul>
+
+		
+  <div class="phpdoc">
+    <h2>Apache Zeta Components Manual :: Docs For Class ezcGraphAxisLabelRenderer</h2>
+
+                  <h3>Graph::ezcGraphAxisLabelRenderer</h3>
+    
+<a name="sec-description"></a>
+<h3>Class ezcGraphAxisLabelRenderer</h3>
+
+<p>Abstract class to render labels and grids on axis. Will be extended to  make it possible using different algorithms for rendering axis labels.</p><div><p>Implements basic methods to render the grid and steps on a axis.</p></div>
+<p>Source for this file: <a href="http://fisheye6.atlassian.com/browse/zetacomponents/trunk/Graph/src/interfaces/axis_label_renderer.php?r=HEAD">/Graph/src/interfaces/axis_label_renderer.php</a></p>
+       
+
+
+<pre><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseOptions.html">ezcBaseOptions</a>
+   |
+   --ezcGraphAxisLabelRenderer</pre>
+
+
+  <table><tr><td>
+            <strong>Version:</strong>&#8192;&#8192;
+          </td>
+          <td>//autogentag//</td>
+        </tr></table><a name="sec-descendants"></a>
+  <h3>Descendants</h3>
+  <table class="detail"><thead><tr><th>Child Class</th>
+        <th>Description</th>
+      </tr></thead><tbody><tr><td><a href="ezcGraphAxisRotatedLabelRenderer.html">ezcGraphAxisRotatedLabelRenderer</a></td>          <td>
+                          Can render axis labels rotated, so that more axis labels fit on one axis.
+                      </td>
+        </tr><tr><td><a href="ezcGraphAxisNoLabelRenderer.html">ezcGraphAxisNoLabelRenderer</a></td>          <td>
+                          Omits axis labels, steps and grid.
+                      </td>
+        </tr><tr><td><a href="ezcGraphAxisExactLabelRenderer.html">ezcGraphAxisExactLabelRenderer</a></td>          <td>
+                          Renders axis labels like known from charts drawn in analysis
+                      </td>
+        </tr><tr><td><a href="ezcGraphAxisRadarLabelRenderer.html">ezcGraphAxisRadarLabelRenderer</a></td>          <td>
+                          Renders axis labels and grid optimized for radar charts. May cause  unexpected results when used with other chart types.
+                      </td>
+        </tr><tr><td><a href="ezcGraphAxisBoxedLabelRenderer.html">ezcGraphAxisBoxedLabelRenderer</a></td>          <td>
+                          Renders axis labels centered between two axis steps like normally used for  bar charts. Used with other chart types this axis label renderer may cause  unexpected results. You may use this renderer by assigning it to one of the  charts axis.
+                      </td>
+        </tr><tr><td><a href="ezcGraphAxisCenteredLabelRenderer.html">ezcGraphAxisCenteredLabelRenderer</a></td>          <td>
+                          Renders axis labels centered below the axis steps.
+                      </td>
+        </tr></tbody></table><a name="sec-prop-summary"></a>
+  <h3>Properties</h3>
+  <table class="summary"><tr><td class="right">
+          <a name="prop%24innerStep" id="$innerStep"></a>
+          <a name="prop-%24innerStep" id="$innerStep"></a>
+          <em>bool</em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24innerStep" title="details" class="var-name-summary">$innerStep</a>
+                      </code>
+          <br><div style="margin-left: 20px">Indicates if steps are shown on the inner side of axis.</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24labelPadding" id="$labelPadding"></a>
+          <a name="prop-%24labelPadding" id="$labelPadding"></a>
+          <em>int</em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24labelPadding" title="details" class="var-name-summary">$labelPadding</a>
+                      </code>
+          <br><div style="margin-left: 20px">Padding of labels.</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24majorStepCount" id="$majorStepCount"></a>
+          <a name="prop-%24majorStepCount" id="$majorStepCount"></a>
+          <em>bool</em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24majorStepCount" title="details" class="var-name-summary">$majorStepCount</a>
+                      </code>
+          <br><div style="margin-left: 20px">Count of major steps.</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24majorStepSize" id="$majorStepSize"></a>
+          <a name="prop-%24majorStepSize" id="$majorStepSize"></a>
+          <em>int</em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24majorStepSize" title="details" class="var-name-summary">$majorStepSize</a>
+                      </code>
+          <br><div style="margin-left: 20px">Size of major steps.</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24minorStepCount" id="$minorStepCount"></a>
+          <a name="prop-%24minorStepCount" id="$minorStepCount"></a>
+          <em>bool</em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24minorStepCount" title="details" class="var-name-summary">$minorStepCount</a>
+                      </code>
+          <br><div style="margin-left: 20px">Count of minor steps.</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24minorStepSize" id="$minorStepSize"></a>
+          <a name="prop-%24minorStepSize" id="$minorStepSize"></a>
+          <em>int</em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24minorStepSize" title="details" class="var-name-summary">$minorStepSize</a>
+                      </code>
+          <br><div style="margin-left: 20px">Size of minor steps.</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24outerGrid" id="$outerGrid"></a>
+          <a name="prop-%24outerGrid" id="$outerGrid"></a>
+          <em>bool</em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24outerGrid" title="details" class="var-name-summary">$outerGrid</a>
+                      </code>
+          <br><div style="margin-left: 20px">Indicates if the grid is shown on the outer side of axis.</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24outerStep" id="$outerStep"></a>
+          <a name="prop-%24outerStep" id="$outerStep"></a>
+          <em>bool</em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24outerStep" title="details" class="var-name-summary">$outerStep</a>
+                      </code>
+          <br><div style="margin-left: 20px">Indicates if steps are shown on the outer side of axis.</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24showLables" id="$showLables"></a>
+          <a name="prop-%24showLables" id="$showLables"></a>
+          <em>bool</em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24showLables" title="details" class="var-name-summary">$showLables</a>
+                      </code>
+          <br><div style="margin-left: 20px">Indicates if the labels should be shown</div>        </td>
+      </tr></table><a name="sec-var-summary"></a>
+  <h3>Member Variables</h3>
+  <table class="summary"><tr><td class="right">
+            <em>protected</em>            <em><a href="ezcGraphDriver.html">ezcGraphDriver</a></em>          </td>
+          <td>
+            <code>
+              $driver
+                          </code>
+            <br><div style="margin-left: 20px">Driver to render axis labels</div>                      </td>
+        </tr></table><h3>Inherited Member Variables</h3>
+  <table class="summary"><thead><tr><th colspan="2">
+            From <span class="classname"><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseOptions.html">ezcBaseOptions</a></span>         
+          </th>
+        </tr></thead><tbody><tr><td class="right">
+              <em>protected</em>                          </td>
+            <td>
+              <code><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseOptions.html#var%24properties">ezcBaseOptions::$properties</a></code>
+              
+            </td>
+          </tr></tbody></table><a name="sec-method-summary"></a>
+  <h3>Method Summary</h3>
+  <table class="summary"><tr><td class="right">
+            <em>public</em>                        <em>mixed</em>          </td>
+          <td>
+            <code>
+              <a href="#determineLineCuttingPoint"><b>determineLineCuttingPoint</b></a>(
+                                                                                    $aStart
+                                                    ,                                     $aDir
+                                                    ,                                     $bStart
+                                                    ,                                     $bDir
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Checks for the cutting point of two lines.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#drawGrid"><b>drawGrid</b></a>(
+                                                                                    $renderer
+                                                    ,                                     $boundings
+                                                    ,                                     $position
+                                                    ,                                     $direction
+                                                    ,                                     $color
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Draw grid</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#drawNonRectangularGrid"><b>drawNonRectangularGrid</b></a>(
+                                                                                    $renderer
+                                                    ,                                     $boundings
+                                                    ,                                     $position
+                                                    ,                                     $direction
+                                                    ,                                     $color
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Draw non-rectangular grid lines grid</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#drawRectangularGrid"><b>drawRectangularGrid</b></a>(
+                                                                                    $renderer
+                                                    ,                                     $boundings
+                                                    ,                                     $position
+                                                    ,                                     $direction
+                                                    ,                                     $color
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Draw rectangular grid</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#drawStep"><b>drawStep</b></a>(
+                                                                                    $renderer
+                                                    ,                                     $position
+                                                    ,                                     $direction
+                                                    ,                                     $axisPosition
+                                                    ,                                     $size
+                                                    ,                                     $color
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Draw single step on a axis</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>array</em>          </td>
+          <td>
+            <code>
+              <a href="#getAxisSpace"><b>getAxisSpace</b></a>(
+                                                                                    $renderer
+                                                    ,                                     $boundings
+                                                    ,                                     $axis
+                                                    ,                                     $innerBoundings
+                                                    ,                                     &amp;$gridBoundings
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Get axis space values</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>ezcGraphBoundings</em>          </td>
+          <td>
+            <code>
+              <a href="#modifyChartBoundings"><b>modifyChartBoundings</b></a>(
+                                                                                    $boundings
+                                                    ,                                     $direction
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Modify chart boundings</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em><a href="ezcGraphCoordinate.html">ezcGraphCoordinate</a></em>          </td>
+          <td>
+            <code>
+              <a href="#modifyChartDataPosition"><b>modifyChartDataPosition</b></a>(
+                                                                                    $coordinate
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Modify chart data position</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>            abstract            <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#renderLabels"><b>renderLabels</b></a>(
+                                                                                    $renderer
+                                                    ,                                     $boundings
+                                                    ,                                     $start
+                                                    ,                                     $end
+                                                    ,                                     $axis
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Render Axis labels</div>          </td>
+        </tr></table><h3>Inherited Methods</h3>
+  <table class="summary"><thead><tr><th colspan="2">
+            From <span class="classname"><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseOptions.html">ezcBaseOptions</a></span>
+          </th>
+        </tr></thead><tbody><tr><td class="right">
+              <em>public</em>                                          <em>ezcBaseOptions</em>            </td>
+            <td>
+              <code><b><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseOptions.html#method__construct">ezcBaseOptions::__construct()</a></b></code>
+              <br><div style="margin-left: 20px">Construct a new options object.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseOptions.html#methodmerge">ezcBaseOptions::merge()</a></b></code>
+              <br><div style="margin-left: 20px">Merge an array into the actual options object.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>bool</em>            </td>
+            <td>
+              <code><b><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseOptions.html#methodoffsetExists">ezcBaseOptions::offsetExists()</a></b></code>
+              <br><div style="margin-left: 20px">Returns if an option exists.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>mixed</em>            </td>
+            <td>
+              <code><b><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseOptions.html#methodoffsetGet">ezcBaseOptions::offsetGet()</a></b></code>
+              <br><div style="margin-left: 20px">Returns an option value.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseOptions.html#methodoffsetSet">ezcBaseOptions::offsetSet()</a></b></code>
+              <br><div style="margin-left: 20px">Set an option.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseOptions.html#methodoffsetUnset">ezcBaseOptions::offsetUnset()</a></b></code>
+              <br><div style="margin-left: 20px">Unset an option.</div>                          </td>
+          </tr></tbody></table><a name="sec-methods"></a>
+  <h3>Methods</h3>
+  <a name="method_detail"></a>
+                  
+      <a name="methoddetermineLineCuttingPoint" id="determineLineCuttingPoint"><!-- --></a>
+
+    <h4>determineLineCuttingPoint</h4>
+
+    <div class="method-signature">
+      mixed
+      determineLineCuttingPoint(
+                                  <a href="ezcGraphCoordinate.html">ezcGraphCoordinate</a>
+          $aStart
+                            ,           <a href="ezcGraphCoordinate.html">ezcGraphCoordinate</a>
+          $aDir
+                            ,           <a href="ezcGraphCoordinate.html">ezcGraphCoordinate</a>
+          $bStart
+                            ,           <a href="ezcGraphCoordinate.html">ezcGraphCoordinate</a>
+          $bDir
+                        )
+    </div>
+
+    <p>Checks for the cutting point of two lines.</p><div><p>The lines are given by a start position and the direction of the line,  both as instances of <a href="ezcGraphCoordinate.html">ezcGraphCoordinate</a>. If no cutting point  could be calculated, because the lines are parallel the function will  return false. Otherwise the factor returned can be used to calculate the  cutting point using the following equatation:   point = $aStart + $factor * $aDir;</p><p>We return the factor instead of the resulting point because it can be  easily determined from the factor if the cutting point is in "behind"  the line starting point, or if the distance to the cutting point is  bigger then the direction vector is long ( $factor &gt; 1 ).</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$aStart</code></td>
+              <td><em><a href="ezcGraphCoordinate.html">ezcGraphCoordinate</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$aDir</code></td>
+              <td><em><a href="ezcGraphCoordinate.html">ezcGraphCoordinate</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$bStart</code></td>
+              <td><em><a href="ezcGraphCoordinate.html">ezcGraphCoordinate</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$bDir</code></td>
+              <td><em><a href="ezcGraphCoordinate.html">ezcGraphCoordinate</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methoddrawGrid" id="drawGrid"><!-- --></a>
+
+    <h4>drawGrid</h4>
+
+    <div class="method-signature">
+      void
+      drawGrid(
+                                  <a href="ezcGraphRenderer.html">ezcGraphRenderer</a>
+          $renderer
+                            ,           
+          $boundings
+                            ,           <a href="ezcGraphCoordinate.html">ezcGraphCoordinate</a>
+          $position
+                            ,           <a href="ezcGraphCoordinate.html">ezcGraphCoordinate</a>
+          $direction
+                            ,           <a href="ezcGraphColor.html">ezcGraphColor</a>
+          $color
+                        )
+    </div>
+
+    <p>Draw grid</p><div><p>Draws a grid line at the current position</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$renderer</code></td>
+              <td><em><a href="ezcGraphRenderer.html">ezcGraphRenderer</a></em></td>
+              <td>
+                                  Renderer to draw the grid with
+                              </td>
+            </tr><tr><td><code>$boundings</code></td>
+              <td><em>ezcGraphBoundings</em></td>
+              <td>
+                                  Boundings of axis
+                              </td>
+            </tr><tr><td><code>$position</code></td>
+              <td><em><a href="ezcGraphCoordinate.html">ezcGraphCoordinate</a></em></td>
+              <td>
+                                  Position of step
+                              </td>
+            </tr><tr><td><code>$direction</code></td>
+              <td><em><a href="ezcGraphCoordinate.html">ezcGraphCoordinate</a></em></td>
+              <td>
+                                  Direction of axis
+                              </td>
+            </tr><tr><td><code>$color</code></td>
+              <td><em><a href="ezcGraphColor.html">ezcGraphColor</a></em></td>
+              <td>
+                                  Color of axis
+                              </td>
+            </tr></tbody></table><h5>Redefined in descendants as:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcGraphAxisRadarLabelRenderer.html#methoddrawGrid">ezcGraphAxisRadarLabelRenderer::drawGrid()</a></code></td>
+              <td>
+                Draw grid&#8192;
+              </td>
+            </tr></tbody></table><a name="methoddrawNonRectangularGrid" id="drawNonRectangularGrid"><!-- --></a>
+
+    <h4>drawNonRectangularGrid</h4>
+
+    <div class="method-signature">
+      void
+      drawNonRectangularGrid(
+                                  <a href="ezcGraphRenderer.html">ezcGraphRenderer</a>
+          $renderer
+                            ,           
+          $boundings
+                            ,           <a href="ezcGraphCoordinate.html">ezcGraphCoordinate</a>
+          $position
+                            ,           <a href="ezcGraphCoordinate.html">ezcGraphCoordinate</a>
+          $direction
+                            ,           <a href="ezcGraphColor.html">ezcGraphColor</a>
+          $color
+                        )
+    </div>
+
+    <p>Draw non-rectangular grid lines grid</p><div><p>Draws a grid line at the current position, for non-rectangular axis.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$renderer</code></td>
+              <td><em><a href="ezcGraphRenderer.html">ezcGraphRenderer</a></em></td>
+              <td>
+                                  Renderer to draw the grid with
+                              </td>
+            </tr><tr><td><code>$boundings</code></td>
+              <td><em>ezcGraphBoundings</em></td>
+              <td>
+                                  Boundings of axis
+                              </td>
+            </tr><tr><td><code>$position</code></td>
+              <td><em><a href="ezcGraphCoordinate.html">ezcGraphCoordinate</a></em></td>
+              <td>
+                                  Position of step
+                              </td>
+            </tr><tr><td><code>$direction</code></td>
+              <td><em><a href="ezcGraphCoordinate.html">ezcGraphCoordinate</a></em></td>
+              <td>
+                                  Direction of axis
+                              </td>
+            </tr><tr><td><code>$color</code></td>
+              <td><em><a href="ezcGraphColor.html">ezcGraphColor</a></em></td>
+              <td>
+                                  Color of axis
+                              </td>
+            </tr></tbody></table><a name="methoddrawRectangularGrid" id="drawRectangularGrid"><!-- --></a>
+
+    <h4>drawRectangularGrid</h4>
+
+    <div class="method-signature">
+      void
+      drawRectangularGrid(
+                                  <a href="ezcGraphRenderer.html">ezcGraphRenderer</a>
+          $renderer
+                            ,           
+          $boundings
+                            ,           <a href="ezcGraphCoordinate.html">ezcGraphCoordinate</a>
+          $position
+                            ,           <a href="ezcGraphCoordinate.html">ezcGraphCoordinate</a>
+          $direction
+                            ,           <a href="ezcGraphColor.html">ezcGraphColor</a>
+          $color
+                        )
+    </div>
+
+    <p>Draw rectangular grid</p><div><p>Draws a grid line at the current position for rectangular directed axis.</p><p>Method special for rectangularly directed axis to minimize the floating  point calculation inaccuracies. Those are not necessary for rectangles,  while for non-rectangular directed axis.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$renderer</code></td>
+              <td><em><a href="ezcGraphRenderer.html">ezcGraphRenderer</a></em></td>
+              <td>
+                                  Renderer to draw the grid with
+                              </td>
+            </tr><tr><td><code>$boundings</code></td>
+              <td><em>ezcGraphBoundings</em></td>
+              <td>
+                                  Boundings of axis
+                              </td>
+            </tr><tr><td><code>$position</code></td>
+              <td><em><a href="ezcGraphCoordinate.html">ezcGraphCoordinate</a></em></td>
+              <td>
+                                  Position of step
+                              </td>
+            </tr><tr><td><code>$direction</code></td>
+              <td><em><a href="ezcGraphCoordinate.html">ezcGraphCoordinate</a></em></td>
+              <td>
+                                  Direction of axis
+                              </td>
+            </tr><tr><td><code>$color</code></td>
+              <td><em><a href="ezcGraphColor.html">ezcGraphColor</a></em></td>
+              <td>
+                                  Color of axis
+                              </td>
+            </tr></tbody></table><a name="methoddrawStep" id="drawStep"><!-- --></a>
+
+    <h4>drawStep</h4>
+
+    <div class="method-signature">
+      void
+      drawStep(
+                                  <a href="ezcGraphRenderer.html">ezcGraphRenderer</a>
+          $renderer
+                            ,           <a href="ezcGraphCoordinate.html">ezcGraphCoordinate</a>
+          $position
+                            ,           <a href="ezcGraphCoordinate.html">ezcGraphCoordinate</a>
+          $direction
+                            ,           int
+          $axisPosition
+                            ,           int
+          $size
+                            ,           <a href="ezcGraphColor.html">ezcGraphColor</a>
+          $color
+                        )
+    </div>
+
+    <p>Draw single step on a axis</p><div><p>Draws a step on a axis at the current position</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$renderer</code></td>
+              <td><em><a href="ezcGraphRenderer.html">ezcGraphRenderer</a></em></td>
+              <td>
+                                  Renderer to draw the step with
+                              </td>
+            </tr><tr><td><code>$position</code></td>
+              <td><em><a href="ezcGraphCoordinate.html">ezcGraphCoordinate</a></em></td>
+              <td>
+                                  Position of step
+                              </td>
+            </tr><tr><td><code>$direction</code></td>
+              <td><em><a href="ezcGraphCoordinate.html">ezcGraphCoordinate</a></em></td>
+              <td>
+                                  Direction of axis
+                              </td>
+            </tr><tr><td><code>$axisPosition</code></td>
+              <td><em>int</em></td>
+              <td>
+                                  Position of axis
+                              </td>
+            </tr><tr><td><code>$size</code></td>
+              <td><em>int</em></td>
+              <td>
+                                  Step size
+                              </td>
+            </tr><tr><td><code>$color</code></td>
+              <td><em><a href="ezcGraphColor.html">ezcGraphColor</a></em></td>
+              <td>
+                                  Color of axis
+                              </td>
+            </tr></tbody></table><a name="methodgetAxisSpace" id="getAxisSpace"><!-- --></a>
+
+    <h4>getAxisSpace</h4>
+
+    <div class="method-signature">
+      array
+      getAxisSpace(
+                                  <a href="ezcGraphRenderer.html">ezcGraphRenderer</a>
+          $renderer
+                            ,           
+          $boundings
+                            ,           <a href="ezcGraphChartElementAxis.html">ezcGraphChartElementAxis</a>
+          $axis
+                            ,           mixed
+          $innerBoundings
+                            ,           
+          &amp;$gridBoundings
+                        )
+    </div>
+
+    <p>Get axis space values</p><div><p>Get axis space values, depending on passed parameters. If  $innerBoundings is given it will be used to caclulat the axis spaces  available for label rendering. If not given the legacy method will be  used, which uses the xAxisSpace and yAxisSpace values calcualted by the  renderer.</p><p>Returns an array( $xSpace, $ySpace ), containing the irespective size in  pixels. Additionally calculates the grid boundings passed by reference.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$renderer</code></td>
+              <td><em><a href="ezcGraphRenderer.html">ezcGraphRenderer</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$boundings</code></td>
+              <td><em>ezcGraphBoundings</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$innerBoundings</code></td>
+              <td><em>mixed</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$axis</code></td>
+              <td><em><a href="ezcGraphChartElementAxis.html">ezcGraphChartElementAxis</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>&amp;$gridBoundings</code></td>
+              <td><em></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodmodifyChartBoundings" id="modifyChartBoundings"><!-- --></a>
+
+    <h4>modifyChartBoundings</h4>
+
+    <div class="method-signature">
+      ezcGraphBoundings
+      modifyChartBoundings(
+                                  
+          $boundings
+                            ,           <a href="ezcGraphCoordinate.html">ezcGraphCoordinate</a>
+          $direction
+                        )
+    </div>
+
+    <p>Modify chart boundings</p><div><p>Optionally modify boundings of chart data</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$boundings</code></td>
+              <td><em>ezcGraphBoundings</em></td>
+              <td>
+                                  Current boundings of chart
+                              </td>
+            </tr><tr><td><code>$direction</code></td>
+              <td><em><a href="ezcGraphCoordinate.html">ezcGraphCoordinate</a></em></td>
+              <td>
+                                  Direction of the current axis
+                              </td>
+            </tr></tbody></table><a name="methodmodifyChartDataPosition" id="modifyChartDataPosition"><!-- --></a>
+
+    <h4>modifyChartDataPosition</h4>
+
+    <div class="method-signature">
+      <a href="ezcGraphCoordinate.html">ezcGraphCoordinate</a>
+      modifyChartDataPosition(
+                                  <a href="ezcGraphCoordinate.html">ezcGraphCoordinate</a>
+          $coordinate
+                        )
+    </div>
+
+    <p>Modify chart data position</p><div><p>Optionally additionally modify the coodinate of a data point</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$coordinate</code></td>
+              <td><em><a href="ezcGraphCoordinate.html">ezcGraphCoordinate</a></em></td>
+              <td>
+                                  Data point coordinate
+                              </td>
+            </tr></tbody></table><h5>Redefined in descendants as:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcGraphAxisRotatedLabelRenderer.html#methodmodifyChartDataPosition">ezcGraphAxisRotatedLabelRenderer::modifyChartDataPosition()</a></code></td>
+              <td>
+                Modify chart data position&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcGraphAxisRotatedBoxedLabelRenderer.html#methodmodifyChartDataPosition">ezcGraphAxisRotatedBoxedLabelRenderer::modifyChartDataPosition()</a></code></td>
+              <td>
+                Modify chart data position&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcGraphAxisBoxedLabelRenderer.html#methodmodifyChartDataPosition">ezcGraphAxisBoxedLabelRenderer::modifyChartDataPosition()</a></code></td>
+              <td>
+                Modify chart data position&#8192;
+              </td>
+            </tr></tbody></table><a name="methodrenderLabels" id="renderLabels"><!-- --></a>
+
+    <h4>renderLabels</h4>
+
+    <div class="method-signature">
+      void
+      renderLabels(
+                                  <a href="ezcGraphRenderer.html">ezcGraphRenderer</a>
+          $renderer
+                            ,           
+          $boundings
+                            ,           <a href="ezcGraphCoordinate.html">ezcGraphCoordinate</a>
+          $start
+                            ,           <a href="ezcGraphCoordinate.html">ezcGraphCoordinate</a>
+          $end
+                            ,           <a href="ezcGraphChartElementAxis.html">ezcGraphChartElementAxis</a>
+          $axis
+                        )
+    </div>
+
+    <p>Render Axis labels</p><div><p>Render labels for an axis.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$renderer</code></td>
+              <td><em><a href="ezcGraphRenderer.html">ezcGraphRenderer</a></em></td>
+              <td>
+                                  Renderer used to draw the chart
+                              </td>
+            </tr><tr><td><code>$boundings</code></td>
+              <td><em>ezcGraphBoundings</em></td>
+              <td>
+                                  Boundings of the axis
+                              </td>
+            </tr><tr><td><code>$start</code></td>
+              <td><em><a href="ezcGraphCoordinate.html">ezcGraphCoordinate</a></em></td>
+              <td>
+                                  Axis starting point
+                              </td>
+            </tr><tr><td><code>$end</code></td>
+              <td><em><a href="ezcGraphCoordinate.html">ezcGraphCoordinate</a></em></td>
+              <td>
+                                  Axis ending point
+                              </td>
+            </tr><tr><td><code>$axis</code></td>
+              <td><em><a href="ezcGraphChartElementAxis.html">ezcGraphChartElementAxis</a></em></td>
+              <td>
+                                  Axis instance
+                              </td>
+            </tr></tbody></table><h5>Redefined in descendants as:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcGraphAxisRotatedLabelRenderer.html#methodrenderLabels">ezcGraphAxisRotatedLabelRenderer::renderLabels()</a></code></td>
+              <td>
+                Render Axis labels&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcGraphAxisRotatedBoxedLabelRenderer.html#methodrenderLabels">ezcGraphAxisRotatedBoxedLabelRenderer::renderLabels()</a></code></td>
+              <td>
+                Render Axis labels&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcGraphAxisNoLabelRenderer.html#methodrenderLabels">ezcGraphAxisNoLabelRenderer::renderLabels()</a></code></td>
+              <td>
+                Render Axis labels&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcGraphAxisExactLabelRenderer.html#methodrenderLabels">ezcGraphAxisExactLabelRenderer::renderLabels()</a></code></td>
+              <td>
+                Render Axis labels&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcGraphAxisRadarLabelRenderer.html#methodrenderLabels">ezcGraphAxisRadarLabelRenderer::renderLabels()</a></code></td>
+              <td>
+                Render Axis labels&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcGraphAxisBoxedLabelRenderer.html#methodrenderLabels">ezcGraphAxisBoxedLabelRenderer::renderLabels()</a></code></td>
+              <td>
+                Render Axis labels&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcGraphAxisCenteredLabelRenderer.html#methodrenderLabels">ezcGraphAxisCenteredLabelRenderer::renderLabels()</a></code></td>
+              <td>
+                Render Axis labels&#8192;
+              </td>
+            </tr></tbody></table><div class="credit">
+      Documentation generated by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+    </div>
+  </div>
+  
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

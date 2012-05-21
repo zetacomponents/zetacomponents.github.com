@@ -1,0 +1,1354 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="PHP, apache, components, framework, quality" />
+	<meta name="author" content="dotxp" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Wed, 04 Aug 2010 13:07:54 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="ezcPhpGenerator.html" />
+	<meta name="DC.creator" content="dotxp" />
+	<meta name="DC.date" content="Wed, 04 Aug 2010 13:07:54 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/PhpGenerator/phpdoc/ezcPhpGenerator.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/PhpGenerator/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/trunk/PhpGenerator/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+
+</ul>
+
+		
+  <div class="phpdoc">
+    <h2>Apache Zeta Components Manual :: Docs For Class ezcPhpGenerator</h2>
+
+                  <h3>PhpGenerator::ezcPhpGenerator</h3>
+    
+<a name="sec-description"></a>
+<h3>Class ezcPhpGenerator</h3>
+
+<p>ezcPhpGenerator provides a simple API to generate PHP code.</p><div><p>This class can be used to generate quick and simple PHP scripts.  Typical  usage would be to generate caches in the form of arrays that also require  some logic.</p><p>The following example shows how you can use ezcPhpGenerator to make a method  that produces a Fibonacci number.</p><p></p><ol><li><div class="src-line">&#8192;<span class="src-var">$generator&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcPhpGenerator.html">ezcPhpGenerator</a></span><span class="src-sym">(&#8192;</span><span class="src-str">"~/file.php"&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$generator</span><span class="src-sym">-&gt;</span><a href="ezcPhpGenerator.html#methodappendCustomCode">appendCustomCode</a><span class="src-sym">(&#8192;</span><span class="src-str">'function&#8192;fibonacci(&#8192;$number&#8192;)'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$generator</span><span class="src-sym">-&gt;</span><a href="ezcPhpGenerator.html#methodappendCustomCode">appendCustomCode</a><span class="src-sym">(&#8192;</span><span class="src-str">"{"&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$generator</span><span class="src-sym">-&gt;</span><a href="ezcPhpGenerator.html#methodappendValueAssignment">appendValueAssignment</a><span class="src-sym">(&#8192;</span><span class="src-str">"lo"</span><span class="src-sym">,&#8192;</span><span class="src-num">0&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$generator</span><span class="src-sym">-&gt;</span><a href="ezcPhpGenerator.html#methodappendValueAssignment">appendValueAssignment</a><span class="src-sym">(&#8192;</span><span class="src-str">"hi"</span><span class="src-sym">,&#8192;</span><span class="src-num">1&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$generator</span><span class="src-sym">-&gt;</span><a href="ezcPhpGenerator.html#methodappendValueAssignment">appendValueAssignment</a><span class="src-sym">(&#8192;</span><span class="src-str">"i"</span><span class="src-sym">,&#8192;</span><span class="src-num">2&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$generator</span><span class="src-sym">-&gt;</span><a href="ezcPhpGenerator.html#methodappendWhile">appendWhile</a><span class="src-sym">(&#8192;</span><span class="src-str">'$i&#8192;&lt;&#8192;$number'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$generator</span><span class="src-sym">-&gt;</span><a href="ezcPhpGenerator.html#methodappendCustomCode">appendCustomCode</a><span class="src-sym">(&#8192;</span><span class="src-str">'$hi&#8192;=&#8192;$lo&#8192;+&#8192;$hi;'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$generator</span><span class="src-sym">-&gt;</span><a href="ezcPhpGenerator.html#methodappendCustomCode">appendCustomCode</a><span class="src-sym">(&#8192;</span><span class="src-str">'$lo&#8192;=&#8192;$hi&#8192;-&#8192;$lo;'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$generator</span><span class="src-sym">-&gt;</span><a href="ezcPhpGenerator.html#methodappendCustomCode">appendCustomCode</a><span class="src-sym">(&#8192;</span><span class="src-str">'$i++;'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$generator</span><span class="src-sym">-&gt;</span><a href="ezcPhpGenerator.html#methodappendEndWhile">appendEndWhile</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$generator</span><span class="src-sym">-&gt;</span><a href="ezcPhpGenerator.html#methodappendCustomCode">appendCustomCode</a><span class="src-sym">(&#8192;</span><span class="src-str">'return&#8192;$hi;'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$generator</span><span class="src-sym">-&gt;</span><a href="ezcPhpGenerator.html#methodappendCustomCode">appendCustomCode</a><span class="src-sym">(&#8192;</span><span class="src-str">"}"&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$generator</span><span class="src-sym">-&gt;</span><a href="ezcPhpGenerator.html#methodfinish">finish</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol><p>The above code will fill the file "~/file.php" with the following contents:  </p><ol><li><div class="src-line">&#8192;<span class="src-php">&lt;?php</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-key">function&#8192;</span><span class="src-id">fibonacci</span><span class="src-sym">(&#8192;</span><span class="src-var">$number&#8192;</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">{</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$lo&#8192;</span>=&#8192;<span class="src-num">0</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$hi&#8192;</span>=&#8192;<span class="src-num">1</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$i&#8192;</span>=&#8192;<span class="src-num">2</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-key">while&#8192;</span><span class="src-sym">(&#8192;</span><span class="src-var">$i&#8192;</span>&lt;&#8192;<span class="src-var">$number&#8192;</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">{</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;<span class="src-var">$hi&#8192;</span>=&#8192;<span class="src-var">$lo&#8192;</span>+&#8192;<span class="src-var">$hi</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;<span class="src-var">$lo&#8192;</span>=&#8192;<span class="src-var">$hi&#8192;</span>-&#8192;<span class="src-var">$lo</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;<span class="src-var">$i</span>++<span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">}</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-key">return&#8192;</span><span class="src-var">$hi</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">}</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-php">?&gt;</span></div></li>
+</ol></div>
+<p>Source for this file: <a href="http://fisheye6.atlassian.com/browse/zetacomponents/trunk/PhpGenerator/src/php_generator.php?r=HEAD">/PhpGenerator/src/php_generator.php</a></p>
+       
+
+
+
+
+  <table><tr><td>
+            <strong>Version:</strong>&#8192;&#8192;
+          </td>
+          <td>//autogentag//</td>
+        </tr></table><a name="sec-const-summary"></a>
+  <h3>Constants</h3>
+  <table class="summary"><tr><td class="right">
+          <a name="const-ASSIGN_ADD" id=""></a>
+          <code>
+            <a href="#const-ASSIGN_ADD" title="details" class="const-name-summary">ASSIGN_ADD</a>
+             =  3
+          </code>
+        </td>
+        <td>
+          Assignment with add '+='.                  </td>
+      </tr><tr><td class="right">
+          <a name="const-ASSIGN_APPEND_TEXT" id=""></a>
+          <code>
+            <a href="#const-ASSIGN_APPEND_TEXT" title="details" class="const-name-summary">ASSIGN_APPEND_TEXT</a>
+             =  2
+          </code>
+        </td>
+        <td>
+          Text append assignment '.='.                  </td>
+      </tr><tr><td class="right">
+          <a name="const-ASSIGN_ARRAY_APPEND" id=""></a>
+          <code>
+            <a href="#const-ASSIGN_ARRAY_APPEND" title="details" class="const-name-summary">ASSIGN_ARRAY_APPEND</a>
+             =  5
+          </code>
+        </td>
+        <td>
+          Assignment with array append $var[] ='.                  </td>
+      </tr><tr><td class="right">
+          <a name="const-ASSIGN_NORMAL" id=""></a>
+          <code>
+            <a href="#const-ASSIGN_NORMAL" title="details" class="const-name-summary">ASSIGN_NORMAL</a>
+             =  1
+          </code>
+        </td>
+        <td>
+          Normal assignment '='.                  </td>
+      </tr><tr><td class="right">
+          <a name="const-ASSIGN_SUBTRACT" id=""></a>
+          <code>
+            <a href="#const-ASSIGN_SUBTRACT" title="details" class="const-name-summary">ASSIGN_SUBTRACT</a>
+             =  4
+          </code>
+        </td>
+        <td>
+          Assignment with subtraction '-='.                  </td>
+      </tr><tr><td class="right">
+          <a name="const-FLOW_DO" id=""></a>
+          <code>
+            <a href="#const-FLOW_DO" title="details" class="const-name-summary">FLOW_DO</a>
+             =  'do'
+          </code>
+        </td>
+        <td>
+          'do' program flow structure.                  </td>
+      </tr><tr><td class="right">
+          <a name="const-FLOW_FOR" id=""></a>
+          <code>
+            <a href="#const-FLOW_FOR" title="details" class="const-name-summary">FLOW_FOR</a>
+             =  'for'
+          </code>
+        </td>
+        <td>
+          'for' program flow structure.                  </td>
+      </tr><tr><td class="right">
+          <a name="const-FLOW_FOREACH" id=""></a>
+          <code>
+            <a href="#const-FLOW_FOREACH" title="details" class="const-name-summary">FLOW_FOREACH</a>
+             =  'foreach'
+          </code>
+        </td>
+        <td>
+          'foreach' program flow structure.                  </td>
+      </tr><tr><td class="right">
+          <a name="const-FLOW_IF" id=""></a>
+          <code>
+            <a href="#const-FLOW_IF" title="details" class="const-name-summary">FLOW_IF</a>
+             =  'if'
+          </code>
+        </td>
+        <td>
+          'if' program flow structure.                  </td>
+      </tr><tr><td class="right">
+          <a name="const-FLOW_WHILE" id=""></a>
+          <code>
+            <a href="#const-FLOW_WHILE" title="details" class="const-name-summary">FLOW_WHILE</a>
+             =  'while'
+          </code>
+        </td>
+        <td>
+          'while' program flow structure.                  </td>
+      </tr></table><a name="sec-prop-summary"></a>
+  <h3>Properties</h3>
+  <table class="summary"><tr><td class="right">
+          <a name="prop%24indentLevel" id="$indentLevel"></a>
+          <a name="prop-%24indentLevel" id="$indentLevel"></a>
+          <em>int</em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24indentLevel" title="details" class="var-name-summary">$indentLevel</a>
+                      </code>
+          <br><div style="margin-left: 20px">Contains the level of indentation. Increase or decrease by one if            you want the indentation level to change.</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24indentString" id="$indentString"></a>
+          <a name="prop-%24indentString" id="$indentString"></a>
+          <em>string</em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24indentString" title="details" class="var-name-summary">$indentString</a>
+                      </code>
+          <br><div style="margin-left: 20px">Contains the characters that are indented per indentation level.            The default is '  ' (two spaces).</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24lineBreak" id="$lineBreak"></a>
+          <a name="prop-%24lineBreak" id="$lineBreak"></a>
+          <em>string</em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24lineBreak" title="details" class="var-name-summary">$lineBreak</a>
+                      </code>
+          <br><div style="margin-left: 20px">Contains the characters to use for linebreaks.  The default is            "\r\n".</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24niceIndentation" id="$niceIndentation"></a>
+          <a name="prop-%24niceIndentation" id="$niceIndentation"></a>
+          <em>bool</em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24niceIndentation" title="details" class="var-name-summary">$niceIndentation</a>
+                      </code>
+          <br><div style="margin-left: 20px">Controls whether to output the PHP nicely indented or not. The            default is false.</div>        </td>
+      </tr></table><a name="sec-method-summary"></a>
+  <h3>Method Summary</h3>
+  <table class="summary"><tr><td class="right">
+            <em>public</em>                        <em>ezcPhpGenerator</em>          </td>
+          <td>
+            <code>
+              <a href="#__construct"><b>__construct</b></a>(
+                                                                                    $filename
+                                                    ,                   [                  $includeStartEndTags
+                   = true]                                  ,                   [                  $niceIndentation
+                   = false]                               )
+            </code>
+            <br><div style="margin-left: 20px">Constructs a new ezcPhpGenerator.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#__destruct"><b>__destruct</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Destructs the object.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#abort"><b>abort</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Aborts the PHP generating. Cleans up the file handler and the temporary file.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#appendComment"><b>appendComment</b></a>(
+                                                                                    $comment
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Inserts a comment into the generated code.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#appendCustomCode"><b>appendCustomCode</b></a>(
+                                                                                    $code
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Inserts custom code into the generated code.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#appendDefine"><b>appendDefine</b></a>(
+                                                                                    $name
+                                                    ,                                     $value
+                                                    ,                   [                  $caseInsensitive
+                   = false]                               )
+            </code>
+            <br><div style="margin-left: 20px">Defines the variable $name with the value $value in the generated code.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#appendDo"><b>appendDo</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Inserts a do statement in the generated code.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#appendElse"><b>appendElse</b></a>(
+                                                                  [                  $condition
+                   = '']                               )
+            </code>
+            <br><div style="margin-left: 20px">Inserts an else or an else if statement into the generated code.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#appendEmptyLines"><b>appendEmptyLines</b></a>(
+                                                                  [                  $lines
+                   = 1]                               )
+            </code>
+            <br><div style="margin-left: 20px">Inserts $lines number of empty lines in the generated code.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#appendEndDo"><b>appendEndDo</b></a>(
+                                                                                    $condition
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Ends a do statement in the generated code.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#appendEndForeach"><b>appendEndForeach</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Ends a foreach statement in the generated code.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#appendEndIf"><b>appendEndIf</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Ends an if statement in the generated code.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#appendEndWhile"><b>appendEndWhile</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Ends a while statement in the generated code.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#appendForeach"><b>appendForeach</b></a>(
+                                                                                    $condition
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Inserts a foreach statement into the generated code.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#appendFunctionCall"><b>appendFunctionCall</b></a>(
+                                                                                    $functionName
+                                                    ,                                     $parameters
+                                                    ,                   [                  $returnData
+                   = null]                               )
+            </code>
+            <br><div style="margin-left: 20px">Inserts a function call in the generated code.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#appendIf"><b>appendIf</b></a>(
+                                                                                    $condition
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Inserts an if statement into the generated code.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#appendMethodCall"><b>appendMethodCall</b></a>(
+                                                                                    $objectName
+                                                    ,                                     $methodName
+                                                    ,                   [                  $parameters
+                   = array()]                                  ,                   [                  $returnData
+                   = null]                               )
+            </code>
+            <br><div style="margin-left: 20px">Inserts a method call on an object in the generated code.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#appendMethodOrFunctionCall"><b>appendMethodOrFunctionCall</b></a>(
+                                                                                    $functionName
+                                                    ,                                     $parameters
+                                                    ,                   [                  $returnData
+                   = null]                                  ,                   [                  $objectVariable
+                   = null]                               )
+            </code>
+            <br><div style="margin-left: 20px">Inserts a method or function call in the generated code.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#appendUnset"><b>appendUnset</b></a>(
+                                                                                    $name
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Unsets the variable $name in the generated code.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#appendUnsetList"><b>appendUnsetList</b></a>(
+                                                                                    $list
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Unsets the variable names in $list in the generated code.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#appendValueAssignment"><b>appendValueAssignment</b></a>(
+                                                                                    $name
+                                                    ,                                     $value
+                                                    ,                   [                  $assignmentType
+                   = ezcPhpGenerator::ASSIGN_NORMAL]                               )
+            </code>
+            <br><div style="margin-left: 20px">Assigns $value to the variable $name in the generated code.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#appendVariableAssignment"><b>appendVariableAssignment</b></a>(
+                                                                                    $name
+                                                    ,                                     $variable
+                                                    ,                   [                  $assignmentType
+                   = ezcPhpGenerator::ASSIGN_NORMAL]                               )
+            </code>
+            <br><div style="margin-left: 20px">Assigns the variable named $variable to the variable $name in the  generated code.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#appendWhile"><b>appendWhile</b></a>(
+                                                                                    $condition
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Inserts a while statement in the generated code.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#finish"><b>finish</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Completes the code generation</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#indentCode"><b>indentCode</b></a>(
+                                                                                    $text
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns each line in $text indented correctly if indenting is turned on.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#write"><b>write</b></a>(
+                                                                                    $data
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Writes $data to $this-&gt;fileResource</div>          </td>
+        </tr></table><a name="sec-methods"></a>
+  <h3>Methods</h3>
+  <a name="method_detail"></a>
+                                                    
+      <a name="method__construct" id="__construct"><!-- --></a>
+
+    <h4>__construct</h4>
+
+    <div class="method-signature">
+      ezcPhpGenerator
+      __construct(
+                                  string
+          $filename
+                            ,           [bool
+          $includeStartEndTags
+           = true]                  ,           [bool
+          $niceIndentation
+           = false]              )
+    </div>
+
+    <p>Constructs a new ezcPhpGenerator.</p><div><p>Constructs a new ezcPhpGenerator that writes to the file $fileName. If $includeStartEndTags  is set the start and end PHP tags will be included. It is useful to omit these if you  want to run the generated code using eval() later. $niceIndentation controls if the PHP output  should be indented correctly. This option is useful if you want to debug the generated code.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$filename</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$includeStartEndTags</code></td>
+              <td><em>bool</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$niceIndentation</code></td>
+              <td><em>bool</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseFilePermissionException.html">ezcBaseFilePermissionException</a></code></td>
+              <td>
+                                  if the path specified by $filename is not writeable.
+                              </td>
+            </tr><tr><td><code><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseFileNotFoundException.html">ezcBaseFileNotFoundException</a></code></td>
+              <td>
+                                  if $filename does not contain a valid path.
+                              </td>
+            </tr></tbody></table><a name="method__destruct" id="__destruct"><!-- --></a>
+
+    <h4>__destruct</h4>
+
+    <div class="method-signature">
+      void
+      __destruct(
+      )
+    </div>
+
+    <p>Destructs the object.</p><div><p>Removes all temporary files that are in use.</p></div>
+    
+        
+
+    
+    
+    
+        <a name="methodabort" id="abort"><!-- --></a>
+
+    <h4>abort</h4>
+
+    <div class="method-signature">
+      void
+      abort(
+      )
+    </div>
+
+    <p>Aborts the PHP generating. Cleans up the file handler and the temporary file.</p><div><p>Subsequent calls to any methods that generate code will fail.</p></div>
+    
+        
+
+    
+    
+    
+        <a name="methodappendComment" id="appendComment"><!-- --></a>
+
+    <h4>appendComment</h4>
+
+    <div class="method-signature">
+      void
+      appendComment(
+                                  string
+          $comment
+                        )
+    </div>
+
+    <p>Inserts a comment into the generated code.</p><div><p>The comment will be displayed using an end-of-line comment (//).</p><p>Example:  </p><ol><li><div class="src-line">&#8192;<span class="src-var">$php</span><span class="src-sym">-&gt;</span><span class="src-id">addComment</span><span class="src-sym">(&#8192;</span><span class="src-str">"This&#8192;file&#8192;is&#8192;auto&#8192;generated.&#8192;Do&#8192;not&#8192;edit!"&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;&lt;<span class="src-id">code</span>&gt;</div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-id">Produces&#8192;the&#8192;PHP&#8192;code</span>:</div></li>
+<li><div class="src-line">&#8192;&lt;<span class="src-id">code</span>&gt;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;This&#8192;file&#8192;is&#8192;auto&#8192;generated.&#8192;Do&#8192;not&#8192;edit!</span></div></li>
+</ol></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$comment</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcPhpGeneratorException.html">ezcPhpGeneratorException</a></code></td>
+              <td>
+                                  if it was not possible to write the comment to the output file.
+                              </td>
+            </tr></tbody></table><a name="methodappendCustomCode" id="appendCustomCode"><!-- --></a>
+
+    <h4>appendCustomCode</h4>
+
+    <div class="method-signature">
+      void
+      appendCustomCode(
+                                  string
+          $code
+                        )
+    </div>
+
+    <p>Inserts custom code into the generated code.</p><div><p>Inserts the $code directly into the generated code.  Correct indenting  and a linebreak at the end of your code will be inserted automatically.</p><p>Example:  </p><ol><li><div class="src-line">&#8192;<span class="src-var">$php</span><span class="src-sym">-&gt;</span><span class="src-id">addCodePiece</span><span class="src-sym">(&#8192;</span><span class="src-str">"if&#8192;(&#8192;\$value&#8192;&gt;&#8192;2&#8192;)"&#8192;</span>.&#8192;<span class="src-var">$php</span><span class="src-sym">-&gt;</span><span class="src-id">lineBreak</span><span class="src-sym">(</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;.&#8192;<span class="src-str">'{'&#8192;</span>.&#8192;<span class="src-var">$php</span><span class="src-sym">-&gt;</span><span class="src-id">lineBreak</span><span class="src-sym">(</span><span class="src-sym">)&#8192;</span>.&#8192;&#8192;<span class="src-str">"\$value&#8192;=&#8192;2;"&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol><p>Produces the PHP code:  </p><ol><li><div class="src-line">&#8192;<span class="src-key">if&#8192;</span><span class="src-sym">(&#8192;</span><span class="src-var">$value&#8192;</span>&gt;&#8192;<span class="src-num">2&#8192;</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">{</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;<span class="src-var">$value&#8192;</span>=&#8192;<span class="src-num">2</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">}</span></div></li>
+</ol></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$code</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcPhpGeneratorException.html">ezcPhpGeneratorException</a></code></td>
+              <td>
+                                  if it was not possible to write the custom code to the output file.
+                              </td>
+            </tr></tbody></table><a name="methodappendDefine" id="appendDefine"><!-- --></a>
+
+    <h4>appendDefine</h4>
+
+    <div class="method-signature">
+      void
+      appendDefine(
+                                  string
+          $name
+                            ,           string
+          $value
+                            ,           [bool
+          $caseInsensitive
+           = false]              )
+    </div>
+
+    <p>Defines the variable $name with the value $value in the generated code.</p><div><p>The parameter $caseSensitive determines if the defined variable is case  sensitive or not.  Note that $name must start with a letter or  underscore, followed by any number of letters, numbers, or underscores.  <a href="http://php.net/manual/en/language.constants.php">http://php.net/manual/en/language.constants.php</a> for more information.  <a href="http://php.net/manual/en/function.define.php">http://php.net/manual/en/function.define.php</a></p><p>Example:  </p><ol><li><div class="src-line">&#8192;<span class="src-var">$php</span><span class="src-sym">-&gt;</span><span class="src-id">addDefine</span><span class="src-sym">(&#8192;</span><span class="src-str">'MY_CONSTANT'</span><span class="src-sym">,&#8192;</span><span class="src-num">5&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol><p>Produces:</p><p></p><ol><li><div class="src-line">&#8192;<a href="http://www.php.net/define">define</a><span class="src-sym">(&#8192;</span><span class="src-str">'MY_CONSTANT'</span><span class="src-sym">,&#8192;</span><span class="src-num">5&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$name</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$value</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$caseInsensitive</code></td>
+              <td><em>bool</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcPhpGeneratorException.html">ezcPhpGeneratorException</a></code></td>
+              <td>
+                                  if it was not possible to write the define to the output file.
+                              </td>
+            </tr></tbody></table><a name="methodappendDo" id="appendDo"><!-- --></a>
+
+    <h4>appendDo</h4>
+
+    <div class="method-signature">
+      void
+      appendDo(
+      )
+    </div>
+
+    <p>Inserts a do statement in the generated code.</p><div><p>The do statement must be closed properly with a call to appendEndDo().</p><p>Example:  </p><ol><li><div class="src-line">&#8192;<span class="src-var">$php</span><span class="src-sym">-&gt;</span><a href="ezcPhpGenerator.html#methodappendDo">appendDo</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$php</span><span class="src-sym">-&gt;</span><a href="ezcPhpGenerator.html#methodappendEndDo">appendEndDo</a><span class="src-sym">(&#8192;</span><span class="src-str">'$myVar&#8192;&gt;&#8192;0'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol><p>Produces the PHP code:  </p><ol><li><div class="src-line">&#8192;do</div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">{</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">}&#8192;</span><span class="src-key">while&#8192;</span><span class="src-sym">(&#8192;</span><span class="src-var">$myVar&#8192;</span>&gt;&#8192;<span class="src-num">0&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol></div>
+    
+          <h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcPhpGeneratorException.html">ezcPhpGeneratorException</a></code></td>
+              <td>
+                                  if it was not possible to write to the output file.
+                              </td>
+            </tr></tbody></table><a name="methodappendElse" id="appendElse"><!-- --></a>
+
+    <h4>appendElse</h4>
+
+    <div class="method-signature">
+      void
+      appendElse(
+                                  [string
+          $condition
+           = '']              )
+    </div>
+
+    <p>Inserts an else or an else if statement into the generated code.</p><div><p>If a $condition is provided an else if statement is generated.  If not, an else statement is generated. You can only call this method  after calling appendIf first.</p><p>Example:  </p><ol><li><div class="src-line">&#8192;<span class="src-var">$php</span><span class="src-sym">-&gt;</span><a href="ezcPhpGenerator.html#methodappendIf">appendIf</a><span class="src-sym">(&#8192;</span><span class="src-str">'$myVar&#8192;===&#8192;0&#8192;'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$php</span><span class="src-sym">-&gt;</span><a href="ezcPhpGenerator.html#methodappendElse">appendElse</a><span class="src-sym">(&#8192;</span><span class="src-str">'$myVar2&#8192;===&#8192;0&#8192;'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$php</span><span class="src-sym">-&gt;</span><a href="ezcPhpGenerator.html#methodappendElse">appendElse</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$php</span><span class="src-sym">-&gt;</span><a href="ezcPhpGenerator.html#methodappendEndIf">appendEndIf</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol><p>Produces the PHP code:  </p><ol><li><div class="src-line">&#8192;<span class="src-key">if&#8192;</span><span class="src-sym">(&#8192;</span><span class="src-var">$myVar&#8192;</span>===&#8192;<span class="src-num">0&#8192;</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">{</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">}</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-key">else&#8192;</span><span class="src-key">if&#8192;</span><span class="src-sym">(&#8192;</span><span class="src-var">$myVar&#8192;</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">{</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">}</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-key">else</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">{</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">}</span></div></li>
+</ol></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$condition</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcPhpGeneratorException.html">ezcPhpGeneratorException</a></code></td>
+              <td>
+                                  if it was not possible to write the if statement to the output file.
+                              </td>
+            </tr></tbody></table><a name="methodappendEmptyLines" id="appendEmptyLines"><!-- --></a>
+
+    <h4>appendEmptyLines</h4>
+
+    <div class="method-signature">
+      void
+      appendEmptyLines(
+                                  [int
+          $lines
+           = 1]              )
+    </div>
+
+    <p>Inserts $lines number of empty lines in the generated code.</p><div><p>Example:  </p><ol><li><div class="src-line">&#8192;<span class="src-var">$php</span><span class="src-sym">-&gt;</span><span class="src-id">addSpace</span><span class="src-sym">(&#8192;</span><span class="src-num">1&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$lines</code></td>
+              <td><em>int</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcPhpGeneratorException.html">ezcPhpGeneratorException</a></code></td>
+              <td>
+                                  if it was not possible to write the empty lines to the output file.
+                              </td>
+            </tr></tbody></table><a name="methodappendEndDo" id="appendEndDo"><!-- --></a>
+
+    <h4>appendEndDo</h4>
+
+    <div class="method-signature">
+      void
+      appendEndDo(
+                                  string
+          $condition
+                        )
+    </div>
+
+    <p>Ends a do statement in the generated code.</p><div><p>The complete condition of the do statement is provided through $condition.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$condition</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcPhpGeneratorException.html">ezcPhpGeneratorException</a></code></td>
+              <td>
+                                  if it was not possible to write the do statement to the output file or if the method was not properly nested with an appendDo.
+                              </td>
+            </tr></tbody></table><a name="methodappendEndForeach" id="appendEndForeach"><!-- --></a>
+
+    <h4>appendEndForeach</h4>
+
+    <div class="method-signature">
+      void
+      appendEndForeach(
+      )
+    </div>
+
+    <p>Ends a foreach statement in the generated code.</p>
+    
+          <h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcPhpGeneratorException.html">ezcPhpGeneratorException</a></code></td>
+              <td>
+                                  if it was not possible to write to the output file or if the method was not properly nested with an appendForeach.
+                              </td>
+            </tr></tbody></table><a name="methodappendEndIf" id="appendEndIf"><!-- --></a>
+
+    <h4>appendEndIf</h4>
+
+    <div class="method-signature">
+      void
+      appendEndIf(
+      )
+    </div>
+
+    <p>Ends an if statement in the generated code.</p>
+    
+          <h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcPhpGeneratorException.html">ezcPhpGeneratorException</a></code></td>
+              <td>
+                                  if it was not possible to write to the output file or if the method was not properly nested with an appendIf.
+                              </td>
+            </tr></tbody></table><a name="methodappendEndWhile" id="appendEndWhile"><!-- --></a>
+
+    <h4>appendEndWhile</h4>
+
+    <div class="method-signature">
+      void
+      appendEndWhile(
+      )
+    </div>
+
+    <p>Ends a while statement in the generated code.</p>
+    
+          <h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcPhpGeneratorException.html">ezcPhpGeneratorException</a></code></td>
+              <td>
+                                  if it was not possible to write to the output file or if the method was not properly nested with an appendWhile.
+                              </td>
+            </tr></tbody></table><a name="methodappendForeach" id="appendForeach"><!-- --></a>
+
+    <h4>appendForeach</h4>
+
+    <div class="method-signature">
+      void
+      appendForeach(
+                                  string
+          $condition
+                        )
+    </div>
+
+    <p>Inserts a foreach statement into the generated code.</p><div><p>The complete condition of the foreach statement is provided through $condition.  The foreach statement must be closed properly with a call to appendEndForeach().</p><p>Example:  </p><ol><li><div class="src-line">&#8192;<span class="src-var">$php</span><span class="src-sym">-&gt;</span><a href="ezcPhpGenerator.html#methodappendForeach">appendForeach</a><span class="src-sym">(&#8192;</span><span class="src-str">'$myArray&#8192;as&#8192;$item&#8192;'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$php</span><span class="src-sym">-&gt;</span><a href="ezcPhpGenerator.html#methodappendEndForeach">appendEndForeach</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol><p>Produces the PHP code:  </p><ol><li><div class="src-line">&#8192;<span class="src-key">foreach&#8192;</span><span class="src-sym">(&#8192;</span><span class="src-var">$myArray&#8192;</span><span class="src-key">as&#8192;</span><span class="src-var">$item&#8192;</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">{</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">}</span></div></li>
+</ol></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$condition</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcPhpGeneratorException.html">ezcPhpGeneratorException</a></code></td>
+              <td>
+                                  if it was not possible to write the foreach statement to the output file.
+                              </td>
+            </tr></tbody></table><a name="methodappendFunctionCall" id="appendFunctionCall"><!-- --></a>
+
+    <h4>appendFunctionCall</h4>
+
+    <div class="method-signature">
+      void
+      appendFunctionCall(
+                                  string
+          $functionName
+                            ,           
+          $parameters
+                            ,           [<a href="ezcPhpGeneratorReturnData.html">ezcPhpGeneratorReturnData</a>
+          $returnData
+           = null]              )
+    </div>
+
+    <p>Inserts a function call in the generated code.</p><div><p>Inserts a call to $functionName with the parameters $parameters.  Set the $returnData parameter if you want to catch the return value.</p><p>Example:  </p><ol><li><div class="src-line">&#8192;<span class="src-var">$php</span><span class="src-sym">-&gt;</span><a href="ezcPhpGenerator.html#methodappendFunctionCall">appendFunctionCall</a><span class="src-sym">(&#8192;</span><span class="src-str">'str_repeat'</span><span class="src-sym">,&#8192;</span><span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcPhpGeneratorParameter.html">ezcPhpGeneratorParameter</a></span><span class="src-sym">(&#8192;</span><span class="src-str">'repeat'&#8192;</span><span class="src-sym">)</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcPhpGeneratorParameter.html">ezcPhpGeneratorParameter</a></span><span class="src-sym">(&#8192;</span><span class="src-num">4</span><span class="src-sym">,&#8192;</span><span class="src-id"><a href="ezcPhpGenerator.html">ezcPhpGenerator</a></span><span class="src-sym">::</span><span class="src-id">VALUE&#8192;</span><span class="src-sym">)&#8192;)</span><span class="src-sym">;</span></div></li>
+</ol><p>Produces the PHP code:  </p><ol><li><div class="src-line">&#8192;<span class="src-var">$var&#8192;</span>=&#8192;<a href="http://www.php.net/str_repeat">str_repeat</a><span class="src-sym">(&#8192;</span><span class="src-var">$repeat</span><span class="src-sym">,&#8192;</span><span class="src-num">4&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$functionName</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$parameters</code></td>
+              <td><em>array(ezcPhpGeneratorParameter)</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$returnData</code></td>
+              <td><em><a href="ezcPhpGeneratorReturnData.html">ezcPhpGeneratorReturnData</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcPhpGeneratorException.html">ezcPhpGeneratorException</a></code></td>
+              <td>
+                                  if it was not possible to write the method call to the output file.
+                              </td>
+            </tr></tbody></table><a name="methodappendIf" id="appendIf"><!-- --></a>
+
+    <h4>appendIf</h4>
+
+    <div class="method-signature">
+      void
+      appendIf(
+                                  string
+          $condition
+                        )
+    </div>
+
+    <p>Inserts an if statement into the generated code.</p><div><p>The complete condition of the if statement is provided through $condition.  The if statement must be closed properly with a call to appendEndIf().</p><p>Example:  </p><ol><li><div class="src-line">&#8192;<span class="src-var">$php</span><span class="src-sym">-&gt;</span><a href="ezcPhpGenerator.html#methodappendIf">appendIf</a><span class="src-sym">(&#8192;</span><span class="src-str">'$myVar&#8192;===&#8192;0&#8192;'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$php</span><span class="src-sym">-&gt;</span><a href="ezcPhpGenerator.html#methodappendEndIf">appendEndIf</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol><p>Produces the PHP code:</p><p></p><ol><li><div class="src-line">&#8192;<span class="src-key">if&#8192;</span><span class="src-sym">(&#8192;</span><span class="src-var">$myVar&#8192;</span>===&#8192;<span class="src-num">0&#8192;</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">{</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">}</span></div></li>
+</ol></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$condition</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcPhpGeneratorException.html">ezcPhpGeneratorException</a></code></td>
+              <td>
+                                  if it was not possible to write the if statement to the output file.
+                              </td>
+            </tr></tbody></table><a name="methodappendMethodCall" id="appendMethodCall"><!-- --></a>
+
+    <h4>appendMethodCall</h4>
+
+    <div class="method-signature">
+      void
+      appendMethodCall(
+                                  string
+          $objectName
+                            ,           string
+          $methodName
+                            ,           [
+          $parameters
+           = array()]                  ,           [<a href="ezcPhpGeneratorReturnData.html">ezcPhpGeneratorReturnData</a>
+          $returnData
+           = null]              )
+    </div>
+
+    <p>Inserts a method call on an object in the generated code.</p><div><p>Inserts a call to the method $methodName on the object $objectName with  parameters $parameters.  Set the $returnData parameter if you want to catch the return value.</p><p>Example:  </p><ol><li><div class="src-line">&#8192;<span class="src-var">$php</span><span class="src-sym">-&gt;</span><a href="ezcPhpGenerator.html#methodappendMethodCall">appendMethodCall</a><span class="src-sym">(&#8192;</span><span class="src-str">'node'</span><span class="src-sym">,&#8192;</span><span class="src-str">'name'</span><span class="src-sym">,&#8192;</span><span class="src-key">array</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">,&#8192;</span><span class="src-key">new&#8192;</span><span class="src-id">ezcPhpGeneratorReturnType</span><span class="src-sym">(&#8192;</span><span class="src-str">'result'&#8192;</span><span class="src-sym">)&#8192;)</span><span class="src-sym">;</span></div></li>
+</ol><p>Produces the PHP code:</p><p></p><ol><li><div class="src-line">&#8192;<span class="src-var">$result&#8192;</span>=&#8192;<span class="src-var">$node</span><span class="src-sym">-&gt;</span><span class="src-id">name</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$objectName</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$methodName</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$parameters</code></td>
+              <td><em>array(ezcPhpGeneratorParameter)</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$returnData</code></td>
+              <td><em><a href="ezcPhpGeneratorReturnData.html">ezcPhpGeneratorReturnData</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcPhpGeneratorException.html">ezcPhpGeneratorException</a></code></td>
+              <td>
+                                  if it was not possible to write the method call to the output file.
+                              </td>
+            </tr></tbody></table><a name="methodappendMethodOrFunctionCall" id="appendMethodOrFunctionCall"><!-- --></a>
+
+    <h4>appendMethodOrFunctionCall</h4>
+
+    <div class="method-signature">
+      void
+      appendMethodOrFunctionCall(
+                                  string
+          $functionName
+                            ,           
+          $parameters
+                            ,           [<a href="ezcPhpGeneratorReturnData.html">ezcPhpGeneratorReturnData</a>
+          $returnData
+           = null]                  ,           [string
+          $objectVariable
+           = null]              )
+    </div>
+
+    <p>Inserts a method or function call in the generated code.</p><div><p>A method call is inserted if $objectName is provided. If not a function call is inserted. This  method is a helper method for appendFunctionCall and appendMethodCall. See their description for  further description of the parameters and examples.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$functionName</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$parameters</code></td>
+              <td><em>array(ezcPhpGeneratorParameter)</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$returnData</code></td>
+              <td><em><a href="ezcPhpGeneratorReturnData.html">ezcPhpGeneratorReturnData</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$objectVariable</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  The variable name containing the object.
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcPhpGeneratorException.html">ezcPhpGeneratorException</a></code></td>
+              <td>
+                                  if it was not possible to write the method call to the output file.
+                              </td>
+            </tr></tbody></table><a name="methodappendUnset" id="appendUnset"><!-- --></a>
+
+    <h4>appendUnset</h4>
+
+    <div class="method-signature">
+      void
+      appendUnset(
+                                  string
+          $name
+                        )
+    </div>
+
+    <p>Unsets the variable $name in the generated code.</p><div><p>Example:  </p><ol><li><div class="src-line">&#8192;<span class="src-var">$php</span><span class="src-sym">-&gt;</span><span class="src-id">addVariableUnset</span><span class="src-sym">(&#8192;</span><span class="src-str">'offset'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol><p>Produces the PHP code:  </p><ol><li><div class="src-line">&#8192;unset<span class="src-sym">(&#8192;</span><span class="src-var">$offset&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$name</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcPhpGeneratorException.html">ezcPhpGeneratorException</a></code></td>
+              <td>
+                                  if it was not possible to write the unset to the output file.
+                              </td>
+            </tr></tbody></table><a name="methodappendUnsetList" id="appendUnsetList"><!-- --></a>
+
+    <h4>appendUnsetList</h4>
+
+    <div class="method-signature">
+      void
+      appendUnsetList(
+                                  
+          $list
+                        )
+    </div>
+
+    <p>Unsets the variable names in $list in the generated code.</p><div><p>Example:  </p><ol><li><div class="src-line">&#8192;<span class="src-var">$php</span><span class="src-sym">-&gt;</span><span class="src-id">addVariableUnsetList</span><span class="src-sym">(&#8192;</span><span class="src-key">array&#8192;</span><span class="src-sym">(&#8192;</span><span class="src-str">'var1'</span><span class="src-sym">,&#8192;</span><span class="src-str">'var2'&#8192;</span><span class="src-sym">)&#8192;)</span><span class="src-sym">;</span></div></li>
+</ol><p>Produces the PHP code:  </p><ol><li><div class="src-line">&#8192;unset<span class="src-sym">(&#8192;</span><span class="src-var">$var1</span><span class="src-sym">,&#8192;</span><span class="src-var">$var2&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$list</code></td>
+              <td><em>array</em></td>
+              <td>
+                                  Array of variable names.
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcPhpGeneratorException.html">ezcPhpGeneratorException</a></code></td>
+              <td>
+                                  if it was not possible to write the unset to the output file.
+                              </td>
+            </tr></tbody></table><a name="methodappendValueAssignment" id="appendValueAssignment"><!-- --></a>
+
+    <h4>appendValueAssignment</h4>
+
+    <div class="method-signature">
+      void
+      appendValueAssignment(
+                                  string
+          $name
+                            ,           mixed
+          $value
+                            ,           [int
+          $assignmentType
+           = ezcPhpGenerator::ASSIGN_NORMAL]              )
+    </div>
+
+    <p>Assigns $value to the variable $name in the generated code.</p><div><p>$value is exported using var_export(). This allows you to use complex  structures for $value. If you want to append an assignment to a variable  in the generated code use appendVariableAssignment.</p><p>You can control the assignment type with the $assignmentType parameter.</p><p>Example:  </p><ol><li><div class="src-line">&#8192;<span class="src-var">$array&#8192;</span>=&#8192;<span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-num">1</span><span class="src-sym">,&#8192;</span><span class="src-num">2</span><span class="src-sym">,&#8192;</span><span class="src-num">3&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$php</span><span class="src-sym">-&gt;</span><a href="ezcPhpGenerator.html#methodappendValueAssignment">appendValueAssignment</a><span class="src-sym">(&#8192;</span><span class="src-str">'ProducedArray'</span><span class="src-sym">,&#8192;</span><span class="src-var">$array&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol><p>Produces the PHP code:  </p><ol><li><div class="src-line">&#8192;<span class="src-var">$ProducedArray&#8192;</span>=&#8192;<span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-num">1</span><span class="src-sym">,&#8192;</span><span class="src-num">2</span><span class="src-sym">,&#8192;</span><span class="src-num">3&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$name</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$value</code></td>
+              <td><em>mixed</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$assignmentType</code></td>
+              <td><em>int</em></td>
+              <td>
+                                  ezcPhpGenerator:: ASSIGN_NORMAL, ASSIGN_APPEND_TEXT, ASSIGN_ADD,                         ASSIGN_SUBTRACT or ASSIGN_ARRAY_APPEND.
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcPhpGeneratorException.html">ezcPhpGeneratorException</a></code></td>
+              <td>
+                                  if it was not possible to write the assignment to the output file.
+                              </td>
+            </tr></tbody></table><a name="methodappendVariableAssignment" id="appendVariableAssignment"><!-- --></a>
+
+    <h4>appendVariableAssignment</h4>
+
+    <div class="method-signature">
+      void
+      appendVariableAssignment(
+                                  string
+          $name
+                            ,           mixed
+          $variable
+                            ,           [int
+          $assignmentType
+           = ezcPhpGenerator::ASSIGN_NORMAL]              )
+    </div>
+
+    <p>Assigns the variable named $variable to the variable $name in the  generated code.</p><div><p>You can control the assignment type with the $assignmentType parameter.</p><p>Example:  </p><ol><li><div class="src-line">&#8192;<span class="src-var">$php</span><span class="src-sym">-&gt;</span><span class="src-id">addVariableAssignment</span><span class="src-sym">(&#8192;</span><span class="src-str">'ProducedArray'</span><span class="src-sym">,&#8192;</span><span class="src-str">'otherVar'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol><p>Produces the PHP code:  </p><ol><li><div class="src-line">&#8192;<span class="src-var">$ProducedArray&#8192;</span>=&#8192;<span class="src-var">$otherVar</span><span class="src-sym">;</span></div></li>
+</ol></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$name</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$variable</code></td>
+              <td><em>mixed</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$assignmentType</code></td>
+              <td><em>int</em></td>
+              <td>
+                                  ezcPhpGenerator:: ASSIGN_NORMAL, ASSIGN_APPEND_TEXT, ASSIGN_ADD,                         ASSIGN_SUBTRACT or ASSIGN_ARRAY_APPEND.
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcPhpGeneratorException.html">ezcPhpGeneratorException</a></code></td>
+              <td>
+                                  if it was not possible to write the assignment to the output file.
+                              </td>
+            </tr></tbody></table><a name="methodappendWhile" id="appendWhile"><!-- --></a>
+
+    <h4>appendWhile</h4>
+
+    <div class="method-signature">
+      void
+      appendWhile(
+                                  string
+          $condition
+                        )
+    </div>
+
+    <p>Inserts a while statement in the generated code.</p><div><p>The complete condition of the while statement is provided through $condition.  The while statement must be closed properly with a call to appendEndWhile().</p><p>Example:  </p><ol><li><div class="src-line">&#8192;<span class="src-var">$php</span><span class="src-sym">-&gt;</span><a href="ezcPhpGenerator.html#methodappendWhile">appendWhile</a><span class="src-sym">(&#8192;</span><span class="src-str">'$myVar&#8192;&gt;&#8192;0'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$php</span><span class="src-sym">-&gt;</span><a href="ezcPhpGenerator.html#methodappendEndWhile">appendEndWhile</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol><p>Produces the PHP code:  </p><ol><li><div class="src-line">&#8192;<span class="src-key">while&#8192;</span><span class="src-sym">(&#8192;</span><span class="src-var">$myVar&#8192;</span>&gt;&#8192;<span class="src-num">0&#8192;</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">{</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">}</span></div></li>
+</ol></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$condition</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcPhpGeneratorException.html">ezcPhpGeneratorException</a></code></td>
+              <td>
+                                  if it was not possible to write the while statement to the output file.
+                              </td>
+            </tr></tbody></table><a name="methodfinish" id="finish"><!-- --></a>
+
+    <h4>finish</h4>
+
+    <div class="method-signature">
+      void
+      finish(
+      )
+    </div>
+
+    <p>Completes the code generation</p><div><p>This method must be called when you have finished generating a file.  It  moves the temporary file that was used for writing to the end result  file and releases used resources.  Subsequent calls to any methods generating code will fail.</p></div>
+    
+          <h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcPhpGeneratorException.html">ezcPhpGeneratorException</a></code></td>
+              <td>
+                                  if it was not possible to write to the output file or if there are any control structures (if/foreach etc.) still open.
+                              </td>
+            </tr></tbody></table><a name="methodindentCode" id="indentCode"><!-- --></a>
+
+    <h4>indentCode</h4>
+
+    <div class="method-signature">
+      string
+      indentCode(
+                                  string
+          $text
+                        )
+    </div>
+
+    <p>Returns each line in $text indented correctly if indenting is turned on.</p><div><p>If indenting is turned off it will return $text unmodified.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$text</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodwrite" id="write"><!-- --></a>
+
+    <h4>write</h4>
+
+    <div class="method-signature">
+      void
+      write(
+                                  string
+          $data
+                        )
+    </div>
+
+    <p>Writes $data to $this-&gt;fileResource</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$data</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcPhpGeneratorException.html">ezcPhpGeneratorException</a></code></td>
+              <td>
+                                  if it was not possible to write to the file.
+                              </td>
+            </tr></tbody></table><div class="credit">
+      Documentation generated by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+    </div>
+  </div>
+  
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

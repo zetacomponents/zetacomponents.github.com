@@ -1,0 +1,1169 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="PHP, apache, components, framework, quality" />
+	<meta name="author" content="dotxp" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Sat, 06 Nov 2010 12:31:38 +0100" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="ezcFeed.html" />
+	<meta name="DC.creator" content="dotxp" />
+	<meta name="DC.date" content="Sat, 06 Nov 2010 12:31:38 +0100" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/Feed/phpdoc/ezcFeed.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/Feed/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/trunk/Feed/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Feed/specifications.html" title="Specifications ">Specifications </a>
+	</li>
+
+</ul>
+
+		
+  <div class="phpdoc">
+    <h2>Apache Zeta Components Manual :: Docs For Class ezcFeed</h2>
+
+                  <h3>Feed::ezcFeed</h3>
+    
+<a name="sec-description"></a>
+<h3>Class ezcFeed</h3>
+
+<p>Class defining a feed.</p><div><p>A feed has a type (eg. RSS1, RSS2 or ATOM). The feed type defines which  processor is used to parse and generate that type.</p><p>The following feed processors are supported by the Feed component: </p><ul><li>ATOM (<a href="ezcFeedAtom.html">ezcFeedAtom</a>) -
+    <a href="http://atompub.org/rfc4287.html">RFC4287</a></li><li>RSS1 (<a href="ezcFeedRss1.html">ezcFeedRss1</a>) -
+    <a href="http://web.resource.org/rss/1.0/spec">Specifications</a></li><li>RSS2 (<a href="ezcFeedRss2.html">ezcFeedRss2</a>) -
+    <a href="http://www.rssboard.org/rss-specification">Specifications</a></li></ul>  A new processor can be defined by creating a class which extends the class  <a href="ezcFeedProcessor.html">ezcFeedProcessor</a> and implements the interface <a href="ezcFeedParser.html">ezcFeedParser</a>.  The new class needs to be added to the supported feed types list by calling  the function <a href="ezcFeed.html#methodregisterFeed">registerFeed</a>.<p>The following modules are supported by the Feed component: </p><ul><li>Content (<a href="ezcFeedContentModule.html">ezcFeedContentModule</a>) -
+    <a href="http://purl.org/rss/1.0/modules/content/">Specifications</a></li><li>CreativeCommons (<a href="ezcFeedCreativeCommonsModule.html">ezcFeedCreativeCommonsModule</a>) -
+    <a href="http://backend.userland.com/creativeCommonsRssModule">Specifications</a></li><li>DublinCore (<a href="ezcFeedDublinCoreModule.html">ezcFeedDublinCoreModule</a>) -
+    <a href="http://dublincore.org/documents/dces/">Specifications</a></li><li>Geo (<a href="ezcFeedGeoModule.html">ezcFeedGeoModule</a>) -
+    <a href="http://www.w3.org/2003/01/geo/">Specifications</a></li><li>GeoRss (<a href="ezcFeedGeoRssModule.html">ezcFeedGeoRssModule</a>) -
+    <a href="http://www.georss.org/georss/">Specifications</a></li><li>iTunes (<a href="ezcFeedITunesModule.html">ezcFeedITunesModule</a>) -
+    <a href="http://www.apple.com/itunes/store/podcaststechspecs.html">Specifications</a></li></ul>  A new module can be defined by creating a class which extends the class  <a href="ezcFeedModule.html">ezcFeedModule</a>. The new class needs to be added to the supported modules  list by calling <a href="ezcFeed.html#methodregisterModule">registerModule</a>.<p>A feed object can be created in different ways: </p><ul><li>by calling the constructor (with the optional feed type). Example:</li></ul><ol><li><div class="src-line">&#8192;&#8192;<span class="src-var">$feed&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcFeed.html">ezcFeed</a></span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol><p></p><ul><li>by parsing an existing XML file or URL. The feed type of the resulting
+    ezcFeed object will be autodetected. Example:</li></ul><ol><li><div class="src-line">&#8192;&#8192;<span class="src-var">$feed&#8192;</span>=&#8192;<span class="src-id"><a href="ezcFeed.html">ezcFeed</a></span><span class="src-sym">::</span><a href="ezcFeed.html#methodparse">parse</a><span class="src-sym">(&#8192;</span><span class="src-str">'http://www.example.com/rss2.xml'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;&#8192;</span><span class="src-comm">//&#8192;URL</span></div></li>
+<li><div class="src-line">&#8192;&#8192;<span class="src-var">$feed&#8192;</span>=&#8192;<span class="src-id"><a href="ezcFeed.html">ezcFeed</a></span><span class="src-sym">::</span><a href="ezcFeed.html#methodparse">parse</a><span class="src-sym">(&#8192;</span><span class="src-str">'http://username:password@www.example.com/rss2.xml'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;&#8192;</span><span class="src-comm">//&#8192;URL&#8192;with&#8192;HTTP&#8192;authentication</span></div></li>
+<li><div class="src-line">&#8192;&#8192;<span class="src-var">$feed&#8192;</span>=&#8192;<span class="src-id"><a href="ezcFeed.html">ezcFeed</a></span><span class="src-sym">::</span><a href="ezcFeed.html#methodparse">parse</a><span class="src-sym">(&#8192;</span><span class="src-str">'/tmp/rss2.xml'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;&#8192;</span><span class="src-comm">//&#8192;local&#8192;file</span></div></li>
+</ol><p></p><ul><li>by parsing an XML document stored in a string variable. The feed type of
+    the resulting ezcFeed object will be autodetected. Example:</li></ul><ol><li><div class="src-line">&#8192;&#8192;<span class="src-var">$feed&#8192;</span>=&#8192;<span class="src-id"><a href="ezcFeed.html">ezcFeed</a></span><span class="src-sym">::</span><a href="ezcFeed.html#methodparseContent">parseContent</a><span class="src-sym">(&#8192;</span><span class="src-var">$xmlString&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol><p>Parsing a feed (in the following examples $feed is an existing ezcFeed object): </p><ul><li>get a value from the feed object. Example:</li></ul><ol><li><div class="src-line">&#8192;<span class="src-var">$title&#8192;</span>=&#8192;<span class="src-var">$feed</span><span class="src-sym">-&gt;</span><span class="src-id">title</span><span class="src-sym">-&gt;</span><span class="src-id">__toString</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol><p></p><ul><li>iterate over the items in the feed. Example:</li></ul><ol><li><div class="src-line">&#8192;<span class="src-php">&lt;?php</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;retrieve&#8192;the&#8192;titles&#8192;from&#8192;the&#8192;feed&#8192;items</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-key">foreach&#8192;</span><span class="src-sym">(&#8192;</span><span class="src-var">$feed</span><span class="src-sym">-&gt;</span><span class="src-id">item&#8192;</span><span class="src-key">as&#8192;</span><span class="src-var">$item&#8192;</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">{</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-var">$titles</span><span class="src-sym">[</span><span class="src-sym">]&#8192;</span>=&#8192;<span class="src-var">$item</span><span class="src-sym">-&gt;</span><span class="src-id">title</span><span class="src-sym">-&gt;</span><span class="src-id">__toString</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">}</span></div></li>
+</ol><p></p><ul><li>parse a module. Example of parsing the Geo module (ezcFeedGeoModule):</li></ul><ol><li><div class="src-line">&#8192;<span class="src-php">&lt;?php</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$locations&#8192;</span>=&#8192;<span class="src-key">array</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-key">foreach&#8192;</span><span class="src-sym">(&#8192;</span><span class="src-var">$feed</span><span class="src-sym">-&gt;</span><span class="src-id">item&#8192;</span><span class="src-key">as&#8192;</span><span class="src-var">$item&#8192;</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">{</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-key">if&#8192;</span><span class="src-sym">(&#8192;</span>isset<span class="src-sym">(&#8192;</span><span class="src-var">$item</span><span class="src-sym">-&gt;</span><span class="src-id">Geo&#8192;</span><span class="src-sym">)&#8192;)</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-sym">{</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-var">$locations</span><span class="src-sym">[</span><span class="src-sym">]&#8192;</span>=&#8192;<span class="src-key">array</span><span class="src-sym">(</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'title'&#8192;</span>=&gt;&#8192;<span class="src-var">$item</span><span class="src-sym">-&gt;</span><span class="src-id">title</span><span class="src-sym">-&gt;</span><span class="src-id">__toString</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'alt'&#8192;</span>=&gt;&#8192;isset<span class="src-sym">(&#8192;</span><span class="src-var">$item</span><span class="src-sym">-&gt;</span><span class="src-id">Geo</span><span class="src-sym">-&gt;</span><span class="src-id">alt&#8192;</span><span class="src-sym">)&#8192;</span>?&#8192;<span class="src-var">$item</span><span class="src-sym">-&gt;</span><span class="src-id">Geo</span><span class="src-sym">-&gt;</span><span class="src-id">alt</span><span class="src-sym">-&gt;</span><span class="src-id">__toString</span><span class="src-sym">(</span><span class="src-sym">)&#8192;</span>:&#8192;<span class="src-id">null</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'lat'&#8192;</span>=&gt;&#8192;isset<span class="src-sym">(&#8192;</span><span class="src-var">$item</span><span class="src-sym">-&gt;</span><span class="src-id">Geo</span><span class="src-sym">-&gt;</span><span class="src-id">lat&#8192;</span><span class="src-sym">)&#8192;</span>?&#8192;<span class="src-var">$item</span><span class="src-sym">-&gt;</span><span class="src-id">Geo</span><span class="src-sym">-&gt;</span><span class="src-id">lat</span><span class="src-sym">-&gt;</span><span class="src-id">__toString</span><span class="src-sym">(</span><span class="src-sym">)&#8192;</span>:&#8192;<span class="src-id">null</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'long'&#8192;</span>=&gt;&#8192;isset<span class="src-sym">(&#8192;</span><span class="src-var">$item</span><span class="src-sym">-&gt;</span><span class="src-id">Geo</span><span class="src-sym">-&gt;</span><span class="src-id">long&#8192;</span><span class="src-sym">)&#8192;</span>?&#8192;<span class="src-var">$item</span><span class="src-sym">-&gt;</span><span class="src-id">Geo</span><span class="src-sym">-&gt;</span><span class="src-id">long</span><span class="src-sym">-&gt;</span><span class="src-id">__toString</span><span class="src-sym">(</span><span class="src-sym">)&#8192;</span>:&#8192;<span class="src-id">null</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-sym">}</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">}</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-php">?&gt;</span></div></li>
+</ol><p></p><ul><li>iterate over the loaded modules in a feed item. Example:</li></ul><ol><li><div class="src-line">&#8192;<span class="src-php">&lt;?php</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;display&#8192;the&#8192;names&#8192;and&#8192;namespaces&#8192;of&#8192;the&#8192;modules&#8192;loaded&#8192;in&#8192;the&#8192;feed&#8192;item&#8192;$item</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-key">foreach&#8192;</span><span class="src-sym">(&#8192;</span><span class="src-var">$item</span><span class="src-sym">-&gt;</span><a href="ezcFeed.html#methodgetModules">getModules</a><span class="src-sym">(</span><span class="src-sym">)&#8192;</span><span class="src-key">as&#8192;</span><span class="src-var">$moduleName&#8192;</span>=&gt;&#8192;<span class="src-var">$module&#8192;</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">{</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;echo&#8192;<span class="src-var">$moduleName&#8192;</span>.&#8192;<span class="src-str">':'&#8192;</span>.&#8192;<span class="src-var">$module</span><span class="src-sym">-&gt;</span><span class="src-id">getNamespace</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">}</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-php">?&gt;</span></div></li>
+</ol><p>Generating a feed: </p><ul><li>create a feed object. Example:</li></ul><ol><li><div class="src-line">&#8192;<span class="src-var">$feed&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcFeed.html">ezcFeed</a></span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol><p></p><ul><li>set a value to the feed object. Example:</li></ul><ol><li><div class="src-line">&#8192;<span class="src-var">$feed</span><span class="src-sym">-&gt;</span><span class="src-id">title&#8192;</span>=&#8192;<span class="src-str">'News'</span><span class="src-sym">;</span></div></li>
+</ol><p></p><ul><li>add a new item to the feed. Example:</li></ul><ol><li><div class="src-line">&#8192;<span class="src-php">&lt;?php</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$item&#8192;</span>=&#8192;<span class="src-var">$feed</span><span class="src-sym">-&gt;</span><a href="ezcFeed.html#methodadd">add</a><span class="src-sym">(&#8192;</span><span class="src-str">'item'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$item</span><span class="src-sym">-&gt;</span><span class="src-id">title&#8192;</span>=&#8192;<span class="src-str">'Item&#8192;title'</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-php">?&gt;</span></div></li>
+</ol><p></p><ul><li>add a new module to the feed item. Example:</li></ul><ol><li><div class="src-line">&#8192;<span class="src-php">&lt;?php</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$item&#8192;</span>=&#8192;<span class="src-var">$feed</span><span class="src-sym">-&gt;</span><a href="ezcFeed.html#methodadd">add</a><span class="src-sym">(&#8192;</span><span class="src-str">'item'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$module&#8192;</span>=&#8192;<span class="src-var">$item</span><span class="src-sym">-&gt;</span><a href="ezcFeed.html#methodaddModule">addModule</a><span class="src-sym">(&#8192;</span><span class="src-str">'Content'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$content</span><span class="src-sym">-&gt;</span><span class="src-id">encoded&#8192;</span>=&#8192;<span class="src-str">'text&#8192;content&#8192;which&#8192;will&#8192;be&#8192;encoded'</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-php">?&gt;</span></div></li>
+</ol><p></p><ul><li>generate an XML document from the <a href="ezcFeed.html">ezcFeed</a> object. The result
+   string should be saved to a file, and a link to a file made accessible
+   to users of the application. Example:</li></ul><ol><li><div class="src-line">&#8192;<span class="src-php">&lt;?php</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$xmlAtom&#8192;</span>=&#8192;<span class="src-var">$feed</span><span class="src-sym">-&gt;</span><a href="ezcFeed.html#methodgenerate">generate</a><span class="src-sym">(&#8192;</span><span class="src-str">'atom'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$xmlRss1&#8192;</span>=&#8192;<span class="src-var">$feed</span><span class="src-sym">-&gt;</span><a href="ezcFeed.html#methodgenerate">generate</a><span class="src-sym">(&#8192;</span><span class="src-str">'rss1'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$xmlRss2&#8192;</span>=&#8192;<span class="src-var">$feed</span><span class="src-sym">-&gt;</span><a href="ezcFeed.html#methodgenerate">generate</a><span class="src-sym">(&#8192;</span><span class="src-str">'rss2'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-php">?&gt;</span></div></li>
+</ol><p>Note: Assigning values to feed elements should be done in a way that will not  break the resulting XML document. In other words, encoding of special characters  to HTML entities is not done by default, and the developer is responsible with  calling htmlentities() himself when assigning values to feed elements. Example:  if the feed title contains the "&amp;" character, it is the responsability of the  developer to encode it properly as "&amp;amp;".</p><p>Example of creating a feed with a user-defined type:</p><p></p><ol><li><div class="src-line">&#8192;<span class="src-php">&lt;?php</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-id"><a href="ezcFeed.html">ezcFeed</a></span><span class="src-sym">::</span><a href="ezcFeed.html#methodregisterFeed">registerFeed</a><span class="src-sym">(&#8192;</span><span class="src-str">'opml'</span><span class="src-sym">,&#8192;</span><span class="src-str">'myOpmlHandler'</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$feed&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcFeed.html">ezcFeed</a></span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;add&#8192;properties&#8192;to&#8192;$feed</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$xml&#8192;</span>=&#8192;<span class="src-var">$feed</span><span class="src-sym">-&gt;</span><a href="ezcFeed.html#methodgenerate">generate</a><span class="src-sym">(&#8192;</span><span class="src-str">'opml'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-php">?&gt;</span></div></li>
+</ol><p>In the above example, myOpmlHandler extends <a href="ezcFeedProcessor.html">ezcFeedProcessor</a> and  implements <a href="ezcFeedParser.html">ezcFeedParser</a>.</p><p>Example of creating a feed with a user-defined module:</p><p></p><ol><li><div class="src-line">&#8192;<span class="src-php">&lt;?php</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-id"><a href="ezcFeed.html">ezcFeed</a></span><span class="src-sym">::</span><a href="ezcFeed.html#methodregisterModule">registerModule</a><span class="src-sym">(&#8192;</span><span class="src-str">'Slash'</span><span class="src-sym">,&#8192;</span><span class="src-str">'mySlashHandler'</span><span class="src-sym">,&#8192;</span><span class="src-str">'slash'</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$feed&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcFeed.html">ezcFeed</a></span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$item&#8192;</span>=&#8192;<span class="src-var">$feed</span><span class="src-sym">-&gt;</span><a href="ezcFeed.html#methodadd">add</a><span class="src-sym">(&#8192;</span><span class="src-str">'item'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$slash&#8192;</span>=&#8192;<span class="src-var">$item</span><span class="src-sym">-&gt;</span><a href="ezcFeed.html#methodaddModule">addModule</a><span class="src-sym">(&#8192;</span><span class="src-str">'Slash'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;add&#8192;properties&#8192;for&#8192;the&#8192;Slash&#8192;module&#8192;to&#8192;$slash</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$xml&#8192;</span>=&#8192;<span class="src-var">$feed</span><span class="src-sym">-&gt;</span><a href="ezcFeed.html#methodgenerate">generate</a><span class="src-sym">(&#8192;</span><span class="src-str">'rss2'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;&#8192;</span><span class="src-comm">//&#8192;or&#8192;the&#8192;feed&#8192;type&#8192;which&#8192;is&#8192;needed</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-php">?&gt;</span></div></li>
+</ol><p>In the above example mySlashHandler extends <a href="ezcFeedModule.html">ezcFeedModule</a>.</p></div>
+<p>Source for this file: <a href="http://fisheye6.atlassian.com/browse/zetacomponents/trunk/Feed/src/feed.php?r=HEAD">/Feed/src/feed.php</a></p>
+       
+
+
+
+
+  <table><tr><td>
+            <strong>Version:</strong>&#8192;&#8192;
+          </td>
+          <td>//autogentag//</td>
+        </tr><tr><td>
+            <strong>Todo:</strong>&#8192;&#8192;
+          </td>
+          <td>parse() and parseContent() should(?) handle common broken XML files        (for example if the first line is not &lt;?xml version="1.0"?&gt;)</td>
+        </tr></table><a name="sec-const-summary"></a>
+  <h3>Constants</h3>
+  <table class="summary"><tr><td class="right">
+          <a name="const-GENERATOR_URI" id=""></a>
+          <code>
+            <a href="#const-GENERATOR_URI" title="details" class="const-name-summary">GENERATOR_URI</a>
+             =  'http://ezcomponents.org/docs/tutorials/Feed'
+          </code>
+        </td>
+        <td>
+          The uri of the feed generator, to be included in the generated feeds.                  </td>
+      </tr><tr><td class="right">
+          <a name="const-GENERATOR_VERSION" id=""></a>
+          <code>
+            <a href="#const-GENERATOR_VERSION" title="details" class="const-name-summary">GENERATOR_VERSION</a>
+             =  '//autogentag//'
+          </code>
+        </td>
+        <td>
+          The version of the feed generator, to be included in the generated feeds.                  </td>
+      </tr></table><a name="sec-prop-summary"></a>
+  <h3>Properties</h3>
+  <table class="summary"><tr><td class="right">
+          <a name="prop%24author" id="$author"></a>
+          <a name="prop-%24author" id="$author"></a>
+          <em>array(ezcFeedPersonElement)</em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24author" title="details" class="var-name-summary">$author</a>
+                      </code>
+          <br><div style="margin-left: 20px">Author(s) of the feed. Equivalents:            ATOM-author (required, multiple),            RSS1-none,            RSS2-managingEditor (optional, recommended, single).</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24category" id="$category"></a>
+          <a name="prop-%24category" id="$category"></a>
+          <em>array(ezcFeedCategoryElement)</em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24category" title="details" class="var-name-summary">$category</a>
+                      </code>
+          <br><div style="margin-left: 20px">Categories for the feed. Equivalents:            ATOM-category (optional, multiple),            RSS1-none,            RSS2-category (optional, multiple).</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24cloud" id="$cloud"></a>
+          <a name="prop-%24cloud" id="$cloud"></a>
+          <em><a href="ezcFeedCloudElement.html">ezcFeedCloudElement</a></em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24cloud" title="details" class="var-name-summary">$cloud</a>
+                      </code>
+          <br><div style="margin-left: 20px">Allows processes to register with a cloud to be notified of updates            to the channel, implementing a lightweight publish-subscribe            protocol for RSS feeds. Equivalents:            ATOM-none,            RSS1-none,            RSS2-cloud (optional, not recommended, single).</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24contributor" id="$contributor"></a>
+          <a name="prop-%24contributor" id="$contributor"></a>
+          <em>array(ezcFeedPersonElement)</em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24contributor" title="details" class="var-name-summary">$contributor</a>
+                      </code>
+          <br><div style="margin-left: 20px">Contributor(s) for the feed. Equivalents:            ATOM-contributor (optional, not recommended, multiple),            RSS1-none,            RSS2-none.</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24copyright" id="$copyright"></a>
+          <a name="prop-%24copyright" id="$copyright"></a>
+          <em><a href="ezcFeedTextElement.html">ezcFeedTextElement</a></em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24copyright" title="details" class="var-name-summary">$copyright</a>
+                      </code>
+          <br><div style="margin-left: 20px">Copyright information for the feed. Equivalents:            ATOM-rights (optional, single),            RSS1-none,            RSS2-copyright (optional, single).</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24description" id="$description"></a>
+          <a name="prop-%24description" id="$description"></a>
+          <em><a href="ezcFeedTextElement.html">ezcFeedTextElement</a></em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24description" title="details" class="var-name-summary">$description</a>
+                      </code>
+          <br><div style="margin-left: 20px">A short description of the feed. Equivalents:            ATOM-subtitle (required, single),            RSS1-description (required, single),            RSS2-description (required, single).</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24docs" id="$docs"></a>
+          <a name="prop-%24docs" id="$docs"></a>
+          <em><a href="ezcFeedTextElement.html">ezcFeedTextElement</a></em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24docs" title="details" class="var-name-summary">$docs</a>
+                      </code>
+          <br><div style="margin-left: 20px">An URL that points to the documentation for the format used in the            feed file. Equivalents:            ATOM-none,            RSS1-none,            RSS2-docs (optional, not recommended, single) - usual value is            <a href="http://www.rssboard.org/rss-specification">http://www.rssboard.org/rss-specification</a>.</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24generator" id="$generator"></a>
+          <a name="prop-%24generator" id="$generator"></a>
+          <em><a href="ezcFeedGeneratorElement.html">ezcFeedGeneratorElement</a></em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24generator" title="details" class="var-name-summary">$generator</a>
+                      </code>
+          <br><div style="margin-left: 20px">Indicates the software used to generate the feed. Equivalents:            ATOM-generator (optional, single),            RSS1-none,            RSS2-generator (optional, single).</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24icon" id="$icon"></a>
+          <a name="prop-%24icon" id="$icon"></a>
+          <em><a href="ezcFeedImageElement.html">ezcFeedImageElement</a></em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24icon" title="details" class="var-name-summary">$icon</a>
+                      </code>
+          <br><div style="margin-left: 20px">An icon for a feed, similar with favicon.ico for websites. Equivalents:            ATOM-icon (optional, not recommended, single),            RSS1-none,            RSS2-none.</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24id" id="$id"></a>
+          <a name="prop-%24id" id="$id"></a>
+          <em><a href="ezcFeedIdElement.html">ezcFeedIdElement</a></em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24id" title="details" class="var-name-summary">$id</a>
+                      </code>
+          <br><div style="margin-left: 20px">A universally unique and permanent identifier for a feed. For            example, it can be an Internet domain name. Equivalents:            ATOM-id (required, single),            RSS1-about (required, single),            RSS2-id (optional, single).</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24image" id="$image"></a>
+          <a name="prop-%24image" id="$image"></a>
+          <em><a href="ezcFeedImageElement.html">ezcFeedImageElement</a></em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24image" title="details" class="var-name-summary">$image</a>
+                      </code>
+          <br><div style="margin-left: 20px">An image associated with the feed. Equivalents:            ATOM-logo (optional, single),            RSS1-image (optional, single),            RSS2-image (optional, single).</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24item" id="$item"></a>
+          <a name="prop-%24item" id="$item"></a>
+          <em>array(ezcFeedEntryElement)</em>        </td>
+        <td class="right">
+          <em>read</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24item" title="details" class="var-name-summary">$item</a>
+                      </code>
+          <br><div style="margin-left: 20px">Feed items (entries). Equivalents:            ATOM-entry (optional, recommended, multiple),            RSS1-item (required, multiple),            RSS2-item (required, multiple).</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24language" id="$language"></a>
+          <a name="prop-%24language" id="$language"></a>
+          <em><a href="ezcFeedTextElement.html">ezcFeedTextElement</a></em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24language" title="details" class="var-name-summary">$language</a>
+                      </code>
+          <br><div style="margin-left: 20px">The language for the feed. Equivalents:            ATOM-xml:lang attribute for title, description, copyright, content,            comments (optional, single) - accessed as language through ezcFeed,            RSS1-none,            RSS2-language (optional, single).</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24link" id="$link"></a>
+          <a name="prop-%24link" id="$link"></a>
+          <em>array(ezcFeedLinkElement)</em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24link" title="details" class="var-name-summary">$link</a>
+                      </code>
+          <br><div style="margin-left: 20px">URLs to the HTML websites corresponding to the channel. Equivalents:            ATOM-link (required one link with rel='self', multiple),            RSS1-link (required, single),            RSS2-link (required, single).</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24published" id="$published"></a>
+          <a name="prop-%24published" id="$published"></a>
+          <em><a href="ezcFeedDateElement.html">ezcFeedDateElement</a></em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24published" title="details" class="var-name-summary">$published</a>
+                      </code>
+          <br><div style="margin-left: 20px">The time the feed was published. Equivalents:            ATOM-none,            RSS1-none,            RSS2-pubDate (optional, not recommended, single).</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24rating" id="$rating"></a>
+          <a name="prop-%24rating" id="$rating"></a>
+          <em><a href="ezcFeedTextElement.html">ezcFeedTextElement</a></em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24rating" title="details" class="var-name-summary">$rating</a>
+                      </code>
+          <br><div style="margin-left: 20px">The <a href="http://www.w3.org/PICS/">PICS</a> rating for the channel. Equivalents:            ATOM-none,            RSS1-none,            RSS2-rating (optional, not recommended, single).</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24skipDays" id="$skipDays"></a>
+          <a name="prop-%24skipDays" id="$skipDays"></a>
+          <em><a href="ezcFeedSkipDaysElement.html">ezcFeedSkipDaysElement</a></em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24skipDays" title="details" class="var-name-summary">$skipDays</a>
+                      </code>
+          <br><div style="margin-left: 20px">A hint for aggregators telling them which days they can skip when            reading the feed. Equivalents:            ATOM-none,            RSS1-none,            RSS2-skipDays (optional, not recommended, single).</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24skipHours" id="$skipHours"></a>
+          <a name="prop-%24skipHours" id="$skipHours"></a>
+          <em><a href="ezcFeedSkipHoursElement.html">ezcFeedSkipHoursElement</a></em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24skipHours" title="details" class="var-name-summary">$skipHours</a>
+                      </code>
+          <br><div style="margin-left: 20px">A hint for aggregators telling them which hours they can skip when            reading the feed. Equivalents:            ATOM-none,            RSS1-none,            RSS2-skipHours (optional, not recommended, single).</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24textInput" id="$textInput"></a>
+          <a name="prop-%24textInput" id="$textInput"></a>
+          <em><a href="ezcFeedTextInputElement.html">ezcFeedTextInputElement</a></em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24textInput" title="details" class="var-name-summary">$textInput</a>
+                      </code>
+          <br><div style="margin-left: 20px">Specifies a text input box that can be displayed with the feed. Equivalents:            ATOM-none,            RSS1-textinput (optional, not recommended, single),            RSS2-textInput (optional, not recommended, single).</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24title" id="$title"></a>
+          <a name="prop-%24title" id="$title"></a>
+          <em><a href="ezcFeedTextElement.html">ezcFeedTextElement</a></em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24title" title="details" class="var-name-summary">$title</a>
+                      </code>
+          <br><div style="margin-left: 20px">Human readable title for the feed. For example, it can be the same            as the website title. Equivalents:            ATOM-title (required, single),            RSS1-title (required, single),            RSS2-title (required, single).</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24ttl" id="$ttl"></a>
+          <a name="prop-%24ttl" id="$ttl"></a>
+          <em><a href="ezcFeedTextElement.html">ezcFeedTextElement</a></em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24ttl" title="details" class="var-name-summary">$ttl</a>
+                      </code>
+          <br><div style="margin-left: 20px">Number of minutes that indicates how long a channel can be cached            before refreshing from the source. Equivalents:            ATOM-none,            RSS1-none,            RSS2-ttl (optional, not recommended, single).</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24updated" id="$updated"></a>
+          <a name="prop-%24updated" id="$updated"></a>
+          <em><a href="ezcFeedDateElement.html">ezcFeedDateElement</a></em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24updated" title="details" class="var-name-summary">$updated</a>
+                      </code>
+          <br><div style="margin-left: 20px">The last time the feed was updated. Equivalents:            ATOM-updated (required, single),            RSS1-none,            RSS2-lastBuildDate (optional, recommended, single).</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24webMaster" id="$webMaster"></a>
+          <a name="prop-%24webMaster" id="$webMaster"></a>
+          <em><a href="ezcFeedPersonElement.html">ezcFeedPersonElement</a></em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24webMaster" title="details" class="var-name-summary">$webMaster</a>
+                      </code>
+          <br><div style="margin-left: 20px">The email address of the webmaster responsible for the feed. Equivalents:            ATOM-none,            RSS1-none,            RSS2-webMaster (optional, not recommended, single).</div>        </td>
+      </tr></table><a name="sec-method-summary"></a>
+  <h3>Method Summary</h3>
+  <table class="summary"><tr><td class="right">
+            <em>public</em>            static
+                        <em>array(string=&gt;string)</em>          </td>
+          <td>
+            <code>
+              <a href="#getSupportedModules"><b>getSupportedModules</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns the supported feed modules.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>            static
+                        <em>array(string=&gt;string)</em>          </td>
+          <td>
+            <code>
+              <a href="#getSupportedModulesPrefixes"><b>getSupportedModulesPrefixes</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns the supported feed modules prefixes.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>            static
+                        <em>array(string)</em>          </td>
+          <td>
+            <code>
+              <a href="#getSupportedTypes"><b>getSupportedTypes</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns the supported feed types.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>            static
+                        <em><a href="ezcFeed.html">ezcFeed</a></em>          </td>
+          <td>
+            <code>
+              <a href="#parse"><b>parse</b></a>(
+                                                                                    $uri
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Parses the XML document in the $uri and returns an ezcFeed object with  the type autodetected from the XML document.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>            static
+                        <em><a href="ezcFeed.html">ezcFeed</a></em>          </td>
+          <td>
+            <code>
+              <a href="#parseContent"><b>parseContent</b></a>(
+                                                                                    $content
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Parses the XML document stored in $content and returns an ezcFeed object  with the type autodetected from the XML document.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>            static
+                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#registerFeed"><b>registerFeed</b></a>(
+                                                                                    $name
+                                                    ,                                     $class
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Adds the feed type $name to the supported list of feed types.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>            static
+                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#registerModule"><b>registerModule</b></a>(
+                                                                                    $name
+                                                    ,                                     $class
+                                                    ,                                     $namespacePrefix
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Adds the module $name to the supported list of modules.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>            static
+                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#unregisterFeed"><b>unregisterFeed</b></a>(
+                                                                                    $name
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Removes a previously registered feed type from the list of supported  feed types.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>            static
+                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#unregisterModule"><b>unregisterModule</b></a>(
+                                                                                    $name
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Removes a previously registered module from the list of supported modules.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>ezcFeed</em>          </td>
+          <td>
+            <code>
+              <a href="#__construct"><b>__construct</b></a>(
+                                                                  [                  $type
+                   = null]                               )
+            </code>
+            <br><div style="margin-left: 20px">Creates a new feed object.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em><a href="ezcFeedElement.html">ezcFeedElement</a>|null</em>          </td>
+          <td>
+            <code>
+              <a href="#add"><b>add</b></a>(
+                                                                                    $name
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Adds a new ezcFeedElement element with name $name and returns it.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em><a href="ezcFeedModule.html">ezcFeedModule</a></em>          </td>
+          <td>
+            <code>
+              <a href="#addModule"><b>addModule</b></a>(
+                                                                                    $name
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Adds a new module to this item and returns it.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#generate"><b>generate</b></a>(
+                                                                  [                  $type
+                   = null]                               )
+            </code>
+            <br><div style="margin-left: 20px">Generates and returns an XML document of type $type from the current  object.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#getContentType"><b>getContentType</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns the feed content type of this feed object  (eg. 'application/rss+xml').</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#getFeedType"><b>getFeedType</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns the feed type of this feed object (eg. 'rss2').</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em><a href="ezcFeedModule.html">ezcFeedModule</a></em>          </td>
+          <td>
+            <code>
+              <a href="#getModule"><b>getModule</b></a>(
+                                                                                    $name
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns the loaded module $name.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>array(ezcFeedModule)</em>          </td>
+          <td>
+            <code>
+              <a href="#getModules"><b>getModules</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns an array with all the modules loaded at feed-level.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>bool</em>          </td>
+          <td>
+            <code>
+              <a href="#hasModule"><b>hasModule</b></a>(
+                                                                                    $name
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns true if the module $name is loaded, false otherwise.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#setModule"><b>setModule</b></a>(
+                                                                                    $name
+                                                    ,                                     $module
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Associates the module $module with the name $name.</div>          </td>
+        </tr></table><a name="sec-methods"></a>
+  <h3>Methods</h3>
+  <a name="method_detail"></a>
+                      <a name="methodgetSupportedModules" id="getSupportedModules"><!-- --></a>
+
+    <h4>getSupportedModules</h4>
+
+    <div class="method-signature">
+      static array(string=&gt;string)
+      getSupportedModules(
+      )
+    </div>
+
+      <p>Returns the supported feed modules.</p><div><p>The array returned is (default):  </p><ol><li><div class="src-line">&#8192;<span class="src-key">array</span><span class="src-sym">(</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;<span class="src-str">'Content'&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;</span>=&gt;&#8192;<span class="src-str">'ezcFeedContentModule'</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;<span class="src-str">'CreativeCommons'&#8192;</span>=&gt;&#8192;<span class="src-str">'ezcFeedCreativeCommonsModule'</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;<span class="src-str">'DublinCore'&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;</span>=&gt;&#8192;<span class="src-str">'ezcFeedDublinCoreModule'</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;<span class="src-str">'Geo'&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;</span>=&gt;&#8192;<span class="src-str">'ezcFeedGeoModule'</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;<span class="src-str">'GeoRss'&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;</span>=&gt;&#8192;<span class="src-str">'ezcFeedGeoRssModule'</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;<span class="src-str">'iTunes'&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;</span>=&gt;&#8192;<span class="src-str">'ezcFeedITunesModule'</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol><p>If the function <a href="ezcFeed.html#methodregisterModule">registerModule</a> was used to add another supported  module type to ezcFeed, it will show up in the returned array as well.</p></div>      
+      
+      
+      
+      
+      
+        <a name="methodgetSupportedModulesPrefixes" id="getSupportedModulesPrefixes"><!-- --></a>
+
+    <h4>getSupportedModulesPrefixes</h4>
+
+    <div class="method-signature">
+      static array(string=&gt;string)
+      getSupportedModulesPrefixes(
+      )
+    </div>
+
+      <p>Returns the supported feed modules prefixes.</p><div><p>The array returned is (default):  </p><ol><li><div class="src-line">&#8192;<span class="src-key">array</span><span class="src-sym">(</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;<span class="src-str">'content'&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;</span>=&gt;&#8192;<span class="src-str">'Content'</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;<span class="src-str">'creativeCommons'&#8192;</span>=&gt;&#8192;<span class="src-str">'CreativeCommons'</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;<span class="src-str">'dc'&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;</span>=&gt;&#8192;<span class="src-str">'DublinCore'</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;<span class="src-str">'geo'&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;</span>=&gt;&#8192;<span class="src-str">'Geo'</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;<span class="src-str">'georss'&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;</span>=&gt;&#8192;<span class="src-str">'GeoRss'</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;<span class="src-str">'itunes'&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;</span>=&gt;&#8192;<span class="src-str">'iTunes'</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol><p>If the function <a href="ezcFeed.html#methodregisterModule">registerModule</a> was used to add another supported  module type to ezcFeed, it will show up in the returned array as well.</p></div>      
+      
+      
+      
+      
+      
+        <a name="methodgetSupportedTypes" id="getSupportedTypes"><!-- --></a>
+
+    <h4>getSupportedTypes</h4>
+
+    <div class="method-signature">
+      static array(string)
+      getSupportedTypes(
+      )
+    </div>
+
+      <p>Returns the supported feed types.</p><div><p>The array returned is (default):  </p><ol><li><div class="src-line">&#8192;<span class="src-key">array</span><span class="src-sym">(</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;<span class="src-str">'rss1'&#8192;</span>=&gt;&#8192;<span class="src-str">'ezcFeedRss1'</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;<span class="src-str">'rss2'&#8192;</span>=&gt;&#8192;<span class="src-str">'ezcFeedRss2'</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;<span class="src-str">'atom'&#8192;</span>=&gt;&#8192;<span class="src-str">'ezcFeedAtom'</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol><p>If the function <a href="ezcFeed.html#methodregisterFeed">registerFeed</a> was used to add another supported feed  type to ezcFeed, it will show up in the returned array as well.</p></div>      
+      
+      
+      
+      
+      
+          <a name="methodparse" id="parse"><!-- --></a>
+
+    <h4>parse</h4>
+
+    <div class="method-signature">
+      static <a href="ezcFeed.html">ezcFeed</a>
+      parse(
+                                  string
+          $uri
+                        )
+    </div>
+
+      <p>Parses the XML document in the $uri and returns an ezcFeed object with  the type autodetected from the XML document.</p><div><p>Example of parsing an XML document stored at an URL:  </p><ol><li><div class="src-line">&#8192;<span class="src-var">$feed&#8192;</span>=&#8192;<span class="src-id"><a href="ezcFeed.html">ezcFeed</a></span><span class="src-sym">::</span><a href="ezcFeed.html#methodparse">parse</a><span class="src-sym">(&#8192;</span><span class="src-str">'http://www.example.com/rss2.xml'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol><p>Example of parsing an XML document protected with HTTP authentication:  </p><ol><li><div class="src-line">&#8192;<span class="src-var">$feed&#8192;</span>=&#8192;<span class="src-id"><a href="ezcFeed.html">ezcFeed</a></span><span class="src-sym">::</span><a href="ezcFeed.html#methodparse">parse</a><span class="src-sym">(&#8192;</span><span class="src-str">'http://username:password@www.example.com/rss2.xml'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol><p>If trying to parse an XML document protected with HTTP authentication  without providing a valid username and password, the exception  <a href="ezcFeedParseErrorException.html">ezcFeedParseErrorException</a> will be thrown.</p><p>Example of parsing an XML document stored in a local file:  </p><ol><li><div class="src-line">&#8192;<span class="src-var">$feed&#8192;</span>=&#8192;<span class="src-id"><a href="ezcFeed.html">ezcFeed</a></span><span class="src-sym">::</span><a href="ezcFeed.html#methodparse">parse</a><span class="src-sym">(&#8192;</span><span class="src-str">'/tmp/feed.xml'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol></div>      
+              <h5>Parameters:</h5>
+        <table class="detail"><thead><tr><th>Name</th>
+              <th>Type</th>
+              <th class="desc">Description</th>
+            </tr></thead><tbody><tr><td><code>$uri</code></td>
+                <td><em>string</em></td>
+                <td>
+                                      An URI which stores an XML document
+                                  </td>
+              </tr></tbody></table><h5>Exceptions:</h5>
+        <table class="detail"><thead><tr><th>Type</th>
+              <th class="desc">Description</th>
+            </tr></thead><tbody><tr><td><code><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseFileNotFoundException.html">ezcBaseFileNotFoundException</a></code></td>
+                <td>
+                                      If the XML file at $uri could not be found.
+                                  </td>
+              </tr><tr><td><code><a href="ezcFeedParseErrorException.html">ezcFeedParseErrorException</a></code></td>
+                <td>
+                                      If the content at $uri is not a valid XML document.
+                                  </td>
+              </tr></tbody></table><a name="methodparseContent" id="parseContent"><!-- --></a>
+
+    <h4>parseContent</h4>
+
+    <div class="method-signature">
+      static <a href="ezcFeed.html">ezcFeed</a>
+      parseContent(
+                                  string
+          $content
+                        )
+    </div>
+
+      <p>Parses the XML document stored in $content and returns an ezcFeed object  with the type autodetected from the XML document.</p><div><p>Example of parsing an XML document stored in a string:  </p><ol><li><div class="src-line">&#8192;<span class="src-comm">//&#8192;$xmlString&#8192;contains&#8192;a&#8192;valid&#8192;XML&#8192;string</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$feed&#8192;</span>=&#8192;<span class="src-id"><a href="ezcFeed.html">ezcFeed</a></span><span class="src-sym">::</span><a href="ezcFeed.html#methodparseContent">parseContent</a><span class="src-sym">(&#8192;</span><span class="src-var">$xmlString&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol></div>      
+              <h5>Parameters:</h5>
+        <table class="detail"><thead><tr><th>Name</th>
+              <th>Type</th>
+              <th class="desc">Description</th>
+            </tr></thead><tbody><tr><td><code>$content</code></td>
+                <td><em>string</em></td>
+                <td>
+                                      A string variable which stores an XML document
+                                  </td>
+              </tr></tbody></table><h5>Exceptions:</h5>
+        <table class="detail"><thead><tr><th>Type</th>
+              <th class="desc">Description</th>
+            </tr></thead><tbody><tr><td><code><a href="ezcFeedParseErrorException.html">ezcFeedParseErrorException</a></code></td>
+                <td>
+                                      If $content is not a valid XML document.
+                                  </td>
+              </tr></tbody></table><a name="methodregisterFeed" id="registerFeed"><!-- --></a>
+
+    <h4>registerFeed</h4>
+
+    <div class="method-signature">
+      static void
+      registerFeed(
+                                  string
+          $name
+                            ,           string
+          $class
+                        )
+    </div>
+
+      <p>Adds the feed type $name to the supported list of feed types.</p><div><p>After registering a feed type, it can be used to create or parse feed  documents.</p><p>Example of creating a feed with a user-defined type:  </p><ol><li><div class="src-line">&#8192;<span class="src-id"><a href="ezcFeed.html">ezcFeed</a></span><span class="src-sym">::</span><a href="ezcFeed.html#methodregisterFeed">registerFeed</a><span class="src-sym">(&#8192;</span><span class="src-str">'opml'</span><span class="src-sym">,&#8192;</span><span class="src-str">'myOpmlHandler'</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$feed&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcFeed.html">ezcFeed</a></span><span class="src-sym">(&#8192;</span><span class="src-str">'opml'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;add&#8192;properties&#8192;for&#8192;the&#8192;Opml&#8192;feed&#8192;type&#8192;to&#8192;$feed</span></div></li>
+</ol><p>In the above example, myOpmlHandler extends <a href="ezcFeedProcessor.html">ezcFeedProcessor</a>  and implements <a href="ezcFeedParser.html">ezcFeedParser</a>.</p></div>      
+              <h5>Parameters:</h5>
+        <table class="detail"><thead><tr><th>Name</th>
+              <th>Type</th>
+              <th class="desc">Description</th>
+            </tr></thead><tbody><tr><td><code>$name</code></td>
+                <td><em>string</em></td>
+                <td>
+                                      The feed type (eg. 'opml' )
+                                  </td>
+              </tr><tr><td><code>$class</code></td>
+                <td><em>string</em></td>
+                <td>
+                                      The handler class for this feed type (eg. 'myOpmlHandler')
+                                  </td>
+              </tr></tbody></table><a name="methodregisterModule" id="registerModule"><!-- --></a>
+
+    <h4>registerModule</h4>
+
+    <div class="method-signature">
+      static void
+      registerModule(
+                                  string
+          $name
+                            ,           string
+          $class
+                            ,           string
+          $namespacePrefix
+                        )
+    </div>
+
+      <p>Adds the module $name to the supported list of modules.</p><div><p>After registering a module, it can be used to create or parse feed  documents.</p><p>Example of creating a feed with a user-defined module:  </p><ol><li><div class="src-line">&#8192;<span class="src-id"><a href="ezcFeed.html">ezcFeed</a></span><span class="src-sym">::</span><a href="ezcFeed.html#methodregisterModule">registerModule</a><span class="src-sym">(&#8192;</span><span class="src-str">'Slash'</span><span class="src-sym">,&#8192;</span><span class="src-str">'mySlashHandler'</span><span class="src-sym">,&#8192;</span><span class="src-str">'slash'</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$feed&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcFeed.html">ezcFeed</a></span><span class="src-sym">(&#8192;</span><span class="src-str">'rss2'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$item&#8192;</span>=&#8192;<span class="src-var">$feed</span><span class="src-sym">-&gt;</span><a href="ezcFeed.html#methodadd">add</a><span class="src-sym">(&#8192;</span><span class="src-str">'item'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$slash&#8192;</span>=&#8192;<span class="src-var">$item</span><span class="src-sym">-&gt;</span><a href="ezcFeed.html#methodaddModule">addModule</a><span class="src-sym">(&#8192;</span><span class="src-str">'Slash'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;add&#8192;properties&#8192;for&#8192;the&#8192;Slash&#8192;module&#8192;to&#8192;$slash</span></div></li>
+</ol></div>      
+              <h5>Parameters:</h5>
+        <table class="detail"><thead><tr><th>Name</th>
+              <th>Type</th>
+              <th class="desc">Description</th>
+            </tr></thead><tbody><tr><td><code>$name</code></td>
+                <td><em>string</em></td>
+                <td>
+                                      The module name (eg. 'Slash' )
+                                  </td>
+              </tr><tr><td><code>$class</code></td>
+                <td><em>string</em></td>
+                <td>
+                                      The handler class for this module (eg. 'mySlashHandler')
+                                  </td>
+              </tr><tr><td><code>$namespacePrefix</code></td>
+                <td><em>string</em></td>
+                <td>
+                                      The XML namespace prefix for this module (eg. 'slash')
+                                  </td>
+              </tr></tbody></table><a name="methodunregisterFeed" id="unregisterFeed"><!-- --></a>
+
+    <h4>unregisterFeed</h4>
+
+    <div class="method-signature">
+      static void
+      unregisterFeed(
+                                  string
+          $name
+                        )
+    </div>
+
+      <p>Removes a previously registered feed type from the list of supported  feed types.</p>      
+              <h5>Parameters:</h5>
+        <table class="detail"><thead><tr><th>Name</th>
+              <th>Type</th>
+              <th class="desc">Description</th>
+            </tr></thead><tbody><tr><td><code>$name</code></td>
+                <td><em>string</em></td>
+                <td>
+                                      The name of the feed type to remove (eg. 'opml')
+                                  </td>
+              </tr></tbody></table><a name="methodunregisterModule" id="unregisterModule"><!-- --></a>
+
+    <h4>unregisterModule</h4>
+
+    <div class="method-signature">
+      static void
+      unregisterModule(
+                                  string
+          $name
+                        )
+    </div>
+
+      <p>Removes a previously registered module from the list of supported modules.</p>      
+              <h5>Parameters:</h5>
+        <table class="detail"><thead><tr><th>Name</th>
+              <th>Type</th>
+              <th class="desc">Description</th>
+            </tr></thead><tbody><tr><td><code>$name</code></td>
+                <td><em>string</em></td>
+                <td>
+                                      The name of the module to remove (eg. 'Slash')
+                                  </td>
+              </tr></tbody></table><a name="method__construct" id="__construct"><!-- --></a>
+
+    <h4>__construct</h4>
+
+    <div class="method-signature">
+      ezcFeed
+      __construct(
+                                  [string
+          $type
+           = null]              )
+    </div>
+
+    <p>Creates a new feed object.</p><div><p>The $type value is used when calling generate() without specifying a  feed type to output.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$type</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  The type of feed to create
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcFeedUnsupportedTypeException.html">ezcFeedUnsupportedTypeException</a></code></td>
+              <td>
+                                  if the feed type $type is not supported
+                              </td>
+            </tr></tbody></table><a name="methodadd" id="add"><!-- --></a>
+
+    <h4>add</h4>
+
+    <div class="method-signature">
+      <a href="ezcFeedElement.html">ezcFeedElement</a>|null
+      add(
+                                  string
+          $name
+                        )
+    </div>
+
+    <p>Adds a new ezcFeedElement element with name $name and returns it.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$name</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  The element name
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcFeedUnsupportedElementException.html">ezcFeedUnsupportedElementException</a></code></td>
+              <td>
+                                  if the element $name is not supported
+                              </td>
+            </tr></tbody></table><a name="methodaddModule" id="addModule"><!-- --></a>
+
+    <h4>addModule</h4>
+
+    <div class="method-signature">
+      <a href="ezcFeedModule.html">ezcFeedModule</a>
+      addModule(
+                                  string
+          $name
+                        )
+    </div>
+
+    <p>Adds a new module to this item and returns it.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$name</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  The name of the module to add
+                              </td>
+            </tr></tbody></table><a name="methodgenerate" id="generate"><!-- --></a>
+
+    <h4>generate</h4>
+
+    <div class="method-signature">
+      string
+      generate(
+                                  [string
+          $type
+           = null]              )
+    </div>
+
+    <p>Generates and returns an XML document of type $type from the current  object.</p><div><p>If the type was defined when creating the ezcFeed object, then that  type will be used if no type is specified when calling generate().</p><p>If no type was specified when calling the constructor and no type  was specified when calling generate then an exception will be thrown.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$type</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  The feed type to generate
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcFeedUnsupportedTypeException.html">ezcFeedUnsupportedTypeException</a></code></td>
+              <td>
+                                  if the feed type $type is not supported
+                              </td>
+            </tr></tbody></table><a name="methodgetContentType" id="getContentType"><!-- --></a>
+
+    <h4>getContentType</h4>
+
+    <div class="method-signature">
+      string
+      getContentType(
+      )
+    </div>
+
+    <p>Returns the feed content type of this feed object  (eg. 'application/rss+xml').</p>
+    
+        
+
+    
+    
+    
+        <a name="methodgetFeedType" id="getFeedType"><!-- --></a>
+
+    <h4>getFeedType</h4>
+
+    <div class="method-signature">
+      string
+      getFeedType(
+      )
+    </div>
+
+    <p>Returns the feed type of this feed object (eg. 'rss2').</p>
+    
+        
+
+    
+    
+    
+        <a name="methodgetModule" id="getModule"><!-- --></a>
+
+    <h4>getModule</h4>
+
+    <div class="method-signature">
+      <a href="ezcFeedModule.html">ezcFeedModule</a>
+      getModule(
+                                  string
+          $name
+                        )
+    </div>
+
+    <p>Returns the loaded module $name.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$name</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  The name of the module to return
+                              </td>
+            </tr></tbody></table><a name="methodgetModules" id="getModules"><!-- --></a>
+
+    <h4>getModules</h4>
+
+    <div class="method-signature">
+      array(ezcFeedModule)
+      getModules(
+      )
+    </div>
+
+    <p>Returns an array with all the modules loaded at feed-level.</p>
+    
+        
+
+    
+    
+    
+              <a name="methodhasModule" id="hasModule"><!-- --></a>
+
+    <h4>hasModule</h4>
+
+    <div class="method-signature">
+      bool
+      hasModule(
+                                  string
+          $name
+                        )
+    </div>
+
+    <p>Returns true if the module $name is loaded, false otherwise.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$name</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  The name of the module to check if loaded for this item
+                              </td>
+            </tr></tbody></table><a name="methodsetModule" id="setModule"><!-- --></a>
+
+    <h4>setModule</h4>
+
+    <div class="method-signature">
+      void
+      setModule(
+                                  string
+          $name
+                            ,           <a href="ezcFeedModule.html">ezcFeedModule</a>
+          $module
+                        )
+    </div>
+
+    <p>Associates the module $module with the name $name.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$name</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  The name of the module associate
+                              </td>
+            </tr><tr><td><code>$module</code></td>
+              <td><em><a href="ezcFeedModule.html">ezcFeedModule</a></em></td>
+              <td>
+                                  The module to set under the name $name
+                              </td>
+            </tr></tbody></table><div class="credit">
+      Documentation generated by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+    </div>
+  </div>
+  
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

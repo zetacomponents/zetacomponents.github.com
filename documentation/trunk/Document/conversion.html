@@ -1,0 +1,95 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="PHP, apache, components, framework, quality" />
+	<meta name="author" content="dotxp" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Wed, 04 Aug 2010 13:07:08 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="Conversion " />
+	<meta name="DC.creator" content="dotxp" />
+	<meta name="DC.date" content="Wed, 04 Aug 2010 13:07:08 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/Document/conversion.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/Document/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Document/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/trunk/Document/conversion.html" title="Conversion ">Conversion </a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Document/styles.html" title="Styles ">Styles </a>
+	</li>
+
+</ul>
+
+		<h2>Document conversions</h2><p>This document aims to document a list of semantic markup elements, which can not be converted into one or another markup language, so you have to expect loss in the semantic document information during conversions.</p><a name="source-rst"></a><h3>Source RST</h3><p>Conversion loss, when the source is a RST document.</p><a name="docbook"></a><h4>Docbook</h4><ul><li><p>Strong emphasis</p><p>There is no strong emphasis markup in Docbook, so we use &lt;emphasis role="strong"/&gt; for this, while the role may be lost during further conversions.</p></li><li><p>Table colspan</p><p>Table colspan are available in Docbook, but the markup is rather unintuitive and hard to read. These information may be lost during further conversions.</p></li><li><p>Footnote enumeration</p><p>In docbook footnote do not have any user assigned enumeration, while in RST there may be multiple footnotes with the same (labeled) user assigned number. This information is completely lost during conversion.</p></li><li><p>Substitutions</p><p>The substitution references are not preserved, but just substituted during the conversion process. The information about the parts which were substituted is completely lost.</p></li><li><p>Line blocks / literal blocks</p><p>Line blocks and literal blocks are converted to &lt;literalblock&gt; elements, only differing by the given class attribute.</p></li><li><p>Bullet list tokens</p><p>The information which kind of bullet list token has been used is completely omitted during the conversion.</p></li></ul><a name="xhtml"></a><h4>XHTML</h4><ul><li><p>Headers</p><p>XHtml only allows a specification of header levels from 1 to 6. All headers with a depth of ≥ 6 contain a class attribute specifying their real depth.</p></li><li><p>Blockquote annotations</p><p>There is no XHtml element for blockquote annotations, so that they are transformed to &lt;div class="annotation"/&gt; elements containing &lt;cite&gt; elements, which may be considered as a citation source. This information may be lost during further processing. The cite attribute of blockquotes only accept URIs.</p></li><li><p>Bullet list &amp; ordered list types</p><p>XHtml strict does not allow to specify the type of bullet lists or ordered lists, so that this information is lost during conversion.</p></li><li><p>Footnotes</p><p>There is no dedicated XHtml element for footnotes, so that footnotes are referenced inside the text by internal links with the class "footnote", and the actual footnotes are added below the document in lists of the class footnote with the proper reference targets.</p></li><li><p>Line blocks</p><p>Line blocks are transformed into paragraphs, where the lines are seperated by &lt;br /&gt; elements. This causes the right formatting, but may lose semantic information.</p></li></ul>
+
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

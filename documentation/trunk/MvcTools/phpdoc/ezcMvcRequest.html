@@ -1,0 +1,386 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="PHP, apache, components, framework, quality" />
+	<meta name="author" content="dotxp" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Wed, 04 Aug 2010 13:07:50 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="ezcMvcRequest.html" />
+	<meta name="DC.creator" content="dotxp" />
+	<meta name="DC.date" content="Wed, 04 Aug 2010 13:07:50 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/MvcTools/phpdoc/ezcMvcRequest.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/MvcTools/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/trunk/MvcTools/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+
+</ul>
+
+		
+  <div class="phpdoc">
+    <h2>Apache Zeta Components Manual :: Docs For Class ezcMvcRequest</h2>
+
+                  <h3>MvcTools::ezcMvcRequest</h3>
+    
+<a name="sec-description"></a>
+<h3>Class ezcMvcRequest</h3>
+
+<p>The request object holds the request data.</p><div><p>The request object should be created by the request parser  in the first place.  It may also be returned by the controller, in the case of an  internal redirection.</p><p>It holds the protocol dependant data in an ezcMvcRawRequest  object that is held in property $raw.</p><p>It holds several structs which contain some protocol abstract  data in the following properties: </p><ul><li>$files: array of instances of ezcMvcRequestFile.</li><li>$cache: instance of ezcMvcRequestCache</li><li>$content: instance of ezcMvcRequestContent</li><li>$agent: instance of ezcMvcRequestAgent</li><li>$authentication: instance of ezcMvcRequestAuthentication</li></ul>  It holds request variables like an array. For example, to hold  a 'controller' GET variable in $request['controller'].</div>
+<p>Source for this file: <a href="http://fisheye6.atlassian.com/browse/zetacomponents/trunk/MvcTools/src/structs/request.php?r=HEAD">/MvcTools/src/structs/request.php</a></p>
+       
+
+
+<pre><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseStruct.html">ezcBaseStruct</a>
+   |
+   --ezcMvcRequest</pre>
+
+
+  <table><tr><td>
+            <strong>Version:</strong>&#8192;&#8192;
+          </td>
+          <td>//autogentag//</td>
+        </tr></table><a name="sec-var-summary"></a>
+  <h3>Member Variables</h3>
+  <table class="summary"><tr><td class="right">
+            <em>public</em>            <em><a href="ezcMvcRequestAccept.html">ezcMvcRequestAccept</a></em>          </td>
+          <td>
+            <code>
+              $accept
+                          </code>
+            <br><div style="margin-left: 20px">Request content type informations.</div>                      </td>
+        </tr><tr><td class="right">
+            <em>public</em>            <em><a href="ezcMvcRequestUserAgent.html">ezcMvcRequestUserAgent</a></em>          </td>
+          <td>
+            <code>
+              $agent
+                          </code>
+            <br><div style="margin-left: 20px">Request user agent informations.</div>                      </td>
+        </tr><tr><td class="right">
+            <em>public</em>            <em><a href="ezcMvcRequestAuthentication.html">ezcMvcRequestAuthentication</a></em>          </td>
+          <td>
+            <code>
+              $authentication
+                          </code>
+            <br><div style="margin-left: 20px">Request authentication data.</div>                      </td>
+        </tr><tr><td class="right">
+            <em>public</em>            <em>string</em>          </td>
+          <td>
+            <code>
+              $body
+                          </code>
+            <br><div style="margin-left: 20px">Request body.</div>                      </td>
+        </tr><tr><td class="right">
+            <em>public</em>            <em>array(ezcMvcRequestCookie)</em>          </td>
+          <td>
+            <code>
+              $cookies
+                          </code>
+            <br><div style="margin-left: 20px">Contains all the cookies to be set</div>                      </td>
+        </tr><tr><td class="right">
+            <em>public</em>            <em>DateTime</em>          </td>
+          <td>
+            <code>
+              $date
+                          </code>
+            <br><div style="margin-left: 20px">Date of the request</div>                      </td>
+        </tr><tr><td class="right">
+            <em>public</em>            <em>array(ezcMvcRequestFile)</em>          </td>
+          <td>
+            <code>
+              $files
+                          </code>
+            <br><div style="margin-left: 20px">Files bundled with the request.</div>                      </td>
+        </tr><tr><td class="right">
+            <em>public</em>            <em>string</em>          </td>
+          <td>
+            <code>
+              $host
+                          </code>
+            <br><div style="margin-left: 20px">Hostname of the requested server</div>                      </td>
+        </tr><tr><td class="right">
+            <em>public</em>            <em>boolean</em>          </td>
+          <td>
+            <code>
+              $isFatal
+                          </code>
+            <br><div style="margin-left: 20px">Whether this is a fatal error request, or a normal one</div>                      </td>
+        </tr><tr><td class="right">
+            <em>public</em>            <em>string</em>          </td>
+          <td>
+            <code>
+              $protocol
+                          </code>
+            <br><div style="margin-left: 20px">Protocol description in a normalized form  F.e. http-get, http-post, http-delete, mail, jabber</div>                      </td>
+        </tr><tr><td class="right">
+            <em>public</em>            <em>ezcMvcRawRequest</em>          </td>
+          <td>
+            <code>
+              $raw
+                          </code>
+            <br><div style="margin-left: 20px">Raw request data</div>                      </td>
+        </tr><tr><td class="right">
+            <em>public</em>            <em>string</em>          </td>
+          <td>
+            <code>
+              $referrer
+                          </code>
+            <br><div style="margin-left: 20px">Request ID of the referring URI in the same format as $requestId</div>                      </td>
+        </tr><tr><td class="right">
+            <em>public</em>            <em>string</em>          </td>
+          <td>
+            <code>
+              $requestId
+                          </code>
+            <br><div style="margin-left: 20px">Full Uri - combination of host name and uri in a protocol independent  order</div>                      </td>
+        </tr><tr><td class="right">
+            <em>public</em>            <em>string</em>          </td>
+          <td>
+            <code>
+              $uri
+                          </code>
+            <br><div style="margin-left: 20px">Uri of the requested resource</div>                      </td>
+        </tr><tr><td class="right">
+            <em>public</em>            <em>array</em>          </td>
+          <td>
+            <code>
+              $variables
+                          </code>
+            <br><div style="margin-left: 20px">Request variables.</div>                      </td>
+        </tr></table><a name="sec-method-summary"></a>
+  <h3>Method Summary</h3>
+  <table class="summary"><tr><td class="right">
+            <em>public</em>            static
+                        <em><a href="ezcMvcRequest.html">ezcMvcRequest</a></em>          </td>
+          <td>
+            <code>
+              <a href="#__set_state"><b>__set_state</b></a>(
+                                                                                    $array
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns a new instance of this class with the data specified by $array.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>ezcMvcRequest</em>          </td>
+          <td>
+            <code>
+              <a href="#__construct"><b>__construct</b></a>(
+                                                                  [                  $date
+                   = null]                                  ,                   [                  $protocol
+                   = '']                                  ,                   [                  $host
+                   = '']                                  ,                   [                  $uri
+                   = '']                                  ,                   [                  $requestId
+                   = '']                                  ,                   [                  $referrer
+                   = '']                                  ,                   [                  $variables
+                   = array()]                                  ,                   [                  $body
+                   = '']                                  ,                   [                  $files
+                   = null]                                  ,                   [                  $accept
+                   = null]                                  ,                   [                  $agent
+                   = null]                                  ,                   [                  $authentication
+                   = null]                                  ,                   [                  $raw
+                   = null]                                  ,                   [                  $cookies
+                   = array()]                                  ,                   [                  $isFatal
+                   = false]                               )
+            </code>
+            <br><div style="margin-left: 20px">Constructs a new ezcMvcRequest.</div>          </td>
+        </tr></table><a name="sec-methods"></a>
+  <h3>Methods</h3>
+  <a name="method_detail"></a>
+        <a name="method__set_state" id="__set_state"><!-- --></a>
+
+    <h4>__set_state</h4>
+
+    <div class="method-signature">
+      static <a href="ezcMvcRequest.html">ezcMvcRequest</a>
+      __set_state(
+                                  
+          $array
+                        )
+    </div>
+
+      <p>Returns a new instance of this class with the data specified by $array.</p><div><p>$array contains all the data members of this class in the form:  array('member_name'=&gt;value).</p><p>__set_state makes this class exportable with var_export.  var_export() generates code, that calls this method when it  is parsed with PHP.</p></div>      
+              <h5>Parameters:</h5>
+        <table class="detail"><thead><tr><th>Name</th>
+              <th>Type</th>
+              <th class="desc">Description</th>
+            </tr></thead><tbody><tr><td><code>$array</code></td>
+                <td><em>array(string=&gt;mixed)</em></td>
+                <td>
+                                  </td>
+              </tr></tbody></table><a name="method__construct" id="__construct"><!-- --></a>
+
+    <h4>__construct</h4>
+
+    <div class="method-signature">
+      ezcMvcRequest
+      __construct(
+                                  [DateTime
+          $date
+           = null]                  ,           [string
+          $protocol
+           = '']                  ,           [string
+          $host
+           = '']                  ,           [string
+          $uri
+           = '']                  ,           [string
+          $requestId
+           = '']                  ,           [string
+          $referrer
+           = '']                  ,           [array
+          $variables
+           = array()]                  ,           [string
+          $body
+           = '']                  ,           [array(ezcMvcRequestFile)
+          $files
+           = null]                  ,           [<a href="ezcMvcRequestAccept.html">ezcMvcRequestAccept</a>
+          $accept
+           = null]                  ,           [<a href="ezcMvcRequestUserAgent.html">ezcMvcRequestUserAgent</a>
+          $agent
+           = null]                  ,           [<a href="ezcMvcRequestAuthentication.html">ezcMvcRequestAuthentication</a>
+          $authentication
+           = null]                  ,           [ezcMvcRawRequest
+          $raw
+           = null]                  ,           [array(ezcMvcRequestCookie)
+          $cookies
+           = array()]                  ,           [bool
+          $isFatal
+           = false]              )
+    </div>
+
+    <p>Constructs a new ezcMvcRequest.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$date</code></td>
+              <td><em>DateTime</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$protocol</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$host</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$uri</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$requestId</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$referrer</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$variables</code></td>
+              <td><em>array</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$body</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$files</code></td>
+              <td><em>array(ezcMvcRequestFile)</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$accept</code></td>
+              <td><em><a href="ezcMvcRequestAccept.html">ezcMvcRequestAccept</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$agent</code></td>
+              <td><em><a href="ezcMvcRequestUserAgent.html">ezcMvcRequestUserAgent</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$authentication</code></td>
+              <td><em><a href="ezcMvcRequestAuthentication.html">ezcMvcRequestAuthentication</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$raw</code></td>
+              <td><em>ezcMvcRawRequest</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$cookies</code></td>
+              <td><em>array(ezcMvcRequestCookie)</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$isFatal</code></td>
+              <td><em>bool</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><div class="credit">
+      Documentation generated by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+    </div>
+  </div>
+  
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

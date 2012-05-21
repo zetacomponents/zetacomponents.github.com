@@ -1,0 +1,321 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="PHP, apache, components, framework, quality" />
+	<meta name="author" content="dotxp" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Wed, 04 Aug 2010 13:07:59 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="ezcTemplateTranslationStringExtracter.html" />
+	<meta name="DC.creator" content="dotxp" />
+	<meta name="DC.date" content="Wed, 04 Aug 2010 13:07:59 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/TemplateTranslationTiein/phpdoc/ezcTemplateTranslationStringExtracter.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/TemplateTranslationTiein/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/trunk/TemplateTranslationTiein/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+
+</ul>
+
+		
+  <div class="phpdoc">
+    <h2>Apache Zeta Components Manual :: Docs For Class ezcTemplateTranslationStringExtracter</h2>
+
+                  <h3>TemplateTranslationTiein::ezcTemplateTranslationStringExtracter</h3>
+    
+<a name="sec-description"></a>
+<h3>Class ezcTemplateTranslationStringExtracter</h3>
+
+<p>A visiter that can be used to extract translatable strings from a template.</p><div><p>Implements the ezcTemplateTstNodeVisiter interface for visiting the nodes  and extracting translatable strings from them. It can be used like:</p><p></p><ol><li><div class="src-line">&#8192;<span class="src-php">&lt;?php</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$file&#8192;</span>=&#8192;<a href="http://www.php.net/dirname">dirname</a><span class="src-sym">(&#8192;</span>__FILE__&#8192;<span class="src-sym">)&#8192;</span>.&#8192;<span class="src-str">'/test_files/test.ezt'</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$source&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id">ezcTemplateSourceCode</span><span class="src-sym">(&#8192;</span><span class="src-var">$file</span><span class="src-sym">,&#8192;</span><span class="src-var">$file&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$source</span><span class="src-sym">-&gt;</span><span class="src-id">load</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$parser&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id">ezcTemplateParser</span><span class="src-sym">(&#8192;</span><span class="src-var">$source</span><span class="src-sym">,&#8192;</span><span class="src-key">new&#8192;</span><span class="src-id"><a href="/zetacomponents/documentation/trunk/Template/phpdoc/ezcTemplate.html">ezcTemplate</a></span><span class="src-sym">(</span><span class="src-sym">)&#8192;)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$tst&#8192;</span>=&#8192;<span class="src-var">$parser</span><span class="src-sym">-&gt;</span><span class="src-id">parseIntoNodeTree</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$et&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcTemplateTranslationStringExtracter.html">ezcTemplateTranslationStringExtracter</a></span><span class="src-sym">(&#8192;</span><span class="src-var">$parser&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$eted&#8192;</span>=&#8192;<span class="src-var">$tst</span><span class="src-sym">-&gt;</span><span class="src-id">accept</span><span class="src-sym">(&#8192;</span><span class="src-var">$et&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$tr&#8192;</span>=&#8192;<span class="src-var">$et</span><span class="src-sym">-&gt;</span><a href="ezcTemplateTranslationStringExtracter.html#methodgetTranslation">getTranslation</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-php">?&gt;</span></div></li>
+</ol></div>
+<p>Source for this file: <a href="http://fisheye6.atlassian.com/browse/zetacomponents/trunk/TemplateTranslationTiein/src/visitors/string_extracter.php?r=HEAD">/TemplateTranslationTiein/src/visitors/string_extracter.php</a></p>
+       
+
+
+<pre>ezcTemplateTstWalker
+   |
+   --ezcTemplateTranslationStringExtracter</pre>
+
+
+  <table><tr><td>
+            <strong>Version:</strong>&#8192;&#8192;
+          </td>
+          <td>//autogen//</td>
+        </tr></table><a name="sec-var-summary"></a>
+  <h3>Member Variables</h3>
+  <table class="summary"><tr><td class="right">
+            <em>protected</em>            <em>array(string=&gt;array(ezcTranslationData)</em>          </td>
+          <td>
+            <code>
+              $strings
+                          </code>
+            <br><div style="margin-left: 20px">Contans an array of arrays, where the key is the context, and the value an array of ezcTranslationData elements.</div>                      </td>
+        </tr><tr><td class="right">
+            <em>public</em>            <em>string</em>          </td>
+          <td>
+            <code>
+              $translationContext
+                          </code>
+            <br><div style="margin-left: 20px">Contains the active default translation context</div>                      </td>
+        </tr></table><a name="sec-method-summary"></a>
+  <h3>Method Summary</h3>
+  <table class="summary"><tr><td class="right">
+            <em>public</em>                        <em>ezcTemplateTranslationStringExtracter</em>          </td>
+          <td>
+            <code>
+              <a href="#__construct"><b>__construct</b></a>(
+                                                                                    $parser
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Initialize the transformer, after this send this object to the accept() method on a node.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>array(string=&gt;array(ezcTranslationData))</em>          </td>
+          <td>
+            <code>
+              <a href="#getStrings"><b>getStrings</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns an array of translation objects indexed by context</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>array(string=&gt;ezcTranslation)</em>          </td>
+          <td>
+            <code>
+              <a href="#getTranslation"><b>getTranslation</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns an array of translation datamaps indexed by context</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#visitLiteralTstNode"><b>visitLiteralTstNode</b></a>(
+                                                                                    $type
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Transform the literal from a TST node to a string.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#visitTranslationContextTstNode"><b>visitTranslationContextTstNode</b></a>(
+                                                                                    $node
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">visitTranslationContextTstNode</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#visitTranslationTstNode"><b>visitTranslationTstNode</b></a>(
+                                                                                    $node
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">visitTranslationTstNode</div>          </td>
+        </tr></table><a name="sec-methods"></a>
+  <h3>Methods</h3>
+  <a name="method_detail"></a>
+            
+      <a name="method__construct" id="__construct"><!-- --></a>
+
+    <h4>__construct</h4>
+
+    <div class="method-signature">
+      ezcTemplateTranslationStringExtracter
+      __construct(
+                                  
+          $parser
+                        )
+    </div>
+
+    <p>Initialize the transformer, after this send this object to the accept() method on a node.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$parser</code></td>
+              <td><em>ezcTemplateParser</em></td>
+              <td>
+                                  The main parser object.
+                              </td>
+            </tr></tbody></table><a name="methodgetStrings" id="getStrings"><!-- --></a>
+
+    <h4>getStrings</h4>
+
+    <div class="method-signature">
+      array(string=&gt;array(ezcTranslationData))
+      getStrings(
+      )
+    </div>
+
+    <p>Returns an array of translation objects indexed by context</p>
+    
+        
+
+    
+    
+    
+        <a name="methodgetTranslation" id="getTranslation"><!-- --></a>
+
+    <h4>getTranslation</h4>
+
+    <div class="method-signature">
+      array(string=&gt;ezcTranslation)
+      getTranslation(
+      )
+    </div>
+
+    <p>Returns an array of translation datamaps indexed by context</p>
+    
+        
+
+    
+    
+    
+        <a name="methodvisitLiteralTstNode" id="visitLiteralTstNode"><!-- --></a>
+
+    <h4>visitLiteralTstNode</h4>
+
+    <div class="method-signature">
+      string
+      visitLiteralTstNode(
+                                  
+          $type
+                        )
+    </div>
+
+    <p>Transform the literal from a TST node to a string.</p><div><p>The text will transformed by processing the escape sequences  according to the type which is either  ezcTemplateLiteralTstNode::SINGLE_QUOTE or  ezcTemplateLiteralTstNode::DOUBLE_QUOTE.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$type</code></td>
+              <td><em>ezcTemplateLiteralTstNode</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodvisitTranslationContextTstNode" id="visitTranslationContextTstNode"><!-- --></a>
+
+    <h4>visitTranslationContextTstNode</h4>
+
+    <div class="method-signature">
+      void
+      visitTranslationContextTstNode(
+                                  
+          $node
+                        )
+    </div>
+
+    <p>visitTranslationContextTstNode</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$node</code></td>
+              <td><em>ezcTemplateTranslationContextTstNode</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodvisitTranslationTstNode" id="visitTranslationTstNode"><!-- --></a>
+
+    <h4>visitTranslationTstNode</h4>
+
+    <div class="method-signature">
+      void
+      visitTranslationTstNode(
+                                  
+          $node
+                        )
+    </div>
+
+    <p>visitTranslationTstNode</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$node</code></td>
+              <td><em>ezcTemplateTranslationTstNode</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><div class="credit">
+      Documentation generated by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+    </div>
+  </div>
+  
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

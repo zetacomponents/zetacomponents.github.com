@@ -1,0 +1,974 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="PHP, apache, components, framework, quality" />
+	<meta name="author" content="dotxp" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Wed, 04 Aug 2010 13:07:33 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="ezcDocumentPdfDriver.html" />
+	<meta name="DC.creator" content="dotxp" />
+	<meta name="DC.date" content="Wed, 04 Aug 2010 13:07:33 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/Document/phpdoc/ezcDocumentPdfDriver.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/Document/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/trunk/Document/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Document/conversion.html" title="Conversion ">Conversion </a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Document/styles.html" title="Styles ">Styles </a>
+	</li>
+
+</ul>
+
+		
+  <div class="phpdoc">
+    <h2>Apache Zeta Components Manual :: Docs For Class ezcDocumentPdfDriver</h2>
+
+                  <h3>Document::ezcDocumentPdfDriver</h3>
+    
+<a name="sec-description"></a>
+<h3>Class ezcDocumentPdfDriver</h3>
+
+<p>Abstract base class for driver implementations.</p><div><p>Driver implement the actual creation of PDF documents. They offer a simple  unified API for PDF creation and proxy them to the actual PDF  implementation, which will create the binary data.</p><p>The unit used for all values passed to methods of this class is milimeters.  The extending drivers need to transform these values in a representation  they can use.</p></div>
+<p>Source for this file: <a href="http://fisheye6.atlassian.com/browse/zetacomponents/trunk/Document/src/document/pdf/driver.php?r=HEAD">/Document/src/document/pdf/driver.php</a></p>
+       
+
+
+
+
+  <table><tr><td>
+            <strong>Version:</strong>&#8192;&#8192;
+          </td>
+          <td>//autogen//</td>
+        </tr></table><a name="sec-descendants"></a>
+  <h3>Descendants</h3>
+  <table class="detail"><thead><tr><th>Child Class</th>
+        <th>Description</th>
+      </tr></thead><tbody><tr><td><a href="ezcDocumentPdfTcpdfDriver.html">ezcDocumentPdfTcpdfDriver</a></td>          <td>
+                          Pdf driver based on TCPDF
+                      </td>
+        </tr><tr><td><a href="ezcDocumentPdfHaruDriver.html">ezcDocumentPdfHaruDriver</a></td>          <td>
+                          Pdf driver based on pecl/haru
+                      </td>
+        </tr></tbody></table><a name="sec-const-summary"></a>
+  <h3>Constants</h3>
+  <table class="summary"><tr><td class="right">
+          <a name="const-FONT_BOLD" id=""></a>
+          <code>
+            <a href="#const-FONT_BOLD" title="details" class="const-name-summary">FONT_BOLD</a>
+             =  1
+          </code>
+        </td>
+        <td>
+          Bold text                  </td>
+      </tr><tr><td class="right">
+          <a name="const-FONT_OBLIQUE" id=""></a>
+          <code>
+            <a href="#const-FONT_OBLIQUE" title="details" class="const-name-summary">FONT_OBLIQUE</a>
+             =  2
+          </code>
+        </td>
+        <td>
+          Italic text                  </td>
+      </tr><tr><td class="right">
+          <a name="const-FONT_PLAIN" id=""></a>
+          <code>
+            <a href="#const-FONT_PLAIN" title="details" class="const-name-summary">FONT_PLAIN</a>
+             =  0
+          </code>
+        </td>
+        <td>
+          Normal text                  </td>
+      </tr></table><a name="sec-var-summary"></a>
+  <h3>Member Variables</h3>
+  <table class="summary"><tr><td class="right">
+            <em>protected</em>            <em><a href="ezcDocumentPdfOptions.html">ezcDocumentPdfOptions</a></em>          </td>
+          <td>
+            <code>
+              $options
+                          </code>
+            <br><div style="margin-left: 20px">PDF options</div>                      </td>
+        </tr></table><a name="sec-method-summary"></a>
+  <h3>Method Summary</h3>
+  <table class="summary"><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#__construct"><b>__construct</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Construct driver</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#addExternalLink"><b>addExternalLink</b></a>(
+                                                                                    $x
+                                                    ,                                     $y
+                                                    ,                                     $width
+                                                    ,                                     $height
+                                                    ,                                     $url
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Add an external link</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#addInternalLink"><b>addInternalLink</b></a>(
+                                                                                    $x
+                                                    ,                                     $y
+                                                    ,                                     $width
+                                                    ,                                     $height
+                                                    ,                                     $target
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Add an internal link</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#addInternalLinkTarget"><b>addInternalLinkTarget</b></a>(
+                                                                                    $id
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Add an internal link target</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>            abstract            <em>float</em>          </td>
+          <td>
+            <code>
+              <a href="#calculateWordWidth"><b>calculateWordWidth</b></a>(
+                                                                                    $word
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Calculate the rendered width of the current word</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>            abstract            <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#createPage"><b>createPage</b></a>(
+                                                                                    $width
+                                                    ,                                     $height
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Create a new page</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>            abstract            <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#drawImage"><b>drawImage</b></a>(
+                                                                                    $file
+                                                    ,                                     $type
+                                                    ,                                     $x
+                                                    ,                                     $y
+                                                    ,                                     $width
+                                                    ,                                     $height
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Draw image</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#drawPolygon"><b>drawPolygon</b></a>(
+                                                                                    $points
+                                                    ,                                     $color
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Draw a fileld polygon</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#drawPolyline"><b>drawPolyline</b></a>(
+                                                                                    $points
+                                                    ,                                     $color
+                                                    ,                                     $width
+                                                    ,                   [                  $close
+                   = true]                               )
+            </code>
+            <br><div style="margin-left: 20px">Draw a polyline</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>            abstract            <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#drawWord"><b>drawWord</b></a>(
+                                                                                    $x
+                                                    ,                                     $y
+                                                    ,                                     $word
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Draw word at given position</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>            abstract            <em>float</em>          </td>
+          <td>
+            <code>
+              <a href="#getCurrentLineHeight"><b>getCurrentLineHeight</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Get current line height</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#registerFont"><b>registerFont</b></a>(
+                                                                                    $name
+                                                    ,                                     $type
+                                                    ,                                     $pathes
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Register a font</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>            abstract            <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#save"><b>save</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Generate and return PDF</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#setMetaData"><b>setMetaData</b></a>(
+                                                                                    $key
+                                                    ,                                     $value
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Set metadata</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#setOptions"><b>setOptions</b></a>(
+                                                                                    $options
+                                                    ,                                     $compress
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Set compression</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>            abstract            <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#setTextFormatting"><b>setTextFormatting</b></a>(
+                                                                                    $type
+                                                    ,                                     $value
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Set text formatting option</div>          </td>
+        </tr></table><a name="sec-methods"></a>
+  <h3>Methods</h3>
+  <a name="method_detail"></a>
+                                
+      <a name="method__construct" id="__construct"><!-- --></a>
+
+    <h4>__construct</h4>
+
+    <div class="method-signature">
+      void
+      __construct(
+      )
+    </div>
+
+    <p>Construct driver</p><div><p>Creates a new PDF driver.</p></div>
+    
+        
+
+    
+    
+          <h5>Redefined in descendants as:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcDocumentPdfTcpdfDriver.html#method__construct">ezcDocumentPdfTcpdfDriver::__construct()</a></code></td>
+              <td>
+                Construct driver&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcDocumentPdfHaruDriver.html#method__construct">ezcDocumentPdfHaruDriver::__construct()</a></code></td>
+              <td>
+                Construct driver&#8192;
+              </td>
+            </tr></tbody></table><a name="methodaddExternalLink" id="addExternalLink"><!-- --></a>
+
+    <h4>addExternalLink</h4>
+
+    <div class="method-signature">
+      void
+      addExternalLink(
+                                  float
+          $x
+                            ,           float
+          $y
+                            ,           float
+          $width
+                            ,           float
+          $height
+                            ,           string
+          $url
+                        )
+    </div>
+
+    <p>Add an external link</p><div><p>Add an external link to the rectangle specified by its top-left  position, width and height. The last parameter is the actual URL to link  to.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$x</code></td>
+              <td><em>float</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$y</code></td>
+              <td><em>float</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$width</code></td>
+              <td><em>float</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$height</code></td>
+              <td><em>float</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$url</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefined in descendants as:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcDocumentPdfTcpdfDriver.html#methodaddExternalLink">ezcDocumentPdfTcpdfDriver::addExternalLink()</a></code></td>
+              <td>
+                Add an external link&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcDocumentPdfHaruDriver.html#methodaddExternalLink">ezcDocumentPdfHaruDriver::addExternalLink()</a></code></td>
+              <td>
+                Add an external link&#8192;
+              </td>
+            </tr></tbody></table><a name="methodaddInternalLink" id="addInternalLink"><!-- --></a>
+
+    <h4>addInternalLink</h4>
+
+    <div class="method-signature">
+      void
+      addInternalLink(
+                                  float
+          $x
+                            ,           float
+          $y
+                            ,           float
+          $width
+                            ,           float
+          $height
+                            ,           string
+          $target
+                        )
+    </div>
+
+    <p>Add an internal link</p><div><p>Add an internal link to the rectangle specified by its top-left  position, width and height. The last parameter is the target identifier  to link to.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$x</code></td>
+              <td><em>float</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$y</code></td>
+              <td><em>float</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$width</code></td>
+              <td><em>float</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$height</code></td>
+              <td><em>float</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$target</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefined in descendants as:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcDocumentPdfTcpdfDriver.html#methodaddInternalLink">ezcDocumentPdfTcpdfDriver::addInternalLink()</a></code></td>
+              <td>
+                Add an internal link&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcDocumentPdfHaruDriver.html#methodaddInternalLink">ezcDocumentPdfHaruDriver::addInternalLink()</a></code></td>
+              <td>
+                Add an internal link&#8192;
+              </td>
+            </tr></tbody></table><a name="methodaddInternalLinkTarget" id="addInternalLinkTarget"><!-- --></a>
+
+    <h4>addInternalLinkTarget</h4>
+
+    <div class="method-signature">
+      void
+      addInternalLinkTarget(
+                                  string
+          $id
+                        )
+    </div>
+
+    <p>Add an internal link target</p><div><p>Add an internal link to the current page. The last parameter  is the target identifier.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$id</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefined in descendants as:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcDocumentPdfTcpdfDriver.html#methodaddInternalLinkTarget">ezcDocumentPdfTcpdfDriver::addInternalLinkTarget()</a></code></td>
+              <td>
+                Add an internal link target&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcDocumentPdfHaruDriver.html#methodaddInternalLinkTarget">ezcDocumentPdfHaruDriver::addInternalLinkTarget()</a></code></td>
+              <td>
+                Add an internal link target&#8192;
+              </td>
+            </tr></tbody></table><a name="methodcalculateWordWidth" id="calculateWordWidth"><!-- --></a>
+
+    <h4>calculateWordWidth</h4>
+
+    <div class="method-signature">
+      float
+      calculateWordWidth(
+                                  string
+          $word
+                        )
+    </div>
+
+    <p>Calculate the rendered width of the current word</p><div><p>Calculate the width of the passed word, using the currently set text  formatting options.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$word</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefined in descendants as:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcDocumentPdfTcpdfDriver.html#methodcalculateWordWidth">ezcDocumentPdfTcpdfDriver::calculateWordWidth()</a></code></td>
+              <td>
+                Calculate the rendered width of the current word&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcDocumentPdfHaruDriver.html#methodcalculateWordWidth">ezcDocumentPdfHaruDriver::calculateWordWidth()</a></code></td>
+              <td>
+                Calculate the rendered width of the current word&#8192;
+              </td>
+            </tr></tbody></table><a name="methodcreatePage" id="createPage"><!-- --></a>
+
+    <h4>createPage</h4>
+
+    <div class="method-signature">
+      void
+      createPage(
+                                  float
+          $width
+                            ,           float
+          $height
+                        )
+    </div>
+
+    <p>Create a new page</p><div><p>Create a new page in the PDF document with the given width and height.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$width</code></td>
+              <td><em>float</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$height</code></td>
+              <td><em>float</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefined in descendants as:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcDocumentPdfTcpdfDriver.html#methodcreatePage">ezcDocumentPdfTcpdfDriver::createPage()</a></code></td>
+              <td>
+                Create a new page&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcDocumentPdfHaruDriver.html#methodcreatePage">ezcDocumentPdfHaruDriver::createPage()</a></code></td>
+              <td>
+                Create a new page&#8192;
+              </td>
+            </tr></tbody></table><a name="methoddrawImage" id="drawImage"><!-- --></a>
+
+    <h4>drawImage</h4>
+
+    <div class="method-signature">
+      void
+      drawImage(
+                                  string
+          $file
+                            ,           string
+          $type
+                            ,           float
+          $x
+                            ,           float
+          $y
+                            ,           float
+          $width
+                            ,           float
+          $height
+                        )
+    </div>
+
+    <p>Draw image</p><div><p>Draw image at the defined position. The first parameter is the  (absolute) path to the image file, and the second defines the type of  the image. If the driver cannot handle this aprticular image type, it  should throw an exception.</p><p>The further parameters define the location where the image should be  rendered and the dimensions of the image in the rendered output. The  dimensions do not neccesarily match the real image dimensions, and might  require some kind of scaling inside the driver depending on the used  backend.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$file</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$type</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$x</code></td>
+              <td><em>float</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$y</code></td>
+              <td><em>float</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$width</code></td>
+              <td><em>float</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$height</code></td>
+              <td><em>float</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefined in descendants as:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcDocumentPdfTcpdfDriver.html#methoddrawImage">ezcDocumentPdfTcpdfDriver::drawImage()</a></code></td>
+              <td>
+                Draw image&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcDocumentPdfHaruDriver.html#methoddrawImage">ezcDocumentPdfHaruDriver::drawImage()</a></code></td>
+              <td>
+                Draw image&#8192;
+              </td>
+            </tr></tbody></table><a name="methoddrawPolygon" id="drawPolygon"><!-- --></a>
+
+    <h4>drawPolygon</h4>
+
+    <div class="method-signature">
+      void
+      drawPolygon(
+                                  
+          $points
+                            ,           
+          $color
+                        )
+    </div>
+
+    <p>Draw a fileld polygon</p><div><p>Draw any filled polygon, filled using the defined color. The color  should be passed as an array with the keys "red", "green", "blue" and  optionally "alpha". Each key should have a value between 0 and 1  associated.</p><p>The polygon itself is specified as an array of two-tuples, specifying  the x and y coordinate of the point.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$points</code></td>
+              <td><em>array</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$color</code></td>
+              <td><em>array</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefined in descendants as:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcDocumentPdfTcpdfDriver.html#methoddrawPolygon">ezcDocumentPdfTcpdfDriver::drawPolygon()</a></code></td>
+              <td>
+                Draw a fileld polygon&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcDocumentPdfHaruDriver.html#methoddrawPolygon">ezcDocumentPdfHaruDriver::drawPolygon()</a></code></td>
+              <td>
+                Draw a fileld polygon&#8192;
+              </td>
+            </tr></tbody></table><a name="methoddrawPolyline" id="drawPolyline"><!-- --></a>
+
+    <h4>drawPolyline</h4>
+
+    <div class="method-signature">
+      void
+      drawPolyline(
+                                  
+          $points
+                            ,           
+          $color
+                            ,           float
+          $width
+                            ,           [bool
+          $close
+           = true]              )
+    </div>
+
+    <p>Draw a polyline</p><div><p>Draw any non-filled polygon, filled using the defined color. The color  should be passed as an array with the keys "red", "green", "blue" and  optionally "alpha". Each key should have a value between 0 and 1  associated.</p><p>The polyline itself is specified as an array of two-tuples, specifying  the x and y coordinate of the point.</p><p>The thrid parameter defines the width of the border and the last  parameter may optionally be set to false to not close the polygon (draw  another line from the last point to the first one).</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$points</code></td>
+              <td><em>array</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$color</code></td>
+              <td><em>array</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$width</code></td>
+              <td><em>float</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$close</code></td>
+              <td><em>bool</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefined in descendants as:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcDocumentPdfTcpdfDriver.html#methoddrawPolyline">ezcDocumentPdfTcpdfDriver::drawPolyline()</a></code></td>
+              <td>
+                Draw a polyline&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcDocumentPdfHaruDriver.html#methoddrawPolyline">ezcDocumentPdfHaruDriver::drawPolyline()</a></code></td>
+              <td>
+                Draw a polyline&#8192;
+              </td>
+            </tr></tbody></table><a name="methoddrawWord" id="drawWord"><!-- --></a>
+
+    <h4>drawWord</h4>
+
+    <div class="method-signature">
+      void
+      drawWord(
+                                  float
+          $x
+                            ,           float
+          $y
+                            ,           string
+          $word
+                        )
+    </div>
+
+    <p>Draw word at given position</p><div><p>Draw the given word at the given position using the currently set text  formatting options.</p><p>The coordinate specifies the left bottom edge of the words bounding box.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$x</code></td>
+              <td><em>float</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$y</code></td>
+              <td><em>float</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$word</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefined in descendants as:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcDocumentPdfTcpdfDriver.html#methoddrawWord">ezcDocumentPdfTcpdfDriver::drawWord()</a></code></td>
+              <td>
+                Draw word at given position&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcDocumentPdfHaruDriver.html#methoddrawWord">ezcDocumentPdfHaruDriver::drawWord()</a></code></td>
+              <td>
+                Draw word at given position&#8192;
+              </td>
+            </tr></tbody></table><a name="methodgetCurrentLineHeight" id="getCurrentLineHeight"><!-- --></a>
+
+    <h4>getCurrentLineHeight</h4>
+
+    <div class="method-signature">
+      float
+      getCurrentLineHeight(
+      )
+    </div>
+
+    <p>Get current line height</p><div><p>Return the current line height in millimeter based on the current font  and text rendering settings.</p></div>
+    
+        
+
+    
+    
+          <h5>Redefined in descendants as:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcDocumentPdfTcpdfDriver.html#methodgetCurrentLineHeight">ezcDocumentPdfTcpdfDriver::getCurrentLineHeight()</a></code></td>
+              <td>
+                Get current line height&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcDocumentPdfHaruDriver.html#methodgetCurrentLineHeight">ezcDocumentPdfHaruDriver::getCurrentLineHeight()</a></code></td>
+              <td>
+                Get current line height&#8192;
+              </td>
+            </tr></tbody></table><a name="methodregisterFont" id="registerFont"><!-- --></a>
+
+    <h4>registerFont</h4>
+
+    <div class="method-signature">
+      void
+      registerFont(
+                                  string
+          $name
+                            ,           int
+          $type
+                            ,           
+          $pathes
+                        )
+    </div>
+
+    <p>Register a font</p><div><p>Registers a font, which can be used by its name later in the driver. The  given type is either self::FONT_PLAIN or a bitwise combination of self::FONT_BOLD  and self::FONT_OBLIQUE.</p><p>The third paramater specifies an array of pathes with references to font  definition files. Multiple pathes may be specified to provide the same  font using different types, because not all drivers may process all font  types.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$name</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$type</code></td>
+              <td><em>int</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$pathes</code></td>
+              <td><em>array</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefined in descendants as:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcDocumentPdfTcpdfDriver.html#methodregisterFont">ezcDocumentPdfTcpdfDriver::registerFont()</a></code></td>
+              <td>
+                Register a font&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcDocumentPdfHaruDriver.html#methodregisterFont">ezcDocumentPdfHaruDriver::registerFont()</a></code></td>
+              <td>
+                Register a font&#8192;
+              </td>
+            </tr></tbody></table><a name="methodsave" id="save"><!-- --></a>
+
+    <h4>save</h4>
+
+    <div class="method-signature">
+      string
+      save(
+      )
+    </div>
+
+    <p>Generate and return PDF</p><div><p>Return the generated binary PDF content as a string.</p></div>
+    
+        
+
+    
+    
+          <h5>Redefined in descendants as:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcDocumentPdfTcpdfDriver.html#methodsave">ezcDocumentPdfTcpdfDriver::save()</a></code></td>
+              <td>
+                Generate and return PDF&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcDocumentPdfHaruDriver.html#methodsave">ezcDocumentPdfHaruDriver::save()</a></code></td>
+              <td>
+                Generate and return PDF&#8192;
+              </td>
+            </tr></tbody></table><a name="methodsetMetaData" id="setMetaData"><!-- --></a>
+
+    <h4>setMetaData</h4>
+
+    <div class="method-signature">
+      void
+      setMetaData(
+                                  string
+          $key
+                            ,           string
+          $value
+                        )
+    </div>
+
+    <p>Set metadata</p><div><p>Set document meta data. The meta data types are identified by a list of  keys, common to PDF, like: title, author, subject, created, modified.</p><p>The values are passed like embedded in the docbook document and might  need to be reformatted.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$key</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$value</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefined in descendants as:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcDocumentPdfTcpdfDriver.html#methodsetMetaData">ezcDocumentPdfTcpdfDriver::setMetaData()</a></code></td>
+              <td>
+                Set metadata&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcDocumentPdfHaruDriver.html#methodsetMetaData">ezcDocumentPdfHaruDriver::setMetaData()</a></code></td>
+              <td>
+                Set metadata&#8192;
+              </td>
+            </tr></tbody></table><a name="methodsetOptions" id="setOptions"><!-- --></a>
+
+    <h4>setOptions</h4>
+
+    <div class="method-signature">
+      void
+      setOptions(
+                                  <a href="ezcDocumentPdfOptions.html">ezcDocumentPdfOptions</a>
+          $options
+                            ,           bool
+          $compress
+                        )
+    </div>
+
+    <p>Set compression</p><div><p>Set whether the generated PDF should be compressed or not.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$compress</code></td>
+              <td><em>bool</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$options</code></td>
+              <td><em><a href="ezcDocumentPdfOptions.html">ezcDocumentPdfOptions</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodsetTextFormatting" id="setTextFormatting"><!-- --></a>
+
+    <h4>setTextFormatting</h4>
+
+    <div class="method-signature">
+      void
+      setTextFormatting(
+                                  string
+          $type
+                            ,           mixed
+          $value
+                        )
+    </div>
+
+    <p>Set text formatting option</p><div><p>Set a text formatting option. The names of the options are the same used  in the PCSS files and need to be translated by the driver to the proper  backend calls.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$type</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$value</code></td>
+              <td><em>mixed</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefined in descendants as:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcDocumentPdfTcpdfDriver.html#methodsetTextFormatting">ezcDocumentPdfTcpdfDriver::setTextFormatting()</a></code></td>
+              <td>
+                Set text formatting option&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcDocumentPdfHaruDriver.html#methodsetTextFormatting">ezcDocumentPdfHaruDriver::setTextFormatting()</a></code></td>
+              <td>
+                Set text formatting option&#8192;
+              </td>
+            </tr></tbody></table><div class="credit">
+      Documentation generated by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+    </div>
+  </div>
+  
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

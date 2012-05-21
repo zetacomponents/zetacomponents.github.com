@@ -1,0 +1,254 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="PHP, apache, components, framework, quality" />
+	<meta name="author" content="jerome" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Sun, 10 Jul 2011 11:10:39 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="Tutorial" />
+	<meta name="DC.creator" content="jerome" />
+	<meta name="DC.date" content="Sun, 10 Jul 2011 11:10:39 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/EventLog/tutorial.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li class="requested">
+	<a href="/zetacomponents/documentation/trunk/EventLog/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/EventLog/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+
+</ul>
+
+		<h2>eZ Components - EventLog</h2><div class="toc"><h3>Table of Contents</h3><ul><li><p><a href="#introduction">Introduction</a></p></li><li><p><a href="#class-overview">Class overview</a></p></li><li><p><a href="#examples">Examples</a></p><ul><li><p><a href="#writing-a-log-message-to-file">Writing a log message to file</a></p></li><li><p><a href="#writing-a-log-message-to-a-database">Writing a log message to a database</a></p></li><li><p><a href="#assigning-sources-and-categories">Assigning sources and categories</a></p></li><li><p><a href="#adding-log-attributes-automatically">Adding log attributes automatically</a></p></li><li><p><a href="#assigning-log-messages-to-different-files">Assigning log messages to different files</a></p></li><li><p><a href="#using-trigger-error">Using trigger_error()</a></p></li></ul></li><li><p><a href="#lazy-initialization">Lazy initialization</a></p></li></ul></div><a name="introduction"></a><a name="id2"></a><h3>Introduction</h3><p>The EventLog component provides an API to log events and audit trails with log messages. These log messages are written to files or other storage elements. How and where the log messages are written depends on the log writer.</p><p>The available log writers are:</p><ul><li><p>ezcLogUnixFileWriter, which writes log messages to a file in a <em>Unix</em> file format.</p></li><li><p>ezcLogSyslogWriter, which writes log messages to syslog.</p></li><li><p>ezcLogDatabaseWriter, which writes log messages to the database. This is available in the <a href="../EventLogDatabaseTiein.html#introduction">EventLogDatabaseTieIn</a> component.</p></li></ul><p>Each of these writers can be customized or extended.</p><p>An incoming log message can be written with zero or more writers. The writers depend on the variables of the log message itself and the <a href='/zetacomponents/documentation/trunk/EventLog/phpdoc/ezcLogMapper.html'>ezcLogMapper</a> implementation. <a href='/zetacomponents/documentation/trunk/EventLog/phpdoc/ezcLogMapper.html'>ezcLogMapper</a> checks the severity, source and category from the log message and forwards the message to the appropriate writers.</p><a name="class-overview"></a><a name="id3"></a><h3>Class overview</h3><p>The following classes are most important to use, customize or extend:</p><dl><dt>ezcLog</dt><dd>The <a href='/zetacomponents/documentation/trunk/EventLog/phpdoc/ezcLog.html'>ezcLog</a> class is a singleton, meaning that only one instance of it can exist. This class provides methods to configure and record log messages. The recorded log messages are sent to an implementation of <a href='/zetacomponents/documentation/trunk/EventLog/phpdoc/ezcLogMapper.html'>ezcLogMapper</a>, which forwards the messages to the appropriate log writers.</dd><dt>ezcLogMapper</dt><dd>ezcLogMapper provides an interface for log message mapping. Log messages are dispatched from <a href='/zetacomponents/documentation/trunk/EventLog/phpdoc/ezcLog.html'>ezcLog</a> to a writer. The particular writer is determined in the class that implements <a href='/zetacomponents/documentation/trunk/EventLog/phpdoc/ezcLogMapper.html'>ezcLogMapper</a> and is assigned in <a href='/zetacomponents/documentation/trunk/EventLog/phpdoc/ezcLog.html'>ezcLog</a>.</dd><dt>ezcLogFilterSet</dt><dd>ezcLogFilterSet is an implementation of <a href='/zetacomponents/documentation/trunk/EventLog/phpdoc/ezcLogMapper.html'>ezcLogMapper</a>. <a href='/zetacomponents/documentation/trunk/EventLog/phpdoc/ezcLogFilterSet.html'>ezcLogFilterSet</a> contains a set of rules in the form of objects of the class <a href='/zetacomponents/documentation/trunk/EventLog/phpdoc/ezcLogFilterRule.html'>ezcLogFilterRule</a>. These rules are processed sequentially. In other words, the first assigned rule will be processed first. Each rule determines whether the log message matches the filter rule. If the log message matches, it calls the writer and decide whether the filter set stops processing.The <a href='/zetacomponents/documentation/trunk/EventLog/phpdoc/ezcLogFilterSet.html'>ezcLogFilterSet</a> class is inspired by modern mail application filter settings. Normally these mail filter settings sort the incoming mail and store it in the correct mail folder.</dd><dt>ezcLogWriter</dt><dd>ezcLogWriter provides an interface for the writers. An implementation of this interface is a valid writer and can be addressed by <a href='/zetacomponents/documentation/trunk/EventLog/phpdoc/ezcLogMapper.html'>ezcLogMapper</a>. The writer itself determines how and where the log message is stored.</dd><dt>ezcLogUnixFileWriter</dt><dd>ezcLogUnixFileWriter writes the log message to a file.</dd><dt>ezcLogFilter</dt><dd>ezcLogFilter is a structure to specify which log messages are accepted in a filter set.</dd></dl><p>For more information about these classes, see the class documentation.</p><a name="examples"></a><a name="id4"></a><h3>Examples</h3><a name="writing-a-log-message-to-file"></a><a name="id5"></a><h4>Writing a log message to file</h4><p>This example creates a file writer and assigns it to the default log mapper.</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li></li>
+<li><span style="color: #0000FF">require_once&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Get&nbsp;the&nbsp;one&nbsp;and&nbsp;only&nbsp;instance&nbsp;of&nbsp;the&nbsp;<a href='/zetacomponents/documentation/trunk/EventLog/phpdoc/ezcLog.html'>ezcLog</a>.</span></li>
+<li><span style="color: #000000">$log&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/EventLog/phpdoc/ezcLog.html#getInstance'>ezcLog::getInstance</a></span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Get&nbsp;an&nbsp;instance&nbsp;to&nbsp;the&nbsp;default&nbsp;log&nbsp;mapper.</span></li>
+<li><span style="color: #000000">$mapper&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$log</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">getMapper</span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Create&nbsp;a&nbsp;new&nbsp;Unix&nbsp;file&nbsp;writer,&nbsp;that&nbsp;writes&nbsp;to&nbsp;the&nbsp;file:&nbsp;"default.log".</span></li>
+<li><span style="color: #000000">$writer&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/EventLog/phpdoc/ezcLogUnixFileWriter.html'>ezcLogUnixFileWriter</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">"/tmp/logs"</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">"default.log"&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Create&nbsp;a&nbsp;filter&nbsp;that&nbsp;accepts&nbsp;every&nbsp;message&nbsp;(default&nbsp;behavior).</span></li>
+<li><span style="color: #000000">$filter&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000">ezcLogFilter</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Combine&nbsp;the&nbsp;filter&nbsp;with&nbsp;the&nbsp;writer&nbsp;in&nbsp;a&nbsp;filter&nbsp;rule.&nbsp;</span></li>
+<li><span style="color: #000000">$rule&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/EventLog/phpdoc/ezcLogFilterRule.html'>ezcLogFilterRule</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$filter</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">$writer</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">true&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;And&nbsp;finally&nbsp;assign&nbsp;the&nbsp;rule&nbsp;to&nbsp;the&nbsp;mapper.</span></li>
+<li><span style="color: #000000">$mapper</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">appendRule</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$rule&nbsp;</span><span style="color: #0000FF">);&nbsp;</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Write&nbsp;a&nbsp;message&nbsp;to&nbsp;the&nbsp;log.&nbsp;</span></li>
+<li><span style="color: #000000">$log</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">log</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">"Could&nbsp;not&nbsp;connect&nbsp;with&nbsp;the&nbsp;payment&nbsp;server."</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/EventLog/phpdoc/ezcLog.html#constWARNING'>ezcLog::WARNING</a>&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><p>First, <em>tutorial_autoload.php</em> is included. This file loads the correct PHP files for the EventLog component.</p><p>Then, the log is set up and a message is written to the log file <em>default.log</em>, to be placed in the <em>/tmp/logs</em> directory.</p><p>After execution, the file <em>/tmp/logs/default.log</em> contains something like this:</p><code class="block">Jan 24 14:39:57 [Warning] [default] [default] Could not connect with the payment server.</code><p>The date, severity, source, category and message are shown. The source and category are both set to default, because they were not specified in the message.</p><a name="writing-a-log-message-to-a-database"></a><a name="id6"></a><h4>Writing a log message to a database</h4><p>With the optional <a href="../EventLogDatabaseTiein.html#introduction">EventLogDatabaseTiein</a> component it is also possible to write log messages to a database table. See the <a href="../EventLogDatabaseTiein.html#introduction">EventLogDatabaseTiein</a> tutorial on how to use the <a href="../EventLogDatabaseTiein/phpdoc/ezcLogDatabaseWriter.html">ezcLogDatabaseWriter</a> as writer instead of the <a href="../EventLog/phpdoc/ezcLogUnixFileWriter.html">ezcLogUnixFileWriter</a> from this component. You can use both log writers at the same time. See the section <a href="#assigning-log-messages-to-different-files">Assigning log messages to different files</a> on how to use different writers simultaneously.</p><a name="assigning-sources-and-categories"></a><a name="id7"></a><h4>Assigning sources and categories</h4><p>The default source and category from <a href='/zetacomponents/documentation/trunk/EventLog/phpdoc/ezcLog.html'>ezcLog</a> can be set via the properties <em>source</em> and <em>category</em>. The next example demonstrates how the default properties can be set and how extra variables can be added to the log.</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li></li>
+<li><span style="color: #0000FF">require_once&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000">date_default_timezone_set</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">"UTC"&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Same&nbsp;set&nbsp;up&nbsp;as&nbsp;the&nbsp;previous&nbsp;example.</span></li>
+<li><span style="color: #000000">$log&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/EventLog/phpdoc/ezcLog.html#getInstance'>ezcLog::getInstance</a></span><span style="color: #0000FF">();</span></li>
+<li><span style="color: #000000">$writer&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/EventLog/phpdoc/ezcLogUnixFileWriter.html'>ezcLogUnixFileWriter</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">"/tmp/logs"</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">"default.log"&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$log</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">getmapper</span><span style="color: #0000FF">()-&gt;</span><span style="color: #000000">appendRule</span><span style="color: #0000FF">(&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/EventLog/phpdoc/ezcLogFilterRule.html'>ezcLogFilterRule</a></span><span style="color: #0000FF">(&nbsp;new&nbsp;</span><span style="color: #000000">ezcLogFilter</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">$writer</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">true&nbsp;</span><span style="color: #0000FF">)&nbsp;);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Set&nbsp;the&nbsp;source&nbsp;and&nbsp;category.</span></li>
+<li><span style="color: #000000">$log</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">source&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">"Payment&nbsp;module"</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000">$log</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">category&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">"Template"</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #000000">$log</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">log</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">"Could&nbsp;not&nbsp;find&nbsp;cache&nbsp;file:&nbsp;&lt;/var/cache/payment1234.cache&gt;."</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/EventLog/phpdoc/ezcLog.html#constWARNING'>ezcLog::WARNING</a>&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;...</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Write&nbsp;a&nbsp;SQL&nbsp;error.&nbsp;The&nbsp;category&nbsp;is&nbsp;set&nbsp;to&nbsp;SQL&nbsp;for&nbsp;this&nbsp;message&nbsp;only.&nbsp;</span></li>
+<li><span style="color: #000000">$log</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">log</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">"Cannot&nbsp;execute&nbsp;query:&nbsp;&lt;SELECT&nbsp;*&nbsp;FROM&nbsp;Orders&nbsp;WHERE&nbsp;ID&nbsp;=&nbsp;'123'&gt;."</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/EventLog/phpdoc/ezcLog.html#constERROR'>ezcLog::ERROR</a></span><span style="color: #0000FF">,&nbsp;array(&nbsp;</span><span style="color: #335533">"category"&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #335533">"SQL"&nbsp;</span><span style="color: #0000FF">)&nbsp;);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;...</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Write&nbsp;a&nbsp;debug&nbsp;message&nbsp;that&nbsp;includes&nbsp;the&nbsp;current&nbsp;filename&nbsp;and&nbsp;line&nbsp;number.</span></li>
+<li><span style="color: #007700">//&nbsp;The&nbsp;category&nbsp;is&nbsp;left&nbsp;out.</span></li>
+<li><span style="color: #000000">$log</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">log</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">"Starting&nbsp;shutdown&nbsp;process."</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/EventLog/phpdoc/ezcLog.html#constDEBUG'>ezcLog::DEBUG</a></span><span style="color: #0000FF">,&nbsp;array(&nbsp;</span><span style="color: #335533">"category"&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #335533">""</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">"file"&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #000000">__FILE__</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">"line"&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #000000">__LINE__&nbsp;</span><span style="color: #0000FF">)&nbsp;);</span></li>
+<li></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><p>After execution, the file <em>/tmp/logs/default.log</em> contains something like this:</p><code class="block">Jan 24 15:45:04 [Warning] [Payment module] [Template] Could not find cache file: &lt;/var/cache/payment1234.cache&gt;.
+Jan 24 15:45:04 [Error] [Payment module] [SQL] Cannot execute query: &lt;SELECT * FROM Orders WHERE ID = '123'&gt;.
+Jan 24 15:45:04 [Debug] [Payment module] Starting shutdown process. (file: /home/rb/php5/ezcomponents/packages/EventLog/trunk/docs/tutorial_sources_categories.php, line: 25)</code><a name="adding-log-attributes-automatically"></a><a name="id8"></a><h4>Adding log attributes automatically</h4><p>In some cases, it is convenient to automatically add log attributes to the log message. For example:</p><ul><li><p>Audit trails should include the current user.</p></li><li><p>A payment system should always include the order number.</p></li></ul><p>However, the log attributes appended to the log message are static. The value assigned to the attribute will be the same.</p><p>The next example assigns two automatic attributes:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li></li>
+<li><span style="color: #0000FF">require_once&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000">date_default_timezone_set</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">"UTC"&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Same&nbsp;set&nbsp;up&nbsp;as&nbsp;the&nbsp;previous&nbsp;examples.</span></li>
+<li><span style="color: #000000">$log&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/EventLog/phpdoc/ezcLog.html#getInstance'>ezcLog::getInstance</a></span><span style="color: #0000FF">();</span></li>
+<li><span style="color: #000000">$writer&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/EventLog/phpdoc/ezcLogUnixFileWriter.html'>ezcLogUnixFileWriter</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">"/tmp/logs"</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">"default.log"&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$log</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">getmapper</span><span style="color: #0000FF">()-&gt;</span><span style="color: #000000">appendRule</span><span style="color: #0000FF">(&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/EventLog/phpdoc/ezcLogFilterRule.html'>ezcLogFilterRule</a></span><span style="color: #0000FF">(&nbsp;new&nbsp;</span><span style="color: #000000">ezcLogFilter</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">$writer</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">true&nbsp;</span><span style="color: #0000FF">)&nbsp;);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;...</span></li>
+<li></li>
+<li><span style="color: #000000">$username&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">"John&nbsp;Doe"</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000">$service&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">"Paynet&nbsp;Terminal"</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;...&nbsp;</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Add&nbsp;automatically&nbsp;the&nbsp;username&nbsp;to&nbsp;the&nbsp;log&nbsp;message,&nbsp;when&nbsp;the&nbsp;log&nbsp;message&nbsp;is&nbsp;either&nbsp;a&nbsp;SUCCESS_AUDIT&nbsp;or&nbsp;a&nbsp;FAILED_AUDIT.</span></li>
+<li><span style="color: #000000">$log</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">setSeverityAttributes</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/EventLog/phpdoc/ezcLog.html#constSUCCESS_AUDIT'>ezcLog::SUCCESS_AUDIT</a>&nbsp;</span><span style="color: #0000FF">|&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/EventLog/phpdoc/ezcLog.html#constFAILED_AUDIT'>ezcLog::FAILED_AUDIT</a></span><span style="color: #0000FF">,&nbsp;array(&nbsp;</span><span style="color: #335533">"username"&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #000000">$username&nbsp;</span><span style="color: #0000FF">)&nbsp;);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Same&nbsp;can&nbsp;be&nbsp;done&nbsp;with&nbsp;the&nbsp;source&nbsp;of&nbsp;the&nbsp;log&nbsp;message.</span></li>
+<li><span style="color: #000000">$log</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">setSourceAttributes</span><span style="color: #0000FF">(&nbsp;array(&nbsp;</span><span style="color: #335533">"Payment"&nbsp;</span><span style="color: #0000FF">),&nbsp;array(&nbsp;</span><span style="color: #335533">"service"&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #000000">$service&nbsp;</span><span style="color: #0000FF">)&nbsp;);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Writing&nbsp;some&nbsp;log&nbsp;messages.</span></li>
+<li><span style="color: #000000">$log</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">log</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">"Authentication&nbsp;failed"</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/EventLog/phpdoc/ezcLog.html#constFAILED_AUDIT'>ezcLog::FAILED_AUDIT</a></span><span style="color: #0000FF">,&nbsp;array(&nbsp;</span><span style="color: #335533">"source"&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #335533">"security"</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">"category"&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #335533">"login/logoff"&nbsp;</span><span style="color: #0000FF">)&nbsp;);</span></li>
+<li></li>
+<li><span style="color: #000000">$log</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">source&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">"Payment"</span><span style="color: #0000FF">;&nbsp;</span></li>
+<li><span style="color: #000000">$log</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">log</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">"Connecting&nbsp;with&nbsp;the&nbsp;server."</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/EventLog/phpdoc/ezcLog.html#constDEBUG'>ezcLog::DEBUG</a></span><span style="color: #0000FF">,&nbsp;array(&nbsp;</span><span style="color: #335533">"category"&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #335533">"external&nbsp;connections"&nbsp;</span><span style="color: #0000FF">)&nbsp;);</span></li>
+<li></li>
+<li><span style="color: #000000">$log</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">log</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">"Paid&nbsp;with&nbsp;credit&nbsp;card."</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/EventLog/phpdoc/ezcLog.html#constSUCCESS_AUDIT'>ezcLog::SUCCESS_AUDIT</a></span><span style="color: #0000FF">,&nbsp;array(&nbsp;</span><span style="color: #335533">"category"&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #335533">"shop"&nbsp;</span><span style="color: #0000FF">)&nbsp;);</span></li>
+<li></li>
+<li></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><p>After execution, the file <em>/tmp/logs/default.log</em> contains this:</p><code class="block">Jan 25 10:15:19 [Failed audit] [security] [login/logoff] Authentication failed (username: John Doe)
+Jan 25 10:15:19 [Debug] [Payment] [external connections] Connecting with the server. (service: Paynet Terminal)
+Jan 25 10:15:19 [Success audit] [Payment] [shop] Payed with creditcard. (username: John Doe, service: Paynet Terminal)</code><a name="assigning-log-messages-to-different-files"></a><a name="id9"></a><h4>Assigning log messages to different files</h4><p>Depending on the incoming log message, the message can be stored with different writers. This example handles the log message as follows:</p><ul><li><p>Ignore all messages with the severity DEBUG.</p></li><li><p>Store the audit trails in the <em>audit_trails.log</em> file.</p></li><li><p>Store the logs with the Payment category in the <em>payment.log</em> file.</p></li><li><p>Store all the messages, except DEBUG, in the <em>general.log</em> file.</p></li></ul><p>The code is as follows:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #0000FF">require_once&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000">date_default_timezone_set</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">"UTC"&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Same&nbsp;set&nbsp;up&nbsp;as&nbsp;the&nbsp;previous&nbsp;examples.</span></li>
+<li><span style="color: #000000">$log&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/EventLog/phpdoc/ezcLog.html#getInstance'>ezcLog::getInstance</a></span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Create&nbsp;the&nbsp;writers</span></li>
+<li><span style="color: #000000">$writeAll&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/EventLog/phpdoc/ezcLogUnixFileWriter.html'>ezcLogUnixFileWriter</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">"/tmp/logs"</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">"general.log"&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$writePayment&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/EventLog/phpdoc/ezcLogUnixFileWriter.html'>ezcLogUnixFileWriter</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">"/tmp/logs"</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">"payment.log"&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$writeAuditTrails&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/EventLog/phpdoc/ezcLogUnixFileWriter.html'>ezcLogUnixFileWriter</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">"/tmp/logs"</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">"audit_trails.log"&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #000000">$debugFilter&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000">ezcLogFilter</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000">$debugFilter</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">severity&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/EventLog/phpdoc/ezcLog.html#constDEBUG'>ezcLog::DEBUG</a></span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000">$log</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">getmapper</span><span style="color: #0000FF">()-&gt;</span><span style="color: #000000">appendRule</span><span style="color: #0000FF">(&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/EventLog/phpdoc/ezcLogFilterRule.html'>ezcLogFilterRule</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$debugFilter</span><span style="color: #0000FF">,&nbsp;array(),&nbsp;</span><span style="color: #000000">false&nbsp;</span><span style="color: #0000FF">)&nbsp;);</span></li>
+<li></li>
+<li><span style="color: #000000">$auditFilter&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000">ezcLogFilter</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000">$auditFilter</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">severity&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/EventLog/phpdoc/ezcLog.html#constSUCCESS_AUDIT'>ezcLog::SUCCESS_AUDIT</a>&nbsp;</span><span style="color: #0000FF">|&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/EventLog/phpdoc/ezcLog.html#constFAILED_AUDIT'>ezcLog::FAILED_AUDIT</a></span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000">$log</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">getMapper</span><span style="color: #0000FF">()-&gt;</span><span style="color: #000000">appendRule</span><span style="color: #0000FF">(&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/EventLog/phpdoc/ezcLogFilterRule.html'>ezcLogFilterRule</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$auditFilter</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">$writeAuditTrails</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">true&nbsp;</span><span style="color: #0000FF">)&nbsp;);</span></li>
+<li></li>
+<li><span style="color: #000000">$paymentFilter&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000">ezcLogFilter</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000">$paymentFilter</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">source&nbsp;</span><span style="color: #0000FF">=&nbsp;array(&nbsp;</span><span style="color: #335533">"Payment"&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$log</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">getMapper</span><span style="color: #0000FF">()-&gt;</span><span style="color: #000000">appendRule</span><span style="color: #0000FF">(&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/EventLog/phpdoc/ezcLogFilterRule.html'>ezcLogFilterRule</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$paymentFilter</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">$writePayment</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">true&nbsp;</span><span style="color: #0000FF">)&nbsp;);</span></li>
+<li></li>
+<li><span style="color: #000000">$log</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">getMapper</span><span style="color: #0000FF">()-&gt;</span><span style="color: #000000">appendRule</span><span style="color: #0000FF">(&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/EventLog/phpdoc/ezcLogFilterRule.html'>ezcLogFilterRule</a></span><span style="color: #0000FF">(&nbsp;new&nbsp;</span><span style="color: #000000">ezcLogFilter</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">$writeAll</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">true&nbsp;</span><span style="color: #0000FF">)&nbsp;);</span></li>
+<li></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Writing&nbsp;some&nbsp;log&nbsp;messages.</span></li>
+<li><span style="color: #000000">$log</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">log</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">"Authentication&nbsp;failed"</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/EventLog/phpdoc/ezcLog.html#constFAILED_AUDIT'>ezcLog::FAILED_AUDIT</a></span><span style="color: #0000FF">,&nbsp;array(&nbsp;</span><span style="color: #335533">"source"&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #335533">"security"</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">"category"&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #335533">"login/logoff"&nbsp;</span><span style="color: #0000FF">)&nbsp;);</span></li>
+<li></li>
+<li><span style="color: #000000">$log</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">source&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">"Payment"</span><span style="color: #0000FF">;&nbsp;</span></li>
+<li><span style="color: #000000">$log</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">log</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">"Connecting&nbsp;with&nbsp;the&nbsp;server."</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/EventLog/phpdoc/ezcLog.html#constDEBUG'>ezcLog::DEBUG</a></span><span style="color: #0000FF">,&nbsp;array(&nbsp;</span><span style="color: #335533">"category"&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #335533">"external&nbsp;connections"&nbsp;</span><span style="color: #0000FF">)&nbsp;);</span></li>
+<li></li>
+<li><span style="color: #000000">$log</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">log</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">"Paid&nbsp;with&nbsp;credit&nbsp;card."</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/EventLog/phpdoc/ezcLog.html#constSUCCESS_AUDIT'>ezcLog::SUCCESS_AUDIT</a></span><span style="color: #0000FF">,&nbsp;array(&nbsp;</span><span style="color: #335533">"category"&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #335533">"shop"&nbsp;</span><span style="color: #0000FF">)&nbsp;);</span></li>
+<li></li>
+<li><span style="color: #000000">$log</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">log</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">"The&nbsp;credit&nbsp;card&nbsp;information&nbsp;is&nbsp;removed."</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/EventLog/phpdoc/ezcLog.html#constNOTICE'>ezcLog::NOTICE</a></span><span style="color: #0000FF">,&nbsp;array(&nbsp;</span><span style="color: #335533">"category"&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #335533">"shop"&nbsp;</span><span style="color: #0000FF">)&nbsp;);</span></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><a name="using-trigger-error"></a><a name="id10"></a><h4>Using trigger_error()</h4><p>The EventLog component is designed so that it can also be used with the <a href="http://www.php.net/trigger_error">trigger_error</a> PHP method. Instead of calling the <a href='/zetacomponents/documentation/trunk/EventLog/phpdoc/ezcLog.html#getInstance'>ezcLog::getInstance</a>()-&gt;log() method, trigger_error() can be called.  Using the trigger_error() method makes your code less dependent on the EventLog component and requires less overhead when logging is disabled.</p><p>The function <a href="http://www.php.net/set_error_handler">set_error_handler</a> should set up a callback function (or method) that, in turn, calls EventLog. For more information, see the API documentation on the <a href='/zetacomponents/documentation/trunk/EventLog/phpdoc/ezcLog.html#logHandler'>ezcLog::logHandler</a>() method.</p><a name="lazy-initialization"></a><a name="id11"></a><h3>Lazy initialization</h3><p>Lazy initialization is a mechanism to load and configure a component, only when it is really used in your application. This mechanism saves time for parsing the classes and configuration, when the component is not used at all during one request. You can find a description how you can use it for your own components and how it works in the <a href="introduction_Base.html#lazy-initialization">ezcBase tutorial</a>. The keyword for the event log component is <em>ezcInitLog</em>.</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #0000FF">require_once&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #0000FF">class&nbsp;</span><span style="color: #000000">customLazyLogConfiguration&nbsp;</span><span style="color: #0000FF">implements&nbsp;</span><span style="color: #000000">ezcBaseConfigurationInitializer</span></li>
+<li><span style="color: #0000FF">{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;static&nbsp;function&nbsp;</span><span style="color: #000000">configureObject</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$log&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$writeAll&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/EventLog/phpdoc/ezcLogUnixFileWriter.html'>ezcLogUnixFileWriter</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">"/tmp/logs"</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">"general.log"&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$log</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">getMapper</span><span style="color: #0000FF">()-&gt;</span><span style="color: #000000">appendRule</span><span style="color: #0000FF">(&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/EventLog/phpdoc/ezcLogFilterRule.html'>ezcLogFilterRule</a></span><span style="color: #0000FF">(&nbsp;new&nbsp;</span><span style="color: #000000">ezcLogFilter</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">$writeAll</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">true&nbsp;</span><span style="color: #0000FF">)&nbsp;);</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;}</span></li>
+<li><span style="color: #0000FF">}</span></li>
+<li></li>
+<li><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/EventLog/phpdoc/ezcBaseInit.html#setCallback'>ezcBaseInit::setCallback</a></span><span style="color: #0000FF">(&nbsp;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #335533">'<a href='/zetacomponents/documentation/trunk/EventLog/phpdoc/ezcInitLog.html'>ezcInitLog</a>'</span><span style="color: #0000FF">,&nbsp;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #335533">'customLazyLogConfiguration'</span></li>
+<li><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;Use&nbsp;log</span></li>
+<li><span style="color: #000000">$log&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/EventLog/phpdoc/ezcLog.html#getInstance'>ezcLog::getInstance</a></span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #000000">$log</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">log</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">"Paid&nbsp;with&nbsp;credit&nbsp;card."</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/EventLog/phpdoc/ezcLog.html#constSUCCESS_AUDIT'>ezcLog::SUCCESS_AUDIT</a></span><span style="color: #0000FF">,&nbsp;array(&nbsp;</span><span style="color: #335533">"category"&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #335533">"shop"&nbsp;</span><span style="color: #0000FF">)&nbsp;);</span></li>
+<li><span style="color: #000000">$log</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">log</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">"The&nbsp;credit&nbsp;card&nbsp;information&nbsp;is&nbsp;removed."</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/EventLog/phpdoc/ezcLog.html#constNOTICE'>ezcLog::NOTICE</a></span><span style="color: #0000FF">,&nbsp;array(&nbsp;</span><span style="color: #335533">"category"&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #335533">"shop"&nbsp;</span><span style="color: #0000FF">)&nbsp;);</span></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><p>The example shows a very simple event log setup with only one single logging rule. The main difference compared with earlier examples is, that we roll out the configuration to an own class, and define a callback using <a href='/zetacomponents/documentation/trunk/EventLog/phpdoc/ezcBaseInit.html'>ezcBaseInit</a>::setCallback to this class, which will be called with the event log instance on the first request for a yet uninitialized log handler.</p><p>ezcBaseInit::setCallback accepts as a first parameter a component specific key, which lets the component later request the right configuration callback. The second parameter is the name of the class to perform the static callback on. This class must implement the <a href='/zetacomponents/documentation/trunk/EventLog/phpdoc/ezcBaseConfigurationInitializer.html'>ezcBaseConfigurationInitializer</a> class. Each component's lazy initialization calls the static method configureObject() on the referenced class.</p><p>When the event log is really required in the application, like shown in line 19 of the example, the event log component will be configured by the code in the configureObject() method in line 6, which just add a general logging rule, writing all log messages to /tmp/logs/general.log.</p><!--Local Variables:
+mode: rst
+fill-column: 79
+End:
+vim: et syn=rst tw=79-->
+
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

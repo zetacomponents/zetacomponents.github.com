@@ -1,0 +1,265 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="PHP, apache, components, framework, quality" />
+	<meta name="author" content="dotxp" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Wed, 04 Aug 2010 13:08:02 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="ezcUrlCreator.html" />
+	<meta name="DC.creator" content="dotxp" />
+	<meta name="DC.date" content="Wed, 04 Aug 2010 13:08:02 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/Url/phpdoc/ezcUrlCreator.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/Url/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/trunk/Url/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+
+</ul>
+
+		
+  <div class="phpdoc">
+    <h2>Apache Zeta Components Manual :: Docs For Class ezcUrlCreator</h2>
+
+                  <h3>Url::ezcUrlCreator</h3>
+    
+<a name="sec-description"></a>
+<h3>Class ezcUrlCreator</h3>
+
+<p>ezcUrlCreator makes it easy to create urls from scratch.</p><div><p>Holds a list of urls mapped to aliases. The aliases are used to refer to the  urls stored, so the urls will not be hardcoded all over the application code.</p><p>Example of use:  </p><ol><li><div class="src-line">&#8192;<span class="src-comm">//&#8192;register&#8192;an&#8192;URL&#8192;under&#8192;the&#8192;alias&#8192;'map'</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-id"><a href="ezcUrlCreator.html">ezcUrlCreator</a></span><span class="src-sym">::</span><a href="ezcUrlCreator.html#methodregisterUrl">registerUrl</a><span class="src-sym">(&#8192;</span><span class="src-str">'map'</span><span class="src-sym">,&#8192;</span><span class="src-str">'/images/geo/%s?xsize=%d&amp;ysize=%d&amp;zoom=%d'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;retrieve&#8192;the&#8192;stored&#8192;URL&#8192;under&#8192;the&#8192;alias&#8192;'map'&#8192;formatted&#8192;with&#8192;parameters</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$url&#8192;</span>=&#8192;<span class="src-id"><a href="ezcUrlCreator.html">ezcUrlCreator</a></span><span class="src-sym">::</span><a href="ezcUrlCreator.html#methodgetUrl">getUrl</a><span class="src-sym">(&#8192;</span><span class="src-str">'map'</span><span class="src-sym">,&#8192;</span><span class="src-str">'map_norway.gif'</span><span class="src-sym">,&#8192;</span><span class="src-num">450</span><span class="src-sym">,&#8192;</span><span class="src-num">450</span><span class="src-sym">,&#8192;</span><span class="src-num">4&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-comm">//&#8192;will&#8192;be:&#8192;"/images/geo/map_norway.gif?xsize=450&amp;ysize=450&amp;zoom=4"</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;retrieve&#8192;the&#8192;stored&#8192;URL&#8192;under&#8192;the&#8192;alias&#8192;'map'&#8192;formatted&#8192;with&#8192;other&#8192;parameters</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$url&#8192;</span>=&#8192;<span class="src-id"><a href="ezcUrlCreator.html">ezcUrlCreator</a></span><span class="src-sym">::</span><a href="ezcUrlCreator.html#methodgetUrl">getUrl</a><span class="src-sym">(&#8192;</span><span class="src-str">'map'</span><span class="src-sym">,&#8192;</span><span class="src-str">'map_sweden.gif'</span><span class="src-sym">,&#8192;</span><span class="src-num">450</span><span class="src-sym">,&#8192;</span><span class="src-num">450</span><span class="src-sym">,&#8192;</span><span class="src-num">4&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-comm">//&#8192;will&#8192;be:&#8192;"/images/geo/map_sweden.gif?xsize=450&amp;ysize=450&amp;zoom=4"</span></div></li>
+</ol></div>
+<p>Source for this file: <a href="http://fisheye6.atlassian.com/browse/zetacomponents/trunk/Url/src/url_creator.php?r=HEAD">/Url/src/url_creator.php</a></p>
+       
+
+
+
+
+  <table><tr><td>
+            <strong>Version:</strong>&#8192;&#8192;
+          </td>
+          <td>//autogen//</td>
+        </tr></table><a name="sec-method-summary"></a>
+  <h3>Method Summary</h3>
+  <table class="summary"><tr><td class="right">
+            <em>public</em>            static
+                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#getUrl"><b>getUrl</b></a>(
+                                                                                    $name
+                                                    ,                                     $args,...
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns the URL registered as $name.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>            static
+                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#prependUrl"><b>prependUrl</b></a>(
+                                                                                    $name
+                                                    ,                                     $suffix
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns the URL registerd as $name prepended to $suffix.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>            static
+                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#registerUrl"><b>registerUrl</b></a>(
+                                                                                    $name
+                                                    ,                                     $url
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Registers $url as $name in the URLs list.</div>          </td>
+        </tr></table><a name="sec-methods"></a>
+  <h3>Methods</h3>
+  <a name="method_detail"></a>
+      <a name="methodgetUrl" id="getUrl"><!-- --></a>
+
+    <h4>getUrl</h4>
+
+    <div class="method-signature">
+      static string
+      getUrl(
+                                  string
+          $name
+                            ,           mixed
+          $args,...
+                        )
+    </div>
+
+      <p>Returns the URL registered as $name.</p><div><p>This function accepts a variable number of arguments like the sprintf()  function. If you specify more than 1 arguments when calling this  function, the registered URL will be formatted using those arguments  similar with the sprintf() function.  Example:  </p><ol><li><div class="src-line">&#8192;<span class="src-id"><a href="ezcUrlCreator.html">ezcUrlCreator</a></span><span class="src-sym">::</span><a href="ezcUrlCreator.html#methodregisterUrl">registerUrl</a><span class="src-sym">(&#8192;</span><span class="src-str">'map'</span><span class="src-sym">,&#8192;</span><span class="src-str">'/images/geo/%s?xsize=%d&amp;ysize=%d&amp;zoom=%d'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;echo&#8192;<span class="src-id"><a href="ezcUrlCreator.html">ezcUrlCreator</a></span><span class="src-sym">::</span><a href="ezcUrlCreator.html#methodgetUrl">getUrl</a><span class="src-sym">(&#8192;</span><span class="src-str">'map'</span><span class="src-sym">,&#8192;</span><span class="src-str">'map_sweden.gif'</span><span class="src-sym">,&#8192;</span><span class="src-num">450</span><span class="src-sym">,&#8192;</span><span class="src-num">450</span><span class="src-sym">,&#8192;</span><span class="src-num">4&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol>  will output:  /images/geo/map_sweden.gif?xsize=450&amp;ysize=450&amp;zoom=4</div>      
+              <h5>Parameters:</h5>
+        <table class="detail"><thead><tr><th>Name</th>
+              <th>Type</th>
+              <th class="desc">Description</th>
+            </tr></thead><tbody><tr><td><code>$name</code></td>
+                <td><em>string</em></td>
+                <td>
+                                      The name associated with the URL
+                                  </td>
+              </tr><tr><td><code>$args,...</code></td>
+                <td><em>mixed</em></td>
+                <td>
+                                      Optional values which will be vsprintf-ed in the URL
+                                  </td>
+              </tr></tbody></table><h5>Exceptions:</h5>
+        <table class="detail"><thead><tr><th>Type</th>
+              <th class="desc">Description</th>
+            </tr></thead><tbody><tr><td><code><a href="ezcUrlNotRegisteredException.html">ezcUrlNotRegisteredException</a></code></td>
+                <td>
+                                      if $name is not registered
+                                  </td>
+              </tr></tbody></table><a name="methodprependUrl" id="prependUrl"><!-- --></a>
+
+    <h4>prependUrl</h4>
+
+    <div class="method-signature">
+      static string
+      prependUrl(
+                                  string
+          $name
+                            ,           string
+          $suffix
+                        )
+    </div>
+
+      <p>Returns the URL registerd as $name prepended to $suffix.</p><div><p>Example:  </p><ol><li><div class="src-line">&#8192;<span class="src-id"><a href="ezcUrlCreator.html">ezcUrlCreator</a></span><span class="src-sym">::</span><a href="ezcUrlCreator.html#methodregisterUrl">registerUrl</a><span class="src-sym">(&#8192;</span><span class="src-str">'map'</span><span class="src-sym">,&#8192;</span><span class="src-str">'/images/geo?xsize=450&amp;ysize=450&amp;zoom=4'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;echo&#8192;<span class="src-id"><a href="ezcUrlCreator.html">ezcUrlCreator</a></span><span class="src-sym">::</span><a href="ezcUrlCreator.html#methodprependUrl">prependUrl</a><span class="src-sym">(&#8192;</span><span class="src-str">'map'</span><span class="src-sym">,&#8192;</span><span class="src-str">'map_sweden.gif'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol>  will output:  /images/geo/map_sweden.gif?xsize=450&amp;ysize=450&amp;zoom=4</div>      
+              <h5>Parameters:</h5>
+        <table class="detail"><thead><tr><th>Name</th>
+              <th>Type</th>
+              <th class="desc">Description</th>
+            </tr></thead><tbody><tr><td><code>$name</code></td>
+                <td><em>string</em></td>
+                <td>
+                                      The name associated with the URL that will be appended with $suffix
+                                  </td>
+              </tr><tr><td><code>$suffix</code></td>
+                <td><em>string</em></td>
+                <td>
+                                      The string which will be appended to the URL
+                                  </td>
+              </tr></tbody></table><h5>Exceptions:</h5>
+        <table class="detail"><thead><tr><th>Type</th>
+              <th class="desc">Description</th>
+            </tr></thead><tbody><tr><td><code><a href="ezcUrlNotRegisteredException.html">ezcUrlNotRegisteredException</a></code></td>
+                <td>
+                                      if $name is not registered
+                                  </td>
+              </tr></tbody></table><a name="methodregisterUrl" id="registerUrl"><!-- --></a>
+
+    <h4>registerUrl</h4>
+
+    <div class="method-signature">
+      static void
+      registerUrl(
+                                  string
+          $name
+                            ,           string
+          $url
+                        )
+    </div>
+
+      <p>Registers $url as $name in the URLs list.</p><div><p>If $name is already registered, it will be overwritten.</p></div>      
+              <h5>Parameters:</h5>
+        <table class="detail"><thead><tr><th>Name</th>
+              <th>Type</th>
+              <th class="desc">Description</th>
+            </tr></thead><tbody><tr><td><code>$name</code></td>
+                <td><em>string</em></td>
+                <td>
+                                      The name associated with the URL
+                                  </td>
+              </tr><tr><td><code>$url</code></td>
+                <td><em>string</em></td>
+                <td>
+                                      The URL to register
+                                  </td>
+              </tr></tbody></table><div class="credit">
+      Documentation generated by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+    </div>
+  </div>
+  
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

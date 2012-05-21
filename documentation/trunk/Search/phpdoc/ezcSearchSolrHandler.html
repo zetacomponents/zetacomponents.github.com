@@ -1,0 +1,1087 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="PHP, apache, components, framework, quality" />
+	<meta name="author" content="dotxp" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Wed, 04 Aug 2010 13:07:57 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="ezcSearchSolrHandler.html" />
+	<meta name="DC.creator" content="dotxp" />
+	<meta name="DC.date" content="Wed, 04 Aug 2010 13:07:57 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/Search/phpdoc/ezcSearchSolrHandler.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/Search/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/trunk/Search/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Search/solr_schema.html" title="Solr_schema ">Solr_schema </a>
+	</li>
+
+</ul>
+
+		
+  <div class="phpdoc">
+    <h2>Apache Zeta Components Manual :: Docs For Class ezcSearchSolrHandler</h2>
+
+                  <h3>Search::ezcSearchSolrHandler</h3>
+    
+<a name="sec-description"></a>
+<h3>Class ezcSearchSolrHandler</h3>
+
+<p>Solr backend implementation</p>
+<p>Source for this file: <a href="http://fisheye6.atlassian.com/browse/zetacomponents/trunk/Search/src/handlers/solr.php?r=HEAD">/Search/src/handlers/solr.php</a></p>
+       
+  <h3>Implements interfaces:</h3>
+  <ul><li><a href="ezcSearchHandler.html">ezcSearchHandler</a></li><li><a href="ezcSearchIndexHandler.html">ezcSearchIndexHandler</a></li>  </ul><table><tr><td>
+            <strong>Version:</strong>&#8192;&#8192;
+          </td>
+          <td>//autogentag//</td>
+        </tr></table><a name="sec-var-summary"></a>
+  <h3>Member Variables</h3>
+  <table class="summary"><tr><td class="right">
+            <em>public</em>            <em>resource(stream)</em>          </td>
+          <td>
+            <code>
+              $connection
+                          </code>
+            <br><div style="margin-left: 20px">Holds the connection to Solr</div>                      </td>
+        </tr></table><a name="sec-method-summary"></a>
+  <h3>Method Summary</h3>
+  <table class="summary"><tr><td class="right">
+            <em>public</em>            static
+                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#getName"><b>getName</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns 'solr'.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>ezcSearchSolrHandler</em>          </td>
+          <td>
+            <code>
+              <a href="#__construct"><b>__construct</b></a>(
+                                                                  [                  $host
+                   = 'localhost']                                  ,                   [                  $port
+                   = 8983]                                  ,                   [                  $location
+                   = '/solr']                               )
+            </code>
+            <br><div style="margin-left: 20px">Creates a new Solr handler connection</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#beginTransaction"><b>beginTransaction</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Starts a transaction for indexing.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#commit"><b>commit</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Ends a transaction and calls commit.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#connect"><b>connect</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Connects to Solr</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em><a href="ezcSearchDeleteQuerySolr.html">ezcSearchDeleteQuerySolr</a></em>          </td>
+          <td>
+            <code>
+              <a href="#createDeleteQuery"><b>createDeleteQuery</b></a>(
+                                                                                    $type
+                                                    ,                                     $definition
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Creates a delete query object with the fields from the definition filled in.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em><a href="ezcSearchFindQuery.html">ezcSearchFindQuery</a></em>          </td>
+          <td>
+            <code>
+              <a href="#createFindQuery"><b>createFindQuery</b></a>(
+                                                                                    $type
+                                                    ,                                     $definition
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Creates a search query object with the fields from the definition filled in.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#delete"><b>delete</b></a>(
+                                                                                    $query
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Deletes documents using the query $query.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#deleteById"><b>deleteById</b></a>(
+                                                                                    $id
+                                                    ,                                     $definition
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Deletes a document by the document's $id</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em><a href="ezcSearchResult.html">ezcSearchResult</a></em>          </td>
+          <td>
+            <code>
+              <a href="#find"><b>find</b></a>(
+                                                                                    $query
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Builds the search query and returns the parsed response</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em><a href="ezcSearchResult.html">ezcSearchResult</a></em>          </td>
+          <td>
+            <code>
+              <a href="#findById"><b>findById</b></a>(
+                                                                                    $id
+                                                    ,                                     $definition
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Finds a document by the document's $id</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#index"><b>index</b></a>(
+                                                                                    $definition
+                                                    ,                                     $document
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Indexes the document $document using definition $definition</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#mapFieldType"><b>mapFieldType</b></a>(
+                                                                                    $name
+                                                    ,                                     $type
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns the field name as used by solr created from the field $name and $type.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>mixed</em>          </td>
+          <td>
+            <code>
+              <a href="#mapFieldValueForIndex"><b>mapFieldValueForIndex</b></a>(
+                                                                                    $fieldType
+                                                    ,                                     $value
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">This method prepares a $value before it is passed to the indexer.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>mixed</em>          </td>
+          <td>
+            <code>
+              <a href="#mapFieldValueForReturn"><b>mapFieldValueForReturn</b></a>(
+                                                                                    $fieldType
+                                                    ,                                     $value
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">This method prepares a $value before it is passed to the search handler.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>mixed</em>          </td>
+          <td>
+            <code>
+              <a href="#mapFieldValueForSearch"><b>mapFieldValueForSearch</b></a>(
+                                                                                    $fieldType
+                                                    ,                                     $value
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">This method prepares a $value before it is passed to the search handler.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>array(mixed)</em>          </td>
+          <td>
+            <code>
+              <a href="#mapFieldValuesForIndex"><b>mapFieldValuesForIndex</b></a>(
+                                                                                    $field
+                                                    ,                                     $values
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">This method prepares a value or an array of $values before it is passed to the indexer.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>mixed|array(mixed)</em>          </td>
+          <td>
+            <code>
+              <a href="#mapFieldValuesForReturn"><b>mapFieldValuesForReturn</b></a>(
+                                                                                    $field
+                                                    ,                                     $values
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">This method prepares a value or an array of $values after it has been returned by search handler.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>array(mixed)</em>          </td>
+          <td>
+            <code>
+              <a href="#mapFieldValuesForSearch"><b>mapFieldValuesForSearch</b></a>(
+                                                                                    $field
+                                                    ,                                     $values
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">This method prepares a value or an array of $values before it is passed to the search handler.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#reConnect"><b>reConnect</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Closes the connection, and re-connects to Solr</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#runCommit"><b>runCommit</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Runs a commit command to tell solr we're done indexing.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>stdClass</em>          </td>
+          <td>
+            <code>
+              <a href="#search"><b>search</b></a>(
+                                                                                    $queryWord
+                                                    ,                                     $defaultField
+                                                    ,                   [                  $searchFieldList
+                   = array()]                                  ,                   [                  $returnFieldList
+                   = array()]                                  ,                   [                  $highlightFieldList
+                   = array()]                                  ,                   [                  $facetFieldList
+                   = array()]                                  ,                   [                  $limit
+                   = null]                                  ,                   [                  $offset
+                   = 0]                                  ,                   [                  $order
+                   = array()]                               )
+            </code>
+            <br><div style="margin-left: 20px">Executes a search by building and sending a query and returns the raw result</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#sendRawGetCommand"><b>sendRawGetCommand</b></a>(
+                                                                                    $type
+                                                    ,                   [                  $queryString
+                   = array()]                               )
+            </code>
+            <br><div style="margin-left: 20px">Sends the raw command $type to Solr</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#sendRawPostCommand"><b>sendRawPostCommand</b></a>(
+                                                                                    $type
+                                                    ,                                     $queryString
+                                                    ,                                     $data
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Sends a post command $type to Solr and reads the result</div>          </td>
+        </tr></table><a name="sec-methods"></a>
+  <h3>Methods</h3>
+  <a name="method_detail"></a>
+                          <a name="methodgetName" id="getName"><!-- --></a>
+
+    <h4>getName</h4>
+
+    <div class="method-signature">
+      static string
+      getName(
+      )
+    </div>
+
+      <p>Returns 'solr'.</p>      
+      
+      
+      
+      
+      
+                            
+      <a name="method__construct" id="__construct"><!-- --></a>
+
+    <h4>__construct</h4>
+
+    <div class="method-signature">
+      ezcSearchSolrHandler
+      __construct(
+                                  [string
+          $host
+           = 'localhost']                  ,           [int
+          $port
+           = 8983]                  ,           [string
+          $location
+           = '/solr']              )
+    </div>
+
+    <p>Creates a new Solr handler connection</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$host</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$port</code></td>
+              <td><em>int</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$location</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodbeginTransaction" id="beginTransaction"><!-- --></a>
+
+    <h4>beginTransaction</h4>
+
+    <div class="method-signature">
+      void
+      beginTransaction(
+      )
+    </div>
+
+    <p>Starts a transaction for indexing.</p><div><p>When using a transaction, the amount of processing that solr does  decreases, increasing indexing performance. Without this, the component  sends a commit after every document that is indexed. Transactions can be  nested, when commit() is called the same number of times as  beginTransaction(), the component sends a commit.</p></div>
+    
+        
+
+    
+          <h5>Implementation of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcSearchIndexHandler.html#methodbeginTransaction">ezcSearchIndexHandler::beginTransaction()</a></code></td>
+              <td>
+                                  Starts a transaction for indexing.
+                              </td>
+            </tr></tbody></table><a name="methodcommit" id="commit"><!-- --></a>
+
+    <h4>commit</h4>
+
+    <div class="method-signature">
+      void
+      commit(
+      )
+    </div>
+
+    <p>Ends a transaction and calls commit.</p><div><p>As transactions can be nested, this method will only call commit when  all the nested transactions have been ended.</p></div>
+    
+          <h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcSearchTransactionException.html">ezcSearchTransactionException</a></code></td>
+              <td>
+                                  if no transaction is active.
+                              </td>
+            </tr></tbody></table><h5>Implementation of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcSearchIndexHandler.html#methodcommit">ezcSearchIndexHandler::commit()</a></code></td>
+              <td>
+                                  Ends a transaction and calls commit.
+                              </td>
+            </tr></tbody></table><a name="methodconnect" id="connect"><!-- --></a>
+
+    <h4>connect</h4>
+
+    <div class="method-signature">
+      void
+      connect(
+      )
+    </div>
+
+    <p>Connects to Solr</p>
+    
+          <h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcSearchCanNotConnectException.html">ezcSearchCanNotConnectException</a></code></td>
+              <td>
+                                  if a connection can not be established.
+                              </td>
+            </tr></tbody></table><a name="methodcreateDeleteQuery" id="createDeleteQuery"><!-- --></a>
+
+    <h4>createDeleteQuery</h4>
+
+    <div class="method-signature">
+      <a href="ezcSearchDeleteQuerySolr.html">ezcSearchDeleteQuerySolr</a>
+      createDeleteQuery(
+                                  string
+          $type
+                            ,           <a href="ezcSearchDocumentDefinition.html">ezcSearchDocumentDefinition</a>
+          $definition
+                        )
+    </div>
+
+    <p>Creates a delete query object with the fields from the definition filled in.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$type</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$definition</code></td>
+              <td><em><a href="ezcSearchDocumentDefinition.html">ezcSearchDocumentDefinition</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Implementation of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcSearchIndexHandler.html#methodcreateDeleteQuery">ezcSearchIndexHandler::createDeleteQuery()</a></code></td>
+              <td>
+                                  Creates a delete query object with the fields from the definition filled in.
+                              </td>
+            </tr></tbody></table><a name="methodcreateFindQuery" id="createFindQuery"><!-- --></a>
+
+    <h4>createFindQuery</h4>
+
+    <div class="method-signature">
+      <a href="ezcSearchFindQuery.html">ezcSearchFindQuery</a>
+      createFindQuery(
+                                  string
+          $type
+                            ,           <a href="ezcSearchDocumentDefinition.html">ezcSearchDocumentDefinition</a>
+          $definition
+                        )
+    </div>
+
+    <p>Creates a search query object with the fields from the definition filled in.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$type</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$definition</code></td>
+              <td><em><a href="ezcSearchDocumentDefinition.html">ezcSearchDocumentDefinition</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Implementation of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcSearchHandler.html#methodcreateFindQuery">ezcSearchHandler::createFindQuery()</a></code></td>
+              <td>
+                                  Creates a search query object with the fields from the definition filled in.
+                              </td>
+            </tr></tbody></table><a name="methoddelete" id="delete"><!-- --></a>
+
+    <h4>delete</h4>
+
+    <div class="method-signature">
+      void
+      delete(
+                                  <a href="ezcSearchDeleteQuery.html">ezcSearchDeleteQuery</a>
+          $query
+                        )
+    </div>
+
+    <p>Deletes documents using the query $query.</p><div><p>The $query should be created using <a href="ezcSearchSolrHandler.html#methodcreateDeleteQuery">createDeleteQuery()</a>.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$query</code></td>
+              <td><em><a href="ezcSearchDeleteQuery.html">ezcSearchDeleteQuery</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>ezcSearchQueryException</code></td>
+              <td>
+                                  if the delete query failed.
+                              </td>
+            </tr></tbody></table><h5>Implementation of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcSearchIndexHandler.html#methoddelete">ezcSearchIndexHandler::delete()</a></code></td>
+              <td>
+                                  Builds the delete query and returns the parsed response
+                              </td>
+            </tr></tbody></table><a name="methoddeleteById" id="deleteById"><!-- --></a>
+
+    <h4>deleteById</h4>
+
+    <div class="method-signature">
+      void
+      deleteById(
+                                  mixed
+          $id
+                            ,           <a href="ezcSearchDocumentDefinition.html">ezcSearchDocumentDefinition</a>
+          $definition
+                        )
+    </div>
+
+    <p>Deletes a document by the document's $id</p><div><p>If the document with ID $id does not exist, no warning is returned.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$id</code></td>
+              <td><em>mixed</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$definition</code></td>
+              <td><em><a href="ezcSearchDocumentDefinition.html">ezcSearchDocumentDefinition</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Implementation of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcSearchIndexHandler.html#methoddeleteById">ezcSearchIndexHandler::deleteById()</a></code></td>
+              <td>
+                                  Deletes a document by the document's $id
+                              </td>
+            </tr></tbody></table><a name="methodfind" id="find"><!-- --></a>
+
+    <h4>find</h4>
+
+    <div class="method-signature">
+      <a href="ezcSearchResult.html">ezcSearchResult</a>
+      find(
+                                  <a href="ezcSearchFindQuery.html">ezcSearchFindQuery</a>
+          $query
+                        )
+    </div>
+
+    <p>Builds the search query and returns the parsed response</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$query</code></td>
+              <td><em><a href="ezcSearchFindQuery.html">ezcSearchFindQuery</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Implementation of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcSearchHandler.html#methodfind">ezcSearchHandler::find()</a></code></td>
+              <td>
+                                  Builds the search query and returns the parsed response
+                              </td>
+            </tr></tbody></table><a name="methodfindById" id="findById"><!-- --></a>
+
+    <h4>findById</h4>
+
+    <div class="method-signature">
+      <a href="ezcSearchResult.html">ezcSearchResult</a>
+      findById(
+                                  mixed
+          $id
+                            ,           <a href="ezcSearchDocumentDefinition.html">ezcSearchDocumentDefinition</a>
+          $definition
+                        )
+    </div>
+
+    <p>Finds a document by the document's $id</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$id</code></td>
+              <td><em>mixed</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$definition</code></td>
+              <td><em><a href="ezcSearchDocumentDefinition.html">ezcSearchDocumentDefinition</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcSearchIdNotFoundException.html">ezcSearchIdNotFoundException</a></code></td>
+              <td>
+                                  if the document with ID $id did not exist.
+                              </td>
+            </tr></tbody></table><h5>Implementation of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcSearchHandler.html#methodfindById">ezcSearchHandler::findById()</a></code></td>
+              <td>
+                                  Finds a document by the document's $id
+                              </td>
+            </tr></tbody></table><a name="methodindex" id="index"><!-- --></a>
+
+    <h4>index</h4>
+
+    <div class="method-signature">
+      void
+      index(
+                                  <a href="ezcSearchDocumentDefinition.html">ezcSearchDocumentDefinition</a>
+          $definition
+                            ,           mixed
+          $document
+                        )
+    </div>
+
+    <p>Indexes the document $document using definition $definition</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$definition</code></td>
+              <td><em><a href="ezcSearchDocumentDefinition.html">ezcSearchDocumentDefinition</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$document</code></td>
+              <td><em>mixed</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Implementation of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcSearchIndexHandler.html#methodindex">ezcSearchIndexHandler::index()</a></code></td>
+              <td>
+                                  Indexes the document $document using definition $definition
+                              </td>
+            </tr></tbody></table><a name="methodmapFieldType" id="mapFieldType"><!-- --></a>
+
+    <h4>mapFieldType</h4>
+
+    <div class="method-signature">
+      string
+      mapFieldType(
+                                  string
+          $name
+                            ,           string
+          $type
+                        )
+    </div>
+
+    <p>Returns the field name as used by solr created from the field $name and $type.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$name</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$type</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodmapFieldValueForIndex" id="mapFieldValueForIndex"><!-- --></a>
+
+    <h4>mapFieldValueForIndex</h4>
+
+    <div class="method-signature">
+      mixed
+      mapFieldValueForIndex(
+                                  string
+          $fieldType
+                            ,           mixed
+          $value
+                        )
+    </div>
+
+    <p>This method prepares a $value before it is passed to the indexer.</p><div><p>Depending on the $fieldType the $value is modified so that the indexer understands the value.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$fieldType</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$value</code></td>
+              <td><em>mixed</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodmapFieldValueForReturn" id="mapFieldValueForReturn"><!-- --></a>
+
+    <h4>mapFieldValueForReturn</h4>
+
+    <div class="method-signature">
+      mixed
+      mapFieldValueForReturn(
+                                  string
+          $fieldType
+                            ,           mixed
+          $value
+                        )
+    </div>
+
+    <p>This method prepares a $value before it is passed to the search handler.</p><div><p>Depending on the $fieldType the $value is modified so that the search  handler understands the value.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$fieldType</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$value</code></td>
+              <td><em>mixed</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodmapFieldValueForSearch" id="mapFieldValueForSearch"><!-- --></a>
+
+    <h4>mapFieldValueForSearch</h4>
+
+    <div class="method-signature">
+      mixed
+      mapFieldValueForSearch(
+                                  string
+          $fieldType
+                            ,           mixed
+          $value
+                        )
+    </div>
+
+    <p>This method prepares a $value before it is passed to the search handler.</p><div><p>Depending on the $fieldType the $value is modified so that the search  handler understands the value.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$fieldType</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$value</code></td>
+              <td><em>mixed</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodmapFieldValuesForIndex" id="mapFieldValuesForIndex"><!-- --></a>
+
+    <h4>mapFieldValuesForIndex</h4>
+
+    <div class="method-signature">
+      array(mixed)
+      mapFieldValuesForIndex(
+                                  ezcSearchDocumentDefinitionField
+          $field
+                            ,           mixed
+          $values
+                        )
+    </div>
+
+    <p>This method prepares a value or an array of $values before it is passed to the indexer.</p><div><p>Depending on the $field the $values is modified so that the search  handler understands the value. It will also correctly deal with  multi-data fields in the search index.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$field</code></td>
+              <td><em>ezcSearchDocumentDefinitionField</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$values</code></td>
+              <td><em>mixed</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>ezcSearchInvalidValueException</code></td>
+              <td>
+                                  if an array of values is submitted, but the field has not been defined as a multi-value field.
+                              </td>
+            </tr></tbody></table><a name="methodmapFieldValuesForReturn" id="mapFieldValuesForReturn"><!-- --></a>
+
+    <h4>mapFieldValuesForReturn</h4>
+
+    <div class="method-signature">
+      mixed|array(mixed)
+      mapFieldValuesForReturn(
+                                  ezcSearchDocumentDefinitionField
+          $field
+                            ,           mixed
+          $values
+                        )
+    </div>
+
+    <p>This method prepares a value or an array of $values after it has been returned by search handler.</p><div><p>Depending on the $field the $values is modified.  It will also correctly  deal with multi-data fields in the search index.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$field</code></td>
+              <td><em>ezcSearchDocumentDefinitionField</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$values</code></td>
+              <td><em>mixed</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodmapFieldValuesForSearch" id="mapFieldValuesForSearch"><!-- --></a>
+
+    <h4>mapFieldValuesForSearch</h4>
+
+    <div class="method-signature">
+      array(mixed)
+      mapFieldValuesForSearch(
+                                  ezcSearchDocumentDefinitionField
+          $field
+                            ,           mixed
+          $values
+                        )
+    </div>
+
+    <p>This method prepares a value or an array of $values before it is passed to the search handler.</p><div><p>Depending on the $field the $values is modified so that the search  handler understands the value. It will also correctly deal with  multi-data fields in the search index.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$field</code></td>
+              <td><em>ezcSearchDocumentDefinitionField</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$values</code></td>
+              <td><em>mixed</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>ezcSearchInvalidValueException</code></td>
+              <td>
+                                  if an array of values is submitted, but the field has not been defined as a multi-value field.
+                              </td>
+            </tr></tbody></table><a name="methodreConnect" id="reConnect"><!-- --></a>
+
+    <h4>reConnect</h4>
+
+    <div class="method-signature">
+      void
+      reConnect(
+      )
+    </div>
+
+    <p>Closes the connection, and re-connects to Solr</p>
+    
+          <h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcSearchCanNotConnectException.html">ezcSearchCanNotConnectException</a></code></td>
+              <td>
+                                  if a connection can not be established.
+                              </td>
+            </tr></tbody></table><a name="methodrunCommit" id="runCommit"><!-- --></a>
+
+    <h4>runCommit</h4>
+
+    <div class="method-signature">
+      void
+      runCommit(
+      )
+    </div>
+
+    <p>Runs a commit command to tell solr we're done indexing.</p>
+    
+        
+
+    
+    
+    
+        <a name="methodsearch" id="search"><!-- --></a>
+
+    <h4>search</h4>
+
+    <div class="method-signature">
+      stdClass
+      search(
+                                  string
+          $queryWord
+                            ,           string
+          $defaultField
+                            ,           [array(string=&gt;string)
+          $searchFieldList
+           = array()]                  ,           [array(string=&gt;string)
+          $returnFieldList
+           = array()]                  ,           [array(string=&gt;string)
+          $highlightFieldList
+           = array()]                  ,           [array(string=&gt;string)
+          $facetFieldList
+           = array()]                  ,           [int
+          $limit
+           = null]                  ,           [int
+          $offset
+           = 0]                  ,           [array(string=&gt;string)
+          $order
+           = array()]              )
+    </div>
+
+    <p>Executes a search by building and sending a query and returns the raw result</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$queryWord</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$defaultField</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$searchFieldList</code></td>
+              <td><em>array(string=&gt;string)</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$returnFieldList</code></td>
+              <td><em>array(string=&gt;string)</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$highlightFieldList</code></td>
+              <td><em>array(string=&gt;string)</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$facetFieldList</code></td>
+              <td><em>array(string=&gt;string)</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$limit</code></td>
+              <td><em>int</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$offset</code></td>
+              <td><em>int</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$order</code></td>
+              <td><em>array(string=&gt;string)</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodsendRawGetCommand" id="sendRawGetCommand"><!-- --></a>
+
+    <h4>sendRawGetCommand</h4>
+
+    <div class="method-signature">
+      string
+      sendRawGetCommand(
+                                  string
+          $type
+                            ,           [array(string=&gt;string)
+          $queryString
+           = array()]              )
+    </div>
+
+    <p>Sends the raw command $type to Solr</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$type</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$queryString</code></td>
+              <td><em>array(string=&gt;string)</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodsendRawPostCommand" id="sendRawPostCommand"><!-- --></a>
+
+    <h4>sendRawPostCommand</h4>
+
+    <div class="method-signature">
+      string
+      sendRawPostCommand(
+                                  string
+          $type
+                            ,           array(string=&gt;string)
+          $queryString
+                            ,           string
+          $data
+                        )
+    </div>
+
+    <p>Sends a post command $type to Solr and reads the result</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$type</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$queryString</code></td>
+              <td><em>array(string=&gt;string)</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$data</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><div class="credit">
+      Documentation generated by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+    </div>
+  </div>
+  
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

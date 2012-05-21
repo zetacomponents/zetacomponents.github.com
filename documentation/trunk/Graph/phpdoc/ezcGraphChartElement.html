@@ -1,0 +1,508 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="PHP, apache, components, framework, quality" />
+	<meta name="author" content="dotxp" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Wed, 04 Aug 2010 13:07:42 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="ezcGraphChartElement.html" />
+	<meta name="DC.creator" content="dotxp" />
+	<meta name="DC.date" content="Wed, 04 Aug 2010 13:07:42 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/Graph/phpdoc/ezcGraphChartElement.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/Graph/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/trunk/Graph/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Graph/gallery.html" title="Gallery ">Gallery </a>
+	</li>
+
+</ul>
+
+		
+  <div class="phpdoc">
+    <h2>Apache Zeta Components Manual :: Docs For Class ezcGraphChartElement</h2>
+
+                  <h3>Graph::ezcGraphChartElement</h3>
+    
+<a name="sec-description"></a>
+<h3>Class ezcGraphChartElement</h3>
+
+<p>Base class for chart elements</p><div><p>The base class for chart elements. Chart elements can be understood as  widgets or layout container inside the chart. The actual transformation to  images happens inside the renderers. They represent all elements inside the  chart and contain mostly general formatting options, while the renderer  itself might define additional formatting options for some chart elments.</p><p>Important chart elements for example are:</p><p></p><ul><li>Chart title (ezcGraphChartElementText)</li><li>Chart legend (ezcGraphChartElementLegend)</li><li>The axis (ezcGraphChartElementNumericAxis,
+   ezcGraphChartElementLogarithmicalAxis, ezcGraphChartElementLabeledAxis,
+   ezcGraphChartElementDateAxis)</li><li>...</li></ul>  The position of chart elements is defined in the $position property. The  effect this has on the visual representation depends on the actual type of  the chart element.<p>Each chart element may be configured with options similar to CSS, used with  HTML to define the general style of the repsective element:</p><p></p><ul><li>$padding &amp; $margin defne the distance of the border from inner elements /
+   other chart elements.</li><li>$borderWidth &amp; $border define the style of the border used around the
+   chart element</li><li>$background defines the background color of the chart element. As always
+   this may be a (semi-) transparent color.</li></ul>  A typical example with some layout for the chart title element could look  like:<p></p><ol><li><div class="src-line">&#8192;&#8192;<span class="src-var">$graph&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcGraphPieChart.html">ezcGraphPieChart</a></span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;&#8192;<span class="src-var">$graph</span><span class="src-sym">-&gt;</span><span class="src-id">data</span><span class="src-sym">[</span><span class="src-str">'example'</span><span class="src-sym">]&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcGraphArrayDataSet.html">ezcGraphArrayDataSet</a></span><span class="src-sym">(&#8192;</span><span class="src-key">array</span><span class="src-sym">(</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'Foo'&#8192;</span>=&gt;&#8192;<span class="src-num">23</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'Bar'&#8192;</span>=&gt;&#8192;<span class="src-num">42</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;<span class="src-sym">)&#8192;)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;&#8192;<span class="src-comm">//&#8192;Set&#8192;a&#8192;title&#8192;and&#8192;format&#8192;the&#8192;title&#8192;element</span></div></li>
+<li><div class="src-line">&#8192;&#8192;<span class="src-var">$graph</span><span class="src-sym">-&gt;</span><span class="src-id">title&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;</span>=&#8192;<span class="src-str">'Example&#8192;formatted&#8192;pie&#8192;chart'</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;&#8192;<span class="src-var">$graph</span><span class="src-sym">-&gt;</span><span class="src-id">title</span><span class="src-sym">-&gt;</span><span class="src-id">margin&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;</span>=&#8192;<span class="src-num">2</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;&#8192;<span class="src-var">$graph</span><span class="src-sym">-&gt;</span><span class="src-id">title</span><span class="src-sym">-&gt;</span><span class="src-id">background&#8192;&#8192;</span>=&#8192;<span class="src-str">'#FFFFFF80'</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;&#8192;<span class="src-var">$graph</span><span class="src-sym">-&gt;</span><span class="src-id">title</span><span class="src-sym">-&gt;</span><span class="src-id">border&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;</span>=&#8192;<span class="src-str">'#FFFFFF'</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;&#8192;<span class="src-var">$graph</span><span class="src-sym">-&gt;</span><span class="src-id">title</span><span class="src-sym">-&gt;</span><span class="src-id">borderWidth&#8192;</span>=&#8192;<span class="src-num">1</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;&#8192;<span class="src-var">$graph</span><span class="src-sym">-&gt;</span><span class="src-id">title</span><span class="src-sym">-&gt;</span><span class="src-id">margin&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;</span>=&#8192;<span class="src-num">1</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;&#8192;<span class="src-var">$graph</span><span class="src-sym">-&gt;</span><span class="src-id">title</span><span class="src-sym">-&gt;</span><span class="src-id">padding&#8192;&#8192;&#8192;&#8192;&#8192;</span>=&#8192;<span class="src-num">1</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;&#8192;<span class="src-comm">//&#8192;Format&#8192;the&#8192;legend&#8192;element</span></div></li>
+<li><div class="src-line">&#8192;&#8192;<span class="src-var">$graph</span><span class="src-sym">-&gt;</span><span class="src-id">legend</span><span class="src-sym">-&gt;</span><span class="src-id">margin&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;</span>=&#8192;<span class="src-num">2</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;&#8192;<span class="src-var">$graph</span><span class="src-sym">-&gt;</span><span class="src-id">legend</span><span class="src-sym">-&gt;</span><span class="src-id">background&#8192;&#8192;</span>=&#8192;<span class="src-str">'#FFFFFF80'</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;&#8192;<span class="src-var">$graph</span><span class="src-sym">-&gt;</span><span class="src-id">legend</span><span class="src-sym">-&gt;</span><span class="src-id">border&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;</span>=&#8192;<span class="src-str">'#FFFFFF'</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;&#8192;<span class="src-var">$graph</span><span class="src-sym">-&gt;</span><span class="src-id">legend</span><span class="src-sym">-&gt;</span><span class="src-id">borderWidth&#8192;</span>=&#8192;<span class="src-num">1</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;&#8192;<span class="src-var">$graph</span><span class="src-sym">-&gt;</span><span class="src-id">legend</span><span class="src-sym">-&gt;</span><span class="src-id">margin&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;</span>=&#8192;<span class="src-num">1</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;&#8192;<span class="src-var">$graph</span><span class="src-sym">-&gt;</span><span class="src-id">legend</span><span class="src-sym">-&gt;</span><span class="src-id">padding&#8192;&#8192;&#8192;&#8192;&#8192;</span>=&#8192;<span class="src-num">1</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;&#8192;<span class="src-var">$graph</span><span class="src-sym">-&gt;</span><span class="src-id">background</span><span class="src-sym">-&gt;</span><span class="src-id">background&#8192;</span>=&#8192;<span class="src-str">'#888a85'</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;&#8192;<span class="src-var">$graph</span><span class="src-sym">-&gt;</span><a href="ezcGraphChartElement.html#methodrender">render</a><span class="src-sym">(&#8192;</span><span class="src-num">400</span><span class="src-sym">,&#8192;</span><span class="src-num">250</span><span class="src-sym">,&#8192;</span><span class="src-str">'element.svg'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol></div>
+<p>Source for this file: <a href="http://fisheye6.atlassian.com/browse/zetacomponents/trunk/Graph/src/interfaces/element.php?r=HEAD">/Graph/src/interfaces/element.php</a></p>
+       
+
+
+<pre><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseOptions.html">ezcBaseOptions</a>
+   |
+   --ezcGraphChartElement</pre>
+
+
+  <table><tr><td>
+            <strong>Version:</strong>&#8192;&#8192;
+          </td>
+          <td>//autogentag//</td>
+        </tr></table><a name="sec-descendants"></a>
+  <h3>Descendants</h3>
+  <table class="detail"><thead><tr><th>Child Class</th>
+        <th>Description</th>
+      </tr></thead><tbody><tr><td><a href="ezcGraphChartElementBackground.html">ezcGraphChartElementBackground</a></td>          <td>
+                          Chart element representing the background.
+                      </td>
+        </tr><tr><td><a href="ezcGraphChartElementLegend.html">ezcGraphChartElementLegend</a></td>          <td>
+                          Class to represent a legend as a chart element
+                      </td>
+        </tr><tr><td><a href="ezcGraphChartElementAxis.html">ezcGraphChartElementAxis</a></td>          <td>
+                          Class to represent an axis as a chart element
+                      </td>
+        </tr><tr><td><a href="ezcGraphChartElementText.html">ezcGraphChartElementText</a></td>          <td>
+                          Chart element to display texts in a chart
+                      </td>
+        </tr></tbody></table><a name="sec-prop-summary"></a>
+  <h3>Properties</h3>
+  <table class="summary"><tr><td class="right">
+          <a name="prop%24background" id="$background"></a>
+          <a name="prop-%24background" id="$background"></a>
+          <em><a href="ezcGraphColor.html">ezcGraphColor</a></em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24background" title="details" class="var-name-summary">$background</a>
+                      </code>
+          <br><div style="margin-left: 20px">Background color of chart element.</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24border" id="$border"></a>
+          <a name="prop-%24border" id="$border"></a>
+          <em><a href="ezcGraphColor.html">ezcGraphColor</a></em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24border" title="details" class="var-name-summary">$border</a>
+                      </code>
+          <br><div style="margin-left: 20px">Border color of chart element.</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24borderWidth" id="$borderWidth"></a>
+          <a name="prop-%24borderWidth" id="$borderWidth"></a>
+          <em>int</em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24borderWidth" title="details" class="var-name-summary">$borderWidth</a>
+                      </code>
+          <br><div style="margin-left: 20px">Border width.</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24boundings" id="$boundings"></a>
+          <a name="prop-%24boundings" id="$boundings"></a>
+          <em>ezcGraphBoundings</em>        </td>
+        <td class="right">
+          <em>read</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24boundings" title="details" class="var-name-summary">$boundings</a>
+                      </code>
+          <br><div style="margin-left: 20px">Boundings of this elements.</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24font" id="$font"></a>
+          <a name="prop-%24font" id="$font"></a>
+          <em><a href="ezcGraphFontOptions.html">ezcGraphFontOptions</a></em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24font" title="details" class="var-name-summary">$font</a>
+                      </code>
+          <br><div style="margin-left: 20px">Font used for this element.</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24fontCloned" id="$fontCloned"></a>
+          <a name="prop-%24fontCloned" id="$fontCloned"></a>
+          <em>bool</em>        </td>
+        <td class="right">
+          <em>read</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24fontCloned" title="details" class="var-name-summary">$fontCloned</a>
+                      </code>
+          <br><div style="margin-left: 20px">Indicates if font configuration was already cloned for this                 specific element.</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24landscapeTitleSize" id="$landscapeTitleSize"></a>
+          <a name="prop-%24landscapeTitleSize" id="$landscapeTitleSize"></a>
+          <em>float</em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24landscapeTitleSize" title="details" class="var-name-summary">$landscapeTitleSize</a>
+                      </code>
+          <br><div style="margin-left: 20px">Percentage of boundings which are used for the title with            position top or bottom.</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24margin" id="$margin"></a>
+          <a name="prop-%24margin" id="$margin"></a>
+          <em>int</em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24margin" title="details" class="var-name-summary">$margin</a>
+                      </code>
+          <br><div style="margin-left: 20px">Distance between outer boundings and border of an element.</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24maxTitleHeight" id="$maxTitleHeight"></a>
+          <a name="prop-%24maxTitleHeight" id="$maxTitleHeight"></a>
+          <em>int</em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24maxTitleHeight" title="details" class="var-name-summary">$maxTitleHeight</a>
+                      </code>
+          <br><div style="margin-left: 20px">Maximum size of the title.</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24padding" id="$padding"></a>
+          <a name="prop-%24padding" id="$padding"></a>
+          <em>int</em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24padding" title="details" class="var-name-summary">$padding</a>
+                      </code>
+          <br><div style="margin-left: 20px">Distance between border and content of element.</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24portraitTitleSize" id="$portraitTitleSize"></a>
+          <a name="prop-%24portraitTitleSize" id="$portraitTitleSize"></a>
+          <em>float</em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24portraitTitleSize" title="details" class="var-name-summary">$portraitTitleSize</a>
+                      </code>
+          <br><div style="margin-left: 20px">Percentage of boundings which are used for the title with            position left, right or center.</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24position" id="$position"></a>
+          <a name="prop-%24position" id="$position"></a>
+          <em>int</em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24position" title="details" class="var-name-summary">$position</a>
+                      </code>
+          <br><div style="margin-left: 20px">Integer defining the elements position in the chart.</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24title" id="$title"></a>
+          <a name="prop-%24title" id="$title"></a>
+          <em>string</em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24title" title="details" class="var-name-summary">$title</a>
+                      </code>
+          <br><div style="margin-left: 20px">Title of chart element.</div>        </td>
+      </tr></table><h3>Inherited Member Variables</h3>
+  <table class="summary"><thead><tr><th colspan="2">
+            From <span class="classname"><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseOptions.html">ezcBaseOptions</a></span>         
+          </th>
+        </tr></thead><tbody><tr><td class="right">
+              <em>protected</em>                          </td>
+            <td>
+              <code><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseOptions.html#var%24properties">ezcBaseOptions::$properties</a></code>
+              
+            </td>
+          </tr></tbody></table><a name="sec-method-summary"></a>
+  <h3>Method Summary</h3>
+  <table class="summary"><tr><td class="right">
+            <em>protected</em>                        <em>ezcGraphBoundings</em>          </td>
+          <td>
+            <code>
+              <a href="#getTitleSize"><b>getTitleSize</b></a>(
+                                                                                    $boundings
+                                                    ,                   [                  $direction
+                   = ezcGraph::HORIZONTAL]                               )
+            </code>
+            <br><div style="margin-left: 20px">Returns calculated boundings based on available percentual space of  given bounding box specified in the elements options and direction of  the box.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>            abstract            <em>ezcGraphBoundings</em>          </td>
+          <td>
+            <code>
+              <a href="#render"><b>render</b></a>(
+                                                                                    $renderer
+                                                    ,                                     $boundings
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Renders this chart element</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#setFromPalette"><b>setFromPalette</b></a>(
+                                                                                    $palette
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Set colors and border fro this element</div>          </td>
+        </tr></table><h3>Inherited Methods</h3>
+  <table class="summary"><thead><tr><th colspan="2">
+            From <span class="classname"><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseOptions.html">ezcBaseOptions</a></span>
+          </th>
+        </tr></thead><tbody><tr><td class="right">
+              <em>public</em>                                          <em>ezcBaseOptions</em>            </td>
+            <td>
+              <code><b><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseOptions.html#method__construct">ezcBaseOptions::__construct()</a></b></code>
+              <br><div style="margin-left: 20px">Construct a new options object.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseOptions.html#methodmerge">ezcBaseOptions::merge()</a></b></code>
+              <br><div style="margin-left: 20px">Merge an array into the actual options object.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>bool</em>            </td>
+            <td>
+              <code><b><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseOptions.html#methodoffsetExists">ezcBaseOptions::offsetExists()</a></b></code>
+              <br><div style="margin-left: 20px">Returns if an option exists.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>mixed</em>            </td>
+            <td>
+              <code><b><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseOptions.html#methodoffsetGet">ezcBaseOptions::offsetGet()</a></b></code>
+              <br><div style="margin-left: 20px">Returns an option value.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseOptions.html#methodoffsetSet">ezcBaseOptions::offsetSet()</a></b></code>
+              <br><div style="margin-left: 20px">Set an option.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseOptions.html#methodoffsetUnset">ezcBaseOptions::offsetUnset()</a></b></code>
+              <br><div style="margin-left: 20px">Unset an option.</div>                          </td>
+          </tr></tbody></table><a name="sec-methods"></a>
+  <h3>Methods</h3>
+  <a name="method_detail"></a>
+      
+      <a name="methodgetTitleSize" id="getTitleSize"><!-- --></a>
+
+    <h4>getTitleSize</h4>
+
+    <div class="method-signature">
+      ezcGraphBoundings
+      getTitleSize(
+                                  
+          $boundings
+                            ,           [int
+          $direction
+           = ezcGraph::HORIZONTAL]              )
+    </div>
+
+    <p>Returns calculated boundings based on available percentual space of  given bounding box specified in the elements options and direction of  the box.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$boundings</code></td>
+              <td><em>ezcGraphBoundings</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$direction</code></td>
+              <td><em>int</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodrender" id="render"><!-- --></a>
+
+    <h4>render</h4>
+
+    <div class="method-signature">
+      ezcGraphBoundings
+      render(
+                                  <a href="ezcGraphRenderer.html">ezcGraphRenderer</a>
+          $renderer
+                            ,           
+          $boundings
+                        )
+    </div>
+
+    <p>Renders this chart element</p><div><p>This method receives and returns a part of the canvas where it can be  rendered on.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$renderer</code></td>
+              <td><em><a href="ezcGraphRenderer.html">ezcGraphRenderer</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$boundings</code></td>
+              <td><em>ezcGraphBoundings</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefined in descendants as:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcGraphChartElementBackground.html#methodrender">ezcGraphChartElementBackground::render()</a></code></td>
+              <td>
+                Render the background&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcGraphChartElementLegend.html#methodrender">ezcGraphChartElementLegend::render()</a></code></td>
+              <td>
+                Render a legend&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcGraphChartElementAxis.html#methodrender">ezcGraphChartElementAxis::render()</a></code></td>
+              <td>
+                Render the axis&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcGraphChartElementText.html#methodrender">ezcGraphChartElementText::render()</a></code></td>
+              <td>
+                Render the text&#8192;
+              </td>
+            </tr></tbody></table><a name="methodsetFromPalette" id="setFromPalette"><!-- --></a>
+
+    <h4>setFromPalette</h4>
+
+    <div class="method-signature">
+      void
+      setFromPalette(
+                                  <a href="ezcGraphPalette.html">ezcGraphPalette</a>
+          $palette
+                        )
+    </div>
+
+    <p>Set colors and border fro this element</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$palette</code></td>
+              <td><em><a href="ezcGraphPalette.html">ezcGraphPalette</a></em></td>
+              <td>
+                                  Palette
+                              </td>
+            </tr></tbody></table><h5>Redefined in descendants as:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcGraphChartElementBackground.html#methodsetFromPalette">ezcGraphChartElementBackground::setFromPalette()</a></code></td>
+              <td>
+                Set colors and border for this element&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcGraphChartElementAxis.html#methodsetFromPalette">ezcGraphChartElementAxis::setFromPalette()</a></code></td>
+              <td>
+                Set colors and border fro this element&#8192;
+              </td>
+            </tr></tbody></table><div class="credit">
+      Documentation generated by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+    </div>
+  </div>
+  
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

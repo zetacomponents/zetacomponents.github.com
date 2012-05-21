@@ -1,0 +1,426 @@
+eZ Components - Cache
+~~~~~~~~~~~~~~~~~~~~~
+
+.. contents:: Table of Contents
+
+Introduction
+============
+
+The Cache package provides a collection of lightweight classes to cache
+different kinds of data. It provides a manager class, which takes
+care of instantiating and reusing caches.
+
+Class overview
+==============
+
+This section gives you an overview of the most important classes.
+
+ezcCacheManager
+  This is the optional manager, which is recommended if your application needs
+  to cache different data for different purposes. It allows you to configure
+  all caches in a central place and to retrieve them through ezcCacheManager.
+  The cache manager will store only the configurations by default, only
+  instantiating the cache object when requested.
+
+ezcCacheStorage
+  This is the base class for all cache storage (the cache classes themselves).
+  All cache classes inherit from this base class.
+
+ezcCacheStack
+  Using this class, multiple cache storages can be combined using a technique
+  called "hierarchical caching". This works similar to how CPU and file system
+  caches work. For more information please refer to the `Hierarchical caching`_
+  section.
+
+ezcCacheStorageFilePlain
+  Cache objects of this class are capable of storing plain text data on the file
+  system. It utilizes the file_get_contents() and file_put_contents() PHP
+  functions.
+
+ezcCacheStorageFileArray
+  In contrast to ezcCacheStorageFilePlain, objects of this class can store
+  array structures and will keep PHP data types intact.
+  The ezcCacheStorageFileArray class generates PHP code, which will be stored
+  on the file system. Restoring data from the cache uses the require()
+  construct.
+
+ezcCacheStorageFileEvalArray
+  Objects of this storage class follow a similar approach to
+  ezcCacheStorageFileArray; they are also capable of storing array
+  structures. The major difference between both classes is that
+  ezcCacheStorageFileEvalArray will use PHP's eval() method instead of
+  require() to restore the cached data. As a result,
+  the stored data will not be cached again in PHP accelerators like APC_.
+  This might be desirable if you store large amounts of data at once.
+
+ezcCacheStorageMemcachePlain
+  Uses the PHP Memcache_ extension to store cache objects in memory between
+  requests, thus improving speed. The zlib extension is also required by
+  Memcache for on-the-fly compression.
+
+ezcCacheStorageApcPlain
+  Uses the PHP APC_ extension to store cache objects in memory between
+  requests, thus improving speed.
+
+ezcCacheStorageFileApcArray
+  Uses the PHP APC_ extension to store array structures in memory between
+  requests, thus improving speed. It is basically a replacement for
+  ezcCacheStorageFileArray, if the APC_ extension is installed.
+
+
+Usage
+=====
+
+Terminology
+-----------
+
+A `cache`_ is identified by a `cache identifier`_ and contains a number of
+`cache item`_ s.
+
+_`Cache`
+  A location that stores `cache item`_ s. A cache is created with
+  ezcCacheManager::createCache(), preferably at the beginning of your script.
+  A cache with its `cache identifier`_ - the first parameter to
+  ezcCacheManager::createCache() - can only be created once. After it has been
+  created, you can reference it by calling ezcCacheManager::getCache(), using
+  the corresponding $id as the first parameter.
+
+_`Cache identifier`
+  An identifier that uniquely identifies a `cache`_.
+
+_`Cache item`
+  One single entry stored in a `cache`_. Cache items can be stored and
+  retrieved by using the ezcCacheStorage object that is returned by 
+  calling ezcCacheManager::getCache(). Cache items use a `cache key`_ to
+  identify specific entries.
+
+_`Cache key`
+  A string representing a single `cache item`_ in a `cache`_.
+
+_`Attribute`
+  Additional information to complement the `cache key`_ in
+  `cache item`_ s.
+
+A simple example
+----------------
+
+This example shows how to create and use a simple cache with
+ezcCacheManager:
+
+.. include:: tutorial_simple_cache_manager.php
+   :literal:
+
+Time-to-live is defined as 30 seconds in this case; if left
+out, the cache will have a lifespan of 24 hours. On line 9, the cache
+configuration is stored in the cache
+manager. The created `cache`_ uses the `cache identifier`_ "simple" and will reside in the directory
+/tmp/cache/plain. (Note: This directory must exist and must be writable!) To store a `cache item`_, the storage
+class ezcCacheStorageFilePlain will be used.
+
+Line 11 defines a `cache key`_ for a cache item. The next line defines a
+second unique `cache key`_ for a second cache item. After that (line 14), the
+newly-created `cache`_ object is retrieved from ezcCacheManager. Lines 16 and
+22 show how to check for cached data: ezcCacheStorage::restore()
+will return bool false if no valid cache data is found for the given ID.
+
+If no valid data is found, the data will be generated
+and stored in the cache later (lines 17-18 and 24-25). The last line outputs the
+data, so you can follow how it's cached for 30 seconds by running the
+example multiple times in a short time frame. After 30 seconds, the cache data
+will become invalid and will be regenerated.
+
+Delayed initialization
+----------------------
+
+Instead of calling the ezcCacheManager::getCache() method yourself it is also
+possible to use delayed initialization. When using this it is not required to
+configure all the caches first by calling the ezcCacheManager::createCache()
+method. Instead it would allow you to configure/create caches on demand, this
+is called lazy, or delayed initialization. You can find a description how you
+can use it for your own components and how it works in the `ezcBase
+tutorial`__. The keyword for the cache component is
+*ezcInitConfigurationManager*.
+
+__ introduction_Base.html#lazy-initialization
+
+.. include:: tutorial_lazy_initialization.php
+	:literal:
+
+Differences with the previous example can be seen in lines 5 to 23. In lines 20
+to 23 you tell the delayed initialization mechanism to use the
+customLazyCacheConfiguration as lazy initialization provider for the
+*ezcInitConfigurationManager* context. The customLazyCacheConfiguration class
+implements the configureObject() method that will automatically be called when
+ezcCacheManager::getCache() is called with a cache identifier that has not been
+created yet through ezcCacheManager::createCache(), as you can see in line 14.
+
+Using multiple caches
+---------------------
+
+The following example shows how the cache manager deals with multiple caches:
+
+.. include:: tutorial_multiple_caches_manager.php
+   :literal:
+
+In lines 12 and 13, two caches are created. Each `cache`_ must
+reside in its own location and must have a different `cache identifier`_. We
+use two different options for the lifetime of the caches to show how they act
+independently.
+
+Since the first `cache`_ reuses the location already used in example 1, 
+we use a different `cache key`_ here.
+Lines 15 to 25 are almost identical to the code from example 1, 
+except that the program will pause for two seconds when generating 
+the plain cache, in order to show different generation times for the two
+caches.
+
+On line 30, the second `cache`_ object is retrieved, which is capable of storing
+arrays.  Therefore, we store the data from the plain cache here and
+generate some additional data to be stored in an array. Running this
+example multiple times will give you different results
+since the second cache has a longer lifetime and will therefore hold its data
+longer than the first one.
+
+Complex caching
+---------------
+
+As the next example shows, the ezcCacheStorage class is capable of more advanced
+features. This example uses extra attributes in addition to the `cache key`_:
+
+.. include:: tutorial_complex_cache_manager.php
+   :literal:
+
+After the creation of an array `cache`_, some sample data is created (lines
+11-16). Data is identified by `cache key`_ s, which are associated with
+arrays. Each array will be used to store the content and the attributes
+together. `Attribute`_ s describe a `cache item`_ s in further detail.
+
+In line 20, a foreach loop starts, which stores all example data in the cache.
+After that, the method ezcCacheStorageFile::countDataItems() is used to count
+cache items that meet certain criteria. The first parameter here would be a
+`cache key`_.
+When this is set, the method should always return 1 or 0, because only one cache
+item per `cache key`_ may exist. In this example, the cache items with the specified attribute are
+counted. The attributes to match are supplied as the second parameter. The
+first method call will return 3 (line 28), since we have three cache items that
+have the attribute "section" set to "articles". The second call (line 32)
+should return 2, because two data items have the attribute "language" set to the
+value "de".
+
+On line 36 the storage object is told to delete all cache items that have
+the `attribute`_ "language" set to "de". Therefore, the next calls to
+ezcCacheStorageFile::countDataItems() will return 2 and 0.
+
+Memory caching
+--------------
+
+If either of Memcache_ or APC_ PHP extensions is installed, then the caching
+performance can be improved considerably by storing the cache data in memory
+between requests.
+
+.. _APC: http://pecl.php.net/package/APC
+.. _Memcache: http://pecl.php.net/package/Memcache
+
+APC
+```
+
+To use the APC cache storage, the APC_ PHP extension must be installed. The
+corresponding storage class is ezcCacheStorageApcPlain. Note, that the other
+existing APC storage class, ezcCacheStorageFileApcArray has been deprecated in
+favor of hierarchical caching provided by ezcCacheStack. It is not recommended
+to use this class further on, since it will be removed in the next major
+version of the Cache component.
+
+The following example shows how to create and use a plain APC storage. It is
+the same as the simple example above, but using the ezcCacheStorageApcPlain
+class instead of ezcCacheStorageFilePlain. The second parameter of the
+createCache() method is arbitrary, because an existing path is not needed.
+However, the $location ensures the uniqueness of a cache storage in the
+manager. Therefore this parameter should be used accordingly.
+
+.. include:: tutorial_apc_plain.php
+   :literal:
+
+Memcache
+````````
+
+Certain options must be set before creating a Memcache cache storage. Changing
+these options after the storage has been created does not affect the object in
+any way, since the connection to the Memcache is established in the
+constructor.
+
+host
+  The name of the host running Memcache. The default is 'localhost'.
+port
+  The port on which to connect to the Memcache host. The default is 11211.
+persistent
+  Determines if the connection to the Memcache server should be persistent. A
+  persistent connection does not close when the script ends. By default this is
+  false.
+compressed
+  If the data is to be compressed in the cache. The zlib extension is required,
+  if this option is set to true. False is the default.
+
+The following example shows how to create and use a plain Memcache storage. It
+is the same as the simple example above, but using the
+ezcCacheStorageMemcachePlain class instead of ezcCacheStorageFilePlain. The
+second parameter of the createCache() method is chosen arbitrary, because an
+existing path is not needed. However, the $location parameter takes care for
+the uniqueness of the storage in the manager. The $host an $port options just
+reflect the defaul here, they could also have been left out.
+
+.. include:: tutorial_memcache_plain.php
+   :literal:
+
+Hierarchical caching
+--------------------
+
+The ezcCacheStack class allows you to build a stack of arbitrary cache storages
+that implement ezcCacheStackable storage. This stack allows you to combine very
+fast caches (like APC and Memcache), which are mostly small, with slower ones,
+that are usually quite large. Similar techniques are used in CPU caches and
+file system caches.
+
+Whenever data is stored in a cache stack, it is stored in all of the stacked
+storages. For each of the storages, an $itemLimit is configured that determines
+how many items may reside in a cache. If this limit is reached for a storage
+during the store operation of a new item, a certain amount of items is removed
+from that storage to free up space. The fraction of $itemLimit that is freed
+when reaching the limit is the $freeRate of the storage.
+
+A simple stack
+``````````````
+
+The following example shows how 2 caches are combined to a stack. Assume that
+$storageApc contains an instance of ezcCacheStorageApcPlain and $storageFile
+contains an instance of ezcCacheStorageFileArray.
+
+.. include:: tutorial_stack_simple.php
+   :literal:
+
+The ezcCacheStack class (which is itself a descendant of ezcCacheStorage) is
+initialized with an arbitrary location string. This string is actually not
+used, since a stack does not need a dedicated location. However, the
+ezcCacheManager needs this identifier for sanity checks, so it should be a
+sensible key.
+
+The method ezcCacheStack->push() adds a new ezcCacheStackableStorage to the
+stack. Therefore, the $fileStorage resides on the very bottom of the stack
+and the APC storage is at the top. All implementations of ezcCacheStorage
+inside the Cache component also implement ezcCacheStackableStoragel, so you can
+stack all of them. To ease the internal handling of the storage configurations,
+the ezcCacheStackStorageConfiguration class is used. In addition, objects of
+this type perform sanity checks on their parameters.
+
+The first parameter to the constructor of a storage configuration is an
+identifier which identifies the storage uniquely inside a stack. If you make
+consequent use of ezcCacheManager and the $location parameter of each storage,
+you should use the ezcCacheStorage->$location here, since it is already unique
+over all storages. Remember, that you never change the identifier of the
+storage in the stack between requests, without calling ezcCacheStack->reset().
+This will considerably harm your stored data and produce unpredictable
+behavior of the stack.
+
+The third parameter to ezcCacheStackStorageConfiguration->__construct() is the
+item limit for that storage. In this sense, $fileStorage may contain up to a
+million items, while $apcStorage may only contain 1,000. The last parameter
+is the $freeRate assigned to the storage. If the $fileStorage reaches 1,000,000
+items, 500,000 of them will be freed. For the APC storage, only 300 items will
+be removed when the item limit is reached.
+
+For the freeing of items, the cache stack first purges all outdated items from
+the affected storage using ezcCacheStackableStorage->purge(). If this does not
+remove the desired number of items, a special replacement strategy is utilized
+to free up more items. In the example above, the replacement strategy
+ezcCacheStackLfuReplacementStrategy (*LRU* = Least Frequently Used) is chosen.
+This strategy will record every access (store/restore) to a cache item and will
+purge those first, which have been least frequently accessed. The default
+replacement strategy is ezcCacheStackLruReplacementStrategy (*LRU* = Least
+Recently Used), which removes such items first, that have been accessed least
+recently.
+
+Usually, the faster caches will run full first in will therefore be purged
+first. The result is, that these caches contain the "most important" (depending
+on the replacement strategy) items. Items which are not used that much will be
+purged from fast caches soon and will only be stored in the slower caches. The
+stack will always restore an item from the storage in which it is found first.
+
+As you have seen in the above example, storing and restoring with caches works
+exactly like with other cache storages.
+
+Stacks and ezcCacheManager
+``````````````````````````
+
+The ezcCacheManager is used to lazy initialize cache objects when they are first
+needed in your application and to make caches globally available. On a first
+glance this does not work with ezcCacheStack, since ready to use
+ezcCacheStackableStorages are needed for its configuration. To allow lazy
+initialization, a class that implements ezcCacheStackConfigurator can be used.
+
+.. include:: tutorial_stack_manager.php
+   :literal:
+
+This example configures a similar stack than the previous one. Instead of doing
+so directly, a new class myCustomConfigurator is created which extends
+ezcCacheStackConfigurator. The static configure() method is defined by this
+interface and creates the storages (or receives them from the manager) to add
+them to the given stack.
+
+The class is configured to be used as the $configurator through the options
+array that is given to ezcCacheManager->createCache(). The speciality about
+this option is, that it is only used once: During the actual construction of
+the stack, when it is first requested from the manager. In this case,
+ezcCacheStack::__construct() calls myCustomConfigurator::configure() and
+submits the fresh created stack instance to it.
+
+Another option is shown in this example: $bubbleUpOnRestore. If this option
+is set, every item that is restored from a lower level storage will be stored
+in the caches above it again. While this sounds sensible at a first glance, it
+has some fundamental draw backs:
+
+- The "bubble up" process might again result in other items being purged from
+  upper storages. This can make restoring much slower.
+- The restored item is only stored with the attributes assigned which have been
+  used for restoring it. If more attributes were assigned to that item, these
+  are lost in the upper storages.
+- The time to live (TTL) of the item will be re-newed for the upper storages.
+
+Stack meta data
+```````````````
+
+An ezcCacheStack instance needs to store certain meta data, which is actually
+related to the used replacement strategy. The meta data is quite sensitive and
+depends heavily on the layout of your stack. Therefore you must always perform
+a ezcCacheStack->reset() in case you change the layout of your stack. This will
+clean up all data from the storages in the stack and also clean up the meta
+data. Remember that you also reset a storage that has been removed from a
+stack, before using it with another one, since it might have meta data stored.
+
+The meta data used by a stack is stored in one of the storages inside it. If
+not configured otherwise, the top most storage is chosen for this, since it is
+usually the fastest one. However cases exist where the top most storage is not
+suitable as the meta data storage. These are:
+
+- If you implemented your own storage which does not implement
+  ezcCacheMetaDataStorage.
+- If the top most storage is only local to the current request or server, but
+  the environment is distributed on several servers.
+
+In both cases you can configure the meta data storage manually, using the
+$metaStorage property of ezcCacheStackOptions, which must contain an object
+implementing the ezcCacheMetaDataStorage interface.
+
+More Information
+================
+
+For more information, see the ezcCacheManager, ezcCacheStorageFile,
+ezcCacheStorageMemory and ezcCacheStack API documentation.
+
+
+
+..
+   Local Variables:
+   mode: rst
+   fill-column: 79
+   End: 
+   vim: et syn=rst tw=79

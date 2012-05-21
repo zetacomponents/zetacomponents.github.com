@@ -1,0 +1,610 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="PHP, apache, components, framework, quality" />
+	<meta name="author" content="dotxp" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Wed, 04 Aug 2010 13:08:10 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="ezcWorkflowDatabaseExecution.html" />
+	<meta name="DC.creator" content="dotxp" />
+	<meta name="DC.date" content="Wed, 04 Aug 2010 13:08:10 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/WorkflowDatabaseTiein/phpdoc/ezcWorkflowDatabaseExecution.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/WorkflowDatabaseTiein/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/trunk/WorkflowDatabaseTiein/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+
+</ul>
+
+		
+  <div class="phpdoc">
+    <h2>Apache Zeta Components Manual :: Docs For Class ezcWorkflowDatabaseExecution</h2>
+
+                  <h3>WorkflowDatabaseTiein::ezcWorkflowDatabaseExecution</h3>
+    
+<a name="sec-description"></a>
+<h3>Class ezcWorkflowDatabaseExecution</h3>
+
+<p>Workflow executer that suspends and resumes workflow  execution states to and from a database.</p>
+<p>Source for this file: <a href="http://fisheye6.atlassian.com/browse/zetacomponents/trunk/WorkflowDatabaseTiein/src/execution.php?r=HEAD">/WorkflowDatabaseTiein/src/execution.php</a></p>
+       
+
+
+<pre><a href="/zetacomponents/documentation/trunk/Workflow/phpdoc/ezcWorkflowExecution.html">ezcWorkflowExecution</a>
+   |
+   --ezcWorkflowDatabaseExecution</pre>
+
+
+  <table><tr><td>
+            <strong>Version:</strong>&#8192;&#8192;
+          </td>
+          <td>//autogen//</td>
+        </tr></table><a name="sec-var-summary"></a>
+  <h3>Member Variables</h3>
+  <table class="summary"><tr><td class="right">
+            <em>protected</em>            <em><a href="/zetacomponents/documentation/trunk/Database/phpdoc/ezcDbHandler.html">ezcDbHandler</a></em>          </td>
+          <td>
+            <code>
+              $db
+                          </code>
+            <br><div style="margin-left: 20px">ezcDbHandler instance to be used.</div>                      </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            <em>boolean</em>          </td>
+          <td>
+            <code>
+              $loaded
+               = <span class="var-default"> false</span>            </code>
+            <br><div style="margin-left: 20px">Flag that indicates whether the execution has been loaded.</div>                      </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            <em>array(string=&gt;mixed)</em>          </td>
+          <td>
+            <code>
+              $properties
+               = <span class="var-default">array(<br>      'definitionStorage' =&gt; null,<br>      'workflow' =&gt; null,<br>      'options' =&gt; null<br>    )</span>            </code>
+            <br><div style="margin-left: 20px">Container to hold the properties</div>                      </td>
+        </tr></table><h3>Inherited Member Variables</h3>
+  <table class="summary"><thead><tr><th colspan="2">
+            From <span class="classname"><a href="/zetacomponents/documentation/trunk/Workflow/phpdoc/ezcWorkflowExecution.html">ezcWorkflowExecution</a></span>         
+          </th>
+        </tr></thead><tbody><tr><td class="right">
+              <em>protected</em>                          </td>
+            <td>
+              <code><a href="/zetacomponents/documentation/trunk/Workflow/phpdoc/ezcWorkflowExecution.html#var%24activatedNodes">ezcWorkflowExecution::$activatedNodes</a></code>
+              
+            </td>
+          </tr><tr><td class="right">
+              <em>protected</em>                          </td>
+            <td>
+              <code><a href="/zetacomponents/documentation/trunk/Workflow/phpdoc/ezcWorkflowExecution.html#var%24cancelled">ezcWorkflowExecution::$cancelled</a></code>
+              
+            </td>
+          </tr><tr><td class="right">
+              <em>protected</em>                          </td>
+            <td>
+              <code><a href="/zetacomponents/documentation/trunk/Workflow/phpdoc/ezcWorkflowExecution.html#var%24ended">ezcWorkflowExecution::$ended</a></code>
+              
+            </td>
+          </tr><tr><td class="right">
+              <em>protected</em>                          </td>
+            <td>
+              <code><a href="/zetacomponents/documentation/trunk/Workflow/phpdoc/ezcWorkflowExecution.html#var%24id">ezcWorkflowExecution::$id</a></code>
+              
+            </td>
+          </tr><tr><td class="right">
+              <em>protected</em>                          </td>
+            <td>
+              <code><a href="/zetacomponents/documentation/trunk/Workflow/phpdoc/ezcWorkflowExecution.html#var%24nextThreadId">ezcWorkflowExecution::$nextThreadId</a></code>
+              
+            </td>
+          </tr><tr><td class="right">
+              <em>protected</em>                          </td>
+            <td>
+              <code><a href="/zetacomponents/documentation/trunk/Workflow/phpdoc/ezcWorkflowExecution.html#var%24numActivatedEndNodes">ezcWorkflowExecution::$numActivatedEndNodes</a></code>
+              
+            </td>
+          </tr><tr><td class="right">
+              <em>protected</em>                          </td>
+            <td>
+              <code><a href="/zetacomponents/documentation/trunk/Workflow/phpdoc/ezcWorkflowExecution.html#var%24numActivatedNodes">ezcWorkflowExecution::$numActivatedNodes</a></code>
+              
+            </td>
+          </tr><tr><td class="right">
+              <em>protected</em>                          </td>
+            <td>
+              <code><a href="/zetacomponents/documentation/trunk/Workflow/phpdoc/ezcWorkflowExecution.html#var%24plugins">ezcWorkflowExecution::$plugins</a></code>
+              
+            </td>
+          </tr><tr><td class="right">
+              <em>protected</em>                          </td>
+            <td>
+              <code><a href="/zetacomponents/documentation/trunk/Workflow/phpdoc/ezcWorkflowExecution.html#var%24resumed">ezcWorkflowExecution::$resumed</a></code>
+              
+            </td>
+          </tr><tr><td class="right">
+              <em>protected</em>                          </td>
+            <td>
+              <code><a href="/zetacomponents/documentation/trunk/Workflow/phpdoc/ezcWorkflowExecution.html#var%24suspended">ezcWorkflowExecution::$suspended</a></code>
+              
+            </td>
+          </tr><tr><td class="right">
+              <em>protected</em>                          </td>
+            <td>
+              <code><a href="/zetacomponents/documentation/trunk/Workflow/phpdoc/ezcWorkflowExecution.html#var%24threads">ezcWorkflowExecution::$threads</a></code>
+              
+            </td>
+          </tr><tr><td class="right">
+              <em>protected</em>                          </td>
+            <td>
+              <code><a href="/zetacomponents/documentation/trunk/Workflow/phpdoc/ezcWorkflowExecution.html#var%24variables">ezcWorkflowExecution::$variables</a></code>
+              
+            </td>
+          </tr><tr><td class="right">
+              <em>protected</em>                          </td>
+            <td>
+              <code><a href="/zetacomponents/documentation/trunk/Workflow/phpdoc/ezcWorkflowExecution.html#var%24waitingFor">ezcWorkflowExecution::$waitingFor</a></code>
+              
+            </td>
+          </tr></tbody></table><a name="sec-method-summary"></a>
+  <h3>Method Summary</h3>
+  <table class="summary"><tr><td class="right">
+            <em>public</em>                        <em>ezcWorkflowDatabaseExecution</em>          </td>
+          <td>
+            <code>
+              <a href="#__construct"><b>__construct</b></a>(
+                                                                                    $db
+                                                    ,                   [                  $executionId
+                   = null]                               )
+            </code>
+            <br><div style="margin-left: 20px">Construct a new database execution.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#cleanupTable"><b>cleanupTable</b></a>(
+                                                                                    $tableName
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Cleanup execution / execution_state tables.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#doEnd"><b>doEnd</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">End workflow execution.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em><a href="/zetacomponents/documentation/trunk/Workflow/phpdoc/ezcWorkflowExecution.html">ezcWorkflowExecution</a></em>          </td>
+          <td>
+            <code>
+              <a href="#doGetSubExecution"><b>doGetSubExecution</b></a>(
+                                                                  [                  $id
+                   = null]                               )
+            </code>
+            <br><div style="margin-left: 20px">Returns a new execution object for a sub workflow.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#doResume"><b>doResume</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Resume workflow execution.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#doStart"><b>doStart</b></a>(
+                                                                                    $parentId
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Start workflow execution.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#doSuspend"><b>doSuspend</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Suspend workflow execution.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#loadExecution"><b>loadExecution</b></a>(
+                                                                                    $executionId
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Load execution state.</div>          </td>
+        </tr></table><h3>Inherited Methods</h3>
+  <table class="summary"><thead><tr><th colspan="2">
+            From <span class="classname"><a href="/zetacomponents/documentation/trunk/Workflow/phpdoc/ezcWorkflowExecution.html">ezcWorkflowExecution</a></span>
+          </th>
+        </tr></thead><tbody><tr><td class="right">
+              <em>public</em>                                          <em>bool</em>            </td>
+            <td>
+              <code><b><a href="/zetacomponents/documentation/trunk/Workflow/phpdoc/ezcWorkflowExecution.html#methodaddListener">ezcWorkflowExecution::addListener()</a></b></code>
+              <br><div style="margin-left: 20px">Adds a listener to this execution.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>bool</em>            </td>
+            <td>
+              <code><b><a href="/zetacomponents/documentation/trunk/Workflow/phpdoc/ezcWorkflowExecution.html#methodaddPlugin">ezcWorkflowExecution::addPlugin()</a></b></code>
+              <br><div style="margin-left: 20px">Adds a plugin to this execution.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b><a href="/zetacomponents/documentation/trunk/Workflow/phpdoc/ezcWorkflowExecution.html#methodcancel">ezcWorkflowExecution::cancel()</a></b></code>
+              <br><div style="margin-left: 20px">Cancels workflow execution with the node $endNode.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>protected</em>              abstract                            <em>void</em>            </td>
+            <td>
+              <code><b><a href="/zetacomponents/documentation/trunk/Workflow/phpdoc/ezcWorkflowExecution.html#methoddoEnd">ezcWorkflowExecution::doEnd()</a></b></code>
+              <br><div style="margin-left: 20px">Called by end() when workflow execution is ended.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>protected</em>              abstract                            <em><a href="/zetacomponents/documentation/trunk/Workflow/phpdoc/ezcWorkflowExecution.html">ezcWorkflowExecution</a></em>            </td>
+            <td>
+              <code><b><a href="/zetacomponents/documentation/trunk/Workflow/phpdoc/ezcWorkflowExecution.html#methoddoGetSubExecution">ezcWorkflowExecution::doGetSubExecution()</a></b></code>
+              <br><div style="margin-left: 20px">Returns a new execution object for a sub workflow.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>protected</em>              abstract                            <em>void</em>            </td>
+            <td>
+              <code><b><a href="/zetacomponents/documentation/trunk/Workflow/phpdoc/ezcWorkflowExecution.html#methoddoResume">ezcWorkflowExecution::doResume()</a></b></code>
+              <br><div style="margin-left: 20px">Called by resume() when workflow execution is resumed.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>protected</em>              abstract                            <em>void</em>            </td>
+            <td>
+              <code><b><a href="/zetacomponents/documentation/trunk/Workflow/phpdoc/ezcWorkflowExecution.html#methoddoStart">ezcWorkflowExecution::doStart()</a></b></code>
+              <br><div style="margin-left: 20px">Called by start() when workflow execution is initiated.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>protected</em>              abstract                            <em>void</em>            </td>
+            <td>
+              <code><b><a href="/zetacomponents/documentation/trunk/Workflow/phpdoc/ezcWorkflowExecution.html#methoddoSuspend">ezcWorkflowExecution::doSuspend()</a></b></code>
+              <br><div style="margin-left: 20px">Called by suspend() when workflow execution is suspended.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>bool</em>            </td>
+            <td>
+              <code><b><a href="/zetacomponents/documentation/trunk/Workflow/phpdoc/ezcWorkflowExecution.html#methodhasEnded">ezcWorkflowExecution::hasEnded()</a></b></code>
+              <br><div style="margin-left: 20px">Returns true when the workflow execution has ended.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>bool</em>            </td>
+            <td>
+              <code><b><a href="/zetacomponents/documentation/trunk/Workflow/phpdoc/ezcWorkflowExecution.html#methodisCancelled">ezcWorkflowExecution::isCancelled()</a></b></code>
+              <br><div style="margin-left: 20px">Returns true when the workflow execution has been cancelled.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>bool</em>            </td>
+            <td>
+              <code><b><a href="/zetacomponents/documentation/trunk/Workflow/phpdoc/ezcWorkflowExecution.html#methodisSuspended">ezcWorkflowExecution::isSuspended()</a></b></code>
+              <br><div style="margin-left: 20px">Returns true when the workflow execution has been suspended.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>protected</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b><a href="/zetacomponents/documentation/trunk/Workflow/phpdoc/ezcWorkflowExecution.html#methodloadFromVariableHandlers">ezcWorkflowExecution::loadFromVariableHandlers()</a></b></code>
+              <br><div style="margin-left: 20px">Loads data from variable handlers and  merge it with the current execution data.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>bool</em>            </td>
+            <td>
+              <code><b><a href="/zetacomponents/documentation/trunk/Workflow/phpdoc/ezcWorkflowExecution.html#methodremoveListener">ezcWorkflowExecution::removeListener()</a></b></code>
+              <br><div style="margin-left: 20px">Removes a listener from this execution.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>bool</em>            </td>
+            <td>
+              <code><b><a href="/zetacomponents/documentation/trunk/Workflow/phpdoc/ezcWorkflowExecution.html#methodremovePlugin">ezcWorkflowExecution::removePlugin()</a></b></code>
+              <br><div style="margin-left: 20px">Removes a plugin from this execution.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b><a href="/zetacomponents/documentation/trunk/Workflow/phpdoc/ezcWorkflowExecution.html#methodresume">ezcWorkflowExecution::resume()</a></b></code>
+              <br><div style="margin-left: 20px">Resumes workflow execution of a suspended workflow.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>protected</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b><a href="/zetacomponents/documentation/trunk/Workflow/phpdoc/ezcWorkflowExecution.html#methodsaveToVariableHandlers">ezcWorkflowExecution::saveToVariableHandlers()</a></b></code>
+              <br><div style="margin-left: 20px">Saves data to execution data handlers.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>mixed</em>            </td>
+            <td>
+              <code><b><a href="/zetacomponents/documentation/trunk/Workflow/phpdoc/ezcWorkflowExecution.html#methodstart">ezcWorkflowExecution::start()</a></b></code>
+              <br><div style="margin-left: 20px">Starts the execution of the workflow and returns the execution id.</div>                          </td>
+          </tr></tbody></table><a name="sec-methods"></a>
+  <h3>Methods</h3>
+  <a name="method_detail"></a>
+                
+      <a name="method__construct" id="__construct"><!-- --></a>
+
+    <h4>__construct</h4>
+
+    <div class="method-signature">
+      ezcWorkflowDatabaseExecution
+      __construct(
+                                  
+          $db
+                            ,           [int
+          $executionId
+           = null]              )
+    </div>
+
+    <p>Construct a new database execution.</p><div><p>This constructor is a tie-in.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$db</code></td>
+              <td><em><a href="/zetacomponents/documentation/trunk/Database/phpdoc/ezcDbHandler.html">ezcDbHandler</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$executionId</code></td>
+              <td><em>int</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="/zetacomponents/documentation/trunk/Workflow/phpdoc/ezcWorkflowExecutionException.html">ezcWorkflowExecutionException</a></code></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodcleanupTable" id="cleanupTable"><!-- --></a>
+
+    <h4>cleanupTable</h4>
+
+    <div class="method-signature">
+      void
+      cleanupTable(
+                                  string
+          $tableName
+                        )
+    </div>
+
+    <p>Cleanup execution / execution_state tables.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$tableName</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="/zetacomponents/documentation/trunk/Database/phpdoc/ezcDbException.html">ezcDbException</a></code></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methoddoEnd" id="doEnd"><!-- --></a>
+
+    <h4>doEnd</h4>
+
+    <div class="method-signature">
+      void
+      doEnd(
+      )
+    </div>
+
+    <p>End workflow execution.</p>
+    
+          <h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="/zetacomponents/documentation/trunk/Database/phpdoc/ezcDbException.html">ezcDbException</a></code></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="/zetacomponents/documentation/trunk/Workflow/phpdoc/ezcWorkflowExecution.html#methoddoEnd">ezcWorkflowExecution::doEnd()</a></code></td>
+            <td>
+                              Called by end() when workflow execution is ended.
+                          </td>
+          </tr></tbody></table><a name="methoddoGetSubExecution" id="doGetSubExecution"><!-- --></a>
+
+    <h4>doGetSubExecution</h4>
+
+    <div class="method-signature">
+      <a href="/zetacomponents/documentation/trunk/Workflow/phpdoc/ezcWorkflowExecution.html">ezcWorkflowExecution</a>
+      doGetSubExecution(
+                                  [int
+          $id
+           = null]              )
+    </div>
+
+    <p>Returns a new execution object for a sub workflow.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$id</code></td>
+              <td><em>int</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="/zetacomponents/documentation/trunk/Workflow/phpdoc/ezcWorkflowExecution.html#methoddoGetSubExecution">ezcWorkflowExecution::doGetSubExecution()</a></code></td>
+            <td>
+                              Returns a new execution object for a sub workflow.
+                          </td>
+          </tr></tbody></table><a name="methoddoResume" id="doResume"><!-- --></a>
+
+    <h4>doResume</h4>
+
+    <div class="method-signature">
+      void
+      doResume(
+      )
+    </div>
+
+    <p>Resume workflow execution.</p>
+    
+          <h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="/zetacomponents/documentation/trunk/Database/phpdoc/ezcDbException.html">ezcDbException</a></code></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="/zetacomponents/documentation/trunk/Workflow/phpdoc/ezcWorkflowExecution.html#methoddoResume">ezcWorkflowExecution::doResume()</a></code></td>
+            <td>
+                              Called by resume() when workflow execution is resumed.
+                          </td>
+          </tr></tbody></table><a name="methoddoStart" id="doStart"><!-- --></a>
+
+    <h4>doStart</h4>
+
+    <div class="method-signature">
+      void
+      doStart(
+                                  int
+          $parentId
+                        )
+    </div>
+
+    <p>Start workflow execution.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$parentId</code></td>
+              <td><em>int</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="/zetacomponents/documentation/trunk/Database/phpdoc/ezcDbException.html">ezcDbException</a></code></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="/zetacomponents/documentation/trunk/Workflow/phpdoc/ezcWorkflowExecution.html#methoddoStart">ezcWorkflowExecution::doStart()</a></code></td>
+            <td>
+                              Called by start() when workflow execution is initiated.
+                          </td>
+          </tr></tbody></table><a name="methoddoSuspend" id="doSuspend"><!-- --></a>
+
+    <h4>doSuspend</h4>
+
+    <div class="method-signature">
+      void
+      doSuspend(
+      )
+    </div>
+
+    <p>Suspend workflow execution.</p>
+    
+          <h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="/zetacomponents/documentation/trunk/Database/phpdoc/ezcDbException.html">ezcDbException</a></code></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="/zetacomponents/documentation/trunk/Workflow/phpdoc/ezcWorkflowExecution.html#methoddoSuspend">ezcWorkflowExecution::doSuspend()</a></code></td>
+            <td>
+                              Called by suspend() when workflow execution is suspended.
+                          </td>
+          </tr></tbody></table><a name="methodloadExecution" id="loadExecution"><!-- --></a>
+
+    <h4>loadExecution</h4>
+
+    <div class="method-signature">
+      void
+      loadExecution(
+                                  int
+          $executionId
+                        )
+    </div>
+
+    <p>Load execution state.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$executionId</code></td>
+              <td><em>int</em></td>
+              <td>
+                                  ID of the execution to load.
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="/zetacomponents/documentation/trunk/Workflow/phpdoc/ezcWorkflowExecutionException.html">ezcWorkflowExecutionException</a></code></td>
+              <td>
+                              </td>
+            </tr></tbody></table><div class="credit">
+      Documentation generated by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+    </div>
+  </div>
+  
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

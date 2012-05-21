@@ -1,0 +1,492 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="PHP, apache, components, framework, quality" />
+	<meta name="author" content="dotxp" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Wed, 04 Aug 2010 13:07:14 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="ezcAuthenticationOpenidFileStore.html" />
+	<meta name="DC.creator" content="dotxp" />
+	<meta name="DC.date" content="Wed, 04 Aug 2010 13:07:14 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationOpenidFileStore.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/Authentication/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/trunk/Authentication/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Authentication/security.html" title="Security ">Security </a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Authentication/rfcs.html" title="Rfcs ">Rfcs </a>
+	</li>
+
+</ul>
+
+		
+  <div class="phpdoc">
+    <h2>Apache Zeta Components Manual :: Docs For Class ezcAuthenticationOpenidFileStore</h2>
+
+                  <h3>Authentication::ezcAuthenticationOpenidFileStore</h3>
+    
+<a name="sec-description"></a>
+<h3>Class ezcAuthenticationOpenidFileStore</h3>
+
+<p>Class providing file storage for OpenID authentication.</p><div><p>Example of use:  </p><ol><li><div class="src-line">&#8192;<span class="src-comm">//&#8192;create&#8192;an&#8192;OpenID&#8192;options&#8192;object</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$options&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcAuthenticationOpenidOptions.html">ezcAuthenticationOpenidOptions</a></span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$options</span><span class="src-sym">-&gt;</span><span class="src-id">mode&#8192;</span>=&#8192;<span class="src-id"><a href="ezcAuthenticationOpenidFilter.html">ezcAuthenticationOpenidFilter</a></span><span class="src-sym">::</span><span class="src-id">MODE_SMART</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;define&#8192;a&#8192;file&#8192;store</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$options</span><span class="src-sym">-&gt;</span><span class="src-id">store&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcAuthenticationOpenidFileStore.html">ezcAuthenticationOpenidFileStore</a></span><span class="src-sym">(&#8192;</span><span class="src-str">'/tmp/store'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;create&#8192;an&#8192;OpenID&#8192;filter&#8192;based&#8192;on&#8192;the&#8192;options&#8192;object</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$filter&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcAuthenticationOpenidFilter.html">ezcAuthenticationOpenidFilter</a></span><span class="src-sym">(&#8192;</span><span class="src-var">$options&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol></div>
+<p>Source for this file: <a href="http://fisheye6.atlassian.com/browse/zetacomponents/trunk/Authentication/src/filters/openid/openid_file_store.php?r=HEAD">/Authentication/src/filters/openid/openid_file_store.php</a></p>
+       
+
+
+<pre><a href="ezcAuthenticationOpenidStore.html">ezcAuthenticationOpenidStore</a>
+   |
+   --ezcAuthenticationOpenidFileStore</pre>
+
+
+  <table><tr><td>
+            <strong>Version:</strong>&#8192;&#8192;
+          </td>
+          <td>//autogen//</td>
+        </tr></table><a name="sec-prop-summary"></a>
+  <h3>Properties</h3>
+  <table class="summary"><tr><td class="right">
+          <a name="prop%24path" id="$path"></a>
+          <a name="prop-%24path" id="$path"></a>
+          <em>string</em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24path" title="details" class="var-name-summary">$path</a>
+                      </code>
+          <br><div style="margin-left: 20px">The path where the files will be kept. It must exist and it must            be writable.</div>        </td>
+      </tr></table><h3>Inherited Member Variables</h3>
+  <table class="summary"><thead><tr><th colspan="2">
+            From <span class="classname"><a href="ezcAuthenticationOpenidStore.html">ezcAuthenticationOpenidStore</a></span>         
+          </th>
+        </tr></thead><tbody><tr><td class="right">
+              <em>protected</em>                          </td>
+            <td>
+              <code><a href="ezcAuthenticationOpenidStore.html#var%24options">ezcAuthenticationOpenidStore::$options</a></code>
+              
+            </td>
+          </tr></tbody></table><a name="sec-method-summary"></a>
+  <h3>Method Summary</h3>
+  <table class="summary"><tr><td class="right">
+            <em>public</em>                        <em>ezcAuthenticationOpenidFileStore</em>          </td>
+          <td>
+            <code>
+              <a href="#__construct"><b>__construct</b></a>(
+                                                                                    $path
+                                                    ,                   [                  $options
+                   = null]                               )
+            </code>
+            <br><div style="margin-left: 20px">Creates a new object of this class.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#convertToFilename"><b>convertToFilename</b></a>(
+                                                                                    $value
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Creates a valid filename from the provided string.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em><a href="ezcAuthenticationOpenidAssociation.html">ezcAuthenticationOpenidAssociation</a></em>          </td>
+          <td>
+            <code>
+              <a href="#getAssociation"><b>getAssociation</b></a>(
+                                                                                    $url
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns the unserialized association linked to the OpenID provider URL.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>bool</em>          </td>
+          <td>
+            <code>
+              <a href="#removeAssociation"><b>removeAssociation</b></a>(
+                                                                                    $url
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Removes the association linked to the OpenID provider URL.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>bool</em>          </td>
+          <td>
+            <code>
+              <a href="#storeAssociation"><b>storeAssociation</b></a>(
+                                                                                    $url
+                                                    ,                                     $association
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Stores an association in the store linked to the OpenID provider URL.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>bool</em>          </td>
+          <td>
+            <code>
+              <a href="#storeNonce"><b>storeNonce</b></a>(
+                                                                                    $nonce
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Stores the nonce in the store.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>bool|int</em>          </td>
+          <td>
+            <code>
+              <a href="#useNonce"><b>useNonce</b></a>(
+                                                                                    $nonce
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Checks if the nonce exists and afterwards deletes it.</div>          </td>
+        </tr></table><h3>Inherited Methods</h3>
+  <table class="summary"><thead><tr><th colspan="2">
+            From <span class="classname"><a href="ezcAuthenticationOpenidStore.html">ezcAuthenticationOpenidStore</a></span>
+          </th>
+        </tr></thead><tbody><tr><td class="right">
+              <em>public</em>              abstract                            <em><a href="ezcAuthenticationOpenidAssociation.html">ezcAuthenticationOpenidAssociation</a></em>            </td>
+            <td>
+              <code><b><a href="ezcAuthenticationOpenidStore.html#methodgetAssociation">ezcAuthenticationOpenidStore::getAssociation()</a></b></code>
+              <br><div style="margin-left: 20px">Returns the association linked to the OpenID provider URL.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em><a href="ezcAuthenticationOpenidStoreOptions.html">ezcAuthenticationOpenidStoreOptions</a></em>            </td>
+            <td>
+              <code><b><a href="ezcAuthenticationOpenidStore.html#methodgetOptions">ezcAuthenticationOpenidStore::getOptions()</a></b></code>
+              <br><div style="margin-left: 20px">Returns the options of this class.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>              abstract                            <em>bool</em>            </td>
+            <td>
+              <code><b><a href="ezcAuthenticationOpenidStore.html#methodremoveAssociation">ezcAuthenticationOpenidStore::removeAssociation()</a></b></code>
+              <br><div style="margin-left: 20px">Removes the association linked to the OpenID provider URL.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b><a href="ezcAuthenticationOpenidStore.html#methodsetOptions">ezcAuthenticationOpenidStore::setOptions()</a></b></code>
+              <br><div style="margin-left: 20px">Sets the options of this class to $options.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>              abstract                            <em>bool</em>            </td>
+            <td>
+              <code><b><a href="ezcAuthenticationOpenidStore.html#methodstoreAssociation">ezcAuthenticationOpenidStore::storeAssociation()</a></b></code>
+              <br><div style="margin-left: 20px">Stores an association in the store linked to the OpenID provider URL.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>              abstract                            <em>bool</em>            </td>
+            <td>
+              <code><b><a href="ezcAuthenticationOpenidStore.html#methodstoreNonce">ezcAuthenticationOpenidStore::storeNonce()</a></b></code>
+              <br><div style="margin-left: 20px">Stores the nonce in the store.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>              abstract                            <em>bool</em>            </td>
+            <td>
+              <code><b><a href="ezcAuthenticationOpenidStore.html#methoduseNonce">ezcAuthenticationOpenidStore::useNonce()</a></b></code>
+              <br><div style="margin-left: 20px">Checks if the nonce exists and afterwards deletes it.</div>                          </td>
+          </tr></tbody></table><a name="sec-methods"></a>
+  <h3>Methods</h3>
+  <a name="method_detail"></a>
+              
+      <a name="method__construct" id="__construct"><!-- --></a>
+
+    <h4>__construct</h4>
+
+    <div class="method-signature">
+      ezcAuthenticationOpenidFileStore
+      __construct(
+                                  string
+          $path
+                            ,           [<a href="ezcAuthenticationOpenidFileStoreOptions.html">ezcAuthenticationOpenidFileStoreOptions</a>
+          $options
+           = null]              )
+    </div>
+
+    <p>Creates a new object of this class.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$path</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  The path where to save the nonces
+                              </td>
+            </tr><tr><td><code>$options</code></td>
+              <td><em><a href="ezcAuthenticationOpenidFileStoreOptions.html">ezcAuthenticationOpenidFileStoreOptions</a></em></td>
+              <td>
+                                  Options for this class
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseFilePermissionException.html">ezcBaseFilePermissionException</a></code></td>
+              <td>
+                                  if $path cannot be opened for reading and writing
+                              </td>
+            </tr><tr><td><code><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseFileNotFoundException.html">ezcBaseFileNotFoundException</a></code></td>
+              <td>
+                                  if $path does not exist
+                              </td>
+            </tr></tbody></table><a name="methodconvertToFilename" id="convertToFilename"><!-- --></a>
+
+    <h4>convertToFilename</h4>
+
+    <div class="method-signature">
+      string
+      convertToFilename(
+                                  string
+          $value
+                        )
+    </div>
+
+    <p>Creates a valid filename from the provided string.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$value</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  A string which needs to be used as a valid filename
+                              </td>
+            </tr></tbody></table><a name="methodgetAssociation" id="getAssociation"><!-- --></a>
+
+    <h4>getAssociation</h4>
+
+    <div class="method-signature">
+      <a href="ezcAuthenticationOpenidAssociation.html">ezcAuthenticationOpenidAssociation</a>
+      getAssociation(
+                                  string
+          $url
+                        )
+    </div>
+
+    <p>Returns the unserialized association linked to the OpenID provider URL.</p><div><p>Returns false if the association could not be retrieved or if it expired.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$url</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  The URL of the OpenID provider
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcAuthenticationOpenidStore.html#methodgetAssociation">ezcAuthenticationOpenidStore::getAssociation()</a></code></td>
+            <td>
+                              Returns the association linked to the OpenID provider URL.
+                          </td>
+          </tr></tbody></table><a name="methodremoveAssociation" id="removeAssociation"><!-- --></a>
+
+    <h4>removeAssociation</h4>
+
+    <div class="method-signature">
+      bool
+      removeAssociation(
+                                  string
+          $url
+                        )
+    </div>
+
+    <p>Removes the association linked to the OpenID provider URL.</p><div><p>Returns true if the association could be removed, and false otherwise.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$url</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  The URL of the OpenID provider
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcAuthenticationOpenidStore.html#methodremoveAssociation">ezcAuthenticationOpenidStore::removeAssociation()</a></code></td>
+            <td>
+                              Removes the association linked to the OpenID provider URL.
+                          </td>
+          </tr></tbody></table><a name="methodstoreAssociation" id="storeAssociation"><!-- --></a>
+
+    <h4>storeAssociation</h4>
+
+    <div class="method-signature">
+      bool
+      storeAssociation(
+                                  string
+          $url
+                            ,           <a href="ezcAuthenticationOpenidAssociation.html">ezcAuthenticationOpenidAssociation</a>
+          $association
+                        )
+    </div>
+
+    <p>Stores an association in the store linked to the OpenID provider URL.</p><div><p>Returns true if the association was stored successfully, and false  otherwise.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$url</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  The URL of the OpenID provider
+                              </td>
+            </tr><tr><td><code>$association</code></td>
+              <td><em><a href="ezcAuthenticationOpenidAssociation.html">ezcAuthenticationOpenidAssociation</a></em></td>
+              <td>
+                                  The association value to store
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseFilePermissionException.html">ezcBaseFilePermissionException</a></code></td>
+              <td>
+                                  if the nonce cannot be written in the store
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcAuthenticationOpenidStore.html#methodstoreAssociation">ezcAuthenticationOpenidStore::storeAssociation()</a></code></td>
+            <td>
+                              Stores an association in the store linked to the OpenID provider URL.
+                          </td>
+          </tr></tbody></table><a name="methodstoreNonce" id="storeNonce"><!-- --></a>
+
+    <h4>storeNonce</h4>
+
+    <div class="method-signature">
+      bool
+      storeNonce(
+                                  string
+          $nonce
+                        )
+    </div>
+
+    <p>Stores the nonce in the store.</p><div><p>Returns true if the nonce was stored successfully, and false otherwise.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$nonce</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  The nonce value to store
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseFilePermissionException.html">ezcBaseFilePermissionException</a></code></td>
+              <td>
+                                  if the nonce cannot be written in the store
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcAuthenticationOpenidStore.html#methodstoreNonce">ezcAuthenticationOpenidStore::storeNonce()</a></code></td>
+            <td>
+                              Stores the nonce in the store.
+                          </td>
+          </tr></tbody></table><a name="methoduseNonce" id="useNonce"><!-- --></a>
+
+    <h4>useNonce</h4>
+
+    <div class="method-signature">
+      bool|int
+      useNonce(
+                                  string
+          $nonce
+                        )
+    </div>
+
+    <p>Checks if the nonce exists and afterwards deletes it.</p><div><p>Returns the timestamp of the nonce if it exists, and false otherwise.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$nonce</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  The nonce value to check and delete
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcAuthenticationOpenidStore.html#methoduseNonce">ezcAuthenticationOpenidStore::useNonce()</a></code></td>
+            <td>
+                              Checks if the nonce exists and afterwards deletes it.
+                          </td>
+          </tr></tbody></table><div class="credit">
+      Documentation generated by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+    </div>
+  </div>
+  
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

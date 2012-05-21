@@ -1,0 +1,695 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="PHP, apache, components, framework, quality" />
+	<meta name="author" content="dotxp" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Wed, 04 Aug 2010 13:07:21 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="ezcConsoleOutput.html" />
+	<meta name="DC.creator" content="dotxp" />
+	<meta name="DC.date" content="Wed, 04 Aug 2010 13:07:21 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleOutput.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/ConsoleTools/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+
+</ul>
+
+		
+  <div class="phpdoc">
+    <h2>Apache Zeta Components Manual :: Docs For Class ezcConsoleOutput</h2>
+
+                  <h3>ConsoleTools::ezcConsoleOutput</h3>
+    
+<a name="sec-description"></a>
+<h3>Class ezcConsoleOutput</h3>
+
+<p>Class for handling console output.</p><div><p>The ezcConsoleOutput class provides an interface to output text to the console. It deals with formating  text in different ways and offers some comfortable options to deal  with console text output.</p><p></p><ol><li><div class="src-line">&#8192;<span class="src-comm">//&#8192;Create&#8192;the&#8192;output&#8192;handler</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$out&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcConsoleOutput.html">ezcConsoleOutput</a></span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;Set&#8192;the&#8192;verbosity&#8192;to&#8192;level&#8192;10</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$out</span><span class="src-sym">-&gt;</span><span class="src-id">options</span><span class="src-sym">-&gt;</span><span class="src-id">verbosityLevel&#8192;</span>=&#8192;<span class="src-num">10</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;Enable&#8192;auto&#8192;wrapping&#8192;of&#8192;lines&#8192;after&#8192;40&#8192;characters</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$out</span><span class="src-sym">-&gt;</span><span class="src-id">options</span><span class="src-sym">-&gt;</span><span class="src-id">autobreak&#8192;&#8192;&#8192;&#8192;</span>=&#8192;<span class="src-num">40</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;Set&#8192;the&#8192;color&#8192;of&#8192;the&#8192;default&#8192;output&#8192;format&#8192;to&#8192;green</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$out</span><span class="src-sym">-&gt;</span><span class="src-id">formats</span><span class="src-sym">-&gt;</span><span class="src-id">default</span><span class="src-sym">-&gt;</span><span class="src-id"><a href="ezcConsoleOutput.html#var%24color">color</a>&#8192;&#8192;&#8192;</span>=&#8192;<span class="src-str">'green'</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;Set&#8192;the&#8192;color&#8192;of&#8192;the&#8192;output&#8192;format&#8192;named&#8192;'success'&#8192;to&#8192;white</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$out</span><span class="src-sym">-&gt;</span><span class="src-id">formats</span><span class="src-sym">-&gt;</span><span class="src-id">success</span><span class="src-sym">-&gt;</span><span class="src-id"><a href="ezcConsoleOutput.html#var%24color">color</a>&#8192;&#8192;&#8192;</span>=&#8192;<span class="src-str">'white'</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;Set&#8192;the&#8192;style&#8192;of&#8192;the&#8192;output&#8192;format&#8192;named&#8192;'success'&#8192;to&#8192;bold</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$out</span><span class="src-sym">-&gt;</span><span class="src-id">formats</span><span class="src-sym">-&gt;</span><span class="src-id">success</span><span class="src-sym">-&gt;</span><span class="src-id"><a href="ezcConsoleOutput.html#var%24style">style</a>&#8192;&#8192;&#8192;</span>=&#8192;<span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-str">'bold'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;Set&#8192;the&#8192;color&#8192;of&#8192;the&#8192;output&#8192;format&#8192;named&#8192;'failure'&#8192;to&#8192;red</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$out</span><span class="src-sym">-&gt;</span><span class="src-id">formats</span><span class="src-sym">-&gt;</span><span class="src-id">failure</span><span class="src-sym">-&gt;</span><span class="src-id"><a href="ezcConsoleOutput.html#var%24color">color</a>&#8192;&#8192;&#8192;</span>=&#8192;<span class="src-str">'red'</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;Set&#8192;the&#8192;style&#8192;of&#8192;the&#8192;output&#8192;format&#8192;named&#8192;'failure'&#8192;to&#8192;bold</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$out</span><span class="src-sym">-&gt;</span><span class="src-id">formats</span><span class="src-sym">-&gt;</span><span class="src-id">failure</span><span class="src-sym">-&gt;</span><span class="src-id"><a href="ezcConsoleOutput.html#var%24style">style</a>&#8192;&#8192;&#8192;</span>=&#8192;<span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-str">'bold'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;Set&#8192;the&#8192;background&#8192;color&#8192;of&#8192;the&#8192;output&#8192;format&#8192;named&#8192;'failure'&#8192;to&#8192;blue</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$out</span><span class="src-sym">-&gt;</span><span class="src-id">formats</span><span class="src-sym">-&gt;</span><span class="src-id">failure</span><span class="src-sym">-&gt;</span><span class="src-id"><a href="ezcConsoleOutput.html#var%24bgcolor">bgcolor</a>&#8192;</span>=&#8192;<span class="src-str">'blue'</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;Output&#8192;text&#8192;with&#8192;default&#8192;format</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$out</span><span class="src-sym">-&gt;</span><a href="ezcConsoleOutput.html#methodoutputText">outputText</a><span class="src-sym">(&#8192;</span><span class="src-str">'This&#8192;is&#8192;default&#8192;text&#8192;'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;Output&#8192;text&#8192;with&#8192;format&#8192;'success'</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$out</span><span class="src-sym">-&gt;</span><a href="ezcConsoleOutput.html#methodoutputText">outputText</a><span class="src-sym">(&#8192;</span><span class="src-str">'including&#8192;success&#8192;message'</span><span class="src-sym">,&#8192;</span><span class="src-str">'success'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;Some&#8192;more&#8192;output&#8192;with&#8192;default&#8192;output.</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$out</span><span class="src-sym">-&gt;</span><a href="ezcConsoleOutput.html#methodoutputText">outputText</a><span class="src-sym">(&#8192;</span><span class="src-str">"and&#8192;a&#8192;manual&#8192;linebreak.\n"&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;Manipulate&#8192;the&#8192;later&#8192;output</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$out</span><span class="src-sym">-&gt;</span><span class="src-id">formats</span><span class="src-sym">-&gt;</span><span class="src-id">success</span><span class="src-sym">-&gt;</span><span class="src-id"><a href="ezcConsoleOutput.html#var%24color">color</a>&#8192;</span>=&#8192;<span class="src-str">'green'</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$out</span><span class="src-sym">-&gt;</span><span class="src-id">formats</span><span class="src-sym">-&gt;</span><span class="src-id">default</span><span class="src-sym">-&gt;</span><span class="src-id"><a href="ezcConsoleOutput.html#var%24color">color</a>&#8192;</span>=&#8192;<span class="src-str">'blue'</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;This&#8192;is&#8192;visible,&#8192;since&#8192;we&#8192;set&#8192;verbosityLevel&#8192;to&#8192;10,&#8192;and&#8192;printed&#8192;in&#8192;default&#8192;format&#8192;(now&#8192;blue)</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$out</span><span class="src-sym">-&gt;</span><a href="ezcConsoleOutput.html#methodoutputText">outputText</a><span class="src-sym">(&#8192;</span><span class="src-str">"Some&#8192;verbose&#8192;output.\n"</span><span class="src-sym">,&#8192;</span><span class="src-id">null</span><span class="src-sym">,&#8192;</span><span class="src-num">10&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;This&#8192;is&#8192;not&#8192;visible,&#8192;since&#8192;we&#8192;set&#8192;verbosityLevel&#8192;to&#8192;10</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$out</span><span class="src-sym">-&gt;</span><a href="ezcConsoleOutput.html#methodoutputText">outputText</a><span class="src-sym">(&#8192;</span><span class="src-str">"Some&#8192;more&#8192;verbose&#8192;output.\n"</span><span class="src-sym">,&#8192;</span><span class="src-id">null</span><span class="src-sym">,&#8192;</span><span class="src-num">20&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;This&#8192;is&#8192;visible,&#8192;since&#8192;we&#8192;set&#8192;verbosityLevel&#8192;to&#8192;10,&#8192;and&#8192;printed&#8192;in&#8192;format&#8192;'failure'</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$out</span><span class="src-sym">-&gt;</span><a href="ezcConsoleOutput.html#methodoutputText">outputText</a><span class="src-sym">(&#8192;</span><span class="src-str">"And&#8192;some&#8192;not&#8192;so&#8192;verbose,&#8192;failure&#8192;output.\n"</span><span class="src-sym">,&#8192;</span><span class="src-str">'failure'</span><span class="src-sym">,&#8192;</span><span class="src-num">5&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol><p>For a list of valid colors, style attributes and background colors, please  refer to <a href="ezcConsoleOutputFormat.html">ezcConsoleOutputFormat</a>.</p><p>ATTENTION: Windows operating systems do not support styling of text on the  console. Therefore no styling sequences are generated on any version of  this operating system.</p></div>
+<p>Source for this file: <a href="http://fisheye6.atlassian.com/browse/zetacomponents/trunk/ConsoleTools/src/output.php?r=HEAD">/ConsoleTools/src/output.php</a></p>
+       
+
+
+
+
+  <table><tr><td>
+            <strong>Version:</strong>&#8192;&#8192;
+          </td>
+          <td>//autogen//</td>
+        </tr></table><a name="sec-const-summary"></a>
+  <h3>Constants</h3>
+  <table class="summary"><tr><td class="right">
+          <a name="const-TARGET_OUTPUT" id=""></a>
+          <code>
+            <a href="#const-TARGET_OUTPUT" title="details" class="const-name-summary">TARGET_OUTPUT</a>
+             =  "php://output"
+          </code>
+        </td>
+        <td>
+          Target to print to standard out, with output buffering possibility.                  </td>
+      </tr><tr><td class="right">
+          <a name="const-TARGET_STDERR" id=""></a>
+          <code>
+            <a href="#const-TARGET_STDERR" title="details" class="const-name-summary">TARGET_STDERR</a>
+             =  "php://stderr"
+          </code>
+        </td>
+        <td>
+          Target to print to standard error.                  </td>
+      </tr><tr><td class="right">
+          <a name="const-TARGET_STDOUT" id=""></a>
+          <code>
+            <a href="#const-TARGET_STDOUT" title="details" class="const-name-summary">TARGET_STDOUT</a>
+             =  "php://stdout"
+          </code>
+        </td>
+        <td>
+          Target to print to standard out.                  </td>
+      </tr></table><a name="sec-prop-summary"></a>
+  <h3>Properties</h3>
+  <table class="summary"><tr><td class="right">
+          <a name="prop%24formats" id="$formats"></a>
+          <a name="prop-%24formats" id="$formats"></a>
+          <em><a href="ezcConsoleOutputFormats.html">ezcConsoleOutputFormats</a></em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24formats" title="details" class="var-name-summary">$formats</a>
+                      </code>
+          <br><div style="margin-left: 20px">Contains the output formats.</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24options" id="$options"></a>
+          <a name="prop-%24options" id="$options"></a>
+          <em><a href="ezcConsoleOutputOptions.html">ezcConsoleOutputOptions</a></em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24options" title="details" class="var-name-summary">$options</a>
+                      </code>
+          <br><div style="margin-left: 20px">Contains the options for this class.</div>        </td>
+      </tr></table><a name="sec-var-summary"></a>
+  <h3>Member Variables</h3>
+  <table class="summary"><tr><td class="right">
+            <em>protected</em>            static
+            <em>array(string=&gt;int)</em>          </td>
+          <td>
+            <code>
+              $bgcolor
+                          </code>
+            <br><div style="margin-left: 20px">Stores the mapping of bgcolor names to their escape  sequence values.</div>                      </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            static
+            <em>array(string=&gt;int)</em>          </td>
+          <td>
+            <code>
+              $color
+                          </code>
+            <br><div style="margin-left: 20px">Stores the mapping of color names to their escape  sequence values.</div>                      </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            static
+            <em>array(string=&gt;int)</em>          </td>
+          <td>
+            <code>
+              $style
+                          </code>
+            <br><div style="margin-left: 20px">Stores the mapping of styles names to their escape  sequence values.</div>                      </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            <em>bool</em>          </td>
+          <td>
+            <code>
+              $positionStored
+               = <span class="var-default"> false</span>            </code>
+            <br><div style="margin-left: 20px">Whether a position has been stored before, using the storePos() method.</div>                      </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            <em>array(string=&gt;mixed)</em>          </td>
+          <td>
+            <code>
+              $properties
+                          </code>
+            <br><div style="margin-left: 20px">Container to hold the properties</div>                      </td>
+        </tr></table><a name="sec-method-summary"></a>
+  <h3>Method Summary</h3>
+  <table class="summary"><tr><td class="right">
+            <em>public</em>            static
+                        <em>bool</em>          </td>
+          <td>
+            <code>
+              <a href="#isValidFormatCode"><b>isValidFormatCode</b></a>(
+                                                                                    $type
+                                                    ,                                     $key
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns if a format code is valid for the specific formating option.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>ezcConsoleOutput</em>          </td>
+          <td>
+            <code>
+              <a href="#__construct"><b>__construct</b></a>(
+                                                                  [                  $formats
+                   = null]                                  ,                   [                  $options
+                   = array()]                               )
+            </code>
+            <br><div style="margin-left: 20px">Create a new console output handler.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#buildSequence"><b>buildSequence</b></a>(
+                                                                  [                  $format
+                   = 'default']                               )
+            </code>
+            <br><div style="margin-left: 20px">Returns the escape sequence for a specific format.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#formatText"><b>formatText</b></a>(
+                                                                                    $text
+                                                    ,                   [                  $format
+                   = 'default']                               )
+            </code>
+            <br><div style="margin-left: 20px">Returns a formated version of the text.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>int</em>          </td>
+          <td>
+            <code>
+              <a href="#getFormatCode"><b>getFormatCode</b></a>(
+                                                                                    $type
+                                                    ,                                     $key
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns the code for a given formating option of a given type.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em><a href="ezcConsoleOutputOptions.html">ezcConsoleOutputOptions</a></em>          </td>
+          <td>
+            <code>
+              <a href="#getOptions"><b>getOptions</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns the current options.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#outputLine"><b>outputLine</b></a>(
+                                                                  [                  $text
+                   = '']                                  ,                   [                  $format
+                   = 'default']                                  ,                   [                  $verbosityLevel
+                   = 1]                               )
+            </code>
+            <br><div style="margin-left: 20px">Print text to the console and automatically append a line break.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#outputText"><b>outputText</b></a>(
+                                                                                    $text
+                                                    ,                   [                  $format
+                   = 'default']                                  ,                   [                  $verbosityLevel
+                   = 1]                               )
+            </code>
+            <br><div style="margin-left: 20px">Print text to the console.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#restorePos"><b>restorePos</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Restores a cursor position.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#setOptions"><b>setOptions</b></a>(
+                                                                                    $options
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Set new options.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#storePos"><b>storePos</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Stores the current cursor position.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#toPos"><b>toPos</b></a>(
+                                                                  [                  $column
+                   = 1]                               )
+            </code>
+            <br><div style="margin-left: 20px">Move the cursor to a specific column of the current line.</div>          </td>
+        </tr></table><a name="sec-methods"></a>
+  <h3>Methods</h3>
+  <a name="method_detail"></a>
+                <a name="methodisValidFormatCode" id="isValidFormatCode"><!-- --></a>
+
+    <h4>isValidFormatCode</h4>
+
+    <div class="method-signature">
+      static bool
+      isValidFormatCode(
+                                  string
+          $type
+                            ,           string
+          $key
+                        )
+    </div>
+
+      <p>Returns if a format code is valid for the specific formating option.</p><div><p>This method determines if a given code is valid for a specific  formatting option ('color', 'bgcolor' or 'style').</p></div>      
+              <h5>Parameters:</h5>
+        <table class="detail"><thead><tr><th>Name</th>
+              <th>Type</th>
+              <th class="desc">Description</th>
+            </tr></thead><tbody><tr><td><code>$type</code></td>
+                <td><em>string</em></td>
+                <td>
+                                      Formating type.
+                                  </td>
+              </tr><tr><td><code>$key</code></td>
+                <td><em>string</em></td>
+                <td>
+                                      Format option name.
+                                  </td>
+              </tr></tbody></table><a name="method__construct" id="__construct"><!-- --></a>
+
+    <h4>__construct</h4>
+
+    <div class="method-signature">
+      ezcConsoleOutput
+      __construct(
+                                  [<a href="ezcConsoleOutputFormats.html">ezcConsoleOutputFormats</a>
+          $formats
+           = null]                  ,           [
+          $options
+           = array()]              )
+    </div>
+
+    <p>Create a new console output handler.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$formats</code></td>
+              <td><em><a href="ezcConsoleOutputFormats.html">ezcConsoleOutputFormats</a></em></td>
+              <td>
+                                  Formats to be used for output.
+                              </td>
+            </tr><tr><td><code>$options</code></td>
+              <td><em>array(string=&gt;string)</em></td>
+              <td>
+                                  Options to set.
+                              </td>
+            </tr></tbody></table><a name="methodbuildSequence" id="buildSequence"><!-- --></a>
+
+    <h4>buildSequence</h4>
+
+    <div class="method-signature">
+      string
+      buildSequence(
+                                  [string
+          $format
+           = 'default']              )
+    </div>
+
+    <p>Returns the escape sequence for a specific format.</p><div><p>Returns the default format escape sequence, if the requested format does  not exist.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$format</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  Name of the format.
+                              </td>
+            </tr></tbody></table><a name="methodformatText" id="formatText"><!-- --></a>
+
+    <h4>formatText</h4>
+
+    <div class="method-signature">
+      string
+      formatText(
+                                  string
+          $text
+                            ,           [string
+          $format
+           = 'default']              )
+    </div>
+
+    <p>Returns a formated version of the text.</p><div><p>If $format parameter is omitted, the default style is chosen. The format  must be a valid registered format definition.  For information on the  formats, see ezcConsoleOutput::$formats.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$text</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  Text to apply style to.
+                              </td>
+            </tr><tr><td><code>$format</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  Format chosen to be applied.
+                              </td>
+            </tr></tbody></table><a name="methodgetFormatCode" id="getFormatCode"><!-- --></a>
+
+    <h4>getFormatCode</h4>
+
+    <div class="method-signature">
+      int
+      getFormatCode(
+                                  string
+          $type
+                            ,           string
+          $key
+                        )
+    </div>
+
+    <p>Returns the code for a given formating option of a given type.</p><div><p>$type is the type of formating ('color', 'bgcolor' or 'style'), $key the  name of the format to lookup. Returns the numeric code for the requested  format or 0 if format or type do not exist.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$type</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  Formatting type.
+                              </td>
+            </tr><tr><td><code>$key</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  Format option name.
+                              </td>
+            </tr></tbody></table><a name="methodgetOptions" id="getOptions"><!-- --></a>
+
+    <h4>getOptions</h4>
+
+    <div class="method-signature">
+      <a href="ezcConsoleOutputOptions.html">ezcConsoleOutputOptions</a>
+      getOptions(
+      )
+    </div>
+
+    <p>Returns the current options.</p><div><p>Returns the options currently set for this output handler.</p></div>
+    
+        
+
+    
+    
+    
+          <a name="methodoutputLine" id="outputLine"><!-- --></a>
+
+    <h4>outputLine</h4>
+
+    <div class="method-signature">
+      void
+      outputLine(
+                                  [string
+          $text
+           = '']                  ,           [string
+          $format
+           = 'default']                  ,           [int
+          $verbosityLevel
+           = 1]              )
+    </div>
+
+    <p>Print text to the console and automatically append a line break.</p><div><p>This method acts similar to <a href="ezcConsoleOutput.html#methodoutputText">ezcConsoleOutput::outputText()</a>, in  fact it even uses it. The difference is, that outputLine()  automatically appends a manual line break to the printed text. Besides  that, you can leave out the $text parameter of outputLine() to only  print a line break.</p><p>The $format parameter defines the name of a format. Formats are defined  through the $formats proprty, which contains format definitions in form  of <a href="ezcConsoleOutputFormat.html">ezcConsoleOutputFormat</a> objects. The format influences the  outer appearance of a message (e.g. color) as well as the target the  message is printed to (e.g. STDERR).</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$text</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  The text to print.
+                              </td>
+            </tr><tr><td><code>$format</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  Format chosen for printing.
+                              </td>
+            </tr><tr><td><code>$verbosityLevel</code></td>
+              <td><em>int</em></td>
+              <td>
+                                  On which verbose level to output this message.
+                              </td>
+            </tr></tbody></table><a name="methodoutputText" id="outputText"><!-- --></a>
+
+    <h4>outputText</h4>
+
+    <div class="method-signature">
+      void
+      outputText(
+                                  string
+          $text
+                            ,           [string
+          $format
+           = 'default']                  ,           [int
+          $verbosityLevel
+           = 1]              )
+    </div>
+
+    <p>Print text to the console.</p><div><p>Output a string to the console. If $format parameter is omitted, the  default style is chosen. Style can either be a special style ezcConsoleOutput::$options, a style name ezcConsoleOutput::$formats or 'default' to print with the default  styling.</p><p>The $format parameter defines the name of a format. Formats are defined  through the $formats proprty, which contains format definitions in form  of <a href="ezcConsoleOutputFormat.html">ezcConsoleOutputFormat</a> objects. The format influences the  outer appearance of a message (e.g. color) as well as the target the  message is printed to (e.g. STDERR).</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$text</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  The text to print.
+                              </td>
+            </tr><tr><td><code>$format</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  Format chosen for printing.
+                              </td>
+            </tr><tr><td><code>$verbosityLevel</code></td>
+              <td><em>int</em></td>
+              <td>
+                                  On which verbose level to output this message.
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcConsoleInvalidOutputTargetException.html">ezcConsoleInvalidOutputTargetException</a></code></td>
+              <td>
+                                  If the given target (<a href="ezcConsoleOutputFormat.html">ezcConsoleOutputFormat</a>) could not be opened for writing or writing failed.
+                              </td>
+            </tr></tbody></table><a name="methodrestorePos" id="restorePos"><!-- --></a>
+
+    <h4>restorePos</h4>
+
+    <div class="method-signature">
+      void
+      restorePos(
+      )
+    </div>
+
+    <p>Restores a cursor position.</p><div><p>Restores the cursor position last saved using <a href="ezcConsoleOutput.html#methodstorePos">ezcConsoleOutput::storePos()</a>.</p></div>
+    
+          <h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcConsoleNoPositionStoredException.html">ezcConsoleNoPositionStoredException</a></code></td>
+              <td>
+                                  If no position is saved.
+                              </td>
+            </tr></tbody></table><a name="methodsetOptions" id="setOptions"><!-- --></a>
+
+    <h4>setOptions</h4>
+
+    <div class="method-signature">
+      void
+      setOptions(
+                                  <a href="ezcConsoleOutputOptions.html">ezcConsoleOutputOptions</a>
+          $options
+                        )
+    </div>
+
+    <p>Set new options.</p><div><p>This method allows you to change the options of an output handler.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$options</code></td>
+              <td><em><a href="ezcConsoleOutputOptions.html">ezcConsoleOutputOptions</a></em></td>
+              <td>
+                                  The options to set.
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseSettingNotFoundException.html">ezcBaseSettingNotFoundException</a></code></td>
+              <td>
+                                  If you tried to set a non-existent option value.
+                              </td>
+            </tr><tr><td><code><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseSettingValueException.html">ezcBaseSettingValueException</a></code></td>
+              <td>
+                                  If the value is not valid for the desired option.
+                              </td>
+            </tr><tr><td><code><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseValueException.html">ezcBaseValueException</a></code></td>
+              <td>
+                                  If you submit neither an array nor an instance of ezcConsoleOutputOptions.
+                              </td>
+            </tr></tbody></table><a name="methodstorePos" id="storePos"><!-- --></a>
+
+    <h4>storePos</h4>
+
+    <div class="method-signature">
+      void
+      storePos(
+      )
+    </div>
+
+    <p>Stores the current cursor position.</p><div><p>Saves the current cursor position to return to it using  <a href="ezcConsoleOutput.html#methodrestorePos">ezcConsoleOutput::restorePos()</a>. Multiple calls  to this method will override each other. Only the last  position is saved.</p></div>
+    
+        
+
+    
+    
+    
+        <a name="methodtoPos" id="toPos"><!-- --></a>
+
+    <h4>toPos</h4>
+
+    <div class="method-signature">
+      void
+      toPos(
+                                  [int
+          $column
+           = 1]              )
+    </div>
+
+    <p>Move the cursor to a specific column of the current line.</p><div><p>Moves the cursor to a specific column index of the current line (default  is 1).</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$column</code></td>
+              <td><em>int</em></td>
+              <td>
+                                  Column to jump to.
+                              </td>
+            </tr></tbody></table><div class="credit">
+      Documentation generated by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+    </div>
+  </div>
+  
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

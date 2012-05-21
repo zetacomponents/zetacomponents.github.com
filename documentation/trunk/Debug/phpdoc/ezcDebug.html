@@ -1,0 +1,511 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="PHP, apache, components, framework, quality" />
+	<meta name="author" content="dotxp" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Wed, 04 Aug 2010 13:07:26 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="ezcDebug.html" />
+	<meta name="DC.creator" content="dotxp" />
+	<meta name="DC.date" content="Wed, 04 Aug 2010 13:07:26 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/Debug/phpdoc/ezcDebug.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/Debug/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/trunk/Debug/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Debug/example_stylesheet.html" title="Example_stylesheet ">Example_stylesheet </a>
+	</li>
+
+</ul>
+
+		
+  <div class="phpdoc">
+    <h2>Apache Zeta Components Manual :: Docs For Class ezcDebug</h2>
+
+                  <h3>Debug::ezcDebug</h3>
+    
+<a name="sec-description"></a>
+<h3>Class ezcDebug</h3>
+
+<p>The ezcDebug class provides functionality to format and store debug messages and timers.</p><div><p>The functionality of the Debug component is two folded: </p><ul><li>Debug log messages</li><li>Timers</li></ul>  The log messages are heavily based on the EventLog log messages. In fact  internally the EventLog is used with its own log writer. The <a href="ezcDebug.html#methodlog">log()</a> method  is almost the same as from the EventLog. The next example demonstrates how to instantiate the  ezcDebug class and write some log messages:  <ol><li><div class="src-line">&#8192;<span class="src-var">$debug&#8192;</span>=&#8192;<span class="src-id"><a href="ezcDebug.html">ezcDebug</a></span><span class="src-sym">::</span><a href="ezcDebug.html#methodgetInstance">getInstance</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$debug</span><span class="src-sym">-&gt;</span><a href="ezcDebug.html#methodlog">log</a><span class="src-sym">(&#8192;</span><span class="src-str">"Connecting&#8192;with&#8192;the&#8192;paynet&#8192;server"</span><span class="src-sym">,&#8192;</span><span class="src-num">2&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;...</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$debug</span><span class="src-sym">-&gt;</span><a href="ezcDebug.html#methodlog">log</a><span class="src-sym">(&#8192;</span><span class="src-str">"Connection&#8192;failed,&#8192;retrying&#8192;in&#8192;5&#8192;seconds"</span><span class="src-sym">,&#8192;</span><span class="src-num">1&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;...</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$debug</span><span class="src-sym">-&gt;</span><a href="ezcDebug.html#methodlog">log</a><span class="src-sym">(&#8192;</span><span class="src-str">"Could&#8192;not&#8192;connect&#8192;with&#8192;the&#8192;server"</span><span class="src-sym">,&#8192;</span><span class="src-num">0&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol><p>The second parameter of the log method is the verbosity. This is a number that  specifies the importance of the log message. That makes it easier to sort out messages of less importance.  In this example, we assumed the more important the message, the lower the  verbosity number.</p><p>The ezcDebug timer is designed to allow the next two timing methods: </p><ul><li>Timers, the time between two points in the program.</li><li>Accumulators, gets the relative time after the script started.</li></ul>  The "Timers" are simply set with the methods <a href="ezcDebug.html#methodstartTimer">startTimer()</a> and <a href="ezcDebug.html#methodstopTimer">stopTimer()</a>. The next example  demonstrates the timing of a simple calculation:  <ol><li><div class="src-line">&#8192;<span class="src-var">$debug&#8192;</span>=&#8192;<span class="src-id"><a href="ezcDebug.html">ezcDebug</a></span><span class="src-sym">::</span><a href="ezcDebug.html#methodgetInstance">getInstance</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$debug</span><span class="src-sym">-&gt;</span><a href="ezcDebug.html#methodstartTimer">startTimer</a><span class="src-sym">(&#8192;</span><span class="src-str">"Simple&#8192;calculation"&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;Simple&#8192;calculation</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$result&#8192;</span>=&#8192;<span class="src-num">4&#8192;</span>+&#8192;<span class="src-num">6</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$debug</span><span class="src-sym">-&gt;</span><a href="ezcDebug.html#methodstopTimer">stopTimer</a><span class="src-sym">(&#8192;</span><span class="src-str">"Simple&#8192;calculation"&#8192;</span><span class="src-sym">)</span><span class="src-sym">;&#8192;</span><span class="src-comm">//&#8192;Parameter&#8192;can&#8192;be&#8192;omitted.</span></div></li>
+</ol><p>To get timing points, accumulators, use the <a href="ezcDebug.html#methodswitchTimer">switchTimer()</a> method. This is shown in the next example:  </p><ol><li><div class="src-line">&#8192;<span class="src-var">$debug&#8192;</span>=&#8192;<span class="src-id"><a href="ezcDebug.html">ezcDebug</a></span><span class="src-sym">::</span><a href="ezcDebug.html#methodgetInstance">getInstance</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$debug</span><span class="src-sym">-&gt;</span><a href="ezcDebug.html#methodstartTimer">startTimer</a><span class="src-sym">(&#8192;</span><span class="src-str">"My&#8192;script"&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;...</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$debug</span><span class="src-sym">-&gt;</span><a href="ezcDebug.html#methodswitchTimer">switchTimer</a><span class="src-sym">(&#8192;</span><span class="src-str">"Reading&#8192;ini&#8192;file"&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;...</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$debug</span><span class="src-sym">-&gt;</span><a href="ezcDebug.html#methodswitchTimer">switchTimer</a><span class="src-sym">(&#8192;</span><span class="src-str">"Initializing&#8192;template&#8192;parser"&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;...</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$debug</span><span class="src-sym">-&gt;</span><a href="ezcDebug.html#methodswitchTimer">switchTimer</a><span class="src-sym">(&#8192;</span><span class="src-str">"Parsing"&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;...</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$debug</span><span class="src-sym">-&gt;</span><a href="ezcDebug.html#methodstopTimer">stopTimer</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol></div>
+<p>Source for this file: <a href="http://fisheye6.atlassian.com/browse/zetacomponents/trunk/Debug/src/debug.php?r=HEAD">/Debug/src/debug.php</a></p>
+       
+
+
+
+
+  <table><tr><td>
+            <strong>Version:</strong>&#8192;&#8192;
+          </td>
+          <td>//autogentag//</td>
+        </tr></table><a name="sec-prop-summary"></a>
+  <h3>Properties</h3>
+  <table class="summary"><tr><td class="right">
+          <a name="prop%24options" id="$options"></a>
+          <a name="prop-%24options" id="$options"></a>
+          <em><a href="ezcDebugOptions.html">ezcDebugOptions</a></em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24options" title="details" class="var-name-summary">$options</a>
+                      </code>
+          <br><div style="margin-left: 20px">Options to configure the behaviour of ezcDebug, including stack            trace behaviours.</div>        </td>
+      </tr></table><a name="sec-var-summary"></a>
+  <h3>Member Variables</h3>
+  <table class="summary"><tr><td class="right">
+            <em>protected</em>            <em>array(string=&gt;mixed)</em>          </td>
+          <td>
+            <code>
+              $properties
+               = <span class="var-default">array()</span>            </code>
+            <br><div style="margin-left: 20px">Properties.</div>                      </td>
+        </tr></table><a name="sec-method-summary"></a>
+  <h3>Method Summary</h3>
+  <table class="summary"><tr><td class="right">
+            <em>public</em>            static
+                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#debugHandler"><b>debugHandler</b></a>(
+                                                                                    $errno
+                                                    ,                                     $errstr
+                                                    ,                                     $errfile
+                                                    ,                                     $errline
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Dispatches the message and error type to the correct debug or log  function.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>            static
+                        <em><a href="ezcDebug.html">ezcDebug</a></em>          </td>
+          <td>
+            <code>
+              <a href="#getInstance"><b>getInstance</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns the instance of this class.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#generateOutput"><b>generateOutput</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns the formatted debug output.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em><a href="/zetacomponents/documentation/trunk/EventLog/phpdoc/ezcLog.html">ezcLog</a></em>          </td>
+          <td>
+            <code>
+              <a href="#getEventLog"><b>getEventLog</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns the instance of the EventLog used in this class.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#log"><b>log</b></a>(
+                                                                                    $message
+                                                    ,                                     $verbosity
+                                                    ,                   [                  $extraInfo
+                   = array()]                                  ,                   [                  $stackTrace
+                   = false]                               )
+            </code>
+            <br><div style="margin-left: 20px">Writes the debug message $message with verbosity $verbosity.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#reset"><b>reset</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Resets the log messages and timer information.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#setOutputFormatter"><b>setOutputFormatter</b></a>(
+                                                                                    $formatter
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Sets the formatter $reporter for the output.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#startTimer"><b>startTimer</b></a>(
+                                                                                    $name
+                                                    ,                   [                  $group
+                   = null]                               )
+            </code>
+            <br><div style="margin-left: 20px">Starts the timer with the identifier $name.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#stopTimer"><b>stopTimer</b></a>(
+                                                                  [                  $name
+                   = false]                               )
+            </code>
+            <br><div style="margin-left: 20px">Stops the timer identified by $name.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#switchTimer"><b>switchTimer</b></a>(
+                                                                                    $newName
+                                                    ,                   [                  $oldName
+                   = false]                               )
+            </code>
+            <br><div style="margin-left: 20px">Stores the time from the running timer, and starts a new timer.</div>          </td>
+        </tr></table><a name="sec-methods"></a>
+  <h3>Methods</h3>
+  <a name="method_detail"></a>
+      <a name="methoddebugHandler" id="debugHandler"><!-- --></a>
+
+    <h4>debugHandler</h4>
+
+    <div class="method-signature">
+      static void
+      debugHandler(
+                                  int
+          $errno
+                            ,           string
+          $errstr
+                            ,           string
+          $errfile
+                            ,           int
+          $errline
+                        )
+    </div>
+
+      <p>Dispatches the message and error type to the correct debug or log  function.</p><div><p>This function should be used as the set_error_handler from the  trigger_error function.</p><p>Use for example the following code in your application:</p><p></p><ol><li><div class="src-line">&#8192;<span class="src-key">function&#8192;</span><a href="ezcDebug.html#methoddebugHandler">debugHandler</a><span class="src-sym">(&#8192;</span><span class="src-var">$a</span><span class="src-sym">,&#8192;</span><span class="src-var">$b</span><span class="src-sym">,&#8192;</span><span class="src-var">$c</span><span class="src-sym">,&#8192;</span><span class="src-var">$d&#8192;</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">{</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-id"><a href="ezcDebug.html">ezcDebug</a></span><span class="src-sym">::</span><a href="ezcDebug.html#methoddebugHandler">debugHandler</a><span class="src-sym">(&#8192;</span><span class="src-var">$a</span><span class="src-sym">,&#8192;</span><span class="src-var">$b</span><span class="src-sym">,&#8192;</span><span class="src-var">$c</span><span class="src-sym">,&#8192;</span><span class="src-var">$d&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">}</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<a href="http://www.php.net/set_error_handler">set_error_handler</a><span class="src-sym">(&#8192;</span><span class="src-str">"debugHandler"&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol><p>Use trigger_error() to log warning, error, etc:</p><p></p><ol><li><div class="src-line">&#8192;<a href="http://www.php.net/trigger_error">trigger_error</a><span class="src-sym">(&#8192;</span><span class="src-str">"[Paynet,&#8192;templates]&#8192;Cannot&#8192;load&#8192;template"</span><span class="src-sym">,&#8192;</span><span class="src-id">E_USER_WARNING&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol><p>See the PHP documentation of  <a href="http://php.net/trigger_error">trigger_error</a> for more information.</p></div>      
+              <h5>Parameters:</h5>
+        <table class="detail"><thead><tr><th>Name</th>
+              <th>Type</th>
+              <th class="desc">Description</th>
+            </tr></thead><tbody><tr><td><code>$errno</code></td>
+                <td><em>int</em></td>
+                <td>
+                                  </td>
+              </tr><tr><td><code>$errstr</code></td>
+                <td><em>string</em></td>
+                <td>
+                                  </td>
+              </tr><tr><td><code>$errfile</code></td>
+                <td><em>string</em></td>
+                <td>
+                                  </td>
+              </tr><tr><td><code>$errline</code></td>
+                <td><em>int</em></td>
+                <td>
+                                  </td>
+              </tr></tbody></table><a name="methodgetInstance" id="getInstance"><!-- --></a>
+
+    <h4>getInstance</h4>
+
+    <div class="method-signature">
+      static <a href="ezcDebug.html">ezcDebug</a>
+      getInstance(
+      )
+    </div>
+
+      <p>Returns the instance of this class.</p><div><p>When the ezcDebug instance is created it is automatically added to the instance  of ezcLog.</p></div>      
+      
+      
+      
+      
+      
+              
+        <a name="methodgenerateOutput" id="generateOutput"><!-- --></a>
+
+    <h4>generateOutput</h4>
+
+    <div class="method-signature">
+      string
+      generateOutput(
+      )
+    </div>
+
+    <p>Returns the formatted debug output.</p>
+    
+        
+
+    
+    
+    
+        <a name="methodgetEventLog" id="getEventLog"><!-- --></a>
+
+    <h4>getEventLog</h4>
+
+    <div class="method-signature">
+      <a href="/zetacomponents/documentation/trunk/EventLog/phpdoc/ezcLog.html">ezcLog</a>
+      getEventLog(
+      )
+    </div>
+
+    <p>Returns the instance of the EventLog used in this class.</p><div><p>The returned instance is not the same as retrieved via the  ezcLog::getInstance() method.</p></div>
+    
+        
+
+    
+    
+    
+          <a name="methodlog" id="log"><!-- --></a>
+
+    <h4>log</h4>
+
+    <div class="method-signature">
+      void
+      log(
+                                  string
+          $message
+                            ,           int
+          $verbosity
+                            ,           [
+          $extraInfo
+           = array()]                  ,           [bool
+          $stackTrace
+           = false]              )
+    </div>
+
+    <p>Writes the debug message $message with verbosity $verbosity.</p><div><p>Arbitrary $extraInfo can be submitted. If $stackTrace is set to true, a  stack trace will be stored at the current program position.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$message</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$verbosity</code></td>
+              <td><em>int</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$extraInfo</code></td>
+              <td><em>array(string=&gt;string)</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$stackTrace</code></td>
+              <td><em>bool</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodreset" id="reset"><!-- --></a>
+
+    <h4>reset</h4>
+
+    <div class="method-signature">
+      void
+      reset(
+      )
+    </div>
+
+    <p>Resets the log messages and timer information.</p>
+    
+        
+
+    
+    
+    
+        <a name="methodsetOutputFormatter" id="setOutputFormatter"><!-- --></a>
+
+    <h4>setOutputFormatter</h4>
+
+    <div class="method-signature">
+      void
+      setOutputFormatter(
+                                  <a href="ezcDebugOutputFormatter.html">ezcDebugOutputFormatter</a>
+          $formatter
+                        )
+    </div>
+
+    <p>Sets the formatter $reporter for the output.</p><div><p>If no formatter is set ezcDebugHtmlReporter will be used by default.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$formatter</code></td>
+              <td><em><a href="ezcDebugOutputFormatter.html">ezcDebugOutputFormatter</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodstartTimer" id="startTimer"><!-- --></a>
+
+    <h4>startTimer</h4>
+
+    <div class="method-signature">
+      void
+      startTimer(
+                                  string
+          $name
+                            ,           [string
+          $group
+           = null]              )
+    </div>
+
+    <p>Starts the timer with the identifier $name.</p><div><p>Optionally, a timer group can be given with the $group parameter.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$name</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$group</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodstopTimer" id="stopTimer"><!-- --></a>
+
+    <h4>stopTimer</h4>
+
+    <div class="method-signature">
+      void
+      stopTimer(
+                                  [string|bool
+          $name
+           = false]              )
+    </div>
+
+    <p>Stops the timer identified by $name.</p><div><p>$name can be omitted (false) if only one timer is running.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$name</code></td>
+              <td><em>string|bool</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodswitchTimer" id="switchTimer"><!-- --></a>
+
+    <h4>switchTimer</h4>
+
+    <div class="method-signature">
+      void
+      switchTimer(
+                                  string
+          $newName
+                            ,           [string|bool
+          $oldName
+           = false]              )
+    </div>
+
+    <p>Stores the time from the running timer, and starts a new timer.</p><div><p>Stores the time for $oldTimer (maybe omitted if only 1 timer is running)  and starts a new timer with $newName.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$newName</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$oldName</code></td>
+              <td><em>string|bool</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><div class="credit">
+      Documentation generated by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+    </div>
+  </div>
+  
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

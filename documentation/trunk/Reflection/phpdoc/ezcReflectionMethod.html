@@ -1,0 +1,1844 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="PHP, apache, components, framework, quality" />
+	<meta name="author" content="dotxp" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Wed, 04 Aug 2010 13:07:55 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="ezcReflectionMethod.html" />
+	<meta name="DC.creator" content="dotxp" />
+	<meta name="DC.date" content="Wed, 04 Aug 2010 13:07:55 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/Reflection/phpdoc/ezcReflectionMethod.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li class="requested">
+	<a href="/zetacomponents/documentation/trunk/Reflection/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+
+</ul>
+
+		
+  <div class="phpdoc">
+    <h2>Apache Zeta Components Manual :: Docs For Class ezcReflectionMethod</h2>
+
+                  <h3>Reflection::ezcReflectionMethod</h3>
+    
+<a name="sec-description"></a>
+<h3>Class ezcReflectionMethod</h3>
+
+<p>Extends the ReflectionMethod class to provide type information  using PHPDoc annotations.</p>
+<p>Source for this file: <a href="http://fisheye6.atlassian.com/browse/zetacomponents/trunk/Reflection/src/method.php?r=HEAD">/Reflection/src/method.php</a></p>
+       
+
+
+<pre>ReflectionMethod
+   |
+   --ezcReflectionMethod</pre>
+
+
+  <table><tr><td>
+            <strong>Version:</strong>&#8192;&#8192;
+          </td>
+          <td>//autogen//</td>
+        </tr></table><a name="sec-inherited-consts"></a>
+  <h3>Inherited Constants</h3>
+  <table class="summary"><thead><tr><th colspan="2">
+              From <span class="classname">ReflectionMethod (Internal Class)</span>:
+            </th>
+          </tr></thead><tbody><tr><td class="right">
+                <code>IS_ABSTRACT = 2</code>
+              </td>
+              <td>
+                              </td>
+            </tr><tr><td class="right">
+                <code>IS_FINAL = 4</code>
+              </td>
+              <td>
+                              </td>
+            </tr><tr><td class="right">
+                <code>IS_PRIVATE = 1024</code>
+              </td>
+              <td>
+                              </td>
+            </tr><tr><td class="right">
+                <code>IS_PROTECTED = 512</code>
+              </td>
+              <td>
+                              </td>
+            </tr><tr><td class="right">
+                <code>IS_PUBLIC = 256</code>
+              </td>
+              <td>
+                              </td>
+            </tr><tr><td class="right">
+                <code>IS_STATIC = 1</code>
+              </td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="sec-var-summary"></a>
+  <h3>Member Variables</h3>
+  <table class="summary"><tr><td class="right">
+            <em>protected</em>            <em>ReflectionClass</em>          </td>
+          <td>
+            <code>
+              $currentClass
+                          </code>
+                                  </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            <em><a href="ezcReflectionDocCommentParser.html">ezcReflectionDocCommentParser</a></em>          </td>
+          <td>
+            <code>
+              $docParser
+                          </code>
+                                  </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            <em>ReflectionMethod</em>          </td>
+          <td>
+            <code>
+              $reflectionSource
+               = <span class="var-default"> null</span>            </code>
+                                  </td>
+        </tr></table><h3>Inherited Member Variables</h3>
+  <table class="summary"><thead><tr><th colspan="2">
+            From <span class="classname">ReflectionMethod (Internal Class)</span>         
+          </th>
+        </tr></thead><tbody><tr><td class="right">
+              <em>public</em>                          </td>
+            <td>
+              <code>$class</code>
+              
+            </td>
+          </tr><tr><td class="right">
+              <em>public</em>                          </td>
+            <td>
+              <code>$name</code>
+              
+            </td>
+          </tr></tbody></table><a name="sec-method-summary"></a>
+  <h3>Method Summary</h3>
+  <table class="summary"><tr><td class="right">
+            <em>public</em>            static
+                        <em>mixed</em>          </td>
+          <td>
+            <code>
+              <a href="#export"><b>export</b></a>(
+                                                                                    $class
+                                                    ,                                     $name
+                                                    ,                   [                  $return
+                   = false]                               )
+            </code>
+            <br><div style="margin-left: 20px">Exports a reflection method object.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>ezcReflectionMethod</em>          </td>
+          <td>
+            <code>
+              <a href="#__construct"><b>__construct</b></a>(
+                                                                                    $classOrSource
+                                                    ,                   [                  $nameOrSource
+                   = null]                               )
+            </code>
+            <br><div style="margin-left: 20px">Constructs an new ezcReflectionMethod</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>mixed</em>          </td>
+          <td>
+            <code>
+              <a href="#forwardCallToReflectionSource"><b>forwardCallToReflectionSource</b></a>(
+                                                                                    $method
+                                                    ,                   [                  $arguments
+                   = array()]                               )
+            </code>
+            <br><div style="margin-left: 20px">Forwards a method invocation to either the reflection source passed to  the constructor of this class when creating an instance or to the parent  class.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>ezcReflectionAnnotation[]</em>          </td>
+          <td>
+            <code>
+              <a href="#getAnnotations"><b>getAnnotations</b></a>(
+                                                                  [                  $name
+                   = '']                               )
+            </code>
+            <br><div style="margin-left: 20px">Returns an array of annotations (optinally only annotations of a given name)</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#getCode"><b>getCode</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns the source code of the method</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em><a href="ezcReflectionClass.html">ezcReflectionClass</a></em>          </td>
+          <td>
+            <code>
+              <a href="#getCurrentClass"><b>getCurrentClass</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns the class of the reflected method, which is not necesarily the  declaring class.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em><a href="ezcReflectionClass.html">ezcReflectionClass</a></em>          </td>
+          <td>
+            <code>
+              <a href="#getDeclaringClass"><b>getDeclaringClass</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns the class the method was declared in</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#getDocComment"><b>getDocComment</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns the doc comment for the method.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>integer</em>          </td>
+          <td>
+            <code>
+              <a href="#getEndLine"><b>getEndLine</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns the line this method's declaration ends at</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em><a href="ezcReflectionExtension.html">ezcReflectionExtension</a></em>          </td>
+          <td>
+            <code>
+              <a href="#getExtension"><b>getExtension</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns NULL or the extension the method belongs to</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>string|boolean</em>          </td>
+          <td>
+            <code>
+              <a href="#getExtensionName"><b>getExtensionName</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns false or the name of the extension the method belongs to</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#getFileName"><b>getFileName</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns the filename of the file this function was declared in</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#getLongDescription"><b>getLongDescription</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns the long description from the method's documentation</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>integer</em>          </td>
+          <td>
+            <code>
+              <a href="#getModifiers"><b>getModifiers</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns a bitfield of the access modifiers for this method</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#getName"><b>getName</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Name of the method</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#getNamespaceName"><b>getNamespaceName</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns the name of namespace where this method is defined</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>integer</em>          </td>
+          <td>
+            <code>
+              <a href="#getNumberOfParameters"><b>getNumberOfParameters</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns the number of parameters</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>integer</em>          </td>
+          <td>
+            <code>
+              <a href="#getNumberOfRequiredParameters"><b>getNumberOfRequiredParameters</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns the number of required parameters</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>ezcReflectionParameter[]</em>          </td>
+          <td>
+            <code>
+              <a href="#getParameters"><b>getParameters</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns the parameters of the method as ezcReflectionParameter objects</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em><a href="ezcReflectionClass.html">ezcReflectionClass</a></em>          </td>
+          <td>
+            <code>
+              <a href="#getPrototype"><b>getPrototype</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns the prototype.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#getReturnDescription"><b>getReturnDescription</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns the description after a PHPDoc annotation</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em><a href="ezcReflectionType.html">ezcReflectionType</a></em>          </td>
+          <td>
+            <code>
+              <a href="#getReturnType"><b>getReturnType</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns the type defined in PHPDoc annotations</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#getShortDescription"><b>getShortDescription</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns the short description from the method's documentation</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#getShortName"><b>getShortName</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns the short name of the method (without namespace part)</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>integer</em>          </td>
+          <td>
+            <code>
+              <a href="#getStartLine"><b>getStartLine</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns the line this method's declaration starts at</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>array<sting></sting></em>          </td>
+          <td>
+            <code>
+              <a href="#getStaticVariables"><b>getStaticVariables</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns an associative array containing this method's static variables  and their values</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>boolean</em>          </td>
+          <td>
+            <code>
+              <a href="#hasAnnotation"><b>hasAnnotation</b></a>(
+                                                                                    $annotation
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Checks whether the method is annotated with the annotation $annotation</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>boolean</em>          </td>
+          <td>
+            <code>
+              <a href="#inNamespace"><b>inNamespace</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns whether this method is defined in a namespace</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>mixed</em>          </td>
+          <td>
+            <code>
+              <a href="#invoke"><b>invoke</b></a>(
+                                                                                    $object
+                                                    ,                                     $arguments
+                                                    ,                                     $argument,...
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Invokes the method on a given object</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>mixed</em>          </td>
+          <td>
+            <code>
+              <a href="#invokeArgs"><b>invokeArgs</b></a>(
+                                                                                    $object
+                                                    ,                                     $arguments
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Invokes the Method and allows to pass its arguments as an array</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>boolean</em>          </td>
+          <td>
+            <code>
+              <a href="#isAbstract"><b>isAbstract</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns whether this method is abstract</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>boolean</em>          </td>
+          <td>
+            <code>
+              <a href="#isClosure"><b>isClosure</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns whether this is a closure</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>boolean</em>          </td>
+          <td>
+            <code>
+              <a href="#isConstructor"><b>isConstructor</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns whether this method is a constructor</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>boolean</em>          </td>
+          <td>
+            <code>
+              <a href="#isDeprecated"><b>isDeprecated</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns whether this method is deprecated.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>boolean</em>          </td>
+          <td>
+            <code>
+              <a href="#isDestructor"><b>isDestructor</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns whether this method is a destructor</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>boolean</em>          </td>
+          <td>
+            <code>
+              <a href="#isFinal"><b>isFinal</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns whether this method is final</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>boolean</em>          </td>
+          <td>
+            <code>
+              <a href="#isInherited"><b>isInherited</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Checks if this is already available in the parent class</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>boolean</em>          </td>
+          <td>
+            <code>
+              <a href="#isInternal"><b>isInternal</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns whether this is an internal method</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>boolean</em>          </td>
+          <td>
+            <code>
+              <a href="#isIntroduced"><b>isIntroduced</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Checks if this method is appeared first in the current class</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>boolean</em>          </td>
+          <td>
+            <code>
+              <a href="#isMagic"><b>isMagic</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Checks if this method is a 'Magic Method' or not</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>boolean</em>          </td>
+          <td>
+            <code>
+              <a href="#isOverridden"><b>isOverridden</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Checks if this method is redefined in this class</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>boolean</em>          </td>
+          <td>
+            <code>
+              <a href="#isPrivate"><b>isPrivate</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns whether this method is private</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>boolean</em>          </td>
+          <td>
+            <code>
+              <a href="#isProtected"><b>isProtected</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns whether this method is protected</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>boolean</em>          </td>
+          <td>
+            <code>
+              <a href="#isPublic"><b>isPublic</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns whether this method is public</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>boolean</em>          </td>
+          <td>
+            <code>
+              <a href="#isStatic"><b>isStatic</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns whether this method is static</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>boolean</em>          </td>
+          <td>
+            <code>
+              <a href="#isUserDefined"><b>isUserDefined</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns whether this is a user-defined method</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>boolean</em>          </td>
+          <td>
+            <code>
+              <a href="#returnsReference"><b>returnsReference</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns whether this method returns a reference</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>mixed</em>          </td>
+          <td>
+            <code>
+              <a href="#__call"><b>__call</b></a>(
+                                                                                    $method
+                                                    ,                                     $arguments
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Use overloading to call additional methods  of the ReflectionMethod instance given to the constructor.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#__toString"><b>__toString</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns a string representation</div>          </td>
+        </tr></table><h3>Inherited Methods</h3>
+  <table class="summary"><thead><tr><th colspan="2">
+            From <span class="classname">ReflectionMethod (Internal Class)</span>
+          </th>
+        </tr></thead><tbody><tr><td class="right">
+              <em>public</em>                                          <em>ReflectionMethod</em>            </td>
+            <td>
+              <code><b>constructor __construct ( $class_or_method, [$name = ] )</b></code>
+                                        </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b>export ( $class, $name, [$return = ] )</b></code>
+                                        </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b>getDeclaringClass (  )</b></code>
+                                        </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b>getDocComment (  )</b></code>
+                                        </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b>getEndLine (  )</b></code>
+                                        </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b>getExtension (  )</b></code>
+                                        </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b>getExtensionName (  )</b></code>
+                                        </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b>getFileName (  )</b></code>
+                                        </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b>getModifiers (  )</b></code>
+                                        </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b>getName (  )</b></code>
+                                        </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b>getNamespaceName (  )</b></code>
+                                        </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b>getNumberOfParameters (  )</b></code>
+                                        </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b>getNumberOfRequiredParameters (  )</b></code>
+                                        </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b>getParameters (  )</b></code>
+                                        </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b>getPrototype (  )</b></code>
+                                        </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b>getShortName (  )</b></code>
+                                        </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b>getStartLine (  )</b></code>
+                                        </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b>getStaticVariables (  )</b></code>
+                                        </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b>inNamespace (  )</b></code>
+                                        </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b>invoke ( $object, $args )</b></code>
+                                        </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b>invokeArgs ( $object, $args )</b></code>
+                                        </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b>isAbstract (  )</b></code>
+                                        </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b>isClosure (  )</b></code>
+                                        </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b>isConstructor (  )</b></code>
+                                        </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b>isDeprecated (  )</b></code>
+                                        </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b>isDestructor (  )</b></code>
+                                        </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b>isFinal (  )</b></code>
+                                        </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b>isInternal (  )</b></code>
+                                        </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b>isPrivate (  )</b></code>
+                                        </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b>isProtected (  )</b></code>
+                                        </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b>isPublic (  )</b></code>
+                                        </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b>isStatic (  )</b></code>
+                                        </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b>isUserDefined (  )</b></code>
+                                        </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b>returnsReference (  )</b></code>
+                                        </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b>setAccessible ( $value )</b></code>
+                                        </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b>__clone (  )</b></code>
+                                        </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b>__toString (  )</b></code>
+                                        </td>
+          </tr></tbody></table><a name="sec-methods"></a>
+  <h3>Methods</h3>
+  <a name="method_detail"></a>
+        <a name="methodexport" id="export"><!-- --></a>
+
+    <h4>export</h4>
+
+    <div class="method-signature">
+      static mixed
+      export(
+                                  string|object 
+          $class
+                            ,           string
+          $name
+                            ,           [boolean
+          $return
+           = false]              )
+    </div>
+
+      <p>Exports a reflection method object.</p><div><p>Returns the output if TRUE is specified for $return, printing it otherwise.  This is purely a wrapper method, which calls the corresponding method of  the parent class (ReflectionMethod::export()).</p></div>      
+              <h5>Parameters:</h5>
+        <table class="detail"><thead><tr><th>Name</th>
+              <th>Type</th>
+              <th class="desc">Description</th>
+            </tr></thead><tbody><tr><td><code>$class</code></td>
+                <td><em>string|object </em></td>
+                <td>
+                                      Name or instance of the class declaring the method
+                                  </td>
+              </tr><tr><td><code>$name</code></td>
+                <td><em>string</em></td>
+                <td>
+                                      Name of the method
+                                  </td>
+              </tr><tr><td><code>$return</code></td>
+                <td><em>boolean</em></td>
+                <td>
+                                      Whether to return (TRUE) or print (FALSE) the output
+                                  </td>
+              </tr></tbody></table><h5>Redefinition of:</h5>
+        <table class="detail"><thead><tr><th>Method</th>
+              <th class="desc">Description</th>
+            </tr></thead><tbody><tr><td><code>ReflectionMethod::export ( $class, $name, [$return = ] )</code></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="method__construct" id="__construct"><!-- --></a>
+
+    <h4>__construct</h4>
+
+    <div class="method-signature">
+      ezcReflectionMethod
+      __construct(
+                                  string|ReflectionClass|ReflectionMethod
+          $classOrSource
+                            ,           [string|ReflectionMethod
+          $nameOrSource
+           = null]              )
+    </div>
+
+    <p>Constructs an new ezcReflectionMethod</p><div><p>Usage Examples:  </p><ol><li><div class="src-line">&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcReflectionMethod.html">ezcReflectionMethod</a></span><span class="src-sym">(&#8192;</span><span class="src-str">'SomeClass'</span><span class="src-sym">,&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;</span><span class="src-str">'someMethod'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcReflectionMethod.html">ezcReflectionMethod</a></span><span class="src-sym">(&#8192;</span><span class="src-key">new&#8192;</span><span class="src-id">ReflectionClass</span><span class="src-sym">(&#8192;</span><span class="src-str">'SomeClass'&#8192;</span><span class="src-sym">)</span><span class="src-sym">,&#8192;</span><span class="src-str">'someMethod'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcReflectionMethod.html">ezcReflectionMethod</a></span><span class="src-sym">(&#8192;</span><span class="src-str">'SomeClass'</span><span class="src-sym">,&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;</span><span class="src-key">new&#8192;</span><span class="src-id">ReflectionMethod</span><span class="src-sym">(&#8192;</span><span class="src-str">'SomeClass'</span><span class="src-sym">,&#8192;</span><span class="src-str">'someMethod'&#8192;</span><span class="src-sym">)&#8192;)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcReflectionMethod.html">ezcReflectionMethod</a></span><span class="src-sym">(&#8192;</span><span class="src-key">new&#8192;</span><span class="src-id">ReflectionClass</span><span class="src-sym">(&#8192;</span><span class="src-str">'SomeClass'&#8192;</span><span class="src-sym">)</span><span class="src-sym">,&#8192;</span><span class="src-key">new&#8192;</span><span class="src-id">ReflectionMethod</span><span class="src-sym">(&#8192;</span><span class="src-str">'SomeClass'</span><span class="src-sym">,&#8192;</span><span class="src-str">'someMethod'&#8192;</span><span class="src-sym">)&#8192;)</span><span class="src-sym">;</span></div></li>
+</ol><p>The following way of creating an ezcReflectionMethod results in the  current class being the declaring class, i.e., isInherited() and  isIntroduced() may not return the expected results:  </p><ol><li><div class="src-line">&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcReflectionMethod.html">ezcReflectionMethod</a></span><span class="src-sym">(&#8192;</span><span class="src-key">new&#8192;</span><span class="src-id">ReflectionMethod</span><span class="src-sym">(&#8192;</span><span class="src-str">'SomeClass'</span><span class="src-sym">,&#8192;</span><span class="src-str">'someMethod'&#8192;</span><span class="src-sym">)&#8192;)</span><span class="src-sym">;</span></div></li>
+</ol></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$classOrSource</code></td>
+              <td><em>string|ReflectionClass|ReflectionMethod</em></td>
+              <td>
+                                  Name of class, ReflectionClass, or ReflectionMethod of the method         to be reflected
+                              </td>
+            </tr><tr><td><code>$nameOrSource</code></td>
+              <td><em>string|ReflectionMethod</em></td>
+              <td>
+                                  Name or ReflectionMethod instance of the method to be reflected         Optional if $classOrSource is an instance of ReflectionMethod
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>ReflectionMethod::constructor __construct ( $class_or_method, [$name = ] )</code></td>
+            <td>
+                          </td>
+          </tr></tbody></table><a name="methodforwardCallToReflectionSource" id="forwardCallToReflectionSource"><!-- --></a>
+
+    <h4>forwardCallToReflectionSource</h4>
+
+    <div class="method-signature">
+      mixed
+      forwardCallToReflectionSource(
+                                  string
+          $method
+                            ,           [mixed[]
+          $arguments
+           = array()]              )
+    </div>
+
+    <p>Forwards a method invocation to either the reflection source passed to  the constructor of this class when creating an instance or to the parent  class.</p><div><p>This method is part of the dependency injection mechanism and serves as  a helper for implementing wrapper methods without code duplication.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$method</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  Name of the method to be invoked
+                              </td>
+            </tr><tr><td><code>$arguments</code></td>
+              <td><em>mixed[]</em></td>
+              <td>
+                                  Arguments to be passed to the method
+                              </td>
+            </tr></tbody></table><a name="methodgetAnnotations" id="getAnnotations"><!-- --></a>
+
+    <h4>getAnnotations</h4>
+
+    <div class="method-signature">
+      ezcReflectionAnnotation[]
+      getAnnotations(
+                                  [string
+          $name
+           = '']              )
+    </div>
+
+    <p>Returns an array of annotations (optinally only annotations of a given name)</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$name</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  Name of the annotations
+                              </td>
+            </tr></tbody></table><a name="methodgetCode" id="getCode"><!-- --></a>
+
+    <h4>getCode</h4>
+
+    <div class="method-signature">
+      string
+      getCode(
+      )
+    </div>
+
+    <p>Returns the source code of the method</p>
+    
+        
+
+    
+    
+    
+        <a name="methodgetCurrentClass" id="getCurrentClass"><!-- --></a>
+
+    <h4>getCurrentClass</h4>
+
+    <div class="method-signature">
+      <a href="ezcReflectionClass.html">ezcReflectionClass</a>
+      getCurrentClass(
+      )
+    </div>
+
+    <p>Returns the class of the reflected method, which is not necesarily the  declaring class.</p>
+    
+        
+
+    
+    
+    
+        <a name="methodgetDeclaringClass" id="getDeclaringClass"><!-- --></a>
+
+    <h4>getDeclaringClass</h4>
+
+    <div class="method-signature">
+      <a href="ezcReflectionClass.html">ezcReflectionClass</a>
+      getDeclaringClass(
+      )
+    </div>
+
+    <p>Returns the class the method was declared in</p>
+    
+        
+
+          <h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>ReflectionMethod::getDeclaringClass (  )</code></td>
+            <td>
+                          </td>
+          </tr></tbody></table><a name="methodgetDocComment" id="getDocComment"><!-- --></a>
+
+    <h4>getDocComment</h4>
+
+    <div class="method-signature">
+      string
+      getDocComment(
+      )
+    </div>
+
+    <p>Returns the doc comment for the method.</p>
+    
+        
+
+          <h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>ReflectionMethod::getDocComment (  )</code></td>
+            <td>
+                          </td>
+          </tr></tbody></table><a name="methodgetEndLine" id="getEndLine"><!-- --></a>
+
+    <h4>getEndLine</h4>
+
+    <div class="method-signature">
+      integer
+      getEndLine(
+      )
+    </div>
+
+    <p>Returns the line this method's declaration ends at</p>
+    
+        
+
+          <h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>ReflectionMethod::getEndLine (  )</code></td>
+            <td>
+                          </td>
+          </tr></tbody></table><a name="methodgetExtension" id="getExtension"><!-- --></a>
+
+    <h4>getExtension</h4>
+
+    <div class="method-signature">
+      <a href="ezcReflectionExtension.html">ezcReflectionExtension</a>
+      getExtension(
+      )
+    </div>
+
+    <p>Returns NULL or the extension the method belongs to</p>
+    
+        
+
+          <h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>ReflectionMethod::getExtension (  )</code></td>
+            <td>
+                          </td>
+          </tr></tbody></table><a name="methodgetExtensionName" id="getExtensionName"><!-- --></a>
+
+    <h4>getExtensionName</h4>
+
+    <div class="method-signature">
+      string|boolean
+      getExtensionName(
+      )
+    </div>
+
+    <p>Returns false or the name of the extension the method belongs to</p>
+    
+        
+
+          <h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>ReflectionMethod::getExtensionName (  )</code></td>
+            <td>
+                          </td>
+          </tr></tbody></table><a name="methodgetFileName" id="getFileName"><!-- --></a>
+
+    <h4>getFileName</h4>
+
+    <div class="method-signature">
+      string
+      getFileName(
+      )
+    </div>
+
+    <p>Returns the filename of the file this function was declared in</p>
+    
+        
+
+          <h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>ReflectionMethod::getFileName (  )</code></td>
+            <td>
+                          </td>
+          </tr></tbody></table><a name="methodgetLongDescription" id="getLongDescription"><!-- --></a>
+
+    <h4>getLongDescription</h4>
+
+    <div class="method-signature">
+      string
+      getLongDescription(
+      )
+    </div>
+
+    <p>Returns the long description from the method's documentation</p>
+    
+        
+
+    
+    
+    
+        <a name="methodgetModifiers" id="getModifiers"><!-- --></a>
+
+    <h4>getModifiers</h4>
+
+    <div class="method-signature">
+      integer
+      getModifiers(
+      )
+    </div>
+
+    <p>Returns a bitfield of the access modifiers for this method</p>
+    
+        
+
+          <h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>ReflectionMethod::getModifiers (  )</code></td>
+            <td>
+                          </td>
+          </tr></tbody></table><a name="methodgetName" id="getName"><!-- --></a>
+
+    <h4>getName</h4>
+
+    <div class="method-signature">
+      string
+      getName(
+      )
+    </div>
+
+    <p>Name of the method</p>
+    
+        
+
+          <h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>ReflectionMethod::getName (  )</code></td>
+            <td>
+                          </td>
+          </tr></tbody></table><a name="methodgetNamespaceName" id="getNamespaceName"><!-- --></a>
+
+    <h4>getNamespaceName</h4>
+
+    <div class="method-signature">
+      string
+      getNamespaceName(
+      )
+    </div>
+
+    <p>Returns the name of namespace where this method is defined</p><div><p>This is purely a wrapper method, which either calls the corresponding  method of the parent class or forwards the call to the ReflectionClass  instance passed to the constructor.</p></div>
+    
+        
+
+          <h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>ReflectionMethod::getNamespaceName (  )</code></td>
+            <td>
+                          </td>
+          </tr></tbody></table><a name="methodgetNumberOfParameters" id="getNumberOfParameters"><!-- --></a>
+
+    <h4>getNumberOfParameters</h4>
+
+    <div class="method-signature">
+      integer
+      getNumberOfParameters(
+      )
+    </div>
+
+    <p>Returns the number of parameters</p>
+    
+        
+
+          <h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>ReflectionMethod::getNumberOfParameters (  )</code></td>
+            <td>
+                          </td>
+          </tr></tbody></table><a name="methodgetNumberOfRequiredParameters" id="getNumberOfRequiredParameters"><!-- --></a>
+
+    <h4>getNumberOfRequiredParameters</h4>
+
+    <div class="method-signature">
+      integer
+      getNumberOfRequiredParameters(
+      )
+    </div>
+
+    <p>Returns the number of required parameters</p>
+    
+        
+
+          <h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>ReflectionMethod::getNumberOfRequiredParameters (  )</code></td>
+            <td>
+                          </td>
+          </tr></tbody></table><a name="methodgetParameters" id="getParameters"><!-- --></a>
+
+    <h4>getParameters</h4>
+
+    <div class="method-signature">
+      ezcReflectionParameter[]
+      getParameters(
+      )
+    </div>
+
+    <p>Returns the parameters of the method as ezcReflectionParameter objects</p>
+    
+        
+
+          <h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>ReflectionMethod::getParameters (  )</code></td>
+            <td>
+                          </td>
+          </tr></tbody></table><a name="methodgetPrototype" id="getPrototype"><!-- --></a>
+
+    <h4>getPrototype</h4>
+
+    <div class="method-signature">
+      <a href="ezcReflectionClass.html">ezcReflectionClass</a>
+      getPrototype(
+      )
+    </div>
+
+    <p>Returns the prototype.</p><div><p>This is mostly a wrapper method, which calls the corresponding method of  the parent class. The only difference is that it returns an instance  ezcReflectionClass instead of a ReflectionClass instance</p></div>
+    
+          <h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>ReflectionException</code></td>
+              <td>
+                                  if the method has no prototype
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>ReflectionMethod::getPrototype (  )</code></td>
+            <td>
+                          </td>
+          </tr></tbody></table><a name="methodgetReturnDescription" id="getReturnDescription"><!-- --></a>
+
+    <h4>getReturnDescription</h4>
+
+    <div class="method-signature">
+      string
+      getReturnDescription(
+      )
+    </div>
+
+    <p>Returns the description after a PHPDoc annotation</p>
+    
+        
+
+    
+    
+    
+        <a name="methodgetReturnType" id="getReturnType"><!-- --></a>
+
+    <h4>getReturnType</h4>
+
+    <div class="method-signature">
+      <a href="ezcReflectionType.html">ezcReflectionType</a>
+      getReturnType(
+      )
+    </div>
+
+    <p>Returns the type defined in PHPDoc annotations</p>
+    
+        
+
+    
+    
+    
+        <a name="methodgetShortDescription" id="getShortDescription"><!-- --></a>
+
+    <h4>getShortDescription</h4>
+
+    <div class="method-signature">
+      string
+      getShortDescription(
+      )
+    </div>
+
+    <p>Returns the short description from the method's documentation</p>
+    
+        
+
+    
+    
+    
+        <a name="methodgetShortName" id="getShortName"><!-- --></a>
+
+    <h4>getShortName</h4>
+
+    <div class="method-signature">
+      string
+      getShortName(
+      )
+    </div>
+
+    <p>Returns the short name of the method (without namespace part)</p><div><p>This is purely a wrapper method, which either calls the corresponding  method of the parent class or forwards the call to the ReflectionClass  instance passed to the constructor.</p></div>
+    
+        
+
+          <h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>ReflectionMethod::getShortName (  )</code></td>
+            <td>
+                          </td>
+          </tr></tbody></table><a name="methodgetStartLine" id="getStartLine"><!-- --></a>
+
+    <h4>getStartLine</h4>
+
+    <div class="method-signature">
+      integer
+      getStartLine(
+      )
+    </div>
+
+    <p>Returns the line this method's declaration starts at</p>
+    
+        
+
+          <h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>ReflectionMethod::getStartLine (  )</code></td>
+            <td>
+                          </td>
+          </tr></tbody></table><a name="methodgetStaticVariables" id="getStaticVariables"><!-- --></a>
+
+    <h4>getStaticVariables</h4>
+
+    <div class="method-signature">
+      array<sting>
+      getStaticVariables(
+      )
+    </sting></div>
+
+    <p>Returns an associative array containing this method's static variables  and their values</p>
+    
+        
+
+          <h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>ReflectionMethod::getStaticVariables (  )</code></td>
+            <td>
+                          </td>
+          </tr></tbody></table><a name="methodhasAnnotation" id="hasAnnotation"><!-- --></a>
+
+    <h4>hasAnnotation</h4>
+
+    <div class="method-signature">
+      boolean
+      hasAnnotation(
+                                  string
+          $annotation
+                        )
+    </div>
+
+    <p>Checks whether the method is annotated with the annotation $annotation</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$annotation</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  Name of the annotation
+                              </td>
+            </tr></tbody></table><a name="methodinNamespace" id="inNamespace"><!-- --></a>
+
+    <h4>inNamespace</h4>
+
+    <div class="method-signature">
+      boolean
+      inNamespace(
+      )
+    </div>
+
+    <p>Returns whether this method is defined in a namespace</p><div><p>This is purely a wrapper method, which either calls the corresponding  method of the parent class or forwards the call to the ReflectionClass  instance passed to the constructor.</p></div>
+    
+        
+
+          <h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>ReflectionMethod::inNamespace (  )</code></td>
+            <td>
+                          </td>
+          </tr></tbody></table><a name="methodinvoke" id="invoke"><!-- --></a>
+
+    <h4>invoke</h4>
+
+    <div class="method-signature">
+      mixed
+      invoke(
+                                  object
+          $object
+                            ,           
+          $arguments
+                            ,           mixed
+          $argument,...
+                        )
+    </div>
+
+    <p>Invokes the method on a given object</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$object</code></td>
+              <td><em>object</em></td>
+              <td>
+                                  Instance of the class defining this method
+                              </td>
+            </tr><tr><td><code>$argument,...</code></td>
+              <td><em>mixed</em></td>
+              <td>
+                                  Arguments for the method
+                              </td>
+            </tr><tr><td><code>$arguments</code></td>
+              <td><em></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>ReflectionMethod::invoke ( $object, $args )</code></td>
+            <td>
+                          </td>
+          </tr></tbody></table><a name="methodinvokeArgs" id="invokeArgs"><!-- --></a>
+
+    <h4>invokeArgs</h4>
+
+    <div class="method-signature">
+      mixed
+      invokeArgs(
+                                  object
+          $object
+                            ,           
+          $arguments
+                        )
+    </div>
+
+    <p>Invokes the Method and allows to pass its arguments as an array</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$object</code></td>
+              <td><em>object</em></td>
+              <td>
+                                  Instance of the class defining this method
+                              </td>
+            </tr><tr><td><code>$arguments</code></td>
+              <td><em>array<integer></integer></em></td>
+              <td>
+                                  Arguments
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>ReflectionMethod::invokeArgs ( $object, $args )</code></td>
+            <td>
+                          </td>
+          </tr></tbody></table><a name="methodisAbstract" id="isAbstract"><!-- --></a>
+
+    <h4>isAbstract</h4>
+
+    <div class="method-signature">
+      boolean
+      isAbstract(
+      )
+    </div>
+
+    <p>Returns whether this method is abstract</p>
+    
+        
+
+          <h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>ReflectionMethod::isAbstract (  )</code></td>
+            <td>
+                          </td>
+          </tr></tbody></table><a name="methodisClosure" id="isClosure"><!-- --></a>
+
+    <h4>isClosure</h4>
+
+    <div class="method-signature">
+      boolean
+      isClosure(
+      )
+    </div>
+
+    <p>Returns whether this is a closure</p><div><p>This is purely a wrapper method, which either calls the corresponding  method of the parent class or forwards the call to the ReflectionClass  instance passed to the constructor.</p></div>
+    
+        
+
+          <h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>ReflectionMethod::isClosure (  )</code></td>
+            <td>
+                          </td>
+          </tr></tbody></table><a name="methodisConstructor" id="isConstructor"><!-- --></a>
+
+    <h4>isConstructor</h4>
+
+    <div class="method-signature">
+      boolean
+      isConstructor(
+      )
+    </div>
+
+    <p>Returns whether this method is a constructor</p>
+    
+        
+
+          <h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>ReflectionMethod::isConstructor (  )</code></td>
+            <td>
+                          </td>
+          </tr></tbody></table><a name="methodisDeprecated" id="isDeprecated"><!-- --></a>
+
+    <h4>isDeprecated</h4>
+
+    <div class="method-signature">
+      boolean
+      isDeprecated(
+      )
+    </div>
+
+    <p>Returns whether this method is deprecated.</p><div><p>This is purely a wrapper method, which calls the corresponding method of  the parent class.</p></div>
+    
+        
+
+          <h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>ReflectionMethod::isDeprecated (  )</code></td>
+            <td>
+                          </td>
+          </tr></tbody></table><a name="methodisDestructor" id="isDestructor"><!-- --></a>
+
+    <h4>isDestructor</h4>
+
+    <div class="method-signature">
+      boolean
+      isDestructor(
+      )
+    </div>
+
+    <p>Returns whether this method is a destructor</p>
+    
+        
+
+          <h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>ReflectionMethod::isDestructor (  )</code></td>
+            <td>
+                          </td>
+          </tr></tbody></table><a name="methodisFinal" id="isFinal"><!-- --></a>
+
+    <h4>isFinal</h4>
+
+    <div class="method-signature">
+      boolean
+      isFinal(
+      )
+    </div>
+
+    <p>Returns whether this method is final</p>
+    
+        
+
+          <h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>ReflectionMethod::isFinal (  )</code></td>
+            <td>
+                          </td>
+          </tr></tbody></table><a name="methodisInherited" id="isInherited"><!-- --></a>
+
+    <h4>isInherited</h4>
+
+    <div class="method-signature">
+      boolean
+      isInherited(
+      )
+    </div>
+
+    <p>Checks if this is already available in the parent class</p>
+    
+        
+
+    
+    
+    
+        <a name="methodisInternal" id="isInternal"><!-- --></a>
+
+    <h4>isInternal</h4>
+
+    <div class="method-signature">
+      boolean
+      isInternal(
+      )
+    </div>
+
+    <p>Returns whether this is an internal method</p>
+    
+        
+
+          <h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>ReflectionMethod::isInternal (  )</code></td>
+            <td>
+                          </td>
+          </tr></tbody></table><a name="methodisIntroduced" id="isIntroduced"><!-- --></a>
+
+    <h4>isIntroduced</h4>
+
+    <div class="method-signature">
+      boolean
+      isIntroduced(
+      )
+    </div>
+
+    <p>Checks if this method is appeared first in the current class</p>
+    
+        
+
+    
+    
+    
+        <a name="methodisMagic" id="isMagic"><!-- --></a>
+
+    <h4>isMagic</h4>
+
+    <div class="method-signature">
+      boolean
+      isMagic(
+      )
+    </div>
+
+    <p>Checks if this method is a 'Magic Method' or not</p>
+    
+        
+
+    
+    
+    
+        <a name="methodisOverridden" id="isOverridden"><!-- --></a>
+
+    <h4>isOverridden</h4>
+
+    <div class="method-signature">
+      boolean
+      isOverridden(
+      )
+    </div>
+
+    <p>Checks if this method is redefined in this class</p>
+    
+        
+
+    
+    
+    
+        <a name="methodisPrivate" id="isPrivate"><!-- --></a>
+
+    <h4>isPrivate</h4>
+
+    <div class="method-signature">
+      boolean
+      isPrivate(
+      )
+    </div>
+
+    <p>Returns whether this method is private</p>
+    
+        
+
+          <h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>ReflectionMethod::isPrivate (  )</code></td>
+            <td>
+                          </td>
+          </tr></tbody></table><a name="methodisProtected" id="isProtected"><!-- --></a>
+
+    <h4>isProtected</h4>
+
+    <div class="method-signature">
+      boolean
+      isProtected(
+      )
+    </div>
+
+    <p>Returns whether this method is protected</p>
+    
+        
+
+          <h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>ReflectionMethod::isProtected (  )</code></td>
+            <td>
+                          </td>
+          </tr></tbody></table><a name="methodisPublic" id="isPublic"><!-- --></a>
+
+    <h4>isPublic</h4>
+
+    <div class="method-signature">
+      boolean
+      isPublic(
+      )
+    </div>
+
+    <p>Returns whether this method is public</p>
+    
+        
+
+          <h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>ReflectionMethod::isPublic (  )</code></td>
+            <td>
+                          </td>
+          </tr></tbody></table><a name="methodisStatic" id="isStatic"><!-- --></a>
+
+    <h4>isStatic</h4>
+
+    <div class="method-signature">
+      boolean
+      isStatic(
+      )
+    </div>
+
+    <p>Returns whether this method is static</p>
+    
+        
+
+          <h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>ReflectionMethod::isStatic (  )</code></td>
+            <td>
+                          </td>
+          </tr></tbody></table><a name="methodisUserDefined" id="isUserDefined"><!-- --></a>
+
+    <h4>isUserDefined</h4>
+
+    <div class="method-signature">
+      boolean
+      isUserDefined(
+      )
+    </div>
+
+    <p>Returns whether this is a user-defined method</p>
+    
+        
+
+          <h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>ReflectionMethod::isUserDefined (  )</code></td>
+            <td>
+                          </td>
+          </tr></tbody></table><a name="methodreturnsReference" id="returnsReference"><!-- --></a>
+
+    <h4>returnsReference</h4>
+
+    <div class="method-signature">
+      boolean
+      returnsReference(
+      )
+    </div>
+
+    <p>Returns whether this method returns a reference</p>
+    
+        
+
+          <h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>ReflectionMethod::returnsReference (  )</code></td>
+            <td>
+                          </td>
+          </tr></tbody></table><a name="method__call" id="__call"><!-- --></a>
+
+    <h4>__call</h4>
+
+    <div class="method-signature">
+      mixed
+      __call(
+                                  string
+          $method
+                            ,           array
+          $arguments
+                        )
+    </div>
+
+    <p>Use overloading to call additional methods  of the ReflectionMethod instance given to the constructor.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$method</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  Method to be called
+                              </td>
+            </tr><tr><td><code>$arguments</code></td>
+              <td><em>array</em></td>
+              <td>
+                                  Arguments that were passed
+                              </td>
+            </tr></tbody></table><a name="method__toString" id="__toString"><!-- --></a>
+
+    <h4>__toString</h4>
+
+    <div class="method-signature">
+      string
+      __toString(
+      )
+    </div>
+
+    <p>Returns a string representation</p>
+    
+        
+
+          <h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>ReflectionMethod::__toString (  )</code></td>
+            <td>
+                          </td>
+          </tr></tbody></table><div class="credit">
+      Documentation generated by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+    </div>
+  </div>
+  
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

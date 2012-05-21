@@ -1,0 +1,202 @@
+eZ Components - DatabaseSchema
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. contents:: Table of Contents
+
+Introduction
+============
+
+The DatabaseSchema component provides a unified data structure to describe 
+relational databases. DatabaseSchema can read and write the
+structure from and to several databases (such as MySQL, SQLite and Oracle) and
+also read and write in two web language files (XML and PHP).
+
+The main intention of the component is to extract an already existing schema
+from a database, and compare it with either a predefined schema to check for
+any changes. Although the component does allow you to create the schema
+manually through the API, it is often easier to create the schema yourself in a
+database, and then extract the data from it.
+
+DatabaseSchema can also generate PersistentObject definition
+files. For further information, please refer to the API documentation of
+ezcPersistentObjectDefinition and ezcPersistentObjectSchemaGenerator.
+
+Class overview
+==============
+
+This section gives you an overview of the main classes of the DatabaseSchema
+component.
+
+ezcDbSchema
+  This contains the structure of a database. A ezcDbSchema object can be
+  created from files containing a description or directly from the database. A
+  ezcDbSchema object can also be written to a file in different formats and converted
+  to SQL DDL. It is also possible to create a database structure directly from
+  an ezcDbSchema object.
+
+ezcDbSchemaComparator
+  This class provides an interface for comparing two database schema definitions
+  that are stored in the ezcDbSchema class.
+
+ezcDbSchemaDiff
+  The ezcDbSchemaDiff::compareSchemas() method returns an object of
+  this class. The object can be converted to SQL DDL, stored in a file or
+  directly applied to a database.
+
+ezcDbSchemaHandlerManager
+  This class can be used to register different handlers for reading and writing
+  ezcDbSchema and ezcDbSchemaDiff objects. Its functions to create a reader or
+  writer are used by the ezcDbSchema and ezcDbSchemaDiff classes, where the
+  actual work occurs.
+
+ezcDbSchemaValidator
+  This provides one method to validate a ezcDbSchema class. It
+  checks whether indexes are on existing columns and if the types used are
+  correct. It provides an easy-to-use API so that other validation checks can
+  be added.
+
+Usage
+=====
+
+Creating a database schema definition
+-------------------------------------
+
+Databases can be generated from two different types of sources. The first
+source is the file, where there are multiple format handlers available. There
+is a format for reading and writing XML files, and one for reading and writing files
+that store the ezcDbSchema structure in a PHP array. 
+
+The second source is the database. With the ezcDbSchema::createFromDb()
+method, you can create an ezcDbSchema object directly from an existing
+database connection.
+
+.. include:: tutorial_example_01.php
+   :literal:
+
+This example shows how to create a database schema from the two different
+sources. With the first parameter in ezcDbSchema::createFromFile(), you define
+which type to use ('xml' or 'array'). The second parameter is the
+file that you are reading the schema definition from.
+
+The ezcDbSchema::createFromDb() method has only one parameter. This parameter
+is an ezcDbHandler object that was created with ezcDbFactory.
+
+In both cases, the methods will return an object of the class ezcDbSchema. The
+documentation for ezcDbSchemaHandlerManager lists the supported types of
+readers and writers. The ezcDbSchema->getSchema() method returns the schema as
+an array of ezcDbSchemaTable objects. The ezcDbSchemaTable object then
+contains, in two member variables, an array of ezcDbSchemaField objects to
+describe the fields and an array of ezcDbSchemaIndex objects to describe the
+indices.
+
+Modifying a database schema definition
+--------------------------------------
+
+Once a ezcDbSchema object has been created, its tables and fields can be
+manipulated in different ways. Tables can be created, edited and deleted.
+Fields can be added to tables, edited and deleted. See the example below:
+
+.. include:: tutorial_example_05.php
+   :literal:
+
+Saving a database schema definition
+-----------------------------------
+
+Once a ezcDbSchema object has been created, it can be manipulated in any way.
+Then, there are different possible ways to save the
+database schema. The ezcDbSchema->writeToFile() method stores an ezcDbSchema
+object to a file on disk. As stated, you can use the XML and PHP array formats.
+This is shown in the first part of this example:
+
+.. include:: tutorial_example_02.php
+   :literal:
+
+The second and third methods both deal directly with a database. The second
+method in the example uses the database connection $db for creating a schema.
+This method only saves to the tables in the schema definition. The schemas that
+are defined will be overwritten. 
+
+The third method merely uses the database connection to determine which SQL DLL
+dialect to use for the query to create the schema in the database.
+
+Comparing database schemas
+--------------------------
+
+The ezcDbSchemaComparator class provides the
+ezcDbSchemaComparator::compareSchemas() method to compare two different
+ezcDbSchema objects. The result of this operation is an ezcDbSchemaDiff object.
+The next example illustrates this:
+
+.. include:: tutorial_example_03.php
+   :literal:
+
+First, we create the two different schemas: one from the database, and one from
+a file. In line 10, we utilize the ezcDbSchemaComparator::compareSchemas()
+function to compare the two schemas. This process returns the differences as
+the $diffSchema variable.
+
+You can perform multiple actions with the generated differences. These three
+methods are explained in the inline comments in the above example.
+
+Validating schemas
+------------------
+
+The last feature that the DatabaseSchema component offers is the validation of
+schemas. The ezcDbSchemaValidator::validate() method accepts an ezcDbSchema
+object and returns an array of strings describing potential problems with the
+schema. This is shown in the following example:
+
+.. include:: tutorial_example_04.php
+   :literal:
+
+Restrictions
+============
+
+To keep the compability between different relational database management
+systems, there are restrictions you have to cope with:
+
+- Lowercase column names
+  
+  As some RDBMS always do not store column names case sensitive, but return and
+  store them completely as upper case letters, ezcDatabase converts all column
+  names to lower case to offer a uniform interface.
+
+- Field types
+
+  You are limited to an amount of field types common to all RDBMS, or for which
+  at least some kind of mapping exists for all RDBMS.
+
+Data Types
+==========
+
+The DatabaseSchema component supports a limited set of data types in order to
+be sure that they are supported in all databases that the component supports.
+Below you can find a list of all the supported types with comments.
+
+integer
+    Used for numerical values.
+boolean
+    Used for boolean values - use only with *true* and *false*.
+decimal
+    Numerical values with an optional fraction, fixed fraction size.
+float
+    Numerical values with an optional fraction.
+date
+    A database-specific date field.
+timestamp
+    A database-independent date field that stores Unix timestamps.
+text
+    Text strings, usually limited in field size.
+blob
+    Binary data.
+clob
+    Character data, not limited in field size.
+
+
+
+..
+   Local Variables:
+   mode: rst
+   fill-column: 79
+   End: 
+   vim: et syn=rst tw=79

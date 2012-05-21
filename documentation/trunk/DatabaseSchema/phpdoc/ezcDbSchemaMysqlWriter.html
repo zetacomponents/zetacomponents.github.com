@@ -1,0 +1,849 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="PHP, apache, components, framework, quality" />
+	<meta name="author" content="dotxp" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Wed, 04 Aug 2010 13:07:25 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="ezcDbSchemaMysqlWriter.html" />
+	<meta name="DC.creator" content="dotxp" />
+	<meta name="DC.date" content="Wed, 04 Aug 2010 13:07:25 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/DatabaseSchema/phpdoc/ezcDbSchemaMysqlWriter.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/DatabaseSchema/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/trunk/DatabaseSchema/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+
+</ul>
+
+		
+  <div class="phpdoc">
+    <h2>Apache Zeta Components Manual :: Docs For Class ezcDbSchemaMysqlWriter</h2>
+
+                  <h3>DatabaseSchema::ezcDbSchemaMysqlWriter</h3>
+    
+<a name="sec-description"></a>
+<h3>Class ezcDbSchemaMysqlWriter</h3>
+
+<p>Handler for storing database schemas and applying differences that uses MySQL as backend.</p>
+<p>Source for this file: <a href="http://fisheye6.atlassian.com/browse/zetacomponents/trunk/DatabaseSchema/src/handlers/mysql/writer.php?r=HEAD">/DatabaseSchema/src/handlers/mysql/writer.php</a></p>
+       
+  <h3>Implements interfaces:</h3>
+  <ul><li><a href="ezcDbSchemaDbWriter.html">ezcDbSchemaDbWriter</a></li><li><a href="ezcDbSchemaDiffDbWriter.html">ezcDbSchemaDiffDbWriter</a></li>  </ul><pre><a href="ezcDbSchemaCommonSqlWriter.html">ezcDbSchemaCommonSqlWriter</a>
+   |
+   --ezcDbSchemaMysqlWriter</pre>
+
+
+  <table><tr><td>
+            <strong>Version:</strong>&#8192;&#8192;
+          </td>
+          <td>//autogentag//</td>
+        </tr></table><h3>Inherited Member Variables</h3>
+  <table class="summary"><thead><tr><th colspan="2">
+            From <span class="classname"><a href="ezcDbSchemaCommonSqlWriter.html">ezcDbSchemaCommonSqlWriter</a></span>         
+          </th>
+        </tr></thead><tbody><tr><td class="right">
+              <em>protected</em>                          </td>
+            <td>
+              <code><a href="ezcDbSchemaCommonSqlWriter.html#var%24queries">ezcDbSchemaCommonSqlWriter::$queries</a></code>
+              
+            </td>
+          </tr><tr><td class="right">
+              <em>protected</em>                          </td>
+            <td>
+              <code><a href="ezcDbSchemaCommonSqlWriter.html#var%24schema">ezcDbSchemaCommonSqlWriter::$schema</a></code>
+              
+            </td>
+          </tr></tbody></table><a name="sec-method-summary"></a>
+  <h3>Method Summary</h3>
+  <table class="summary"><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#applyDiffToDb"><b>applyDiffToDb</b></a>(
+                                                                                    $db
+                                                    ,                                     $dbSchemaDiff
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Applies the differences defined in $dbSchemaDiff to the database referenced by $db.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>array(string)</em>          </td>
+          <td>
+            <code>
+              <a href="#convertDiffToDDL"><b>convertDiffToDDL</b></a>(
+                                                                                    $dbSchemaDiff
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns the differences definition in $dbSchema as database specific SQL DDL queries.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#convertFromGenericType"><b>convertFromGenericType</b></a>(
+                                                                                    $fieldDefinition
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Converts the generic field type contained in $fieldDefinition to a database specific field definition.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#generateAddFieldSql"><b>generateAddFieldSql</b></a>(
+                                                                                    $tableName
+                                                    ,                                     $fieldName
+                                                    ,                                     $fieldDefinition
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Adds a "alter table" query to add the field $fieldName to $tableName with the definition $fieldDefinition.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#generateAddIndexSql"><b>generateAddIndexSql</b></a>(
+                                                                                    $tableName
+                                                    ,                                     $indexName
+                                                    ,                                     $indexDefinition
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Adds a "alter table" query to add the index $indexName to the table $tableName with definition $indexDefinition to the internal list of queries</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#generateChangeFieldSql"><b>generateChangeFieldSql</b></a>(
+                                                                                    $tableName
+                                                    ,                                     $fieldName
+                                                    ,                                     $fieldDefinition
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Adds a "alter table" query to change the field $fieldName to $tableName with the definition $fieldDefinition.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#generateCreateTableSql"><b>generateCreateTableSql</b></a>(
+                                                                                    $tableName
+                                                    ,                                     $tableDefinition
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Adds a "create table" query for the table $tableName with definition $tableDefinition to the internal list of queries.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#generateCreateTableSqlStatement"><b>generateCreateTableSqlStatement</b></a>(
+                                                                                    $tableName
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns a "CREATE TABLE" SQL statement part for the table $tableName.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#generateDiffSchemaTableAsSql"><b>generateDiffSchemaTableAsSql</b></a>(
+                                                                                    $tableName
+                                                    ,                                     $tableDiff
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Generates queries to upgrade a the table $tableName with the differences in $tableDiff.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#generateDropFieldSql"><b>generateDropFieldSql</b></a>(
+                                                                                    $tableName
+                                                    ,                                     $fieldName
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Adds a "alter table" query to drop the field $fieldName from $tableName.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#generateDropIndexSql"><b>generateDropIndexSql</b></a>(
+                                                                                    $tableName
+                                                    ,                                     $indexName
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Adds a "alter table" query to remote the index $indexName from the table $tableName to the internal list of queries.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#generateDropTableSql"><b>generateDropTableSql</b></a>(
+                                                                                    $tableName
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Adds a "drop table" query for the table $tableName to the internal list of queries.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#generateFieldSql"><b>generateFieldSql</b></a>(
+                                                                                    $fieldName
+                                                    ,                                     $fieldDefinition
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns a column definition for $fieldName with definition $fieldDefinition.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>int</em>          </td>
+          <td>
+            <code>
+              <a href="#getDiffWriterType"><b>getDiffWriterType</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns what type of schema difference writer this class implements.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>int</em>          </td>
+          <td>
+            <code>
+              <a href="#getWriterType"><b>getWriterType</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns what type of schema writer this class implements.</div>          </td>
+        </tr></table><h3>Inherited Methods</h3>
+  <table class="summary"><thead><tr><th colspan="2">
+            From <span class="classname"><a href="ezcDbSchemaCommonSqlWriter.html">ezcDbSchemaCommonSqlWriter</a></span>
+          </th>
+        </tr></thead><tbody><tr><td class="right">
+              <em>public</em>                                          <em>array(string)</em>            </td>
+            <td>
+              <code><b><a href="ezcDbSchemaCommonSqlWriter.html#methodconvertToDDL">ezcDbSchemaCommonSqlWriter::convertToDDL()</a></b></code>
+              <br><div style="margin-left: 20px">Returns an array with SQL DDL statements that creates the database definition in $dbSchema</div>                          </td>
+          </tr><tr><td class="right">
+              <em>protected</em>              abstract                            <em>void</em>            </td>
+            <td>
+              <code><b><a href="ezcDbSchemaCommonSqlWriter.html#methodgenerateAddFieldSql">ezcDbSchemaCommonSqlWriter::generateAddFieldSql()</a></b></code>
+              <br><div style="margin-left: 20px">Adds a "alter table" query to add the field $fieldName to $tableName with the definition $fieldDefinition.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>protected</em>              abstract                            <em>void</em>            </td>
+            <td>
+              <code><b><a href="ezcDbSchemaCommonSqlWriter.html#methodgenerateAddIndexSql">ezcDbSchemaCommonSqlWriter::generateAddIndexSql()</a></b></code>
+              <br><div style="margin-left: 20px">Adds a "alter table" query to add the index $indexName to the table $tableName with definition $indexDefinition to the internal list of queries</div>                          </td>
+          </tr><tr><td class="right">
+              <em>protected</em>              abstract                            <em>void</em>            </td>
+            <td>
+              <code><b><a href="ezcDbSchemaCommonSqlWriter.html#methodgenerateChangeFieldSql">ezcDbSchemaCommonSqlWriter::generateChangeFieldSql()</a></b></code>
+              <br><div style="margin-left: 20px">Adds a "alter table" query to change the field $fieldName to $tableName with the definition $fieldDefinition.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>protected</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b><a href="ezcDbSchemaCommonSqlWriter.html#methodgenerateCreateTableSql">ezcDbSchemaCommonSqlWriter::generateCreateTableSql()</a></b></code>
+              <br><div style="margin-left: 20px">Adds a "create table" query for the table $tableName with definition $tableDefinition to the internal list of queries.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>protected</em>                                          <em>string</em>            </td>
+            <td>
+              <code><b><a href="ezcDbSchemaCommonSqlWriter.html#methodgenerateCreateTableSqlStatement">ezcDbSchemaCommonSqlWriter::generateCreateTableSqlStatement()</a></b></code>
+              <br><div style="margin-left: 20px">Returns a "CREATE TABLE" SQL statement part for the table $tableName.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>protected</em>                                          <em>string</em>            </td>
+            <td>
+              <code><b><a href="ezcDbSchemaCommonSqlWriter.html#methodgenerateDefault">ezcDbSchemaCommonSqlWriter::generateDefault()</a></b></code>
+              <br><div style="margin-left: 20px">Returns an appropriate default value for $type with $value.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>protected</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b><a href="ezcDbSchemaCommonSqlWriter.html#methodgenerateDiffSchemaAsSql">ezcDbSchemaCommonSqlWriter::generateDiffSchemaAsSql()</a></b></code>
+              <br><div style="margin-left: 20px">Generates queries to upgrade an existing database with the changes stored in $this-&gt;diffSchema.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>protected</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b><a href="ezcDbSchemaCommonSqlWriter.html#methodgenerateDiffSchemaTableAsSql">ezcDbSchemaCommonSqlWriter::generateDiffSchemaTableAsSql()</a></b></code>
+              <br><div style="margin-left: 20px">Generates queries to upgrade a the table $tableName with the differences in $tableDiff.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>protected</em>              abstract                            <em>void</em>            </td>
+            <td>
+              <code><b><a href="ezcDbSchemaCommonSqlWriter.html#methodgenerateDropFieldSql">ezcDbSchemaCommonSqlWriter::generateDropFieldSql()</a></b></code>
+              <br><div style="margin-left: 20px">Adds a "alter table" query to drop the field $fieldName from $tableName.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>protected</em>              abstract                            <em>void</em>            </td>
+            <td>
+              <code><b><a href="ezcDbSchemaCommonSqlWriter.html#methodgenerateDropIndexSql">ezcDbSchemaCommonSqlWriter::generateDropIndexSql()</a></b></code>
+              <br><div style="margin-left: 20px">Adds a "alter table" query to remote the index $indexName from the table $tableName to the internal list of queries.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>protected</em>              abstract                            <em>void</em>            </td>
+            <td>
+              <code><b><a href="ezcDbSchemaCommonSqlWriter.html#methodgenerateDropTableSql">ezcDbSchemaCommonSqlWriter::generateDropTableSql()</a></b></code>
+              <br><div style="margin-left: 20px">Adds a "drop table" query for the table $tableName to the internal list of queries.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>protected</em>              abstract                            <em>string</em>            </td>
+            <td>
+              <code><b><a href="ezcDbSchemaCommonSqlWriter.html#methodgenerateFieldSql">ezcDbSchemaCommonSqlWriter::generateFieldSql()</a></b></code>
+              <br><div style="margin-left: 20px">Returns a column definition for $fieldName with definition $fieldDefinition.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>protected</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b><a href="ezcDbSchemaCommonSqlWriter.html#methodgenerateSchemaAsSql">ezcDbSchemaCommonSqlWriter::generateSchemaAsSql()</a></b></code>
+              <br><div style="margin-left: 20px">Creates SQL DDL statements from a schema definitin.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>int</em>            </td>
+            <td>
+              <code><b><a href="ezcDbSchemaCommonSqlWriter.html#methodgetWriterType">ezcDbSchemaCommonSqlWriter::getWriterType()</a></b></code>
+              <br><div style="margin-left: 20px">Returns what type of schema writer this class implements.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>boolean</em>            </td>
+            <td>
+              <code><b><a href="ezcDbSchemaCommonSqlWriter.html#methodisQueryAllowed">ezcDbSchemaCommonSqlWriter::isQueryAllowed()</a></b></code>
+              <br><div style="margin-left: 20px">Checks if the query is allowed.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b><a href="ezcDbSchemaCommonSqlWriter.html#methodsaveToDb">ezcDbSchemaCommonSqlWriter::saveToDb()</a></b></code>
+              <br><div style="margin-left: 20px">Creates the tables contained in $schema in the database that is related to $db</div>                          </td>
+          </tr></tbody></table><a name="sec-methods"></a>
+  <h3>Methods</h3>
+  <a name="method_detail"></a>
+                              
+      <a name="methodapplyDiffToDb" id="applyDiffToDb"><!-- --></a>
+
+    <h4>applyDiffToDb</h4>
+
+    <div class="method-signature">
+      void
+      applyDiffToDb(
+                                  
+          $db
+                            ,           <a href="ezcDbSchemaDiff.html">ezcDbSchemaDiff</a>
+          $dbSchemaDiff
+                        )
+    </div>
+
+    <p>Applies the differences defined in $dbSchemaDiff to the database referenced by $db.</p><div><p>This method uses <a href="ezcDbSchemaMysqlWriter.html#methodconvertDiffToDDL">convertDiffToDDL</a> to create SQL for the  differences and then executes the returned SQL statements on the  database handler $db.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$db</code></td>
+              <td><em><a href="/zetacomponents/documentation/trunk/Database/phpdoc/ezcDbHandler.html">ezcDbHandler</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$dbSchemaDiff</code></td>
+              <td><em><a href="ezcDbSchemaDiff.html">ezcDbSchemaDiff</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Implementation of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcDbSchemaDiffDbWriter.html#methodapplyDiffToDb">ezcDbSchemaDiffDbWriter::applyDiffToDb()</a></code></td>
+              <td>
+                                  Applies the differences contained in $schemaDiff to the database handler $db
+                              </td>
+            </tr></tbody></table><a name="methodconvertDiffToDDL" id="convertDiffToDDL"><!-- --></a>
+
+    <h4>convertDiffToDDL</h4>
+
+    <div class="method-signature">
+      array(string)
+      convertDiffToDDL(
+                                  <a href="ezcDbSchemaDiff.html">ezcDbSchemaDiff</a>
+          $dbSchemaDiff
+                        )
+    </div>
+
+    <p>Returns the differences definition in $dbSchema as database specific SQL DDL queries.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$dbSchemaDiff</code></td>
+              <td><em><a href="ezcDbSchemaDiff.html">ezcDbSchemaDiff</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Implementation of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcDbSchemaDiffDbWriter.html#methodconvertDiffToDDL">ezcDbSchemaDiffDbWriter::convertDiffToDDL()</a></code></td>
+              <td>
+                                  Returns an array with SQL DDL statements from the differences from $schemaDiff
+                              </td>
+            </tr></tbody></table><a name="methodconvertFromGenericType" id="convertFromGenericType"><!-- --></a>
+
+    <h4>convertFromGenericType</h4>
+
+    <div class="method-signature">
+      string
+      convertFromGenericType(
+                                  <a href="ezcDbSchemaField.html">ezcDbSchemaField</a>
+          $fieldDefinition
+                        )
+    </div>
+
+    <p>Converts the generic field type contained in $fieldDefinition to a database specific field definition.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$fieldDefinition</code></td>
+              <td><em><a href="ezcDbSchemaField.html">ezcDbSchemaField</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodgenerateAddFieldSql" id="generateAddFieldSql"><!-- --></a>
+
+    <h4>generateAddFieldSql</h4>
+
+    <div class="method-signature">
+      void
+      generateAddFieldSql(
+                                  string
+          $tableName
+                            ,           string
+          $fieldName
+                            ,           <a href="ezcDbSchemaField.html">ezcDbSchemaField</a>
+          $fieldDefinition
+                        )
+    </div>
+
+    <p>Adds a "alter table" query to add the field $fieldName to $tableName with the definition $fieldDefinition.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$tableName</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$fieldName</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$fieldDefinition</code></td>
+              <td><em><a href="ezcDbSchemaField.html">ezcDbSchemaField</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcDbSchemaCommonSqlWriter.html#methodgenerateAddFieldSql">ezcDbSchemaCommonSqlWriter::generateAddFieldSql()</a></code></td>
+            <td>
+                              Adds a "alter table" query to add the field $fieldName to $tableName with the definition $fieldDefinition.
+                          </td>
+          </tr></tbody></table><a name="methodgenerateAddIndexSql" id="generateAddIndexSql"><!-- --></a>
+
+    <h4>generateAddIndexSql</h4>
+
+    <div class="method-signature">
+      void
+      generateAddIndexSql(
+                                  string
+          $tableName
+                            ,           string
+          $indexName
+                            ,           <a href="ezcDbSchemaIndex.html">ezcDbSchemaIndex</a>
+          $indexDefinition
+                        )
+    </div>
+
+    <p>Adds a "alter table" query to add the index $indexName to the table $tableName with definition $indexDefinition to the internal list of queries</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$tableName</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$indexName</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$indexDefinition</code></td>
+              <td><em><a href="ezcDbSchemaIndex.html">ezcDbSchemaIndex</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcDbSchemaCommonSqlWriter.html#methodgenerateAddIndexSql">ezcDbSchemaCommonSqlWriter::generateAddIndexSql()</a></code></td>
+            <td>
+                              Adds a "alter table" query to add the index $indexName to the table $tableName with definition $indexDefinition to the internal list of queries
+                          </td>
+          </tr></tbody></table><a name="methodgenerateChangeFieldSql" id="generateChangeFieldSql"><!-- --></a>
+
+    <h4>generateChangeFieldSql</h4>
+
+    <div class="method-signature">
+      void
+      generateChangeFieldSql(
+                                  string
+          $tableName
+                            ,           string
+          $fieldName
+                            ,           <a href="ezcDbSchemaField.html">ezcDbSchemaField</a>
+          $fieldDefinition
+                        )
+    </div>
+
+    <p>Adds a "alter table" query to change the field $fieldName to $tableName with the definition $fieldDefinition.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$tableName</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$fieldName</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$fieldDefinition</code></td>
+              <td><em><a href="ezcDbSchemaField.html">ezcDbSchemaField</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcDbSchemaCommonSqlWriter.html#methodgenerateChangeFieldSql">ezcDbSchemaCommonSqlWriter::generateChangeFieldSql()</a></code></td>
+            <td>
+                              Adds a "alter table" query to change the field $fieldName to $tableName with the definition $fieldDefinition.
+                          </td>
+          </tr></tbody></table><a name="methodgenerateCreateTableSql" id="generateCreateTableSql"><!-- --></a>
+
+    <h4>generateCreateTableSql</h4>
+
+    <div class="method-signature">
+      void
+      generateCreateTableSql(
+                                  string
+          $tableName
+                            ,           <a href="ezcDbSchemaTable.html">ezcDbSchemaTable</a>
+          $tableDefinition
+                        )
+    </div>
+
+    <p>Adds a "create table" query for the table $tableName with definition $tableDefinition to the internal list of queries.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$tableName</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$tableDefinition</code></td>
+              <td><em><a href="ezcDbSchemaTable.html">ezcDbSchemaTable</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcDbSchemaCommonSqlWriter.html#methodgenerateCreateTableSql">ezcDbSchemaCommonSqlWriter::generateCreateTableSql()</a></code></td>
+            <td>
+                              Adds a "create table" query for the table $tableName with definition $tableDefinition to the internal list of queries.
+                          </td>
+          </tr></tbody></table><a name="methodgenerateCreateTableSqlStatement" id="generateCreateTableSqlStatement"><!-- --></a>
+
+    <h4>generateCreateTableSqlStatement</h4>
+
+    <div class="method-signature">
+      string
+      generateCreateTableSqlStatement(
+                                  string
+          $tableName
+                        )
+    </div>
+
+    <p>Returns a "CREATE TABLE" SQL statement part for the table $tableName.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$tableName</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcDbSchemaCommonSqlWriter.html#methodgenerateCreateTableSqlStatement">ezcDbSchemaCommonSqlWriter::generateCreateTableSqlStatement()</a></code></td>
+            <td>
+                              Returns a "CREATE TABLE" SQL statement part for the table $tableName.
+                          </td>
+          </tr></tbody></table><a name="methodgenerateDiffSchemaTableAsSql" id="generateDiffSchemaTableAsSql"><!-- --></a>
+
+    <h4>generateDiffSchemaTableAsSql</h4>
+
+    <div class="method-signature">
+      void
+      generateDiffSchemaTableAsSql(
+                                  string
+          $tableName
+                            ,           <a href="ezcDbSchemaTableDiff.html">ezcDbSchemaTableDiff</a>
+          $tableDiff
+                        )
+    </div>
+
+    <p>Generates queries to upgrade a the table $tableName with the differences in $tableDiff.</p><div><p>This method generates queries to migrate a table to a new version  with the changes that are stored in the $tableDiff property. It  will call different subfunctions for the different types of changes, and  those functions will add queries to the internal list of queries that is  stored in $this-&gt;queries.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$tableName</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$tableDiff</code></td>
+              <td><em><a href="ezcDbSchemaTableDiff.html">ezcDbSchemaTableDiff</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcDbSchemaCommonSqlWriter.html#methodgenerateDiffSchemaTableAsSql">ezcDbSchemaCommonSqlWriter::generateDiffSchemaTableAsSql()</a></code></td>
+            <td>
+                              Generates queries to upgrade a the table $tableName with the differences in $tableDiff.
+                          </td>
+          </tr></tbody></table><a name="methodgenerateDropFieldSql" id="generateDropFieldSql"><!-- --></a>
+
+    <h4>generateDropFieldSql</h4>
+
+    <div class="method-signature">
+      void
+      generateDropFieldSql(
+                                  string
+          $tableName
+                            ,           string
+          $fieldName
+                        )
+    </div>
+
+    <p>Adds a "alter table" query to drop the field $fieldName from $tableName.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$tableName</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$fieldName</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcDbSchemaCommonSqlWriter.html#methodgenerateDropFieldSql">ezcDbSchemaCommonSqlWriter::generateDropFieldSql()</a></code></td>
+            <td>
+                              Adds a "alter table" query to drop the field $fieldName from $tableName.
+                          </td>
+          </tr></tbody></table><a name="methodgenerateDropIndexSql" id="generateDropIndexSql"><!-- --></a>
+
+    <h4>generateDropIndexSql</h4>
+
+    <div class="method-signature">
+      void
+      generateDropIndexSql(
+                                  string
+          $tableName
+                            ,           string
+          $indexName
+                        )
+    </div>
+
+    <p>Adds a "alter table" query to remote the index $indexName from the table $tableName to the internal list of queries.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$tableName</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$indexName</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcDbSchemaCommonSqlWriter.html#methodgenerateDropIndexSql">ezcDbSchemaCommonSqlWriter::generateDropIndexSql()</a></code></td>
+            <td>
+                              Adds a "alter table" query to remote the index $indexName from the table $tableName to the internal list of queries.
+                          </td>
+          </tr></tbody></table><a name="methodgenerateDropTableSql" id="generateDropTableSql"><!-- --></a>
+
+    <h4>generateDropTableSql</h4>
+
+    <div class="method-signature">
+      void
+      generateDropTableSql(
+                                  string
+          $tableName
+                        )
+    </div>
+
+    <p>Adds a "drop table" query for the table $tableName to the internal list of queries.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$tableName</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcDbSchemaCommonSqlWriter.html#methodgenerateDropTableSql">ezcDbSchemaCommonSqlWriter::generateDropTableSql()</a></code></td>
+            <td>
+                              Adds a "drop table" query for the table $tableName to the internal list of queries.
+                          </td>
+          </tr></tbody></table><a name="methodgenerateFieldSql" id="generateFieldSql"><!-- --></a>
+
+    <h4>generateFieldSql</h4>
+
+    <div class="method-signature">
+      string
+      generateFieldSql(
+                                  string
+          $fieldName
+                            ,           <a href="ezcDbSchemaField.html">ezcDbSchemaField</a>
+          $fieldDefinition
+                        )
+    </div>
+
+    <p>Returns a column definition for $fieldName with definition $fieldDefinition.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$fieldName</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$fieldDefinition</code></td>
+              <td><em><a href="ezcDbSchemaField.html">ezcDbSchemaField</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcDbSchemaCommonSqlWriter.html#methodgenerateFieldSql">ezcDbSchemaCommonSqlWriter::generateFieldSql()</a></code></td>
+            <td>
+                              Returns a column definition for $fieldName with definition $fieldDefinition.
+                          </td>
+          </tr></tbody></table><a name="methodgetDiffWriterType" id="getDiffWriterType"><!-- --></a>
+
+    <h4>getDiffWriterType</h4>
+
+    <div class="method-signature">
+      int
+      getDiffWriterType(
+      )
+    </div>
+
+    <p>Returns what type of schema difference writer this class implements.</p><div><p>This method always returns ezcDbSchema::DATABASE</p></div>
+    
+        
+
+    
+          <h5>Implementation of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcDbSchemaDiffWriter.html#methodgetDiffWriterType">ezcDbSchemaDiffWriter::getDiffWriterType()</a></code></td>
+              <td>
+                                  Returns what type of schema difference writer this class implements.
+                              </td>
+            </tr></tbody></table><a name="methodgetWriterType" id="getWriterType"><!-- --></a>
+
+    <h4>getWriterType</h4>
+
+    <div class="method-signature">
+      int
+      getWriterType(
+      )
+    </div>
+
+    <p>Returns what type of schema writer this class implements.</p><div><p>This method always returns ezcDbSchema::DATABASE</p></div>
+    
+        
+
+          <h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcDbSchemaCommonSqlWriter.html#methodgetWriterType">ezcDbSchemaCommonSqlWriter::getWriterType()</a></code></td>
+            <td>
+                              Returns what type of schema writer this class implements.
+                          </td>
+          </tr></tbody></table><h5>Implementation of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcDbSchemaWriter.html#methodgetWriterType">ezcDbSchemaWriter::getWriterType()</a></code></td>
+              <td>
+                                  Returns what type of schema writer this class implements.
+                              </td>
+            </tr></tbody></table><div class="credit">
+      Documentation generated by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+    </div>
+  </div>
+  
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

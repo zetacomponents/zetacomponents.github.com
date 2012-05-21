@@ -1,0 +1,284 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="PHP, apache, components, framework, quality" />
+	<meta name="author" content="dotxp" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Wed, 04 Aug 2010 13:07:31 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="ezcDocumentBBCodeTokenizer.html" />
+	<meta name="DC.creator" content="dotxp" />
+	<meta name="DC.date" content="Wed, 04 Aug 2010 13:07:31 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/Document/phpdoc/ezcDocumentBBCodeTokenizer.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/Document/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/trunk/Document/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Document/conversion.html" title="Conversion ">Conversion </a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Document/styles.html" title="Styles ">Styles </a>
+	</li>
+
+</ul>
+
+		
+  <div class="phpdoc">
+    <h2>Apache Zeta Components Manual :: Docs For Class ezcDocumentBBCodeTokenizer</h2>
+
+                  <h3>Document::ezcDocumentBBCodeTokenizer</h3>
+    
+<a name="sec-description"></a>
+<h3>Class ezcDocumentBBCodeTokenizer</h3>
+
+<p>Tokenizer for bbcode documents</p><div><p>The tokenizer used for all bbcode documents should prepare a token array,  which can be used by the bbcode parser, without any bbcode language specific  handling in the parser itself required.</p><p>Token extraction  ----------------</p><p>For the token extraction the reqular expressions in the $tokens property are  used. The $tokens array has to be build like, and can be created in the  constrctor:</p><p></p><ol><li><div class="src-line">&#8192;&#8192;<span class="src-key">array</span><span class="src-sym">(</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-key">array</span><span class="src-sym">(</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'class'&#8192;</span>=&gt;&#8192;<span class="src-key">Class&#8192;</span><span class="src-id">name&#8192;of&#8192;token</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'match'&#8192;</span>=&gt;&#8192;<span class="src-id">Regular&#8192;expression&#8192;to&#8192;match</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-sym">)</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;...</div></li>
+<li><div class="src-line">&#8192;&#8192;<span class="src-sym">)</span></div></li>
+</ol><p>The array is evaluated in the given order, until one of the regular  expressions match. The regular expression should have at least one named  match (?P&lt;value&gt; ... ), with the name "value", which will be assigned to the  token, created form the given class name, as its content. The matched  contents will be removed from the beginning of the string.  Optionally a second named match, called "match", may be used inside the  regular expression. If so, only the contents inside this match will be  removed from the beginning of the string. This enables you to perform a  trivial lookahead inside the tokenizer.</p><p>If no expression matches, an exception will be thrown.</p></div>
+<p>Source for this file: <a href="http://fisheye6.atlassian.com/browse/zetacomponents/trunk/Document/src/document/bbcode/tokenizer.php?r=HEAD">/Document/src/document/bbcode/tokenizer.php</a></p>
+       
+
+
+
+
+  <table><tr><td>
+            <strong>Version:</strong>&#8192;&#8192;
+          </td>
+          <td>//autogen//</td>
+        </tr></table><a name="sec-const-summary"></a>
+  <h3>Constants</h3>
+  <table class="summary"><tr><td class="right">
+          <a name="const-SPECIAL_CHARS" id=""></a>
+          <code>
+            <a href="#const-SPECIAL_CHARS" title="details" class="const-name-summary">SPECIAL_CHARS</a>
+             =  '\\[\\]'
+          </code>
+        </td>
+        <td>
+          Special characters, which do have some special meaaning and though may  not have been matched otherwise.                  </td>
+      </tr><tr><td class="right">
+          <a name="const-TEXT_END_CHARS" id=""></a>
+          <code>
+            <a href="#const-TEXT_END_CHARS" title="details" class="const-name-summary">TEXT_END_CHARS</a>
+             =  '\\[\\]\\r\\n'
+          </code>
+        </td>
+        <td>
+          Characters ending a pure text section.                  </td>
+      </tr><tr><td class="right">
+          <a name="const-WHITESPACE_CHARS" id=""></a>
+          <code>
+            <a href="#const-WHITESPACE_CHARS" title="details" class="const-name-summary">WHITESPACE_CHARS</a>
+             =  '[\\x20\\t]'
+          </code>
+        </td>
+        <td>
+          Common whitespace characters. The vertical tab is excluded, because it  causes strange problems with PCRE.                  </td>
+      </tr></table><a name="sec-var-summary"></a>
+  <h3>Member Variables</h3>
+  <table class="summary"><tr><td class="right">
+            <em>protected</em>            <em>array</em>          </td>
+          <td>
+            <code>
+              $tokens
+               = <span class="var-default">array()</span>            </code>
+            <br><div style="margin-left: 20px">List with tokens and a regular expression matching the given token.</div>            <br><div style="margin-left: 20px"><p>The tokens are matched in the given order.</p></div>          </td>
+        </tr></table><a name="sec-method-summary"></a>
+  <h3>Method Summary</h3>
+  <table class="summary"><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#__construct"><b>__construct</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Construct tokenizer</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#convertTabs"><b>convertTabs</b></a>(
+                                                                                    $token
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Convert tabs to spaces</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>array</em>          </td>
+          <td>
+            <code>
+              <a href="#tokenizeFile"><b>tokenizeFile</b></a>(
+                                                                                    $file
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Tokenize the given file</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>array</em>          </td>
+          <td>
+            <code>
+              <a href="#tokenizeString"><b>tokenizeString</b></a>(
+                                                                                    $string
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Tokenize the given string</div>          </td>
+        </tr></table><a name="sec-methods"></a>
+  <h3>Methods</h3>
+  <a name="method_detail"></a>
+        
+      <a name="method__construct" id="__construct"><!-- --></a>
+
+    <h4>__construct</h4>
+
+    <div class="method-signature">
+      void
+      __construct(
+      )
+    </div>
+
+    <p>Construct tokenizer</p><div><p>Create token array with regular repression matching the respective  token.</p></div>
+    
+        
+
+    
+    
+    
+        <a name="methodconvertTabs" id="convertTabs"><!-- --></a>
+
+    <h4>convertTabs</h4>
+
+    <div class="method-signature">
+      void
+      convertTabs(
+                                  <a href="ezcDocumentBBCodeToken.html">ezcDocumentBBCodeToken</a>
+          $token
+                        )
+    </div>
+
+    <p>Convert tabs to spaces</p><div><p>Convert all tabs to spaces, as defined in:  http://docutils.sourceforge.net/docs/ref/rst/restructuredtext.html#whitespace</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$token</code></td>
+              <td><em><a href="ezcDocumentBBCodeToken.html">ezcDocumentBBCodeToken</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodtokenizeFile" id="tokenizeFile"><!-- --></a>
+
+    <h4>tokenizeFile</h4>
+
+    <div class="method-signature">
+      array
+      tokenizeFile(
+                                  string
+          $file
+                        )
+    </div>
+
+    <p>Tokenize the given file</p><div><p>The method tries to tokenize the passed files and returns an array of  ezcDocumentBBCodeToken struct on succes, or throws a  ezcDocumentTokenizerException, if something could not be matched by any  token.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$file</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodtokenizeString" id="tokenizeString"><!-- --></a>
+
+    <h4>tokenizeString</h4>
+
+    <div class="method-signature">
+      array
+      tokenizeString(
+                                  string
+          $string
+                        )
+    </div>
+
+    <p>Tokenize the given string</p><div><p>The method tries to tokenize the passed strings and returns an array of  ezcDocumentBBCodeToken struct on succes, or throws a  ezcDocumentTokenizerException, if something could not be matched by any  token.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$string</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><div class="credit">
+      Documentation generated by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+    </div>
+  </div>
+  
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

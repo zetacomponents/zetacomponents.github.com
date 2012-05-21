@@ -1,0 +1,281 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="PHP, apache, components, framework, quality" />
+	<meta name="author" content="jerome" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Sun, 10 Jul 2011 11:10:40 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="EBNF " />
+	<meta name="DC.creator" content="jerome" />
+	<meta name="DC.date" content="Sun, 10 Jul 2011 11:10:40 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/Template/EBNF.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/Template/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Template/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Template/functions.html" title="Functions ">Functions </a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/trunk/Template/EBNF.html" title="EBNF ">EBNF </a>
+	</li>
+
+</ul>
+
+		<h2>EBNF</h2><div class="toc"><h3>Table of Contents</h3><ul><li><p><a href="#program">Program</a></p></li><li><p><a href="#text-blocks">Text blocks</a></p></li><li><p><a href="#blocks">Blocks</a></p></li><li><p><a href="#loop-control">Loop control</a></p></li><li><p><a href="#code-flow-control">Code flow control</a></p></li><li><p><a href="#translations">Translations</a></p></li><li><p><a href="#expression">Expression</a></p></li><li><p><a href="#basic-literals">Basic literals</a></p></li><li><p><a href="#lexicon">Lexicon</a></p></li></ul></div><a name="program"></a><a name="id2"></a><h3>Program</h3><p>The template language starts with the non-terminal token: "Program".</p><code class="block">Program             ::= <a href="#code">Code</a> EOF
+
+                ::= ( <a href="#text">Text</a> | <a href="#block">Block</a> )*
+
+                ::= <a href="#textblock">TextBlock</a>
+                    |   <a href="#literalblock">LiteralBlock</a>
+                    |   <a href="#delimiterblock">DelimiterBlock</a>
+
+
+               ::= <a href="#commentblock">CommentBlock</a>
+                    |   <a href="#declarationblock">DeclarationBlock</a>
+                    |   <a href="#modifyingblock">ModifyingBlock</a>
+                    |   <a href="#outputblock">OutputBlock</a>
+                    |   <a href="#literalblock">LiteralBlock</a>
+                    |   <a href="#cycleblock">CycleBlock</a>
+                    |   <a href="#loopblock">LoopBlock</a>
+                    |   <a href="#codeflowblock">CodeFlowBlock</a>
+                    |   <a href="#translationblock">TranslationBlock</a></code><a name="text-blocks"></a><a name="id3"></a><h3>Text blocks</h3><code class="block">           ::= ( ~'{' | ''! '{' )*
+
+        ::= '{' 'literal' '}' <a href="#graphic">Graphic</a> * '{' '/literal' '}'
+
+      :==  '{ldelim}' | '{rdelim}'</code><a name="blocks"></a><a name="id4"></a><h3>Blocks</h3><code class="block">        ::= '{*' <a href="#graphic">Graphic</a> * '*}'
+
+    ::= '{' 'var' <a href="#subdefineblock">SubDefineBlock</a> '}'
+                    |   '{' 'cycle' <a href="#subdefineblock">SubDefineBlock</a> '}'
+                    |   '{' 'use' <a href="#subdefineblock">SubDefineBlock</a> '}'
+
+      ::= <a href="#primaryvariable">PrimaryVariable</a> ( '=' <a href="#id1">Expression</a> )? ( ',' <a href="#subdefineblock">SubDefineBlock</a> )?
+
+      ::= '{' <a href="#subassignblock">SubAssignBlock</a> (',' <a href="#subassignblock">SubAssignBlock</a>)* '}'
+
+      ::= <a href="#assignmentexpr">AssignmentExpr</a> | <a href="#incrementexpr">IncrementExpr</a> | <a href="#decrementexpr">DecrementExpr</a>
+
+      ::= <a href="#primaryvariable">PrimaryVariable</a> ( '=' | <a href="#combinedassignment">CombinedAssignment</a>) <a href="#id1">Expression</a>
+
+       ::= ( ( '++' <a href="#primaryvariable">PrimaryVariable</a> ) | ( PrimaryVariable '++' ) )
+
+       ::= ( ( '--' <a href="#primaryvariable">PrimaryVariable</a> ) | ( PrimaryVariable '--' ) )
+
+         ::= '{' <a href="#id1">Expression</a> '}'
+
+          ::= '{' 'increment' <a href="#primaryvariable">PrimaryVariable</a> ( ',' <a href="#primaryvariable">PrimaryVariable</a> )* '}'
+                    |   '{' 'decrement' <a href="#primaryvariable">PrimaryVariable</a> ( ',' <a href="#primaryvariable">PrimaryVariable</a> )* '}'
+                    |   '{' 'reset' <a href="#primaryvariable">PrimaryVariable</a> ( ',' <a href="#primaryvariable">PrimaryVariable</a> )* '}'</code><a name="loop-control"></a><a name="id5"></a><h3>Loop control</h3><code class="block">           ::= ForeachStatement
+                    |   WhileStatement
+
+    ::= '{' 'foreach' <a href="#id1">Expression</a> 'as' <a href="#primaryvariable">PrimaryVariable</a> ('=&gt;' <a href="#primaryvariable">PrimaryVariable</a>)? (<a href="#cycle">Cycle</a>)* (<a href="#offsetandlimit">OffsetAndLimit</a>)? '}' <a href="#code">Code</a> '{' '/foreach' '}'
+
+      ::= '{' 'while' <a href="#id1">Expression</a> '}' <a href="#code">Code</a> '{' '/while' '}'
+
+               ::= ('increment' | 'decrement') <a href="#primaryvariable">PrimaryVariable</a> (',' <a href="#primaryvariable">PrimaryVariable</a>)*
+
+      ::= ('offset' <a href="#id1">Expression</a>)? ('limit' <a href="#id1">Expression</a>)?</code><a name="code-flow-control"></a><a name="id6"></a><h3>Code flow control</h3><code class="block">       ::= <a href="#ifstatement">IfStatement</a>
+                    |   <a href="#switchstatement">SwitchStatement</a>
+                    |   <a href="#includestatement">IncludeStatement</a>
+                    |   <a href="#delimiterstatement">DelimiterStatement</a>
+                    |   '{break}'
+                    |   '{skip}'
+                    |   '{continue}'
+                    |   <a href="#capturestatement">CaptureStatement</a>
+                    |   <a href="#returnstatement">ReturnStatement</a>
+
+
+         ::= '{' 'if' <a href="#id1">Expression</a> '}' <a href="#code">Code</a> (<a href="#elseif">ElseIf</a>)* (<a href="#else">Else</a>)? '{' '/if' '}'
+              ::= '{' 'elseif' <a href="#id1">Expression</a> '}' <a href="#code">Code</a>
+                ::= '{' 'else' '}' <a href="#code">Code</a>
+
+     ::= '{' 'switch' <a href="#id1">Expression</a> '}' (<a href="#case">Case</a>)* (<a href="#defaultcase">DefaultCase</a>)? '{' '/switch' '}'
+
+                ::= '{' 'case' <a href="#literal">Literal</a> ( ',' <a href="#literal">Literal</a>)* '}' <a href="#code">Code</a> '{' '/case' '}'
+
+         ::= '{' 'default' '}' <a href="#code">Code</a> '{' '/default' '}'
+
+    ::= '{' 'include' <a href="#id1">Expression</a> ('send' <a href="#exprasprimvarlist">ExprAsPrimVarList</a>)? ('receive' <a href="#primvarasprimvarlist">PrimVarAsPrimVarList</a>)? '}'
+
+  ::= '{' 'delimiter' (modulo <a href="#id1">Expression</a> ('is' <a href="#id1">Expression</a>)? )? '}' <a href="#code">Code</a> '{' '/delimiter' '}'
+
+    ::= '{' 'capture' <a href="#id1">Expression</a> '}' <a href="#code">Code</a> '{' '/capture' '}'
+
+     ::= '{' 'return' <a href="#primaryvariable">PrimaryVariable</a> '}'
+
+   ::=  ( <a href="#id1">Expression</a> 'as' <a href="#primaryvariable">PrimaryVariable</a> | <a href="#primaryvariable">PrimaryVariable</a> ) (',' <a href="#exprasprimvarlist">ExprAsPrimVarList</a>)?
+
+::=  <a href="#primaryvariable">PrimaryVariable</a> ('as' <a href="#primaryvariable">PrimaryVariable</a>)? (',' <a href="#primvarasprimvarlist">PrimVarAsPrimVarList</a>)?</code><a name="translations"></a><a name="id7"></a><h3>Translations</h3><code class="block">               ::= <a href="#translationcontextstatement">TranslationContextStatement</a> | <a href="#translationstatement">TranslationStatement</a>
+
+    ::= '{' 'tr_context' <a href="#stringliteral">StringLiteral</a> '}'
+
+           ::= '{' 'tr' <a href="#stringliteral">StringLiteral</a> ('context' <a href="#stringliteral">StringLiteral</a>)? ('comment' <a href="#stringliteral">StringLiteral</a>)? <a href="#translationvars">TranslationVars</a>? '}'
+
+                ::= 'vars' <a href="#translationvarlist">TranslationVarList</a>
+             ::= <a href="#translationvar">TranslationVar</a> | <a href="#translationvar">TranslationVar</a> ',' <a href="#translationvarlist">TranslationVarList</a>
+                 ::= <a href="#translationvarkey">TranslationVarKey</a>? <a href="#id1">Expression</a>
+              ::= ( <a href="#stringliteral">StringLiteral</a> | <a href="#numeralliteral">NumeralLiteral</a> ) '=&gt;'</code><a name="expression"></a><a name="id8"></a><h3>Expression</h3><code class="block">          ::= <a href="#preunaryexpression">PreUnaryExpression</a> (<a href="#binaryoperator">BinaryOperator</a> <a href="#id1">Expression</a>)?
+
+  ::= '++' <a href="#primaryvariable">PrimaryVariable</a>
+                    |   '--' <a href="#primaryvariable">PrimaryVariable</a>
+                    |   <a href="#unaryexpression">UnaryExpression</a>
+                    |   <a href="#id1">Expression</a> 'instanceof' <a href="#identifier">Identifier</a>
+                    |   <a href="#arraydeclaration">ArrayDeclaration</a>
+
+    ::= 'array' '(' ( (<a href="#id1">Expression</a> '=&gt;')? <a href="#id1">Expression</a> ( ',' <a href="#id1">Expression</a> )* (',')? )? ')'
+                    |   <a href="#id1">Expression</a> '..' <a href="#id1">Expression</a>
+
+
+     ::= ( <a href="#unaryoperator">UnaryOperator</a> )* <a href="#postfixexpression">PostFixExpression</a>
+
+   ::= <a href="#primaryvariable">PrimaryVariable</a> ( '++' | '--' )?
+                    |   <a href="#literal">Literal</a>
+                    |   <a href="#functioncall">FunctionCall</a>
+                    |   '(' <a href="#id1">Expression</a> ')'
+
+
+     ::= '$' <a href="#identifier">Identifier</a> ( '[' <a href="#id1">Expression</a> ']' | '-&gt;' <a href="#id1">Expression</a> )*
+
+        ::= <a href="#identifier">Identifier</a> '(' (<a href="#parameterlist">ParameterList</a>)? ')'
+
+       ::= <a href="#id1">Expression</a> ( ',' <a href="#id1">Expression</a> )*
+
+          ::= <a href="#letter">Letter</a> ( <a href="#letter">Letter</a> | <a href="#digit">Digit</a> | '_' )*</code><a name="basic-literals"></a><a name="id9"></a><h3>Basic literals</h3><code class="block">              ::= <a href="#numeralliteral">NumeralLiteral</a>
+                     |   <a href="#stringliteral">StringLiteral</a>
+                     |   <a href="#booleanliteral">BooleanLiteral</a>
+                     |   <a href="#nullliteral">NullLiteral</a>
+
+       ::=  <a href="#hexliteral">HexLiteral</a> | <a href="#octliteral">OctLiteral</a> | <a href="#floatliteral">FloatLiteral</a>
+
+           ::= '0x' <a href="#hexdigit">HexDigit</a> +
+
+           ::= '0' <a href="#octdigit">OctDigit</a> +
+
+         ::= <a href="#nonzerodigit">NonZeroDigit</a> <a href="#digit">Digit</a> * ( '.' <a href="#digit">Digit</a> + )? (('e'|'E') ('+'|'-')? <a href="#digit">Digit</a> + )?
+
+        ::= '"' <a href="#graphic">Graphic</a> * '"'
+                     |   "'" <a href="#graphic">Graphic</a> * "'"
+
+       ::= 'true'
+                     |   'false'
+
+          ::= 'null'</code><a name="lexicon"></a><a name="id10"></a><h3>Lexicon</h3><code class="block">             ::= '//' <a href="#graphic">Graphic</a> * ( <a href="#eol">EOL</a> | '}' )
+                    |   '/*' <a href="#graphic">Graphic</a> * '*/'
+
+             ::= <a href="#digit">Digit</a> | <a href="#letter">Letter</a> | <a href="#blank">Blank</a> | <a href="#operators">Operators</a> | <a href="#assignment">Assignment</a> | <a href="#combinedassignment">CombinedAssignment</a> | <a href="#remainingcharset">RemainingCharSet</a>
+
+                 ::= end-of-line
+
+                 ::= end-of-file
+
+               ::= <a href="#tab">Tab</a> | <a href="#space">Space</a>
+
+             ::= '\n'
+
+               ::= ' '
+
+                 ::= '\t'
+
+              ::= 'a' ... 'z' | 'A' ... 'Z'
+
+            ::= '0' .. '9' | 'A' .. 'F'
+
+            ::= '0' .. '8'
+
+        ::= '1' .. '9'
+
+               ::= '0' | <a href="#nonzerodigit">NonZeroDigit</a>
+
+          ::= '='
+
+  ::= '+=' | '-='  | '*=' | '/=' | '%=' | '.='
+
+           ::= <a href="#binaryoperator">BinaryOperator</a> | <a href="#unaryoperator">UnaryOperator</a> | '++' | '--'
+
+      ::= <a href="#arithmeticoperator">ArithmeticOperator</a> | <a href="#comparisonoperator">ComparisonOperator</a> | <a href="#booleanoperator">BooleanOperator</a> | <a href="#stringoperator">StringOperator</a>
+
+  ::= '+'  | '-'   | '*' | '/' | '%'
+
+  ::= '==' | '===' | '!=' | '!==' | '&lt;' | '&lt;=' | '&gt;' | '&gt;='
+
+     ::= '&amp;&amp;' | '||'
+
+      ::= '.'
+
+       ::= '+'  | '-'   | '!'
+
+    ::= '.' | ':' | ';' | ',' | '~' | '(' | ')' | '[' | ']' | '{' | '}' | '_' | '|' | "'" | '"' | '`' | '#' | '$' | '@'</code><!--Local Variables:
+mode: rst
+fill-column: 79
+End:
+vim: et syn=rst tw=79-->
+
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

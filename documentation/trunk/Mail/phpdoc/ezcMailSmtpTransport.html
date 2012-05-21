@@ -1,0 +1,1302 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="" />
+	<meta name="author" content="jerome" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Sun, 10 Jul 2011 11:11:01 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="ezcMailSmtpTransport.html" />
+	<meta name="DC.creator" content="jerome" />
+	<meta name="DC.date" content="Sun, 10 Jul 2011 11:11:01 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailSmtpTransport.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/Mail/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/trunk/Mail/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Mail/mail-listing-example.html" title="Mail-listing-example ">Mail-listing-example </a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Mail/display-example.html" title="Display-example ">Display-example </a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Mail/rfcs.html" title="Rfcs ">Rfcs </a>
+	</li>
+
+</ul>
+
+		
+  <div class="phpdoc">
+    <h2>Apache Zeta Components Manual :: Docs For Class ezcMailSmtpTransport</h2>
+
+                  <h3>Mail::ezcMailSmtpTransport</h3>
+    
+<a name="sec-description"></a>
+<h3>Class ezcMailSmtpTransport</h3>
+
+<p>This class implements the Simple Mail Transfer Protocol (SMTP)  with authentication support.</p><div><p>The implementation supports most of the commands specified in: </p><ul><li><a href="http://www.faqs.org/rfcs/rfc821.html">RFC821 - SMTP</a></li><li><a href="http://www.faqs.org/rfcs/rfc2554.html">RFC2554 - SMTP Authentication</a></li><li><a href="http://www.faqs.org/rfcs/rfc2831.html">RFC2831 - DIGEST-MD5 Authentication</a></li><li><a href="http://www.faqs.org/rfcs/rfc2195.html">RFC2195 - CRAM-MD5 Authentication</a></li><li><a href="http://davenport.sourceforge.net/ntlm.html">NTLM Authentication</a></li></ul>  By default, the SMTP transport tries to login anonymously to the SMTP server  (if an empty username and password have been provided), or to authenticate  with the strongest method supported by the server (if username and password  have been provided). The default behaviour can be changed with the option  preferredAuthMethod (see <a href="ezcMailSmtpTransportOptions.html">ezcMailSmtpTransportOptions</a>).<p>If the preferred method is specified via options, only that authentication  method will be attempted on the SMTP server. If it fails, an exception will  be thrown.</p><p>Supported authentication methods (from strongest to weakest): </p><ul><li>DIGEST-MD5</li><li>CRAM-MD5</li><li>NTLM (requires the PHP mcrypt extension)</li><li>LOGIN</li><li>PLAIN</li></ul>  Not all SMTP servers support these methods, and some SMTP servers don't  support authentication at all.<p>Example send mail:  </p><ol><li><div class="src-line">&#8192;<span class="src-var">$mail&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcMailComposer.html">ezcMailComposer</a></span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$mail</span><span class="src-sym">-&gt;</span><span class="src-id">from&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcMailAddress.html">ezcMailAddress</a></span><span class="src-sym">(&#8192;</span><span class="src-str">'sender@example.com'</span><span class="src-sym">,&#8192;</span><span class="src-str">'Adrian&#8192;Ripburger'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$mail</span><span class="src-sym">-&gt;</span><span class="src-id">addTo</span><span class="src-sym">(&#8192;</span><span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcMailAddress.html">ezcMailAddress</a></span><span class="src-sym">(&#8192;</span><span class="src-str">'receiver@example.com'</span><span class="src-sym">,&#8192;</span><span class="src-str">'Maureen&#8192;Corley'&#8192;</span><span class="src-sym">)&#8192;)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$mail</span><span class="src-sym">-&gt;</span><span class="src-id">subject&#8192;</span>=&#8192;<span class="src-str">"This&#8192;is&#8192;the&#8192;subject&#8192;of&#8192;the&#8192;example&#8192;mail"</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$mail</span><span class="src-sym">-&gt;</span><span class="src-id">plainText&#8192;</span>=&#8192;<span class="src-str">"This&#8192;is&#8192;the&#8192;body&#8192;of&#8192;the&#8192;example&#8192;mail."</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$mail</span><span class="src-sym">-&gt;</span><span class="src-id">build</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;Create&#8192;a&#8192;new&#8192;SMTP&#8192;transport&#8192;object&#8192;with&#8192;an&#8192;SSLv3&#8192;connection.</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;The&#8192;port&#8192;will&#8192;be&#8192;465&#8192;by&#8192;default,&#8192;use&#8192;the&#8192;4th&#8192;argument&#8192;to&#8192;change&#8192;it.</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;Username&#8192;and&#8192;password&#8192;(2nd&#8192;and&#8192;3rd&#8192;arguments)&#8192;are&#8192;left&#8192;blank,&#8192;which&#8192;means</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;the&#8192;mail&#8192;host&#8192;does&#8192;not&#8192;need&#8192;authentication.</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;The&#8192;5th&#8192;parameter&#8192;is&#8192;the&#8192;optional&#8192;$options&#8192;object.</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$options&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcMailSmtpTransportOptions.html">ezcMailSmtpTransportOptions</a></span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$options</span><span class="src-sym">-&gt;</span><span class="src-id">connectionType&#8192;</span>=&#8192;<span class="src-id"><a href="ezcMailSmtpTransport.html">ezcMailSmtpTransport</a></span><span class="src-sym">::</span><span class="src-id">CONNECTION_SSLV3</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$transport&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcMailSmtpTransport.html">ezcMailSmtpTransport</a></span><span class="src-sym">(&#8192;</span><span class="src-str">'mailhost.example.com'</span><span class="src-sym">,&#8192;</span><span class="src-str">''</span><span class="src-sym">,&#8192;</span><span class="src-str">''</span><span class="src-sym">,&#8192;</span><span class="src-id">null</span><span class="src-sym">,&#8192;</span><span class="src-var">$options&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;Use&#8192;the&#8192;SMTP&#8192;transport&#8192;to&#8192;send&#8192;the&#8192;created&#8192;mail&#8192;object</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$transport</span><span class="src-sym">-&gt;</span><a href="ezcMailSmtpTransport.html#methodsend">send</a><span class="src-sym">(&#8192;</span><span class="src-var">$mail&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol><p>Example require NTLM authentication:  </p><ol><li><div class="src-line">&#8192;<span class="src-comm">//&#8192;Create&#8192;an&#8192;SMTP&#8192;transport&#8192;and&#8192;demand&#8192;NTLM&#8192;authentication.</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;Username&#8192;and&#8192;password&#8192;must&#8192;be&#8192;specified,&#8192;otherwise&#8192;no&#8192;authentication</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;will&#8192;be&#8192;attempted.</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;If&#8192;NTLM&#8192;authentication&#8192;fails,&#8192;an&#8192;exception&#8192;will&#8192;be&#8192;thrown.</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$options&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcMailSmtpTransportOptions.html">ezcMailSmtpTransportOptions</a></span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$options</span><span class="src-sym">-&gt;</span><span class="src-id">preferredAuthMethod&#8192;</span>=&#8192;<span class="src-id"><a href="ezcMailSmtpTransport.html">ezcMailSmtpTransport</a></span><span class="src-sym">::</span><span class="src-id">AUTH_NTLM</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$transport&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcMailSmtpTransport.html">ezcMailSmtpTransport</a></span><span class="src-sym">(&#8192;</span><span class="src-str">'mailhost.example.com'</span><span class="src-sym">,&#8192;</span><span class="src-str">'username'</span><span class="src-sym">,&#8192;</span><span class="src-str">'password'</span><span class="src-sym">,&#8192;</span><span class="src-id">null</span><span class="src-sym">,&#8192;</span><span class="src-var">$options&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;The&#8192;option&#8192;can&#8192;also&#8192;be&#8192;specified&#8192;via&#8192;the&#8192;option&#8192;property:</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$transport</span><span class="src-sym">-&gt;</span><span class="src-id"><a href="ezcMailSmtpTransport.html#var%24options">options</a></span><span class="src-sym">-&gt;</span><span class="src-id">preferredAuthMethod&#8192;</span>=&#8192;<span class="src-id"><a href="ezcMailSmtpTransport.html">ezcMailSmtpTransport</a></span><span class="src-sym">::</span><span class="src-id">AUTH_NTLM</span><span class="src-sym">;</span></div></li>
+</ol><p>See <a href="ezcMailSmtpTransportOptions.html">ezcMailSmtpTransportOptions</a> for options you can specify for SMTP.</p></div>
+<p>Source for this file: <a href="http://fisheye6.atlassian.com/browse/zetacomponents/trunk/Mail/src/transports/smtp/smtp_transport.php?r=HEAD">/Mail/src/transports/smtp/smtp_transport.php</a></p>
+       
+  <h3>Implements interfaces:</h3>
+  <ul><li><a href="ezcMailTransport.html">ezcMailTransport</a></li>  </ul><table><tr><td>
+            <strong>Version:</strong>&#8192;&#8192;
+          </td>
+          <td>//autogen//</td>
+        </tr></table><a name="sec-const-summary"></a>
+  <h3>Constants</h3>
+  <table class="summary"><tr><td class="right">
+          <a name="const-AUTH_AUTO" id=""></a>
+          <code>
+            <a href="#const-AUTH_AUTO" title="details" class="const-name-summary">AUTH_AUTO</a>
+             =  null
+          </code>
+        </td>
+        <td>
+          No authentication method. Specifies that the transport should try to  authenticate using the methods supported by the SMTP server in their  decreasing strength order. If one method fails an exception will be  thrown.                  </td>
+      </tr><tr><td class="right">
+          <a name="const-AUTH_CRAM_MD5" id=""></a>
+          <code>
+            <a href="#const-AUTH_CRAM_MD5" title="details" class="const-name-summary">AUTH_CRAM_MD5</a>
+             =  'CRAM-MD5'
+          </code>
+        </td>
+        <td>
+          Authenticate with 'AUTH CRAM-MD5'.                  </td>
+      </tr><tr><td class="right">
+          <a name="const-AUTH_DIGEST_MD5" id=""></a>
+          <code>
+            <a href="#const-AUTH_DIGEST_MD5" title="details" class="const-name-summary">AUTH_DIGEST_MD5</a>
+             =  'DIGEST-MD5'
+          </code>
+        </td>
+        <td>
+          Authenticate with 'AUTH DIGEST-MD5'.                  </td>
+      </tr><tr><td class="right">
+          <a name="const-AUTH_LOGIN" id=""></a>
+          <code>
+            <a href="#const-AUTH_LOGIN" title="details" class="const-name-summary">AUTH_LOGIN</a>
+             =  'LOGIN'
+          </code>
+        </td>
+        <td>
+          Authenticate with 'AUTH LOGIN'.                  </td>
+      </tr><tr><td class="right">
+          <a name="const-AUTH_NTLM" id=""></a>
+          <code>
+            <a href="#const-AUTH_NTLM" title="details" class="const-name-summary">AUTH_NTLM</a>
+             =  'NTLM'
+          </code>
+        </td>
+        <td>
+          Authenticate with 'AUTH NTLM'.                  </td>
+      </tr><tr><td class="right">
+          <a name="const-AUTH_PLAIN" id=""></a>
+          <code>
+            <a href="#const-AUTH_PLAIN" title="details" class="const-name-summary">AUTH_PLAIN</a>
+             =  'PLAIN'
+          </code>
+        </td>
+        <td>
+          Authenticate with 'AUTH PLAIN'.                  </td>
+      </tr><tr><td class="right">
+          <a name="const-CONNECTION_PLAIN" id=""></a>
+          <code>
+            <a href="#const-CONNECTION_PLAIN" title="details" class="const-name-summary">CONNECTION_PLAIN</a>
+             =  'tcp'
+          </code>
+        </td>
+        <td>
+          Plain connection.                  </td>
+      </tr><tr><td class="right">
+          <a name="const-CONNECTION_SSL" id=""></a>
+          <code>
+            <a href="#const-CONNECTION_SSL" title="details" class="const-name-summary">CONNECTION_SSL</a>
+             =  'ssl'
+          </code>
+        </td>
+        <td>
+          SSL connection.                  </td>
+      </tr><tr><td class="right">
+          <a name="const-CONNECTION_SSLV2" id=""></a>
+          <code>
+            <a href="#const-CONNECTION_SSLV2" title="details" class="const-name-summary">CONNECTION_SSLV2</a>
+             =  'sslv2'
+          </code>
+        </td>
+        <td>
+          SSLv2 connection.                  </td>
+      </tr><tr><td class="right">
+          <a name="const-CONNECTION_SSLV3" id=""></a>
+          <code>
+            <a href="#const-CONNECTION_SSLV3" title="details" class="const-name-summary">CONNECTION_SSLV3</a>
+             =  'sslv3'
+          </code>
+        </td>
+        <td>
+          SSLv3 connection.                  </td>
+      </tr><tr><td class="right">
+          <a name="const-CONNECTION_TLS" id=""></a>
+          <code>
+            <a href="#const-CONNECTION_TLS" title="details" class="const-name-summary">CONNECTION_TLS</a>
+             =  'tls'
+          </code>
+        </td>
+        <td>
+          TLS connection.                  </td>
+      </tr></table><a name="sec-prop-summary"></a>
+  <h3>Properties</h3>
+  <table class="summary"><tr><td class="right">
+          <a name="prop%24options" id="$options"></a>
+          <a name="prop-%24options" id="$options"></a>
+          <em><a href="ezcMailSmtpTransportOptions.html">ezcMailSmtpTransportOptions</a></em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24options" title="details" class="var-name-summary">$options</a>
+                      </code>
+          <br><div style="margin-left: 20px">Holds the options you can set to the SMTP transport.</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24password" id="$password"></a>
+          <a name="prop-%24password" id="$password"></a>
+          <em>string</em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24password" title="details" class="var-name-summary">$password</a>
+                      </code>
+          <br><div style="margin-left: 20px">The password used for authentication.</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24senderHost" id="$senderHost"></a>
+          <a name="prop-%24senderHost" id="$senderHost"></a>
+          <em>string</em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24senderHost" title="details" class="var-name-summary">$senderHost</a>
+                      </code>
+          <br><div style="margin-left: 20px">The hostname of the computer that sends the mail. The default is            'localhost'.</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24serverHost" id="$serverHost"></a>
+          <a name="prop-%24serverHost" id="$serverHost"></a>
+          <em>string</em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24serverHost" title="details" class="var-name-summary">$serverHost</a>
+                      </code>
+          <br><div style="margin-left: 20px">The SMTP server host to connect to.</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24serverPort" id="$serverPort"></a>
+          <a name="prop-%24serverPort" id="$serverPort"></a>
+          <em>int</em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24serverPort" title="details" class="var-name-summary">$serverPort</a>
+                      </code>
+          <br><div style="margin-left: 20px">The port of the SMTP server. Defaults to 25.</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24timeout" id="$timeout"></a>
+          <a name="prop-%24timeout" id="$timeout"></a>
+          <em>int</em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24timeout" title="details" class="var-name-summary">$timeout</a>
+                      </code>
+          <br><div style="margin-left: 20px">The timeout value of the connection in seconds. The default is            5 seconds. When setting/getting this option, the timeout option            from $this-&gt;options <a href="ezcMailTransportOptions.html">ezcMailTransportOptions</a> will be set instead.</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24username" id="$username"></a>
+          <a name="prop-%24username" id="$username"></a>
+          <em>string</em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24username" title="details" class="var-name-summary">$username</a>
+                      </code>
+          <br><div style="margin-left: 20px">The username used for authentication. The default is blank which            means no authentication.</div>        </td>
+      </tr></table><a name="sec-var-summary"></a>
+  <h3>Member Variables</h3>
+  <table class="summary"><tr><td class="right">
+            <em>protected</em>            <em>resource</em>          </td>
+          <td>
+            <code>
+              $connection
+                          </code>
+            <br><div style="margin-left: 20px">The connection to the SMTP server.</div>                      </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            <em>bool</em>          </td>
+          <td>
+            <code>
+              $doAuthenticate
+                          </code>
+            <br><div style="margin-left: 20px">True if authentication should be performed; otherwise false.</div>            <br><div style="margin-left: 20px"><p>This variable is set to true if a username is provided for login.</p></div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            <em>bool</em>          </td>
+          <td>
+            <code>
+              $keepConnection
+               = <span class="var-default"> false</span>            </code>
+            <br><div style="margin-left: 20px">Holds if the connection should be kept open after sending a mail.</div>                      </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            <em><a href="ezcMailSmtpTransportOptions.html">ezcMailSmtpTransportOptions</a></em>          </td>
+          <td>
+            <code>
+              $options
+                          </code>
+            <br><div style="margin-left: 20px">Holds the options of this class.</div>                      </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            <em>array(string=&gt;mixed)</em>          </td>
+          <td>
+            <code>
+              $properties
+               = <span class="var-default">array()</span>            </code>
+            <br><div style="margin-left: 20px">Holds the properties of this class.</div>                      </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            <em>mixed</em>          </td>
+          <td>
+            <code>
+              $status
+                          </code>
+            <br><div style="margin-left: 20px">Holds the connection status.</div>            <br><div style="margin-left: 20px"><p>$var int STATUS_NOT_CONNECTED,           STATUS_CONNECTED or           STATUS_AUTHENTICATED.</p></div>          </td>
+        </tr></table><a name="sec-method-summary"></a>
+  <h3>Method Summary</h3>
+  <table class="summary"><tr><td class="right">
+            <em>public</em>            static
+                        <em>array(string)</em>          </td>
+          <td>
+            <code>
+              <a href="#getSupportedAuthMethods"><b>getSupportedAuthMethods</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns an array with the authentication methods supported by the  SMTP transport class (not by the SMTP server!).</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>bool</em>          </td>
+          <td>
+            <code>
+              <a href="#auth"><b>auth</b></a>(
+                                                                                    $method
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Calls the appropiate authentication method based on $method.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>bool</em>          </td>
+          <td>
+            <code>
+              <a href="#authCramMd5"><b>authCramMd5</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Tries to login to the SMTP server with 'AUTH CRAM-MD5' and returns true if  successful.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>bool</em>          </td>
+          <td>
+            <code>
+              <a href="#authDigestMd5"><b>authDigestMd5</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Tries to login to the SMTP server with 'AUTH DIGEST-MD5' and returns true if  successful.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>bool</em>          </td>
+          <td>
+            <code>
+              <a href="#authLogin"><b>authLogin</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Tries to login to the SMTP server with 'AUTH LOGIN' and returns true if  successful.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>bool</em>          </td>
+          <td>
+            <code>
+              <a href="#authNtlm"><b>authNtlm</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Tries to login to the SMTP server with 'AUTH NTLM' and returns true if  successful.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#authNtlmMessageType1"><b>authNtlmMessageType1</b></a>(
+                                                                                    $workstation
+                                                    ,                                     $domain
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Generates an NTLM type 1 message.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#authNtlmMessageType3"><b>authNtlmMessageType3</b></a>(
+                                                                                    $challenge
+                                                    ,                                     $user
+                                                    ,                                     $password
+                                                    ,                                     $workstation
+                                                    ,                                     $domain
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Generates an NTLM type 3 message from the $challenge sent by the SMTP  server in an NTLM type 2 message.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#authNtlmResponse"><b>authNtlmResponse</b></a>(
+                                                                                    $challenge
+                                                    ,                                     $password
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Calculates an NTLM response to be used in the creation of the NTLM type 3  message.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#authNtlmSecurityBuffer"><b>authNtlmSecurityBuffer</b></a>(
+                                                                                    $text
+                                                    ,                                     $offset
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Creates an NTLM security buffer information string.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>bool</em>          </td>
+          <td>
+            <code>
+              <a href="#authPlain"><b>authPlain</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Tries to login to the SMTP server with 'AUTH PLAIN' and returns true if  successful.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>ezcMailSmtpTransport</em>          </td>
+          <td>
+            <code>
+              <a href="#__construct"><b>__construct</b></a>(
+                                                                                    $host
+                                                    ,                   [                  $user
+                   = '']                                  ,                   [                  $password
+                   = '']                                  ,                   [                  $port
+                   = null]                                  ,                   [                  $options
+                   = array()]                               )
+            </code>
+            <br><div style="margin-left: 20px">Constructs a new ezcMailSmtpTransport.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#__destruct"><b>__destruct</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Destructs this object.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#cmdData"><b>cmdData</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Sends the DATA command to the SMTP server.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#cmdMail"><b>cmdMail</b></a>(
+                                                                                    $from
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Sends the MAIL FROM command, with the sender's mail address $from.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#cmdRcpt"><b>cmdRcpt</b></a>(
+                                                                                    $email
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Sends the 'RCTP TO' to the server with the address $email.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#composeSmtpMailAddress"><b>composeSmtpMailAddress</b></a>(
+                                                                                    $email
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns the $email enclosed within '&lt; &gt;'.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#connect"><b>connect</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Creates a connection to the SMTP server and initiates the login  procedure.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#disconnect"><b>disconnect</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Sends the QUIT command to the server and breaks the connection.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#generateNonce"><b>generateNonce</b></a>(
+                                                                  [                  $length
+                   = 32]                               )
+            </code>
+            <br><div style="margin-left: 20px">Generates an alpha-numeric random string with the specified $length.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#getData"><b>getData</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns data received from the connection stream.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#getReplyCode"><b>getReplyCode</b></a>(
+                                                                                    &amp;$line
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns the reply code of the last message from the server.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#keepConnection"><b>keepConnection</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Sets if the connection should be kept open after sending an email.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#login"><b>login</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Performs the initial handshake with the SMTP server and  authenticates the user, if login data is provided to the  constructor.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#send"><b>send</b></a>(
+                                                                                    $mail
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Sends the ezcMail $mail using the SMTP protocol.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#sendData"><b>sendData</b></a>(
+                                                                                    $data
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Sends $data to the SMTP server through the connection.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>array(string)</em>          </td>
+          <td>
+            <code>
+              <a href="#sortAuthMethods"><b>sortAuthMethods</b></a>(
+                                                                                    $methods
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Sorts the specified array of AUTH methods $methods by strength, so higher  strength methods will be used first.</div>          </td>
+        </tr></table><a name="sec-methods"></a>
+  <h3>Methods</h3>
+  <a name="method_detail"></a>
+                                                <a name="methodgetSupportedAuthMethods" id="getSupportedAuthMethods"><!-- --></a>
+
+    <h4>getSupportedAuthMethods</h4>
+
+    <div class="method-signature">
+      static array(string)
+      getSupportedAuthMethods(
+      )
+    </div>
+
+      <p>Returns an array with the authentication methods supported by the  SMTP transport class (not by the SMTP server!).</p><div><p>The returned array has the methods sorted by their relative strengths,  so stronger methods are first in the array.</p></div>      
+      
+      
+      
+      
+      
+            
+      <a name="methodauth" id="auth"><!-- --></a>
+
+    <h4>auth</h4>
+
+    <div class="method-signature">
+      bool
+      auth(
+                                  
+          $method
+                        )
+    </div>
+
+    <p>Calls the appropiate authentication method based on $method.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$method</code></td>
+              <td><em></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>ezcMailTransportSmtpException</code></td>
+              <td>
+                                  if $method is not supported by the transport class
+                              </td>
+            </tr></tbody></table><a name="methodauthCramMd5" id="authCramMd5"><!-- --></a>
+
+    <h4>authCramMd5</h4>
+
+    <div class="method-signature">
+      bool
+      authCramMd5(
+      )
+    </div>
+
+    <p>Tries to login to the SMTP server with 'AUTH CRAM-MD5' and returns true if  successful.</p>
+    
+          <h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>ezcMailTransportSmtpException</code></td>
+              <td>
+                                  if the SMTP server returned an error
+                              </td>
+            </tr></tbody></table><a name="methodauthDigestMd5" id="authDigestMd5"><!-- --></a>
+
+    <h4>authDigestMd5</h4>
+
+    <div class="method-signature">
+      bool
+      authDigestMd5(
+      )
+    </div>
+
+    <p>Tries to login to the SMTP server with 'AUTH DIGEST-MD5' and returns true if  successful.</p>
+    
+          <h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>ezcMailTransportSmtpException</code></td>
+              <td>
+                                  if the SMTP server returned an error
+                              </td>
+            </tr></tbody></table><a name="methodauthLogin" id="authLogin"><!-- --></a>
+
+    <h4>authLogin</h4>
+
+    <div class="method-signature">
+      bool
+      authLogin(
+      )
+    </div>
+
+    <p>Tries to login to the SMTP server with 'AUTH LOGIN' and returns true if  successful.</p>
+    
+          <h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>ezcMailTransportSmtpException</code></td>
+              <td>
+                                  if the SMTP server returned an error
+                              </td>
+            </tr></tbody></table><a name="methodauthNtlm" id="authNtlm"><!-- --></a>
+
+    <h4>authNtlm</h4>
+
+    <div class="method-signature">
+      bool
+      authNtlm(
+      )
+    </div>
+
+    <p>Tries to login to the SMTP server with 'AUTH NTLM' and returns true if  successful.</p>
+    
+          <h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>ezcMailTransportSmtpException</code></td>
+              <td>
+                                  if the SMTP server returned an error
+                              </td>
+            </tr></tbody></table><a name="methodauthNtlmMessageType1" id="authNtlmMessageType1"><!-- --></a>
+
+    <h4>authNtlmMessageType1</h4>
+
+    <div class="method-signature">
+      string
+      authNtlmMessageType1(
+                                  string
+          $workstation
+                            ,           string
+          $domain
+                        )
+    </div>
+
+    <p>Generates an NTLM type 1 message.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$workstation</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$domain</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodauthNtlmMessageType3" id="authNtlmMessageType3"><!-- --></a>
+
+    <h4>authNtlmMessageType3</h4>
+
+    <div class="method-signature">
+      string
+      authNtlmMessageType3(
+                                  string
+          $challenge
+                            ,           string
+          $user
+                            ,           string
+          $password
+                            ,           string
+          $workstation
+                            ,           string
+          $domain
+                        )
+    </div>
+
+    <p>Generates an NTLM type 3 message from the $challenge sent by the SMTP  server in an NTLM type 2 message.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$challenge</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$user</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$password</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$workstation</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$domain</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodauthNtlmResponse" id="authNtlmResponse"><!-- --></a>
+
+    <h4>authNtlmResponse</h4>
+
+    <div class="method-signature">
+      string
+      authNtlmResponse(
+                                  string
+          $challenge
+                            ,           string
+          $password
+                        )
+    </div>
+
+    <p>Calculates an NTLM response to be used in the creation of the NTLM type 3  message.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$challenge</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$password</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodauthNtlmSecurityBuffer" id="authNtlmSecurityBuffer"><!-- --></a>
+
+    <h4>authNtlmSecurityBuffer</h4>
+
+    <div class="method-signature">
+      string
+      authNtlmSecurityBuffer(
+                                  string
+          $text
+                            ,           int
+          $offset
+                        )
+    </div>
+
+    <p>Creates an NTLM security buffer information string.</p><div><p>The structure of the security buffer is: </p><ul><li>a short containing the length of the buffer content in bytes (may be
+    zero).</li><li>a short containing the allocated space for the buffer in bytes (greater
+    than or equal to the length; typically the same as the length).</li><li>a long containing the offset to the start of the buffer in bytes (from
+    the beginning of the NTLM message).</li></ul>  Example: <ul><li>buffer content length: 1234 bytes (0xd204 in hexa)</li><li>allocated space: 1234 bytes( 0xd204 in hexa)</li><li>offset: 4321 bytes (0xe1100000 in hexa)</li></ul>  then the security buffer would be 0xd204d204e1100000 (in hexa).</div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$text</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$offset</code></td>
+              <td><em>int</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodauthPlain" id="authPlain"><!-- --></a>
+
+    <h4>authPlain</h4>
+
+    <div class="method-signature">
+      bool
+      authPlain(
+      )
+    </div>
+
+    <p>Tries to login to the SMTP server with 'AUTH PLAIN' and returns true if  successful.</p>
+    
+          <h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>ezcMailTransportSmtpException</code></td>
+              <td>
+                                  if the SMTP server returned an error
+                              </td>
+            </tr></tbody></table><a name="method__construct" id="__construct"><!-- --></a>
+
+    <h4>__construct</h4>
+
+    <div class="method-signature">
+      ezcMailSmtpTransport
+      __construct(
+                                  string
+          $host
+                            ,           [string
+          $user
+           = '']                  ,           [string
+          $password
+           = '']                  ,           [int
+          $port
+           = null]                  ,           [<a href="ezcMailSmtpTransportOptions.html">ezcMailSmtpTransportOptions</a>|array(string=&gt;mixed)
+          $options
+           = array()]              )
+    </div>
+
+    <p>Constructs a new ezcMailSmtpTransport.</p><div><p>The constructor expects, at least, the hostname $host of the SMTP server.</p><p>The username $user will be used for authentication if provided.  If it is left blank no authentication will be performed.</p><p>The password $password will be used for authentication  if provided. Use this parameter always in combination with the $user  parameter.</p><p>The value $port specifies on which port to connect to $host. By default  it is 25 for plain connections and 465 for TLS/SSL/SSLv2/SSLv3.</p><p>Note: The ssl option from <a href="ezcMailTransportOptions.html">ezcMailTransportOptions</a> doesn't apply to SMTP.  If you want to connect to SMTP using TLS/SSL/SSLv2/SSLv3 use the connectionType  option in <a href="ezcMailSmtpTransportOptions.html">ezcMailSmtpTransportOptions</a>.</p><p>For options you can specify for SMTP see <a href="ezcMailSmtpTransportOptions.html">ezcMailSmtpTransportOptions</a>.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$host</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$user</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$password</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$port</code></td>
+              <td><em>int</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$options</code></td>
+              <td><em><a href="ezcMailSmtpTransportOptions.html">ezcMailSmtpTransportOptions</a>|array(string=&gt;mixed)</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseValueException.html">ezcBaseValueException</a></code></td>
+              <td>
+                                  if $options contains a property with a value not allowed
+                              </td>
+            </tr><tr><td><code><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBasePropertyNotFoundException.html">ezcBasePropertyNotFoundException</a></code></td>
+              <td>
+                                  if $options contains a property not defined
+                              </td>
+            </tr></tbody></table><a name="method__destruct" id="__destruct"><!-- --></a>
+
+    <h4>__destruct</h4>
+
+    <div class="method-signature">
+      void
+      __destruct(
+      )
+    </div>
+
+    <p>Destructs this object.</p><div><p>Closes the connection if it is still open.</p></div>
+    
+        
+
+    
+    
+    
+        <a name="methodcmdData" id="cmdData"><!-- --></a>
+
+    <h4>cmdData</h4>
+
+    <div class="method-signature">
+      void
+      cmdData(
+      )
+    </div>
+
+    <p>Sends the DATA command to the SMTP server.</p>
+    
+          <h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>ezcMailTransportSmtpException</code></td>
+              <td>
+                                  if there is no valid connection or if the DATA command failed
+                              </td>
+            </tr></tbody></table><a name="methodcmdMail" id="cmdMail"><!-- --></a>
+
+    <h4>cmdMail</h4>
+
+    <div class="method-signature">
+      void
+      cmdMail(
+                                  string
+          $from
+                        )
+    </div>
+
+    <p>Sends the MAIL FROM command, with the sender's mail address $from.</p><div><p>This method must be called once to tell the server the sender address.</p><p>The sender's mail address $from may be enclosed in angle brackets.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$from</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>ezcMailTransportSmtpException</code></td>
+              <td>
+                                  if there is no valid connection or if the MAIL FROM command failed
+                              </td>
+            </tr></tbody></table><a name="methodcmdRcpt" id="cmdRcpt"><!-- --></a>
+
+    <h4>cmdRcpt</h4>
+
+    <div class="method-signature">
+      void
+      cmdRcpt(
+                                  string
+          $email
+                        )
+    </div>
+
+    <p>Sends the 'RCTP TO' to the server with the address $email.</p><div><p>This method must be called once for each recipient of the mail  including cc and bcc recipients. The RCPT TO commands control  where the mail is actually sent. It does not affect the headers  of the email.</p><p>The recipient mail address $email may be enclosed in angle brackets.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$email</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>ezcMailTransportSmtpException</code></td>
+              <td>
+                                  if there is no valid connection or if the RCPT TO command failed
+                              </td>
+            </tr></tbody></table><a name="methodcomposeSmtpMailAddress" id="composeSmtpMailAddress"><!-- --></a>
+
+    <h4>composeSmtpMailAddress</h4>
+
+    <div class="method-signature">
+      void
+      composeSmtpMailAddress(
+                                  string
+          $email
+                        )
+    </div>
+
+    <p>Returns the $email enclosed within '&lt; &gt;'.</p><div><p>If $email is already enclosed within '&lt; &gt;' it is returned unmodified.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$email</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  $return string
+                              </td>
+            </tr></tbody></table><a name="methodconnect" id="connect"><!-- --></a>
+
+    <h4>connect</h4>
+
+    <div class="method-signature">
+      void
+      connect(
+      )
+    </div>
+
+    <p>Creates a connection to the SMTP server and initiates the login  procedure.</p>
+    
+          <h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>ezcMailTransportSmtpException</code></td>
+              <td>
+                                  if no connection could be made or if the login failed
+                              </td>
+            </tr><tr><td><code><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseExtensionNotFoundException.html">ezcBaseExtensionNotFoundException</a></code></td>
+              <td>
+                                  if trying to use SSL and the openssl extension is not installed
+                              </td>
+            </tr></tbody></table><a name="methoddisconnect" id="disconnect"><!-- --></a>
+
+    <h4>disconnect</h4>
+
+    <div class="method-signature">
+      void
+      disconnect(
+      )
+    </div>
+
+    <p>Sends the QUIT command to the server and breaks the connection.</p>
+    
+          <h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>ezcMailTransportSmtpException</code></td>
+              <td>
+                                  if the QUIT command failed
+                              </td>
+            </tr></tbody></table><a name="methodgenerateNonce" id="generateNonce"><!-- --></a>
+
+    <h4>generateNonce</h4>
+
+    <div class="method-signature">
+      string
+      generateNonce(
+                                  [int
+          $length
+           = 32]              )
+    </div>
+
+    <p>Generates an alpha-numeric random string with the specified $length.</p><div><p>Used in the DIGEST-MD5 authentication method.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$length</code></td>
+              <td><em>int</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodgetData" id="getData"><!-- --></a>
+
+    <h4>getData</h4>
+
+    <div class="method-signature">
+      string
+      getData(
+      )
+    </div>
+
+    <p>Returns data received from the connection stream.</p>
+    
+          <h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>ezcMailTransportSmtpException</code></td>
+              <td>
+                                  if there is no valid connection
+                              </td>
+            </tr></tbody></table><a name="methodgetReplyCode" id="getReplyCode"><!-- --></a>
+
+    <h4>getReplyCode</h4>
+
+    <div class="method-signature">
+      string
+      getReplyCode(
+                                  string
+          &amp;$line
+                        )
+    </div>
+
+    <p>Returns the reply code of the last message from the server.</p><div><p>$line contains the complete data retrieved from the stream. This can be used to retrieve  the error message in case of an error.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>&amp;$line</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>ezcMailTransportSmtpException</code></td>
+              <td>
+                                  if it could not fetch data from the stream
+                              </td>
+            </tr></tbody></table><a name="methodkeepConnection" id="keepConnection"><!-- --></a>
+
+    <h4>keepConnection</h4>
+
+    <div class="method-signature">
+      void
+      keepConnection(
+      )
+    </div>
+
+    <p>Sets if the connection should be kept open after sending an email.</p><div><p>This method should be called prior to the first call to send().</p><p>Keeping the connection open is useful if you are sending a lot of mail.  It removes the overhead of opening the connection after each mail is  sent.</p><p>Use disconnect() to close the connection if you have requested to keep  it open.</p></div>
+    
+        
+
+    
+    
+    
+        <a name="methodlogin" id="login"><!-- --></a>
+
+    <h4>login</h4>
+
+    <div class="method-signature">
+      void
+      login(
+      )
+    </div>
+
+    <p>Performs the initial handshake with the SMTP server and  authenticates the user, if login data is provided to the  constructor.</p>
+    
+          <h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>ezcMailTransportSmtpException</code></td>
+              <td>
+                                  if the HELO/EHLO command or authentication fails
+                              </td>
+            </tr></tbody></table><a name="methodsend" id="send"><!-- --></a>
+
+    <h4>send</h4>
+
+    <div class="method-signature">
+      void
+      send(
+                                  <a href="ezcMail.html">ezcMail</a>
+          $mail
+                        )
+    </div>
+
+    <p>Sends the ezcMail $mail using the SMTP protocol.</p><div><p>If you want to send several emails use keepConnection() to leave the  connection to the server open between each mail.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$mail</code></td>
+              <td><em><a href="ezcMail.html">ezcMail</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>ezcBaseFeatureNotFoundException</code></td>
+              <td>
+                                  if trying to use SSL and the openssl extension is not installed
+                              </td>
+            </tr><tr><td><code><a href="ezcMailTransportException.html">ezcMailTransportException</a></code></td>
+              <td>
+                                  if the mail could not be sent
+                              </td>
+            </tr></tbody></table><h5>Implementation of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcMailTransport.html#methodsend">ezcMailTransport::send()</a></code></td>
+              <td>
+                                  Sends the contents of $mail.
+                              </td>
+            </tr></tbody></table><a name="methodsendData" id="sendData"><!-- --></a>
+
+    <h4>sendData</h4>
+
+    <div class="method-signature">
+      void
+      sendData(
+                                  string
+          $data
+                        )
+    </div>
+
+    <p>Sends $data to the SMTP server through the connection.</p><div><p>This method appends one line-break at the end of $data.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$data</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>ezcMailTransportSmtpException</code></td>
+              <td>
+                                  if there is no valid connection
+                              </td>
+            </tr></tbody></table><a name="methodsortAuthMethods" id="sortAuthMethods"><!-- --></a>
+
+    <h4>sortAuthMethods</h4>
+
+    <div class="method-signature">
+      array(string)
+      sortAuthMethods(
+                                  
+          $methods
+                        )
+    </div>
+
+    <p>Sorts the specified array of AUTH methods $methods by strength, so higher  strength methods will be used first.</p><div><p>For example, if the server supports:  </p><ol><li><div class="src-line">&#8192;&#8192;&#8192;<span class="src-var">$methods&#8192;</span>=&#8192;<span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-str">'PLAIN'</span><span class="src-sym">,&#8192;</span><span class="src-str">'LOGIN'</span><span class="src-sym">,&#8192;</span><span class="src-str">'CRAM-MD5'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol><p>then this method will return:  </p><ol><li><div class="src-line">&#8192;&#8192;&#8192;<span class="src-var">$methods&#8192;</span>=&#8192;<span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-str">'CRAM-MD5'</span><span class="src-sym">,&#8192;</span><span class="src-str">'LOGIN'</span><span class="src-sym">,&#8192;</span><span class="src-str">'PLAIN'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$methods</code></td>
+              <td><em>array(string)</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><div class="credit">
+      Documentation generated by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+    </div>
+  </div>
+  
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,381 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="PHP, apache, components, framework, quality" />
+	<meta name="author" content="dotxp" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Wed, 04 Aug 2010 13:07:14 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="ezcAuthenticationOpenidOptions.html" />
+	<meta name="DC.creator" content="dotxp" />
+	<meta name="DC.date" content="Wed, 04 Aug 2010 13:07:14 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationOpenidOptions.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/Authentication/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/trunk/Authentication/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Authentication/security.html" title="Security ">Security </a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Authentication/rfcs.html" title="Rfcs ">Rfcs </a>
+	</li>
+
+</ul>
+
+		
+  <div class="phpdoc">
+    <h2>Apache Zeta Components Manual :: Docs For Class ezcAuthenticationOpenidOptions</h2>
+
+                  <h3>Authentication::ezcAuthenticationOpenidOptions</h3>
+    
+<a name="sec-description"></a>
+<h3>Class ezcAuthenticationOpenidOptions</h3>
+
+<p>Class containing the options for the OpenID authentication filter.</p><div><p>Example of use:  </p><ol><li><div class="src-line">&#8192;<span class="src-comm">//&#8192;create&#8192;an&#8192;options&#8192;object</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$options&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcAuthenticationOpenidOptions.html">ezcAuthenticationOpenidOptions</a></span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$options</span><span class="src-sym">-&gt;</span><span class="src-id">mode&#8192;</span>=&#8192;<span class="src-id"><a href="ezcAuthenticationOpenidFilter.html">ezcAuthenticationOpenidFilter</a></span><span class="src-sym">::</span><span class="src-id">MODE_SMART</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$options</span><span class="src-sym">-&gt;</span><span class="src-id">store&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcAuthenticationOpenidFileStore.html">ezcAuthenticationOpenidFileStore</a></span><span class="src-sym">(&#8192;</span><span class="src-str">'/tmp/store'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$options</span><span class="src-sym">-&gt;</span><span class="src-id">timeout&#8192;</span>=&#8192;<span class="src-num">5</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$options</span><span class="src-sym">-&gt;</span><span class="src-id">timeoutOpen&#8192;</span>=&#8192;<span class="src-num">3</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$options</span><span class="src-sym">-&gt;</span><span class="src-id">requestSource&#8192;</span>=&#8192;<span class="src-var">$_POST</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$options</span><span class="src-sym">-&gt;</span><span class="src-id">immediate&#8192;</span>=&#8192;<span class="src-id">true</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$options</span><span class="src-sym">-&gt;</span><span class="src-id">returnUrl&#8192;</span>=&#8192;<span class="src-str">'http://example.com'</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$options</span><span class="src-sym">-&gt;</span><span class="src-id">openidVersion&#8192;</span>=&#8192;<span class="src-id"><a href="ezcAuthenticationOpenidFilter.html">ezcAuthenticationOpenidFilter</a></span><span class="src-sym">::</span><span class="src-id">VERSION_2_0</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;use&#8192;the&#8192;options&#8192;object&#8192;when&#8192;creating&#8192;a&#8192;new&#8192;OpenID&#8192;filter</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$filter&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcAuthenticationOpenidFilter.html">ezcAuthenticationOpenidFilter</a></span><span class="src-sym">(&#8192;</span><span class="src-var">$options&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;alternatively,&#8192;you&#8192;can&#8192;set&#8192;the&#8192;options&#8192;to&#8192;an&#8192;existing&#8192;filter</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$filter&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcAuthenticationSession.html">ezcAuthenticationSession</a></span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$filter</span><span class="src-sym">-&gt;</span><span class="src-id">setOptions</span><span class="src-sym">(&#8192;</span><span class="src-var">$options&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol></div>
+<p>Source for this file: <a href="http://fisheye6.atlassian.com/browse/zetacomponents/trunk/Authentication/src/options/openid_options.php?r=HEAD">/Authentication/src/options/openid_options.php</a></p>
+       
+
+
+<pre><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseOptions.html">ezcBaseOptions</a>
+   |
+   --<a href="ezcAuthenticationFilterOptions.html">ezcAuthenticationFilterOptions</a>
+      |
+      --ezcAuthenticationOpenidOptions</pre>
+
+
+  <table><tr><td>
+            <strong>Version:</strong>&#8192;&#8192;
+          </td>
+          <td>//autogen//</td>
+        </tr></table><a name="sec-prop-summary"></a>
+  <h3>Properties</h3>
+  <table class="summary"><tr><td class="right">
+          <a name="prop%24immediate" id="$immediate"></a>
+          <a name="prop-%24immediate" id="$immediate"></a>
+          <em>bool</em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24immediate" title="details" class="var-name-summary">$immediate</a>
+                      </code>
+          <br><div style="margin-left: 20px">Enables OpenID checkid_immediate instead of checkid_setup. See the            ezcAuthenticationOpenidFilter class documentation for more details.            It is false by default (use checkid_setup by default).</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24mode" id="$mode"></a>
+          <a name="prop-%24mode" id="$mode"></a>
+          <em>int</em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24mode" title="details" class="var-name-summary">$mode</a>
+                      </code>
+          <br><div style="margin-left: 20px">The OpenID mode to use for authentication. It is either dumb            (ezcAuthenticationOpenidFilter::MODE_DUMB, default) or smart            (ezcAuthenticationOpenidFilter::MODE_SMART). In dumb mode            the OpenID server does most of the work, but an extra check            is required (check_authentication step). In smart mode the            server and the OpenIP provider establish a shared secret (with            an expiry period) that is used to sign the responses, so the            check_authentication step is not required.</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24nonceKey" id="$nonceKey"></a>
+          <a name="prop-%24nonceKey" id="$nonceKey"></a>
+          <em>string</em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24nonceKey" title="details" class="var-name-summary">$nonceKey</a>
+                      </code>
+          <br><div style="margin-left: 20px">The query key that identifies the nonce value, default 'nonce'.</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24nonceLength" id="$nonceLength"></a>
+          <a name="prop-%24nonceLength" id="$nonceLength"></a>
+          <em>int</em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24nonceLength" title="details" class="var-name-summary">$nonceLength</a>
+                      </code>
+          <br><div style="margin-left: 20px">The length of the generated nonces, default 6.</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24nonceValidity" id="$nonceValidity"></a>
+          <a name="prop-%24nonceValidity" id="$nonceValidity"></a>
+          <em>int</em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24nonceValidity" title="details" class="var-name-summary">$nonceValidity</a>
+                      </code>
+          <br><div style="margin-left: 20px">The amount of seconds the nonces are allowed to be valid.</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24openidVersion" id="$openidVersion"></a>
+          <a name="prop-%24openidVersion" id="$openidVersion"></a>
+          <em>string</em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24openidVersion" title="details" class="var-name-summary">$openidVersion</a>
+                      </code>
+          <br><div style="margin-left: 20px">Which OpenID protocol version to try. Default is "1.1". Other            possible values are "1.0" and "2.0".</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24requestSource" id="$requestSource"></a>
+          <a name="prop-%24requestSource" id="$requestSource"></a>
+          <em>array(string=&gt;mixed)</em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24requestSource" title="details" class="var-name-summary">$requestSource</a>
+                      </code>
+          <br><div style="margin-left: 20px">From where to get the parameters returned by the OpenID provider.            Default is $_GET.</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24returnUrl" id="$returnUrl"></a>
+          <a name="prop-%24returnUrl" id="$returnUrl"></a>
+          <em>string</em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24returnUrl" title="details" class="var-name-summary">$returnUrl</a>
+                      </code>
+          <br><div style="margin-left: 20px">URL to return to after the successful authentication by the            OpenID provider. Default value is null, in which case the OpenID            provider will return to the current URL (the URL that initiated            the authentication, from HTTP_HOST + REQUEST_URI server variables).</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24store" id="$store"></a>
+          <a name="prop-%24store" id="$store"></a>
+          <em><a href="ezcAuthenticationOpenidStore.html">ezcAuthenticationOpenidStore</a></em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24store" title="details" class="var-name-summary">$store</a>
+                      </code>
+          <br><div style="margin-left: 20px">The store to use to hold the nonces and (for MODE_SMART) the            associations between the server and the OpenID provider. Default            is null which means nonces are not used. If you enable MODE_SMART            you have to specify also a valid store.</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24timeout" id="$timeout"></a>
+          <a name="prop-%24timeout" id="$timeout"></a>
+          <em>int</em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24timeout" title="details" class="var-name-summary">$timeout</a>
+                      </code>
+          <br><div style="margin-left: 20px">The amount of seconds allowed as timeout for fetching content            during HTML or Yadis discovery.</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24timeoutOpen" id="$timeoutOpen"></a>
+          <a name="prop-%24timeoutOpen" id="$timeoutOpen"></a>
+          <em>int</em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24timeoutOpen" title="details" class="var-name-summary">$timeoutOpen</a>
+                      </code>
+          <br><div style="margin-left: 20px">The amount of seconds allowed as timeout when creating a connection            with fsockopen() for the HTML or Yadis discovery.</div>        </td>
+      </tr></table><h3>Inherited Member Variables</h3>
+  <table class="summary"><thead><tr><th colspan="2">
+            From <span class="classname"><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseOptions.html">ezcBaseOptions</a></span>         
+          </th>
+        </tr></thead><tbody><tr><td class="right">
+              <em>protected</em>                          </td>
+            <td>
+              <code><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseOptions.html#var%24properties">ezcBaseOptions::$properties</a></code>
+              
+            </td>
+          </tr></tbody></table><a name="sec-method-summary"></a>
+  <h3>Method Summary</h3>
+  <table class="summary"><tr><td class="right">
+            <em>public</em>                        <em>ezcAuthenticationOpenidOptions</em>          </td>
+          <td>
+            <code>
+              <a href="#__construct"><b>__construct</b></a>(
+                                                                  [                  $options
+                   = array()]                               )
+            </code>
+            <br><div style="margin-left: 20px">Constructs an object with the specified values.</div>          </td>
+        </tr></table><h3>Inherited Methods</h3>
+  <table class="summary"><thead><tr><th colspan="2">
+            From <span class="classname"><a href="ezcAuthenticationFilterOptions.html">ezcAuthenticationFilterOptions</a></span>
+          </th>
+        </tr></thead><tbody><tr><td class="right">
+              <em>public</em>                                          <em>ezcAuthenticationFilterOptions</em>            </td>
+            <td>
+              <code><b><a href="ezcAuthenticationFilterOptions.html#method__construct">ezcAuthenticationFilterOptions::__construct()</a></b></code>
+              <br><div style="margin-left: 20px">Constructs an object with the specified values.</div>                          </td>
+          </tr></tbody><thead><tr><th colspan="2">
+            From <span class="classname"><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseOptions.html">ezcBaseOptions</a></span>
+          </th>
+        </tr></thead><tbody><tr><td class="right">
+              <em>public</em>                                          <em>ezcBaseOptions</em>            </td>
+            <td>
+              <code><b><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseOptions.html#method__construct">ezcBaseOptions::__construct()</a></b></code>
+              <br><div style="margin-left: 20px">Construct a new options object.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseOptions.html#methodmerge">ezcBaseOptions::merge()</a></b></code>
+              <br><div style="margin-left: 20px">Merge an array into the actual options object.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>bool</em>            </td>
+            <td>
+              <code><b><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseOptions.html#methodoffsetExists">ezcBaseOptions::offsetExists()</a></b></code>
+              <br><div style="margin-left: 20px">Returns if an option exists.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>mixed</em>            </td>
+            <td>
+              <code><b><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseOptions.html#methodoffsetGet">ezcBaseOptions::offsetGet()</a></b></code>
+              <br><div style="margin-left: 20px">Returns an option value.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseOptions.html#methodoffsetSet">ezcBaseOptions::offsetSet()</a></b></code>
+              <br><div style="margin-left: 20px">Set an option.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseOptions.html#methodoffsetUnset">ezcBaseOptions::offsetUnset()</a></b></code>
+              <br><div style="margin-left: 20px">Unset an option.</div>                          </td>
+          </tr></tbody></table><a name="sec-methods"></a>
+  <h3>Methods</h3>
+  <a name="method_detail"></a>
+  
+      <a name="method__construct" id="__construct"><!-- --></a>
+
+    <h4>__construct</h4>
+
+    <div class="method-signature">
+      ezcAuthenticationOpenidOptions
+      __construct(
+                                  [
+          $options
+           = array()]              )
+    </div>
+
+    <p>Constructs an object with the specified values.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$options</code></td>
+              <td><em>array(string=&gt;mixed)</em></td>
+              <td>
+                                  Options for this class
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseValueException.html">ezcBaseValueException</a></code></td>
+              <td>
+                                  if $options contains a property with a value not allowed
+                              </td>
+            </tr><tr><td><code><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBasePropertyNotFoundException.html">ezcBasePropertyNotFoundException</a></code></td>
+              <td>
+                                  if $options contains a property not defined
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcAuthenticationFilterOptions.html#method__construct">ezcAuthenticationFilterOptions::__construct()</a></code></td>
+            <td>
+                              Constructs an object with the specified values.
+                          </td>
+          </tr></tbody></table><div class="credit">
+      Documentation generated by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+    </div>
+  </div>
+  
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

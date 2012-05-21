@@ -1,0 +1,376 @@
+eZ Components - Database
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. contents:: Table of Contents
+
+Introduction
+============
+
+Before attempting to use the Database component, you should familiarize
+yourself with the PHP Data Objects (PDO) documentation_. The Database component
+builds upon PDO and we do not provide examples or explanations of the PDO basics.
+
+The Database component consists of two main parts:
+
+1. Database handlers derived from PDO with some added functionality. A database
+   handler provides a common API for all databases to execute queries on
+   a database. An introduction can be found in the PHP PDO documentation. Most
+   importantly, the handlers in the components add support for nested 
+   ezcDbHandler::beginTransaction() and ezcDbHandler::commit() calls. The
+   handlers also provide factory methods for the query abstraction layer.
+
+2. The query abstraction layer. This layer provides an object-oriented API for
+   creating SELECT, INSERT, UPDATE and DELETE queries. Using a single
+   interface, you can create syntactically equal queries for the supported
+   databases. This layer removes all need to do string processing in order to
+   build your queries and helps to avoid syntax errors. Note that the query
+   layer does not remove semantic/logical differences between databases.
+
+Supported databases
+-------------------
+
+The Database component currently supports:
+
+- MSSQL
+- MySQL
+- PostgreSQL
+- Oracle
+- SQLite
+
+Class overview
+==============
+
+This section gives you an overview of the main classes of the Database
+component.
+
+Handlers
+--------
+
+ezcDbHandler
+  ezcDbHandler extends PDO and provides the common interface for all the
+  component's database handlers. The handlers should be instantiated using
+  ezcDbFactory.
+
+ezcDbFactory
+  ezcDbFactory is exactly that: a factory for database handlers. It should
+  always be used when instantiating a database handler.
+   
+ezcDbInstance
+  Usually, the database is used in several different places throughout
+  your application. It is inconvenient to pass the handler around and insecure
+  to store it in a global variable. The singleton ezcDbInstance allows you to
+  store any number of database handlers and use these everywhere in your 
+  application.
+
+Query abstraction
+------------------
+
+ezcQuerySelect
+  Interface to create SELECT queries. Instances of ezcQuerySelect should be
+  retrieved from the database handler factory method
+  ezcDbHandler::createSelectQuery().
+
+ezcQueryInsert
+  Interface to create INSERT queries. Instances of ezcQueryInsert should be
+  retrieved from the database handler factory method
+  ezcDbHandler::createInsertQuery().
+
+ezcQueryUpdate
+  Interface to create UPDATE queries. Instances of ezcQueryUpdate should be
+  retrieved from the database handler factory method
+  ezcDbHandler::createUpdateQuery().
+
+ezcQueryDelete
+  Interface to create DELETE queries. Instances of ezcQueryDelete should be
+  retrieved from the database handler factory method
+  ezcDbHandler::createDeleteQuery().
+
+ezcQueryExpression
+   ezcQueryExpression provides the interface to create SQL statements common to
+   SELECT, INSERT, UPDATE and DELETE queries. Examples are methods like 
+   ezcQueryExpression::add() to add two or more numbers and
+   ezcQueryExpression::now() to create the current time. Each query has an
+   expression object available through the variable $expr.
+
+Handler usage
+=============
+
+This section shows how to use the factory and the instance as well as how to
+execute some typical queries. For more information on how to perform queries using
+the handlers, we recommend reading the PHP PDO documentation_.
+
+In order to get started, you need a database handler. The first example shows
+how to create one using ezcDbFactory and how to store the handler in
+ezcDbInstance so it can be easily retrieved later:
+
+.. include:: tutorial_example_01.php
+   :literal:
+
+Executing a simple query and returning the result right away can be done with the
+PDO::query() method:
+
+.. include:: tutorial_example_02.php
+   :literal:
+
+Next, we show a simple example with statements and the use of bind. Binding
+values can be very valuable both in terms of efficiency and security. The main
+difference with normal queries is that the bound value will be transferred to
+the SQL server independent of the main query. See the section 'Avoiding SQL
+injection' below.
+
+.. include:: tutorial_example_03.php
+   :literal:
+
+.. _documentation: http://www.php.net/pdo
+
+Lazy initialization
+-------------------
+
+Lazy initialization is a mechanism to load and configure a component, only 
+when it is really used in your application. This mechanism saves time for 
+parsing the classes and configuration, when the component is not used at all
+during one request. You can find a description how you can use it for your 
+own components and how it works in the `ezcBase tutorial`__. The keyword for
+the database component is *ezcInitDatabaseInstance*.
+
+__ introduction_Base.html#lazy-initialization
+
+.. include:: tutorial_lazy_initialization.php
+	:literal:
+
+ezcBaseInit::setCallback accepts as a first parameter a component specific key,
+which lets the component later request the right configuration callback. The
+second parameter is the name of the class to perform the static callback on.
+This class must implement the ezcBaseConfigurationInitializer class.
+Each component's lazy initialization calls the static method configureObject()
+on the referenced class.
+
+This example shows a way to configure multiple database handlers, only when
+they are really requested in your application. The example does basicaly the
+same like the first example in this tutorial, but creates the connection not
+before it is really required.
+
+In line 24 the default database handler is first requested in this example,
+which does not exist yet, so that the configuration class earlier referenced
+through the setCallback() call will be asked for a new instance for the
+current instance name, which is (bool) false for the default instance.
+
+In the configureObject() method in line 8 we switch on the instance name and
+create and return the right newly created database handler. Line 27 shows,
+that this will also work with multiple database instances, creating an
+additional SQLite connection.
+
+Query abstraction usage
+=======================
+
+This section gives you a basic introduction on how to build queries using the
+query abstraction layer.
+
+We will start out by recreating the first query example:
+
+.. include:: tutorial_example_05.php
+   :literal:
+
+As you can see, building the query itself follows the build-up of a normal
+query and is rather straightforward. The rest of the example is a bit more
+verbose; this is mainly due to the fact that you need to fetch the query object
+from the handler and that you are required to use prepared statements with the
+query abstraction layer. The factory methods in the handler to fetch the query
+object ensure that you get a query of the correct type, regardless of what
+database you use. Please note that if you want to use table/column names that
+are SQL keywords, such as **group**, you need to quote the table/column names
+manually with ezcDbHandler::quoteIdentifier().
+
+Bind parameters
+---------------
+
+The next example is based on the previous one, but builds a more complex query
+and introduces the usage of bind parameters in the query:
+
+.. include:: tutorial_example_04.php
+   :literal:
+
+The query will fetch the first ten quotes by Robert Foster, sorted by the quote itself.
+Note that string parameters must either be bound using 
+ezcQuery::bindParam()/ezcQuery::BindValue() or escaped and quoted manually.
+
+As you can see, logical expressions are built up using the expression object of
+the type ezcQueryExpression. Note that the methods for logical *or* and *and* are
+named lOr and lAnd, respectively. This is because *and* and *or* are reserved names
+in PHP and cannot be used in method names.
+
+The next example shows that you can insert, update and delete rows from a table
+using the query abstraction layer, in a similar way to the SELECT query.
+
+The example below shows how to create and use basic INSERT, UPDATE and DELETE
+query objects.
+
+.. include:: tutorial_example_06.php
+   :literal:
+
+Multi-join syntax
+-----------------
+
+The next examples show how to use multi-join syntax to build 
+queries with several joined tables using inner, right or left join.
+
+The innerJoin(), rightJoin() and leftJoin() methods can be used in three forms:
+
+1. The first form takes two string arguments (table name and join condition) 
+   and returns an ezcQuery object. Each invocation joins one table. You can
+   invoke the \*Join() method several times.
+   
+.. include:: tutorial_example_07a.php
+   :literal:
+
+2. This is a simplified version of form 1, where the join condition is always
+   set to "equal".
+
+   rightJoin( 'table1', 'table1.id', 'table2.id' ) is a shorter equivalent
+   of rightJoin( 'table1', $this->expr->eq('table1.id', 'table2.id' ) );
+
+.. include:: tutorial_example_07b.php
+   :literal:
+
+3. This is a simple form that can join only two tables. It takes four
+   string arguments and returns an SQL string. This exists mainly for backwards
+   compatibility reasons.
+
+.. include:: tutorial_example_08.php
+   :literal:
+   
+This final example shows how to build subselect queries inside SELECT:
+
+.. include:: tutorial_example_09.php
+   :literal:
+
+
+Avoiding SQL injection
+======================
+
+SQL injection is possibly the biggest single cause of major security problems
+in web applications. SQL injections are caused when building SQL statements
+that include untrusted data. If the untrusted data is
+not escaped properly or checked for proper input, you are susceptible to SQL
+injections.
+
+With the introduction of bound values, it is possible to avoid SQL injection
+altogether. Simply use bind to insert untrusted data into a query. This
+is usually more efficient as well, since you do not need to escape the data and the
+SQL server does not have to parse it as part of the query string.
+
+
+Character set issues
+====================
+
+This component currently does not deal with character sets support. It
+relies on the different databases' own mechanisms to deal with this.
+For MySQL that means that you might have to set the character set yourself
+on the ezcDatabaseHandler instance with something like::
+
+    $db->query("SET NAMES utf8");
+
+Oracle treats character sets totally different, and their driver needs to
+know which character set to use *before* connecting to the database, or
+starting the database. For this you need to make an environment setting.
+An example of such setting could be::
+
+    export NLS_LANG=AMERICAN_AMERICA.AL32UTF8
+
+The value of the NLS_LANG environment variable differs according to
+locale and character set, please see the `oracle website`__ for some
+default values and a FAQ__.
+
+__ http://download-uk.oracle.com/docs/cd/B19306_01/install.102/b14317/gblsupp.htm#BCEEEJGF
+__ http://www.oracle.com/technology/tech/globalization/htdocs/nls_lang%20faq.htm
+
+
+Notable differences between databases
+=====================================
+
+Even though the query abstraction layer creates syntactically equal queries for the
+supported databases, the results may still differ. This is due to a large
+number of differences between the databases.
+
+For example, SQLite does not support the rebinding of values. If you have an insert query
+and want to reuse it as outlined below, an error will be returned: ::
+
+    $q->insertInto( 'query_test' )
+        ->set( 'id', 1 )
+        ->set( 'company', $q->bindValue( 'eZ systems' ) )
+        ->set( 'section', $q->bindValue( 'Norway' ) )
+        ->set( 'employees', 20 );
+    $stmt = $q->prepare();
+    $stmt->execute();
+
+    $q->insertInto( 'query_test' );
+    $q->set( 'id', 2 );
+    $q->set( 'company', $q->bindValue( 'Trolltech' ) );
+    $q->set( 'section', $q->bindValue( 'Norway' ) );
+    $q->set( 'employees', 70 );
+    $stmt = $q->prepare();
+    $stmt->execute();
+
+Instead, you should use bindParameter() to achieve the same effect: ::
+
+    $company = 'eZ systems';
+    $section = 'Norway';
+    $q->insertInto( 'query_test' )
+         ->set( 'id', 1 )
+         ->set( 'company', $q->bindParam( $company ) )
+         ->set( 'section', $q->bindParam( $section ) )
+         ->set( 'employees', 20 );
+    $stmt = $q->prepare();
+    $stmt->execute();
+
+    $q->insertInto( 'query_test' );
+    $q->set( 'id', 2 );
+    $q->set( 'employees', 70 );
+    $company = 'Trolltech';
+    $section = 'Norway';
+    $stmt = $q->prepare();
+    $stmt->execute();
+    
+..
+  - difference in case sensitivity
+  - difference in allowed field length
+  - difference in what you can compare (e.g TRUE =! 0)
+
+Restrictions
+============
+
+To keep the compability between different relational database management
+systems, there are restrictions you have to cope with:
+
+- Lowercase column names
+  
+  As some RDBMS always do not store column names case sensitive, but return and
+  strore them completely as upper case letters, ezcDatabase converts all column
+  names to lower case to offer a uniform interface.
+
+Adding support for a new database
+=================================
+
+This section explains the basic steps to take to create support for a new
+database. The following steps are rudimentary but should help
+you along the way.
+
+1. Check out the Database component from the eZ Systems SVN server. This is
+   necessary in order to use the testing system. This allows you to easily see
+   if your code works as it should.
+
+2. Create a handler for the new database. The handler must inherit from
+   ezcDbHandler. Do not reimplement the methods for the query abstraction
+   layer; they will then default to MySQL syntax.
+
+3. Run the test system and check whether any of them fail. If any tests fail, you
+   have to extend the class and method in question and make sure that the
+   generated query is correct for your database.
+
+
+..
+   Local Variables:
+   mode: rst
+   fill-column: 79
+   End: 
+   vim: et syn=rst tw=79

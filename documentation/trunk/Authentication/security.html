@@ -1,0 +1,141 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="PHP, apache, components, framework, quality" />
+	<meta name="author" content="dotxp" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Wed, 04 Aug 2010 13:07:09 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="Security " />
+	<meta name="DC.creator" content="dotxp" />
+	<meta name="DC.date" content="Wed, 04 Aug 2010 13:07:09 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/Authentication/security.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/Authentication/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Authentication/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/trunk/Authentication/security.html" title="Security ">Security </a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Authentication/rfcs.html" title="Rfcs ">Rfcs </a>
+	</li>
+
+</ul>
+
+		<h2>eZ Components - Authentication</h2><div class="toc"><h3>Table of Contents</h3><ul><li><p><a href="#introduction">Introduction</a></p></li><li><p><a href="#securing-databases">Securing databases</a></p><ul><li><p><a href="#store-encrypted-passwords">Store encrypted passwords</a></p></li></ul></li><li><p><a href="#securing-the-session">Securing the session</a></p><ul><li><p><a href="#store-sid-in-cookies">Store SID in cookies</a></p></li><li><p><a href="#secure-the-sid-generation">Secure the SID generation</a></p></li><li><p><a href="#regenerate-the-sid-on-every-request">Regenerate the SID on every request</a></p></li><li><p><a href="#accept-only-server-generated-sid">Accept only server generated SID</a></p></li><li><p><a href="#time-out-old-sids">Time-out old SIDs</a></p></li><li><p><a href="#move-the-session-directory">Move the session directory</a></p></li><li><p><a href="#clean-up-the-session-directory">Clean-up the session directory</a></p></li><li><p><a href="#accept-only-http-cookies">Accept only HTTP cookies</a></p></li><li><p><a href="#destroy-the-session-at-logout">Destroy the session at logout</a></p></li><li><p><a href="#destroy-the-session-if-the-referrer-is-suspicious">Destroy the session if the referrer is suspicious</a></p></li><li><p><a href="#verify-the-client-s-ip-address">Verify the client's IP address</a></p></li><li><p><a href="#verify-the-client-s-user-agent">Verify the client's user-agent</a></p></li><li><p><a href="#disable-registering-of-globals">Disable registering of globals</a></p></li></ul></li><li><p><a href="#securing-the-registration-and-login-process">Securing the registration and login process</a></p><ul><li><p><a href="#request-email-confirmation">Request email confirmation</a></p></li><li><p><a href="#use-captchas">Use CAPTCHAs</a></p></li><li><p><a href="#secure-the-password-recovery-process">Secure the password recovery process</a></p></li><li><p><a href="#limit-the-number-of-login-attempts">Limit the number of login attempts</a></p></li><li><p><a href="#time-out-keep-me-logged-in">Time-out "Keep me logged-in"</a></p></li></ul></li><li><p><a href="#securing-the-server-side">Securing the server-side</a></p><ul><li><p><a href="#protect-include-files">Protect include files</a></p></li><li><p><a href="#protect-server-side-code-and-data">Protect server-side code and data</a></p></li><li><p><a href="#protect-sensitive-files-from-search-engine-spiders">Protect sensitive files from search engine spiders</a></p></li><li><p><a href="#prevent-directory-traversal">Prevent directory traversal</a></p></li><li><p><a href="#prevent-cross-site-attacks">Prevent cross-site attacks</a></p></li><li><p><a href="#secure-file-uploads">Secure file uploads</a></p></li><li><p><a href="#validate-and-clean-input">Validate and clean input</a></p></li><li><p><a href="#do-not-display-errors">Do not display errors</a></p></li></ul></li><li><p><a href="#securing-the-client-side">Securing the client-side</a></p><ul><li><p><a href="#sending-passwords-from-clients">Sending passwords from clients</a></p></li><li><p><a href="#use-post-forms">Use POST forms</a></p></li><li><p><a href="#protection-from-reloads">Protection from reloads</a></p></li><li><p><a href="#use-an-encrypted-connection">Use an encrypted connection</a></p></li></ul></li><li><p><a href="#references">References</a></p></li></ul></div><a name="introduction"></a><a name="id1"></a><h3>Introduction</h3><p>The purpose of this document is to provide common methods of securing online applications, and links to sources of information. The list of methods presented here is not exhaustive, but can be used as a checklist for ensuring protection against common attacks.</p><a name="securing-databases"></a><a name="id2"></a><h3>Securing databases</h3><a name="store-encrypted-passwords"></a><a name="id3"></a><h4>Store encrypted passwords</h4><p>Don't store the passwords in plain text because anybody will be able to read them if they gain access to the database.</p><p>Use the PHP functions <a href="http://php.net/manual/en/function.md5.php">md5</a> () or <a href="http://php.net/manual/en/function.sha1.php">sha1</a> () to encrypt the passwords and then store them. When retrieving a password for the authentication, use the same function and compare the encrypted versions of the password.</p><p>To prevent cases where two users happen to choose the same password, a salt can be added to the password. The salt can be the first few characters from the username, and it should be added in front of the password before calling the encrypting function.</p><p>Although MySQL has it's own password() function, it is recommended to use PHP's md5() or sha1(), because with password() identical passwords will be stored as identical strings, and the passwords might be sent unencrypted between the web server and the MySQL database (depending on configuration).</p><a name="securing-the-session"></a><a name="id4"></a><h3>Securing the session</h3><p>For more information about the techniques discusses in this section, consult the articles <a href="http://en.wikipedia.org/wiki/Session_fixation">Session fixation</a> and <a href="http://en.wikipedia.org/wiki/Session_poisoning">Session poisoning</a>.</p><a name="store-sid-in-cookies"></a><a name="id5"></a><h4>Store SID in cookies</h4><p>Settings in <a href="http://php.net/manual/en/ini.php">php.ini</a> affects how the session identifier (SID) is handled by the application - in a cookie or in the GET/POST request. Storing the session identifier in a cookie is preferred (although not entirely hack-proof).</p><p>The php.ini settings are:</p><code class="block">; Whether to use cookies.
+session.use_cookies = 1
+
+; This option enables administrators to make their users invulnerable to
+; attacks which involve passing session ids in URLs; defaults to 0.
+session.use_only_cookies = 1
+
+; Don't append the SID to URLs
+session.use_trans_id = 0</code><p>Additionally, make sure PHP is not compiled with the option --enable-trans-id, as this will rewrite URLs to include the SID.</p><p>This requires informing users to use a browser that supports and accepts cookies.</p><a name="secure-the-sid-generation"></a><a name="id6"></a><h4>Secure the SID generation</h4><p>By modifying these settings in the <a href="http://php.net/manual/en/ini.php">php.ini</a> file, the SID generation will depend on the first bytes of a file instead of the current date and time (default):</p><code class="block">; What file to use for SID generation
+session.entropy_file = &lt;path to a file&gt;
+
+; How many characters to use from the entropy file
+session.entropy_length = 10</code><p>For entropy file, the Unix /dev/urandom can be used, which generates a pseudo-random number.</p><a name="regenerate-the-sid-on-every-request"></a><a name="id7"></a><h4>Regenerate the SID on every request</h4><p>Done by the Authentication component.</p><a name="accept-only-server-generated-sid"></a><a name="id8"></a><h4>Accept only server generated SID</h4><p>Done by the Authentication component.</p><a name="time-out-old-sids"></a><a name="id9"></a><h4>Time-out old SIDs</h4><p>Done by the Authentication component.</p><a name="move-the-session-directory"></a><a name="id10"></a><h4>Move the session directory</h4><p>It is possible that attackers might get access to the /tmp directory where sessions are stored by default. Use the following <a href="http://php.net/manual/en/ini.php">php.ini</a> setting to specify another directory for this:</p><code class="block">; where to store the sessions
+session.save_path = &lt;directory&gt;</code><p>The specified directory must be writable by the user under which PHP is running.</p><a name="clean-up-the-session-directory"></a><a name="id11"></a><h4>Clean-up the session directory</h4><p>The session garbage collector is run when a new session starts. It's behaviour is controlled by the <a href="http://php.net/manual/en/ini.php">php.ini</a> options (the values specified are the default):</p><code class="block">; after how many seconds the data is seen as garbage and cleaned-up out
+session.gc_maxlifetime = 1440
+
+; with what probability the garbage collector is run on every session
+; initialization. Use together with gc_divisor
+session.gc_probability = 1
+
+; value to divide the gc_probability to obtain the garbage collector
+; probability to run.
+; Probability = gc_probability/gc_divisor (default: 1/100 = 1%)
+session.gc_divisor = 100</code><p>Change these options to values more appropiate for your needs. Note that running the session garbage collector more often can have negative side-effects on the application's performance.</p><a name="accept-only-http-cookies"></a><a name="id12"></a><h4>Accept only HTTP cookies</h4><p>A setting in <a href="http://php.net/manual/en/ini.php">php.ini</a> can make cookings accessible only by HTTP and prevent the cookies from being read by scripting languages:</p><code class="block">session.cookie_httponly = on</code><p>Default is off. It is available only from PHP 5.2.0 and not all browsers support this (most notably Firefox). Can prevent identity theft through XSS (<a href="http://en.wikipedia.org/wiki/Cross-site_scripting">Cross-site scripting</a> ) attacks.</p><a name="destroy-the-session-at-logout"></a><a name="id13"></a><h4>Destroy the session at logout</h4><p>When user logs out, the session must be destroyed to prevent reusing of the same SID by the attacker.</p><a name="destroy-the-session-if-the-referrer-is-suspicious"></a><a name="id14"></a><h4>Destroy the session if the referrer is suspicious</h4><p>If the referrer is not the same as the website address, then an attack might be taking place.</p><a name="verify-the-client-s-ip-address"></a><a name="id15"></a><h4>Verify the client's IP address</h4><p>At login, the server records the IP address of the client, and then checks at each sensitive request if the stored address is the same as the current one.</p><p>This can be problematic due to the use of proxy servers. Also the IP address can be spoofed.</p><a name="verify-the-client-s-user-agent"></a><a name="id16"></a><h4>Verify the client's user-agent</h4><p>At login, the server records the user-agent of the client, and then checks at each sensitive request if the stored user-agent is the same as the current one.</p><p>The user-agent can be spoofed, so this should not be the only method to be relyed upon.</p><a name="disable-registering-of-globals"></a><a name="id17"></a><h4>Disable registering of globals</h4><p>The <a href="http://php.net/manual/en/ini.php">php.ini</a> setting for this is:</p><code class="block">register_globals = off</code><p>This can prevent attacks which use <a href="http://en.wikipedia.org/wiki/Session_poisoning">Session poisoning</a>. From PHP 4.2.0 it is off by default, and it is removed in PHP 6.0.0. Just make sure it isn't turned on by accident.</p><a name="securing-the-registration-and-login-process"></a><a name="id18"></a><h3>Securing the registration and login process</h3><a name="request-email-confirmation"></a><a name="id19"></a><h4>Request email confirmation</h4><p>When users register in an online application, use an email confirmation process. This will prevent automated registrations from bots.</p><p>The registration emails should not contain the password that the user used to register, as it can be seen by people or sniffers.</p><a name="use-captchas"></a><a name="id20"></a><h4>Use CAPTCHAs</h4><p>Another way to prevent automated registrations is to use CAPTCHAs. Choose one implementation that does not make it too hard for humans to read, but still maintaining a secure enough level to prevent bots using OCR technology.</p><a name="secure-the-password-recovery-process"></a><a name="id21"></a><h4>Secure the password recovery process</h4><p>If using the <a href="http://php.net/manual/en/function.md5.php">md5</a> () or <a href="http://php.net/manual/en/function.sha1.php">sha1</a> () functions in PHP to store the passwords (as discussed earlier), there is no way to recover the password from the database.</p><p>In this case, the server can generate a temporary password with which the user can login to his account administration tool and change the password to something else. The temporary password can be sent to the user by email.</p><p>The process of password recovery can be secured more by having the user answer a question which he/she specified during the registration process, such as "What was your pet's name?" or "What is your birthday?. This will prevent the case where anyone can get a new password for an account name which they found out.</p><p>The password recovery should be limited to only a few uses to prevent attacks.</p><a name="limit-the-number-of-login-attempts"></a><a name="id22"></a><h4>Limit the number of login attempts</h4><p>Sometimes an attacker might know a partial password and will try repeteadly to login. Specifying a limited number of permitted login attempts can prevent this.</p><p>Login to the application for that account should be blocked for a specified amount of time. It can also be blocked for a longer time and an email should be sent to the account owner with a link to the or to the account unlocker tool or to the password recovery tool.</p><a name="time-out-keep-me-logged-in"></a><a name="id23"></a><h4>Time-out "Keep me logged-in"</h4><p>When using "Remember me" or "Keep me logged-in" during login, the logged-in time must be limited (eg. 24 hours) to ensure attackers can't gain access when using a stolen computer.</p><a name="securing-the-server-side"></a><a name="id24"></a><h3>Securing the server-side</h3><a name="protect-include-files"></a><a name="id25"></a><h4>Protect include files</h4><p>Do not use the extension .inc for include files, instead use .php, so that the files will not be displayed in the browser if they are accessed directly.</p><a name="protect-server-side-code-and-data"></a><a name="id26"></a><h4>Protect server-side code and data</h4><p>By adding in the <a href="http://httpd.apache.org/docs/2.0/mod/core.html">httpd.conf</a> entries for the directories that contain sensitive code or data of the application, attackers are prevented to see their contents.</p><code class="block">&lt;Directory "/home/user/http/logs/"&gt;
+  Order deny,allow
+  Deny from all
+  Allow from 127.0.0.1
+&lt;/Directory&gt;</code><p>An alternative is to use a <a href="http://httpd.apache.org/docs/2.0/howto/htaccess.html">.htaccess</a> file in every directory that must be protected.</p><code class="block">Order deny,allow
+Deny from all
+Allow from 127.0.0.1</code><p>The server will access the .htaccess files on every request. The httpd.conf file is accessed only on starting the Apache server. This means there is a small performance hit by using .htaccess files, which must be taken into consideration when developing large applications.</p><a name="protect-sensitive-files-from-search-engine-spiders"></a><a name="id27"></a><h4>Protect sensitive files from search engine spiders</h4><p>You can create a file named <a href="http://www.robotstxt.org/wc/robots.html">robots.txt</a> in the website's root directory, with the contents:</p><code class="block">User-agent: *
+Crawl-delay: 120
+Disallow: /path/</code><p>Write as many "Disallow: /path/" lines as necessary, with "path" being the directories which should not be indexed by the search engine spiders, like templates, compiled templates, server-side code, configuration directories, log directories, tmp directories, premium content directories, etc.</p><p>The Crawl-delay setting (in seconds) can prevent a spider indexing the website too quickly (which might cause bottlenecks).</p><p>There are spiders which don't follow the robots.txt (<a href="http://www.kloth.net/internet/badbots.php">bad bots</a>). Against these spiders you can use a <a href="http://www.kloth.net/internet/bottrap.php">bot trap</a> or the httpd.conf or .htaccess files to prevent the bad spiders to access the application directories.</p><p>The robots.txt file is not needed if you used the previous method (httpd.conf or .htaccess files) to protect directories, as it gives away information about the directory structure of the application.</p><a name="prevent-directory-traversal"></a><a name="id28"></a><h4>Prevent directory traversal</h4><p>More information can be found on the <a href="http://en.wikipedia.org/wiki/Directory_traversal">Directory traversal</a> article on Wikipedia.</p><a name="prevent-cross-site-attacks"></a><a name="id29"></a><h4>Prevent cross-site attacks</h4><p>Recommended reading: - <a href="http://en.wikipedia.org/wiki/Cross-site_request_forgery">Cross-site request forgery</a> - <a href="http://en.wikipedia.org/wiki/Cross-site_cooking">Cross-site cooking</a> - <a href="http://en.wikipedia.org/wiki/Cross-site_scripting">Cross-site scripting</a> - <a href="http://en.wikipedia.org/wiki/Cross-zone_scripting">Cross-zone scripting</a></p><a name="secure-file-uploads"></a><a name="id30"></a><h4>Secure file uploads</h4><p>Use generated names for uploaded files or mail attachments instead of the original names, so that attacks relying on filenames containing paths will be prevented.</p><p>Use a maximum file size for uploads, using <a href="http://php.net/manual/en/ini.php">php.ini</a>:</p><code class="block">; maximum upload size
+upload_max_filesize = &lt;value in bytes&gt;
+
+; maximum size for POST data
+post_max_size = &lt;value in bytes&gt;
+
+; the temporary directory to keep the uploaded files
+upload_tmp_dir = /tmp</code><p>The temporary directory must be writable by the user under PHP is running. The php.ini value for memory_limit should be higher than the upload_max_filesize value.</p><a name="validate-and-clean-input"></a><a name="id31"></a><h4>Validate and clean input</h4><p>Prevent SQL injection attacks by validating and cleaning data coming from a web request before running SQL queries on them.</p><p>Don't rely only on client-side validation for data (although client-side validation can be employed to speed up validation and reduce network load).</p><a name="do-not-display-errors"></a><a name="id32"></a><h4>Do not display errors</h4><p>Displaying errors might provide attackers with security information about the application, such as file paths, database schema, etc. The <a href="http://php.net/manual/en/ini.php">php.ini</a> settings for this are:</p><code class="block">; do not display errors
+display_errors = off
+
+; do not display errors occuring during PHP's startup sequence
+display_startup_errors = off</code><a name="securing-the-client-side"></a><a name="id33"></a><h3>Securing the client-side</h3><a name="sending-passwords-from-clients"></a><a name="id34"></a><h4>Sending passwords from clients</h4><p>In order to transmit securely a password from the login page to the server code, the PHP functions <a href="http://php.net/manual/en/function.md5.php">md5</a> () or <a href="http://php.net/manual/en/function.sha1.php">sha1</a> () can be used.</p><p>A more secure way is to add a random number (generated by the server) to the password, and then apply md5() or sha1() to this string. That is because rainbow tables of hashes can be used by attackers to find the unhashed strings.</p><p>This method requires implementing an md5() or sha1() function in JavaScript, or using an already made one.</p><p>Since PHP 5.1.2 you can use the function <a href="http://php.net/manual/en/function.hash.php">hash</a> () which has support for different hashing methods (MD5, SHA1, SHA256, etc). One added bonus is that the hash() function is faster to execute than the md5() and sha1() functions.</p><p>Passwords should be enforced to contain numbers and other characters apart from letters, and/or be at least 8 characters in length, to make them more secure against dictionary and rainbow tables attacks.</p><a name="use-post-forms"></a><a name="id35"></a><h4>Use POST forms</h4><p>Use POST requests instead of GET for operations that may involve modifying the data on the server (add, delete, edit). GET requests should be employed only for retrieving data.</p><a name="protection-from-reloads"></a><a name="id36"></a><h4>Protection from reloads</h4><p>After a request from the client (login, delete, add, buy, etc), it is possible that the user reload the page, thus sending the request again. This should be detected and avoided.</p><a name="use-an-encrypted-connection"></a><a name="id37"></a><h4>Use an encrypted connection</h4><p>Use SSL/TLS to prevent sniffers from stumbling upon sensitive information like usernames, passwords, social security numbers or credit card numbers.</p><a name="references"></a><a name="id38"></a><h3>References</h3><dl><dt>Configuration files</dt><dd><ul><li><p><a href="http://php.net/manual/en/ini.php">php.ini</a></p></li><li><p><a href="http://httpd.apache.org/docs/2.0/howto/htaccess.html">.htaccess</a></p></li><li><p><a href="http://httpd.apache.org/docs/2.0/mod/core.html">httpd.conf</a></p></li><li><p><a href="http://www.robotstxt.org/wc/robots.html">robots.txt</a></p></li></ul></dd></dl><!--Local Variables:
+mode: rst
+fill-column: 79
+End:
+vim: et syn=rst tw=79 nocin-->
+
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

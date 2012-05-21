@@ -1,0 +1,796 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="PHP, apache, components, framework, quality" />
+	<meta name="author" content="dotxp" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Wed, 04 Aug 2010 13:07:56 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="ezcReflectionParameter.html" />
+	<meta name="DC.creator" content="dotxp" />
+	<meta name="DC.date" content="Wed, 04 Aug 2010 13:07:56 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/Reflection/phpdoc/ezcReflectionParameter.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li class="requested">
+	<a href="/zetacomponents/documentation/trunk/Reflection/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+
+</ul>
+
+		
+  <div class="phpdoc">
+    <h2>Apache Zeta Components Manual :: Docs For Class ezcReflectionParameter</h2>
+
+                  <h3>Reflection::ezcReflectionParameter</h3>
+    
+<a name="sec-description"></a>
+<h3>Class ezcReflectionParameter</h3>
+
+<p>The ezcReflectionParameter class retrieves information about a function's  or method's parameters and their types.</p><div><p>Extends the ReflectionParameter class to provide type information  using PHPDoc annotations.</p></div>
+<p>Source for this file: <a href="http://fisheye6.atlassian.com/browse/zetacomponents/trunk/Reflection/src/parameter.php?r=HEAD">/Reflection/src/parameter.php</a></p>
+       
+
+
+<pre>ReflectionParameter
+   |
+   --ezcReflectionParameter</pre>
+
+
+  <table><tr><td>
+            <strong>Version:</strong>&#8192;&#8192;
+          </td>
+          <td>//autogen//</td>
+        </tr></table><a name="sec-var-summary"></a>
+  <h3>Member Variables</h3>
+  <table class="summary"><tr><td class="right">
+            <em>protected</em>            <em>ReflectionParameter</em>          </td>
+          <td>
+            <code>
+              $parameter
+               = <span class="var-default"> null</span>            </code>
+            <br><div style="margin-left: 20px">ReflectionParameter instance if one was provided to the constructor</div>                      </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            <em>integer|string|ReflectionParameter</em>          </td>
+          <td>
+            <code>
+              $reflectionSource
+                          </code>
+                                  </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            <em><a href="ezcReflectionType.html">ezcReflectionType</a></em>          </td>
+          <td>
+            <code>
+              $type
+                          </code>
+            <br><div style="margin-left: 20px">Type of the parameter</div>                      </td>
+        </tr></table><h3>Inherited Member Variables</h3>
+  <table class="summary"><thead><tr><th colspan="2">
+            From <span class="classname">ReflectionParameter (Internal Class)</span>         
+          </th>
+        </tr></thead><tbody><tr><td class="right">
+              <em>public</em>                          </td>
+            <td>
+              <code>$name</code>
+              
+            </td>
+          </tr></tbody></table><a name="sec-method-summary"></a>
+  <h3>Method Summary</h3>
+  <table class="summary"><tr><td class="right">
+            <em>public</em>            static
+                        <em>mixed</em>          </td>
+          <td>
+            <code>
+              <a href="#export"><b>export</b></a>(
+                                                                                    $function
+                                                    ,                                     $parameter
+                                                    ,                   [                  $return
+                   = false]                               )
+            </code>
+            <br><div style="margin-left: 20px">Exports a reflection object.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>ezcReflectionParameter</em>          </td>
+          <td>
+            <code>
+              <a href="#__construct"><b>__construct</b></a>(
+                                                                                    $functionOrMethod
+                                                    ,                                     $parameterPositionNameOrSource
+                                                    ,                   [                  $type
+                   = null]                                  ,                                     $parameter
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Constructor</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>boolean</em>          </td>
+          <td>
+            <code>
+              <a href="#allowsNull"><b>allowsNull</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns whether NULL is allowed as this parameters's value</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>mixed</em>          </td>
+          <td>
+            <code>
+              <a href="#forwardCallToReflectionSource"><b>forwardCallToReflectionSource</b></a>(
+                                                                                    $method
+                                                    ,                   [                  $arguments
+                   = array()]                               )
+            </code>
+            <br><div style="margin-left: 20px">Forwards a method invocation to either the reflection source passed to  the constructor of this class when creating an instance or to the parent  class.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em><a href="ezcReflectionClass.html">ezcReflectionClass</a>|NULL</em>          </td>
+          <td>
+            <code>
+              <a href="#getClass"><b>getClass</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns reflection object identified by type hinting or NULL if there is  no hint</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em><a href="ezcReflectionClass.html">ezcReflectionClass</a></em>          </td>
+          <td>
+            <code>
+              <a href="#getDeclaringClass"><b>getDeclaringClass</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns in which class this parameter is defined (not the type hint of the parameter)</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em><a href="ezcReflectionFunction.html">ezcReflectionFunction</a>|<a href="ezcReflectionMethod.html">ezcReflectionMethod</a></em>          </td>
+          <td>
+            <code>
+              <a href="#getDeclaringFunction"><b>getDeclaringFunction</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns the function or method declaring this parameter</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>mixed</em>          </td>
+          <td>
+            <code>
+              <a href="#getDefaultValue"><b>getDefaultValue</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns the default value of this parameter or throws an exception</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#getName"><b>getName</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns this parameters's name</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>integer</em>          </td>
+          <td>
+            <code>
+              <a href="#getPosition"><b>getPosition</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns whether this parameter is an optional parameter</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em><a href="ezcReflectionType.html">ezcReflectionType</a></em>          </td>
+          <td>
+            <code>
+              <a href="#getType"><b>getType</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns the type of this parameter in form of an ezcReflectionType</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>boolean</em>          </td>
+          <td>
+            <code>
+              <a href="#isArray"><b>isArray</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns whether parameter MUST be an array</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>boolean</em>          </td>
+          <td>
+            <code>
+              <a href="#isDefaultValueAvailable"><b>isDefaultValueAvailable</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns whether the default value of this parameter is available</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>boolean</em>          </td>
+          <td>
+            <code>
+              <a href="#isOptional"><b>isOptional</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns whether this parameter is an optional parameter</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>boolean</em>          </td>
+          <td>
+            <code>
+              <a href="#isPassedByReference"><b>isPassedByReference</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns whether this parameters is passed to by reference</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>mixed</em>          </td>
+          <td>
+            <code>
+              <a href="#__call"><b>__call</b></a>(
+                                                                                    $method
+                                                    ,                                     $arguments
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Use overloading to call additional methods  of the ReflectionParameter instance given to the constructor.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#__toString"><b>__toString</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns a string representation</div>          </td>
+        </tr></table><h3>Inherited Methods</h3>
+  <table class="summary"><thead><tr><th colspan="2">
+            From <span class="classname">ReflectionParameter (Internal Class)</span>
+          </th>
+        </tr></thead><tbody><tr><td class="right">
+              <em>public</em>                                          <em>ReflectionParameter</em>            </td>
+            <td>
+              <code><b>constructor __construct ( $function, $parameter )</b></code>
+                                        </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b>allowsNull (  )</b></code>
+                                        </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b>export ( $function, $parameter, [$return = ] )</b></code>
+                                        </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b>getClass (  )</b></code>
+                                        </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b>getDeclaringClass (  )</b></code>
+                                        </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b>getDeclaringFunction (  )</b></code>
+                                        </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b>getDefaultValue (  )</b></code>
+                                        </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b>getName (  )</b></code>
+                                        </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b>getPosition (  )</b></code>
+                                        </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b>isArray (  )</b></code>
+                                        </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b>isDefaultValueAvailable (  )</b></code>
+                                        </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b>isOptional (  )</b></code>
+                                        </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b>isPassedByReference (  )</b></code>
+                                        </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b>__clone (  )</b></code>
+                                        </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b>__toString (  )</b></code>
+                                        </td>
+          </tr></tbody></table><a name="sec-methods"></a>
+  <h3>Methods</h3>
+  <a name="method_detail"></a>
+          <a name="methodexport" id="export"><!-- --></a>
+
+    <h4>export</h4>
+
+    <div class="method-signature">
+      static mixed
+      export(
+                                  mixed
+          $function
+                            ,           mixed
+          $parameter
+                            ,           [boolean
+          $return
+           = false]              )
+    </div>
+
+      <p>Exports a reflection object.</p><div><p>Returns the output if TRUE is specified for $return, printing it otherwise.  This is purely a wrapper method, which calls the corresponding method of  the parent class.</p></div>      
+              <h5>Parameters:</h5>
+        <table class="detail"><thead><tr><th>Name</th>
+              <th>Type</th>
+              <th class="desc">Description</th>
+            </tr></thead><tbody><tr><td><code>$function</code></td>
+                <td><em>mixed</em></td>
+                <td>
+                                      Function or Method
+                                  </td>
+              </tr><tr><td><code>$parameter</code></td>
+                <td><em>mixed</em></td>
+                <td>
+                                      Parameter
+                                  </td>
+              </tr><tr><td><code>$return</code></td>
+                <td><em>boolean</em></td>
+                <td>
+                                      Whether to return (TRUE) or print (FALSE) the output
+                                  </td>
+              </tr></tbody></table><h5>Redefinition of:</h5>
+        <table class="detail"><thead><tr><th>Method</th>
+              <th class="desc">Description</th>
+            </tr></thead><tbody><tr><td><code>ReflectionParameter::export ( $function, $parameter, [$return = ] )</code></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="method__construct" id="__construct"><!-- --></a>
+
+    <h4>__construct</h4>
+
+    <div class="method-signature">
+      ezcReflectionParameter
+      __construct(
+                                  string|array<integer>
+          $functionOrMethod
+                            ,           
+          $parameterPositionNameOrSource
+                            ,           [string
+          $type
+           = null]                  ,           integer|string|ReflectionParameter
+          $parameter
+                        )
+    </integer></div>
+
+    <p>Constructor</p><div><p>If called with a ReflectionParameter instance as second argument the,  first argument should be a string identifying the type of the parameter.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$functionOrMethod</code></td>
+              <td><em>string|array<integer></integer></em></td>
+              <td>
+                                  The function, method or type of the parameter given as function         name, array($classname, $method), or array($object, $method)
+                              </td>
+            </tr><tr><td><code>$parameter</code></td>
+              <td><em>integer|string|ReflectionParameter</em></td>
+              <td>
+                                  Position (starting at 0), name, or ReflectionParameter instance         of the parameter to introspect.
+                              </td>
+            </tr><tr><td><code>$type</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  Type of the parameter given in form of the type name.
+                              </td>
+            </tr><tr><td><code>$parameterPositionNameOrSource</code></td>
+              <td><em></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>ReflectionException</code></td>
+              <td>
+                                  in case the given method or function does not exist.
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>ReflectionParameter::constructor __construct ( $function, $parameter )</code></td>
+            <td>
+                          </td>
+          </tr></tbody></table><a name="methodallowsNull" id="allowsNull"><!-- --></a>
+
+    <h4>allowsNull</h4>
+
+    <div class="method-signature">
+      boolean
+      allowsNull(
+      )
+    </div>
+
+    <p>Returns whether NULL is allowed as this parameters's value</p>
+    
+        
+
+          <h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>ReflectionParameter::allowsNull (  )</code></td>
+            <td>
+                          </td>
+          </tr></tbody></table><a name="methodforwardCallToReflectionSource" id="forwardCallToReflectionSource"><!-- --></a>
+
+    <h4>forwardCallToReflectionSource</h4>
+
+    <div class="method-signature">
+      mixed
+      forwardCallToReflectionSource(
+                                  string
+          $method
+                            ,           [mixed[]
+          $arguments
+           = array()]              )
+    </div>
+
+    <p>Forwards a method invocation to either the reflection source passed to  the constructor of this class when creating an instance or to the parent  class.</p><div><p>This method is part of the dependency injection mechanism and serves as  a helper for implementing wrapper methods without code duplication.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$method</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  Name of the method to be invoked
+                              </td>
+            </tr><tr><td><code>$arguments</code></td>
+              <td><em>mixed[]</em></td>
+              <td>
+                                  Arguments to be passed to the method
+                              </td>
+            </tr></tbody></table><a name="methodgetClass" id="getClass"><!-- --></a>
+
+    <h4>getClass</h4>
+
+    <div class="method-signature">
+      <a href="ezcReflectionClass.html">ezcReflectionClass</a>|NULL
+      getClass(
+      )
+    </div>
+
+    <p>Returns reflection object identified by type hinting or NULL if there is  no hint</p><div><p>This method does not rely on type annotations. That gives users the  freedom to decide on whether they want to trust the type annotations,  i.e., by calling <a href="ezcReflectionParameter.html#methodgetType">getType()</a>, or only PHP's type hinting, which is  the sole data source for this method.</p></div>
+    
+          <h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>ReflectionException</code></td>
+              <td>
+                                  if a parameter uses 'self' or 'parent' as type hint, but function is not a class member, if a parameter uses 'parent' as type hint, although class does not have a parent, or if the class does not exist
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>ReflectionParameter::getClass (  )</code></td>
+            <td>
+                          </td>
+          </tr></tbody></table><a name="methodgetDeclaringClass" id="getDeclaringClass"><!-- --></a>
+
+    <h4>getDeclaringClass</h4>
+
+    <div class="method-signature">
+      <a href="ezcReflectionClass.html">ezcReflectionClass</a>
+      getDeclaringClass(
+      )
+    </div>
+
+    <p>Returns in which class this parameter is defined (not the type hint of the parameter)</p>
+    
+        
+
+          <h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>ReflectionParameter::getDeclaringClass (  )</code></td>
+            <td>
+                          </td>
+          </tr></tbody></table><a name="methodgetDeclaringFunction" id="getDeclaringFunction"><!-- --></a>
+
+    <h4>getDeclaringFunction</h4>
+
+    <div class="method-signature">
+      <a href="ezcReflectionFunction.html">ezcReflectionFunction</a>|<a href="ezcReflectionMethod.html">ezcReflectionMethod</a>
+      getDeclaringFunction(
+      )
+    </div>
+
+    <p>Returns the function or method declaring this parameter</p>
+    
+        
+
+          <h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>ReflectionParameter::getDeclaringFunction (  )</code></td>
+            <td>
+                          </td>
+          </tr></tbody></table><a name="methodgetDefaultValue" id="getDefaultValue"><!-- --></a>
+
+    <h4>getDefaultValue</h4>
+
+    <div class="method-signature">
+      mixed
+      getDefaultValue(
+      )
+    </div>
+
+    <p>Returns the default value of this parameter or throws an exception</p>
+    
+        
+
+          <h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>ReflectionParameter::getDefaultValue (  )</code></td>
+            <td>
+                          </td>
+          </tr></tbody></table><a name="methodgetName" id="getName"><!-- --></a>
+
+    <h4>getName</h4>
+
+    <div class="method-signature">
+      string
+      getName(
+      )
+    </div>
+
+    <p>Returns this parameters's name</p>
+    
+        
+
+          <h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>ReflectionParameter::getName (  )</code></td>
+            <td>
+                          </td>
+          </tr></tbody></table><a name="methodgetPosition" id="getPosition"><!-- --></a>
+
+    <h4>getPosition</h4>
+
+    <div class="method-signature">
+      integer
+      getPosition(
+      )
+    </div>
+
+    <p>Returns whether this parameter is an optional parameter</p>
+    
+        
+
+          <h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>ReflectionParameter::getPosition (  )</code></td>
+            <td>
+                          </td>
+          </tr></tbody></table><a name="methodgetType" id="getType"><!-- --></a>
+
+    <h4>getType</h4>
+
+    <div class="method-signature">
+      <a href="ezcReflectionType.html">ezcReflectionType</a>
+      getType(
+      )
+    </div>
+
+    <p>Returns the type of this parameter in form of an ezcReflectionType</p><div><p>A valid type hint for the parameter will be preferred over a type  annotation.</p></div>
+    
+          <h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>ReflectionException</code></td>
+              <td>
+                                  if a parameter uses 'self' or 'parent' as type hint, but function is not a class member, if a parameter uses 'parent' as type hint, although class does not have a parent, or if the class does not exist
+                              </td>
+            </tr></tbody></table><a name="methodisArray" id="isArray"><!-- --></a>
+
+    <h4>isArray</h4>
+
+    <div class="method-signature">
+      boolean
+      isArray(
+      )
+    </div>
+
+    <p>Returns whether parameter MUST be an array</p>
+    
+        
+
+          <h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>ReflectionParameter::isArray (  )</code></td>
+            <td>
+                          </td>
+          </tr></tbody></table><a name="methodisDefaultValueAvailable" id="isDefaultValueAvailable"><!-- --></a>
+
+    <h4>isDefaultValueAvailable</h4>
+
+    <div class="method-signature">
+      boolean
+      isDefaultValueAvailable(
+      )
+    </div>
+
+    <p>Returns whether the default value of this parameter is available</p>
+    
+        
+
+          <h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>ReflectionParameter::isDefaultValueAvailable (  )</code></td>
+            <td>
+                          </td>
+          </tr></tbody></table><a name="methodisOptional" id="isOptional"><!-- --></a>
+
+    <h4>isOptional</h4>
+
+    <div class="method-signature">
+      boolean
+      isOptional(
+      )
+    </div>
+
+    <p>Returns whether this parameter is an optional parameter</p>
+    
+        
+
+          <h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>ReflectionParameter::isOptional (  )</code></td>
+            <td>
+                          </td>
+          </tr></tbody></table><a name="methodisPassedByReference" id="isPassedByReference"><!-- --></a>
+
+    <h4>isPassedByReference</h4>
+
+    <div class="method-signature">
+      boolean
+      isPassedByReference(
+      )
+    </div>
+
+    <p>Returns whether this parameters is passed to by reference</p>
+    
+        
+
+          <h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>ReflectionParameter::isPassedByReference (  )</code></td>
+            <td>
+                          </td>
+          </tr></tbody></table><a name="method__call" id="__call"><!-- --></a>
+
+    <h4>__call</h4>
+
+    <div class="method-signature">
+      mixed
+      __call(
+                                  string
+          $method
+                            ,           array
+          $arguments
+                        )
+    </div>
+
+    <p>Use overloading to call additional methods  of the ReflectionParameter instance given to the constructor.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$method</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  Method to be called
+                              </td>
+            </tr><tr><td><code>$arguments</code></td>
+              <td><em>array</em></td>
+              <td>
+                                  Arguments that were passed
+                              </td>
+            </tr></tbody></table><a name="method__toString" id="__toString"><!-- --></a>
+
+    <h4>__toString</h4>
+
+    <div class="method-signature">
+      string
+      __toString(
+      )
+    </div>
+
+    <p>Returns a string representation</p>
+    
+        
+
+          <h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>ReflectionParameter::__toString (  )</code></td>
+            <td>
+                          </td>
+          </tr></tbody></table><div class="credit">
+      Documentation generated by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+    </div>
+  </div>
+  
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

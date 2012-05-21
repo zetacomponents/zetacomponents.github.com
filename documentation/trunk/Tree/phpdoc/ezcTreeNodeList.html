@@ -1,0 +1,249 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="PHP, apache, components, framework, quality" />
+	<meta name="author" content="dotxp" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Wed, 04 Aug 2010 13:08:01 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="ezcTreeNodeList.html" />
+	<meta name="DC.creator" content="dotxp" />
+	<meta name="DC.date" content="Wed, 04 Aug 2010 13:08:01 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/Tree/phpdoc/ezcTreeNodeList.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/Tree/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/trunk/Tree/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+
+</ul>
+
+		
+  <div class="phpdoc">
+    <h2>Apache Zeta Components Manual :: Docs For Class ezcTreeNodeList</h2>
+
+                  <h3>Tree::ezcTreeNodeList</h3>
+    
+<a name="sec-description"></a>
+<h3>Class ezcTreeNodeList</h3>
+
+<p>ezcTreeNodeList represents a lists of nodes.</p><div><p>The nodes in the list can be accessed through an array as this class  implements the ArrayAccess SPL interface. The array is indexed based on the  the node's ID.</p><p>Example:  </p><ol><li><div class="src-line">&#8192;<span class="src-php">&lt;?php</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-comm">//&#8192;Create&#8192;a&#8192;list&#8192;with&#8192;two&#8192;elements</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-var">$list&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcTreeNodeList.html">ezcTreeNodeList</a></span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-var">$list</span><span class="src-sym">-&gt;</span><a href="ezcTreeNodeList.html#methodaddNode">addNode</a><span class="src-sym">(&#8192;</span><span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcTreeNode.html">ezcTreeNode</a></span><span class="src-sym">(&#8192;</span><span class="src-var">$tree</span><span class="src-sym">,&#8192;</span><span class="src-str">'Leo'&#8192;</span><span class="src-sym">)&#8192;)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-var">$list</span><span class="src-sym">-&gt;</span><a href="ezcTreeNodeList.html#methodaddNode">addNode</a><span class="src-sym">(&#8192;</span><span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcTreeNode.html">ezcTreeNode</a></span><span class="src-sym">(&#8192;</span><span class="src-var">$tree</span><span class="src-sym">,&#8192;</span><span class="src-str">'Virgo'&#8192;</span><span class="src-sym">)&#8192;)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-comm">//&#8192;Retrieve&#8192;the&#8192;list's&#8192;size</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;echo&#8192;<span class="src-var">$list</span><span class="src-sym">-&gt;</span><span class="src-id">size</span><span class="src-sym">,&#8192;</span><span class="src-str">"\n"</span><span class="src-sym">;&#8192;</span><span class="src-comm">//&#8192;prints&#8192;2</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-comm">//&#8192;Find&#8192;a&#8192;node&#8192;in&#8192;the&#8192;list</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-var">$node&#8192;</span>=&#8192;<span class="src-var">$list</span><span class="src-sym">[</span><span class="src-str">'Virgo'</span><span class="src-sym">]</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-comm">//&#8192;Add&#8192;nodes&#8192;in&#8192;an&#8192;alternative&#8192;way</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-var">$list</span><span class="src-sym">[</span><span class="src-str">'Libra'</span><span class="src-sym">]&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcTreeNode.html">ezcTreeNode</a></span><span class="src-sym">(&#8192;</span><span class="src-var">$tree</span><span class="src-sym">,&#8192;</span><span class="src-str">'Libra'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-comm">//&#8192;Remove&#8192;a&#8192;node&#8192;from&#8192;the&#8192;list</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;unset<span class="src-sym">(&#8192;</span><span class="src-var">$list</span><span class="src-sym">[</span><span class="src-str">'Leo'</span><span class="src-sym">]&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-comm">//&#8192;Checking&#8192;if&#8192;a&#8192;node&#8192;exists</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-key">if&#8192;</span><span class="src-sym">(&#8192;</span>isset<span class="src-sym">(&#8192;</span><span class="src-var">$list</span><span class="src-sym">[</span><span class="src-str">'Scorpius'</span><span class="src-sym">]&#8192;</span><span class="src-sym">)&#8192;)</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-sym">{</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-comm">//&#8192;do&#8192;something&#8192;if&#8192;it&#8192;exists</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-sym">}</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-comm">//&#8192;Use&#8192;the&#8192;associated&#8192;data&#8192;store&#8192;to&#8192;fetch&#8192;the&#8192;data&#8192;for&#8192;all&#8192;nodes&#8192;at&#8192;once</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-var">$list</span><span class="src-sym">-&gt;</span><a href="ezcTreeNodeList.html#methodfetchDataForNodes">fetchDataForNodes</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-php">?&gt;</span></div></li>
+</ol></div>
+<p>Source for this file: <a href="http://fisheye6.atlassian.com/browse/zetacomponents/trunk/Tree/src/tree_node_list.php?r=HEAD">/Tree/src/tree_node_list.php</a></p>
+       
+  <h3>Implements interfaces:</h3>
+  <ul><li>ArrayAccess (internal interface)</li>  </ul><table><tr><td>
+            <strong>Version:</strong>&#8192;&#8192;
+          </td>
+          <td>//autogentag//</td>
+        </tr></table><a name="sec-prop-summary"></a>
+  <h3>Properties</h3>
+  <table class="summary"><tr><td class="right">
+          <a name="prop%24nodes" id="$nodes"></a>
+          <a name="prop-%24nodes" id="$nodes"></a>
+          <em>array(string=&gt;ezcTreeNode)</em>        </td>
+        <td class="right">
+          <em>read</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24nodes" title="details" class="var-name-summary">$nodes</a>
+                      </code>
+          <br><div style="margin-left: 20px">The nodes belonging to this list.</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24size" id="$size"></a>
+          <a name="prop-%24size" id="$size"></a>
+          <em>string</em>        </td>
+        <td class="right">
+          <em>read</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24size" title="details" class="var-name-summary">$size</a>
+                      </code>
+          <br><div style="margin-left: 20px">The number of nodes in the list.</div>        </td>
+      </tr></table><a name="sec-method-summary"></a>
+  <h3>Method Summary</h3>
+  <table class="summary"><tr><td class="right">
+            <em>public</em>                        <em>ezcTreeNodeList</em>          </td>
+          <td>
+            <code>
+              <a href="#__construct"><b>__construct</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Constructs a new ezcTreeNodeList object.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#addNode"><b>addNode</b></a>(
+                                                                                    $node
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Adds the node $node to the list.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#fetchDataForNodes"><b>fetchDataForNodes</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Fetches data for all nodes in the node list.</div>          </td>
+        </tr></table><a name="sec-methods"></a>
+  <h3>Methods</h3>
+  <a name="method_detail"></a>
+      
+      <a name="method__construct" id="__construct"><!-- --></a>
+
+    <h4>__construct</h4>
+
+    <div class="method-signature">
+      ezcTreeNodeList
+      __construct(
+      )
+    </div>
+
+    <p>Constructs a new ezcTreeNodeList object.</p>
+    
+        
+
+    
+    
+    
+        <a name="methodaddNode" id="addNode"><!-- --></a>
+
+    <h4>addNode</h4>
+
+    <div class="method-signature">
+      void
+      addNode(
+                                  <a href="ezcTreeNode.html">ezcTreeNode</a>
+          $node
+                        )
+    </div>
+
+    <p>Adds the node $node to the list.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$node</code></td>
+              <td><em><a href="ezcTreeNode.html">ezcTreeNode</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodfetchDataForNodes" id="fetchDataForNodes"><!-- --></a>
+
+    <h4>fetchDataForNodes</h4>
+
+    <div class="method-signature">
+      void
+      fetchDataForNodes(
+      )
+    </div>
+
+    <p>Fetches data for all nodes in the node list.</p>
+    
+        
+
+    
+    
+    
+  
+    <div class="credit">
+      Documentation generated by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+    </div>
+  </div>
+  
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

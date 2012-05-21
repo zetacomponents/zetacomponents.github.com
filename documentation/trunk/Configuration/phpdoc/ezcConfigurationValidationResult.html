@@ -1,0 +1,299 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="PHP, apache, components, framework, quality" />
+	<meta name="author" content="dotxp" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Wed, 04 Aug 2010 13:07:19 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="ezcConfigurationValidationResult.html" />
+	<meta name="DC.creator" content="dotxp" />
+	<meta name="DC.date" content="Wed, 04 Aug 2010 13:07:19 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/Configuration/phpdoc/ezcConfigurationValidationResult.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/Configuration/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/trunk/Configuration/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+
+</ul>
+
+		
+  <div class="phpdoc">
+    <h2>Apache Zeta Components Manual :: Docs For Class ezcConfigurationValidationResult</h2>
+
+                  <h3>Configuration::ezcConfigurationValidationResult</h3>
+    
+<a name="sec-description"></a>
+<h3>Class ezcConfigurationValidationResult</h3>
+
+<p>Provides the result of an ezcConfigurationFileReader::validate() operation.</p><div><p>It contains the result of the validation process. The reader will create the  result with location information and the validation items which is returned to  the caller.</p><p>Instantiate an object of this class and append items using  appendItem(). The caller can then access the result using getResultList().</p><p>The reader will typically create the result with:  </p><ol><li><div class="src-line">&#8192;<span class="src-var">$validationError&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcConfigurationValidationItem.html">ezcConfigurationValidationItem</a></span><span class="src-sym">(</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-id"><a href="ezcConfigurationValidationItem.html">ezcConfigurationValidationItem</a></span><span class="src-sym">::</span><span class="src-id">ERROR</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'test-file.php'</span><span class="src-sym">,&#8192;</span><span class="src-num">2</span><span class="src-sym">,&#8192;</span><span class="src-num">4</span><span class="src-sym">,&#8192;</span><span class="src-str">'typo'</span><span class="src-sym">,&#8192;</span><span class="src-str">'One&#8192;]&#8192;too&#8192;many'</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$result&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcConfigurationValidationResult.html">ezcConfigurationValidationResult</a></span><span class="src-sym">(</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">"settings"</span><span class="src-sym">,&#8192;</span><span class="src-str">"site"</span><span class="src-sym">,&#8192;</span><span class="src-str">"settings/site.ini"</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$result</span><span class="src-sym">-&gt;</span><a href="ezcConfigurationValidationResult.html#methodappendItem">appendItem</a><span class="src-sym">(&#8192;</span><span class="src-var">$validationError&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol><p>After the reader is done parsing, the validation results can be examined with:  </p><ol><li><div class="src-line">&#8192;echo&#8192;<span class="src-str">"Warnings:&#8192;"</span><span class="src-sym">,&#8192;</span><span class="src-var">$result</span><span class="src-sym">-&gt;</span><a href="ezcConfigurationValidationResult.html#methodgetWarningCount">getWarningCount</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">,&#8192;</span><span class="src-str">"\n"</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;echo&#8192;<span class="src-str">"Errors:&#8192;&#8192;&#8192;"</span><span class="src-sym">,&#8192;</span><span class="src-var">$result</span><span class="src-sym">-&gt;</span><a href="ezcConfigurationValidationResult.html#methodgetErrorCount">getErrorCount</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">,&#8192;</span><span class="src-str">"\n"</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-key">foreach&#8192;</span><span class="src-sym">(&#8192;</span><span class="src-var">$result</span><span class="src-sym">-&gt;</span><a href="ezcConfigurationValidationResult.html#methodgetResultList">getResultList</a><span class="src-sym">(</span><span class="src-sym">)&#8192;</span><span class="src-key">as&#8192;</span><span class="src-var">$item&#8192;</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">{</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<a href="http://www.php.net/printf">printf</a><span class="src-sym">(&#8192;</span><span class="src-str">"In&#8192;'%s'&#8192;on&#8192;line&#8192;'%d',&#8192;position:&#8192;'%d':&#8192;%s\n"</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-var">$item</span><span class="src-sym">-&gt;</span><a href="http://www.php.net/file">file</a><span class="src-sym">,&#8192;</span><span class="src-var">$item</span><span class="src-sym">-&gt;</span><span class="src-id">line</span><span class="src-sym">,&#8192;</span><span class="src-var">$item</span><span class="src-sym">-&gt;</span><span class="src-id">column</span><span class="src-sym">,&#8192;</span><span class="src-var">$item</span><span class="src-sym">-&gt;</span><span class="src-id">details</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">}</span></div></li>
+</ol></div>
+<p>Source for this file: <a href="http://fisheye6.atlassian.com/browse/zetacomponents/trunk/Configuration/src/validation_result.php?r=HEAD">/Configuration/src/validation_result.php</a></p>
+       
+
+
+
+
+  <table><tr><td>
+            <strong>Version:</strong>&#8192;&#8192;
+          </td>
+          <td>//autogen//</td>
+        </tr></table><a name="sec-var-summary"></a>
+  <h3>Member Variables</h3>
+  <table class="summary"><tr><td class="right">
+            <em>public</em>            <em>mixed</em>          </td>
+          <td>
+            <code>
+              $isValid
+               = <span class="var-default"> true</span>            </code>
+            <br><div style="margin-left: 20px">Holds information on whether the validation process was a success or not, will  be true if successful and false if unsuccessful.</div>            <br><div style="margin-left: 20px"><p>The validation process will determine when a configuration is valid, for  instance if a stricter validation is run it will set it as invalid even  if it contains warnings.</p></div>          </td>
+        </tr></table><a name="sec-method-summary"></a>
+  <h3>Method Summary</h3>
+  <table class="summary"><tr><td class="right">
+            <em>public</em>                        <em>ezcConfigurationValidationResult</em>          </td>
+          <td>
+            <code>
+              <a href="#__construct"><b>__construct</b></a>(
+                                                                                    $location
+                                                    ,                                     $name
+                                                    ,                                     $pathName
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Constructs a validation result</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#appendItem"><b>appendItem</b></a>(
+                                                                                    $item
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Appends the validation item to the result list.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>int</em>          </td>
+          <td>
+            <code>
+              <a href="#getErrorCount"><b>getErrorCount</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns the number of errors</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>array(ezcConfigurationValidationItem)</em>          </td>
+          <td>
+            <code>
+              <a href="#getResultList"><b>getResultList</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns a list with validation items</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>int</em>          </td>
+          <td>
+            <code>
+              <a href="#getWarningCount"><b>getWarningCount</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns the number of warnings</div>          </td>
+        </tr></table><a name="sec-methods"></a>
+  <h3>Methods</h3>
+  <a name="method_detail"></a>
+          
+      <a name="method__construct" id="__construct"><!-- --></a>
+
+    <h4>__construct</h4>
+
+    <div class="method-signature">
+      ezcConfigurationValidationResult
+      __construct(
+                                  string
+          $location
+                            ,           string
+          $name
+                            ,           string
+          $pathName
+                        )
+    </div>
+
+    <p>Constructs a validation result</p><div><p>Initializes the validation result with some information on the configuration  file and an empty result list.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$location</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  The main placement for the configuration as                returned by the reader.
+                              </td>
+            </tr><tr><td><code>$name</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  The name for the configuration as returned by the                reader.
+                              </td>
+            </tr><tr><td><code>$pathName</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  A full path to the file being read by the                reader.
+                              </td>
+            </tr></tbody></table><a name="methodappendItem" id="appendItem"><!-- --></a>
+
+    <h4>appendItem</h4>
+
+    <div class="method-signature">
+      void
+      appendItem(
+                                  <a href="ezcConfigurationValidationItem.html">ezcConfigurationValidationItem</a>
+          $item
+                        )
+    </div>
+
+    <p>Appends the validation item to the result list.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$item</code></td>
+              <td><em><a href="ezcConfigurationValidationItem.html">ezcConfigurationValidationItem</a></em></td>
+              <td>
+                                  The error or warning item         which should be added to the end of the result list.
+                              </td>
+            </tr></tbody></table><a name="methodgetErrorCount" id="getErrorCount"><!-- --></a>
+
+    <h4>getErrorCount</h4>
+
+    <div class="method-signature">
+      int
+      getErrorCount(
+      )
+    </div>
+
+    <p>Returns the number of errors</p>
+    
+        
+
+    
+    
+    
+        <a name="methodgetResultList" id="getResultList"><!-- --></a>
+
+    <h4>getResultList</h4>
+
+    <div class="method-signature">
+      array(ezcConfigurationValidationItem)
+      getResultList(
+      )
+    </div>
+
+    <p>Returns a list with validation items</p>
+    
+        
+
+    
+    
+    
+        <a name="methodgetWarningCount" id="getWarningCount"><!-- --></a>
+
+    <h4>getWarningCount</h4>
+
+    <div class="method-signature">
+      int
+      getWarningCount(
+      )
+    </div>
+
+    <p>Returns the number of warnings</p>
+    
+        
+
+    
+    
+    
+  
+    <div class="credit">
+      Documentation generated by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+    </div>
+  </div>
+  
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

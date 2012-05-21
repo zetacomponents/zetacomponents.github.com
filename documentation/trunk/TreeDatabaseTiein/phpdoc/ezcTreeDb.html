@@ -1,0 +1,636 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="PHP, apache, components, framework, quality" />
+	<meta name="author" content="dotxp" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Wed, 04 Aug 2010 13:08:01 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="ezcTreeDb.html" />
+	<meta name="DC.creator" content="dotxp" />
+	<meta name="DC.date" content="Wed, 04 Aug 2010 13:08:01 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/TreeDatabaseTiein/phpdoc/ezcTreeDb.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/TreeDatabaseTiein/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/trunk/TreeDatabaseTiein/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+
+</ul>
+
+		
+  <div class="phpdoc">
+    <h2>Apache Zeta Components Manual :: Docs For Class ezcTreeDb</h2>
+
+                  <h3>TreeDatabaseTiein::ezcTreeDb</h3>
+    
+<a name="sec-description"></a>
+<h3>Class ezcTreeDb</h3>
+
+<p>ezcTreeDb contains common methods for the different database tree backends.</p>
+<p>Source for this file: <a href="http://fisheye6.atlassian.com/browse/zetacomponents/trunk/TreeDatabaseTiein/src/backends/db.php?r=HEAD">/TreeDatabaseTiein/src/backends/db.php</a></p>
+       
+
+
+<pre><a href="/zetacomponents/documentation/trunk/Tree/phpdoc/ezcTree.html">ezcTree</a>
+   |
+   --ezcTreeDb</pre>
+
+
+  <table><tr><td>
+            <strong>Version:</strong>&#8192;&#8192;
+          </td>
+          <td>//autogentag//</td>
+        </tr></table><a name="sec-descendants"></a>
+  <h3>Descendants</h3>
+  <table class="detail"><thead><tr><th>Child Class</th>
+        <th>Description</th>
+      </tr></thead><tbody><tr><td><a href="ezcTreeDbMaterializedPath.html">ezcTreeDbMaterializedPath</a></td>          <td>
+                          ezcTreeDbMaterializedPath implements a tree backend which stores parent/child  information in a path like string (such as /1/4/6/8).
+                      </td>
+        </tr><tr><td><a href="ezcTreeDbParentChild.html">ezcTreeDbParentChild</a></td>          <td>
+                          ezcTreeDbParentChild implements a tree backend which stores parent/child  information in a simple table containing the node's ID and its parent's ID.
+                      </td>
+        </tr></tbody></table><a name="sec-prop-summary"></a>
+  <h3>Properties</h3>
+  <table class="summary"><tr><td class="right">
+          <a name="prop%24nodeClassName" id="$nodeClassName"></a>
+          <a name="prop-%24nodeClassName" id="$nodeClassName"></a>
+          <em>string</em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24nodeClassName" title="details" class="var-name-summary">$nodeClassName</a>
+                      </code>
+          <br><div style="margin-left: 20px">Which class is used as tree node - this class *must* inherit                 the ezcTreeNode class.</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24store" id="$store"></a>
+          <a name="prop-%24store" id="$store"></a>
+          <em><a href="ezcTreeDbDataStore.html">ezcTreeDbDataStore</a></em>        </td>
+        <td class="right">
+          <em>read</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24store" title="details" class="var-name-summary">$store</a>
+                      </code>
+          <br><div style="margin-left: 20px">The data store that is used for retrieving/storing data.</div>        </td>
+      </tr></table><a name="sec-var-summary"></a>
+  <h3>Member Variables</h3>
+  <table class="summary"><tr><td class="right">
+            <em>protected</em>            <em><a href="/zetacomponents/documentation/trunk/Database/phpdoc/ezcDbHandler.html">ezcDbHandler</a></em>          </td>
+          <td>
+            <code>
+              $dbh
+                          </code>
+            <br><div style="margin-left: 20px">Contains the database connection handler.</div>                      </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            <em>string</em>          </td>
+          <td>
+            <code>
+              $indexTableName
+                          </code>
+            <br><div style="margin-left: 20px">Contains the name of the table to retrieve the relational data from.</div>                      </td>
+        </tr></table><h3>Inherited Member Variables</h3>
+  <table class="summary"><thead><tr><th colspan="2">
+            From <span class="classname"><a href="/zetacomponents/documentation/trunk/Tree/phpdoc/ezcTree.html">ezcTree</a></span>         
+          </th>
+        </tr></thead><tbody><tr><td class="right">
+              <em>protected</em>                          </td>
+            <td>
+              <code><a href="/zetacomponents/documentation/trunk/Tree/phpdoc/ezcTree.html#var%24inTransaction">ezcTree::$inTransaction</a></code>
+              
+            </td>
+          </tr><tr><td class="right">
+              <em>protected</em>                          </td>
+            <td>
+              <code><a href="/zetacomponents/documentation/trunk/Tree/phpdoc/ezcTree.html#var%24inTransactionCommit">ezcTree::$inTransactionCommit</a></code>
+              
+            </td>
+          </tr><tr><td class="right">
+              <em>protected</em>                          </td>
+            <td>
+              <code><a href="/zetacomponents/documentation/trunk/Tree/phpdoc/ezcTree.html#var%24properties">ezcTree::$properties</a></code>
+              
+            </td>
+          </tr></tbody></table><a name="sec-method-summary"></a>
+  <h3>Method Summary</h3>
+  <table class="summary"><tr><td class="right">
+            <em>public</em>                        <em>ezcTreeDb</em>          </td>
+          <td>
+            <code>
+              <a href="#__construct"><b>__construct</b></a>(
+                                                                                    $dbh
+                                                    ,                                     $indexTableName
+                                                    ,                                     $store
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Constructs a new ezcTreeDb object.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            abstract            <em><a href="/zetacomponents/documentation/trunk/Database/phpdoc/ezcQueryInsert.html">ezcQueryInsert</a></em>          </td>
+          <td>
+            <code>
+              <a href="#createAddEmptyNodeQuery"><b>createAddEmptyNodeQuery</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Creates the query to insert an empty node into the database, so that the last-inserted ID can be obtained.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em><a href="/zetacomponents/documentation/trunk/Database/phpdoc/ezcQuery.html">ezcQuery</a></em>          </td>
+          <td>
+            <code>
+              <a href="#createAddNodeQuery"><b>createAddNodeQuery</b></a>(
+                                                                                    $id
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Creates the query to insert/update an empty node in the database.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em><a href="/zetacomponents/documentation/trunk/Tree/phpdoc/ezcTreeNode.html">ezcTreeNode</a></em>          </td>
+          <td>
+            <code>
+              <a href="#fetchParent"><b>fetchParent</b></a>(
+                                                                                    $id
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns the parent node of the node with ID $id.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>integer</em>          </td>
+          <td>
+            <code>
+              <a href="#generateNodeID"><b>generateNodeID</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">This method generates the next node ID.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#getParentId"><b>getParentId</b></a>(
+                                                                                    $childId
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns the ID of parent of the node with ID $childId.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em><a href="/zetacomponents/documentation/trunk/Tree/phpdoc/ezcTreeNode.html">ezcTreeNode</a></em>          </td>
+          <td>
+            <code>
+              <a href="#getRootNode"><b>getRootNode</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns the root node.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>bool</em>          </td>
+          <td>
+            <code>
+              <a href="#nodeExists"><b>nodeExists</b></a>(
+                                                                                    $id
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns whether the node with ID $id exists as tree node.</div>          </td>
+        </tr></table><h3>Inherited Methods</h3>
+  <table class="summary"><thead><tr><th colspan="2">
+            From <span class="classname"><a href="/zetacomponents/documentation/trunk/Tree/phpdoc/ezcTree.html">ezcTree</a></span>
+          </th>
+        </tr></thead><tbody><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b><a href="/zetacomponents/documentation/trunk/Tree/phpdoc/ezcTree.html#methodaccept">ezcTree::accept()</a></b></code>
+              <br><div style="margin-left: 20px">Implements the accept method for visiting.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>              abstract                            <em>void</em>            </td>
+            <td>
+              <code><b><a href="/zetacomponents/documentation/trunk/Tree/phpdoc/ezcTree.html#methodaddChild">ezcTree::addChild()</a></b></code>
+              <br><div style="margin-left: 20px">Adds the node $childNode as child of the node with ID $parentId.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>protected</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b><a href="/zetacomponents/documentation/trunk/Tree/phpdoc/ezcTree.html#methodaddTransactionItem">ezcTree::addTransactionItem()</a></b></code>
+              <br><div style="margin-left: 20px">Adds a new transaction item to the list.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b><a href="/zetacomponents/documentation/trunk/Tree/phpdoc/ezcTree.html#methodbeginTransaction">ezcTree::beginTransaction()</a></b></code>
+              <br><div style="margin-left: 20px">Starts an transaction in which all tree modifications are queued until  the transaction is committed with the commit() method.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>protected</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b><a href="/zetacomponents/documentation/trunk/Tree/phpdoc/ezcTree.html#methodcheckNodeId">ezcTree::checkNodeId()</a></b></code>
+              <br><div style="margin-left: 20px">This method checks whether a node ID is valid to be used in a backend.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b><a href="/zetacomponents/documentation/trunk/Tree/phpdoc/ezcTree.html#methodcommit">ezcTree::commit()</a></b></code>
+              <br><div style="margin-left: 20px">Commits the transaction by running the stored instructions to modify  the tree structure.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                            static              <em>void</em>            </td>
+            <td>
+              <code><b><a href="/zetacomponents/documentation/trunk/Tree/phpdoc/ezcTree.html#methodcopy">ezcTree::copy()</a></b></code>
+              <br><div style="margin-left: 20px">Copies the tree in $from to the empty tree in $to.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em><a href="/zetacomponents/documentation/trunk/Tree/phpdoc/ezcTreeNode.html">ezcTreeNode</a></em>            </td>
+            <td>
+              <code><b><a href="/zetacomponents/documentation/trunk/Tree/phpdoc/ezcTree.html#methodcreateNode">ezcTree::createNode()</a></b></code>
+              <br><div style="margin-left: 20px">Creates a new tree node with node ID $nodeId and $data.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>              abstract                            <em>void</em>            </td>
+            <td>
+              <code><b><a href="/zetacomponents/documentation/trunk/Tree/phpdoc/ezcTree.html#methoddelete">ezcTree::delete()</a></b></code>
+              <br><div style="margin-left: 20px">Deletes the node with ID $nodeId from the tree, including all its children.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>              abstract                            <em><a href="/zetacomponents/documentation/trunk/Tree/phpdoc/ezcTreeNodeList.html">ezcTreeNodeList</a></em>            </td>
+            <td>
+              <code><b><a href="/zetacomponents/documentation/trunk/Tree/phpdoc/ezcTree.html#methodfetchChildren">ezcTree::fetchChildren()</a></b></code>
+              <br><div style="margin-left: 20px">Returns all the children of the node with ID $nodeId.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em><a href="/zetacomponents/documentation/trunk/Tree/phpdoc/ezcTreeNode.html">ezcTreeNode</a></em>            </td>
+            <td>
+              <code><b><a href="/zetacomponents/documentation/trunk/Tree/phpdoc/ezcTree.html#methodfetchNodeById">ezcTree::fetchNodeById()</a></b></code>
+              <br><div style="margin-left: 20px">Returns the node identified by the ID $nodeId.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>              abstract                            <em><a href="/zetacomponents/documentation/trunk/Tree/phpdoc/ezcTreeNode.html">ezcTreeNode</a></em>            </td>
+            <td>
+              <code><b><a href="/zetacomponents/documentation/trunk/Tree/phpdoc/ezcTree.html#methodfetchParent">ezcTree::fetchParent()</a></b></code>
+              <br><div style="margin-left: 20px">Returns the parent node of the node with ID $nodeId.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>              abstract                            <em><a href="/zetacomponents/documentation/trunk/Tree/phpdoc/ezcTreeNodeList.html">ezcTreeNodeList</a></em>            </td>
+            <td>
+              <code><b><a href="/zetacomponents/documentation/trunk/Tree/phpdoc/ezcTree.html#methodfetchPath">ezcTree::fetchPath()</a></b></code>
+              <br><div style="margin-left: 20px">Returns all the nodes in the path from the root node to the node with ID  $nodeId, including those two nodes.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>              abstract                            <em><a href="/zetacomponents/documentation/trunk/Tree/phpdoc/ezcTreeNodeList.html">ezcTreeNodeList</a></em>            </td>
+            <td>
+              <code><b><a href="/zetacomponents/documentation/trunk/Tree/phpdoc/ezcTree.html#methodfetchSubtree">ezcTree::fetchSubtree()</a></b></code>
+              <br><div style="margin-left: 20px">Alias for fetchSubtreeDepthFirst().</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>              abstract                            <em><a href="/zetacomponents/documentation/trunk/Tree/phpdoc/ezcTreeNodeList.html">ezcTreeNodeList</a></em>            </td>
+            <td>
+              <code><b><a href="/zetacomponents/documentation/trunk/Tree/phpdoc/ezcTree.html#methodfetchSubtreeBreadthFirst">ezcTree::fetchSubtreeBreadthFirst()</a></b></code>
+              <br><div style="margin-left: 20px">Returns the node with ID $nodeId and all its children, sorted according to  the <a href="http://en.wikipedia.org/wiki/Breadth-first_search">Breadth-first sorting</a>  algorithm.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>              abstract                            <em><a href="/zetacomponents/documentation/trunk/Tree/phpdoc/ezcTreeNodeList.html">ezcTreeNodeList</a></em>            </td>
+            <td>
+              <code><b><a href="/zetacomponents/documentation/trunk/Tree/phpdoc/ezcTree.html#methodfetchSubtreeDepthFirst">ezcTree::fetchSubtreeDepthFirst()</a></b></code>
+              <br><div style="margin-left: 20px">Returns the node with ID $nodeId and all its children, sorted according to  the <a href="http://en.wikipedia.org/wiki/Depth-first_search">Depth-first sorting</a>  algorithm.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>protected</em>              abstract                            <em>integer</em>            </td>
+            <td>
+              <code><b><a href="/zetacomponents/documentation/trunk/Tree/phpdoc/ezcTree.html#methodgenerateNodeID">ezcTree::generateNodeID()</a></b></code>
+              <br><div style="margin-left: 20px">This method generates the next node ID.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>              abstract                            <em>int</em>            </td>
+            <td>
+              <code><b><a href="/zetacomponents/documentation/trunk/Tree/phpdoc/ezcTree.html#methodgetChildCount">ezcTree::getChildCount()</a></b></code>
+              <br><div style="margin-left: 20px">Returns the number of direct children of the node with ID $nodeId.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>              abstract                            <em>int</em>            </td>
+            <td>
+              <code><b><a href="/zetacomponents/documentation/trunk/Tree/phpdoc/ezcTree.html#methodgetChildCountRecursive">ezcTree::getChildCountRecursive()</a></b></code>
+              <br><div style="margin-left: 20px">Returns the number of children of the node with ID $nodeId, recursively.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>              abstract                            <em>int</em>            </td>
+            <td>
+              <code><b><a href="/zetacomponents/documentation/trunk/Tree/phpdoc/ezcTree.html#methodgetPathLength">ezcTree::getPathLength()</a></b></code>
+              <br><div style="margin-left: 20px">Returns the distance from the root node to the node with ID $nodeId.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>              abstract                            <em><a href="/zetacomponents/documentation/trunk/Tree/phpdoc/ezcTreeNode.html">ezcTreeNode</a></em>            </td>
+            <td>
+              <code><b><a href="/zetacomponents/documentation/trunk/Tree/phpdoc/ezcTree.html#methodgetRootNode">ezcTree::getRootNode()</a></b></code>
+              <br><div style="margin-left: 20px">Returns the root node.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>              abstract                            <em>bool</em>            </td>
+            <td>
+              <code><b><a href="/zetacomponents/documentation/trunk/Tree/phpdoc/ezcTree.html#methodhasChildNodes">ezcTree::hasChildNodes()</a></b></code>
+              <br><div style="margin-left: 20px">Returns whether the node with ID $nodeId has children.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>bool</em>            </td>
+            <td>
+              <code><b><a href="/zetacomponents/documentation/trunk/Tree/phpdoc/ezcTree.html#methodinTransaction">ezcTree::inTransaction()</a></b></code>
+              <br><div style="margin-left: 20px">Returns whether we are currently in a transaction or not</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>bool</em>            </td>
+            <td>
+              <code><b><a href="/zetacomponents/documentation/trunk/Tree/phpdoc/ezcTree.html#methodinTransactionCommit">ezcTree::inTransactionCommit()</a></b></code>
+              <br><div style="margin-left: 20px">Returns whether we are currently in a transaction commit state or not</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>              abstract                            <em>bool</em>            </td>
+            <td>
+              <code><b><a href="/zetacomponents/documentation/trunk/Tree/phpdoc/ezcTree.html#methodisChildOf">ezcTree::isChildOf()</a></b></code>
+              <br><div style="margin-left: 20px">Returns whether the node with ID $childId is a direct child of the node  with ID $parentId.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>              abstract                            <em>bool</em>            </td>
+            <td>
+              <code><b><a href="/zetacomponents/documentation/trunk/Tree/phpdoc/ezcTree.html#methodisDescendantOf">ezcTree::isDescendantOf()</a></b></code>
+              <br><div style="margin-left: 20px">Returns whether the node with ID $childId is a direct or indirect child  of the node with ID $parentId.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>              abstract                            <em>bool</em>            </td>
+            <td>
+              <code><b><a href="/zetacomponents/documentation/trunk/Tree/phpdoc/ezcTree.html#methodisSiblingOf">ezcTree::isSiblingOf()</a></b></code>
+              <br><div style="margin-left: 20px">Returns whether the nodes with IDs $child1Id and $child2Id are siblings  (ie, they share the same parent).</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>              abstract                            <em>void</em>            </td>
+            <td>
+              <code><b><a href="/zetacomponents/documentation/trunk/Tree/phpdoc/ezcTree.html#methodmove">ezcTree::move()</a></b></code>
+              <br><div style="margin-left: 20px">Moves the node with ID $nodeId as child to the node with ID $targetParentId.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>              abstract                            <em>bool</em>            </td>
+            <td>
+              <code><b><a href="/zetacomponents/documentation/trunk/Tree/phpdoc/ezcTree.html#methodnodeExists">ezcTree::nodeExists()</a></b></code>
+              <br><div style="margin-left: 20px">Returns whether the node with ID $nodeId exists.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b><a href="/zetacomponents/documentation/trunk/Tree/phpdoc/ezcTree.html#methodrollback">ezcTree::rollback()</a></b></code>
+              <br><div style="margin-left: 20px">Rolls back the transaction by clearing all stored instructions.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>              abstract                            <em>void</em>            </td>
+            <td>
+              <code><b><a href="/zetacomponents/documentation/trunk/Tree/phpdoc/ezcTree.html#methodsetRootNode">ezcTree::setRootNode()</a></b></code>
+              <br><div style="margin-left: 20px">Sets a new node as root node, this also wipes out the whole tree.</div>                          </td>
+          </tr></tbody></table><a name="sec-methods"></a>
+  <h3>Methods</h3>
+  <a name="method_detail"></a>
+                
+      <a name="method__construct" id="__construct"><!-- --></a>
+
+    <h4>__construct</h4>
+
+    <div class="method-signature">
+      ezcTreeDb
+      __construct(
+                                  
+          $dbh
+                            ,           string
+          $indexTableName
+                            ,           <a href="ezcTreeDbDataStore.html">ezcTreeDbDataStore</a>
+          $store
+                        )
+    </div>
+
+    <p>Constructs a new ezcTreeDb object.</p><div><p>The different arguments to the constructor configure which database  connection ($dbh) is used to access the database and the $indexTableName  argument which table is used to retrieve the relation data from. The  $store argument configure which data store is used with this tree.</p><p>All database backends require the index table to at least define the  field 'id', which can either be a string or an integer field.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$dbh</code></td>
+              <td><em><a href="/zetacomponents/documentation/trunk/Database/phpdoc/ezcDbHandler.html">ezcDbHandler</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$indexTableName</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$store</code></td>
+              <td><em><a href="ezcTreeDbDataStore.html">ezcTreeDbDataStore</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefined in descendants as:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcTreeDbMaterializedPath.html#method__construct">ezcTreeDbMaterializedPath::__construct()</a></code></td>
+              <td>
+                Constructs a new ezcTreeDbMaterializedPath object.&#8192;
+              </td>
+            </tr></tbody></table><a name="methodcreateAddEmptyNodeQuery" id="createAddEmptyNodeQuery"><!-- --></a>
+
+    <h4>createAddEmptyNodeQuery</h4>
+
+    <div class="method-signature">
+      <a href="/zetacomponents/documentation/trunk/Database/phpdoc/ezcQueryInsert.html">ezcQueryInsert</a>
+      createAddEmptyNodeQuery(
+      )
+    </div>
+
+    <p>Creates the query to insert an empty node into the database, so that the last-inserted ID can be obtained.</p>
+    
+        
+
+    
+    
+          <h5>Redefined in descendants as:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcTreeDbMaterializedPath.html#methodcreateAddEmptyNodeQuery">ezcTreeDbMaterializedPath::createAddEmptyNodeQuery()</a></code></td>
+              <td>
+                Creates the query to insert an empty node into the database, so that the last-inserted ID can be obtained.&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcTreeDbParentChild.html#methodcreateAddEmptyNodeQuery">ezcTreeDbParentChild::createAddEmptyNodeQuery()</a></code></td>
+              <td>
+                Creates the query to insert an empty node into the database, so that the last-inserted ID can be obtained.&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcTreeDbNestedSet.html#methodcreateAddEmptyNodeQuery">ezcTreeDbNestedSet::createAddEmptyNodeQuery()</a></code></td>
+              <td>
+                Creates the query to insert an empty node into the database, so that the last-inserted ID can be obtained.&#8192;
+              </td>
+            </tr></tbody></table><a name="methodcreateAddNodeQuery" id="createAddNodeQuery"><!-- --></a>
+
+    <h4>createAddNodeQuery</h4>
+
+    <div class="method-signature">
+      <a href="/zetacomponents/documentation/trunk/Database/phpdoc/ezcQuery.html">ezcQuery</a>
+      createAddNodeQuery(
+                                  mixed
+          $id
+                        )
+    </div>
+
+    <p>Creates the query to insert/update an empty node in the database.</p><div><p>The query is constructed for the child with ID $id</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$id</code></td>
+              <td><em>mixed</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodfetchParent" id="fetchParent"><!-- --></a>
+
+    <h4>fetchParent</h4>
+
+    <div class="method-signature">
+      <a href="/zetacomponents/documentation/trunk/Tree/phpdoc/ezcTreeNode.html">ezcTreeNode</a>
+      fetchParent(
+                                  string
+          $id
+                        )
+    </div>
+
+    <p>Returns the parent node of the node with ID $id.</p><div><p>This method returns null if there is no parent node.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$id</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="/zetacomponents/documentation/trunk/Tree/phpdoc/ezcTree.html#methodfetchParent">ezcTree::fetchParent()</a></code></td>
+            <td>
+                              Returns the parent node of the node with ID $nodeId.
+                          </td>
+          </tr></tbody></table><a name="methodgenerateNodeID" id="generateNodeID"><!-- --></a>
+
+    <h4>generateNodeID</h4>
+
+    <div class="method-signature">
+      integer
+      generateNodeID(
+      )
+    </div>
+
+    <p>This method generates the next node ID.</p><div><p>It does so by inserting a new empty node into the database, and uses  lastInsertId() to obtain the ID for the newly inserted node.</p></div>
+    
+        
+
+          <h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="/zetacomponents/documentation/trunk/Tree/phpdoc/ezcTree.html#methodgenerateNodeID">ezcTree::generateNodeID()</a></code></td>
+            <td>
+                              This method generates the next node ID.
+                          </td>
+          </tr></tbody></table><a name="methodgetParentId" id="getParentId"><!-- --></a>
+
+    <h4>getParentId</h4>
+
+    <div class="method-signature">
+      string
+      getParentId(
+                                  string
+          $childId
+                        )
+    </div>
+
+    <p>Returns the ID of parent of the node with ID $childId.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$childId</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodgetRootNode" id="getRootNode"><!-- --></a>
+
+    <h4>getRootNode</h4>
+
+    <div class="method-signature">
+      <a href="/zetacomponents/documentation/trunk/Tree/phpdoc/ezcTreeNode.html">ezcTreeNode</a>
+      getRootNode(
+      )
+    </div>
+
+    <p>Returns the root node.</p><div><p>This methods returns null if there is no root node.</p></div>
+    
+        
+
+          <h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="/zetacomponents/documentation/trunk/Tree/phpdoc/ezcTree.html#methodgetRootNode">ezcTree::getRootNode()</a></code></td>
+            <td>
+                              Returns the root node.
+                          </td>
+          </tr></tbody></table><a name="methodnodeExists" id="nodeExists"><!-- --></a>
+
+    <h4>nodeExists</h4>
+
+    <div class="method-signature">
+      bool
+      nodeExists(
+                                  string
+          $id
+                        )
+    </div>
+
+    <p>Returns whether the node with ID $id exists as tree node.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$id</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="/zetacomponents/documentation/trunk/Tree/phpdoc/ezcTree.html#methodnodeExists">ezcTree::nodeExists()</a></code></td>
+            <td>
+                              Returns whether the node with ID $nodeId exists.
+                          </td>
+          </tr></tbody></table><div class="credit">
+      Documentation generated by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+    </div>
+  </div>
+  
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,2241 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="PHP, apache, components, framework, quality" />
+	<meta name="author" content="dotxp" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Wed, 04 Aug 2010 13:07:33 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="ezcDocumentRstParser.html" />
+	<meta name="DC.creator" content="dotxp" />
+	<meta name="DC.date" content="Wed, 04 Aug 2010 13:07:33 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/Document/phpdoc/ezcDocumentRstParser.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/Document/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/trunk/Document/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Document/conversion.html" title="Conversion ">Conversion </a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Document/styles.html" title="Styles ">Styles </a>
+	</li>
+
+</ul>
+
+		
+  <div class="phpdoc">
+    <h2>Apache Zeta Components Manual :: Docs For Class ezcDocumentRstParser</h2>
+
+                  <h3>Document::ezcDocumentRstParser</h3>
+    
+<a name="sec-description"></a>
+<h3>Class ezcDocumentRstParser</h3>
+
+<p>Parser for RST documents</p><div><p>RST is not describable by a context free grammar, so that the common parser  approaches won't work.</p><p>Parser basics  -------------</p><p>We decided to implement a parser roughly following the scheme of common  shift reduce parsers with a dynamic lookahead.</p><p></p><ul><li>Shifting:</li></ul>    The shift step commonly tries to convert a token or a sequence of tokens    to the respective AST node. In the case of RST we may need a dynamic    lookahead to decide which type of AST node a token relates to, which is    different from common LRn parsers.<p>There is a map of parser tokens to internal methods for callbacks, which    are called in the defined order if the main parser methods reach the    respective token in the provided token array. Each shift method is called    with the relating token and the array of subsequent, yet unhandled,    tokens.</p><p>These methods are expected to return either false, if the current token    cannot be shifted by the called rule, true, when the token has been    handled, but no document node has been created from it or a new    ezcDocumentRstNode object, which is some AST node. When a shift method    returned false the next shift method in the array is called to handle the    token.</p><p>The returned ezcDocumentRstNode objects are put on the document stack in    the order they are found in the token array.</p><p></p><ul><li>Reducing:</li></ul>    The reduce step commonly tries to reduce matching structures, like finding    the matching opening brace, when a closing brace has been added to the    document stack. In this case all nodes between the two braces are    aggregated into the brace node, so that a tree is created.<p>The reductions array defines an array with a mapping of node types to    rection callbacks, which are called if such a node has been added to the    document stack. Each reduction method may either return false, if it could    not handle the given node, or a new node. The reduction methods often    manipulate the document stack, like searching backwards and aggregating    nodes.</p><p>If a reduction method returns a node the parser reenters the reduction    process with the new node.</p><p>The state of the RST parser heavily depends on the current indentation  level, which is stored in the class property $indentation, and mainly  modified in the special shift method updateIndentation(), which is called on  each line break token.</p><p>Some of the shift methods aggregate additional tokens from the token array,  bypassing the main parser method. This should only be done, if no common  handling is required for the aggregated tokens.</p><p>Tables  ------</p><p>The handling of RST tables is quite complex and the affiliation of tokens to  nodes depend on the line and character position of the token. In this case  the tokens are first aggregated into their cell contexts and reenter the  parser afterwards.</p><p>For token lists, which are required to reenter the parser - independently  from the current global parser state - the method reenterParser() takes such  token lists, removes the overall indentation and returns a new document of  the provided token array.</p></div>
+<p>Source for this file: <a href="http://fisheye6.atlassian.com/browse/zetacomponents/trunk/Document/src/document/rst/parser.php?r=HEAD">/Document/src/document/rst/parser.php</a></p>
+       
+
+
+<pre><a href="ezcDocumentParser.html">ezcDocumentParser</a>
+   |
+   --ezcDocumentRstParser</pre>
+
+
+  <table><tr><td>
+            <strong>Version:</strong>&#8192;&#8192;
+          </td>
+          <td>//autogen//</td>
+        </tr></table><a name="sec-const-summary"></a>
+  <h3>Constants</h3>
+  <table class="summary"><tr><td class="right">
+          <a name="const-REGEXP_INLINE_LINK" id=""></a>
+          <code>
+            <a href="#const-REGEXP_INLINE_LINK" title="details" class="const-name-summary">REGEXP_INLINE_LINK</a>
+             =  '(<br>        (?:^|[\s,.!?])<br>            (?# Ignore matching braces around the URL)<br>                (&lt;)?<br>                    (\[)?<br>                        (\()?<br>                            (?# Ignore quoting around the URL)<br>                            ([\'"]?)<br>                                (?# Actually match the URL)<br>                                (?P&lt;match&gt;<br>                                    (?P&lt;url&gt;[a-z]+://[^\s]*?) |<br>                                    (?:mailto:)?(?P&lt;mail&gt;[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})<br>                                )<br>                            \4<br>                        (?(3)\))<br>                    (?(2)\])<br>                (?(1)&gt;)<br>            (?# Ignore common punctuation after the URL)<br>        [.,?!]?(?:\s|$)<br>    )Sxm'
+          </code>
+        </td>
+        <td>
+          PCRE regular expression for detection of URLs in texts.                  </td>
+      </tr></table><a name="sec-var-summary"></a>
+  <h3>Member Variables</h3>
+  <table class="summary"><tr><td class="right">
+            <em>protected</em>            <em>array</em>          </td>
+          <td>
+            <code>
+              $blockNodes
+               = <span class="var-default">array(<br>        ezcDocumentRstNode::PARAGRAPH,<br>        ezcDocumentRstNode::BLOCKQUOTE,<br>        ezcDocumentRstNode::SECTION,<br>        ezcDocumentRstNode::BULLET_LIST,<br>        ezcDocumentRstNode::ENUMERATED_LIST,<br>        ezcDocumentRstNode::TABLE,<br>        ezcDocumentRstNode::LITERAL_BLOCK,<br>        ezcDocumentRstNode::COMMENT,<br>        ezcDocumentRstNode::DIRECTIVE,<br>        ezcDocumentRstNode::SUBSTITUTION,<br>        ezcDocumentRstNode::NAMED_REFERENCE,<br>        ezcDocumentRstNode::FOOTNOTE,<br>        ezcDocumentRstNode::ANON_REFERENCE,<br>        ezcDocumentRstNode::TRANSITION,<br>        ezcDocumentRstNode::FIELD_LIST,<br>        ezcDocumentRstNode::DEFINITION_LIST,<br>        ezcDocumentRstNode::LINE_BLOCK,<br>    )</span>            </code>
+            <br><div style="margin-left: 20px">List of node types, which are valid block nodes, where we can  indentation changes after, or which can be aggregated into sections.</div>                      </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            <em><a href="ezcDocumentRstStack.html">ezcDocumentRstStack</a></em>          </td>
+          <td>
+            <code>
+              $documentStack
+               = <span class="var-default"> null</span>            </code>
+            <br><div style="margin-left: 20px">Contains a list of detected syntax elements.</div>            <br><div style="margin-left: 20px"><p>At the end of a successfull parsing process this should only contain one  document syntax element. During the process it may contain a list of  elements, which are up to reduction.</p><p>Each element in the stack has to be an object extending from  ezcDocumentRstNode, which may again contain any amount such objects.  This way an abstract syntax tree is constructed.</p></div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            <em>int</em>          </td>
+          <td>
+            <code>
+              $indentation
+               = <span class="var-default"> 0</span>            </code>
+            <br><div style="margin-left: 20px">Current indentation of a paragraph / lsit item.</div>                      </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            <em>int</em>          </td>
+          <td>
+            <code>
+              $postIndentation
+               = <span class="var-default"> null</span>            </code>
+            <br><div style="margin-left: 20px">For the special case of dense bullet lists we need to update the  indetation right after we created a new paragraph in one action. We  store the indetation to update past the paragraph creation in this case  in this variable.</div>                      </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            <em>array</em>          </td>
+          <td>
+            <code>
+              $reductions
+               = <span class="var-default">array(<br>        // Also for ezcDocumentRstNode::SECTION, since the constants point to<br>        // the same value.<br>        ezcDocumentRstNode::DOCUMENT            =&gt; array(<br>            'reduceList',<br>            'reduceSection',<br>        ),ezcDocumentRstNode::TITLE=&gt;array('reduceTitle',),ezcDocumentRstNode::PARAGRAPH=&gt;array('reduceParagraph','reduceListItem','reduceBlockquoteAnnotationParagraph','reduceBlockquote',),ezcDocumentRstNode::COMMENT=&gt;array('reduceListItem',),ezcDocumentRstNode::DIRECTIVE=&gt;array('reduceListItem',),ezcDocumentRstNode::LITERAL_BLOCK=&gt;array('reduceListItem',),ezcDocumentRstNode::BULLET_LIST=&gt;array('reduceList',),ezcDocumentRstNode::ENUMERATED_LIST=&gt;array('reduceList',),ezcDocumentRstNode::ANNOTATION=&gt;array('reduceBlockquoteAnnotation',),ezcDocumentRstNode::MARKUP_EMPHASIS=&gt;array('reduceMarkup',),ezcDocumentRstNode::MARKUP_STRONG=&gt;array('reduceMarkup',),ezcDocumentRstNode::MARKUP_INTERPRETED=&gt;array('reduceInterpretedText','reduceInternalTarget',),ezcDocumentRstNode::MARKUP_SUBSTITUTION=&gt;array('reduceMarkup',),ezcDocumentRstNode::REFERENCE=&gt;array('reduceReference',),ezcDocumentRstNode::LINK_ANONYMOUS=&gt;array('reduceLink',),ezcDocumentRstNode::LINK_REFERENCE=&gt;array('reduceLink',),)</span>            </code>
+            <br><div style="margin-left: 20px">Array containing simplified reduce ruleset</div>            <br><div style="margin-left: 20px"><p>We cannot express the RST syntax as a usual grammar using a BNF. This  structure implements a pseudo grammar by assigning a number of callbacks  for internal methods implementing reduction rules for a detected syntax  element.</p><p></p><ol><li><div class="src-line">&#8192;&#8192;<span class="src-key">array</span><span class="src-sym">(</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-id"><a href="ezcDocumentRstNode.html">ezcDocumentRstNode</a></span><span class="src-sym">::</span><span class="src-id">DOCUMENT&#8192;</span>=&gt;&#8192;<span class="src-str">'reduceDocument'</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;...</div></li>
+<li><div class="src-line">&#8192;&#8192;<span class="src-sym">)</span></div></li>
+</ol></div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            <em>array</em>          </td>
+          <td>
+            <code>
+              $shifts
+               = <span class="var-default">array(<br>        ezcDocumentRstToken::WHITESPACE =&gt; array(<br><br>            // This should always be the last rule in this section: We shift<br>            // the whitespace, which could not be recognized as something else,<br>            // as text.<br>            'shiftWhitespaceAsText',<br>        ),ezcDocumentRstToken::NEWLINE=&gt;array('shiftParagraph','updateIndentation','shiftAsWhitespace',),ezcDocumentRstToken::BACKSLASH=&gt;array('shiftBackslash',),ezcDocumentRstToken::SPECIAL_CHARS=&gt;array('shiftTitle','shiftTransition','shiftLineBlock','shiftInlineLiteral','shiftInlineMarkup','shiftInterpretedTextMarkup','shiftReference','shiftAnonymousHyperlinks','shiftExternalReference','shiftBlockquoteAnnotation','shiftBulletList','shiftEnumeratedList','shiftLiteralBlock','shiftComment','shiftAnonymousReference','shiftFieldList','shiftSimpleTable','shiftGridTable',// This should always be the last rule in this section: We shift<br>// special character groups, which could not be recognized as<br>// something else, as text.<br>'shiftSpecialCharsAsText',),ezcDocumentRstToken::TEXT_LINE=&gt;array('shiftEnumeratedList','shiftText',),ezcDocumentRstToken::EOF=&gt;array('shiftDocument',),)</span>            </code>
+            <br><div style="margin-left: 20px">Array containing simplified shift ruleset</div>            <br><div style="margin-left: 20px"><p>We cannot express the RST syntax as a usual grammar using a BNF. With  the pumping lemma for context free grammars [1] you can easily prove,  that the word a^n b c^n d e^n is not a context free grammar, and this is  what the title definitions are.</p><p>This structure contains an array with callbacks implementing the shift  rules for all tokens. There may be multiple rules for one single token.</p><p>The callbacks itself create syntax elements and push them to the  document stack. After each push the reduction callbacks will be called  for the pushed elements.</p><p>The array should look like:  </p><ol><li><div class="src-line">&#8192;&#8192;<span class="src-key">array</span><span class="src-sym">(</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-id">WHITESPACE&#8192;</span>=&gt;&#8192;<span class="src-key">array</span><span class="src-sym">(</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-id">reductionMethod</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;...</div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-sym">)</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;...</div></li>
+<li><div class="src-line">&#8192;&#8192;<span class="src-sym">)</span></div></li>
+</ol><p>[1] http://en.wikipedia.org/wiki/Pumping_lemma_for_context-free_languages</p></div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            <em>array</em>          </td>
+          <td>
+            <code>
+              $shortDirectives
+               = <span class="var-default">array(<br>        'note',<br>        'notice',<br>        'warning',<br>        'danger',<br>        'image',<br>    )</span>            </code>
+            <br><div style="margin-left: 20px">List of builtin directives, which do not aggregate more text the  parameters and options. User defined directives always aggregate  following indeted text.</div>                      </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            <em>array</em>          </td>
+          <td>
+            <code>
+              $textNodes
+               = <span class="var-default">array(<br>        ezcDocumentRstNode::TEXT_LINE,<br>        ezcDocumentRstNode::MARKUP_EMPHASIS,<br>        ezcDocumentRstNode::MARKUP_STRONG,<br>        ezcDocumentRstNode::MARKUP_INTERPRETED,<br>        ezcDocumentRstNode::MARKUP_LITERAL,<br>        ezcDocumentRstNode::MARKUP_SUBSTITUTION,<br>        ezcDocumentRstNode::LINK_ANONYMOUS,<br>        ezcDocumentRstNode::LINK_REFERENCE,<br>        ezcDocumentRstNode::REFERENCE,<br>        ezcDocumentRstNode::TARGET,<br>    )</span>            </code>
+            <br><div style="margin-left: 20px">List of node types, which can be considered as inline text nodes.</div>                      </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            <em>array</em>          </td>
+          <td>
+            <code>
+              $titleLevels
+               = <span class="var-default">array()</span>            </code>
+            <br><div style="margin-left: 20px">Array with title levels used by the document author in their order.</div>                      </td>
+        </tr></table><h3>Inherited Member Variables</h3>
+  <table class="summary"><thead><tr><th colspan="2">
+            From <span class="classname"><a href="ezcDocumentParser.html">ezcDocumentParser</a></span>         
+          </th>
+        </tr></thead><tbody><tr><td class="right">
+              <em>protected</em>                          </td>
+            <td>
+              <code><a href="ezcDocumentParser.html#var%24options">ezcDocumentParser::$options</a></code>
+              
+            </td>
+          </tr><tr><td class="right">
+              <em>protected</em>                          </td>
+            <td>
+              <code><a href="ezcDocumentParser.html#var%24properties">ezcDocumentParser::$properties</a></code>
+              
+            </td>
+          </tr></tbody></table><a name="sec-method-summary"></a>
+  <h3>Method Summary</h3>
+  <table class="summary"><tr><td class="right">
+            <em>public</em>                        <em>ezcDocumentRstParser</em>          </td>
+          <td>
+            <code>
+              <a href="#__construct"><b>__construct</b></a>(
+                                                                  [                  $options
+                   = null]                               )
+            </code>
+            <br><div style="margin-left: 20px">Construct new document</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#detectFootnoteType"><b>detectFootnoteType</b></a>(
+                                                                                    $name
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Tries to detect footnote type</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#dumpStack"><b>dumpStack</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Print a dump of the document stack</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>ezcDocumentRstSubstitutionNode</em>          </td>
+          <td>
+            <code>
+              <a href="#handleSpecialDirectives"><b>handleSpecialDirectives</b></a>(
+                                                                                    $substitution
+                                                    ,                                     $node
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Handle special directives</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#isEnumeratedList"><b>isEnumeratedList</b></a>(
+                                                                                    $tokens
+                                                    ,                   [                  $token
+                   = null]                               )
+            </code>
+            <br><div style="margin-left: 20px">Is enumerated list?</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>boolean</em>          </td>
+          <td>
+            <code>
+              <a href="#isInlineEndToken"><b>isInlineEndToken</b></a>(
+                                                                                    $token
+                                                    ,                                     $tokens
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Check if token is an inline markup end token.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>boolean</em>          </td>
+          <td>
+            <code>
+              <a href="#isInlineStartToken"><b>isInlineStartToken</b></a>(
+                                                                                    $token
+                                                    ,                                     $tokens
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Check if token is an inline markup start token.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#parse"><b>parse</b></a>(
+                                                                                    $tokens
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Shift- / reduce-parser for RST token stack</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>array</em>          </td>
+          <td>
+            <code>
+              <a href="#readGridTableSpecification"><b>readGridTableSpecification</b></a>(
+                                                                                    &amp;$tokens
+                                                    ,                                     $tokens
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Read grid table specifications</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>array</em>          </td>
+          <td>
+            <code>
+              <a href="#readMutlipleIndentedLines"><b>readMutlipleIndentedLines</b></a>(
+                                                                                    $tokens
+                                                    ,                   [                  $strict
+                   = false]                               )
+            </code>
+            <br><div style="margin-left: 20px">Read multiple lines</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>array</em>          </td>
+          <td>
+            <code>
+              <a href="#readSimpleCells"><b>readSimpleCells</b></a>(
+                                                                                    $cellStarts
+                                                    ,                                     &amp;$tokens
+                                                    ,                                     $tokens
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Read simple cells</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>array</em>          </td>
+          <td>
+            <code>
+              <a href="#readSimpleTableSpecification"><b>readSimpleTableSpecification</b></a>(
+                                                                                    &amp;$tokens
+                                                    ,                                     $tokens
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Read simple table specifications</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>array</em>          </td>
+          <td>
+            <code>
+              <a href="#readUntil"><b>readUntil</b></a>(
+                                                                                    $tokens
+                                                    ,                                     $until
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Read all token until one of the given tokens occurs</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>array</em>          </td>
+          <td>
+            <code>
+              <a href="#realignTokens"><b>realignTokens</b></a>(
+                                                                                    $tokens
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Re-align tokens</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#reduceBlockquote"><b>reduceBlockquote</b></a>(
+                                                                                    $node
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Reduce paragraph to blockquote</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#reduceBlockquoteAnnotation"><b>reduceBlockquoteAnnotation</b></a>(
+                                                                                    $node
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Reduce blockquote annotation</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#reduceBlockquoteAnnotationParagraph"><b>reduceBlockquoteAnnotationParagraph</b></a>(
+                                                                                    $node
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Reduce blockquote annotation content</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#reduceInternalTarget"><b>reduceInternalTarget</b></a>(
+                                                                                    $node
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Reduce internal target</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#reduceInterpretedText"><b>reduceInterpretedText</b></a>(
+                                                                                    $node
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Reduce interpreted text inline markup</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#reduceLink"><b>reduceLink</b></a>(
+                                                                                    $node
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Reduce link</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#reduceList"><b>reduceList</b></a>(
+                                                                                    $node
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Reduce item to bullet list</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#reduceListItem"><b>reduceListItem</b></a>(
+                                                                                    $node
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Reduce paragraph to bullet lsit</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#reduceMarkup"><b>reduceMarkup</b></a>(
+                                                                                    $node
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Reduce markup</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#reduceParagraph"><b>reduceParagraph</b></a>(
+                                                                                    $node
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Reduce paragraph</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#reduceReference"><b>reduceReference</b></a>(
+                                                                                    $node
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Reduce reference</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#reduceSection"><b>reduceSection</b></a>(
+                                                                                    $node
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Reduce prior sections, if a new section has been found.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#reduceTitle"><b>reduceTitle</b></a>(
+                                                                                    $node
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Reduce all elements to one document node.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>ezcDocumentRstDocumentNode</em>          </td>
+          <td>
+            <code>
+              <a href="#reenterParser"><b>reenterParser</b></a>(
+                                                                                    $tokens
+                                                    ,                   [                  $reindent
+                   = true]                               )
+            </code>
+            <br><div style="margin-left: 20px">Reenter parser with a list of tokens</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>ezcDocumentRstMarkupEmphasisNode</em>          </td>
+          <td>
+            <code>
+              <a href="#shiftAnonymousHyperlinks"><b>shiftAnonymousHyperlinks</b></a>(
+                                                                                    $token
+                                                    ,                                     $tokens
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Detect inline markup</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>ezcDocumentRstMarkupEmphasisNode</em>          </td>
+          <td>
+            <code>
+              <a href="#shiftAnonymousReference"><b>shiftAnonymousReference</b></a>(
+                                                                                    $token
+                                                    ,                                     $tokens
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Shift anonymous reference target</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>ezcDocumentRstTextLineNode</em>          </td>
+          <td>
+            <code>
+              <a href="#shiftAsWhitespace"><b>shiftAsWhitespace</b></a>(
+                                                                                    $token
+                                                    ,                                     $tokens
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Keep the newline as a single whitespace to maintain readability in  texts.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>ezcDocumentRstTitleNode</em>          </td>
+          <td>
+            <code>
+              <a href="#shiftBackslash"><b>shiftBackslash</b></a>(
+                                                                                    $token
+                                                    ,                                     $tokens
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Escaping of special characters</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>ezcDocumentRstMarkupEmphasisNode</em>          </td>
+          <td>
+            <code>
+              <a href="#shiftBlockquoteAnnotation"><b>shiftBlockquoteAnnotation</b></a>(
+                                                                                    $token
+                                                    ,                                     $tokens
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Blockquote annotations</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>ezcDocumentRstMarkupEmphasisNode</em>          </td>
+          <td>
+            <code>
+              <a href="#shiftBulletList"><b>shiftBulletList</b></a>(
+                                                                                    $token
+                                                    ,                                     $tokens
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Bullet point lists</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>ezcDocumentRstMarkupEmphasisNode</em>          </td>
+          <td>
+            <code>
+              <a href="#shiftComment"><b>shiftComment</b></a>(
+                                                                                    $token
+                                                    ,                                     $tokens
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Shift comment</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>ezcDocumentRstMarkupEmphasisNode</em>          </td>
+          <td>
+            <code>
+              <a href="#shiftDefinitionList"><b>shiftDefinitionList</b></a>(
+                                                                                    $token
+                                                    ,                                     $tokens
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Shift definition lists</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>ezcDocumentRstDirectiveNode</em>          </td>
+          <td>
+            <code>
+              <a href="#shiftDirective"><b>shiftDirective</b></a>(
+                                                                                    $directive
+                                                    ,                                     $tokens
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Shift directives</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>ezcDocumentRstDocumentNode</em>          </td>
+          <td>
+            <code>
+              <a href="#shiftDocument"><b>shiftDocument</b></a>(
+                                                                                    $token
+                                                    ,                                     $tokens
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Create new document node</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>ezcDocumentRstMarkupEmphasisNode</em>          </td>
+          <td>
+            <code>
+              <a href="#shiftEnumeratedList"><b>shiftEnumeratedList</b></a>(
+                                                                                    $token
+                                                    ,                                     $tokens
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Enumerated lists</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>ezcDocumentRstMarkupEmphasisNode</em>          </td>
+          <td>
+            <code>
+              <a href="#shiftExternalReference"><b>shiftExternalReference</b></a>(
+                                                                                    $token
+                                                    ,                                     $tokens
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Detect inline markup</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>ezcDocumentRstMarkupEmphasisNode</em>          </td>
+          <td>
+            <code>
+              <a href="#shiftFieldList"><b>shiftFieldList</b></a>(
+                                                                                    $token
+                                                    ,                                     $tokens
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Shift field lists</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>ezcDocumentRstMarkupEmphasisNode</em>          </td>
+          <td>
+            <code>
+              <a href="#shiftGridTable"><b>shiftGridTable</b></a>(
+                                                                                    $token
+                                                    ,                                     $tokens
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Shift grid table</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>ezcDocumentRstMarkupEmphasisNode</em>          </td>
+          <td>
+            <code>
+              <a href="#shiftInlineLiteral"><b>shiftInlineLiteral</b></a>(
+                                                                                    $token
+                                                    ,                                     $tokens
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Detect inline literal</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>ezcDocumentRstMarkupEmphasisNode</em>          </td>
+          <td>
+            <code>
+              <a href="#shiftInlineMarkup"><b>shiftInlineMarkup</b></a>(
+                                                                                    $token
+                                                    ,                                     $tokens
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Detect inline markup</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>ezcDocumentRstMarkupEmphasisNode</em>          </td>
+          <td>
+            <code>
+              <a href="#shiftInterpretedTextMarkup"><b>shiftInterpretedTextMarkup</b></a>(
+                                                                                    $token
+                                                    ,                                     $tokens
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Detect interpreted text inline markup</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>mixed</em>          </td>
+          <td>
+            <code>
+              <a href="#shiftInterpretedTextRole"><b>shiftInterpretedTextRole</b></a>(
+                                                                                    $token
+                                                    ,                                     $tokens
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Try to shift a interpreted text role</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>ezcDocumentRstTitleNode</em>          </td>
+          <td>
+            <code>
+              <a href="#shiftLineBlock"><b>shiftLineBlock</b></a>(
+                                                                                    $token
+                                                    ,                                     $tokens
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Shift line blocks</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>ezcDocumentRstMarkupEmphasisNode</em>          </td>
+          <td>
+            <code>
+              <a href="#shiftLiteralBlock"><b>shiftLiteralBlock</b></a>(
+                                                                                    $token
+                                                    ,                                     $tokens
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Shift literal block</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>ezcDocumentRstTitleNode</em>          </td>
+          <td>
+            <code>
+              <a href="#shiftParagraph"><b>shiftParagraph</b></a>(
+                                                                                    $token
+                                                    ,                                     $tokens
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Shift a paragraph node on two newlines</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>ezcDocumentRstMarkupEmphasisNode</em>          </td>
+          <td>
+            <code>
+              <a href="#shiftReference"><b>shiftReference</b></a>(
+                                                                                    $token
+                                                    ,                                     $tokens
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Detect reference</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>ezcDocumentRstMarkupEmphasisNode</em>          </td>
+          <td>
+            <code>
+              <a href="#shiftSimpleTable"><b>shiftSimpleTable</b></a>(
+                                                                                    $token
+                                                    ,                                     $tokens
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Shift simple table</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>ezcDocumentRstTextLineNode</em>          </td>
+          <td>
+            <code>
+              <a href="#shiftSpecialCharsAsText"><b>shiftSpecialCharsAsText</b></a>(
+                                                                                    $token
+                                                    ,                                     $tokens
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Just keep text as text nodes</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>ezcDocumentRstTitleNode</em>          </td>
+          <td>
+            <code>
+              <a href="#shiftText"><b>shiftText</b></a>(
+                                                                                    $token
+                                                    ,                                     $tokens
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Just keep text as text nodes</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>ezcDocumentRstTitleNode</em>          </td>
+          <td>
+            <code>
+              <a href="#shiftTitle"><b>shiftTitle</b></a>(
+                                                                                    $token
+                                                    ,                                     $tokens
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Create new title node from titles with a top and bottom line</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>ezcDocumentRstTitleNode</em>          </td>
+          <td>
+            <code>
+              <a href="#shiftTransition"><b>shiftTransition</b></a>(
+                                                                                    $token
+                                                    ,                                     $tokens
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Shift transistions, which are separators in the document.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>ezcDocumentRstTextLineNode</em>          </td>
+          <td>
+            <code>
+              <a href="#shiftWhitespaceAsText"><b>shiftWhitespaceAsText</b></a>(
+                                                                                    $token
+                                                    ,                                     $tokens
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Just keep text as text nodes</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>bool</em>          </td>
+          <td>
+            <code>
+              <a href="#updateIndentation"><b>updateIndentation</b></a>(
+                                                                                    $token
+                                                    ,                                     $tokens
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Update the current indentation after each newline.</div>          </td>
+        </tr></table><h3>Inherited Methods</h3>
+  <table class="summary"><thead><tr><th colspan="2">
+            From <span class="classname"><a href="ezcDocumentParser.html">ezcDocumentParser</a></span>
+          </th>
+        </tr></thead><tbody><tr><td class="right">
+              <em>public</em>                                          <em>ezcDocumentParser</em>            </td>
+            <td>
+              <code><b><a href="ezcDocumentParser.html#method__construct">ezcDocumentParser::__construct()</a></b></code>
+              <br><div style="margin-left: 20px">Construct new document</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>array</em>            </td>
+            <td>
+              <code><b><a href="ezcDocumentParser.html#methodgetErrors">ezcDocumentParser::getErrors()</a></b></code>
+              <br><div style="margin-left: 20px">Return list of errors occured during visiting the document.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b><a href="ezcDocumentParser.html#methodtriggerError">ezcDocumentParser::triggerError()</a></b></code>
+              <br><div style="margin-left: 20px">Trigger parser error</div>                          </td>
+          </tr></tbody></table><a name="sec-methods"></a>
+  <h3>Methods</h3>
+  <a name="method_detail"></a>
+                                                                                                                  
+      <a name="method__construct" id="__construct"><!-- --></a>
+
+    <h4>__construct</h4>
+
+    <div class="method-signature">
+      ezcDocumentRstParser
+      __construct(
+                                  [<a href="ezcDocumentParserOptions.html">ezcDocumentParserOptions</a>
+          $options
+           = null]              )
+    </div>
+
+    <p>Construct new document</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$options</code></td>
+              <td><em><a href="ezcDocumentParserOptions.html">ezcDocumentParserOptions</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcDocumentParser.html#method__construct">ezcDocumentParser::__construct()</a></code></td>
+            <td>
+                              Construct new document
+                          </td>
+          </tr></tbody></table><a name="methoddetectFootnoteType" id="detectFootnoteType"><!-- --></a>
+
+    <h4>detectFootnoteType</h4>
+
+    <div class="method-signature">
+      void
+      detectFootnoteType(
+                                  
+          $name
+                        )
+    </div>
+
+    <p>Tries to detect footnote type</p><div><p>The type of the footnote</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$name</code></td>
+              <td><em>array</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methoddumpStack" id="dumpStack"><!-- --></a>
+
+    <h4>dumpStack</h4>
+
+    <div class="method-signature">
+      void
+      dumpStack(
+      )
+    </div>
+
+    <p>Print a dump of the document stack</p><div><p>This function is only for use during dubbing of the document stack  structure.</p></div>
+    
+        
+
+    
+    
+    
+        <a name="methodhandleSpecialDirectives" id="handleSpecialDirectives"><!-- --></a>
+
+    <h4>handleSpecialDirectives</h4>
+
+    <div class="method-signature">
+      ezcDocumentRstSubstitutionNode
+      handleSpecialDirectives(
+                                  
+          $substitution
+                            ,           
+          $node
+                        )
+    </div>
+
+    <p>Handle special directives</p><div><p>Handle special directives like replace, which require reparsing of the  directives contents, which is not possible to do during visiting, but is  required to already be done inside the parser.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$substitution</code></td>
+              <td><em>ezcDocumentRstSubstitutionNode</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$node</code></td>
+              <td><em>ezcDocumentRstDirectiveNode</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodisEnumeratedList" id="isEnumeratedList"><!-- --></a>
+
+    <h4>isEnumeratedList</h4>
+
+    <div class="method-signature">
+      void
+      isEnumeratedList(
+                                  <a href="ezcDocumentRstStack.html">ezcDocumentRstStack</a>
+          $tokens
+                            ,           [mixed
+          $token
+           = null]              )
+    </div>
+
+    <p>Is enumerated list?</p><div><p>As defined at  http://docutils.sourceforge.net/docs/ref/rst/restructuredtext.html#bullet-lists</p><p>Checks if the curretn token with thw following tokens may be an  enumerated list. Used by the repective shifting method and when checking  for indentation updates.</p><p>Returns true, if the tokens may be an enumerated list, and false otherwise.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$tokens</code></td>
+              <td><em><a href="ezcDocumentRstStack.html">ezcDocumentRstStack</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$token</code></td>
+              <td><em>mixed</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodisInlineEndToken" id="isInlineEndToken"><!-- --></a>
+
+    <h4>isInlineEndToken</h4>
+
+    <div class="method-signature">
+      boolean
+      isInlineEndToken(
+                                  <a href="ezcDocumentRstToken.html">ezcDocumentRstToken</a>
+          $token
+                            ,           <a href="ezcDocumentRstStack.html">ezcDocumentRstStack</a>
+          $tokens
+                        )
+    </div>
+
+    <p>Check if token is an inline markup end token.</p><div><p>For a user readable list of the following rules, see:  http://docutils.sourceforge.net/docs/ref/rst/restructuredtext.html#inline-markup</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$token</code></td>
+              <td><em><a href="ezcDocumentRstToken.html">ezcDocumentRstToken</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$tokens</code></td>
+              <td><em><a href="ezcDocumentRstStack.html">ezcDocumentRstStack</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodisInlineStartToken" id="isInlineStartToken"><!-- --></a>
+
+    <h4>isInlineStartToken</h4>
+
+    <div class="method-signature">
+      boolean
+      isInlineStartToken(
+                                  <a href="ezcDocumentRstToken.html">ezcDocumentRstToken</a>
+          $token
+                            ,           <a href="ezcDocumentRstStack.html">ezcDocumentRstStack</a>
+          $tokens
+                        )
+    </div>
+
+    <p>Check if token is an inline markup start token.</p><div><p>For a user readable list of the following rules, see:  http://docutils.sourceforge.net/docs/ref/rst/restructuredtext.html#inline-markup</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$token</code></td>
+              <td><em><a href="ezcDocumentRstToken.html">ezcDocumentRstToken</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$tokens</code></td>
+              <td><em><a href="ezcDocumentRstStack.html">ezcDocumentRstStack</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodparse" id="parse"><!-- --></a>
+
+    <h4>parse</h4>
+
+    <div class="method-signature">
+      void
+      parse(
+                                  
+          $tokens
+                        )
+    </div>
+
+    <p>Shift- / reduce-parser for RST token stack</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$tokens</code></td>
+              <td><em>array</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodreadGridTableSpecification" id="readGridTableSpecification"><!-- --></a>
+
+    <h4>readGridTableSpecification</h4>
+
+    <div class="method-signature">
+      array
+      readGridTableSpecification(
+                                  
+          &amp;$tokens
+                            ,           <a href="ezcDocumentRstStack.html">ezcDocumentRstStack</a>
+          $tokens
+                        )
+    </div>
+
+    <p>Read grid table specifications</p><div><p>Read the column specification headers of a grid table and return the  sizes of the specified columns in an array.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$tokens</code></td>
+              <td><em><a href="ezcDocumentRstStack.html">ezcDocumentRstStack</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>&amp;$tokens</code></td>
+              <td><em></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodreadMutlipleIndentedLines" id="readMutlipleIndentedLines"><!-- --></a>
+
+    <h4>readMutlipleIndentedLines</h4>
+
+    <div class="method-signature">
+      array
+      readMutlipleIndentedLines(
+                                  <a href="ezcDocumentRstStack.html">ezcDocumentRstStack</a>
+          $tokens
+                            ,           [bool
+          $strict
+           = false]              )
+    </div>
+
+    <p>Read multiple lines</p><div><p>Reads the content of multiple indented lines, where the indentation can  bei either handled strict, or lose, when literal text is expected.</p><p>Returns an array with the collected tokens, until the indentation  changes.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$tokens</code></td>
+              <td><em><a href="ezcDocumentRstStack.html">ezcDocumentRstStack</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$strict</code></td>
+              <td><em>bool</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodreadSimpleCells" id="readSimpleCells"><!-- --></a>
+
+    <h4>readSimpleCells</h4>
+
+    <div class="method-signature">
+      array
+      readSimpleCells(
+                                  array
+          $cellStarts
+                            ,           
+          &amp;$tokens
+                            ,           <a href="ezcDocumentRstStack.html">ezcDocumentRstStack</a>
+          $tokens
+                        )
+    </div>
+
+    <p>Read simple cells</p><div><p>Read cells as defined in simple tables. Cells are maily structured by  whitespaces, but may also exceed one cell.</p><p>Returns an array with cells, ordered by their rows and columns.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$cellStarts</code></td>
+              <td><em>array</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$tokens</code></td>
+              <td><em><a href="ezcDocumentRstStack.html">ezcDocumentRstStack</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>&amp;$tokens</code></td>
+              <td><em></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodreadSimpleTableSpecification" id="readSimpleTableSpecification"><!-- --></a>
+
+    <h4>readSimpleTableSpecification</h4>
+
+    <div class="method-signature">
+      array
+      readSimpleTableSpecification(
+                                  
+          &amp;$tokens
+                            ,           <a href="ezcDocumentRstStack.html">ezcDocumentRstStack</a>
+          $tokens
+                        )
+    </div>
+
+    <p>Read simple table specifications</p><div><p>Read the column specification headers of a simple table and return the  sizes of the specified columns in an array.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$tokens</code></td>
+              <td><em><a href="ezcDocumentRstStack.html">ezcDocumentRstStack</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>&amp;$tokens</code></td>
+              <td><em></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodreadUntil" id="readUntil"><!-- --></a>
+
+    <h4>readUntil</h4>
+
+    <div class="method-signature">
+      array
+      readUntil(
+                                  <a href="ezcDocumentRstStack.html">ezcDocumentRstStack</a>
+          $tokens
+                            ,           
+          $until
+                        )
+    </div>
+
+    <p>Read all token until one of the given tokens occurs</p><div><p>Reads all tokens and removes them from the token stack, which do not  match of the given tokens. Escaping is maintained.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$tokens</code></td>
+              <td><em><a href="ezcDocumentRstStack.html">ezcDocumentRstStack</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$until</code></td>
+              <td><em>array</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodrealignTokens" id="realignTokens"><!-- --></a>
+
+    <h4>realignTokens</h4>
+
+    <div class="method-signature">
+      array
+      realignTokens(
+                                  array
+          $tokens
+                        )
+    </div>
+
+    <p>Re-align tokens</p><div><p>Realign tokens, so that the line start positions start at 0 again, even  they were indeted before.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$tokens</code></td>
+              <td><em>array</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodreduceBlockquote" id="reduceBlockquote"><!-- --></a>
+
+    <h4>reduceBlockquote</h4>
+
+    <div class="method-signature">
+      void
+      reduceBlockquote(
+                                  <a href="ezcDocumentRstNode.html">ezcDocumentRstNode</a>
+          $node
+                        )
+    </div>
+
+    <p>Reduce paragraph to blockquote</p><div><p>Indented paragraphs are blockquotes, which should be wrapped in such a  node.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$node</code></td>
+              <td><em><a href="ezcDocumentRstNode.html">ezcDocumentRstNode</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodreduceBlockquoteAnnotation" id="reduceBlockquoteAnnotation"><!-- --></a>
+
+    <h4>reduceBlockquoteAnnotation</h4>
+
+    <div class="method-signature">
+      void
+      reduceBlockquoteAnnotation(
+                                  <a href="ezcDocumentRstNode.html">ezcDocumentRstNode</a>
+          $node
+                        )
+    </div>
+
+    <p>Reduce blockquote annotation</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$node</code></td>
+              <td><em><a href="ezcDocumentRstNode.html">ezcDocumentRstNode</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodreduceBlockquoteAnnotationParagraph" id="reduceBlockquoteAnnotationParagraph"><!-- --></a>
+
+    <h4>reduceBlockquoteAnnotationParagraph</h4>
+
+    <div class="method-signature">
+      void
+      reduceBlockquoteAnnotationParagraph(
+                                  <a href="ezcDocumentRstNode.html">ezcDocumentRstNode</a>
+          $node
+                        )
+    </div>
+
+    <p>Reduce blockquote annotation content</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$node</code></td>
+              <td><em><a href="ezcDocumentRstNode.html">ezcDocumentRstNode</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodreduceInternalTarget" id="reduceInternalTarget"><!-- --></a>
+
+    <h4>reduceInternalTarget</h4>
+
+    <div class="method-signature">
+      void
+      reduceInternalTarget(
+                                  <a href="ezcDocumentRstNode.html">ezcDocumentRstNode</a>
+          $node
+                        )
+    </div>
+
+    <p>Reduce internal target</p><div><p>Internal targets are listed before the literal markup block, so it may  be found and reduced after we found a markup block.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$node</code></td>
+              <td><em><a href="ezcDocumentRstNode.html">ezcDocumentRstNode</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodreduceInterpretedText" id="reduceInterpretedText"><!-- --></a>
+
+    <h4>reduceInterpretedText</h4>
+
+    <div class="method-signature">
+      void
+      reduceInterpretedText(
+                                  <a href="ezcDocumentRstNode.html">ezcDocumentRstNode</a>
+          $node
+                        )
+    </div>
+
+    <p>Reduce interpreted text inline markup</p><div><p>Tries to find the opening tag for a markup definition.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$node</code></td>
+              <td><em><a href="ezcDocumentRstNode.html">ezcDocumentRstNode</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodreduceLink" id="reduceLink"><!-- --></a>
+
+    <h4>reduceLink</h4>
+
+    <div class="method-signature">
+      void
+      reduceLink(
+                                  <a href="ezcDocumentRstNode.html">ezcDocumentRstNode</a>
+          $node
+                        )
+    </div>
+
+    <p>Reduce link</p><div><p>Uses the preceding element as the hyperlink content. This should be  either a literal markup section, or just the last word.</p><p>As we do not get workd content out of the tokenizer (too much overhead),  we split out the previous text node up, in case we got one.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$node</code></td>
+              <td><em><a href="ezcDocumentRstNode.html">ezcDocumentRstNode</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodreduceList" id="reduceList"><!-- --></a>
+
+    <h4>reduceList</h4>
+
+    <div class="method-signature">
+      void
+      reduceList(
+                                  <a href="ezcDocumentRstNode.html">ezcDocumentRstNode</a>
+          $node
+                        )
+    </div>
+
+    <p>Reduce item to bullet list</p><div><p>Called for all items, which may be part of bullet lists. Depending on  the indentation level we reduce some amount of items to a bullet list.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$node</code></td>
+              <td><em><a href="ezcDocumentRstNode.html">ezcDocumentRstNode</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodreduceListItem" id="reduceListItem"><!-- --></a>
+
+    <h4>reduceListItem</h4>
+
+    <div class="method-signature">
+      void
+      reduceListItem(
+                                  <a href="ezcDocumentRstNode.html">ezcDocumentRstNode</a>
+          $node
+                        )
+    </div>
+
+    <p>Reduce paragraph to bullet lsit</p><div><p>Indented paragraphs are bllet lists, if prefixed by a bullet list  indicator.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$node</code></td>
+              <td><em><a href="ezcDocumentRstNode.html">ezcDocumentRstNode</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodreduceMarkup" id="reduceMarkup"><!-- --></a>
+
+    <h4>reduceMarkup</h4>
+
+    <div class="method-signature">
+      void
+      reduceMarkup(
+                                  <a href="ezcDocumentRstNode.html">ezcDocumentRstNode</a>
+          $node
+                        )
+    </div>
+
+    <p>Reduce markup</p><div><p>Tries to find the opening tag for a markup definition.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$node</code></td>
+              <td><em><a href="ezcDocumentRstNode.html">ezcDocumentRstNode</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodreduceParagraph" id="reduceParagraph"><!-- --></a>
+
+    <h4>reduceParagraph</h4>
+
+    <div class="method-signature">
+      void
+      reduceParagraph(
+                                  <a href="ezcDocumentRstNode.html">ezcDocumentRstNode</a>
+          $node
+                        )
+    </div>
+
+    <p>Reduce paragraph</p><div><p>Aggregates all nodes which are allowed as subnodes into a paragraph.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$node</code></td>
+              <td><em><a href="ezcDocumentRstNode.html">ezcDocumentRstNode</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodreduceReference" id="reduceReference"><!-- --></a>
+
+    <h4>reduceReference</h4>
+
+    <div class="method-signature">
+      void
+      reduceReference(
+                                  <a href="ezcDocumentRstNode.html">ezcDocumentRstNode</a>
+          $node
+                        )
+    </div>
+
+    <p>Reduce reference</p><div><p>Reduce references as defined at:  http://docutils.sourceforge.net/docs/ref/rst/restructuredtext.html#inline-markup</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$node</code></td>
+              <td><em><a href="ezcDocumentRstNode.html">ezcDocumentRstNode</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodreduceSection" id="reduceSection"><!-- --></a>
+
+    <h4>reduceSection</h4>
+
+    <div class="method-signature">
+      void
+      reduceSection(
+                                  <a href="ezcDocumentRstNode.html">ezcDocumentRstNode</a>
+          $node
+                        )
+    </div>
+
+    <p>Reduce prior sections, if a new section has been found.</p><div><p>If a new section has been found all sections with a higher depth level  can be closed, and all items fitting into sections may be aggregated by  the respective sections as well.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$node</code></td>
+              <td><em><a href="ezcDocumentRstNode.html">ezcDocumentRstNode</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodreduceTitle" id="reduceTitle"><!-- --></a>
+
+    <h4>reduceTitle</h4>
+
+    <div class="method-signature">
+      void
+      reduceTitle(
+                                  
+          $node
+                        )
+    </div>
+
+    <p>Reduce all elements to one document node.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$node</code></td>
+              <td><em>ezcDocumentRstTitleNode</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodreenterParser" id="reenterParser"><!-- --></a>
+
+    <h4>reenterParser</h4>
+
+    <div class="method-signature">
+      ezcDocumentRstDocumentNode
+      reenterParser(
+                                  
+          $tokens
+                            ,           [bool
+          $reindent
+           = true]              )
+    </div>
+
+    <p>Reenter parser with a list of tokens</p><div><p>Returns a parsed document created from the given tokens. With optional,  but default, reindetation of the tokens relative to the first token.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$tokens</code></td>
+              <td><em>array</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$reindent</code></td>
+              <td><em>bool</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodshiftAnonymousHyperlinks" id="shiftAnonymousHyperlinks"><!-- --></a>
+
+    <h4>shiftAnonymousHyperlinks</h4>
+
+    <div class="method-signature">
+      ezcDocumentRstMarkupEmphasisNode
+      shiftAnonymousHyperlinks(
+                                  <a href="ezcDocumentRstToken.html">ezcDocumentRstToken</a>
+          $token
+                            ,           <a href="ezcDocumentRstStack.html">ezcDocumentRstStack</a>
+          $tokens
+                        )
+    </div>
+
+    <p>Detect inline markup</p><div><p>As defined at:  http://docutils.sourceforge.net/docs/ref/rst/restructuredtext.html#inline-markup</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$token</code></td>
+              <td><em><a href="ezcDocumentRstToken.html">ezcDocumentRstToken</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$tokens</code></td>
+              <td><em><a href="ezcDocumentRstStack.html">ezcDocumentRstStack</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodshiftAnonymousReference" id="shiftAnonymousReference"><!-- --></a>
+
+    <h4>shiftAnonymousReference</h4>
+
+    <div class="method-signature">
+      ezcDocumentRstMarkupEmphasisNode
+      shiftAnonymousReference(
+                                  <a href="ezcDocumentRstToken.html">ezcDocumentRstToken</a>
+          $token
+                            ,           <a href="ezcDocumentRstStack.html">ezcDocumentRstStack</a>
+          $tokens
+                        )
+    </div>
+
+    <p>Shift anonymous reference target</p><div><p>Shift the short version of anonymous reference targets, the long version  is handled in the shiftComment() method. Both are specified at:  http://docutils.sourceforge.net/docs/ref/rst/restructuredtext.html#anonymous-hyperlinks</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$token</code></td>
+              <td><em><a href="ezcDocumentRstToken.html">ezcDocumentRstToken</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$tokens</code></td>
+              <td><em><a href="ezcDocumentRstStack.html">ezcDocumentRstStack</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodshiftAsWhitespace" id="shiftAsWhitespace"><!-- --></a>
+
+    <h4>shiftAsWhitespace</h4>
+
+    <div class="method-signature">
+      ezcDocumentRstTextLineNode
+      shiftAsWhitespace(
+                                  <a href="ezcDocumentRstToken.html">ezcDocumentRstToken</a>
+          $token
+                            ,           <a href="ezcDocumentRstStack.html">ezcDocumentRstStack</a>
+          $tokens
+                        )
+    </div>
+
+    <p>Keep the newline as a single whitespace to maintain readability in  texts.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$token</code></td>
+              <td><em><a href="ezcDocumentRstToken.html">ezcDocumentRstToken</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$tokens</code></td>
+              <td><em><a href="ezcDocumentRstStack.html">ezcDocumentRstStack</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodshiftBackslash" id="shiftBackslash"><!-- --></a>
+
+    <h4>shiftBackslash</h4>
+
+    <div class="method-signature">
+      ezcDocumentRstTitleNode
+      shiftBackslash(
+                                  <a href="ezcDocumentRstToken.html">ezcDocumentRstToken</a>
+          $token
+                            ,           <a href="ezcDocumentRstStack.html">ezcDocumentRstStack</a>
+          $tokens
+                        )
+    </div>
+
+    <p>Escaping of special characters</p><div><p>A backslash is used for character escaping, as defined at:  http://docutils.sourceforge.net/docs/ref/rst/restructuredtext.html#escaping-mechanism</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$token</code></td>
+              <td><em><a href="ezcDocumentRstToken.html">ezcDocumentRstToken</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$tokens</code></td>
+              <td><em><a href="ezcDocumentRstStack.html">ezcDocumentRstStack</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodshiftBlockquoteAnnotation" id="shiftBlockquoteAnnotation"><!-- --></a>
+
+    <h4>shiftBlockquoteAnnotation</h4>
+
+    <div class="method-signature">
+      ezcDocumentRstMarkupEmphasisNode
+      shiftBlockquoteAnnotation(
+                                  <a href="ezcDocumentRstToken.html">ezcDocumentRstToken</a>
+          $token
+                            ,           <a href="ezcDocumentRstStack.html">ezcDocumentRstStack</a>
+          $tokens
+                        )
+    </div>
+
+    <p>Blockquote annotations</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$token</code></td>
+              <td><em><a href="ezcDocumentRstToken.html">ezcDocumentRstToken</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$tokens</code></td>
+              <td><em><a href="ezcDocumentRstStack.html">ezcDocumentRstStack</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodshiftBulletList" id="shiftBulletList"><!-- --></a>
+
+    <h4>shiftBulletList</h4>
+
+    <div class="method-signature">
+      ezcDocumentRstMarkupEmphasisNode
+      shiftBulletList(
+                                  <a href="ezcDocumentRstToken.html">ezcDocumentRstToken</a>
+          $token
+                            ,           <a href="ezcDocumentRstStack.html">ezcDocumentRstStack</a>
+          $tokens
+                        )
+    </div>
+
+    <p>Bullet point lists</p><div><p>As defined at  http://docutils.sourceforge.net/docs/ref/rst/restructuredtext.html#bullet-lists</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$token</code></td>
+              <td><em><a href="ezcDocumentRstToken.html">ezcDocumentRstToken</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$tokens</code></td>
+              <td><em><a href="ezcDocumentRstStack.html">ezcDocumentRstStack</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodshiftComment" id="shiftComment"><!-- --></a>
+
+    <h4>shiftComment</h4>
+
+    <div class="method-signature">
+      ezcDocumentRstMarkupEmphasisNode
+      shiftComment(
+                                  <a href="ezcDocumentRstToken.html">ezcDocumentRstToken</a>
+          $token
+                            ,           <a href="ezcDocumentRstStack.html">ezcDocumentRstStack</a>
+          $tokens
+                        )
+    </div>
+
+    <p>Shift comment</p><div><p>Shift comments. Comments are introduced by '..' and just contain text.  There are several other block, which are introduced the same way, but  where the first token determines the actual type.</p><p>This method implements the parsing and detection of those different  items.</p><p>Comments are basically described here, but there are crosscutting  concerns throughout the complete specification:  http://docutils.sourceforge.net/docs/ref/rst/restructuredtext.html#comments</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$token</code></td>
+              <td><em><a href="ezcDocumentRstToken.html">ezcDocumentRstToken</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$tokens</code></td>
+              <td><em><a href="ezcDocumentRstStack.html">ezcDocumentRstStack</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodshiftDefinitionList" id="shiftDefinitionList"><!-- --></a>
+
+    <h4>shiftDefinitionList</h4>
+
+    <div class="method-signature">
+      ezcDocumentRstMarkupEmphasisNode
+      shiftDefinitionList(
+                                  <a href="ezcDocumentRstToken.html">ezcDocumentRstToken</a>
+          $token
+                            ,           <a href="ezcDocumentRstStack.html">ezcDocumentRstStack</a>
+          $tokens
+                        )
+    </div>
+
+    <p>Shift definition lists</p><div><p>Shift definition lists, which are introduced by an indentation change  without speration by a paragraph. Because of this the method is called  form the updateIndentation method, which handles such indentation  changes.</p><p>The text for the definition and its classifiers is already on the  document stack because of this.</p><p>Definition lists are specified at:  http://docutils.sourceforge.net/docs/ref/rst/restructuredtext.html#definition-lists</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$token</code></td>
+              <td><em><a href="ezcDocumentRstToken.html">ezcDocumentRstToken</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$tokens</code></td>
+              <td><em><a href="ezcDocumentRstStack.html">ezcDocumentRstStack</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodshiftDirective" id="shiftDirective"><!-- --></a>
+
+    <h4>shiftDirective</h4>
+
+    <div class="method-signature">
+      ezcDocumentRstDirectiveNode
+      shiftDirective(
+                                  
+          $directive
+                            ,           <a href="ezcDocumentRstStack.html">ezcDocumentRstStack</a>
+          $tokens
+                        )
+    </div>
+
+    <p>Shift directives</p><div><p>Shift directives as a subaction of the shiftComment method, though the  signature differs from the common shift methods.</p><p>This method aggregated options and parameters of directives, but leaves  the content aggregation to the common comment aggregation.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$directive</code></td>
+              <td><em>ezcDocumentRstDirectiveNode</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$tokens</code></td>
+              <td><em><a href="ezcDocumentRstStack.html">ezcDocumentRstStack</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodshiftDocument" id="shiftDocument"><!-- --></a>
+
+    <h4>shiftDocument</h4>
+
+    <div class="method-signature">
+      ezcDocumentRstDocumentNode
+      shiftDocument(
+                                  <a href="ezcDocumentRstToken.html">ezcDocumentRstToken</a>
+          $token
+                            ,           <a href="ezcDocumentRstStack.html">ezcDocumentRstStack</a>
+          $tokens
+                        )
+    </div>
+
+    <p>Create new document node</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$token</code></td>
+              <td><em><a href="ezcDocumentRstToken.html">ezcDocumentRstToken</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$tokens</code></td>
+              <td><em><a href="ezcDocumentRstStack.html">ezcDocumentRstStack</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodshiftEnumeratedList" id="shiftEnumeratedList"><!-- --></a>
+
+    <h4>shiftEnumeratedList</h4>
+
+    <div class="method-signature">
+      ezcDocumentRstMarkupEmphasisNode
+      shiftEnumeratedList(
+                                  <a href="ezcDocumentRstToken.html">ezcDocumentRstToken</a>
+          $token
+                            ,           <a href="ezcDocumentRstStack.html">ezcDocumentRstStack</a>
+          $tokens
+                        )
+    </div>
+
+    <p>Enumerated lists</p><div><p>As defined at  http://docutils.sourceforge.net/docs/ref/rst/restructuredtext.html#bullet-lists</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$token</code></td>
+              <td><em><a href="ezcDocumentRstToken.html">ezcDocumentRstToken</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$tokens</code></td>
+              <td><em><a href="ezcDocumentRstStack.html">ezcDocumentRstStack</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodshiftExternalReference" id="shiftExternalReference"><!-- --></a>
+
+    <h4>shiftExternalReference</h4>
+
+    <div class="method-signature">
+      ezcDocumentRstMarkupEmphasisNode
+      shiftExternalReference(
+                                  <a href="ezcDocumentRstToken.html">ezcDocumentRstToken</a>
+          $token
+                            ,           <a href="ezcDocumentRstStack.html">ezcDocumentRstStack</a>
+          $tokens
+                        )
+    </div>
+
+    <p>Detect inline markup</p><div><p>As defined at:  http://docutils.sourceforge.net/docs/ref/rst/restructuredtext.html#inline-markup</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$token</code></td>
+              <td><em><a href="ezcDocumentRstToken.html">ezcDocumentRstToken</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$tokens</code></td>
+              <td><em><a href="ezcDocumentRstStack.html">ezcDocumentRstStack</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodshiftFieldList" id="shiftFieldList"><!-- --></a>
+
+    <h4>shiftFieldList</h4>
+
+    <div class="method-signature">
+      ezcDocumentRstMarkupEmphasisNode
+      shiftFieldList(
+                                  <a href="ezcDocumentRstToken.html">ezcDocumentRstToken</a>
+          $token
+                            ,           <a href="ezcDocumentRstStack.html">ezcDocumentRstStack</a>
+          $tokens
+                        )
+    </div>
+
+    <p>Shift field lists</p><div><p>Shift field lists, which are introduced by a term surrounded by columns  and any text following. Field lists are specified at:  http://docutils.sourceforge.net/docs/ref/rst/restructuredtext.html#field-lists</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$token</code></td>
+              <td><em><a href="ezcDocumentRstToken.html">ezcDocumentRstToken</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$tokens</code></td>
+              <td><em><a href="ezcDocumentRstStack.html">ezcDocumentRstStack</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodshiftGridTable" id="shiftGridTable"><!-- --></a>
+
+    <h4>shiftGridTable</h4>
+
+    <div class="method-signature">
+      ezcDocumentRstMarkupEmphasisNode
+      shiftGridTable(
+                                  <a href="ezcDocumentRstToken.html">ezcDocumentRstToken</a>
+          $token
+                            ,           <a href="ezcDocumentRstStack.html">ezcDocumentRstStack</a>
+          $tokens
+                        )
+    </div>
+
+    <p>Shift grid table</p><div><p>In "Grid tables" the values are embedded in a complete grid visually  describing a a table using characters.  http://docutils.sourceforge.net/docs/ref/rst/restructuredtext.html#grid-tables</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$token</code></td>
+              <td><em><a href="ezcDocumentRstToken.html">ezcDocumentRstToken</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$tokens</code></td>
+              <td><em><a href="ezcDocumentRstStack.html">ezcDocumentRstStack</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodshiftInlineLiteral" id="shiftInlineLiteral"><!-- --></a>
+
+    <h4>shiftInlineLiteral</h4>
+
+    <div class="method-signature">
+      ezcDocumentRstMarkupEmphasisNode
+      shiftInlineLiteral(
+                                  <a href="ezcDocumentRstToken.html">ezcDocumentRstToken</a>
+          $token
+                            ,           <a href="ezcDocumentRstStack.html">ezcDocumentRstStack</a>
+          $tokens
+                        )
+    </div>
+
+    <p>Detect inline literal</p><div><p>As defined at:  http://docutils.sourceforge.net/docs/ref/rst/restructuredtext.html#inline-literals</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$token</code></td>
+              <td><em><a href="ezcDocumentRstToken.html">ezcDocumentRstToken</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$tokens</code></td>
+              <td><em><a href="ezcDocumentRstStack.html">ezcDocumentRstStack</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodshiftInlineMarkup" id="shiftInlineMarkup"><!-- --></a>
+
+    <h4>shiftInlineMarkup</h4>
+
+    <div class="method-signature">
+      ezcDocumentRstMarkupEmphasisNode
+      shiftInlineMarkup(
+                                  <a href="ezcDocumentRstToken.html">ezcDocumentRstToken</a>
+          $token
+                            ,           <a href="ezcDocumentRstStack.html">ezcDocumentRstStack</a>
+          $tokens
+                        )
+    </div>
+
+    <p>Detect inline markup</p><div><p>As defined at:  http://docutils.sourceforge.net/docs/ref/rst/restructuredtext.html#inline-markup</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$token</code></td>
+              <td><em><a href="ezcDocumentRstToken.html">ezcDocumentRstToken</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$tokens</code></td>
+              <td><em><a href="ezcDocumentRstStack.html">ezcDocumentRstStack</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodshiftInterpretedTextMarkup" id="shiftInterpretedTextMarkup"><!-- --></a>
+
+    <h4>shiftInterpretedTextMarkup</h4>
+
+    <div class="method-signature">
+      ezcDocumentRstMarkupEmphasisNode
+      shiftInterpretedTextMarkup(
+                                  <a href="ezcDocumentRstToken.html">ezcDocumentRstToken</a>
+          $token
+                            ,           <a href="ezcDocumentRstStack.html">ezcDocumentRstStack</a>
+          $tokens
+                        )
+    </div>
+
+    <p>Detect interpreted text inline markup</p><div><p>As defined at:  http://docutils.sourceforge.net/docs/ref/rst/restructuredtext.html#interpreted-text</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$token</code></td>
+              <td><em><a href="ezcDocumentRstToken.html">ezcDocumentRstToken</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$tokens</code></td>
+              <td><em><a href="ezcDocumentRstStack.html">ezcDocumentRstStack</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodshiftInterpretedTextRole" id="shiftInterpretedTextRole"><!-- --></a>
+
+    <h4>shiftInterpretedTextRole</h4>
+
+    <div class="method-signature">
+      mixed
+      shiftInterpretedTextRole(
+                                  <a href="ezcDocumentRstToken.html">ezcDocumentRstToken</a>
+          $token
+                            ,           <a href="ezcDocumentRstStack.html">ezcDocumentRstStack</a>
+          $tokens
+                        )
+    </div>
+
+    <p>Try to shift a interpreted text role</p><div><p>Text role shifting is only called directly from the  shiftInterpretedTextMarkup() method and tries to find the associated  role.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$token</code></td>
+              <td><em><a href="ezcDocumentRstToken.html">ezcDocumentRstToken</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$tokens</code></td>
+              <td><em><a href="ezcDocumentRstStack.html">ezcDocumentRstStack</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodshiftLineBlock" id="shiftLineBlock"><!-- --></a>
+
+    <h4>shiftLineBlock</h4>
+
+    <div class="method-signature">
+      ezcDocumentRstTitleNode
+      shiftLineBlock(
+                                  <a href="ezcDocumentRstToken.html">ezcDocumentRstToken</a>
+          $token
+                            ,           <a href="ezcDocumentRstStack.html">ezcDocumentRstStack</a>
+          $tokens
+                        )
+    </div>
+
+    <p>Shift line blocks</p><div><p>Shift line blocks, which are specified at:  http://docutils.sourceforge.net/docs/ref/rst/restructuredtext.html#line-blocks</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$token</code></td>
+              <td><em><a href="ezcDocumentRstToken.html">ezcDocumentRstToken</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$tokens</code></td>
+              <td><em><a href="ezcDocumentRstStack.html">ezcDocumentRstStack</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodshiftLiteralBlock" id="shiftLiteralBlock"><!-- --></a>
+
+    <h4>shiftLiteralBlock</h4>
+
+    <div class="method-signature">
+      ezcDocumentRstMarkupEmphasisNode
+      shiftLiteralBlock(
+                                  <a href="ezcDocumentRstToken.html">ezcDocumentRstToken</a>
+          $token
+                            ,           <a href="ezcDocumentRstStack.html">ezcDocumentRstStack</a>
+          $tokens
+                        )
+    </div>
+
+    <p>Shift literal block</p><div><p>Shift a complete literal block into one node. The behaviour of literal  blocks is defined at:  http://docutils.sourceforge.net/docs/ref/rst/restructuredtext.html#literal-blocks</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$token</code></td>
+              <td><em><a href="ezcDocumentRstToken.html">ezcDocumentRstToken</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$tokens</code></td>
+              <td><em><a href="ezcDocumentRstStack.html">ezcDocumentRstStack</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodshiftParagraph" id="shiftParagraph"><!-- --></a>
+
+    <h4>shiftParagraph</h4>
+
+    <div class="method-signature">
+      ezcDocumentRstTitleNode
+      shiftParagraph(
+                                  <a href="ezcDocumentRstToken.html">ezcDocumentRstToken</a>
+          $token
+                            ,           <a href="ezcDocumentRstStack.html">ezcDocumentRstStack</a>
+          $tokens
+                        )
+    </div>
+
+    <p>Shift a paragraph node on two newlines</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$token</code></td>
+              <td><em><a href="ezcDocumentRstToken.html">ezcDocumentRstToken</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$tokens</code></td>
+              <td><em><a href="ezcDocumentRstStack.html">ezcDocumentRstStack</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodshiftReference" id="shiftReference"><!-- --></a>
+
+    <h4>shiftReference</h4>
+
+    <div class="method-signature">
+      ezcDocumentRstMarkupEmphasisNode
+      shiftReference(
+                                  <a href="ezcDocumentRstToken.html">ezcDocumentRstToken</a>
+          $token
+                            ,           <a href="ezcDocumentRstStack.html">ezcDocumentRstStack</a>
+          $tokens
+                        )
+    </div>
+
+    <p>Detect reference</p><div><p>As defined at:  http://docutils.sourceforge.net/docs/ref/rst/restructuredtext.html#inline-markup</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$token</code></td>
+              <td><em><a href="ezcDocumentRstToken.html">ezcDocumentRstToken</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$tokens</code></td>
+              <td><em><a href="ezcDocumentRstStack.html">ezcDocumentRstStack</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodshiftSimpleTable" id="shiftSimpleTable"><!-- --></a>
+
+    <h4>shiftSimpleTable</h4>
+
+    <div class="method-signature">
+      ezcDocumentRstMarkupEmphasisNode
+      shiftSimpleTable(
+                                  <a href="ezcDocumentRstToken.html">ezcDocumentRstToken</a>
+          $token
+                            ,           <a href="ezcDocumentRstStack.html">ezcDocumentRstStack</a>
+          $tokens
+                        )
+    </div>
+
+    <p>Shift simple table</p><div><p>"Simple tables" are not defined by a complete grid, but only by top and  bottome lines. There exact specification can be found at:  http://docutils.sourceforge.net/docs/ref/rst/restructuredtext.html#simple-tables</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$token</code></td>
+              <td><em><a href="ezcDocumentRstToken.html">ezcDocumentRstToken</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$tokens</code></td>
+              <td><em><a href="ezcDocumentRstStack.html">ezcDocumentRstStack</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodshiftSpecialCharsAsText" id="shiftSpecialCharsAsText"><!-- --></a>
+
+    <h4>shiftSpecialCharsAsText</h4>
+
+    <div class="method-signature">
+      ezcDocumentRstTextLineNode
+      shiftSpecialCharsAsText(
+                                  <a href="ezcDocumentRstToken.html">ezcDocumentRstToken</a>
+          $token
+                            ,           <a href="ezcDocumentRstStack.html">ezcDocumentRstStack</a>
+          $tokens
+                        )
+    </div>
+
+    <p>Just keep text as text nodes</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$token</code></td>
+              <td><em><a href="ezcDocumentRstToken.html">ezcDocumentRstToken</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$tokens</code></td>
+              <td><em><a href="ezcDocumentRstStack.html">ezcDocumentRstStack</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodshiftText" id="shiftText"><!-- --></a>
+
+    <h4>shiftText</h4>
+
+    <div class="method-signature">
+      ezcDocumentRstTitleNode
+      shiftText(
+                                  <a href="ezcDocumentRstToken.html">ezcDocumentRstToken</a>
+          $token
+                            ,           <a href="ezcDocumentRstStack.html">ezcDocumentRstStack</a>
+          $tokens
+                        )
+    </div>
+
+    <p>Just keep text as text nodes</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$token</code></td>
+              <td><em><a href="ezcDocumentRstToken.html">ezcDocumentRstToken</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$tokens</code></td>
+              <td><em><a href="ezcDocumentRstStack.html">ezcDocumentRstStack</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodshiftTitle" id="shiftTitle"><!-- --></a>
+
+    <h4>shiftTitle</h4>
+
+    <div class="method-signature">
+      ezcDocumentRstTitleNode
+      shiftTitle(
+                                  <a href="ezcDocumentRstToken.html">ezcDocumentRstToken</a>
+          $token
+                            ,           <a href="ezcDocumentRstStack.html">ezcDocumentRstStack</a>
+          $tokens
+                        )
+    </div>
+
+    <p>Create new title node from titles with a top and bottom line</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$token</code></td>
+              <td><em><a href="ezcDocumentRstToken.html">ezcDocumentRstToken</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$tokens</code></td>
+              <td><em><a href="ezcDocumentRstStack.html">ezcDocumentRstStack</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodshiftTransition" id="shiftTransition"><!-- --></a>
+
+    <h4>shiftTransition</h4>
+
+    <div class="method-signature">
+      ezcDocumentRstTitleNode
+      shiftTransition(
+                                  <a href="ezcDocumentRstToken.html">ezcDocumentRstToken</a>
+          $token
+                            ,           <a href="ezcDocumentRstStack.html">ezcDocumentRstStack</a>
+          $tokens
+                        )
+    </div>
+
+    <p>Shift transistions, which are separators in the document.</p><div><p>Transitions are specified here:  http://docutils.sourceforge.net/docs/ref/rst/restructuredtext.html#transitions</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$token</code></td>
+              <td><em><a href="ezcDocumentRstToken.html">ezcDocumentRstToken</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$tokens</code></td>
+              <td><em><a href="ezcDocumentRstStack.html">ezcDocumentRstStack</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodshiftWhitespaceAsText" id="shiftWhitespaceAsText"><!-- --></a>
+
+    <h4>shiftWhitespaceAsText</h4>
+
+    <div class="method-signature">
+      ezcDocumentRstTextLineNode
+      shiftWhitespaceAsText(
+                                  <a href="ezcDocumentRstToken.html">ezcDocumentRstToken</a>
+          $token
+                            ,           <a href="ezcDocumentRstStack.html">ezcDocumentRstStack</a>
+          $tokens
+                        )
+    </div>
+
+    <p>Just keep text as text nodes</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$token</code></td>
+              <td><em><a href="ezcDocumentRstToken.html">ezcDocumentRstToken</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$tokens</code></td>
+              <td><em><a href="ezcDocumentRstStack.html">ezcDocumentRstStack</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodupdateIndentation" id="updateIndentation"><!-- --></a>
+
+    <h4>updateIndentation</h4>
+
+    <div class="method-signature">
+      bool
+      updateIndentation(
+                                  <a href="ezcDocumentRstToken.html">ezcDocumentRstToken</a>
+          $token
+                            ,           <a href="ezcDocumentRstStack.html">ezcDocumentRstStack</a>
+          $tokens
+                        )
+    </div>
+
+    <p>Update the current indentation after each newline.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$token</code></td>
+              <td><em><a href="ezcDocumentRstToken.html">ezcDocumentRstToken</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$tokens</code></td>
+              <td><em><a href="ezcDocumentRstStack.html">ezcDocumentRstStack</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><div class="credit">
+      Documentation generated by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+    </div>
+  </div>
+  
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

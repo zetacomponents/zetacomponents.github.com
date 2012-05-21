@@ -1,0 +1,334 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="PHP, apache, components, framework, quality" />
+	<meta name="author" content="jerome" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Sun, 10 Jul 2011 11:10:41 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="Tutorial" />
+	<meta name="DC.creator" content="jerome" />
+	<meta name="DC.date" content="Sun, 10 Jul 2011 11:10:41 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/Search/tutorial.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li class="requested">
+	<a href="/zetacomponents/documentation/trunk/Search/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Search/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Search/solr_schema.html" title="Solr_schema ">Solr_schema </a>
+	</li>
+
+</ul>
+
+		<h2>eZ Components - Search</h2><div class="toc"><h3>Table of Contents</h3><ul><li><p><a href="#introduction">Introduction</a></p></li><li><p><a href="#class-overview">Class overview</a></p></li><li><p><a href="#search-handlers">Search Handlers</a></p><ul><li><p><a href="#id1">Solr</a></p></li><li><p><a href="#zend-search-lucene">Zend_Search_Lucene</a></p></li></ul></li><li><p><a href="#definition-managers">Definition Managers</a></p><ul><li><p><a href="#embedded-manager">Embedded Manager</a></p></li><li><p><a href="#xml-manager">XML Manager</a></p></li></ul></li><li><p><a href="#search-session">Search Session</a></p></li><li><p><a href="#indexing">Indexing</a></p><ul><li><p><a href="#data-types">Data Types</a></p></li></ul></li><li><p><a href="#searching">Searching</a></p><ul><li><p><a href="#query-language">Query Language</a></p></li><li><p><a href="#query-builder">Query Builder</a></p></li></ul></li></ul></div><a name="introduction"></a><a name="id4"></a><h3>Introduction</h3><p>The search component allows you to index and search documents. A document consists of an object. A definition maps the object's properties to fields of a document, just like the <a href="introduction_PersistentObject.html">PersistentObject</a> component. The indexing process takes the document and indexes the fields depending on the data type. The searching part allows you to search for documents in the index with a rich query language.</p><a name="class-overview"></a><a name="id5"></a><h3>Class overview</h3><p>This section gives you an overview of the main classes in the Search component.</p><dl><dt>ezcSearchSession</dt><dd>This class provide access to the search index for both indexing and searching. All operations towards the index go through this class which is configured with a search handler and a definition manager.</dd><dt>ezcSearchSolrHandler</dt><dd>The handler that uses <a href="http://lucene.apache.org/solr/">Solr</a> for indexing and searching.</dd><dt>ezcSearchQueryBuilder</dt><dd>A class that allows you to build a search query from a search string.</dd><dt>ezcSearchQuery</dt><dd>An interface to building complex search queries in case <a href='/zetacomponents/documentation/trunk/Search/phpdoc/ezcSearchQueryBuilder.html'>ezcSearchQueryBuilder</a> is not up to the task.</dd></dl><a name="search-handlers"></a><a name="id6"></a><h3>Search Handlers</h3><p>Search handlers provide the link between the abstract query and document interfaces to the mechanism that actually stores the index, and allows querying for documents. Not all handlers handle all the different query words or datatypes in the index, but effort is to put in to make as much use of the handler's functionality as possible.</p><a name="id1"></a><a name="id7"></a><h4>Solr</h4><p>This handler uses Apache's Solr as backend. It accesses Solr over TCP/IP as a web service. Solr is a very capable search provider, with many <a href="http://lucene.apache.org/solr/features.html">features</a>.</p><p>Using the handler is relatively easy. You basically only have to instantiate the handler class which then can be passed to the <a href='/zetacomponents/documentation/trunk/Search/phpdoc/ezcSearchSession.html'>ezcSearchSession</a> constructor:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #0000FF">require_once&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;on&nbsp;localhost&nbsp;with&nbsp;the&nbsp;default&nbsp;port</span></li>
+<li><span style="color: #000000">$handler&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000">ezcSearchSolrHandler</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;on&nbsp;another&nbsp;host&nbsp;with&nbsp;a&nbsp;different&nbsp;port</span></li>
+<li><span style="color: #000000">$handler&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Search/phpdoc/ezcSearchSolrHandler.html'>ezcSearchSolrHandler</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'10.0.2.184'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">9123&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><p>Solr requires a schema to work. This scheme defines how data types work and allows for many more customizations. The default schema that comes with Solr requires a few minor changes to make it work with the Search component. <a href="https://svn.apache.org/repos/asf/incubator/zetacomponents/trunk/Search/docs/schema.xml">This schema</a> should be used as a basis for the Search component.</p><a name="zend-search-lucene"></a><a name="id8"></a><h4>Zend_Search_Lucene</h4><p>The component also provides a backend based on Zend's Lucene implementation. This backend has <em>many</em> limitations compared to <a href="http://lucene.apache.org/solr/">Solr</a>, such as missing multi-valued field support, no data-type support and a much lower performance. In order to use this backend, you need to have a specific autoload function as well as the Zend Framework installed and included in the PHP included path. An example on how to use it follows:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #007700">//&nbsp;load&nbsp;the&nbsp;normal&nbsp;ezc&nbsp;autoload&nbsp;mechanism&nbsp;with&nbsp;some&nbsp;tricks</span></li>
+<li><span style="color: #0000FF">require_once&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;add&nbsp;the&nbsp;location&nbsp;of&nbsp;the&nbsp;zend&nbsp;framework&nbsp;to&nbsp;the&nbsp;include&nbsp;path,&nbsp;this&nbsp;can&nbsp;of</span></li>
+<li><span style="color: #007700">//&nbsp;course&nbsp;also&nbsp;be&nbsp;done&nbsp;in&nbsp;php.ini</span></li>
+<li><span style="color: #000000">ini_set</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'include_path'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">ini_get</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'include_path'&nbsp;</span><span style="color: #0000FF">)&nbsp;.&nbsp;</span><span style="color: #335533">':/home/derick/dev/ZendFramework-1.7.4-minimal/library'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;define&nbsp;the&nbsp;autoload&nbsp;function&nbsp;that&nbsp;can&nbsp;load&nbsp;Zend&nbsp;framework&nbsp;classes</span></li>
+<li><span style="color: #0000FF">function&nbsp;</span><span style="color: #000000">zend_autoload</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$className&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(&nbsp;</span><span style="color: #000000">strpos</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$className</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'_'&nbsp;</span><span style="color: #0000FF">)&nbsp;!==&nbsp;</span><span style="color: #000000">false&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$file&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">str_replace</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'_'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'/'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">$className&nbsp;</span><span style="color: #0000FF">)&nbsp;.&nbsp;</span><span style="color: #335533">'.php'</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$val&nbsp;</span><span style="color: #0000FF">=&nbsp;require_once(&nbsp;</span><span style="color: #000000">$file&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;(&nbsp;</span><span style="color: #000000">$val&nbsp;</span><span style="color: #0000FF">==&nbsp;</span><span style="color: #000000">0&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;}</span></li>
+<li><span style="color: #0000FF">}</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;reset&nbsp;the&nbsp;autoload&nbsp;stack,&nbsp;register&nbsp;the&nbsp;zend_autoload&nbsp;mechanism&nbsp;and</span></li>
+<li><span style="color: #007700">//&nbsp;re-register&nbsp;the&nbsp;original&nbsp;eZ&nbsp;Component's&nbsp;autoload()&nbsp;mechanism.</span></li>
+<li><span style="color: #000000">spl_autoload_register</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'zend_autoload'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">spl_autoload_register</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'__autoload'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;open&nbsp;the&nbsp;handler</span></li>
+<li><span style="color: #000000">$handler&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Search/phpdoc/ezcSearchZendLuceneHandler.html'>ezcSearchZendLuceneHandler</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'/tmp/lucene'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><a name="definition-managers"></a><a name="id9"></a><h3>Definition Managers</h3><p>A definition manager maps properties of an object to fields in a search document. As most search handlers support fields with arbitrary names, you don't actually provide the name of the fields in the search index. Instead, the mapping configures several things for an object's property.</p><p>First of all, every document type needs an ID field. This ID will uniquely define a document in the search index. There can only be one ID field, and there has to be one. For each field, you have to define the data type, and optionally you can configure:</p><ul><li><p>The importance of that field (boost factor)</p></li><li><p>Whether the field should be a part of the resulting document</p></li><li><p>Whether the field supports multiple values</p></li><li><p>Whether highlighting should be performed for this field on result documents</p></li></ul><p>Definitions can be supplied in two ways. The <a href="#embedded-manager">embedded manager</a> retrieves the definitions from the document classes directly, whereas the <a href="#xml-manager">xml manager</a> uses external XML file to read definitions from.</p><a name="embedded-manager"></a><a name="id10"></a><h4>Embedded Manager</h4><p>The <a href='/zetacomponents/documentation/trunk/Search/phpdoc/ezcSearchEmbeddedManager.html'>ezcSearchEmbeddedManager</a> retrieves the definition from a class that implements the <a href='/zetacomponents/documentation/trunk/Search/phpdoc/ezcSearchDefinitionProvider.html'>ezcSearchDefinitionProvider</a> interface. This interfaces specifies the getDefinition() method that should be implemented by the classes to return the document's definition mappings. An example of the implementation of the getDefinition() method is:</p><code class="block">static public function getDefinition()
+{
+    $n = new <a href='/zetacomponents/documentation/trunk/Search/phpdoc/ezcSearchDocumentDefinition.html'>ezcSearchDocumentDefinition</a>( __CLASS__ );
+    $n-&gt;idProperty = 'id';
+    $n-&gt;fields['id']        = new <a href='/zetacomponents/documentation/trunk/Search/phpdoc/ezcSearchDefinitionDocumentField.html'>ezcSearchDefinitionDocumentField</a>( 'id', <a href='/zetacomponents/documentation/trunk/Search/phpdoc/ezcSearchDocumentDefinition.html#constTEXT'>ezcSearchDocumentDefinition::TEXT</a> );
+    $n-&gt;fields['title']     = new <a href='/zetacomponents/documentation/trunk/Search/phpdoc/ezcSearchDefinitionDocumentField.html'>ezcSearchDefinitionDocumentField</a>( 'title', <a href='/zetacomponents/documentation/trunk/Search/phpdoc/ezcSearchDocumentDefinition.html#constTEXT'>ezcSearchDocumentDefinition::TEXT</a>, 2, true, false, true );
+    $n-&gt;fields['body']      = new <a href='/zetacomponents/documentation/trunk/Search/phpdoc/ezcSearchDefinitionDocumentField.html'>ezcSearchDefinitionDocumentField</a>( 'body', <a href='/zetacomponents/documentation/trunk/Search/phpdoc/ezcSearchDocumentDefinition.html#constTEXT'>ezcSearchDocumentDefinition::TEXT</a>, 1, false, false, true );
+    $n-&gt;fields['published'] = new <a href='/zetacomponents/documentation/trunk/Search/phpdoc/ezcSearchDefinitionDocumentField.html'>ezcSearchDefinitionDocumentField</a>( 'published', <a href='/zetacomponents/documentation/trunk/Search/phpdoc/ezcSearchDocumentDefinition.html#constDATE'>ezcSearchDocumentDefinition::DATE</a> );
+    $n-&gt;fields['url']       = new <a href='/zetacomponents/documentation/trunk/Search/phpdoc/ezcSearchDefinitionDocumentField.html'>ezcSearchDefinitionDocumentField</a>( 'url', <a href='/zetacomponents/documentation/trunk/Search/phpdoc/ezcSearchDocumentDefinition.html#constSTRING'>ezcSearchDocumentDefinition::STRING</a> );
+    $n-&gt;fields['type']      = new <a href='/zetacomponents/documentation/trunk/Search/phpdoc/ezcSearchDefinitionDocumentField.html'>ezcSearchDefinitionDocumentField</a>( 'type', <a href='/zetacomponents/documentation/trunk/Search/phpdoc/ezcSearchDocumentDefinition.html#constSTRING'>ezcSearchDocumentDefinition::STRING</a>, 0, true, false, false );
+
+    return $n;
+}</code><p>Basically what this method does is construct an <a href='/zetacomponents/documentation/trunk/Search/phpdoc/ezcSearchDocumentDefinition.html'>ezcSearchDocumentDefinition</a> object containing all the field definitions. It's required to have an ID property. It's recommended to use a TEXT data type for this, although it is not required. See the section <a href="#data-types">Data Types</a> on the differences between data types.</p><p>Each field is then added to the fields property as a <a href='/zetacomponents/documentation/trunk/Search/phpdoc/ezcSearchDefinitionDocumentField.html'>ezcSearchDefinitionDocumentField</a> object. The field index should be the same as the first argument to the constructor of this class. By default the type will be <a href='/zetacomponents/documentation/trunk/Search/phpdoc/ezcSearchDefinitionDocumentField.html#constTEXT'>ezcSearchDefinitionDocumentField::TEXT</a>. Subsequent arguments control the importance (boost) of a field, whether it should be part of the result, whether multiple values for this field are accepted and whether it should be selected for highlighting.</p><a name="xml-manager"></a><a name="id11"></a><h4>XML Manager</h4><p>The <a href='/zetacomponents/documentation/trunk/Search/phpdoc/ezcSearchXmlManager.html'>ezcSearchXmlManager</a> uses XML files to obtain a document definition from. The manager is configured with the directory where the XML definition files can be found in the constructor:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #000000">$xm&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Search/phpdoc/ezcSearchXmlManager.html'>ezcSearchXmlManager</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'search-defs/'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<span style="color: #000000">?&gt;</span>
+</ol><p>The names of the definition files are required to be <code class="inline">name-of-class-in-lower-case.xml</code>. This means that for the class Article the file <code class="inline">article.xml</code> is being read. The file itself is a simple XML file. The file below demonstrates the same definition as the one in the example in <a href="#embedded-manager">Embedded Manager</a>:</p><code class="block">&lt;?xml version="1.0"?&gt;
+&lt;document&gt;
+    &lt;field type="id"&gt;id&lt;/field&gt;
+    &lt;field type="text" highLight="true" boost="2"&gt;title&lt;/field&gt;
+    &lt;field inResult="false" type="html"&gt;body&lt;/field&gt;
+    &lt;field type="date"&gt;published&lt;/field&gt;
+    &lt;field type="string"&gt;url&lt;/field&gt;
+    &lt;field highLight="true" type="string"&gt;type&lt;/field&gt;
+&lt;/document&gt;
+</code><p>The RelaxNG-Compressed schema is:</p><code class="block">default namespace = "http://components.ez.no/Search"
+
+start =
+  element document {
+    field+
+  }
+field =
+  element field {
+    attribute type { xsd:string },
+        attribute highLight { 'true' | 'false' }?,
+        attribute inResult { 'true' | 'false' }?,
+        attribute multi { 'true' | 'false' }?,
+        attribute boost { xsd:float }?,
+        string
+  }
+</code><a name="search-session"></a><a name="id12"></a><h3>Search Session</h3><p>The search session is responsible for indexing documents, and searching for documents. The session object requires both a search handler and a definition manager. The handler is used for storing the index, while the definition manager is used to find the definition that maps object's properties to search index fields. Creating a session is simple, as is demonstrated in the following example:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #0000FF">require_once&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #000000">$handler&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000">ezcSearchSolrHandler</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000">$manager&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000">ezcSearchEmbeddedManager</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #000000">$session&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Search/phpdoc/ezcSearchSession.html'>ezcSearchSession</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$handler</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">$manager&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><a name="indexing"></a><a name="id13"></a><h3>Indexing</h3><p>With the session created, it is time to index documents. Before we can index anything we need to create an object and create the definition. For this tutorial we'll reuse the definition from the <a href="#embedded-manager">Embedded Manager</a> section and create a class out of this. Each class that you want to index through the Search component needs to implement the <a href='/zetacomponents/documentation/trunk/Search/phpdoc/ezcBasePersistable.html'>ezcBasePersistable</a> interface. This interfaces defines two methods: getState() and setState() as well as the requirement that the constructor should be able to be called without any arguments. Those methods are used for fetching and re-creating the state of this object, similarly to what <a href="introduction_PersistentObject.html">PersistentObject</a> requires.</p><p>To see everything in perspective, the full class follows here, including the definition method:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #0000FF">class&nbsp;</span><span style="color: #000000">Article&nbsp;</span><span style="color: #0000FF">implements&nbsp;</span><span style="color: #000000">ezcBasePersistable</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">ezcSearchDefinitionProvider</span></li>
+<li><span style="color: #0000FF">{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;&nbsp;</span><span style="color: #000000">$id</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;&nbsp;</span><span style="color: #000000">$title</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;private&nbsp;</span><span style="color: #000000">$body</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;private&nbsp;</span><span style="color: #000000">$published</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;private&nbsp;</span><span style="color: #000000">$url</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;private&nbsp;</span><span style="color: #000000">$type</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;</span><span style="color: #000000">__construct</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$id&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">null</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">$title&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">null</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">$body&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">null</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">$published&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">null</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">$url&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">null</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">$type&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">null&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$this</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">id&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$id</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$this</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">title&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$title</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$this</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">body&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$body</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$this</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">published&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$published</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$this</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">url&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$url</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$this</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">type&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$type</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;}</span></li>
+<li></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;</span><span style="color: #000000">getState</span><span style="color: #0000FF">()</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$state&nbsp;</span><span style="color: #0000FF">=&nbsp;array(</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #335533">'id'&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #000000">$this</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">id</span><span style="color: #0000FF">,</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #335533">'title'&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #000000">$this</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">title</span><span style="color: #0000FF">,</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #335533">'body'&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #000000">$this</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">body</span><span style="color: #0000FF">,</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #335533">'published'&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #000000">$this</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">published</span><span style="color: #0000FF">,</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #335533">'url'&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #000000">$this</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">url</span><span style="color: #0000FF">,</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #335533">'type'&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #000000">$this</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">type</span><span style="color: #0000FF">,</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;</span><span style="color: #000000">$state</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;}</span></li>
+<li></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;</span><span style="color: #000000">setState</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$state&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;foreach&nbsp;(&nbsp;</span><span style="color: #000000">$state&nbsp;</span><span style="color: #0000FF">as&nbsp;</span><span style="color: #000000">$key&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #000000">$value&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$this</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">$key&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$value</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;}</span></li>
+<li></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;static&nbsp;public&nbsp;function&nbsp;</span><span style="color: #000000">getDefinition</span><span style="color: #0000FF">()</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$n&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Search/phpdoc/ezcSearchDocumentDefinition.html'>ezcSearchDocumentDefinition</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">__CLASS__&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$n</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">idProperty&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">'id'</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$n</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">fields</span><span style="color: #0000FF">[</span><span style="color: #335533">'id'</span><span style="color: #0000FF">]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Search/phpdoc/ezcSearchDefinitionDocumentField.html'>ezcSearchDefinitionDocumentField</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'id'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Search/phpdoc/ezcSearchDocumentDefinition.html#constTEXT'>ezcSearchDocumentDefinition::TEXT</a>&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$n</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">fields</span><span style="color: #0000FF">[</span><span style="color: #335533">'title'</span><span style="color: #0000FF">]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Search/phpdoc/ezcSearchDefinitionDocumentField.html'>ezcSearchDefinitionDocumentField</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'title'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Search/phpdoc/ezcSearchDocumentDefinition.html#constTEXT'>ezcSearchDocumentDefinition::TEXT</a></span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">2</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">true</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">false</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">true&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$n</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">fields</span><span style="color: #0000FF">[</span><span style="color: #335533">'body'</span><span style="color: #0000FF">]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Search/phpdoc/ezcSearchDefinitionDocumentField.html'>ezcSearchDefinitionDocumentField</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'body'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Search/phpdoc/ezcSearchDocumentDefinition.html#constTEXT'>ezcSearchDocumentDefinition::TEXT</a></span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">1</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">false</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">false</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">true&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$n</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">fields</span><span style="color: #0000FF">[</span><span style="color: #335533">'published'</span><span style="color: #0000FF">]&nbsp;=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Search/phpdoc/ezcSearchDefinitionDocumentField.html'>ezcSearchDefinitionDocumentField</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'published'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Search/phpdoc/ezcSearchDocumentDefinition.html#constDATE'>ezcSearchDocumentDefinition::DATE</a>&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$n</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">fields</span><span style="color: #0000FF">[</span><span style="color: #335533">'url'</span><span style="color: #0000FF">]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Search/phpdoc/ezcSearchDefinitionDocumentField.html'>ezcSearchDefinitionDocumentField</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'url'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Search/phpdoc/ezcSearchDocumentDefinition.html#constSTRING'>ezcSearchDocumentDefinition::STRING</a>&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$n</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">fields</span><span style="color: #0000FF">[</span><span style="color: #335533">'type'</span><span style="color: #0000FF">]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Search/phpdoc/ezcSearchDefinitionDocumentField.html'>ezcSearchDefinitionDocumentField</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'type'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Search/phpdoc/ezcSearchDocumentDefinition.html#constSTRING'>ezcSearchDocumentDefinition::STRING</a></span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">0</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">true</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">false</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">false&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;</span><span style="color: #000000">$n</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;}</span></li>
+<li><span style="color: #0000FF">}</span></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><p>The <a href='/zetacomponents/documentation/trunk/Search/phpdoc/ezcBasePersistable.html'>ezcBasePersistable</a> interface is also compatible with <a href="introduction_PersistentObject.html">PersistentObject</a>, although there the interface is not enforced.</p><p>After we've created the class and definition, indexing an object is relatively simple. After instantiation, indexing the document is done by calling the index() method of the session as you can see in the next example:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #0000FF">require_once&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;setup</span></li>
+<li><span style="color: #000000">$handler&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000">ezcSearchSolrHandler</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000">$manager&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000">ezcSearchEmbeddedManager</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000">$session&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Search/phpdoc/ezcSearchSession.html'>ezcSearchSession</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$handler</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">$manager&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;instantiate&nbsp;article</span></li>
+<li><span style="color: #000000">$article&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000">Article</span><span style="color: #0000FF">();</span></li>
+<li><span style="color: #000000">$article</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">title&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">"A&nbsp;test&nbsp;article&nbsp;to&nbsp;show&nbsp;indexing."</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000">$article</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">body&nbsp;&nbsp;</span><span style="color: #0000FF">=&nbsp;&lt;&lt;&lt;ENDBODY</span></li>
+<li><span style="color: #335533">This&nbsp;is&nbsp;the&nbsp;body&nbsp;of&nbsp;the&nbsp;text,&nbsp;nothing&nbsp;interesting&nbsp;now</span></li>
+<li><span style="color: #335533">as&nbsp;this&nbsp;is&nbsp;just&nbsp;an&nbsp;example.</span></li>
+<li><span style="color: #0000FF">ENDBODY;</span></li>
+<li><span style="color: #000000">$article</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">published&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">time</span><span style="color: #0000FF">();</span></li>
+<li><span style="color: #000000">$article</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">url&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">"/article/1"</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000">$article</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">type&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">"article"</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;index</span></li>
+<li><span style="color: #000000">$session</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">index</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$article&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><p>If you are indexing a large amount of documents, it's wise to wrap this into an indexing transaction. For the handlers that support this, this will optimize the indexing process. See the <a href='/zetacomponents/documentation/trunk/Search/phpdoc/ezcSearchSession.html#beginTransaction'>ezcSearchSession-&gt;beginTransaction</a>() documentation.</p><a name="data-types"></a><a name="id14"></a><h4>Data Types</h4><p>The Search component understands many data types, but they might not always be representable by every handler. The table below explains the different data types that are available:</p><table><thead><tr><th><p class="cell">Constant</p></th><th><p class="cell">Description</p></th></tr></thead><tbody><tr><td><p class="cell">BOOLEAN</p></td><td><p class="cell">Stores a true or false boolean value</p></td></tr><tr><td><p class="cell">STRING</p></td><td><p class="cell">Untokenized text, useful for keywords or facets.</p></td></tr><tr><td><p class="cell">TEXT</p></td><td><p class="cell">Tokenized text, useful for summaries and large pieces of text.</p></td></tr><tr><td><p class="cell">HTML</p></td><td><p class="cell">Tokenized HTML documents, strips out all tags and attributes.</p></td></tr><tr><td><p class="cell">DATE</p></td><td><p class="cell">Stores Unix timestamps and <a href="http://php.net/manual/en/function.date-create.php">DateTime</a> objects.</p></td></tr><tr><td><p class="cell">INT</p></td><td><p class="cell">Stores integer numbers, which can be used in range searches.</p></td></tr><tr><td><p class="cell">FLOAT</p></td><td><p class="cell">Stores floating point numbers, which can be used in range searches.</p></td></tr></tbody></table><a name="searching"></a><a name="id15"></a><h3>Searching</h3><p>After documents are indexed, they are searchable. Building a search query can be done in two ways. The <a href="#query-language">Query Language</a> approach is the most powerful one, but is more complex. Alternatively you can use the <a href="#query-builder">Query Builder</a> approach which lets you feed it a string and it will build the query from that string.</p><a name="query-language"></a><a name="id16"></a><h4>Query Language</h4><p>The <a href='/zetacomponents/documentation/trunk/Search/phpdoc/ezcSearchQuery.html'>ezcSearchQuery</a> interface defines all the methods that handlers should implement to realize the query language for every handler. This interface defines methods such as where(), lOr() and between() - very similar to what the <a href='/zetacomponents/documentation/trunk/Search/phpdoc/ezcQuerySelect.html'>ezcQuerySelect</a> and <a href='/zetacomponents/documentation/trunk/Search/phpdoc/ezcQueryExpression.html'>ezcQueryExpression</a> classes provide. The following example shows how to use the query language:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #0000FF">require_once&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;setup</span></li>
+<li><span style="color: #000000">$handler&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000">ezcSearchSolrHandler</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000">$manager&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000">ezcSearchEmbeddedManager</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000">$session&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Search/phpdoc/ezcSearchSession.html'>ezcSearchSession</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$handler</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">$manager&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;initialize&nbsp;a&nbsp;pre-configured&nbsp;query</span></li>
+<li><span style="color: #000000">$q&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$session</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">createFindQuery</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'Article'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #000000">$searchWord&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">'test'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;where&nbsp;either&nbsp;body&nbsp;or&nbsp;title&nbsp;contains&nbsp;thr&nbsp;$searchWord</span></li>
+<li><span style="color: #000000">$q</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">where</span><span style="color: #0000FF">(</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$q</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">lOr</span><span style="color: #0000FF">(</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$q</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">eq</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'body'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">$searchWord&nbsp;</span><span style="color: #0000FF">),&nbsp;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$q</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">eq</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'title'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">$searchWord&nbsp;</span><span style="color: #0000FF">)&nbsp;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;)</span></li>
+<li><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;limit&nbsp;the&nbsp;query&nbsp;and&nbsp;order</span></li>
+<li><span style="color: #000000">$q</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">limit</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">10&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$q</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">orderBy</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'title'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;add&nbsp;a&nbsp;facet&nbsp;on&nbsp;url&nbsp;(not&nbsp;very&nbsp;useful)</span></li>
+<li><span style="color: #000000">$q</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">facet</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'url'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;run&nbsp;the&nbsp;query&nbsp;and&nbsp;show&nbsp;titles&nbsp;for&nbsp;found&nbsp;documents</span></li>
+<li><span style="color: #000000">$r&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$session</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">find</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$q&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #0000FF">foreach(&nbsp;</span><span style="color: #000000">$r</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">documents&nbsp;</span><span style="color: #0000FF">as&nbsp;</span><span style="color: #000000">$res&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #000000">$res</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">document</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">title</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">"\n"</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">}</span></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><p>The result of the query is returned in the form of an <a href='/zetacomponents/documentation/trunk/Search/phpdoc/ezcSearchResult.html'>ezcSearchResult</a> object. This contains the documents, but also information about facets and pagination. See the documentation of the <a href='/zetacomponents/documentation/trunk/Search/phpdoc/ezcSearchResult.html'>ezcSearchResult</a> class for more information.</p><a name="query-builder"></a><a name="id17"></a><h4>Query Builder</h4><p>The query builder approach allows you to use more powerful query strings instead of having to use the API to create queries. With this you can allow query strings such as <code class="inline">foo -bar</code>, while still searching in multiple fields. Be aware however, that it depends on the handlers whether it will actually return the expected results. The query builder interface will most likely work best if you're only searching in one field only. At the moment the query builder understands <code class="inline">+</code>, <code class="inline">-</code>, grouping ( with '(' and ')' ), AND and OR modifiers, as well as phrases (enclosed in ").</p><p>An example that searches in two fields (body and title) follows:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #0000FF">require_once&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;setup</span></li>
+<li><span style="color: #000000">$handler&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000">ezcSearchSolrHandler</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000">$manager&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000">ezcSearchEmbeddedManager</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000">$session&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Search/phpdoc/ezcSearchSession.html'>ezcSearchSession</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$handler</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">$manager&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;initialize&nbsp;a&nbsp;pre-configured&nbsp;query</span></li>
+<li><span style="color: #000000">$q&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$session</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">createFindQuery</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'Article'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;where&nbsp;either&nbsp;body&nbsp;or&nbsp;title&nbsp;contains&nbsp;test&nbsp;but&nbsp;not&nbsp;article</span></li>
+<li><span style="color: #000000">$searchWord&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">'test&nbsp;-article'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;run&nbsp;the&nbsp;query&nbsp;builder&nbsp;to&nbsp;search&nbsp;for&nbsp;the&nbsp;$searchWord&nbsp;in&nbsp;body&nbsp;and&nbsp;title</span></li>
+<li><span style="color: #000000">$qb&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Search/phpdoc/ezcSearchQueryBuilder.html'>ezcSearchQueryBuilder</a></span><span style="color: #0000FF">();</span></li>
+<li><span style="color: #000000">$qb</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">parseSearchQuery</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$q</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">$searchWord</span><span style="color: #0000FF">,&nbsp;array(&nbsp;</span><span style="color: #335533">'body'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'title'&nbsp;</span><span style="color: #0000FF">)&nbsp;);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;run&nbsp;the&nbsp;query&nbsp;and&nbsp;show&nbsp;titles&nbsp;for&nbsp;found&nbsp;documents,&nbsp;and&nbsp;its&nbsp;score</span></li>
+<li><span style="color: #000000">$r&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$session</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">find</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$q&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #0000FF">foreach(&nbsp;</span><span style="color: #000000">$r</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">documents&nbsp;</span><span style="color: #0000FF">as&nbsp;</span><span style="color: #000000">$res&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #000000">$res</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">document</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">score</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">",&nbsp;"</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">$res</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">document</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">title</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">"\n"</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">}</span></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><!--Local Variables:
+mode: rst
+fill-column: 79
+End:
+vim: et syn=rst tw=79-->
+
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,866 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="PHP, apache, components, framework, quality" />
+	<meta name="author" content="dotxp" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Wed, 04 Aug 2010 13:07:34 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="ezcDocumentWikiParser.html" />
+	<meta name="DC.creator" content="dotxp" />
+	<meta name="DC.date" content="Wed, 04 Aug 2010 13:07:34 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/Document/phpdoc/ezcDocumentWikiParser.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/Document/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/trunk/Document/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Document/conversion.html" title="Conversion ">Conversion </a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Document/styles.html" title="Styles ">Styles </a>
+	</li>
+
+</ul>
+
+		
+  <div class="phpdoc">
+    <h2>Apache Zeta Components Manual :: Docs For Class ezcDocumentWikiParser</h2>
+
+                  <h3>Document::ezcDocumentWikiParser</h3>
+    
+<a name="sec-description"></a>
+<h3>Class ezcDocumentWikiParser</h3>
+
+<p>Parser for wiki documents.</p>
+<p>Source for this file: <a href="http://fisheye6.atlassian.com/browse/zetacomponents/trunk/Document/src/document/wiki/parser.php?r=HEAD">/Document/src/document/wiki/parser.php</a></p>
+       
+
+
+<pre><a href="ezcDocumentParser.html">ezcDocumentParser</a>
+   |
+   --ezcDocumentWikiParser</pre>
+
+
+  <table><tr><td>
+            <strong>Version:</strong>&#8192;&#8192;
+          </td>
+          <td>//autogen//</td>
+        </tr></table><a name="sec-var-summary"></a>
+  <h3>Member Variables</h3>
+  <table class="summary"><tr><td class="right">
+            <em>protected</em>            <em>array</em>          </td>
+          <td>
+            <code>
+              $conversionsArray
+               = <span class="var-default">array(<br>        'ezcDocumentWikiEndOfFileToken'            =&gt; 'ezcDocumentWikiDocumentNode',<br>        'ezcDocumentWikiTextLineToken'             =&gt; 'ezcDocumentWikiTextNode',<br>        'ezcDocumentWikiWhitespaceToken'           =&gt; 'ezcDocumentWikiTextNode',<br>        'ezcDocumentWikiSpecialCharsToken'         =&gt; 'ezcDocumentWikiTextNode',<br><br>        'ezcDocumentWikiTitleToken'                =&gt; 'ezcDocumentWikiTitleNode',<br>        'ezcDocumentWikiParagraphIndentationToken' =&gt; 'ezcDocumentWikiBlockquoteNode',<br>        'ezcDocumentWikiQuoteToken'                =&gt; 'ezcDocumentWikiBlockquoteNode',<br>        'ezcDocumentWikiPageBreakToken'            =&gt; 'ezcDocumentWikiPageBreakNode',<br>        'ezcDocumentWikiBulletListItemToken'       =&gt; 'ezcDocumentWikiBulletListItemNode',<br>        'ezcDocumentWikiEnumeratedListItemToken'   =&gt; 'ezcDocumentWikiEnumeratedListItemNode',<br>        'ezcDocumentWikiLiteralBlockToken'         =&gt; 'ezcDocumentWikiLiteralBlockNode',<br>        'ezcDocumentWikiTableRowToken'             =&gt; 'ezcDocumentWikiTableRowNode',<br>        'ezcDocumentWikiPluginToken'               =&gt; 'ezcDocumentWikiPluginNode',<br><br>        'ezcDocumentWikiBoldToken'                 =&gt; 'ezcDocumentWikiBoldNode',<br>        'ezcDocumentWikiItalicToken'               =&gt; 'ezcDocumentWikiItalicNode',<br>        'ezcDocumentWikiUnderlineToken'            =&gt; 'ezcDocumentWikiUnderlineNode',<br>        'ezcDocumentWikiMonospaceToken'            =&gt; 'ezcDocumentWikiMonospaceNode',<br>        'ezcDocumentWikiSubscriptToken'            =&gt; 'ezcDocumentWikiSubscriptNode',<br>        'ezcDocumentWikiSuperscriptToken'          =&gt; 'ezcDocumentWikiSuperscriptNode',<br>        'ezcDocumentWikiDeletedToken'              =&gt; 'ezcDocumentWikiDeletedNode',<br>        'ezcDocumentWikiStrikeToken'               =&gt; 'ezcDocumentWikiDeletedNode',<br>        'ezcDocumentWikiInlineQuoteToken'          =&gt; 'ezcDocumentWikiInlineQuoteNode',<br>        'ezcDocumentWikiLineBreakToken'            =&gt; 'ezcDocumentWikiLineBreakNode',<br>        'ezcDocumentWikiInlineLiteralToken'        =&gt; 'ezcDocumentWikiInlineLiteralNode',<br><br>        'ezcDocumentWikiSeparatorToken'            =&gt; 'ezcDocumentWikiSeparatorNode',<br>        'ezcDocumentWikiTableHeaderToken'          =&gt; 'ezcDocumentWikiTableHeaderSeparatorNode',<br><br>        'ezcDocumentWikiExternalLinkToken'         =&gt; 'ezcDocumentWikiExternalLinkNode',<br>        'ezcDocumentWikiInterWikiLinkToken'        =&gt; 'ezcDocumentWikiInterWikiLinkNode',<br>        'ezcDocumentWikiInternalLinkToken'         =&gt; 'ezcDocumentWikiInternalLinkNode',<br>        'ezcDocumentWikiLinkStartToken'            =&gt; 'ezcDocumentWikiLinkNode',<br>        'ezcDocumentWikiLinkEndToken'              =&gt; 'ezcDocumentWikiLinkEndNode',<br><br>        'ezcDocumentWikiImageStartToken'           =&gt; 'ezcDocumentWikiImageNode',<br>        'ezcDocumentWikiImageEndToken'             =&gt; 'ezcDocumentWikiImageEndNode',<br><br>        'ezcDocumentWikiFootnoteStartToken'        =&gt; 'ezcDocumentWikiFootnoteNode',<br>        'ezcDocumentWikiFootnoteEndToken'          =&gt; 'ezcDocumentWikiFootnoteEndNode',<br>    )</span>            </code>
+            <br><div style="margin-left: 20px">Array with token node conversions.</div>            <br><div style="margin-left: 20px"><p>Token to node conversions are used for tokens, which do not require any  additional checking of the tokens context. This is especially useful,  because the wiki tokenizer already implement a lot of this logic.</p></div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            <em>array</em>          </td>
+          <td>
+            <code>
+              $documentStack
+               = <span class="var-default">array()</span>            </code>
+            <br><div style="margin-left: 20px">Contains a list of detected syntax elements.</div>            <br><div style="margin-left: 20px"><p>At the end of a successfull parsing process this should only contain one  document syntax element. During the process it may contain a list of  elements, which are up to reduction.</p><p>Each element in the stack has to be an object extending from  ezcDocumentRstNode, which may again contain any amount such objects.  This way an abstract syntax tree is constructed.</p></div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            <em>bool</em>          </td>
+          <td>
+            <code>
+              $insideLineToken
+               = <span class="var-default"> false</span>            </code>
+            <br><div style="margin-left: 20px">Flag if we are inside a line level node</div>                      </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            <em>array</em>          </td>
+          <td>
+            <code>
+              $reductions
+               = <span class="var-default">array(<br>        'ezcDocumentWikiTextNode' =&gt; array(<br>            'reduceText',<br>        ),'ezcDocumentWikiParagraphNode'=&gt;array('reduceParagraph',),'ezcDocumentWikiInvisibleBreakNode'=&gt;array('reduceLineNode',),'ezcDocumentWikiTitleNode'=&gt;array('reduceTitleToSection',),'ezcDocumentWikiSectionNode'=&gt;array('reduceLists','reduceSection',),'ezcDocumentWikiMatchingInlineNode'=&gt;array('reduceMatchingInlineMarkup',),'ezcDocumentWikiBlockquoteNode'=&gt;array('reduceBlockquoteNode',),'ezcDocumentWikiLinkEndNode'=&gt;array('reduceLinkNodes',),'ezcDocumentWikiImageEndNode'=&gt;array('reduceImageNodes',),'ezcDocumentWikiFootnoteEndNode'=&gt;array('reduceFootnoteNodes',),'ezcDocumentWikiBulletListItemNode'=&gt;array('reduceBulletListItem',),'ezcDocumentWikiEnumeratedListItemNode'=&gt;array('reduceEnumeratedListItem',),'ezcDocumentWikiTableRowNode'=&gt;array('reduceTableRow',),)</span>            </code>
+            <br><div style="margin-left: 20px">Array containing simplified reduce ruleset.</div>            <br><div style="margin-left: 20px"><p>We cannot express the Wiki syntax as a usual grammar using a BNF. This  structure implements a pseudo grammar by assigning a number of callbacks  for internal methods implementing reduction rules for a detected syntax  element.</p><p></p><ol><li><div class="src-line">&#8192;&#8192;<span class="src-key">array</span><span class="src-sym">(</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-id"><a href="ezcDocumentWikiNode.html">ezcDocumentWikiNode</a></span><span class="src-sym">::</span><span class="src-id">DOCUMENT&#8192;</span>=&gt;&#8192;<span class="src-str">'reduceDocument'</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;...</div></li>
+<li><div class="src-line">&#8192;&#8192;<span class="src-sym">)</span></div></li>
+</ol></div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            <em>array</em>          </td>
+          <td>
+            <code>
+              $shifts
+               = <span class="var-default">array(<br>        'ezcDocumentWikiEscapeCharacterToken'<br>            =&gt; 'shiftEscapeToken',<br>        'ezcDocumentWikiTitleToken'<br>            =&gt; 'shiftTitleToken',<br>        'ezcDocumentWikiNewLineToken'<br>            =&gt; 'shiftNewLineToken',<br>        'ezcDocumentWikiEscapeCharacterToken'<br>            =&gt; 'shiftEscapeToken',<br>        'ezcDocumentWikiToken'<br>            =&gt; 'shiftWithTokenConversion',<br>    )</span>            </code>
+            <br><div style="margin-left: 20px">Array containing simplified shift ruleset.</div>            <br><div style="margin-left: 20px"><p>We cannot express the Wiki syntax as a usual grammar using a BNF. With  the pumping lemma for context free grammars [1] you can easily prove,  that the word a^n b c^n d e^n is not a context free grammar, and this is  what the title definitions are.</p><p>This structure contains an array with callbacks implementing the shift  rules for all tokens. There may be multiple rules for one single token.</p><p>The callbacks itself create syntax elements and push them to the  document stack. After each push the reduction callbacks will be called  for the pushed elements.</p><p>The array should look like:  </p><ol><li><div class="src-line">&#8192;&#8192;<span class="src-key">array</span><span class="src-sym">(</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-id">WHITESPACE&#8192;</span>=&gt;&#8192;<span class="src-key">array</span><span class="src-sym">(</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-id">reductionMethod</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;...</div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-sym">)</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;...</div></li>
+<li><div class="src-line">&#8192;&#8192;<span class="src-sym">)</span></div></li>
+</ol><p>[1] http://en.wikipedia.org/wiki/Pumping_lemma_for_context-free_languages</p></div>          </td>
+        </tr></table><h3>Inherited Member Variables</h3>
+  <table class="summary"><thead><tr><th colspan="2">
+            From <span class="classname"><a href="ezcDocumentParser.html">ezcDocumentParser</a></span>         
+          </th>
+        </tr></thead><tbody><tr><td class="right">
+              <em>protected</em>                          </td>
+            <td>
+              <code><a href="ezcDocumentParser.html#var%24options">ezcDocumentParser::$options</a></code>
+              
+            </td>
+          </tr><tr><td class="right">
+              <em>protected</em>                          </td>
+            <td>
+              <code><a href="ezcDocumentParser.html#var%24properties">ezcDocumentParser::$properties</a></code>
+              
+            </td>
+          </tr></tbody></table><a name="sec-method-summary"></a>
+  <h3>Method Summary</h3>
+  <table class="summary"><tr><td class="right">
+            <em>protected</em>                        <em><a href="ezcDocumentWikiListNode.html">ezcDocumentWikiListNode</a></em>          </td>
+          <td>
+            <code>
+              <a href="#mergeListRecursively"><b>mergeListRecursively</b></a>(
+                                                                                    $lists
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Merge lists recusively.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em><a href="ezcDocumentWikiDocumentNode.html">ezcDocumentWikiDocumentNode</a></em>          </td>
+          <td>
+            <code>
+              <a href="#parse"><b>parse</b></a>(
+                                                                                    $tokens
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Parse token stream.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>mixed</em>          </td>
+          <td>
+            <code>
+              <a href="#reduceBlockquoteNode"><b>reduceBlockquoteNode</b></a>(
+                                                                                    $node
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Reduce multiline blockquote nodes.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>mixed</em>          </td>
+          <td>
+            <code>
+              <a href="#reduceBulletListItem"><b>reduceBulletListItem</b></a>(
+                                                                                    $node
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Reduce bullet list items to list.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>mixed</em>          </td>
+          <td>
+            <code>
+              <a href="#reduceEnumeratedListItem"><b>reduceEnumeratedListItem</b></a>(
+                                                                                    $node
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Reduce enumerated list items to list.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>mixed</em>          </td>
+          <td>
+            <code>
+              <a href="#reduceFootnoteNodes"><b>reduceFootnoteNodes</b></a>(
+                                                                                    $node
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Reduce wiki footnotes.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>mixed</em>          </td>
+          <td>
+            <code>
+              <a href="#reduceImageNodes"><b>reduceImageNodes</b></a>(
+                                                                                    $node
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Reduce wiki image references.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>mixed</em>          </td>
+          <td>
+            <code>
+              <a href="#reduceLineNode"><b>reduceLineNode</b></a>(
+                                                                                    $node
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Reduce line node.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>mixed</em>          </td>
+          <td>
+            <code>
+              <a href="#reduceLinkNodes"><b>reduceLinkNodes</b></a>(
+                                                                                    $node
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Reduce wiki links.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>mixed</em>          </td>
+          <td>
+            <code>
+              <a href="#reduceLists"><b>reduceLists</b></a>(
+                                                                                    $node
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Reduce lists.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>mixed</em>          </td>
+          <td>
+            <code>
+              <a href="#reduceMatchingInlineMarkup"><b>reduceMatchingInlineMarkup</b></a>(
+                                                                                    $node
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Reduce matching inline markup.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>mixed</em>          </td>
+          <td>
+            <code>
+              <a href="#reduceParagraph"><b>reduceParagraph</b></a>(
+                                                                                    $node
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Reduce paragraph.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#reduceSection"><b>reduceSection</b></a>(
+                                                                                    $node
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Reduce prior sections, if a new section has been found.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>mixed</em>          </td>
+          <td>
+            <code>
+              <a href="#reduceTableRow"><b>reduceTableRow</b></a>(
+                                                                                    $node
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Reduce table rows.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>mixed</em>          </td>
+          <td>
+            <code>
+              <a href="#reduceText"><b>reduceText</b></a>(
+                                                                                    $node
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Reduce text nodes.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#reduceTitleToSection"><b>reduceTitleToSection</b></a>(
+                                                                                    $node
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Reduce all elements to one document node.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>mixed</em>          </td>
+          <td>
+            <code>
+              <a href="#shiftEscapeToken"><b>shiftEscapeToken</b></a>(
+                                                                                    $token
+                                                    ,                                     &amp;$tokens
+                                                    ,                                     $tokens
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Shift escape token.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>mixed</em>          </td>
+          <td>
+            <code>
+              <a href="#shiftNewLineToken"><b>shiftNewLineToken</b></a>(
+                                                                                    $token
+                                                    ,                                     &amp;$tokens
+                                                    ,                                     $tokens
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Shift new line token.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>mixed</em>          </td>
+          <td>
+            <code>
+              <a href="#shiftTitleToken"><b>shiftTitleToken</b></a>(
+                                                                                    $token
+                                                    ,                                     &amp;$tokens
+                                                    ,                                     $tokens
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Shift title token.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>mixed</em>          </td>
+          <td>
+            <code>
+              <a href="#shiftWithTokenConversion"><b>shiftWithTokenConversion</b></a>(
+                                                                                    $token
+                                                    ,                                     &amp;$tokens
+                                                    ,                                     $tokens
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Shift with token conversion.</div>          </td>
+        </tr></table><h3>Inherited Methods</h3>
+  <table class="summary"><thead><tr><th colspan="2">
+            From <span class="classname"><a href="ezcDocumentParser.html">ezcDocumentParser</a></span>
+          </th>
+        </tr></thead><tbody><tr><td class="right">
+              <em>public</em>                                          <em>ezcDocumentParser</em>            </td>
+            <td>
+              <code><b><a href="ezcDocumentParser.html#method__construct">ezcDocumentParser::__construct()</a></b></code>
+              <br><div style="margin-left: 20px">Construct new document</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>array</em>            </td>
+            <td>
+              <code><b><a href="ezcDocumentParser.html#methodgetErrors">ezcDocumentParser::getErrors()</a></b></code>
+              <br><div style="margin-left: 20px">Return list of errors occured during visiting the document.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b><a href="ezcDocumentParser.html#methodtriggerError">ezcDocumentParser::triggerError()</a></b></code>
+              <br><div style="margin-left: 20px">Trigger parser error</div>                          </td>
+          </tr></tbody></table><a name="sec-methods"></a>
+  <h3>Methods</h3>
+  <a name="method_detail"></a>
+                                        
+      <a name="methodmergeListRecursively" id="mergeListRecursively"><!-- --></a>
+
+    <h4>mergeListRecursively</h4>
+
+    <div class="method-signature">
+      <a href="ezcDocumentWikiListNode.html">ezcDocumentWikiListNode</a>
+      mergeListRecursively(
+                                  
+          $lists
+                        )
+    </div>
+
+    <p>Merge lists recusively.</p><div><p>Merge lists recusively</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$lists</code></td>
+              <td><em>array</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodparse" id="parse"><!-- --></a>
+
+    <h4>parse</h4>
+
+    <div class="method-signature">
+      <a href="ezcDocumentWikiDocumentNode.html">ezcDocumentWikiDocumentNode</a>
+      parse(
+                                  
+          $tokens
+                        )
+    </div>
+
+    <p>Parse token stream.</p><div><p>Parse an array of ezcDocumentWikiToken objects into a wiki abstract  syntax tree.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$tokens</code></td>
+              <td><em>array</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodreduceBlockquoteNode" id="reduceBlockquoteNode"><!-- --></a>
+
+    <h4>reduceBlockquoteNode</h4>
+
+    <div class="method-signature">
+      mixed
+      reduceBlockquoteNode(
+                                  <a href="ezcDocumentWikiBlockquoteNode.html">ezcDocumentWikiBlockquoteNode</a>
+          $node
+                        )
+    </div>
+
+    <p>Reduce multiline blockquote nodes.</p><div><p>Reduce multline block quote nodes, which are not already closed by line  endings.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$node</code></td>
+              <td><em><a href="ezcDocumentWikiBlockquoteNode.html">ezcDocumentWikiBlockquoteNode</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodreduceBulletListItem" id="reduceBulletListItem"><!-- --></a>
+
+    <h4>reduceBulletListItem</h4>
+
+    <div class="method-signature">
+      mixed
+      reduceBulletListItem(
+                                  <a href="ezcDocumentWikiBlockLevelNode.html">ezcDocumentWikiBlockLevelNode</a>
+          $node
+                        )
+    </div>
+
+    <p>Reduce bullet list items to list.</p><div><p>Reduce list items to lists, and create new wrapping list nodes.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$node</code></td>
+              <td><em><a href="ezcDocumentWikiBlockLevelNode.html">ezcDocumentWikiBlockLevelNode</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodreduceEnumeratedListItem" id="reduceEnumeratedListItem"><!-- --></a>
+
+    <h4>reduceEnumeratedListItem</h4>
+
+    <div class="method-signature">
+      mixed
+      reduceEnumeratedListItem(
+                                  <a href="ezcDocumentWikiBlockLevelNode.html">ezcDocumentWikiBlockLevelNode</a>
+          $node
+                        )
+    </div>
+
+    <p>Reduce enumerated list items to list.</p><div><p>Reduce list items to lists, and create new wrapping list nodes.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$node</code></td>
+              <td><em><a href="ezcDocumentWikiBlockLevelNode.html">ezcDocumentWikiBlockLevelNode</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodreduceFootnoteNodes" id="reduceFootnoteNodes"><!-- --></a>
+
+    <h4>reduceFootnoteNodes</h4>
+
+    <div class="method-signature">
+      mixed
+      reduceFootnoteNodes(
+                                  <a href="ezcDocumentWikiFootnoteEndNode.html">ezcDocumentWikiFootnoteEndNode</a>
+          $node
+                        )
+    </div>
+
+    <p>Reduce wiki footnotes.</p><div><p>Reduce inline footnotes</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$node</code></td>
+              <td><em><a href="ezcDocumentWikiFootnoteEndNode.html">ezcDocumentWikiFootnoteEndNode</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodreduceImageNodes" id="reduceImageNodes"><!-- --></a>
+
+    <h4>reduceImageNodes</h4>
+
+    <div class="method-signature">
+      mixed
+      reduceImageNodes(
+                                  <a href="ezcDocumentWikiImageEndNode.html">ezcDocumentWikiImageEndNode</a>
+          $node
+                        )
+    </div>
+
+    <p>Reduce wiki image references.</p><div><p>Reduce image references with all of their aggregated parameters.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$node</code></td>
+              <td><em><a href="ezcDocumentWikiImageEndNode.html">ezcDocumentWikiImageEndNode</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodreduceLineNode" id="reduceLineNode"><!-- --></a>
+
+    <h4>reduceLineNode</h4>
+
+    <div class="method-signature">
+      mixed
+      reduceLineNode(
+                                  <a href="ezcDocumentWikiInvisibleBreakNode.html">ezcDocumentWikiInvisibleBreakNode</a>
+          $node
+                        )
+    </div>
+
+    <p>Reduce line node.</p><div><p>Line nodes are closed at the end of their respective line. The end is  marked by an ezcDocumentWikiInvisibleBreakNode.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$node</code></td>
+              <td><em><a href="ezcDocumentWikiInvisibleBreakNode.html">ezcDocumentWikiInvisibleBreakNode</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodreduceLinkNodes" id="reduceLinkNodes"><!-- --></a>
+
+    <h4>reduceLinkNodes</h4>
+
+    <div class="method-signature">
+      mixed
+      reduceLinkNodes(
+                                  <a href="ezcDocumentWikiLinkEndNode.html">ezcDocumentWikiLinkEndNode</a>
+          $node
+                        )
+    </div>
+
+    <p>Reduce wiki links.</p><div><p>Reduce links with all of their aggregated parameters.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$node</code></td>
+              <td><em><a href="ezcDocumentWikiLinkEndNode.html">ezcDocumentWikiLinkEndNode</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodreduceLists" id="reduceLists"><!-- --></a>
+
+    <h4>reduceLists</h4>
+
+    <div class="method-signature">
+      mixed
+      reduceLists(
+                                  <a href="ezcDocumentWikiBlockLevelNode.html">ezcDocumentWikiBlockLevelNode</a>
+          $node
+                        )
+    </div>
+
+    <p>Reduce lists.</p><div><p>Stack lists with higher indentation into each other and merge multiple  lists of same type and indentation.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$node</code></td>
+              <td><em><a href="ezcDocumentWikiBlockLevelNode.html">ezcDocumentWikiBlockLevelNode</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodreduceMatchingInlineMarkup" id="reduceMatchingInlineMarkup"><!-- --></a>
+
+    <h4>reduceMatchingInlineMarkup</h4>
+
+    <div class="method-signature">
+      mixed
+      reduceMatchingInlineMarkup(
+                                  <a href="ezcDocumentWikiMatchingInlineNode.html">ezcDocumentWikiMatchingInlineNode</a>
+          $node
+                        )
+    </div>
+
+    <p>Reduce matching inline markup.</p><div><p>Reduction rule for inline markup which is intended to have a matching  counterpart in the same block level element.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$node</code></td>
+              <td><em><a href="ezcDocumentWikiMatchingInlineNode.html">ezcDocumentWikiMatchingInlineNode</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodreduceParagraph" id="reduceParagraph"><!-- --></a>
+
+    <h4>reduceParagraph</h4>
+
+    <div class="method-signature">
+      mixed
+      reduceParagraph(
+                                  <a href="ezcDocumentWikiParagraphNode.html">ezcDocumentWikiParagraphNode</a>
+          $node
+                        )
+    </div>
+
+    <p>Reduce paragraph.</p><div><p>Paragraphs are reduce with all inline tokens, which have been added to  the document stack before. If there are no inline nodes, the paragraph  will be ommitted.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$node</code></td>
+              <td><em><a href="ezcDocumentWikiParagraphNode.html">ezcDocumentWikiParagraphNode</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodreduceSection" id="reduceSection"><!-- --></a>
+
+    <h4>reduceSection</h4>
+
+    <div class="method-signature">
+      void
+      reduceSection(
+                                  <a href="ezcDocumentWikiSectionNode.html">ezcDocumentWikiSectionNode</a>
+          $node
+                        )
+    </div>
+
+    <p>Reduce prior sections, if a new section has been found.</p><div><p>If a new section has been found all sections with a higher depth level  can be closed, and all items fitting into sections may be aggregated by  the respective sections as well.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$node</code></td>
+              <td><em><a href="ezcDocumentWikiSectionNode.html">ezcDocumentWikiSectionNode</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodreduceTableRow" id="reduceTableRow"><!-- --></a>
+
+    <h4>reduceTableRow</h4>
+
+    <div class="method-signature">
+      mixed
+      reduceTableRow(
+                                  <a href="ezcDocumentWikiTableRowNode.html">ezcDocumentWikiTableRowNode</a>
+          $node
+                        )
+    </div>
+
+    <p>Reduce table rows.</p><div><p>Reduce the nodes aagregated for one table row into table cells, and  merge the table rows into table nodes.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$node</code></td>
+              <td><em><a href="ezcDocumentWikiTableRowNode.html">ezcDocumentWikiTableRowNode</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodreduceText" id="reduceText"><!-- --></a>
+
+    <h4>reduceText</h4>
+
+    <div class="method-signature">
+      mixed
+      reduceText(
+                                  <a href="ezcDocumentWikiTextNode.html">ezcDocumentWikiTextNode</a>
+          $node
+                        )
+    </div>
+
+    <p>Reduce text nodes.</p><div><p>Reduce texts into single nodes, if the prior node is also a text node.  This reduces the number of AST nodes required to represent texts  drastically.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$node</code></td>
+              <td><em><a href="ezcDocumentWikiTextNode.html">ezcDocumentWikiTextNode</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodreduceTitleToSection" id="reduceTitleToSection"><!-- --></a>
+
+    <h4>reduceTitleToSection</h4>
+
+    <div class="method-signature">
+      void
+      reduceTitleToSection(
+                                  <a href="ezcDocumentWikiTitleNode.html">ezcDocumentWikiTitleNode</a>
+          $node
+                        )
+    </div>
+
+    <p>Reduce all elements to one document node.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$node</code></td>
+              <td><em><a href="ezcDocumentWikiTitleNode.html">ezcDocumentWikiTitleNode</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodshiftEscapeToken" id="shiftEscapeToken"><!-- --></a>
+
+    <h4>shiftEscapeToken</h4>
+
+    <div class="method-signature">
+      mixed
+      shiftEscapeToken(
+                                  <a href="ezcDocumentWikiToken.html">ezcDocumentWikiToken</a>
+          $token
+                            ,           
+          &amp;$tokens
+                            ,           array
+          $tokens
+                        )
+    </div>
+
+    <p>Shift escape token.</p><div><p>Escape tokens will cause that the following token is ignored in his  common meaning. The following token is converted to plain text, while  the escape token will be removed.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$token</code></td>
+              <td><em><a href="ezcDocumentWikiToken.html">ezcDocumentWikiToken</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$tokens</code></td>
+              <td><em>array</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>&amp;$tokens</code></td>
+              <td><em>array</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodshiftNewLineToken" id="shiftNewLineToken"><!-- --></a>
+
+    <h4>shiftNewLineToken</h4>
+
+    <div class="method-signature">
+      mixed
+      shiftNewLineToken(
+                                  <a href="ezcDocumentWikiToken.html">ezcDocumentWikiToken</a>
+          $token
+                            ,           
+          &amp;$tokens
+                            ,           array
+          $tokens
+                        )
+    </div>
+
+    <p>Shift new line token.</p><div><p>Paragraphs are always indicated by multiple new line tokens. When  detected we just shift a paragraph node, which the will be reduced with  prior inline nodes.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$token</code></td>
+              <td><em><a href="ezcDocumentWikiToken.html">ezcDocumentWikiToken</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$tokens</code></td>
+              <td><em>array</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>&amp;$tokens</code></td>
+              <td><em>array</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodshiftTitleToken" id="shiftTitleToken"><!-- --></a>
+
+    <h4>shiftTitleToken</h4>
+
+    <div class="method-signature">
+      mixed
+      shiftTitleToken(
+                                  <a href="ezcDocumentWikiToken.html">ezcDocumentWikiToken</a>
+          $token
+                            ,           
+          &amp;$tokens
+                            ,           array
+          $tokens
+                        )
+    </div>
+
+    <p>Shift title token.</p><div><p>Some wiki markup languages use a second title token at the end of the  line instead of just a line break. In the case we are already inside a  line token, just shift an invisible line break.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$token</code></td>
+              <td><em><a href="ezcDocumentWikiToken.html">ezcDocumentWikiToken</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$tokens</code></td>
+              <td><em>array</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>&amp;$tokens</code></td>
+              <td><em>array</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodshiftWithTokenConversion" id="shiftWithTokenConversion"><!-- --></a>
+
+    <h4>shiftWithTokenConversion</h4>
+
+    <div class="method-signature">
+      mixed
+      shiftWithTokenConversion(
+                                  <a href="ezcDocumentWikiToken.html">ezcDocumentWikiToken</a>
+          $token
+                            ,           
+          &amp;$tokens
+                            ,           array
+          $tokens
+                        )
+    </div>
+
+    <p>Shift with token conversion.</p><div><p>Token to node conversions are used for tokens, which do not require any  additional checking of the tokens context. This is especially useful,  because the wiki tokenizer already implement a lot of this logic.</p><p>The actual conversions are specified in the class property  $conversionsArray.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$token</code></td>
+              <td><em><a href="ezcDocumentWikiToken.html">ezcDocumentWikiToken</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$tokens</code></td>
+              <td><em>array</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>&amp;$tokens</code></td>
+              <td><em>array</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><div class="credit">
+      Documentation generated by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+    </div>
+  </div>
+  
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

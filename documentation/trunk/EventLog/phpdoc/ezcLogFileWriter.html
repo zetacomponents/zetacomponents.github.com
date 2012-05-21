@@ -1,0 +1,415 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="PHP, apache, components, framework, quality" />
+	<meta name="author" content="dotxp" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Wed, 04 Aug 2010 13:07:37 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="ezcLogFileWriter.html" />
+	<meta name="DC.creator" content="dotxp" />
+	<meta name="DC.date" content="Wed, 04 Aug 2010 13:07:37 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/EventLog/phpdoc/ezcLogFileWriter.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/EventLog/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/trunk/EventLog/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+
+</ul>
+
+		
+  <div class="phpdoc">
+    <h2>Apache Zeta Components Manual :: Docs For Class ezcLogFileWriter</h2>
+
+                  <h3>EventLog::ezcLogFileWriter</h3>
+    
+<a name="sec-description"></a>
+<h3>Class ezcLogFileWriter</h3>
+
+<p>The ezcLogFileWriter class provides functionality to write log files to the file  system.</p><div><p>The main purpose is to keep track of the various log files and support  log rotation, although log rotation can also be disabled. The file format of  the log should be implemented in a subclass.</p><p>The following example implements a new log writer that writes the output in  (<a href="http://www.php.net/print_r">http://www.php.net/print_r</a> format) to a file:  </p><ol><li><div class="src-line">&#8192;<span class="src-key">class&#8192;</span><span class="src-id">MyLogWriter&#8192;</span><span class="src-key">extends&#8192;</span><a href="ezcLogFileWriter.html">ezcLogFileWriter</a></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">{</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;<span class="src-comm">//&#8192;Call&#8192;parent&#8192;constructor.&#8192;(In&#8192;this&#8192;case,&#8192;it&#8192;possible&#8192;to&#8192;omit&#8192;the&#8192;constructor.)</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;<span class="src-key">public&#8192;</span><span class="src-key">function&#8192;</span><span class="src-id">__construct</span><span class="src-sym">(</span><span class="src-var">$dir</span><span class="src-sym">,&#8192;</span><span class="src-var">$file&#8192;</span>=&#8192;<span class="src-id">null</span><span class="src-sym">,&#8192;</span><span class="src-var">$maxSize&#8192;</span>=&#8192;<span class="src-num">204800</span><span class="src-sym">,&#8192;</span><span class="src-var">$maxFiles&#8192;</span>=&#8192;<span class="src-num">3&#8192;</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;<span class="src-sym">{</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-id">parent</span><span class="src-sym">::</span><span class="src-id">__construct</span><span class="src-sym">(</span><span class="src-var">$dir</span><span class="src-sym">,&#8192;</span><span class="src-var">$file</span><span class="src-sym">,&#8192;</span><span class="src-var">$maxSize</span><span class="src-sym">,&#8192;</span><span class="src-var">$maxFiles&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;<span class="src-sym">}</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;<span class="src-comm">//&#8192;Implement&#8192;the&#8192;ezcLogWriter&#8192;interface:</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;<span class="src-key">public&#8192;</span><span class="src-key">function&#8192;</span><span class="src-id">writeLogMessage</span><span class="src-sym">(&#8192;</span><span class="src-var">$message</span><span class="src-sym">,&#8192;</span><span class="src-var">$type</span><span class="src-sym">,&#8192;</span><span class="src-var">$source</span><span class="src-sym">,&#8192;</span><span class="src-var">$category</span><span class="src-sym">,&#8192;</span><span class="src-var">$extraInfo&#8192;</span>=&#8192;<span class="src-key">array</span><span class="src-sym">(</span><span class="src-sym">)&#8192;)</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;<span class="src-sym">{</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-comm">//&#8192;Create&#8192;a&#8192;message</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-var">$res&#8192;</span>=&#8192;<a href="http://www.php.net/print_r">print_r</a><span class="src-sym">(&#8192;</span><span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-str">"message"&#8192;</span>=&gt;&#8192;<span class="src-var">$message</span><span class="src-sym">,&#8192;</span><span class="src-str">"type"&#8192;</span>=&gt;&#8192;<span class="src-var">$type</span><span class="src-sym">,&#8192;</span><span class="src-str">"source"&#8192;</span>=&gt;&#8192;<span class="src-var">$source</span><span class="src-sym">,&#8192;</span><span class="src-str">"category"&#8192;</span>=&gt;&#8192;<span class="src-var">$category&#8192;</span><span class="src-sym">)</span><span class="src-sym">,&#8192;</span><span class="src-id">true&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-comm">//&#8192;And&#8192;call&#8192;the&#8192;parent&#8192;class</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-var">$this</span><span class="src-sym">-&gt;</span><span class="src-id">write</span><span class="src-sym">(&#8192;</span><span class="src-var">$type</span><span class="src-sym">,&#8192;</span><span class="src-var">$source</span><span class="src-sym">,&#8192;</span><span class="src-var">$category</span><span class="src-sym">,&#8192;</span><span class="src-var">$res&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;<span class="src-sym">}</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">}</span></div></li>
+</ol></div>
+<p>Source for this file: <a href="http://fisheye6.atlassian.com/browse/zetacomponents/trunk/EventLog/src/writers/writer_file.php?r=HEAD">/EventLog/src/writers/writer_file.php</a></p>
+       
+  <h3>Implements interfaces:</h3>
+  <ul><li><a href="ezcLogWriter.html">ezcLogWriter</a></li>  </ul><table><tr><td>
+            <strong>Version:</strong>&#8192;&#8192;
+          </td>
+          <td>//autogentag//</td>
+        </tr></table><a name="sec-descendants"></a>
+  <h3>Descendants</h3>
+  <table class="detail"><thead><tr><th>Child Class</th>
+        <th>Description</th>
+      </tr></thead><tbody><tr><td><a href="ezcLogUnixFileWriter.html">ezcLogUnixFileWriter</a></td>          <td>
+                          Writes the log messages to a file in a format that is frequently used on the Unix operating system.
+                      </td>
+        </tr></tbody></table><a name="sec-var-summary"></a>
+  <h3>Member Variables</h3>
+  <table class="summary"><tr><td class="right">
+            <em>protected</em>            <em><a href="ezcLogFilterSet.html">ezcLogFilterSet</a></em>          </td>
+          <td>
+            <code>
+              $fileMap
+                          </code>
+            <br><div style="margin-left: 20px">Keeps track of which group of messages should be stored  in what file.</div>                      </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            <em>string</em>          </td>
+          <td>
+            <code>
+              $logDirectory
+                          </code>
+            <br><div style="margin-left: 20px">Directory where the log files should be placed.</div>                      </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            <em>int</em>          </td>
+          <td>
+            <code>
+              $maxFiles
+                          </code>
+            <br><div style="margin-left: 20px">Maximum log rotation files with the same name.</div>            <br><div style="margin-left: 20px"><p>When rotating and the max limit is reached, the oldest log  is discarded.</p></div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            <em>int</em>          </td>
+          <td>
+            <code>
+              $maxSize
+                          </code>
+            <br><div style="margin-left: 20px">Maximum file size before rotation, or false when log rotation is disabled.</div>                      </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            <em>array(resource)</em>          </td>
+          <td>
+            <code>
+              $openFiles
+               = <span class="var-default">array()</span>            </code>
+            <br><div style="margin-left: 20px">Contains all the open files. The first file in the  array is always the default file.</div>                      </td>
+        </tr></table><a name="sec-method-summary"></a>
+  <h3>Method Summary</h3>
+  <table class="summary"><tr><td class="right">
+            <em>public</em>                        <em>ezcLogFileWriter</em>          </td>
+          <td>
+            <code>
+              <a href="#__construct"><b>__construct</b></a>(
+                                                                                    $logDirectory
+                                                    ,                   [                  $defaultFile
+                   = null]                                  ,                   [                  $maxLogRotationSize
+                   = 204800]                                  ,                   [                  $maxLogFiles
+                   = 3]                               )
+            </code>
+            <br><div style="margin-left: 20px">Constructs an ezcLogFileWriter.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#__destruct"><b>__destruct</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Destructs the object and closes all open file handles.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>resource</em>          </td>
+          <td>
+            <code>
+              <a href="#openFile"><b>openFile</b></a>(
+                                                                                    $fileName
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns the filehandle of the $fileName.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>bool</em>          </td>
+          <td>
+            <code>
+              <a href="#rotateLog"><b>rotateLog</b></a>(
+                                                                                    $fileName
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Rotates a log and returns true upon success.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#setFile"><b>setFile</b></a>(
+                                                                                    $logFilter
+                                                    ,                                     $fileName
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Maps the filename $fileName to the messages specified by the <a href="ezcLogFilter.html">ezcLogFilter</a> $logFilter.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#write"><b>write</b></a>(
+                                                                                    $eventType
+                                                    ,                                     $eventSource
+                                                    ,                                     $eventCategory
+                                                    ,                                     $string
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">This method writes the $string to a file.</div>          </td>
+        </tr></table><a name="sec-methods"></a>
+  <h3>Methods</h3>
+  <a name="method_detail"></a>
+            
+      <a name="method__construct" id="__construct"><!-- --></a>
+
+    <h4>__construct</h4>
+
+    <div class="method-signature">
+      ezcLogFileWriter
+      __construct(
+                                  string
+          $logDirectory
+                            ,           [string
+          $defaultFile
+           = null]                  ,           [int
+          $maxLogRotationSize
+           = 204800]                  ,           [int
+          $maxLogFiles
+           = 3]              )
+    </div>
+
+    <p>Constructs an ezcLogFileWriter.</p><div><p>The log files will be placed in the directory $logDirectory.</p><p>If the file $defaultFile is not null, log messages that are not map()  to any file are written to this $defaultFile. If $defaultFile is null, then  log messages are discarded.</p><p>Set $maxLogRotationSize to specify the maximum size of a logfile. When the  maximum size is reached, the log will be rotated. $maxLogFiles sets the maximum  number of rotated log files. The oldest rotated log will be removed when the  $maxLogFiles exceeds. Log rotation can be disabled by setting  $maxLogRotationSize to false.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$logDirectory</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$defaultFile</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$maxLogRotationSize</code></td>
+              <td><em>int</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$maxLogFiles</code></td>
+              <td><em>int</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="method__destruct" id="__destruct"><!-- --></a>
+
+    <h4>__destruct</h4>
+
+    <div class="method-signature">
+      void
+      __destruct(
+      )
+    </div>
+
+    <p>Destructs the object and closes all open file handles.</p>
+    
+        
+
+    
+    
+    
+        <a name="methodopenFile" id="openFile"><!-- --></a>
+
+    <h4>openFile</h4>
+
+    <div class="method-signature">
+      resource
+      openFile(
+                                  string
+          $fileName
+                        )
+    </div>
+
+    <p>Returns the filehandle of the $fileName.</p><div><p>If the maximum file size is exceeded, the file will be rotated before opening.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$fileName</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseFilePermissionException.html">ezcBaseFilePermissionException</a></code></td>
+              <td>
+                                  if the file can't be opened, created, or when the directory is not writable.
+                              </td>
+            </tr></tbody></table><a name="methodrotateLog" id="rotateLog"><!-- --></a>
+
+    <h4>rotateLog</h4>
+
+    <div class="method-signature">
+      bool
+      rotateLog(
+                                  string
+          $fileName
+                        )
+    </div>
+
+    <p>Rotates a log and returns true upon success.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$fileName</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodsetFile" id="setFile"><!-- --></a>
+
+    <h4>setFile</h4>
+
+    <div class="method-signature">
+      void
+      setFile(
+                                  <a href="ezcLogFilter.html">ezcLogFilter</a>
+          $logFilter
+                            ,           string
+          $fileName
+                        )
+    </div>
+
+    <p>Maps the filename $fileName to the messages specified by the <a href="ezcLogFilter.html">ezcLogFilter</a> $logFilter.</p><div><p>Log messages that matches with the filter are written to the file $fileName.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$logFilter</code></td>
+              <td><em><a href="ezcLogFilter.html">ezcLogFilter</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$fileName</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodwrite" id="write"><!-- --></a>
+
+    <h4>write</h4>
+
+    <div class="method-signature">
+      void
+      write(
+                                  int
+          $eventType
+                            ,           string
+          $eventSource
+                            ,           string
+          $eventCategory
+                            ,           string
+          $string
+                        )
+    </div>
+
+    <p>This method writes the $string to a file.</p><div><p>The file to which the string will be written depends on the $eventType, $eventSource, and  $eventCategory.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$eventType</code></td>
+              <td><em>int</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$eventSource</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$eventCategory</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$string</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcLogWriterException.html">ezcLogWriterException</a></code></td>
+              <td>
+                                  if it was not possible to write to the log file.
+                              </td>
+            </tr></tbody></table><div class="credit">
+      Documentation generated by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+    </div>
+  </div>
+  
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,415 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="" />
+	<meta name="author" content="jerome" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Sun, 10 Jul 2011 11:11:09 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="ezcWebdavHeaderHandler.html" />
+	<meta name="DC.creator" content="jerome" />
+	<meta name="DC.date" content="Sun, 10 Jul 2011 11:11:09 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/Webdav/phpdoc/ezcWebdavHeaderHandler.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/Webdav/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/trunk/Webdav/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Webdav/clients.html" title="Clients ">Clients </a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Webdav/plugin_architecture.html" title="Plugin_architecture ">Plugin_architecture </a>
+	</li>
+
+</ul>
+
+		
+  <div class="phpdoc">
+    <h2>Apache Zeta Components Manual :: Docs For Class ezcWebdavHeaderHandler</h2>
+
+                  <h3>Webdav::ezcWebdavHeaderHandler</h3>
+    
+<a name="sec-description"></a>
+<h3>Class ezcWebdavHeaderHandler</h3>
+
+<p>An instance of this class manages header parsing and handling.</p><div><p>An object of this class takes care about headers in <a href="ezcWebdavTransport.html">ezcWebdavTransport</a>. It is responsible for parsing incoming headers and  serialize outgoing ones. Like for the <a href="ezcWebdavPropertyHandler.html">ezcWebdavPropertyHandler</a>, the  instance of this class that is used in the current transport layer must be  accessable for plugins.</p></div>
+<p>Source for this file: <a href="http://fisheye6.atlassian.com/browse/zetacomponents/trunk/Webdav/src/transports/header_handler.php?r=HEAD">/Webdav/src/transports/header_handler.php</a></p>
+       
+
+
+
+
+  <table><tr><td>
+            <strong>Version:</strong>&#8192;&#8192;
+          </td>
+          <td>//autogen//</td>
+        </tr></table><a name="sec-var-summary"></a>
+  <h3>Member Variables</h3>
+  <table class="summary"><tr><td class="right">
+            <em>protected</em>            <em>array(string)</em>          </td>
+          <td>
+            <code>
+              $defaultHeaders
+               = <span class="var-default">array(<br>        'Authorization',<br>        'If-Match',<br>        'If-None-Match',<br>    )</span>            </code>
+            <br><div style="margin-left: 20px">List of headers that should be attempted to parse for every request.</div>                      </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            <em>array(string=&gt;string)</em>          </td>
+          <td>
+            <code>
+              $headerMap
+               = <span class="var-default">array(<br>        'Authorization' =&gt; array(<br>            'HTTP_AUTHORIZATION',<br>            'PHP_AUTH_DIGEST',<br>            'PHP_AUTH_USER',<br>        ),'Content-Length'=&gt;array('HTTP_CONTENT_LENGTH','CONTENT_LENGTH',),'Content-Type'=&gt;array('CONTENT_TYPE',),'Depth'=&gt;array('HTTP_DEPTH',),'Destination'=&gt;array('HTTP_DESTINATION',),'If-Match'=&gt;array('HTTP_IF_MATCH'),'If-None-Match'=&gt;array('HTTP_IF_NONE_MATCH'),'Overwrite'=&gt;array('HTTP_OVERWRITE',),'Server'=&gt;array('SERVER_SOFTWARE',),)</span>            </code>
+            <br><div style="margin-left: 20px">Map of regular header names to $_SERVER keys.</div>                      </td>
+        </tr></table><a name="sec-method-summary"></a>
+  <h3>Method Summary</h3>
+  <table class="summary"><tr><td class="right">
+            <em>protected</em>                        <em>array(string)</em>          </td>
+          <td>
+            <code>
+              <a href="#parseAuthorizationHeader"><b>parseAuthorizationHeader</b></a>(
+                                                                                    $value
+                                                    ,                                     $serverHeaderName
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Parses the Authorization header.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em><a href="ezcWebdavBasicAuth.html">ezcWebdavBasicAuth</a></em>          </td>
+          <td>
+            <code>
+              <a href="#parseBasicAuthorizationHeader"><b>parseBasicAuthorizationHeader</b></a>(
+                                                                                    $value
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Parses the basic authorization header.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>int|string</em>          </td>
+          <td>
+            <code>
+              <a href="#parseDepthHeader"><b>parseDepthHeader</b></a>(
+                                                                                    $value
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Parses the Depth header.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em><a href="ezcWebdavDigestAuth.html">ezcWebdavDigestAuth</a>|<a href="ezcWebdavBasicAuth.html">ezcWebdavBasicAuth</a></em>          </td>
+          <td>
+            <code>
+              <a href="#parseDigestAuthorizationHeader"><b>parseDigestAuthorizationHeader</b></a>(
+                                                                                    $value
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Parses the digest authorization header.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>mixed</em>          </td>
+          <td>
+            <code>
+              <a href="#parseHeader"><b>parseHeader</b></a>(
+                                                                                    $headerName
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Parses a single header.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>array(string=&gt;mixed)</em>          </td>
+          <td>
+            <code>
+              <a href="#parseHeaders"><b>parseHeaders</b></a>(
+                                                                  [                  $headerNames
+                   = array()]                                  ,                   [                  $defaultHeaders
+                   = true]                               )
+            </code>
+            <br><div style="margin-left: 20px">Returns an array with the given headers.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>array</em>          </td>
+          <td>
+            <code>
+              <a href="#parseIfMatchHeader"><b>parseIfMatchHeader</b></a>(
+                                                                                    $value
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Parses the If-Match and If-None-Match headers.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>mixed</em>          </td>
+          <td>
+            <code>
+              <a href="#processHeader"><b>processHeader</b></a>(
+                                                                                    $headerName
+                                                    ,                                     $value
+                                                    ,                                     $serverHeaderName
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Processes a single header value.</div>          </td>
+        </tr></table><a name="sec-methods"></a>
+  <h3>Methods</h3>
+  <a name="method_detail"></a>
+                
+      <a name="methodparseAuthorizationHeader" id="parseAuthorizationHeader"><!-- --></a>
+
+    <h4>parseAuthorizationHeader</h4>
+
+    <div class="method-signature">
+      array(string)
+      parseAuthorizationHeader(
+                                  string
+          $value
+                            ,           string
+          $serverHeaderName
+                        )
+    </div>
+
+    <p>Parses the Authorization header.</p><div><p>Takes the string value of the Authorization header and parses it  according to the Basic authentication scheme. The return value is an  struct of either of the following classes:</p><p></p><ul><li><a href="ezcWebdavDigestAuth.html">ezcWebdavDigestAuth</a></li><li><a href="ezcWebdavBasicAuth.html">ezcWebdavBasicAuth</a></li></ul><p>In case the header is provided but does not contain a parseable value,  the user and pass fields are null. The $serverHeaderName parameter  indicates, which key from the $_SERVER array was used to extract the  header.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$value</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$serverHeaderName</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodparseBasicAuthorizationHeader" id="parseBasicAuthorizationHeader"><!-- --></a>
+
+    <h4>parseBasicAuthorizationHeader</h4>
+
+    <div class="method-signature">
+      <a href="ezcWebdavBasicAuth.html">ezcWebdavBasicAuth</a>
+      parseBasicAuthorizationHeader(
+                                  string
+          $value
+                        )
+    </div>
+
+    <p>Parses the basic authorization header.</p><div><p>Returns a struct of type <a href="ezcWebdavBasicAuth.html">ezcWebdavBasicAuth</a>, containing the  parsed values, or with empty username and password, if the header could  not be parsed.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$value</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodparseDepthHeader" id="parseDepthHeader"><!-- --></a>
+
+    <h4>parseDepthHeader</h4>
+
+    <div class="method-signature">
+      int|string
+      parseDepthHeader(
+                                  string
+          $value
+                        )
+    </div>
+
+    <p>Parses the Depth header.</p><div><p>Parses the values '0', '1' and 'infinity' into the corresponding  constants:</p><p></p><ul><li>{@linkezcWebdavRequest::DEPTH_ZERO}</li><li>{@linkezcWebdavRequest::DEPTH_ONE}</li><li>{@linkezcWebdavRequest::DEPTH_INFINITY}</li></ul><p>If the header contains a different value it is left as is.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$value</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodparseDigestAuthorizationHeader" id="parseDigestAuthorizationHeader"><!-- --></a>
+
+    <h4>parseDigestAuthorizationHeader</h4>
+
+    <div class="method-signature">
+      <a href="ezcWebdavDigestAuth.html">ezcWebdavDigestAuth</a>|<a href="ezcWebdavBasicAuth.html">ezcWebdavBasicAuth</a>
+      parseDigestAuthorizationHeader(
+                                  string
+          $value
+                        )
+    </div>
+
+    <p>Parses the digest authorization header.</p><div><p>Returns an authorization credential struct of type <a href="ezcWebdavDigestAuth.html">ezcWebdavDigestAuth</a>, containing the parsed data, or an instance of <a href="ezcWebdavBasicAuth.html">ezcWebdavBasicAuth</a> with empty username and password, if parsing failed.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$value</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodparseHeader" id="parseHeader"><!-- --></a>
+
+    <h4>parseHeader</h4>
+
+    <div class="method-signature">
+      mixed
+      parseHeader(
+                                  string
+          $headerName
+                        )
+    </div>
+
+    <p>Parses a single header.</p><div><p>Retrieves a $headerName and returns the processed value for it, if it  does exist. If the requested header is unknown, a <a href="ezcWebdavUnknownHeaderException.html">ezcWebdavUnknownHeaderException</a> is thrown. If the requested header is  not present in $_SERVER null is returned.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$headerName</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodparseHeaders" id="parseHeaders"><!-- --></a>
+
+    <h4>parseHeaders</h4>
+
+    <div class="method-signature">
+      array(string=&gt;mixed)
+      parseHeaders(
+                                  [
+          $headerNames
+           = array()]                  ,           [bool
+          $defaultHeaders
+           = true]              )
+    </div>
+
+    <p>Returns an array with the given headers.</p><div><p>Checks for the availability of headers in $headerNamess, given as an  array of header names, and parses them according to their format.</p><p>By default, this method parses an additional set of default headers  (e.g. If-Match and If-None-Match). This can be avoided by setting the  optional $defaultHeaders parameter to false.</p><p>The returned array can be used with ezcWebdavRequest-&gt;setHeaders().</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$headerNames</code></td>
+              <td><em>array(string)</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$defaultHeaders</code></td>
+              <td><em>bool</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcWebdavUnknownHeaderException.html">ezcWebdavUnknownHeaderException</a></code></td>
+              <td>
+                                  if a header requested in $headerNames is not known in $headerNames.
+                              </td>
+            </tr></tbody></table><a name="methodparseIfMatchHeader" id="parseIfMatchHeader"><!-- --></a>
+
+    <h4>parseIfMatchHeader</h4>
+
+    <div class="method-signature">
+      array
+      parseIfMatchHeader(
+                                  string
+          $value
+                        )
+    </div>
+
+    <p>Parses the If-Match and If-None-Match headers.</p><div><p>We do not pay attention to weak entity tags (prefixed by W\), since our  backends don't make use of such tags. If backends want to provide weak  entity tags, they still might do so.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$value</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodprocessHeader" id="processHeader"><!-- --></a>
+
+    <h4>processHeader</h4>
+
+    <div class="method-signature">
+      mixed
+      processHeader(
+                                  string
+          $headerName
+                            ,           string
+          $value
+                            ,           string
+          $serverHeaderName
+                        )
+    </div>
+
+    <p>Processes a single header value.</p><div><p>Takes the $headerName and $value of a header and parses the value  accordingly, * if necessary. Returns the parsed or unmanipuled result. The  $serverHeaderName parameter contains the key that was used to extract the  header from the $_SERVER array.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$headerName</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$value</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$serverHeaderName</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><div class="credit">
+      Documentation generated by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+    </div>
+  </div>
+  
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

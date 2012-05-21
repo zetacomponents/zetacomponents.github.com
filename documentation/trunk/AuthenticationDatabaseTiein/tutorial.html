@@ -1,0 +1,208 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="PHP, apache, components, framework, quality" />
+	<meta name="author" content="jerome" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Sun, 10 Jul 2011 11:10:40 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="Tutorial" />
+	<meta name="DC.creator" content="jerome" />
+	<meta name="DC.date" content="Sun, 10 Jul 2011 11:10:40 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/AuthenticationDatabaseTiein/tutorial.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li class="requested">
+	<a href="/zetacomponents/documentation/trunk/AuthenticationDatabaseTiein/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/AuthenticationDatabaseTiein/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+
+</ul>
+
+		<h2>eZ Components - AuthenticationDatabaseTiein</h2><div class="toc"><h3>Table of Contents</h3><ul><li><p><a href="#introduction">Introduction</a></p><ul><li><p><a href="#description">Description</a></p></li></ul></li><li><p><a href="#class-overview">Class overview</a></p><ul><li><p><a href="#base-classes">Base classes</a></p></li><li><p><a href="#authentication-filters">Authentication filters</a></p></li><li><p><a href="#stores">Stores</a></p></li></ul></li><li><p><a href="#id1">Authentication filters</a></p><ul><li><p><a href="#database">Database</a></p><ul><li><p><a href="#fetch-extra-data-during-database-authentication">Fetch extra data during Database authentication</a></p></li></ul></li><li><p><a href="#openid">OpenID</a></p><ul><li><p><a href="#openid-smart-stateful-mode">OpenID "smart" (stateful) mode</a></p></li></ul></li></ul></li><li><p><a href="#securing-applications">Securing applications</a></p></li></ul></div><a name="introduction"></a><a name="id4"></a><h3>Introduction</h3><a name="description"></a><a name="id5"></a><h4>Description</h4><p>The purpose of the <a href="../Authentication/tutorial.html#introduction">Authentication</a> component is to provide support for different means of identification and authentication of users using different providers and protocols.</p><p>AuthenticationDatabaseTiein provides a Database filter for the <a href="../Authentication/tutorial.html#introduction">Authentication</a> component by using the <a href="../Database/tutorial.html#introduction">Database</a> component, and an implementation of a database store (backend) for OpenID authentication.</p><a name="class-overview"></a><a name="id6"></a><h3>Class overview</h3><p>An overview of the most important classes in the <a href="../Authentication/tutorial.html#introduction">Authentication</a> component and this component.</p><a name="base-classes"></a><a name="id7"></a><h4>Base classes</h4><dl><dt>ezcAuthentication</dt><dd>Main class of <a href="../Authentication/tutorial.html#introduction">Authentication</a>. It is a container for authentication filters, which will be run in sequence. The method run() returns true or false depending on the success of the authentication filters. Implemented in <a href="../Authentication/tutorial.html#introduction">Authentication</a>.</dd><dt>ezcAuthenticationCredentials</dt><dd>Structure which holds user credentials. Types are id credentials (<a href='/zetacomponents/documentation/trunk/AuthenticationDatabaseTiein/phpdoc/ezcAuthenticationIdCredentials.html'>ezcAuthenticationIdCredentials</a>) and id + password credentials (<a href='/zetacomponents/documentation/trunk/AuthenticationDatabaseTiein/phpdoc/ezcAuthenticationPasswordCredentials.html'>ezcAuthenticationPasswordCredentials</a>).  Implemented in <a href="../Authentication/tutorial.html#introduction">Authentication</a>.</dd></dl><a name="authentication-filters"></a><a name="id8"></a><h4>Authentication filters</h4><dl><dt>ezcAuthenticationDatabaseFilter</dt><dd>Filter to authenticate against a database. Uses a database instance provided by the <a href="../Database/tutorial.html#introduction">Database</a> component (via the <a href='/zetacomponents/documentation/trunk/AuthenticationDatabaseTiein/phpdoc/ezcDbInstance.html#get'>ezcDbInstance::get</a>() function).</dd></dl><a name="stores"></a><a name="id9"></a><h4>Stores</h4><p>OpenID uses a store to hold the generated nonces and the associations (in "smart" mode). If there is no store specified, then nonces are not checked.</p><dl><dt>ezcAuthenticationOpenidStore</dt><dd>Abstract class from which the different stores inherit.  Implemented in <a href="../Authentication/tutorial.html#introduction">Authentication</a>.</dd><dt>ezcAuthenticationOpenidFileStore</dt><dd>Uses file storage. Nonces are stored in files named after the nonce itself, and associations are stored in files named after the OpenID provider with which the association is made. Implemented in <a href="../Authentication/tutorial.html#introduction">Authentication</a>.</dd><dt>ezcAuthenticationOpenidDbStore</dt><dd>Database storage. Nonces and associations are stored in two tables, with names defined as options in <a href='/zetacomponents/documentation/trunk/AuthenticationDatabaseTiein/phpdoc/ezcAuthenticationOpenidDbStoreOptions.html'>ezcAuthenticationOpenidDbStoreOptions</a>.</dd></dl><a name="id1"></a><a name="id10"></a><h3>Authentication filters</h3><a name="database"></a><a name="id11"></a><h4>Database</h4><p>The following example shows how to authenticate against a database.</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #0000FF">require_once&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #000000">$credentials&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/AuthenticationDatabaseTiein/phpdoc/ezcAuthenticationPasswordCredentials.html'>ezcAuthenticationPasswordCredentials</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'jan.modaal'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'b1b3773a05c0ed0176787a4f1574ff0075f7521e'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$database&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/AuthenticationDatabaseTiein/phpdoc/ezcAuthenticationDatabaseInfo.html'>ezcAuthenticationDatabaseInfo</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/AuthenticationDatabaseTiein/phpdoc/ezcDbInstance.html#get'>ezcDbInstance::get</a></span><span style="color: #0000FF">(),&nbsp;</span><span style="color: #335533">'users'</span><span style="color: #0000FF">,&nbsp;array(&nbsp;</span><span style="color: #335533">'user'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'password'&nbsp;</span><span style="color: #0000FF">)&nbsp;);</span></li>
+<li><span style="color: #000000">$authentication&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/AuthenticationDatabaseTiein/phpdoc/ezcAuthentication.html'>ezcAuthentication</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$credentials&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$authentication</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">addFilter</span><span style="color: #0000FF">(&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/AuthenticationDatabaseTiein/phpdoc/ezcAuthenticationDatabaseFilter.html'>ezcAuthenticationDatabaseFilter</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$database&nbsp;</span><span style="color: #0000FF">)&nbsp;);</span></li>
+<li><span style="color: #0000FF">if&nbsp;(&nbsp;!</span><span style="color: #000000">$authentication</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">run</span><span style="color: #0000FF">()&nbsp;)</span></li>
+<li><span style="color: #0000FF">{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">//&nbsp;authentication&nbsp;did&nbsp;not&nbsp;succeed,&nbsp;so&nbsp;inform&nbsp;the&nbsp;user</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$status&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$authentication</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">getStatus</span><span style="color: #0000FF">();</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$err&nbsp;</span><span style="color: #0000FF">=&nbsp;array(</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #335533">'<a href='/zetacomponents/documentation/trunk/AuthenticationDatabaseTiein/phpdoc/ezcAuthenticationDatabaseFilter.html'>ezcAuthenticationDatabaseFilter</a>'&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;array(</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/AuthenticationDatabaseTiein/phpdoc/ezcAuthenticationDatabaseFilter.html#constSTATUS_USERNAME_INCORRECT'>ezcAuthenticationDatabaseFilter::STATUS_USERNAME_INCORRECT</a>&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #335533">'Incorrect&nbsp;username'</span><span style="color: #0000FF">,</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/AuthenticationDatabaseTiein/phpdoc/ezcAuthenticationDatabaseFilter.html#constSTATUS_PASSWORD_INCORRECT'>ezcAuthenticationDatabaseFilter::STATUS_PASSWORD_INCORRECT</a>&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #335533">'Incorrect&nbsp;password'</span></li>
+<li><span style="color: #335533">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;foreach&nbsp;(&nbsp;</span><span style="color: #000000">$status&nbsp;</span><span style="color: #0000FF">as&nbsp;</span><span style="color: #000000">$line&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;list(&nbsp;</span><span style="color: #000000">$key</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">$value&nbsp;</span><span style="color: #0000FF">)&nbsp;=&nbsp;</span><span style="color: #000000">each</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$line&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #000000">$err</span><span style="color: #0000FF">[</span><span style="color: #000000">$key</span><span style="color: #0000FF">][</span><span style="color: #000000">$value</span><span style="color: #0000FF">]&nbsp;.&nbsp;</span><span style="color: #335533">"\n"</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;}</span></li>
+<li><span style="color: #0000FF">}</span></li>
+<li><span style="color: #0000FF">else</span></li>
+<li><span style="color: #0000FF">{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">//&nbsp;authentication&nbsp;succeeded,&nbsp;so&nbsp;allow&nbsp;the&nbsp;user&nbsp;to&nbsp;see&nbsp;his&nbsp;content</span></li>
+<li><span style="color: #0000FF">}</span></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><p>First, a credentials object is created with username jan.modaal and password 'b1b3773a05c0ed0176787a4f1574ff0075f7521e' (sha1() hash).</p><p>An authentication object is created using the credentials object, and a Database filter is added to it. The $database structure specifies the database instance (<a href='/zetacomponents/documentation/trunk/AuthenticationDatabaseTiein/phpdoc/ezcDbInstance.html#get'>ezcDbInstance::get</a>()), the table name ('users') and the username and password fields in the table ('user', 'password').</p><p>After running the authentication (line 8), if the username and the password do not pass through the Database filter, then the credentials are incorrect and the user must be informed. The getStatus() method is used for this. The values in the status returned must be cycled through and for each value a response is created for the user ("Username incorrect", "Password incorrect").</p><p>If run() returned true (line 24) then the user is logged-in and he can see his content.</p><a name="fetch-extra-data-during-database-authentication"></a><a name="id12"></a><h5>Fetch extra data during Database authentication</h5><p>Any value from the table which holds the users can be fetched. The exact column names must be specified. Example:</p><code class="block">// $filter is an <a href='/zetacomponents/documentation/trunk/AuthenticationDatabaseTiein/phpdoc/ezcAuthenticationDatabaseFilter.html'>ezcAuthenticationDatabaseFilter</a> object
+$filter-&gt;registerFetchData( array( 'name', 'country' ) );</code><p>After the authentication process is finished (after run()), retrieve the extra data:</p><code class="block">// $filter is an <a href='/zetacomponents/documentation/trunk/AuthenticationDatabaseTiein/phpdoc/ezcAuthenticationDatabaseFilter.html'>ezcAuthenticationDatabaseFilter</a> object
+$data = $filter-&gt;fetchData();</code><p>For the previous example, the $data array will be something like this:</p><code class="block">array( 'name' =&gt; array( 'John Doe' ),
+       'country' =&gt; array( 'US' )
+     );</code><a name="openid"></a><a name="id13"></a><h4>OpenID</h4><a name="openid-smart-stateful-mode"></a><a name="id14"></a><h5>OpenID "smart" (stateful) mode</h5><p>The following example shows how to authenticate against OpenID in "smart" (stateful) mode, using a database store.</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #0000FF">require_once&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;no&nbsp;headers&nbsp;should&nbsp;be&nbsp;sent&nbsp;before&nbsp;calling&nbsp;$session-&gt;start()</span></li>
+<li><span style="color: #000000">$session&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/AuthenticationDatabaseTiein/phpdoc/ezcAuthenticationSession.html'>ezcAuthenticationSession</a></span><span style="color: #0000FF">();</span></li>
+<li><span style="color: #000000">$session</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">start</span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #000000">$url&nbsp;</span><span style="color: #0000FF">=&nbsp;isset(&nbsp;</span><span style="color: #000000">$_GET</span><span style="color: #0000FF">[</span><span style="color: #335533">'openid_identifier'</span><span style="color: #0000FF">]&nbsp;)&nbsp;?&nbsp;</span><span style="color: #000000">$_GET</span><span style="color: #0000FF">[</span><span style="color: #335533">'openid_identifier'</span><span style="color: #0000FF">]&nbsp;:&nbsp;</span><span style="color: #000000">$session</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">load</span><span style="color: #0000FF">();</span></li>
+<li><span style="color: #000000">$action&nbsp;</span><span style="color: #0000FF">=&nbsp;isset(&nbsp;</span><span style="color: #000000">$_GET</span><span style="color: #0000FF">[</span><span style="color: #335533">'action'</span><span style="color: #0000FF">]&nbsp;)&nbsp;?&nbsp;</span><span style="color: #000000">strtolower</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$_GET</span><span style="color: #0000FF">[</span><span style="color: #335533">'action'</span><span style="color: #0000FF">]&nbsp;)&nbsp;:&nbsp;</span><span style="color: #000000">null</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #000000">$credentials&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/AuthenticationDatabaseTiein/phpdoc/ezcAuthenticationIdCredentials.html'>ezcAuthenticationIdCredentials</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$url&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$authentication&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/AuthenticationDatabaseTiein/phpdoc/ezcAuthentication.html'>ezcAuthentication</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$credentials&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$authentication</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">session&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$session</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #0000FF">if&nbsp;(&nbsp;</span><span style="color: #000000">$action&nbsp;</span><span style="color: #0000FF">===&nbsp;</span><span style="color: #335533">'logout'&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$session</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">destroy</span><span style="color: #0000FF">();</span></li>
+<li><span style="color: #0000FF">}</span></li>
+<li><span style="color: #0000FF">else</span></li>
+<li><span style="color: #0000FF">{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$options&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/AuthenticationDatabaseTiein/phpdoc/ezcAuthenticationOpenidOptions.html'>ezcAuthenticationOpenidOptions</a></span><span style="color: #0000FF">();</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$options</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">mode&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/AuthenticationDatabaseTiein/phpdoc/ezcAuthenticationOpenidFilter.html#constMODE_SMART'>ezcAuthenticationOpenidFilter::MODE_SMART</a></span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">//&nbsp;define&nbsp;a&nbsp;database&nbsp;store&nbsp;by&nbsp;specifying&nbsp;a&nbsp;database&nbsp;instance</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$options</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">store&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/AuthenticationDatabaseTiein/phpdoc/ezcAuthenticationOpenidDbStore.html'>ezcAuthenticationOpenidDbStore</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/AuthenticationDatabaseTiein/phpdoc/ezcDbInstance.html#get'>ezcDbInstance::get</a></span><span style="color: #0000FF">()&nbsp;);</span></li>
+<li></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$filter&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/AuthenticationDatabaseTiein/phpdoc/ezcAuthenticationOpenidFilter.html'>ezcAuthenticationOpenidFilter</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$options&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$authentication</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">addFilter</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$filter&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #0000FF">}</span></li>
+<li></li>
+<li><span style="color: #0000FF">if&nbsp;(&nbsp;!</span><span style="color: #000000">$authentication</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">run</span><span style="color: #0000FF">()&nbsp;)</span></li>
+<li><span style="color: #0000FF">{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">//&nbsp;authentication&nbsp;did&nbsp;not&nbsp;succeed,&nbsp;so&nbsp;inform&nbsp;the&nbsp;user</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$status&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$authentication</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">getStatus</span><span style="color: #0000FF">();</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$err&nbsp;</span><span style="color: #0000FF">=&nbsp;array(</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #335533">'<a href='/zetacomponents/documentation/trunk/AuthenticationDatabaseTiein/phpdoc/ezcAuthenticationOpenidFilter.html'>ezcAuthenticationOpenidFilter</a>'&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;array(</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/AuthenticationDatabaseTiein/phpdoc/ezcAuthenticationOpenidFilter.html#constSTATUS_SIGNATURE_INCORRECT'>ezcAuthenticationOpenidFilter::STATUS_SIGNATURE_INCORRECT</a>&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #335533">'OpenID&nbsp;said&nbsp;the&nbsp;provided&nbsp;identifier&nbsp;was&nbsp;incorrect'</span><span style="color: #0000FF">,</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/AuthenticationDatabaseTiein/phpdoc/ezcAuthenticationOpenidFilter.html#constSTATUS_CANCELLED'>ezcAuthenticationOpenidFilter::STATUS_CANCELLED</a>&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #335533">'The&nbsp;OpenID&nbsp;authentication&nbsp;was&nbsp;cancelled'</span><span style="color: #0000FF">,</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/AuthenticationDatabaseTiein/phpdoc/ezcAuthenticationOpenidFilter.html#constSTATUS_URL_INCORRECT'>ezcAuthenticationOpenidFilter::STATUS_URL_INCORRECT</a>&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #335533">'The&nbsp;identifier&nbsp;you&nbsp;provided&nbsp;is&nbsp;invalid'</span></li>
+<li><span style="color: #335533">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000FF">),</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #335533">'<a href='/zetacomponents/documentation/trunk/AuthenticationDatabaseTiein/phpdoc/ezcAuthenticationSession.html'>ezcAuthenticationSession</a>'&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;array(</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/AuthenticationDatabaseTiein/phpdoc/ezcAuthenticationSession.html#constSTATUS_EMPTY'>ezcAuthenticationSession::STATUS_EMPTY</a>&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #335533">''</span><span style="color: #0000FF">,</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/AuthenticationDatabaseTiein/phpdoc/ezcAuthenticationSession.html#constSTATUS_EXPIRED'>ezcAuthenticationSession::STATUS_EXPIRED</a>&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #335533">'Session&nbsp;expired'</span></li>
+<li><span style="color: #335533">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;foreach&nbsp;(&nbsp;</span><span style="color: #000000">$status&nbsp;</span><span style="color: #0000FF">as&nbsp;</span><span style="color: #000000">$line&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;list(&nbsp;</span><span style="color: #000000">$key</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">$value&nbsp;</span><span style="color: #0000FF">)&nbsp;=&nbsp;</span><span style="color: #000000">each</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$line&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #000000">$err</span><span style="color: #0000FF">[</span><span style="color: #000000">$key</span><span style="color: #0000FF">][</span><span style="color: #000000">$value</span><span style="color: #0000FF">]&nbsp;.&nbsp;</span><span style="color: #335533">"\n"</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;}</span></li>
+<li><span style="color: #000000">?&gt;</span></li>
+<li>Please&nbsp;login&nbsp;with&nbsp;your&nbsp;OpenID&nbsp;identifier&nbsp;(an&nbsp;URL,&nbsp;eg.&nbsp;www.example.com&nbsp;or&nbsp;http://www.example.com):</li>
+<li>&lt;form&nbsp;method="GET"&nbsp;action=""&gt;</li>
+<li>&lt;input&nbsp;type="hidden"&nbsp;name="action"&nbsp;value="login"&nbsp;/&gt;</li>
+<li>&lt;img&nbsp;src="http://openid.net/login-bg.gif"&nbsp;/&gt;&nbsp;&lt;input&nbsp;type="text"&nbsp;name="openid_identifier"&nbsp;/&gt;</li>
+<li>&lt;input&nbsp;type="submit"&nbsp;value="Login"&nbsp;/&gt;</li>
+<li>&lt;/form&gt;</li>
+<li></li>
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #0000FF">}</span></li>
+<li><span style="color: #0000FF">else</span></li>
+<li><span style="color: #0000FF">{</span></li>
+<li><span style="color: #000000">?&gt;</span></li>
+<li></li>
+<li>You&nbsp;are&nbsp;logged-in&nbsp;as&nbsp;&lt;b&gt;<span style="color: #000000">&lt;?php&nbsp;</span><span style="color: #0000FF">echo&nbsp;</span><span style="color: #000000">$url</span><span style="color: #0000FF">;&nbsp;</span><span style="color: #000000">?&gt;</span>&lt;/b&gt;&nbsp;|&nbsp;&lt;a&nbsp;href="?action=logout"&gt;Logout&lt;/a&gt;</li>
+<li></li>
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #0000FF">}</span></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><p>A database store is defined at line 25. This store will also hold the nonces which are used to prevent replay attacks.</p><p>The database store requires that certain tables are present in the database. To load the .dba definition for these tables into your database you must have the DatabaseSchema component installed. Use the following code to load the schema:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #0000FF">require_once&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #000000">$db&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/AuthenticationDatabaseTiein/phpdoc/ezcDbInstance.html#get'>ezcDbInstance::get</a></span><span style="color: #0000FF">();&nbsp;</span><span style="color: #007700">//&nbsp;replace&nbsp;if&nbsp;you&nbsp;get&nbsp;your&nbsp;database&nbsp;instance&nbsp;differently</span></li>
+<li></li>
+<li><span style="color: #000000">$schema&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/AuthenticationDatabaseTiein/phpdoc/ezcDbSchema.html#createFromFile'>ezcDbSchema::createFromFile</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'array'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'openid_db_store_schema.dba'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$schema</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">writeToDb</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$db&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><a name="securing-applications"></a><a name="id15"></a><h3>Securing applications</h3><p><a href="../Authentication/security.html">Securing applications</a> - A guide to improve the security of online applications. It is not exhaustive, but it provides solutions against common attacks.</p><!--Local Variables:
+mode: rst
+fill-column: 79
+End:
+vim: et syn=rst tw=79 nocin-->
+
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

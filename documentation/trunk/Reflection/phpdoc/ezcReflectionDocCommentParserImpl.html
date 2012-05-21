@@ -1,0 +1,578 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="PHP, apache, components, framework, quality" />
+	<meta name="author" content="dotxp" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Wed, 04 Aug 2010 13:07:55 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="ezcReflectionDocCommentParserImpl.html" />
+	<meta name="DC.creator" content="dotxp" />
+	<meta name="DC.date" content="Wed, 04 Aug 2010 13:07:55 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/Reflection/phpdoc/ezcReflectionDocCommentParserImpl.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li class="requested">
+	<a href="/zetacomponents/documentation/trunk/Reflection/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+
+</ul>
+
+		
+  <div class="phpdoc">
+    <h2>Apache Zeta Components Manual :: Docs For Class ezcReflectionDocCommentParserImpl</h2>
+
+                  <h3>Reflection::ezcReflectionDocCommentParserImpl</h3>
+    
+<a name="sec-description"></a>
+<h3>Class ezcReflectionDocCommentParserImpl</h3>
+
+<p>Provides structured data from PHP Documentor comments</p><div><p>Parser is implemented as state based parser using a state transisiton  table consisting of transition rules for empty and non-empty lines.</p></div>
+<p>Source for this file: <a href="http://fisheye6.atlassian.com/browse/zetacomponents/trunk/Reflection/src/doc_comment_parser.php?r=HEAD">/Reflection/src/doc_comment_parser.php</a></p>
+       
+  <h3>Implements interfaces:</h3>
+  <ul><li><a href="ezcReflectionDocCommentParser.html">ezcReflectionDocCommentParser</a></li>  </ul><table><tr><td>
+            <strong>Version:</strong>&#8192;&#8192;
+          </td>
+          <td>//autogen//</td>
+        </tr></table><a name="sec-const-summary"></a>
+  <h3>Constants</h3>
+  <table class="summary"><tr><td class="right">
+          <a name="const-ANNOTATIONS" id=""></a>
+          <code>
+            <a href="#const-ANNOTATIONS" title="details" class="const-name-summary">ANNOTATIONS</a>
+             =  2
+          </code>
+        </td>
+        <td>
+                            </td>
+      </tr><tr><td class="right">
+          <a name="const-BEGINNING" id=""></a>
+          <code>
+            <a href="#const-BEGINNING" title="details" class="const-name-summary">BEGINNING</a>
+             =  10
+          </code>
+        </td>
+        <td>
+                            </td>
+      </tr><tr><td class="right">
+          <a name="const-LONG_DESC" id=""></a>
+          <code>
+            <a href="#const-LONG_DESC" title="details" class="const-name-summary">LONG_DESC</a>
+             =  1
+          </code>
+        </td>
+        <td>
+                            </td>
+      </tr><tr><td class="right">
+          <a name="const-SHORT_DESC" id=""></a>
+          <code>
+            <a href="#const-SHORT_DESC" title="details" class="const-name-summary">SHORT_DESC</a>
+             =  0
+          </code>
+        </td>
+        <td>
+                            </td>
+      </tr></table><a name="sec-var-summary"></a>
+  <h3>Member Variables</h3>
+  <table class="summary"><tr><td class="right">
+            <em>protected</em>            <em>ezcReflectionAnnotation[]</em>          </td>
+          <td>
+            <code>
+              $annotations
+                          </code>
+                                  </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            <em>string</em>          </td>
+          <td>
+            <code>
+              $docComment
+                          </code>
+                                  </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            <em><a href="ezcReflectionAnnotation.html">ezcReflectionAnnotation</a></em>          </td>
+          <td>
+            <code>
+              $lastAnnotation
+               = <span class="var-default"> null</span>            </code>
+                                  </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            <em>string</em>          </td>
+          <td>
+            <code>
+              $longDesc
+                          </code>
+                                  </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            <em>string</em>          </td>
+          <td>
+            <code>
+              $shortDesc
+                          </code>
+                                  </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            <em>int</em>          </td>
+          <td>
+            <code>
+              $state
+               = <span class="var-default"> self::BEGINNING</span>            </code>
+                                  </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            <em>array(int=&gt;int)</em>          </td>
+          <td>
+            <code>
+              $stateTable
+               = <span class="var-default">array(<br>        true =&gt; array ( // empty lines<br>            self::BEGINNING   =&gt; self::BEGINNING,<br>            self::SHORT_DESC  =&gt; self::LONG_DESC,<br>            self::LONG_DESC   =&gt; self::LONG_DESC,<br>            self::ANNOTATIONS =&gt; self::ANNOTATIONS<br>        ),false=&gt;array(// non empty lines<br>self::BEGINNING=&gt;self::SHORT_DESC,self::SHORT_DESC=&gt;self::SHORT_DESC,self::LONG_DESC=&gt;self::LONG_DESC,self::ANNOTATIONS=&gt;self::ANNOTATIONS))</span>            </code>
+                                  </td>
+        </tr></table><a name="sec-method-summary"></a>
+  <h3>Method Summary</h3>
+  <table class="summary"><tr><td class="right">
+            <em>public</em>                        <em><a href="ezcReflectionDocCommentParserImpl.html">ezcReflectionDocCommentParserImpl</a></em>          </td>
+          <td>
+            <code>
+              <a href="#__construct"><b>__construct</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Constructs an instance of ezcReflectionDocCommentParserImpl</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#extractContentFromDocCommentLine"><b>extractContentFromDocCommentLine</b></a>(
+                                                                                    $line
+                                                 )
+            </code>
+                      </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>ezcReflectionAnnotation[]</em>          </td>
+          <td>
+            <code>
+              <a href="#getAnnotations"><b>getAnnotations</b></a>(
+               )
+            </code>
+                      </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>ezcReflectionAnnotation[]</em>          </td>
+          <td>
+            <code>
+              <a href="#getAnnotationsByName"><b>getAnnotationsByName</b></a>(
+                                                                                    $name
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns an array of annotations with a given name</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#getLongDescription"><b>getLongDescription</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns the long description from the source code documentation</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>ezcReflectionAnnotationParam[]</em>          </td>
+          <td>
+            <code>
+              <a href="#getParamAnnotations"><b>getParamAnnotations</b></a>(
+               )
+            </code>
+                      </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>ezcReflectionAnnotationReturn[]</em>          </td>
+          <td>
+            <code>
+              <a href="#getReturnAnnotations"><b>getReturnAnnotations</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Return an array of return annotations</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#getShortDescription"><b>getShortDescription</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns the short description from the source code documentation</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>ezcReflectionAnnotationVar[]</em>          </td>
+          <td>
+            <code>
+              <a href="#getVarAnnotations"><b>getVarAnnotations</b></a>(
+               )
+            </code>
+                      </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>boolean</em>          </td>
+          <td>
+            <code>
+              <a href="#hasAnnotation"><b>hasAnnotation</b></a>(
+                                                                                    $with
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Checks whether a annotation is used</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#parse"><b>parse</b></a>(
+                                                                                    $docComment
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Initialize parsing of the given documentation fragment.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#parseAnnotation"><b>parseAnnotation</b></a>(
+                                                                                    $line
+                                                 )
+            </code>
+                      </td>
+        </tr></table><a name="sec-methods"></a>
+  <h3>Methods</h3>
+  <a name="method_detail"></a>
+                        
+      <a name="method__construct" id="__construct"><!-- --></a>
+
+    <h4>__construct</h4>
+
+    <div class="method-signature">
+      <a href="ezcReflectionDocCommentParserImpl.html">ezcReflectionDocCommentParserImpl</a>
+      __construct(
+      )
+    </div>
+
+    <p>Constructs an instance of ezcReflectionDocCommentParserImpl</p>
+    
+        
+
+    
+    
+    
+        <a name="methodextractContentFromDocCommentLine" id="extractContentFromDocCommentLine"><!-- --></a>
+
+    <h4>extractContentFromDocCommentLine</h4>
+
+    <div class="method-signature">
+      string
+      extractContentFromDocCommentLine(
+                                  string
+          $line
+                        )
+    </div>
+
+    
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$line</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodgetAnnotations" id="getAnnotations"><!-- --></a>
+
+    <h4>getAnnotations</h4>
+
+    <div class="method-signature">
+      ezcReflectionAnnotation[]
+      getAnnotations(
+      )
+    </div>
+
+    
+    
+        
+
+    
+          <h5>Implementation of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcReflectionDocCommentParser.html#methodgetAnnotations">ezcReflectionDocCommentParser::getAnnotations()</a></code></td>
+              <td>
+                                  Retrieve all found annotations
+                              </td>
+            </tr></tbody></table><a name="methodgetAnnotationsByName" id="getAnnotationsByName"><!-- --></a>
+
+    <h4>getAnnotationsByName</h4>
+
+    <div class="method-signature">
+      ezcReflectionAnnotation[]
+      getAnnotationsByName(
+                                  string
+          $name
+                        )
+    </div>
+
+    <p>Returns an array of annotations with a given name</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$name</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Implementation of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcReflectionDocCommentParser.html#methodgetAnnotationsByName">ezcReflectionDocCommentParser::getAnnotationsByName()</a></code></td>
+              <td>
+                                  Return all found annotations with the given name.
+                              </td>
+            </tr></tbody></table><a name="methodgetLongDescription" id="getLongDescription"><!-- --></a>
+
+    <h4>getLongDescription</h4>
+
+    <div class="method-signature">
+      string
+      getLongDescription(
+      )
+    </div>
+
+    <p>Returns the long description from the source code documentation</p>
+    
+        
+
+    
+          <h5>Implementation of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcReflectionDocCommentParser.html#methodgetLongDescription">ezcReflectionDocCommentParser::getLongDescription()</a></code></td>
+              <td>
+                                  Returns long description
+                              </td>
+            </tr></tbody></table><a name="methodgetParamAnnotations" id="getParamAnnotations"><!-- --></a>
+
+    <h4>getParamAnnotations</h4>
+
+    <div class="method-signature">
+      ezcReflectionAnnotationParam[]
+      getParamAnnotations(
+      )
+    </div>
+
+    
+    
+        
+
+    
+          <h5>Implementation of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcReflectionDocCommentParser.html#methodgetParamAnnotations">ezcReflectionDocCommentParser::getParamAnnotations()</a></code></td>
+              <td>
+                                  Retrieve all param annotations
+                              </td>
+            </tr></tbody></table><a name="methodgetReturnAnnotations" id="getReturnAnnotations"><!-- --></a>
+
+    <h4>getReturnAnnotations</h4>
+
+    <div class="method-signature">
+      ezcReflectionAnnotationReturn[]
+      getReturnAnnotations(
+      )
+    </div>
+
+    <p>Return an array of return annotations</p>
+    
+        
+
+    
+          <h5>Implementation of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcReflectionDocCommentParser.html#methodgetReturnAnnotations">ezcReflectionDocCommentParser::getReturnAnnotations()</a></code></td>
+              <td>
+                                  Retrieve all return annotations
+                              </td>
+            </tr></tbody></table><a name="methodgetShortDescription" id="getShortDescription"><!-- --></a>
+
+    <h4>getShortDescription</h4>
+
+    <div class="method-signature">
+      string
+      getShortDescription(
+      )
+    </div>
+
+    <p>Returns the short description from the source code documentation</p>
+    
+        
+
+    
+          <h5>Implementation of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcReflectionDocCommentParser.html#methodgetShortDescription">ezcReflectionDocCommentParser::getShortDescription()</a></code></td>
+              <td>
+                                  Returns short description
+                              </td>
+            </tr></tbody></table><a name="methodgetVarAnnotations" id="getVarAnnotations"><!-- --></a>
+
+    <h4>getVarAnnotations</h4>
+
+    <div class="method-signature">
+      ezcReflectionAnnotationVar[]
+      getVarAnnotations(
+      )
+    </div>
+
+    
+    
+        
+
+    
+          <h5>Implementation of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcReflectionDocCommentParser.html#methodgetVarAnnotations">ezcReflectionDocCommentParser::getVarAnnotations()</a></code></td>
+              <td>
+                                  Retrieve all var annotations
+                              </td>
+            </tr></tbody></table><a name="methodhasAnnotation" id="hasAnnotation"><!-- --></a>
+
+    <h4>hasAnnotation</h4>
+
+    <div class="method-signature">
+      boolean
+      hasAnnotation(
+                                  string
+          $with
+                        )
+    </div>
+
+    <p>Checks whether a annotation is used</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$with</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  name of used annotation
+                              </td>
+            </tr></tbody></table><h5>Implementation of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcReflectionDocCommentParser.html#methodhasAnnotation">ezcReflectionDocCommentParser::hasAnnotation()</a></code></td>
+              <td>
+                                  Checks whether an annotation was used in the parsed documentation fragment
+                              </td>
+            </tr></tbody></table><a name="methodparse" id="parse"><!-- --></a>
+
+    <h4>parse</h4>
+
+    <div class="method-signature">
+      void
+      parse(
+                                  string
+          $docComment
+                        )
+    </div>
+
+    <p>Initialize parsing of the given documentation fragment.</p><div><p>Results can be retrieved after completion by the getters provided.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$docComment</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Implementation of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcReflectionDocCommentParser.html#methodparse">ezcReflectionDocCommentParser::parse()</a></code></td>
+              <td>
+                                  Initialize parsing of the given documentation fragment.
+                              </td>
+            </tr></tbody></table><a name="methodparseAnnotation" id="parseAnnotation"><!-- --></a>
+
+    <h4>parseAnnotation</h4>
+
+    <div class="method-signature">
+      void
+      parseAnnotation(
+                                  string
+          $line
+                        )
+    </div>
+
+    
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$line</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><div class="credit">
+      Documentation generated by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+    </div>
+  </div>
+  
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,153 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="PHP, apache, components, framework, quality" />
+	<meta name="author" content="dotxp" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Wed, 04 Aug 2010 13:07:09 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="Tutorial" />
+	<meta name="DC.creator" content="dotxp" />
+	<meta name="DC.date" content="Wed, 04 Aug 2010 13:07:09 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/ImageAnalysis/tutorial.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li class="requested">
+	<a href="/zetacomponents/documentation/trunk/ImageAnalysis/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/ImageAnalysis/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+
+</ul>
+
+		<h2>eZ Components - ImageAnalysis</h2><div class="toc"><h3>Table of Contents</h3><ul><li><p><a href="#introduction">Introduction</a></p></li><li><p><a href="#class-overview">Class overview</a></p></li><li><p><a href="#usage">Usage</a></p><ul><li><p><a href="#mime-type-determination">MIME type determination</a></p></li><li><p><a href="#extracting-further-data">Extracting further data</a></p></li><li><p><a href="#configuring-handlers">Configuring handlers</a></p></li></ul></li><li><p><a href="#more-information">More information</a></p></li></ul></div><a name="introduction"></a><a name="id1"></a><h3>Introduction</h3><p>The ImageAnalysis component allows you to analyze certain image attributes.</p><a name="class-overview"></a><a name="id2"></a><h3>Class overview</h3><p>ezcImageAnalyzer is the main class for this component. It is responsible for handling the analysis of image files, as well as caching the results.</p><a name="usage"></a><a name="id3"></a><h3>Usage</h3><a name="mime-type-determination"></a><a name="id4"></a><h4>MIME type determination</h4><p>The following example simply detects the MIME type of an image and prints it:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #0000FF">require_once&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000">$tutorialPath&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">dirname</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">__FILE__&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #000000">$image&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/ImageAnalysis/phpdoc/ezcImageAnalyzer.html'>ezcImageAnalyzer</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">"</span><span style="color: #0000FF">{</span><span style="color: #000000">$tutorialPath</span><span style="color: #0000FF">}</span><span style="color: #335533">/img/imageanalysis_example_01.jpg"&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #0000FF">echo&nbsp;</span><span style="color: #335533">"Image&nbsp;has&nbsp;MIME&nbsp;type&nbsp;&lt;</span><span style="color: #0000FF">{</span><span style="color: #000000">$image</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">mime</span><span style="color: #0000FF">}</span><span style="color: #335533">&gt;.\n"</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><p>On line 5, a new <a href='/zetacomponents/documentation/trunk/ImageAnalysis/phpdoc/ezcImageAnalyzer.html'>ezcImageAnalyzer</a> object is instantiated. This must be done for each image to be analyzed. In line 7, the MIME type is determined. Here is an example image including the output:</p><div class="&#10;&#9;&#9;&#9;&#9;&#9;image &#10;&#9;&#9;&#9;&#9;&#9;&#10;&#9;&#9;&#9;&#9;&#9;&#9;&#9;center&#10;&#9;&#9;&#9;&#9;&#9;&#9; "><img alt="Simple JPEG image." title="Simple JPEG image." src="img/imageanalysis_example_01.jpg"/><span class="image_title">Simple JPEG image.</span></div><code class="block">Image has MIME type &lt;image/jpeg&gt;</code><a name="extracting-further-data"></a><a name="id5"></a><h4>Extracting further data</h4><p>Aside from the MIME type, ImageAnalysis can extract other image information. The following example demonstrates this:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #0000FF">require_once&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000">$tutorialPath&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">dirname</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">__FILE__&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #000000">$image&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/ImageAnalysis/phpdoc/ezcImageAnalyzer.html'>ezcImageAnalyzer</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$tutorialPath</span><span style="color: #0000FF">.</span><span style="color: #335533">'/img/imageanalysis_example_02.jpg'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #0000FF">echo&nbsp;</span><span style="color: #335533">"Image&nbsp;data:\n"</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">echo&nbsp;</span><span style="color: #335533">"MIME&nbsp;type:\t</span><span style="color: #0000FF">{</span><span style="color: #000000">$image</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">mime</span><span style="color: #0000FF">}</span><span style="color: #335533">\n"</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">echo&nbsp;</span><span style="color: #335533">"Width:\t\t</span><span style="color: #0000FF">{</span><span style="color: #000000">$image</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">data</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">width</span><span style="color: #0000FF">}</span><span style="color: #335533">&nbsp;px\n"</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">echo&nbsp;</span><span style="color: #335533">"Height:\t\t</span><span style="color: #0000FF">{</span><span style="color: #000000">$image</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">data</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">height</span><span style="color: #0000FF">}</span><span style="color: #335533">&nbsp;px\n"</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">echo&nbsp;</span><span style="color: #335533">"Filesize:\t</span><span style="color: #0000FF">{</span><span style="color: #000000">$image</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">data</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">size</span><span style="color: #0000FF">}</span><span style="color: #335533">&nbsp;b\n"</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #000000">$comment&nbsp;</span><span style="color: #0000FF">=&nbsp;(&nbsp;</span><span style="color: #000000">$image</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">data</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">comment&nbsp;</span><span style="color: #0000FF">==&nbsp;</span><span style="color: #335533">''&nbsp;</span><span style="color: #0000FF">)&nbsp;?&nbsp;</span><span style="color: #335533">'n/a'&nbsp;</span><span style="color: #0000FF">:&nbsp;</span><span style="color: #000000">$image</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">data</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">comment</span><span style="color: #0000FF">;&nbsp;</span></li>
+<li><span style="color: #0000FF">echo&nbsp;</span><span style="color: #335533">"Comment:\t</span><span style="color: #0000FF">{</span><span style="color: #000000">$comment</span><span style="color: #0000FF">}</span><span style="color: #335533">\n"</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><p>The example is basically the same as the first one, except that more data is requested from <a href='/zetacomponents/documentation/trunk/ImageAnalysis/phpdoc/ezcImageAnalyzer.html'>ezcImageAnalyzer</a> (lines 8 to 11). The analysis of additional data begins on line 9. After that, the data is cached in the <a href='/zetacomponents/documentation/trunk/ImageAnalysis/phpdoc/ezcImageAnalyzer.html'>ezcImageAnalyzer</a> object.</p><p>The width, height and size values are available for every analyzable image. A comment is not always available. If an image property is not available, the output will be some sensible default value (such as n/a). (Note that the availability of some data also depends on the availability of PHP's Exif extension.)</p><p>The example image and printed output is shown below:</p><div class="&#10;&#9;&#9;&#9;&#9;&#9;image &#10;&#9;&#9;&#9;&#9;&#9;&#10;&#9;&#9;&#9;&#9;&#9;&#9;&#9;center&#10;&#9;&#9;&#9;&#9;&#9;&#9; "><img alt="" title="" src="img/imageanalysis_example_02.jpg"/><span class="image_title"/></div><code class="block">Image data:
+MIME type:      image/jpeg
+Width:          380 px
+Height:         285 px
+Filesize:       25984 b
+Comment:        n/a</code><a name="configuring-handlers"></a><a name="id6"></a><h4>Configuring handlers</h4><p>Like <a href='/zetacomponents/documentation/trunk/ImageAnalysis/phpdoc/ezcImageConverter.html'>ezcImageConverter</a>, <a href='/zetacomponents/documentation/trunk/ImageAnalysis/phpdoc/ezcImageAnalyzer.html'>ezcImageAnalyzer</a> is based on handler classes, which allow it to utilize different back-ends for image analysis. The currently implemented handlers are:</p><dl><dt>ezcImageAnalyzerPhpHandler</dt><dd>This uses PHP's getimagesize() function (which does not require the GD extension!) and can optionally use PHP's Exif extension.</dd><dt>ezcImageAnalyzerImagemagickHandler</dt><dd>Here <a href="http://www.imagemagick.org/script/index.php">ImageMagick</a>'s "identify" program is used.</dd></dl><p>Both handlers are activated by default and are capable of determining if their preconditions are fulfilled.</p><p>You might need to configure a handler, if for example the path to the <a href="http://www.imagemagick.org/script/index.php">ImageMagick</a> "identify" binary is not available in the $PATH environment variable. The following example shows how this is possible and what else can be configured for the handlers:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #0000FF">require_once&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000">$tutorialPath&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">dirname</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">__FILE__&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/ImageAnalysis/phpdoc/ezcImageAnalyzer.html#setHandlerClasses'>ezcImageAnalyzer::setHandlerClasses</a></span><span style="color: #0000FF">(</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;array(</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #335533">'<a href='/zetacomponents/documentation/trunk/ImageAnalysis/phpdoc/ezcImageAnalyzerImagemagickHandler.html'>ezcImageAnalyzerImagemagickHandler</a>'&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;array(&nbsp;</span><span style="color: #335533">'binary'&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #335533">'/usr/bin/identify'&nbsp;</span><span style="color: #0000FF">),</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;)</span></li>
+<li><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #000000">$image&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/ImageAnalysis/phpdoc/ezcImageAnalyzer.html'>ezcImageAnalyzer</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$tutorialPath</span><span style="color: #0000FF">.</span><span style="color: #335533">'/img/imageanalysis_example_03.jpg'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #0000FF">echo&nbsp;</span><span style="color: #335533">"Image&nbsp;data:\n"</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">echo&nbsp;</span><span style="color: #335533">"MIME&nbsp;type:\t</span><span style="color: #0000FF">{</span><span style="color: #000000">$image</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">mime</span><span style="color: #0000FF">}</span><span style="color: #335533">\n"</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">echo&nbsp;</span><span style="color: #335533">"Width:\t\t</span><span style="color: #0000FF">{</span><span style="color: #000000">$image</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">data</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">width</span><span style="color: #0000FF">}</span><span style="color: #335533">&nbsp;px\n"</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">echo&nbsp;</span><span style="color: #335533">"Height:\t\t</span><span style="color: #0000FF">{</span><span style="color: #000000">$image</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">data</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">height</span><span style="color: #0000FF">}</span><span style="color: #335533">&nbsp;px\n"</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">echo&nbsp;</span><span style="color: #335533">"Filesize:\t</span><span style="color: #0000FF">{</span><span style="color: #000000">$image</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">data</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">size</span><span style="color: #0000FF">}</span><span style="color: #335533">&nbsp;b\n"</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #000000">$comment&nbsp;</span><span style="color: #0000FF">=&nbsp;(&nbsp;</span><span style="color: #000000">$image</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">data</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">comment&nbsp;</span><span style="color: #0000FF">==&nbsp;</span><span style="color: #335533">''&nbsp;</span><span style="color: #0000FF">)&nbsp;?&nbsp;</span><span style="color: #335533">'n/a'&nbsp;</span><span style="color: #0000FF">:&nbsp;</span><span style="color: #000000">$image</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">data</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">comment</span><span style="color: #0000FF">;&nbsp;</span></li>
+<li><span style="color: #0000FF">echo&nbsp;</span><span style="color: #335533">"Comment:\t</span><span style="color: #0000FF">{</span><span style="color: #000000">$comment</span><span style="color: #0000FF">}</span><span style="color: #335533">\n"</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><p>Basically, the code is the same as in example 2, except that <a href='/zetacomponents/documentation/trunk/ImageAnalysis/phpdoc/ezcImageAnalyzer.html'>ezcImageAnalyzer</a> is being configured to only use its ImageMagick handler and not the PHP handler. In addition, the location of the "identify" binary is explicitly set. See the results below:</p><div class="&#10;&#9;&#9;&#9;&#9;&#9;image &#10;&#9;&#9;&#9;&#9;&#9;&#10;&#9;&#9;&#9;&#9;&#9;&#9;&#9;center&#10;&#9;&#9;&#9;&#9;&#9;&#9; "><img alt="" title="" src="img/imageanalysis_example_03.jpg"/><span class="image_title"/></div><code class="block">Image data:
+MIME type:      image/jpeg
+Width:          320 px
+Height:         240 px
+Filesize:       26365 b
+Comment:        San Francisco airport, October 2005.</code><a name="more-information"></a><a name="id7"></a><h3>More information</h3><p>For more information, see the <a href='/zetacomponents/documentation/trunk/ImageAnalysis/phpdoc/ezcImageAnalyzer.html'>ezcImageAnalyzer</a> API documentation.</p><!--Local Variables:
+mode: rst
+fill-column: 79
+End:
+vim: et syn=rst tw=79-->
+
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,339 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="" />
+	<meta name="author" content="jerome" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Sun, 10 Jul 2011 11:11:01 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="ezcMailDeliveryStatus.html" />
+	<meta name="DC.creator" content="jerome" />
+	<meta name="DC.date" content="Sun, 10 Jul 2011 11:11:01 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailDeliveryStatus.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/Mail/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/trunk/Mail/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Mail/mail-listing-example.html" title="Mail-listing-example ">Mail-listing-example </a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Mail/display-example.html" title="Display-example ">Display-example </a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Mail/rfcs.html" title="Rfcs ">Rfcs </a>
+	</li>
+
+</ul>
+
+		
+  <div class="phpdoc">
+    <h2>Apache Zeta Components Manual :: Docs For Class ezcMailDeliveryStatus</h2>
+
+                  <h3>Mail::ezcMailDeliveryStatus</h3>
+    
+<a name="sec-description"></a>
+<h3>Class ezcMailDeliveryStatus</h3>
+
+<p>Mail part used for sending delivery status message.</p><div><p>Multipart/Report: RFC 3462 <a href="http://tools.ietf.org/html/rfc3462">http://tools.ietf.org/html/rfc3462</a>  Delivery Status Notifications: RFC 3464 <a href="http://tools.ietf.org/html/rfc3464">http://tools.ietf.org/html/rfc3464</a></p><p>This mail part consists of only headers. The headers are organized into section.  There is a per-message section ($message), and several per-recipient sections ($recipients).</p><p>To access the headers of this part, look at the following example:  </p><ol><li><div class="src-line">&#8192;<span class="src-comm">//&#8192;$delivery&#8192;is&#8192;an&#8192;object&#8192;of&#8192;type&#8192;ezcMailDeliveryStatus</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$reportingMta&#8192;</span>=&#8192;<span class="src-var">$delivery</span><span class="src-sym">-&gt;</span><span class="src-id">message</span><span class="src-sym">[</span><span class="src-str">"Reporting-MTA"</span><span class="src-sym">]</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$date&#8192;</span>=&#8192;<span class="src-var">$delivery</span><span class="src-sym">-&gt;</span><span class="src-id">message</span><span class="src-sym">[</span><span class="src-str">"Arrival-Date"</span><span class="src-sym">]</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;get&#8192;the&#8192;status&#8192;received&#8192;from&#8192;the&#8192;first&#8192;recipient</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$status1&#8192;</span>=&#8192;<span class="src-var">$delivery</span><span class="src-sym">-&gt;</span><span class="src-id">recipients</span><span class="src-sym">[</span><span class="src-num">0</span><span class="src-sym">]</span><span class="src-sym">[</span><span class="src-str">"Status"</span><span class="src-sym">]</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;get&#8192;the&#8192;status&#8192;received&#8192;from&#8192;the&#8192;second&#8192;recipient</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$status2&#8192;</span>=&#8192;<span class="src-var">$delivery</span><span class="src-sym">-&gt;</span><span class="src-id">recipients</span><span class="src-sym">[</span><span class="src-num">1</span><span class="src-sym">]</span><span class="src-sym">[</span><span class="src-str">"Status"</span><span class="src-sym">]</span><span class="src-sym">;</span></div></li>
+</ol></div>
+<p>Source for this file: <a href="http://fisheye6.atlassian.com/browse/zetacomponents/trunk/Mail/src/parts/delivery_status.php?r=HEAD">/Mail/src/parts/delivery_status.php</a></p>
+       
+
+
+<pre><a href="ezcMailPart.html">ezcMailPart</a>
+   |
+   --ezcMailDeliveryStatus</pre>
+
+
+  <table><tr><td>
+            <strong>Version:</strong>&#8192;&#8192;
+          </td>
+          <td>//autogen//</td>
+        </tr></table><a name="sec-prop-summary"></a>
+  <h3>Properties</h3>
+  <table class="summary"><tr><td class="right">
+          <a name="prop%24message" id="$message"></a>
+          <a name="prop-%24message" id="$message"></a>
+          <em>ezcMailHeadersHolder</em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24message" title="details" class="var-name-summary">$message</a>
+                      </code>
+          <br><div style="margin-left: 20px">Holds the per-message headers of the delivery-status message.</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24recipients" id="$recipients"></a>
+          <a name="prop-%24recipients" id="$recipients"></a>
+          <em>ArrayObject(ezcMailHeadersHolder)</em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24recipients" title="details" class="var-name-summary">$recipients</a>
+                      </code>
+          <br><div style="margin-left: 20px">Holds the recipients of the delivery-status message.</div>        </td>
+      </tr></table><h3>Inherited Member Variables</h3>
+  <table class="summary"><thead><tr><th colspan="2">
+            From <span class="classname"><a href="ezcMailPart.html">ezcMailPart</a></span>         
+          </th>
+        </tr></thead><tbody><tr><td class="right">
+              <em>protected</em>                          </td>
+            <td>
+              <code><a href="ezcMailPart.html#var%24properties">ezcMailPart::$properties</a></code>
+              
+            </td>
+          </tr></tbody></table><a name="sec-method-summary"></a>
+  <h3>Method Summary</h3>
+  <table class="summary"><tr><td class="right">
+            <em>public</em>                        <em>ezcMailDeliveryStatus</em>          </td>
+          <td>
+            <code>
+              <a href="#__construct"><b>__construct</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Constructs a new DeliveryStatus part.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>int</em>          </td>
+          <td>
+            <code>
+              <a href="#createRecipient"><b>createRecipient</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Adds a new recipient to this delivery-status message and returns the index  of the last added recipient.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#generateBody"><b>generateBody</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns the generated text body of this part as a string.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#generateHeaders"><b>generateHeaders</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns the headers set for this part as a RFC822 compliant string.</div>          </td>
+        </tr></table><h3>Inherited Methods</h3>
+  <table class="summary"><thead><tr><th colspan="2">
+            From <span class="classname"><a href="ezcMailPart.html">ezcMailPart</a></span>
+          </th>
+        </tr></thead><tbody><tr><td class="right">
+              <em>public</em>                                          <em>ezcMailPart</em>            </td>
+            <td>
+              <code><b><a href="ezcMailPart.html#method__construct">ezcMailPart::__construct()</a></b></code>
+              <br><div style="margin-left: 20px">Constructs a new mail part.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b><a href="ezcMailPart.html#methodappendExcludeHeaders">ezcMailPart::appendExcludeHeaders()</a></b></code>
+              <br><div style="margin-left: 20px">The array $headers will be excluded when the headers are generated.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>string</em>            </td>
+            <td>
+              <code><b><a href="ezcMailPart.html#methodgenerate">ezcMailPart::generate()</a></b></code>
+              <br><div style="margin-left: 20px">Returns the complete mail part including both the header and the body  as a string.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>              abstract                            <em>string</em>            </td>
+            <td>
+              <code><b><a href="ezcMailPart.html#methodgenerateBody">ezcMailPart::generateBody()</a></b></code>
+              <br><div style="margin-left: 20px">Returns the body of this part as a string.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>string</em>            </td>
+            <td>
+              <code><b><a href="ezcMailPart.html#methodgenerateHeaders">ezcMailPart::generateHeaders()</a></b></code>
+              <br><div style="margin-left: 20px">Returns the headers set for this part as a RFC 822 string.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>mixed</em>            </td>
+            <td>
+              <code><b><a href="ezcMailPart.html#methodgetHeader">ezcMailPart::getHeader()</a></b></code>
+              <br><div style="margin-left: 20px">Returns the RAW value of the header $name.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>protected</em>                                          <em>string</em>            </td>
+            <td>
+              <code><b><a href="ezcMailPart.html#methodgetHeaderCharset">ezcMailPart::getHeaderCharset()</a></b></code>
+              <br><div style="margin-left: 20px">Returns the charset registered for the header $name.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b><a href="ezcMailPart.html#methodsetHeader">ezcMailPart::setHeader()</a></b></code>
+              <br><div style="margin-left: 20px">Sets the header $name to the value $value and its charset to $charset.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>protected</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b><a href="ezcMailPart.html#methodsetHeaderCharset">ezcMailPart::setHeaderCharset()</a></b></code>
+              <br><div style="margin-left: 20px">Sets the charset of the header $name to $value.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b><a href="ezcMailPart.html#methodsetHeaders">ezcMailPart::setHeaders()</a></b></code>
+              <br><div style="margin-left: 20px">Adds the headers $headers.</div>                          </td>
+          </tr></tbody></table><a name="sec-methods"></a>
+  <h3>Methods</h3>
+  <a name="method_detail"></a>
+        
+      <a name="method__construct" id="__construct"><!-- --></a>
+
+    <h4>__construct</h4>
+
+    <div class="method-signature">
+      ezcMailDeliveryStatus
+      __construct(
+      )
+    </div>
+
+    <p>Constructs a new DeliveryStatus part.</p>
+    
+        
+
+          <h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcMailPart.html#method__construct">ezcMailPart::__construct()</a></code></td>
+            <td>
+                              Constructs a new mail part.
+                          </td>
+          </tr></tbody></table><a name="methodcreateRecipient" id="createRecipient"><!-- --></a>
+
+    <h4>createRecipient</h4>
+
+    <div class="method-signature">
+      int
+      createRecipient(
+      )
+    </div>
+
+    <p>Adds a new recipient to this delivery-status message and returns the index  of the last added recipient.</p>
+    
+        
+
+    
+    
+    
+        <a name="methodgenerateBody" id="generateBody"><!-- --></a>
+
+    <h4>generateBody</h4>
+
+    <div class="method-signature">
+      string
+      generateBody(
+      )
+    </div>
+
+    <p>Returns the generated text body of this part as a string.</p>
+    
+        
+
+          <h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcMailPart.html#methodgenerateBody">ezcMailPart::generateBody()</a></code></td>
+            <td>
+                              Returns the body of this part as a string.
+                          </td>
+          </tr></tbody></table><a name="methodgenerateHeaders" id="generateHeaders"><!-- --></a>
+
+    <h4>generateHeaders</h4>
+
+    <div class="method-signature">
+      string
+      generateHeaders(
+      )
+    </div>
+
+    <p>Returns the headers set for this part as a RFC822 compliant string.</p><div><p>This method does not add the required two lines of space  to separate the headers from the body of the part.</p></div>
+    
+        
+
+          <h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcMailPart.html#methodgenerateHeaders">ezcMailPart::generateHeaders()</a></code></td>
+            <td>
+                              Returns the headers set for this part as a RFC 822 string.
+                          </td>
+          </tr></tbody></table><div class="credit">
+      Documentation generated by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+    </div>
+  </div>
+  
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

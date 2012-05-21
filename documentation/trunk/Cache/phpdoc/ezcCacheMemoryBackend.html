@@ -1,0 +1,265 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="" />
+	<meta name="author" content="jerome" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Sun, 10 Jul 2011 11:10:50 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="ezcCacheMemoryBackend.html" />
+	<meta name="DC.creator" content="jerome" />
+	<meta name="DC.date" content="Sun, 10 Jul 2011 11:10:50 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/Cache/phpdoc/ezcCacheMemoryBackend.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/Cache/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/trunk/Cache/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+
+</ul>
+
+		
+  <div class="phpdoc">
+    <h2>Apache Zeta Components Manual :: Docs For Class ezcCacheMemoryBackend</h2>
+
+                  <h3>Cache::ezcCacheMemoryBackend</h3>
+    
+<a name="sec-description"></a>
+<h3>Class ezcCacheMemoryBackend</h3>
+
+<p>An abstract class defining the required methods for memory handlers.</p><div><p>Implemented in: </p><ul><li><a href="ezcCacheApcBackend.html">ezcCacheApcBackend</a></li><li><a href="ezcCacheMemcacheBackend.html">ezcCacheMemcacheBackend</a></li></ul></div>
+<p>Source for this file: <a href="http://fisheye6.atlassian.com/browse/zetacomponents/trunk/Cache/src/backends/memory_backend.php?r=HEAD">/Cache/src/backends/memory_backend.php</a></p>
+       
+
+
+
+
+  <table><tr><td>
+            <strong>Version:</strong>&#8192;&#8192;
+          </td>
+          <td>//autogentag//</td>
+        </tr></table><a name="sec-descendants"></a>
+  <h3>Descendants</h3>
+  <table class="detail"><thead><tr><th>Child Class</th>
+        <th>Description</th>
+      </tr></thead><tbody><tr><td><a href="ezcCacheMemcacheBackend.html">ezcCacheMemcacheBackend</a></td>          <td>
+                          This backend stores data in a Memcache.
+                      </td>
+        </tr><tr><td><a href="ezcCacheApcBackend.html">ezcCacheApcBackend</a></td>          <td>
+                          This backend stores data in an APC cache.
+                      </td>
+        </tr></tbody></table><a name="sec-method-summary"></a>
+  <h3>Method Summary</h3>
+  <table class="summary"><tr><td class="right">
+            <em>public</em>            abstract            <em>bool</em>          </td>
+          <td>
+            <code>
+              <a href="#delete"><b>delete</b></a>(
+                                                                                    $key
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Deletes the data associated with key $key.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>            abstract            <em>mixed</em>          </td>
+          <td>
+            <code>
+              <a href="#fetch"><b>fetch</b></a>(
+                                                                                    $key
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Fetches the data associated with key $key.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>            abstract            <em>bool</em>          </td>
+          <td>
+            <code>
+              <a href="#store"><b>store</b></a>(
+                                                                                    $key
+                                                    ,                                     $var
+                                                    ,                   [                  $ttl
+                   = 0]                               )
+            </code>
+            <br><div style="margin-left: 20px">Stores the data $var under the key $key.</div>          </td>
+        </tr></table><a name="sec-methods"></a>
+  <h3>Methods</h3>
+  <a name="method_detail"></a>
+      
+      <a name="methoddelete" id="delete"><!-- --></a>
+
+    <h4>delete</h4>
+
+    <div class="method-signature">
+      bool
+      delete(
+                                  string
+          $key
+                        )
+    </div>
+
+    <p>Deletes the data associated with key $key.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$key</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefined in descendants as:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcCacheMemcacheBackend.html#methoddelete">ezcCacheMemcacheBackend::delete()</a></code></td>
+              <td>
+                Deletes the data from the cache associated with key $key. Returns true or  false depending on the success of the operation.&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcCacheApcBackend.html#methoddelete">ezcCacheApcBackend::delete()</a></code></td>
+              <td>
+                Deletes the data associated with key $key. Returns true or false depending  on the success of the operation.&#8192;
+              </td>
+            </tr></tbody></table><a name="methodfetch" id="fetch"><!-- --></a>
+
+    <h4>fetch</h4>
+
+    <div class="method-signature">
+      mixed
+      fetch(
+                                  string
+          $key
+                        )
+    </div>
+
+    <p>Fetches the data associated with key $key.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$key</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefined in descendants as:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcCacheMemcacheBackend.html#methodfetch">ezcCacheMemcacheBackend::fetch()</a></code></td>
+              <td>
+                Returns the data from the cache associated with key $key.&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcCacheApcBackend.html#methodfetch">ezcCacheApcBackend::fetch()</a></code></td>
+              <td>
+                Fetches the data associated with key $key.&#8192;
+              </td>
+            </tr></tbody></table><a name="methodstore" id="store"><!-- --></a>
+
+    <h4>store</h4>
+
+    <div class="method-signature">
+      bool
+      store(
+                                  string
+          $key
+                            ,           mixed
+          $var
+                            ,           [int
+          $ttl
+           = 0]              )
+    </div>
+
+    <p>Stores the data $var under the key $key.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$key</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$var</code></td>
+              <td><em>mixed</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$ttl</code></td>
+              <td><em>int</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefined in descendants as:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcCacheMemcacheBackend.html#methodstore">ezcCacheMemcacheBackend::store()</a></code></td>
+              <td>
+                Adds the $var data to the cache under the key $key. Returns true or  false depending on the success of the operation.&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcCacheApcBackend.html#methodstore">ezcCacheApcBackend::store()</a></code></td>
+              <td>
+                Stores the data $var under the key $key. Returns true or false depending  on the success of the operation.&#8192;
+              </td>
+            </tr></tbody></table><div class="credit">
+      Documentation generated by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+    </div>
+  </div>
+  
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

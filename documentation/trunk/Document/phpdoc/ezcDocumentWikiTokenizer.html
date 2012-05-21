@@ -1,0 +1,327 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="PHP, apache, components, framework, quality" />
+	<meta name="author" content="dotxp" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Wed, 04 Aug 2010 13:07:34 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="ezcDocumentWikiTokenizer.html" />
+	<meta name="DC.creator" content="dotxp" />
+	<meta name="DC.date" content="Wed, 04 Aug 2010 13:07:34 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/Document/phpdoc/ezcDocumentWikiTokenizer.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/Document/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/trunk/Document/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Document/conversion.html" title="Conversion ">Conversion </a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Document/styles.html" title="Styles ">Styles </a>
+	</li>
+
+</ul>
+
+		
+  <div class="phpdoc">
+    <h2>Apache Zeta Components Manual :: Docs For Class ezcDocumentWikiTokenizer</h2>
+
+                  <h3>Document::ezcDocumentWikiTokenizer</h3>
+    
+<a name="sec-description"></a>
+<h3>Class ezcDocumentWikiTokenizer</h3>
+
+<p>Tokenizer for wiki documents</p><div><p>The tokenizer used for all wiki documents should prepare a token array,  which can be used by the wiki parser, without any wiki language specific  handling in the parser itself required. For this the tokenizing is performed  in two steps:</p><p>1) Extract tokens from text  2) Filter tokens</p><p>Token extraction  ----------------</p><p>For the token extraction the reqular expressions in the $tokens property are  used. The $tokens array has to be build like, and can be created in the  constrctor:</p><p></p><ol><li><div class="src-line">&#8192;&#8192;<span class="src-key">array</span><span class="src-sym">(</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-key">array</span><span class="src-sym">(</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'class'&#8192;</span>=&gt;&#8192;<span class="src-key">Class&#8192;</span><span class="src-id">name&#8192;of&#8192;token</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'match'&#8192;</span>=&gt;&#8192;<span class="src-id">Regular&#8192;expression&#8192;to&#8192;match</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-sym">)</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;...</div></li>
+<li><div class="src-line">&#8192;&#8192;<span class="src-sym">)</span></div></li>
+</ol><p>The array is evaluated in the given order, until one of the regular  expressions match. The regular expression should have at least one named  match (?P&lt;value&gt; ... ), with the name "value", which will be assigned to the  token, created form the given class name, as its content. The matched  contents will be removed from the beginning of the string.  Optionally a second named match, called "match", may be used inside the  regular expression. If so, only the contents inside this match will be  removed from the beginning of the string. This enables you to perform a  trivial lookahead inside the tokenizer.</p><p>If no expression matches, an exception will be thrown.</p><p>Token filtering  ---------------</p><p>After all tokens are extracted from the text, they may miss some values,  which may be required by the parser, like the level of title tokens. Those  should be extracted and assigned during the filtering stage. For this the  filterTokens() method should be implemented, which may iterate over the  token stream and assign the required values.</p><p>If the wiki markup language supports plugins you may also want to "parse"  the plugin contents to extract type, parameters and its text here.</p></div>
+<p>Source for this file: <a href="http://fisheye6.atlassian.com/browse/zetacomponents/trunk/Document/src/document/wiki/tokenizer.php?r=HEAD">/Document/src/document/wiki/tokenizer.php</a></p>
+       
+
+
+
+
+  <table><tr><td>
+            <strong>Version:</strong>&#8192;&#8192;
+          </td>
+          <td>//autogen//</td>
+        </tr></table><a name="sec-descendants"></a>
+  <h3>Descendants</h3>
+  <table class="detail"><thead><tr><th>Child Class</th>
+        <th>Description</th>
+      </tr></thead><tbody><tr><td><a href="ezcDocumentWikiConfluenceTokenizer.html">ezcDocumentWikiConfluenceTokenizer</a></td>          <td>
+                          Tokenizer for Confluence wiki documents.
+                      </td>
+        </tr><tr><td><a href="ezcDocumentWikiCreoleTokenizer.html">ezcDocumentWikiCreoleTokenizer</a></td>          <td>
+                          Tokenizer for Creole wiki documents.
+                      </td>
+        </tr><tr><td><a href="ezcDocumentWikiDokuwikiTokenizer.html">ezcDocumentWikiDokuwikiTokenizer</a></td>          <td>
+                          Tokenizer for Dokuwiki wiki documents.
+                      </td>
+        </tr></tbody></table><a name="sec-var-summary"></a>
+  <h3>Member Variables</h3>
+  <table class="summary"><tr><td class="right">
+            <em>protected</em>            <em>array</em>          </td>
+          <td>
+            <code>
+              $tokens
+               = <span class="var-default">array()</span>            </code>
+            <br><div style="margin-left: 20px">List with tokens and a regular expression matching the given token.</div>            <br><div style="margin-left: 20px"><p>The tokens are matched in the given order.</p></div>          </td>
+        </tr></table><a name="sec-method-summary"></a>
+  <h3>Method Summary</h3>
+  <table class="summary"><tr><td class="right">
+            <em>public</em>            abstract            <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#__construct"><b>__construct</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Construct tokenizer</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#convertTabs"><b>convertTabs</b></a>(
+                                                                                    $token
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Convert tabs to spaces</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            abstract            <em>array</em>          </td>
+          <td>
+            <code>
+              <a href="#filterTokens"><b>filterTokens</b></a>(
+                                                                                    $tokens
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Filter tokens</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>array</em>          </td>
+          <td>
+            <code>
+              <a href="#tokenizeFile"><b>tokenizeFile</b></a>(
+                                                                                    $file
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Tokenize the given file</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>array</em>          </td>
+          <td>
+            <code>
+              <a href="#tokenizeString"><b>tokenizeString</b></a>(
+                                                                                    $string
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Tokenize the given string</div>          </td>
+        </tr></table><a name="sec-methods"></a>
+  <h3>Methods</h3>
+  <a name="method_detail"></a>
+          
+      <a name="method__construct" id="__construct"><!-- --></a>
+
+    <h4>__construct</h4>
+
+    <div class="method-signature">
+      void
+      __construct(
+      )
+    </div>
+
+    <p>Construct tokenizer</p><div><p>Create token array with regular repression matching the respective  token.</p></div>
+    
+        
+
+    
+    
+          <h5>Redefined in descendants as:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcDocumentWikiConfluenceTokenizer.html#method__construct">ezcDocumentWikiConfluenceTokenizer::__construct()</a></code></td>
+              <td>
+                Construct tokenizer&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcDocumentWikiCreoleTokenizer.html#method__construct">ezcDocumentWikiCreoleTokenizer::__construct()</a></code></td>
+              <td>
+                Construct tokenizer&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcDocumentWikiDokuwikiTokenizer.html#method__construct">ezcDocumentWikiDokuwikiTokenizer::__construct()</a></code></td>
+              <td>
+                Construct tokenizer&#8192;
+              </td>
+            </tr></tbody></table><a name="methodconvertTabs" id="convertTabs"><!-- --></a>
+
+    <h4>convertTabs</h4>
+
+    <div class="method-signature">
+      void
+      convertTabs(
+                                  <a href="ezcDocumentWikiToken.html">ezcDocumentWikiToken</a>
+          $token
+                        )
+    </div>
+
+    <p>Convert tabs to spaces</p><div><p>Convert all tabs to spaces, as defined in:  http://docutils.sourceforge.net/docs/ref/rst/restructuredtext.html#whitespace</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$token</code></td>
+              <td><em><a href="ezcDocumentWikiToken.html">ezcDocumentWikiToken</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodfilterTokens" id="filterTokens"><!-- --></a>
+
+    <h4>filterTokens</h4>
+
+    <div class="method-signature">
+      array
+      filterTokens(
+                                  
+          $tokens
+                        )
+    </div>
+
+    <p>Filter tokens</p><div><p>Method to filter tokens, after the input string ahs been tokenized. The  filter should extract additional information from tokens, which are not  generally available yet, like the depth of a title depending on the  title markup.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$tokens</code></td>
+              <td><em>array</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefined in descendants as:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcDocumentWikiConfluenceTokenizer.html#methodfilterTokens">ezcDocumentWikiConfluenceTokenizer::filterTokens()</a></code></td>
+              <td>
+                Filter tokens&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcDocumentWikiCreoleTokenizer.html#methodfilterTokens">ezcDocumentWikiCreoleTokenizer::filterTokens()</a></code></td>
+              <td>
+                Filter tokens&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcDocumentWikiDokuwikiTokenizer.html#methodfilterTokens">ezcDocumentWikiDokuwikiTokenizer::filterTokens()</a></code></td>
+              <td>
+                Filter tokens&#8192;
+              </td>
+            </tr></tbody></table><a name="methodtokenizeFile" id="tokenizeFile"><!-- --></a>
+
+    <h4>tokenizeFile</h4>
+
+    <div class="method-signature">
+      array
+      tokenizeFile(
+                                  string
+          $file
+                        )
+    </div>
+
+    <p>Tokenize the given file</p><div><p>The method tries to tokenize the passed files and returns an array of  ezcDocumentWikiToken struct on succes, or throws a  ezcDocumentTokenizerException, if something could not be matched by any  token.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$file</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodtokenizeString" id="tokenizeString"><!-- --></a>
+
+    <h4>tokenizeString</h4>
+
+    <div class="method-signature">
+      array
+      tokenizeString(
+                                  string
+          $string
+                        )
+    </div>
+
+    <p>Tokenize the given string</p><div><p>The method tries to tokenize the passed strings and returns an array of  ezcDocumentWikiToken struct on succes, or throws a  ezcDocumentTokenizerException, if something could not be matched by any  token.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$string</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><div class="credit">
+      Documentation generated by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+    </div>
+  </div>
+  
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

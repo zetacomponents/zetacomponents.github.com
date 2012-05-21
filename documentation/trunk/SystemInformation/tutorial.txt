@@ -1,0 +1,55 @@
+eZ Components - SystemInformation
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. contents:: Table of Contents
+
+Introduction
+============
+
+The SystemInformation component provides access to common system variables, 
+such as CPU type and speed and amount of available memory.
+Currently, SystemInformation supports Linux, FreeBSD and Windows systems.
+
+Class overview
+==============
+
+ezcSystemInfo
+  This class provides the main API for accessing common system variables.
+  Variables that are not available directly from PHP are fetched using readers
+  specific to each supported system. The corresponding reader is automatically
+  detected and used to scan system information.
+  
+ezcSystemInfoReader
+  ezcSystemInfoReader represents a common abstract interface for operating
+  system (OS) information readers. A particular reader implements the
+  ezcSystemInfoReader interface and scans system information specifically for
+  each supported OS.
+ 
+More information about these classes can be found in the documentation of the
+classes. 
+
+
+Usage
+=====
+
+The following example demonstrates how to use the SystemInformation component.
+
+Getting CPU type and CPU speed for the current system
+-----------------------------------------------------
+
+.. include:: tutorial_getinfo.php
+   :literal:
+
+
+More information
+================
+
+For more information, see the SystemInformation API documentation.
+
+
+..
+   Local Variables:
+   mode: rst
+   fill-column: 79
+   End: 
+   vim: et syn=rst tw=79

@@ -1,0 +1,294 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="PHP, apache, components, framework, quality" />
+	<meta name="author" content="dotxp" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Wed, 04 Aug 2010 13:07:52 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="ezcPersistentIdentifierGenerator.html" />
+	<meta name="DC.creator" content="dotxp" />
+	<meta name="DC.date" content="Wed, 04 Aug 2010 13:07:52 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/PersistentObject/phpdoc/ezcPersistentIdentifierGenerator.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/PersistentObject/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/trunk/PersistentObject/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+
+</ul>
+
+		
+  <div class="phpdoc">
+    <h2>Apache Zeta Components Manual :: Docs For Class ezcPersistentIdentifierGenerator</h2>
+
+                  <h3>PersistentObject::ezcPersistentIdentifierGenerator</h3>
+    
+<a name="sec-description"></a>
+<h3>Class ezcPersistentIdentifierGenerator</h3>
+
+<p>The interface between the class that generates unique identifiers when creating new objects  and the session.</p><div><p>Implement this interface if you want a new strategy for generating unique identifier.  This interface is not intended to be exposed to the application.</p><p>Implementations should accept any parameters through a associative array in the  constructor:  </p><ol><li><div class="src-line">&#8192;<span class="src-key">public&#8192;</span><span class="src-key">function&#8192;</span><span class="src-id">__construct</span><span class="src-sym">(&#8192;</span><span class="src-key">array&#8192;</span><span class="src-var">$params&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol><p>The structure of the parameters is array( 'parameter_name' =&gt; 'parameter_value' ).</p></div>
+<p>Source for this file: <a href="http://fisheye6.atlassian.com/browse/zetacomponents/trunk/PersistentObject/src/interfaces/identifier_generator.php?r=HEAD">/PersistentObject/src/interfaces/identifier_generator.php</a></p>
+       
+
+
+
+
+  <table><tr><td>
+            <strong>Version:</strong>&#8192;&#8192;
+          </td>
+          <td>//autogen//</td>
+        </tr></table><a name="sec-descendants"></a>
+  <h3>Descendants</h3>
+  <table class="detail"><thead><tr><th>Child Class</th>
+        <th>Description</th>
+      </tr></thead><tbody><tr><td><a href="ezcPersistentSequenceGenerator.html">ezcPersistentSequenceGenerator</a></td>          <td>
+                          Generates IDs based on the PDO::lastInsertId method.
+                      </td>
+        </tr><tr><td><a href="ezcPersistentManualGenerator.html">ezcPersistentManualGenerator</a></td>          <td>
+                          This identifier generator does not generate any ID's. Instead the user must manually  assign an ID when the object is saved.
+                      </td>
+        </tr><tr><td><a href="ezcPersistentNativeGenerator.html">ezcPersistentNativeGenerator</a></td>          <td>
+                          Generates IDs based on the PDO::lastInsertId method.
+                      </td>
+        </tr></tbody></table><a name="sec-method-summary"></a>
+  <h3>Method Summary</h3>
+  <table class="summary"><tr><td class="right">
+            <em>public</em>                        <em>bool</em>          </td>
+          <td>
+            <code>
+              <a href="#checkPersistence"><b>checkPersistence</b></a>(
+                                                                                    $def
+                                                    ,                                     $db
+                                                    ,                                     $state
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns true if the object is persistent already.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>            abstract            <em>int</em>          </td>
+          <td>
+            <code>
+              <a href="#postSave"><b>postSave</b></a>(
+                                                                                    $def
+                                                    ,                                     $db
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns the value of the generated identifier for the new object.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>            abstract            <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#preSave"><b>preSave</b></a>(
+                                                                                    $def
+                                                    ,                                     $db
+                                                    ,                                     $q
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Called prior to executing the insert query that saves the data to the database.</div>          </td>
+        </tr></table><a name="sec-methods"></a>
+  <h3>Methods</h3>
+  <a name="method_detail"></a>
+      
+      <a name="methodcheckPersistence" id="checkPersistence"><!-- --></a>
+
+    <h4>checkPersistence</h4>
+
+    <div class="method-signature">
+      bool
+      checkPersistence(
+                                  <a href="ezcPersistentObjectDefinition.html">ezcPersistentObjectDefinition</a>
+          $def
+                            ,           
+          $db
+                            ,           
+          $state
+                        )
+    </div>
+
+    <p>Returns true if the object is persistent already.</p><div><p>Called in the beginning of the save and update methods.</p><p>Persistent objects that are being saved must not exist in the database already.</p><p>The default implementation checks if the id is null.  This is suitable for all implementations where the id is generated by  the database or by the implementation of preSave().</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$def</code></td>
+              <td><em><a href="ezcPersistentObjectDefinition.html">ezcPersistentObjectDefinition</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$db</code></td>
+              <td><em><a href="/zetacomponents/documentation/trunk/Database/phpdoc/ezcDbHandler.html">ezcDbHandler</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$state</code></td>
+              <td><em>array(key=&gt;value)</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefined in descendants as:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcPersistentManualGenerator.html#methodcheckPersistence">ezcPersistentManualGenerator::checkPersistence()</a></code></td>
+              <td>
+                Returns true if the object is persistent already.&#8192;
+              </td>
+            </tr></tbody></table><a name="methodpostSave" id="postSave"><!-- --></a>
+
+    <h4>postSave</h4>
+
+    <div class="method-signature">
+      int
+      postSave(
+                                  <a href="ezcPersistentObjectDefinition.html">ezcPersistentObjectDefinition</a>
+          $def
+                            ,           
+          $db
+                        )
+    </div>
+
+    <p>Returns the value of the generated identifier for the new object.</p><div><p>Called right after execution of the insert query.  Returns null if it was not possible to generate a new ID.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$def</code></td>
+              <td><em><a href="ezcPersistentObjectDefinition.html">ezcPersistentObjectDefinition</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$db</code></td>
+              <td><em><a href="/zetacomponents/documentation/trunk/Database/phpdoc/ezcDbHandler.html">ezcDbHandler</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefined in descendants as:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcPersistentSequenceGenerator.html#methodpostSave">ezcPersistentSequenceGenerator::postSave()</a></code></td>
+              <td>
+                Returns the integer value of the generated identifier for the new object.&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcPersistentManualGenerator.html#methodpostSave">ezcPersistentManualGenerator::postSave()</a></code></td>
+              <td>
+                Returns the value of the generated identifier for the new object.&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcPersistentNativeGenerator.html#methodpostSave">ezcPersistentNativeGenerator::postSave()</a></code></td>
+              <td>
+                Returns the integer value of the generated identifier for the new object.&#8192;
+              </td>
+            </tr></tbody></table><a name="methodpreSave" id="preSave"><!-- --></a>
+
+    <h4>preSave</h4>
+
+    <div class="method-signature">
+      void
+      preSave(
+                                  <a href="ezcPersistentObjectDefinition.html">ezcPersistentObjectDefinition</a>
+          $def
+                            ,           
+          $db
+                            ,           
+          $q
+                        )
+    </div>
+
+    <p>Called prior to executing the insert query that saves the data to the database.</p><div><p>All the data has been set on the query prior to calling this method.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$def</code></td>
+              <td><em><a href="ezcPersistentObjectDefinition.html">ezcPersistentObjectDefinition</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$db</code></td>
+              <td><em><a href="/zetacomponents/documentation/trunk/Database/phpdoc/ezcDbHandler.html">ezcDbHandler</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$q</code></td>
+              <td><em><a href="/zetacomponents/documentation/trunk/Database/phpdoc/ezcQueryInsert.html">ezcQueryInsert</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefined in descendants as:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcPersistentSequenceGenerator.html#methodpreSave">ezcPersistentSequenceGenerator::preSave()</a></code></td>
+              <td>
+                Fetches the next sequence value for PostgreSQL and Oracle implementations.&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcPersistentManualGenerator.html#methodpreSave">ezcPersistentManualGenerator::preSave()</a></code></td>
+              <td>
+                Sets the correct id on the insert query.&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcPersistentNativeGenerator.html#methodpreSave">ezcPersistentNativeGenerator::preSave()</a></code></td>
+              <td>
+                No functionality, since database handles ID generation automatically.&#8192;
+              </td>
+            </tr></tbody></table><div class="credit">
+      Documentation generated by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+    </div>
+  </div>
+  
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

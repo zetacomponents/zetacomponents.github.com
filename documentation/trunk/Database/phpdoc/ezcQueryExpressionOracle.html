@@ -1,0 +1,968 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="PHP, apache, components, framework, quality" />
+	<meta name="author" content="dotxp" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Wed, 04 Aug 2010 13:07:23 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="ezcQueryExpressionOracle.html" />
+	<meta name="DC.creator" content="dotxp" />
+	<meta name="DC.date" content="Wed, 04 Aug 2010 13:07:23 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/Database/phpdoc/ezcQueryExpressionOracle.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/Database/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/trunk/Database/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Database/oracle_setup.html" title="Oracle_setup ">Oracle_setup </a>
+	</li>
+
+</ul>
+
+		
+  <div class="phpdoc">
+    <h2>Apache Zeta Components Manual :: Docs For Class ezcQueryExpressionOracle</h2>
+
+                  <h3>Database::ezcQueryExpressionOracle</h3>
+    
+<a name="sec-description"></a>
+<h3>Class ezcQueryExpressionOracle</h3>
+
+<p>The ezcQueryExpressionOracle class is used to create SQL expression for Oracle.</p><div><p>This class reimplements the methods that have a different syntax in Oracle.</p></div>
+<p>Source for this file: <a href="http://fisheye6.atlassian.com/browse/zetacomponents/trunk/Database/src/sqlabstraction/implementations/expression_oracle.php?r=HEAD">/Database/src/sqlabstraction/implementations/expression_oracle.php</a></p>
+       
+
+
+<pre><a href="ezcQueryExpression.html">ezcQueryExpression</a>
+   |
+   --ezcQueryExpressionOracle</pre>
+
+
+  <table><tr><td>
+            <strong>Version:</strong>&#8192;&#8192;
+          </td>
+          <td>//autogentag//</td>
+        </tr></table><h3>Inherited Member Variables</h3>
+  <table class="summary"><thead><tr><th colspan="2">
+            From <span class="classname"><a href="ezcQueryExpression.html">ezcQueryExpression</a></span>         
+          </th>
+        </tr></thead><tbody><tr><td class="right">
+              <em>protected</em>                          </td>
+            <td>
+              <code><a href="ezcQueryExpression.html#var%24db">ezcQueryExpression::$db</a></code>
+              
+            </td>
+          </tr><tr><td class="right">
+              <em>protected</em>                          </td>
+            <td>
+              <code><a href="ezcQueryExpression.html#var%24intervalMap">ezcQueryExpression::$intervalMap</a></code>
+              
+            </td>
+          </tr><tr><td class="right">
+              <em>protected</em>                          </td>
+            <td>
+              <code><a href="ezcQueryExpression.html#var%24quoteValues">ezcQueryExpression::$quoteValues</a></code>
+              
+            </td>
+          </tr></tbody></table><a name="sec-method-summary"></a>
+  <h3>Method Summary</h3>
+  <table class="summary"><tr><td class="right">
+            <em>public</em>                        <em>ezcQueryExpressionOracle</em>          </td>
+          <td>
+            <code>
+              <a href="#__construct"><b>__construct</b></a>(
+                                                                                    $db
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Constructs an empty ezcQueryExpression</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#bitAnd"><b>bitAnd</b></a>(
+                                                                                    $value1
+                                                    ,                                     $value2
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns the SQL that performs the bitwise AND on two values.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#bitOr"><b>bitOr</b></a>(
+                                                                                    $value1
+                                                    ,                                     $value2
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns the SQL that performs the bitwise OR on two values.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#bitXor"><b>bitXor</b></a>(
+                                                                                    $value1
+                                                    ,                                     $value2
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns the SQL that performs the bitwise XOR on two values.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#concat"><b>concat</b></a>(
+                                                                                    $...
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns a series of strings concatinated</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#dateAdd"><b>dateAdd</b></a>(
+                                                                                    $column
+                                                    ,                                     $expr
+                                                    ,                                     $type
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns the SQL that adds an interval to a timestamp value.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#dateExtract"><b>dateExtract</b></a>(
+                                                                                    $column
+                                                    ,                                     $type
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns the SQL that extracts parts from a timestamp value.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#dateSub"><b>dateSub</b></a>(
+                                                                                    $column
+                                                    ,                                     $expr
+                                                    ,                                     $type
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns the SQL that subtracts an interval from a timestamp value.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#in"><b>in</b></a>(
+                                                                                    $column
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns the SQL to check if a value is one in a set of  given values.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#now"><b>now</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns the current system date and time in the database internal  format.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#position"><b>position</b></a>(
+                                                                                    $substr
+                                                    ,                                     $value
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns the SQL to locate the position of the first occurrence of a substring</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#subString"><b>subString</b></a>(
+                                                                                    $value
+                                                    ,                                     $from
+                                                    ,                   [                  $len
+                   = null]                               )
+            </code>
+            <br><div style="margin-left: 20px">Returns part of a string.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#unixTimestamp"><b>unixTimestamp</b></a>(
+                                                                                    $column
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns the SQL that converts a timestamp value to a unix timestamp.</div>          </td>
+        </tr></table><h3>Inherited Methods</h3>
+  <table class="summary"><thead><tr><th colspan="2">
+            From <span class="classname"><a href="ezcQueryExpression.html">ezcQueryExpression</a></span>
+          </th>
+        </tr></thead><tbody><tr><td class="right">
+              <em>public</em>                                          <em>ezcQueryExpression</em>            </td>
+            <td>
+              <code><b><a href="ezcQueryExpression.html#method__construct">ezcQueryExpression::__construct()</a></b></code>
+              <br><div style="margin-left: 20px">Constructs an empty ezcQueryExpression</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>string</em>            </td>
+            <td>
+              <code><b><a href="ezcQueryExpression.html#methodadd">ezcQueryExpression::add()</a></b></code>
+              <br><div style="margin-left: 20px">Returns the SQL to add values or expressions together.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>string</em>            </td>
+            <td>
+              <code><b><a href="ezcQueryExpression.html#methodavg">ezcQueryExpression::avg()</a></b></code>
+              <br><div style="margin-left: 20px">Returns the average value of a column</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>string</em>            </td>
+            <td>
+              <code><b><a href="ezcQueryExpression.html#methodbetween">ezcQueryExpression::between()</a></b></code>
+              <br><div style="margin-left: 20px">Returns SQL that checks if an expression evaluates to a value between  two values.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>string</em>            </td>
+            <td>
+              <code><b><a href="ezcQueryExpression.html#methodbitAnd">ezcQueryExpression::bitAnd()</a></b></code>
+              <br><div style="margin-left: 20px">Returns the SQL that performs the bitwise AND on two values.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>string</em>            </td>
+            <td>
+              <code><b><a href="ezcQueryExpression.html#methodbitOr">ezcQueryExpression::bitOr()</a></b></code>
+              <br><div style="margin-left: 20px">Returns the SQL that performs the bitwise OR on two values.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>string</em>            </td>
+            <td>
+              <code><b><a href="ezcQueryExpression.html#methodbitXor">ezcQueryExpression::bitXor()</a></b></code>
+              <br><div style="margin-left: 20px">Returns the SQL that performs the bitwise XOR on two values.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>string</em>            </td>
+            <td>
+              <code><b><a href="ezcQueryExpression.html#methodceil">ezcQueryExpression::ceil()</a></b></code>
+              <br><div style="margin-left: 20px">Returns the SQL to calculate the next highest integer value from the number.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b><a href="ezcQueryExpression.html#methodconcat">ezcQueryExpression::concat()</a></b></code>
+              <br><div style="margin-left: 20px">Returns a series of strings concatinated</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>string</em>            </td>
+            <td>
+              <code><b><a href="ezcQueryExpression.html#methodcount">ezcQueryExpression::count()</a></b></code>
+              <br><div style="margin-left: 20px">Returns the number of rows (without a NULL value) of a column</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>string</em>            </td>
+            <td>
+              <code><b><a href="ezcQueryExpression.html#methoddateAdd">ezcQueryExpression::dateAdd()</a></b></code>
+              <br><div style="margin-left: 20px">Returns the SQL that adds an interval to a timestamp value.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>string</em>            </td>
+            <td>
+              <code><b><a href="ezcQueryExpression.html#methoddateExtract">ezcQueryExpression::dateExtract()</a></b></code>
+              <br><div style="margin-left: 20px">Returns the SQL that extracts parts from a timestamp value.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>string</em>            </td>
+            <td>
+              <code><b><a href="ezcQueryExpression.html#methoddateSub">ezcQueryExpression::dateSub()</a></b></code>
+              <br><div style="margin-left: 20px">Returns the SQL that subtracts an interval from a timestamp value.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>string</em>            </td>
+            <td>
+              <code><b><a href="ezcQueryExpression.html#methoddiv">ezcQueryExpression::div()</a></b></code>
+              <br><div style="margin-left: 20px">Returns the SQL to divide values or expressions by eachother.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>string</em>            </td>
+            <td>
+              <code><b><a href="ezcQueryExpression.html#methodeq">ezcQueryExpression::eq()</a></b></code>
+              <br><div style="margin-left: 20px">Returns the SQL to check if two values are equal.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>string</em>            </td>
+            <td>
+              <code><b><a href="ezcQueryExpression.html#methodfloor">ezcQueryExpression::floor()</a></b></code>
+              <br><div style="margin-left: 20px">Returns the SQL to calculate the next lowest integer value from the number.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>protected</em>                                          <em>string</em>            </td>
+            <td>
+              <code><b><a href="ezcQueryExpression.html#methodgetIdentifier">ezcQueryExpression::getIdentifier()</a></b></code>
+              <br><div style="margin-left: 20px">Returns the correct identifier for the alias $alias.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>protected</em>                                          <em>array(string)</em>            </td>
+            <td>
+              <code><b><a href="ezcQueryExpression.html#methodgetIdentifiers">ezcQueryExpression::getIdentifiers()</a></b></code>
+              <br><div style="margin-left: 20px">Returns the correct identifiers for the aliases found in $aliases.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>string</em>            </td>
+            <td>
+              <code><b><a href="ezcQueryExpression.html#methodgt">ezcQueryExpression::gt()</a></b></code>
+              <br><div style="margin-left: 20px">Returns the SQL to check if one value is greater than another value.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>string</em>            </td>
+            <td>
+              <code><b><a href="ezcQueryExpression.html#methodgte">ezcQueryExpression::gte()</a></b></code>
+              <br><div style="margin-left: 20px">Returns the SQL to check if one value is greater than or equal to  another value.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>bool</em>            </td>
+            <td>
+              <code><b><a href="ezcQueryExpression.html#methodhasAliases">ezcQueryExpression::hasAliases()</a></b></code>
+              <br><div style="margin-left: 20px">Returns true if this object has aliases.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>string</em>            </td>
+            <td>
+              <code><b><a href="ezcQueryExpression.html#methodin">ezcQueryExpression::in()</a></b></code>
+              <br><div style="margin-left: 20px">Returns the SQL to check if a value is one in a set of  given values..</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>string</em>            </td>
+            <td>
+              <code><b><a href="ezcQueryExpression.html#methodisNull">ezcQueryExpression::isNull()</a></b></code>
+              <br><div style="margin-left: 20px">Returns SQL that checks if a expression is null.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>string</em>            </td>
+            <td>
+              <code><b><a href="ezcQueryExpression.html#methodlAnd">ezcQueryExpression::lAnd()</a></b></code>
+              <br><div style="margin-left: 20px">Returns the SQL to bind logical expressions together using a logical and.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>string</em>            </td>
+            <td>
+              <code><b><a href="ezcQueryExpression.html#methodlength">ezcQueryExpression::length()</a></b></code>
+              <br><div style="margin-left: 20px">Returns the length of text field $column</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b><a href="ezcQueryExpression.html#methodlike">ezcQueryExpression::like()</a></b></code>
+              <br><div style="margin-left: 20px">Match a partial string in a column.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>string</em>            </td>
+            <td>
+              <code><b><a href="ezcQueryExpression.html#methodlOr">ezcQueryExpression::lOr()</a></b></code>
+              <br><div style="margin-left: 20px">Returns the SQL to bind logical expressions together using a logical or.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>string</em>            </td>
+            <td>
+              <code><b><a href="ezcQueryExpression.html#methodlower">ezcQueryExpression::lower()</a></b></code>
+              <br><div style="margin-left: 20px">Returns the SQL to change all characters to lowercase</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>string</em>            </td>
+            <td>
+              <code><b><a href="ezcQueryExpression.html#methodlt">ezcQueryExpression::lt()</a></b></code>
+              <br><div style="margin-left: 20px">Returns the SQL to check if one value is less than another value.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>string</em>            </td>
+            <td>
+              <code><b><a href="ezcQueryExpression.html#methodlte">ezcQueryExpression::lte()</a></b></code>
+              <br><div style="margin-left: 20px">Returns the SQL to check if one value is less than or equal to  another value.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>string</em>            </td>
+            <td>
+              <code><b><a href="ezcQueryExpression.html#methodmax">ezcQueryExpression::max()</a></b></code>
+              <br><div style="margin-left: 20px">Returns the highest value of a column</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>string</em>            </td>
+            <td>
+              <code><b><a href="ezcQueryExpression.html#methodmd5">ezcQueryExpression::md5()</a></b></code>
+              <br><div style="margin-left: 20px">Returns the md5 sum of $column.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>string</em>            </td>
+            <td>
+              <code><b><a href="ezcQueryExpression.html#methodmin">ezcQueryExpression::min()</a></b></code>
+              <br><div style="margin-left: 20px">Returns the lowest value of a column</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>string</em>            </td>
+            <td>
+              <code><b><a href="ezcQueryExpression.html#methodmod">ezcQueryExpression::mod()</a></b></code>
+              <br><div style="margin-left: 20px">Returns the remainder of the division operation  $expression1 / $expression2.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>string</em>            </td>
+            <td>
+              <code><b><a href="ezcQueryExpression.html#methodmul">ezcQueryExpression::mul()</a></b></code>
+              <br><div style="margin-left: 20px">Returns the SQL to multiply values or expressions by eachother.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>string</em>            </td>
+            <td>
+              <code><b><a href="ezcQueryExpression.html#methodneq">ezcQueryExpression::neq()</a></b></code>
+              <br><div style="margin-left: 20px">Returns the SQL to check if two values are unequal.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>string</em>            </td>
+            <td>
+              <code><b><a href="ezcQueryExpression.html#methodnot">ezcQueryExpression::not()</a></b></code>
+              <br><div style="margin-left: 20px">Returns the SQL for a logical not, negating the $expression.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>string</em>            </td>
+            <td>
+              <code><b><a href="ezcQueryExpression.html#methodnow">ezcQueryExpression::now()</a></b></code>
+              <br><div style="margin-left: 20px">Returns the current system date and time in the database internal  format.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>string</em>            </td>
+            <td>
+              <code><b><a href="ezcQueryExpression.html#methodposition">ezcQueryExpression::position()</a></b></code>
+              <br><div style="margin-left: 20px">Returns the SQL to locate the position of the first occurrence of a substring</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>string</em>            </td>
+            <td>
+              <code><b><a href="ezcQueryExpression.html#methodround">ezcQueryExpression::round()</a></b></code>
+              <br><div style="margin-left: 20px">Rounds a numeric field to the number of decimals specified.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>string</em>            </td>
+            <td>
+              <code><b><a href="ezcQueryExpression.html#methodsearchedCase">ezcQueryExpression::searchedCase()</a></b></code>
+              <br><div style="margin-left: 20px">Returns a searched CASE statement.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b><a href="ezcQueryExpression.html#methodsetAliases">ezcQueryExpression::setAliases()</a></b></code>
+              <br><div style="margin-left: 20px">Sets the aliases $aliases for this object.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b><a href="ezcQueryExpression.html#methodsetValuesQuoting">ezcQueryExpression::setValuesQuoting()</a></b></code>
+              <br><div style="margin-left: 20px">Sets the mode of quoting for parameters passed  to SQL functions and operators.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>string</em>            </td>
+            <td>
+              <code><b><a href="ezcQueryExpression.html#methodsub">ezcQueryExpression::sub()</a></b></code>
+              <br><div style="margin-left: 20px">Returns the SQL to subtract values or expressions from eachother.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>string</em>            </td>
+            <td>
+              <code><b><a href="ezcQueryExpression.html#methodsubString">ezcQueryExpression::subString()</a></b></code>
+              <br><div style="margin-left: 20px">Returns part of a string.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>string</em>            </td>
+            <td>
+              <code><b><a href="ezcQueryExpression.html#methodsum">ezcQueryExpression::sum()</a></b></code>
+              <br><div style="margin-left: 20px">Returns the total sum of a column</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>string</em>            </td>
+            <td>
+              <code><b><a href="ezcQueryExpression.html#methodunixTimestamp">ezcQueryExpression::unixTimestamp()</a></b></code>
+              <br><div style="margin-left: 20px">Returns the SQL that converts a timestamp value to a unix timestamp.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>string</em>            </td>
+            <td>
+              <code><b><a href="ezcQueryExpression.html#methodupper">ezcQueryExpression::upper()</a></b></code>
+              <br><div style="margin-left: 20px">Returns the SQL to change all characters to uppercase</div>                          </td>
+          </tr></tbody></table><a name="sec-methods"></a>
+  <h3>Methods</h3>
+  <a name="method_detail"></a>
+                          
+      <a name="method__construct" id="__construct"><!-- --></a>
+
+    <h4>__construct</h4>
+
+    <div class="method-signature">
+      ezcQueryExpressionOracle
+      __construct(
+                                  
+          $db
+                        )
+    </div>
+
+    <p>Constructs an empty ezcQueryExpression</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$db</code></td>
+              <td><em>PDO</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcQueryExpression.html#method__construct">ezcQueryExpression::__construct()</a></code></td>
+            <td>
+                              Constructs an empty ezcQueryExpression
+                          </td>
+          </tr></tbody></table><a name="methodbitAnd" id="bitAnd"><!-- --></a>
+
+    <h4>bitAnd</h4>
+
+    <div class="method-signature">
+      string
+      bitAnd(
+                                  string
+          $value1
+                            ,           string
+          $value2
+                        )
+    </div>
+
+    <p>Returns the SQL that performs the bitwise AND on two values.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$value1</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$value2</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcQueryExpression.html#methodbitAnd">ezcQueryExpression::bitAnd()</a></code></td>
+            <td>
+                              Returns the SQL that performs the bitwise AND on two values.
+                          </td>
+          </tr></tbody></table><a name="methodbitOr" id="bitOr"><!-- --></a>
+
+    <h4>bitOr</h4>
+
+    <div class="method-signature">
+      string
+      bitOr(
+                                  string
+          $value1
+                            ,           string
+          $value2
+                        )
+    </div>
+
+    <p>Returns the SQL that performs the bitwise OR on two values.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$value1</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$value2</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcQueryExpression.html#methodbitOr">ezcQueryExpression::bitOr()</a></code></td>
+            <td>
+                              Returns the SQL that performs the bitwise OR on two values.
+                          </td>
+          </tr></tbody></table><a name="methodbitXor" id="bitXor"><!-- --></a>
+
+    <h4>bitXor</h4>
+
+    <div class="method-signature">
+      string
+      bitXor(
+                                  string
+          $value1
+                            ,           string
+          $value2
+                        )
+    </div>
+
+    <p>Returns the SQL that performs the bitwise XOR on two values.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$value1</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$value2</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcQueryExpression.html#methodbitXor">ezcQueryExpression::bitXor()</a></code></td>
+            <td>
+                              Returns the SQL that performs the bitwise XOR on two values.
+                          </td>
+          </tr></tbody></table><a name="methodconcat" id="concat"><!-- --></a>
+
+    <h4>concat</h4>
+
+    <div class="method-signature">
+      string
+      concat(
+                                  string|array(string)
+          $...
+                        )
+    </div>
+
+    <p>Returns a series of strings concatinated</p><div><p>concat() accepts an arbitrary number of parameters. Each parameter  must contain an expression or an array with expressions.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$...</code></td>
+              <td><em>string|array(string)</em></td>
+              <td>
+                                  strings that will be concatinated.
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>ezcQueryVariableException</code></td>
+              <td>
+                                  if no parameters are provided
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcQueryExpression.html#methodconcat">ezcQueryExpression::concat()</a></code></td>
+            <td>
+                              Returns a series of strings concatinated
+                          </td>
+          </tr></tbody></table><a name="methoddateAdd" id="dateAdd"><!-- --></a>
+
+    <h4>dateAdd</h4>
+
+    <div class="method-signature">
+      string
+      dateAdd(
+                                  string
+          $column
+                            ,           numeric
+          $expr
+                            ,           string
+          $type
+                        )
+    </div>
+
+    <p>Returns the SQL that adds an interval to a timestamp value.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$column</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$expr</code></td>
+              <td><em>numeric</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$type</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  one of SECOND, MINUTE, HOUR, DAY, MONTH, or YEAR
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcQueryExpression.html#methoddateAdd">ezcQueryExpression::dateAdd()</a></code></td>
+            <td>
+                              Returns the SQL that adds an interval to a timestamp value.
+                          </td>
+          </tr></tbody></table><a name="methoddateExtract" id="dateExtract"><!-- --></a>
+
+    <h4>dateExtract</h4>
+
+    <div class="method-signature">
+      string
+      dateExtract(
+                                  string
+          $column
+                            ,           string
+          $type
+                        )
+    </div>
+
+    <p>Returns the SQL that extracts parts from a timestamp value.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$column</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$type</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  one of SECOND, MINUTE, HOUR, DAY, MONTH, or YEAR
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcQueryExpression.html#methoddateExtract">ezcQueryExpression::dateExtract()</a></code></td>
+            <td>
+                              Returns the SQL that extracts parts from a timestamp value.
+                          </td>
+          </tr></tbody></table><a name="methoddateSub" id="dateSub"><!-- --></a>
+
+    <h4>dateSub</h4>
+
+    <div class="method-signature">
+      string
+      dateSub(
+                                  string
+          $column
+                            ,           numeric
+          $expr
+                            ,           string
+          $type
+                        )
+    </div>
+
+    <p>Returns the SQL that subtracts an interval from a timestamp value.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$column</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$expr</code></td>
+              <td><em>numeric</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$type</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  one of SECOND, MINUTE, HOUR, DAY, MONTH, or YEAR
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcQueryExpression.html#methoddateSub">ezcQueryExpression::dateSub()</a></code></td>
+            <td>
+                              Returns the SQL that subtracts an interval from a timestamp value.
+                          </td>
+          </tr></tbody></table><a name="methodin" id="in"><!-- --></a>
+
+    <h4>in</h4>
+
+    <div class="method-signature">
+      string
+      in(
+                                  string|array(string)
+          $column
+                        )
+    </div>
+
+    <p>Returns the SQL to check if a value is one in a set of  given values.</p><div><p>in() accepts an arbitrary number of parameters. The first parameter  must always specify the value that should be matched against. Successive  parameters must contain a logical expression or an array with logical  expressions.  These expressions will be matched against the first  parameter.</p><p>Example:  </p><ol><li><div class="src-line">&#8192;<span class="src-var">$q</span><span class="src-sym">-&gt;</span><span class="src-id">select</span><span class="src-sym">(&#8192;</span><span class="src-str">'*'&#8192;</span><span class="src-sym">)</span><span class="src-sym">-&gt;</span><span class="src-id">from</span><span class="src-sym">(&#8192;</span><span class="src-str">'table'&#8192;</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-sym">-&gt;</span><span class="src-id">where</span><span class="src-sym">(&#8192;</span><span class="src-var">$q</span><span class="src-sym">-&gt;</span><span class="src-id">expr</span><span class="src-sym">-&gt;</span><a href="ezcQueryExpressionOracle.html#methodin">in</a><span class="src-sym">(&#8192;</span><span class="src-str">'id'</span><span class="src-sym">,&#8192;</span><span class="src-num">1</span><span class="src-sym">,&#8192;</span><span class="src-num">2</span><span class="src-sym">,&#8192;</span><span class="src-num">3&#8192;</span><span class="src-sym">)&#8192;)</span><span class="src-sym">;</span></div></li>
+</ol><p>Oracle limits the number of values in a single IN() to 1000. This  implementation creates a list of combined IN() expressions to bypass  this limitation.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$column</code></td>
+              <td><em>string|array(string)</em></td>
+              <td>
+                                  values that will be matched against $column
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcQueryInvalidParameterException.html">ezcQueryInvalidParameterException</a></code></td>
+              <td>
+                                  if the 2nd parameter is an empty array.
+                              </td>
+            </tr><tr><td><code><a href="ezcQueryVariableParameterException.html">ezcQueryVariableParameterException</a></code></td>
+              <td>
+                                  if called with less than two parameters.
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcQueryExpression.html#methodin">ezcQueryExpression::in()</a></code></td>
+            <td>
+                              Returns the SQL to check if a value is one in a set of  given values..
+                          </td>
+          </tr></tbody></table><a name="methodnow" id="now"><!-- --></a>
+
+    <h4>now</h4>
+
+    <div class="method-signature">
+      string
+      now(
+      )
+    </div>
+
+    <p>Returns the current system date and time in the database internal  format.</p><div><p>Note: The returned timestamp is a SYSDATE.  The format can be set after connecting with e.g.:  ALTER SESSION SET NLS_TIMESTAMP_FORMAT = 'YYYY-MM-DD HH24:MI:SS'</p></div>
+    
+        
+
+          <h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcQueryExpression.html#methodnow">ezcQueryExpression::now()</a></code></td>
+            <td>
+                              Returns the current system date and time in the database internal  format.
+                          </td>
+          </tr></tbody></table><a name="methodposition" id="position"><!-- --></a>
+
+    <h4>position</h4>
+
+    <div class="method-signature">
+      string
+      position(
+                                  string
+          $substr
+                            ,           string
+          $value
+                        )
+    </div>
+
+    <p>Returns the SQL to locate the position of the first occurrence of a substring</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$substr</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$value</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcQueryExpression.html#methodposition">ezcQueryExpression::position()</a></code></td>
+            <td>
+                              Returns the SQL to locate the position of the first occurrence of a substring
+                          </td>
+          </tr></tbody></table><a name="methodsubString" id="subString"><!-- --></a>
+
+    <h4>subString</h4>
+
+    <div class="method-signature">
+      string
+      subString(
+                                  string
+          $value
+                            ,           int
+          $from
+                            ,           [int
+          $len
+           = null]              )
+    </div>
+
+    <p>Returns part of a string.</p><div><p>Note: Not SQL92, but common functionality.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$value</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  the target $value the string or the string column.
+                              </td>
+            </tr><tr><td><code>$from</code></td>
+              <td><em>int</em></td>
+              <td>
+                                  extract from this characeter.
+                              </td>
+            </tr><tr><td><code>$len</code></td>
+              <td><em>int</em></td>
+              <td>
+                                  extract this amount of characters.
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcQueryExpression.html#methodsubString">ezcQueryExpression::subString()</a></code></td>
+            <td>
+                              Returns part of a string.
+                          </td>
+          </tr></tbody></table><a name="methodunixTimestamp" id="unixTimestamp"><!-- --></a>
+
+    <h4>unixTimestamp</h4>
+
+    <div class="method-signature">
+      string
+      unixTimestamp(
+                                  string
+          $column
+                        )
+    </div>
+
+    <p>Returns the SQL that converts a timestamp value to a unix timestamp.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$column</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcQueryExpression.html#methodunixTimestamp">ezcQueryExpression::unixTimestamp()</a></code></td>
+            <td>
+                              Returns the SQL that converts a timestamp value to a unix timestamp.
+                          </td>
+          </tr></tbody></table><div class="credit">
+      Documentation generated by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+    </div>
+  </div>
+  
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

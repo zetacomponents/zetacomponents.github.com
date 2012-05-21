@@ -1,0 +1,215 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="" />
+	<meta name="author" content="jerome" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Sun, 10 Jul 2011 11:11:09 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="ezcWebdavBackendChange.html" />
+	<meta name="DC.creator" content="jerome" />
+	<meta name="DC.date" content="Sun, 10 Jul 2011 11:11:09 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/Webdav/phpdoc/ezcWebdavBackendChange.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/Webdav/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/trunk/Webdav/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Webdav/clients.html" title="Clients ">Clients </a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Webdav/plugin_architecture.html" title="Plugin_architecture ">Plugin_architecture </a>
+	</li>
+
+</ul>
+
+		
+  <div class="phpdoc">
+    <h2>Apache Zeta Components Manual :: Docs For Class ezcWebdavBackendChange</h2>
+
+              
+              <h3>Webdav::ezcWebdavBackendChange</h3>
+    
+<a name="sec-description"></a>
+<h3>Interface ezcWebdavBackendChange</h3>
+
+<p>Interface implemented by backends which support the DELETE, COPY and MOVE operations.</p><div><p>If a backend supports the following request method, it must implement this  interface:</p><p></p><ul><li>DELETE</li><li>COPY</li><li>MOVE</li></ul></div>
+<p>Source for this file: <a href="http://fisheye6.atlassian.com/browse/zetacomponents/trunk/Webdav/src/interfaces/backend/change.php?r=HEAD">/Webdav/src/interfaces/backend/change.php</a></p>
+       
+
+
+
+
+  <table><tr><td>
+            <strong>Version:</strong>&#8192;&#8192;
+          </td>
+          <td>//autogentag//</td>
+        </tr></table><a name="sec-method-summary"></a>
+  <h3>Method Summary</h3>
+  <table class="summary"><tr><td class="right">
+            <em>public</em>                        <em><a href="ezcWebdavResponse.html">ezcWebdavResponse</a></em>          </td>
+          <td>
+            <code>
+              <a href="#copy"><b>copy</b></a>(
+                                                                                    $request
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Serves COPY requests.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em><a href="ezcWebdavResponse.html">ezcWebdavResponse</a></em>          </td>
+          <td>
+            <code>
+              <a href="#delete"><b>delete</b></a>(
+                                                                                    $request
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Serves DELETE requests.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em><a href="ezcWebdavResponse.html">ezcWebdavResponse</a></em>          </td>
+          <td>
+            <code>
+              <a href="#move"><b>move</b></a>(
+                                                                                    $request
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Serves MOVE requests.</div>          </td>
+        </tr></table><a name="sec-methods"></a>
+  <h3>Methods</h3>
+  <a name="method_detail"></a>
+      
+      <a name="methodcopy" id="copy"><!-- --></a>
+
+    <h4>copy</h4>
+
+    <div class="method-signature">
+      <a href="ezcWebdavResponse.html">ezcWebdavResponse</a>
+      copy(
+                                  <a href="ezcWebdavCopyRequest.html">ezcWebdavCopyRequest</a>
+          $request
+                        )
+    </div>
+
+    <p>Serves COPY requests.</p><div><p>The method receives a <a href="ezcWebdavCopyRequest.html">ezcWebdavCopyRequest</a> objects containing  all relevant information obout the clients request and will return an  instance of <a href="ezcWebdavErrorResponse.html">ezcWebdavErrorResponse</a> on error or <a href="ezcWebdavCopyResponse.html">ezcWebdavCopyResponse</a> on success. If only some operations failed, this  method may return an instance of <a href="ezcWebdavMultistatusResponse.html">ezcWebdavMultistatusResponse</a>.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$request</code></td>
+              <td><em><a href="ezcWebdavCopyRequest.html">ezcWebdavCopyRequest</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methoddelete" id="delete"><!-- --></a>
+
+    <h4>delete</h4>
+
+    <div class="method-signature">
+      <a href="ezcWebdavResponse.html">ezcWebdavResponse</a>
+      delete(
+                                  <a href="ezcWebdavDeleteRequest.html">ezcWebdavDeleteRequest</a>
+          $request
+                        )
+    </div>
+
+    <p>Serves DELETE requests.</p><div><p>The method receives a <a href="ezcWebdavDeleteRequest.html">ezcWebdavDeleteRequest</a> objects containing  all relevant information obout the clients request and will return an  instance of <a href="ezcWebdavErrorResponse.html">ezcWebdavErrorResponse</a> on error or <a href="ezcWebdavDeleteResponse.html">ezcWebdavDeleteResponse</a> on success.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$request</code></td>
+              <td><em><a href="ezcWebdavDeleteRequest.html">ezcWebdavDeleteRequest</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodmove" id="move"><!-- --></a>
+
+    <h4>move</h4>
+
+    <div class="method-signature">
+      <a href="ezcWebdavResponse.html">ezcWebdavResponse</a>
+      move(
+                                  <a href="ezcWebdavMoveRequest.html">ezcWebdavMoveRequest</a>
+          $request
+                        )
+    </div>
+
+    <p>Serves MOVE requests.</p><div><p>The method receives a <a href="ezcWebdavMoveRequest.html">ezcWebdavMoveRequest</a> objects containing  all relevant information obout the clients request and will return an  instance of <a href="ezcWebdavErrorResponse.html">ezcWebdavErrorResponse</a> on error or <a href="ezcWebdavMoveResponse.html">ezcWebdavMoveResponse</a> on success. If only some operations failed, this  method may return an instance of <a href="ezcWebdavMultistatusResponse.html">ezcWebdavMultistatusResponse</a>.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$request</code></td>
+              <td><em><a href="ezcWebdavMoveRequest.html">ezcWebdavMoveRequest</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><div class="credit">
+      Documentation generated by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+    </div>
+  </div>
+  
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

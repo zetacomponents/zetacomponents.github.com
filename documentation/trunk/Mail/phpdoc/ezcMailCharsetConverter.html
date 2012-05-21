@@ -1,0 +1,263 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="" />
+	<meta name="author" content="jerome" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Sun, 10 Jul 2011 11:11:01 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="ezcMailCharsetConverter.html" />
+	<meta name="DC.creator" content="jerome" />
+	<meta name="DC.date" content="Sun, 10 Jul 2011 11:11:01 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailCharsetConverter.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/Mail/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/trunk/Mail/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Mail/mail-listing-example.html" title="Mail-listing-example ">Mail-listing-example </a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Mail/display-example.html" title="Display-example ">Display-example </a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Mail/rfcs.html" title="Rfcs ">Rfcs </a>
+	</li>
+
+</ul>
+
+		
+  <div class="phpdoc">
+    <h2>Apache Zeta Components Manual :: Docs For Class ezcMailCharsetConverter</h2>
+
+                  <h3>Mail::ezcMailCharsetConverter</h3>
+    
+<a name="sec-description"></a>
+<h3>Class ezcMailCharsetConverter</h3>
+
+<p>Class containing common character set conversion methods.</p><div><p>By calling the static function ezcMailCharsetConverter::setConvertMethod()  before doing mail parsing, another callback function can be used for  character conversion to UTF-8 in place of the normal iconv() conversion.</p><p>The callback function must have this signature:  </p><ol><li><div class="src-line">&#8192;<span class="src-key">public&#8192;</span><span class="src-key">static&#8192;</span><span class="src-key">function&#8192;</span><span class="src-id">function_name</span><span class="src-sym">(&#8192;</span><span class="src-var">$text</span><span class="src-sym">,&#8192;</span><span class="src-var">$originalCharset&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol><p>where: </p><ul><li>$text = string to convert to UTF-8</li><li>$originalCharset = in what charset is $text</li></ul>  Example:  <ol><li><div class="src-line">&#8192;<span class="src-comm">//&#8192;specify&#8192;another&#8192;function&#8192;for&#8192;character&#8192;set&#8192;conversion</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-id"><a href="ezcMailCharsetConverter.html">ezcMailCharsetConverter</a></span><span class="src-sym">::</span><a href="ezcMailCharsetConverter.html#methodsetConvertMethod">setConvertMethod</a><span class="src-sym">(&#8192;</span><span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-str">'myConverter'</span><span class="src-sym">,&#8192;</span><span class="src-str">'convertToUTF8IconvIgnore'&#8192;</span><span class="src-sym">)&#8192;)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;...code&#8192;for&#8192;mail&#8192;parsing...</span></div></li>
+</ol><p>where myConverter is (along with some other examples of charset conversion  functions which can be used):  </p><ol><li><div class="src-line">&#8192;<span class="src-key">class&#8192;</span><span class="src-id">myConverter</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">{</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-key">public&#8192;</span><span class="src-key">static&#8192;</span><span class="src-key">function&#8192;</span><span class="src-id">convertToUTF8IconvIgnore</span><span class="src-sym">(&#8192;</span><span class="src-var">$text</span><span class="src-sym">,&#8192;</span><span class="src-var">$originalCharset&#8192;</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-sym">{</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-key">if&#8192;</span><span class="src-sym">(&#8192;</span><span class="src-var">$originalCharset&#8192;</span>===&#8192;<span class="src-str">'unknown-8bit'&#8192;</span>||&#8192;<span class="src-var">$originalCharset&#8192;</span>===&#8192;<span class="src-str">'x-user-defined'&#8192;</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-sym">{</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-var">$originalCharset&#8192;</span>=&#8192;<span class="src-str">"latin1"</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-sym">}</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-key">return&#8192;</span><a href="http://www.php.net/iconv">iconv</a><span class="src-sym">(&#8192;</span><span class="src-var">$originalCharset</span><span class="src-sym">,&#8192;</span><span class="src-str">'utf-8//IGNORE'</span><span class="src-sym">,&#8192;</span><span class="src-var">$text&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-sym">}</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-key">public&#8192;</span><span class="src-key">static&#8192;</span><span class="src-key">function&#8192;</span><span class="src-id">convertToUTF8IconvTranslit</span><span class="src-sym">(&#8192;</span><span class="src-var">$text</span><span class="src-sym">,&#8192;</span><span class="src-var">$originalCharset&#8192;</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-sym">{</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-key">if&#8192;</span><span class="src-sym">(&#8192;</span><span class="src-var">$originalCharset&#8192;</span>===&#8192;<span class="src-str">'unknown-8bit'&#8192;</span>||&#8192;<span class="src-var">$originalCharset&#8192;</span>===&#8192;<span class="src-str">'x-user-defined'&#8192;</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-sym">{</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-var">$originalCharset&#8192;</span>=&#8192;<span class="src-str">"latin1"</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-sym">}</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-key">return&#8192;</span><a href="http://www.php.net/iconv">iconv</a><span class="src-sym">(&#8192;</span><span class="src-var">$originalCharset</span><span class="src-sym">,&#8192;</span><span class="src-str">'utf-8//TRANSLIT'</span><span class="src-sym">,&#8192;</span><span class="src-var">$text&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-sym">}</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-key">public&#8192;</span><span class="src-key">static&#8192;</span><span class="src-key">function&#8192;</span><span class="src-id">convertToUTF8Mbstring</span><span class="src-sym">(&#8192;</span><span class="src-var">$text</span><span class="src-sym">,&#8192;</span><span class="src-var">$originalCharset&#8192;</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-sym">{</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-key">return&#8192;</span><a href="http://www.php.net/mb_convert_encoding">mb_convert_encoding</a><span class="src-sym">(&#8192;</span><span class="src-var">$text</span><span class="src-sym">,&#8192;</span><span class="src-str">"UTF-8"</span><span class="src-sym">,&#8192;</span><span class="src-var">$originalCharset&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-sym">}</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">}</span></div></li>
+</ol><p>Developers can choose to use the error suppresion operator ('@') in front of  the iconv() calls in the above examples, in order to ignore the notices thrown  when processing broken text (issue #8369).</p></div>
+<p>Source for this file: <a href="http://fisheye6.atlassian.com/browse/zetacomponents/trunk/Mail/src/internal/charset_convert.php?r=HEAD">/Mail/src/internal/charset_convert.php</a></p>
+       
+
+
+
+
+  <table><tr><td>
+            <strong>Version:</strong>&#8192;&#8192;
+          </td>
+          <td>//autogen//</td>
+        </tr></table><a name="sec-method-summary"></a>
+  <h3>Method Summary</h3>
+  <table class="summary"><tr><td class="right">
+            <em>public</em>            static
+                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#convertToUTF8"><b>convertToUTF8</b></a>(
+                                                                                    $text
+                                                    ,                                     $originalCharset
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Converts the $text with the charset $originalCharset to UTF-8.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>            static
+                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#convertToUTF8Iconv"><b>convertToUTF8Iconv</b></a>(
+                                                                                    $text
+                                                    ,                                     $originalCharset
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Converts the $text with the charset $originalCharset to UTF-8.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>            static
+                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#setConvertMethod"><b>setConvertMethod</b></a>(
+                                                                                    $method
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Sets the callback function used for character set conversion to UTF-8.</div>          </td>
+        </tr></table><a name="sec-methods"></a>
+  <h3>Methods</h3>
+  <a name="method_detail"></a>
+      <a name="methodconvertToUTF8" id="convertToUTF8"><!-- --></a>
+
+    <h4>convertToUTF8</h4>
+
+    <div class="method-signature">
+      static string
+      convertToUTF8(
+                                  string
+          $text
+                            ,           string
+          $originalCharset
+                        )
+    </div>
+
+      <p>Converts the $text with the charset $originalCharset to UTF-8.</p><div><p>It calls the function specified by using the static method  setConvertMethod(). By default it calls convertToUTF8Iconv() defined  in this class.</p></div>      
+              <h5>Parameters:</h5>
+        <table class="detail"><thead><tr><th>Name</th>
+              <th>Type</th>
+              <th class="desc">Description</th>
+            </tr></thead><tbody><tr><td><code>$text</code></td>
+                <td><em>string</em></td>
+                <td>
+                                  </td>
+              </tr><tr><td><code>$originalCharset</code></td>
+                <td><em>string</em></td>
+                <td>
+                                  </td>
+              </tr></tbody></table><a name="methodconvertToUTF8Iconv" id="convertToUTF8Iconv"><!-- --></a>
+
+    <h4>convertToUTF8Iconv</h4>
+
+    <div class="method-signature">
+      static string
+      convertToUTF8Iconv(
+                                  string
+          $text
+                            ,           string
+          $originalCharset
+                        )
+    </div>
+
+      <p>Converts the $text with the charset $originalCharset to UTF-8.</p><div><p>In case $originalCharset is 'unknown-8bit' or 'x-user-defined' then  it is assumed to be 'latin1' (ISO-8859-1).</p></div>      
+              <h5>Parameters:</h5>
+        <table class="detail"><thead><tr><th>Name</th>
+              <th>Type</th>
+              <th class="desc">Description</th>
+            </tr></thead><tbody><tr><td><code>$text</code></td>
+                <td><em>string</em></td>
+                <td>
+                                  </td>
+              </tr><tr><td><code>$originalCharset</code></td>
+                <td><em>string</em></td>
+                <td>
+                                  </td>
+              </tr></tbody></table><a name="methodsetConvertMethod" id="setConvertMethod"><!-- --></a>
+
+    <h4>setConvertMethod</h4>
+
+    <div class="method-signature">
+      static void
+      setConvertMethod(
+                                  callback
+          $method
+                        )
+    </div>
+
+      <p>Sets the callback function used for character set conversion to UTF-8.</p><div><p>Call this method before doing mail parsing if you need a special way  of converting the character set to UTF-8.</p></div>      
+              <h5>Parameters:</h5>
+        <table class="detail"><thead><tr><th>Name</th>
+              <th>Type</th>
+              <th class="desc">Description</th>
+            </tr></thead><tbody><tr><td><code>$method</code></td>
+                <td><em>callback</em></td>
+                <td>
+                                  </td>
+              </tr></tbody></table><div class="credit">
+      Documentation generated by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+    </div>
+  </div>
+  
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

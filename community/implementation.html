@@ -1,0 +1,684 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="PHP, apache, components, framework, quality" />
+	<meta name="author" content="Tobias Schlitt" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Sat, 06 Nov 2010 14:14:34 +0100" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="Guidelines" />
+	<meta name="DC.creator" content="Tobias Schlitt" />
+	<meta name="DC.date" content="Sat, 06 Nov 2010 14:14:34 +0100" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/community/implementation.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/community/index.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/dev_process.html" title="Development process">Development process</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/community/implementation.html" title="Guidelines">Guidelines</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    
+		<h2>Implementation guidelines</h2><div class="toc"><h3>Table of Contents</h3><ul><li><p><a href="#general">General</a></p></li><li><p><a href="#debugging">Debugging</a></p><ul><li><p><a href="#dumping-data">Dumping data</a></p></li><li><p><a href="#xdebug">Xdebug</a></p></li><li><p><a href="#errors-and-warnings">Errors and warnings</a></p></li></ul></li><li><p><a href="#naming-conventions">Naming conventions</a></p><ul><li><p><a href="#general-guidelines">General guidelines</a></p></li><li><p><a href="#specific-elements">Specific elements</a></p></li><li><p><a href="#special-functions">Special functions</a></p></li></ul></li><li><p><a href="#directory-structure">Directory structure</a></p><ul><li><p><a href="#svn-structure">SVN Structure</a></p></li><li><p><a href="#installed-structure">Installed Structure</a></p></li><li><p><a href="#autoload-arrays">Autoload Arrays</a></p></li></ul></li><li><p><a href="#exceptions">Exceptions</a></p><ul><li><p><a href="#specific-exceptions">Specific Exceptions</a></p></li></ul></li><li><p><a href="#component-configuration">Component configuration</a></p><ul><li><p><a href="#definition">Definition</a></p></li><li><p><a href="#initialization">Initialization</a></p></li><li><p><a href="#modification">Modification</a></p></li><li><p><a href="#inspection">Inspection</a></p></li><li><p><a href="#standards">Standards</a></p></li><li><p><a href="#error-handling">Error handling</a></p></li><li><p><a href="#validation">Validation</a></p></li></ul></li><li><p><a href="#patterns">Patterns</a></p><ul><li><p><a href="#dependency-injection">Dependency Injection</a></p></li><li><p><a href="#singletons">Singletons</a></p></li><li><p><a href="#properties">Properties</a></p></li><li><p><a href="#options">Options</a></p></li><li><p><a href="#structs">Structs</a></p></li></ul></li><li><p><a href="#dealing-with-files">Dealing with Files</a></p><ul><li><p><a href="#reading-files">Reading files</a></p></li><li><p><a href="#writing-files">Writing files</a></p></li></ul></li><li><p><a href="#unicode-and-utf-8">Unicode and UTF-8</a></p><ul><li><p><a href="#unicode-caveats">Unicode caveats</a></p></li></ul></li><li><p><a href="#id2">Documentation</a></p><ul><li><p><a href="#file-documentation">File documentation</a></p></li><li><p><a href="#class-documentation">Class documentation</a></p></li><li><p><a href="#method-documentation">Method documentation</a></p></li></ul></li></ul></div><a name="general"></a><a name="id3"></a><h3>General</h3><p>Only use references where it is really needed, references do not increase performance (as one might think). There are many pitfalls with reference usage so stay away.</p><p>Don't use @ in front of functions, this makes it much harder to debug. If you have to, a comment before it is <em>required</em>.</p><p>Use real static functions, never use fake static (or semi-static) functions. Real static functions will not include the $this variable from the calling function.</p><p>Avoid dependencies at all costs, each class should be a small a unit as possible.</p><ul><li><p>Unit testing depends on it, the more dependencies involved the harder it is to test. e.g. to reproduce a valid or invalid environment.</p></li><li><p>The components are meant to be used by PEAR and other PHP classes, this means it cannot depend on a given configuration system or debug handler.</p></li><li><p>PHP uses more memory for opcodes for each included class or general code. This means that:</p><ul><li><p>Code that is meant to handle non-standard cases, e.g. missing PHP extensions, should be placed in a separate class. This will reduce running code size for most people.</p></li><li><p>defines/constants should be placed as members of a class.</p></li><li><p>Avoid using 0 and 1 or empty strings as boolean values, instead use the real true and false boolean values. Also checking with === instead of == is advised.</p></li><li><p>Use exceptions ONLY for exceptional cases, e.g. running out of disk space.</p></li><li><p>Never hard code file paths or file names.</p></li><li><p>Provide sane default configuration switches, this allows applications to use the classes without providing all kinds of switches and also removes the need to bundle configuration files.</p></li><li><p>Do not use include_once to include class files, rely on PHP 5's autoload function</p></li></ul></li></ul><p>Use join() function instead of implode(), this makes the code easier to read.</p><a name="debugging"></a><a name="id4"></a><h3>Debugging</h3><a name="dumping-data"></a><a name="id5"></a><h4>Dumping data</h4><p>Don't use print_r for dumping values of a variable, use var_dump instead. Also var_export might be of use.</p><a name="xdebug"></a><a name="id6"></a><h4>Xdebug</h4><p>At all times have Xdebug installed and use its features, it will dramatically reduce the implementation and debugging time.  Some of the interesting features are:</p><ul><li><p>Function traces, this can easily provide clues about performance and dependency issues.</p></li></ul><a name="errors-and-warnings"></a><a name="id7"></a><h4>Errors and warnings</h4><p>To avoid dependency on a specific debug class, debugging and error handling must only rely on the internal PHP functions.</p><p>To notify a debug message use:</p><blockquote><p>trigger_error( "a debug message" );</p></blockquote><p>Just make sure you <strong>NEVER</strong> leave debug message in committed code.</p><p>To notify a warning message use:</p><blockquote><p>trigger_error( "a warning message", E_USER_WARNING );</p></blockquote><p>To notify an error message use:</p><blockquote><p>trigger_error( "an error message", E_USER_ERROR );</p></blockquote><a name="naming-conventions"></a><a name="id8"></a><h3>Naming conventions</h3><p>This document describes the naming conventions for the components (be it classes, variables or functions). By adhering to these guidelines it should be much easier for all developers to use or work with the components. The main idea is to have a set of consistent naming while still allowing for differences in specific contexts.</p><a name="general-guidelines"></a><a name="id9"></a><h4>General guidelines</h4><p>Avoid names which does not give additional meaning or are unclear. Some examples of such names are:</p><code class="block">Quick, Smart, Clever, Simple, Fast, Strange, Stupid</code><a name="abbreviations-and-acronyms"></a><h5>Abbreviations and Acronyms</h5><p>In general one should not use abbreviations and acronyms unless its known by most programmers. Typical examples for known acronyms are:</p><code class="block">HTTP, DAV, URL</code><a name="recommended-names"></a><h5>Recommended names</h5><p>To ensure consistency throughout all components the following naming conventions should be used. If the names don't make much sense in a given context other names should be found. These recommendations can also be used as prefix/suffix, e.g. <em>$srcX</em>, <em>$srcY</em></p><ul><li><p>For file or directory paths use <em>path</em>.</p></li><li><p>For filename without a path use <em>file</em>.</p></li><li><p>For directory name without a path use <em>dir</em>.</p></li><li><p>Use <em>load</em>, <em>save</em> for complete operations on the file system, for instance loading an entire <em>INI</em> file.</p></li><li><p>Use <em>read</em>, <em>write</em> for partial operations of data stream, for instance storing 10 bytes to a file.</p></li><li><p>Use <em>fetch</em>, <em>store</em> for remote operations, for instance fetching data from a web server or database.</p></li><li><p>When adding elements the following naming should be used:</p><ul><li><p>Use <em>add</em> when adding elements without a specific order.</p></li><li><p>Use <em>insert</em> when adding elements in a specific order, for instance at a given index or position.</p></li><li><p>Use <em>append</em> when adding elements to the end.</p></li><li><p>Use <em>prepend</em> when adding elements to the beginning.</p></li></ul></li><li><p>Use <em>create</em> for PHP object creation and <em>generate</em> for operations that generate text, code, SQL etc.</p></li><li><p>Use <em>reset</em> for resetting elements in the object.</p></li><li><p>Use <em>getInstance</em> to get an instance in f.e. a singleton pattern.</p></li><li><p>When removing elements the following naming should be used:</p><ul><li><p>Use <em>remove</em> when elements are no longer referenced but not actually deleted. For instance removing a file path from a list while still leaving the file on the file system.</p></li><li><p>Use <em>delete</em> when elements are no longer meant to exists. For instance unlinking a file from the file system or deleting a database record.</p></li></ul></li><li><p>Short names are advised when their context is very clear. An example is a copy() function in a File class which has a source and a destination, it is quite clear that in this context we are working with files and can use abbreviated forms, <em>src</em> and <em>dest</em>.  copy( $src, $dest ) The order of source and destination is always source first.</p></li><li><p>Some words are different in British English and American English. It is most common to use the American spelling and so all words should follow this. Some typical names are:</p></li></ul><code class="block">initialize, finalize, color, grey</code><a name="specific-elements"></a><a name="id10"></a><h4>Specific elements</h4><p>Each element is explained below:</p><a name="class-names"></a><h5>Class names</h5><p>Classes are named using <a href="http://en.wikipedia.org/wiki/CamelCase">UpperCamelCase</a> and are always prefixed with <em>ezc</em> which stands for Apache Zeta Components. Do not use more than three words for your names and make sure they are not verbs but nouns.</p><p>For exception classes we append "Exception" to the class name, for option classes "Options. We do not add a postfix for abstract classes, interfaces and structs.</p><p>All classes in one package should start with the same prefix, unless a class bundles multiple "main" classes into one package. Examples:</p><code class="block">ezcDb
+ezcDbHandler
+ezcDbPostgresqlHandler
+ezcDbMysqlHandler</code><p>Class names have the form:</p><code class="block">"ezc" ([A-Z][a-z]+)+</code><p>Other examples:</p><code class="block">ezcSystemInformation, ezcTemplate, ezcWebdavServer</code><a name="method-names"></a><h5>Method names</h5><p>Methods are named using <a href="http://en.wikipedia.org/wiki/CamelCase">lowerCamelCase</a> and should not use more than three words. Methods which change an internal property should be named setXXX() and in addition the retrieval method must be named getXXX().  All methods must use a verb.</p><code class="block">printReport(), validateData(), publish()</code><a name="property-names"></a><h5>Property names</h5><p>Properties are named using <a href="http://en.wikipedia.org/wiki/CamelCase">lowerCamelCase</a> and should not use more than two words. Properties must always use nouns and not verbs.</p><code class="block">$name, $path, $author</code><a name="parameter-names"></a><h5>Parameter names</h5><p>Parameters are named using <a href="http://en.wikipedia.org/wiki/CamelCase">lowerCamelCase</a> and should not use more than two words. Parameters must always use nouns and not verbs, the exception are booleans which start with <em>is</em>, <em>has</em> etc. and form a question.</p><code class="block">$name, $path, $isObject</code><a name="constant-names"></a><h5>Constant names</h5><p>Constant names should follow the UPPER_CASE_WORDS standard, where an underscore separates words.</p><a name="special-functions"></a><a name="id11"></a><h4>Special functions</h4><p>There are a couple of special functions in PHP, which you should not use parenthesis with. These functions are:</p><ul><li><p>include, include_once, require, require_once</p></li><li><p>print, echo</p></li><li><p>instanceof</p></li><li><p>break, continue</p></li><li><p>clone, new</p></li></ul><p>Use them without parenthesis, like:</p><code class="block">require_once 'file.php';
+echo "foo\n";
+clone $class;
+break 2;</code><p>Prefer <em>echo</em> over <em>print</em>, and <em>require_once</em> over <em>include</em>, <em>include_once</em> and <em>require</em>. Although none of the "inclusion" functions should be used at all in normal code.</p><a name="directory-structure"></a><a name="id12"></a><h3>Directory structure</h3><a name="svn-structure"></a><a name="id13"></a><h4>SVN Structure</h4><p>The structure in SVN should be as follows:</p><code class="block">trunk/PackageName/src/class1.php</code><p>For example for the Database package:</p><code class="block">trunk/Database/src/db_factory.php
+trunk/Database/src/db_handler_interface.php
+trunk/Database/src/db_handler/mysql.php
+trunk/Database/src/db_handler/postgresql.php
+trunk/Database/src/db_handler/oracle.php
+trunk/Database/src/db_instance.php</code><a name="installed-structure"></a><a name="id14"></a><h4>Installed Structure</h4><p>In the installed structure the "trunk/" and "src/" directories disappear, and the install path is prepended with "ezc/". This makes for the database package (with a default PEAR install path of "/usr/local/lib/php/"):</p><code class="block">/usr/local/lib/php/ezc/Database/db_factory.php
+/usr/local/lib/php/ezc/Database/db_handler_interface.php
+/usr/local/lib/php/ezc/Database/db_handler/mysql.php
+/usr/local/lib/php/ezc/Database/db_handler/postgresql.php
+/usr/local/lib/php/ezc/Database/db_handler/oracle.php
+/usr/local/lib/php/ezc/Database/db_instance.php</code><a name="autoload-arrays"></a><a name="id15"></a><h4>Autoload Arrays</h4><p>Every package should have an "autoload array" that describes how to map a class name to a filename. The format of such an autoload array is:</p><code class="block">&lt;?php
+    return array(
+        'ezcDbFactory' =&gt; 'Database/db_factory.php',
+        'ezcDbHandlerInterface' =&gt; 'Database/db_handler_interface.php',
+        'ezcDbHandlerMysql' =&gt; 'Database/db_handler/mysql.php',
+        ...
+        'ezcDbInstance' =&gt; 'Database/db_instance.php',
+    );
+?&gt;</code><p>The autoload array files should have an unique name per package, consisting of the first part of the class name after "ezc". This is also the reason why the first part after "ezc" should always be the same in a package, if not, you need two autoload arrays. This can cause problems for some packages, like for the Template package and the TemplateTieInLocale package as classes in both of them start with "ezcTemplate" (ezcTemplate vs.  ezcTemplateLocale). In this case you need to make two autoload arrays. For the Template package this will then be "template_autoload.php" and for the TemplateLocale package "template_locale_autoload.php". Another problem is with the ImageAnalysis and ImageConversion packages. There all classes start with ezcImage*. As the ImageConversion package has a second part in the class names, which are not the same (ezcImageConverter and ezcImageFiltersShell f.e.), conflicts with the classes in ImageAnalysis can occur. Luckily there is only one class in there, where the two first parts are unique (ezcImageAnalyzer). Here the autoload file for ImageConversion should be "image_autoload.php" and for ImageAnalysis "image_analysis_autoload.php".</p><p>Autoload arrays should be placed into the "root" of a package's source directory, for example:</p><code class="block">trunk/Database/src/db_autoload.php
+trunk/ImageAnalysis/src/image_analysis_autoload.php
+trunk/ImageConversion/src/image_autoload.php</code><a name="autoload-files-installation-location"></a><h5>Autoload files installation location</h5><p>In our Base package we define a small class "ezcBase" which defines a method "autoload" that can be used in an applications __autoload() function. The ezcBase package always gets installed into [installdir]/ezc/Base and should be included with <em>require</em> in all applications that use the components.</p><p>Because it is important that the ezcBase::autoload() method can find the autoload files of all the packages, they need to be installed through the package.xml definitions into [installdir]/ezc/autoload/. This means that if the Database and ImageAnalysis packages are installed, it looks like:</p><code class="block">[installdir]/ezc/autoload/database_autoload.php
+[installdir]/ezc/autoload/image_analysis_autoload.php</code><a name="exceptions"></a><a name="id16"></a><h3>Exceptions</h3><p>One class per error type. Each exception descents from an abstract exception class for the whole component.</p><p>Similar errors can be grouped in one abstract exception class:</p><code class="block">ezcBaseException
+|
++ ezcBaseFileException
+| |
+| + ezcBaseFileNotWritableException ( $filename, $fileType )
+| |
+| + ezcBaseFileNotReadableException ( $filename, $fileType )
+| |
+| + ezcBaseFileCanNotCopyExecption ( $sourceName, $destinationName, $fileType )
+|
++ ezcGraphException
+  |
+  + ezcGraphDatasetAverageInvalidKeysException()</code><p>Exceptions are thrown with only their parameters. The exception class is responsible for preparing and formatting the message.</p><p>See <a href="#exception-class-documentation">Exception Class Documentation</a> on how to document exception classes.</p><a name="specific-exceptions"></a><a name="id17"></a><h4>Specific Exceptions</h4><p>There are a number of exceptions in the ezcBase class that provide common exceptions that should be used by all components.</p><a name="component-configuration"></a><a name="id18"></a><h3>Component configuration</h3><a name="definition"></a><a name="id19"></a><h4>Definition</h4><p>To ensure minimal set of dependencies on different configuration classes and to keep things consistent a common way of configuring an object is needed.</p><p>A class consists of <em>required configuration</em> and <em>optional configuration</em> often called <em>options</em>.</p><dl><dt>Required configuration</dt><dd>These are configuration settings which the class cannot operate without. Typically this can be file to read or server to connect to.</dd><dt>Optional configuration</dt><dd>These settings never modify the state of the object and are usually read run-time when an operation is executed. How to deal with Options in the implementation can be found in the section <a href="#options">Options</a>.</dd></dl><a name="initialization"></a><a name="id20"></a><h4>Initialization</h4><p>The <em>required</em> configuration is passed in the constructor of the class and if possible they should have useful default values. This ensures that the object is in a valid state when it is created.</p><p>In addition to the <em>required</em> configuration there should also be an extra parameter for initial <em>options</em>. This makes it possible to configure the object in one expression. This <em>options</em> parameter should <em>always</em> be the last parameter and should default to an empty array.</p><code class="block">function __construct( $config1, $config2, array $options = array() )
+{
+}</code><a name="modification"></a><a name="id21"></a><h4>Modification</h4><p>Modifying <em>required</em> configuration must always be done with custom methods. The class and method must be documented so it is clear which methods perform this modification</p><code class="block">$csv-&gt;openFile( 'myfile.txt' );</code><p>Also some configuration may not be allowed to be changed after the object is created, in this case the programmer must initialize a new object with the new configuration. This ensures that the object is at all times in a valid state.</p><code class="block">$users = new ezcCsvReader( 'users.txt' );
+// $users-&gt;openFile( 'groups.txt' ); // Invalid
+$groups = new ezcCsvReader( 'groups.txt' );</code><p>Modifying the <em>options</em> are done with a common method called <em>setOptions</em> which accepts an associate array of option values keyed with the option name. It is also possible to use the <a href="#option-class">Option Class</a> directly:</p><code class="block">$object-&gt;setOptions( array( 'eolStyle' =&gt; 'native' ) );
+
+$options = new ezcCvsOptions;
+$options-&gt;eolStyle = 'native';
+$object-&gt;setOptions( $options );</code><p>In case the <em>setOptions</em> method is implemented, it must accept both an associative array of option values keyed by the option name, and an instance of a class that inherits from ezcBaseOptions. See the <a href="#options-example">Options Example</a>.</p><a name="inspection"></a><a name="id22"></a><h4>Inspection</h4><p>If the programmer wants to inspect the current configuration he must either use specialized methods for the <em>required</em> configuration or <em>getOptions</em> for the <em>options</em>. The <em>getOptions</em> method is not required to be implemented as options can simply be retrieve the option class instance by accessing the options property.</p><p><em>required</em> configuration:</p><code class="block">$path = $object-&gt;path;</code><p><em>options</em>:</p><code class="block">$eolStyle = $object-&gt;options-&gt;eolStyle;</code><p>In case the <em>getOptions</em> method is implemented, it must return an instance of a class that inherits from ezcBaseOptions. See the <a href="#options-example">Options Example</a>.</p><a name="standards"></a><a name="id23"></a><h4>Standards</h4><p>To ensure consistency the following should be followed when defining <em>required</em> configuration and <em>options</em>.</p><ol><li><p>Options which behave like a flag (enabled/disabled) should use <em>true</em> and <em>false</em> as the values and not <em>strings</em> or <em>integers</em>.</p></li><li><p><em>Required</em> configuration and <em>options</em> follows the naming standard as for <em>properties</em>.</p></li></ol><a name="error-handling"></a><a name="id24"></a><h4>Error handling</h4><p>If the object failed to initialise to a sane state from the <em>required</em> configuration it must throw an ezcBaseConfigException exception. This ensures that the object will not be used in the invalid state.</p><p>If non-existing <em>options</em> are passed then the following exception should be thrown, with $name being the configuration option's name:</p><code class="block">throw new ezcBaseConfigException( $name, ezcBaseConfigException::UNKNOWN_CONFIG_SETTING );</code><a name="validation"></a><a name="id25"></a><h4>Validation</h4><p>Validation depends a bit on the configuration setting but in general it is recommended that the settings are made sure they are of a given type. This means that in the worst case the values are cast to the given type and in the best case they are validated and proper warning feedback is issued.</p><a name="patterns"></a><a name="id26"></a><h3>Patterns</h3><a name="dependency-injection"></a><a name="id27"></a><h4>Dependency Injection</h4><p>Some components return objects based on parsed information. This includes the Mail and DatabaseSchema components. In some situations it's desirable that the classes of the objects can be modified so that the user of a component can use his own inherited classes instead. This we call "Dependency Injection".</p><p>The configuration of which class to return has to be done with <a href="#options">Options</a>. In the option class there needs to be a check if the requested class name actually inherits the base class that would be used by default, such as in the following code:</p><code class="block">function __set( $propertyName, $propertyValue )
+{
+    $parentClassMap = array(
+        'tableClassName' =&gt; 'ezcDbSchemaTable',
+        'fieldClassName' =&gt; 'ezcDbSchemaField',
+        'indexClassName' =&gt; 'ezcDbSchemaIndex',
+        'indexFieldClassName' =&gt; 'ezcDbSchemaIndexField',
+    );
+    switch ( $propertyName )
+    {
+        case 'tableClassName':
+        case 'fieldClassName':
+        case 'indexClassName':
+        case 'indexFieldClassName':
+            if ( !is_string( $propertyValue ) )
+            {
+                throw new ezcBaseValueException( $propertyName, $propertyValue, 'string that contains a class name' );
+            }
+
+            // Check if the passed classname actually implements the
+            // correct parent class. We have to do that with reflection
+            // here unfortunately
+            $parentClass = new ReflectionClass( $parentClassMap[$propertyName] );
+            $handlerClass = new ReflectionClass( $propertyValue );
+            if ( $parentClassMap[$propertyName] !== $propertyValue &amp;&amp; !$handlerClass-&gt;isSubclassOf( $parentClass ) )
+            {
+                throw new ezcBaseInvalidParentClassException( $parentClassMap[$propertyName], $propertyValue );
+            }
+
+            $this-&gt;properties[$propertyName] = $propertyValue;
+            break;
+
+
+        ... other options ...
+    }
+}</code><p>In case there is only one class name to modify, this can of course be simplified to something like the following:</p><code class="block">public function __set( $propertyName, $propertyValue )
+{
+    switch ( $propertyName )
+    {
+        case 'mailClass':
+            if ( !is_string( $propertyValue ) )
+            {
+                throw new ezcBaseValueException( $propertyName, $propertyValue, 'string that contains a class name' );
+            }
+
+            // Check if the passed classname actually implements the
+            // correct parent class. We have to do that with reflection
+            // here unfortunately
+            $parentClass = new ReflectionClass( 'ezcMail' );
+            $handlerClass = new ReflectionClass( $propertyValue );
+            if ( 'ezcMail' !== $propertyValue &amp;&amp; !$handlerClass-&gt;isSubclassOf( $parentClass ) )
+            {
+                throw new ezcBaseInvalidParentClassException( 'ezcMail', $propertyValue );
+            }
+            $this-&gt;properties[$propertyName] = $propertyValue;
+            break;
+
+        ... other options ...
+    }
+}</code><a name="singletons"></a><a name="id28"></a><h4>Singletons</h4><p>Should use the following syntax:</p><code class="block">/**
+ * @param ezcTranslationBorkFilter Instance
+ */
+static private $instance = null;
+
+/**
+ * Private constructor to prevent non-singleton use
+ */
+private function __construct()
+{
+}
+
+/**
+ * Returns an instance of the class ezcTranslationBorkFilter
+ *
+ * @return ezcTranslationBorkFilter Instance of ezcTranslationBorkFilter
+ */
+public static function getInstance()
+{
+    if ( is_null( self::$instance ) )
+    {
+        self::$instance = new ezcTranslationBorkFilter();
+    }
+    return self::$instance;
+}</code><a name="properties"></a><a name="id29"></a><h4>Properties</h4><a name="id1"></a><h5>Definition</h5><p>All properties used in a class need to be stored in the $properties array which is defined in the class as follows:</p><code class="block">/**
+ * Holds the properties of this class.
+ *
+ * @var array(string=&gt;mixed)
+ */
+private $properties = array();</code><p>Properties also need an __isset() method implemented for them.</p><a name="property-set-implementation"></a><h5>Property Set Implementation</h5><p>The implementation of the properties happens in the __set() and __get() magic methods to allow value bounds checking and access control.  The __set() method is called with the $name and $value parameters and the implementation of the method is as follows:</p><code class="block">/**
+ * Sets the property $name to $value.
+ *
+ * @throws ezcBasePropertyNotFoundException if the property does not exist.
+ * @param string $name
+ * @param mixed $value
+ * @ignore
+ */
+public function __set( $name, $value )
+{
+    switch ( $name )
+    {
+        // cases to check for properties
+        default:
+            throw new ezcBasePropertyNotFoundException( $name );
+    }
+}</code><p>For each property that is available, there needs to be a "case" statement in the switch block. Range checking is done like this (including the correct exception).</p><code class="block">case 'cols':
+    if ( $value &lt; 1 )
+    {
+        throw new ezcBaseValueException( $name, $value, 'int &gt; 0' );
+    }
+    $this-&gt;properties[$name] = $value;
+    break;</code><p>The 3rd parameter to the ezcBaseValueException constructor defines which type of value is allowed. This can be either a plain type (int, array, string) or a type combined with a range ("int &gt; 0", "int = 20, 40, 60"). In case such an exception can be thrown by the __set() method, add the following code to your docblock:</p><code class="block">* @throws ezcBaseValueException if a the value for a property is out of
+*         range.</code><p>Read only properties also need to have a "case" statement. In order to signal that a property is read-only, use the following code:</p><code class="block">case 'timestamp':
+    throw new ezcBasePropertyPermissionException( $name, ezcBasePropertyPermissionException::READ );
+    break;</code><p>If there is a property that can throw the ezcBasePropertyPermissionException, then you need to add the following to the method docblock as well:</p><code class="block">* @throws ezcBasePropertyPermissionException if a read-only property is
+*         tried to be modified.</code><a name="property-get-implementation"></a><h5>Property Get Implementation</h5><p>The __get() method is called with the $name parameter and the implementation of the method is as follows:</p><code class="block">/**
+ * Returns the value of the property $name.
+ *
+ * @throws ezcBasePropertyNotFoundException if the property does not exist.
+ * @param string $name
+ * @ignore
+ */
+public function __get( $name )
+{
+    switch ( $name )
+    {
+        // cases to check for properties
+    }
+    throw new ezcBasePropertyNotFoundException( $name );
+}</code><p>For each property that is available, there needs to be a "case" statement in the switch block:</p><code class="block">case 'cols':
+    return $this-&gt;properties[$name];</code><p>In case a property is an array, you <em>have</em> to cast it to an array like this:</p><code class="block">case 'colArray':
+    return (array) $this-&gt;properties[$name];</code><p>There is no value bounds checking here. In case you want to have a write-only property you can use the following code:</p><code class="block">case 'timestamp':
+    throw new ezcBasePropertyPermissionException( $name, ezcBasePropertyPermissionException::WRITE );
+    break;</code><p>If there is a property that can throw the ezcBasePropertyPermissionException, then you need to add the following to the method docblock as well:</p><code class="block">* @throws ezcBasePropertyPermissionException if a write-only property is
+*         tried to be read.</code><a name="property-isset-implementation"></a><h5>Property Isset Implementation</h5><p>The __isset() method is called with the $name parameter and the implementation of the method is as follows:</p><code class="block">/**
+ * Returns true if the property $name is set, otherwise false.
+ *
+ * @param string $name
+ * @return bool
+ * @ignore
+ */
+public function __isset( $name )
+{
+    switch ( $name )
+    {
+        case 'cols':
+        case 'colArray':
+        case 'timestamp':
+            return isset( $this-&gt;properties[$name] );
+
+        default:
+            return false;
+    }
+    // if there is no default case before:
+    return parent::__isset( $name );
+}</code><a name="documentation"></a><h5>Documentation</h5><p>See <a href="#property-documentation">Property Documentation</a> on how to document properties.</p><a name="options"></a><a name="id30"></a><h4>Options</h4><a name="introduction"></a><h5>Introduction</h5><p>The ezcBaseOptions class is the base class for all option implementations in Apache Zeta Components. Every class that utilizes options to configure the behavior of its instances using options must use a derivate of this class to implement the options mechanism.</p><a name="implementation"></a><h5>Implementation</h5><p>In the following description, a fictional package Foo will be used, which contains a fictional class ezcFooBar. The instances of ezcFooBar can be configured using options.</p><a name="option-class"></a><h5>Option Class</h5><p>The new option handling introduced in version 1.1 allows a much more convenient handling of options after object instantiation:</p><code class="block">$foo-&gt;options-&gt;foo = 10;</code><p>Beside that (because of BC reasons), the following access possibility will also exist for the classes that used options before. This should <em>not</em> be used for new implementations:</p><code class="block">$foo-&gt;options["foo"] = 10;</code><p>This possibility will not be officially documented and its usage will be discouraged in favor of the first one, to keep code using Apache Zeta Components consistent.</p><p>To use the new option handling system, you have to perform the following steps (still using the Foo package example):</p><ol><li><p>Create a class called ezcFooBarOptions, which extends the ezcBaseOptions class.</p></li><li><p>For each of the options for ezcFooBar create a private property in the ezcFooBarOptions class, and add the default value.</p></li><li><p>Create validity checks for each of the options in the __set() method of the ezcFooBarOptions.</p></li></ol><a name="options-example"></a><h5>Options Example</h5><p>The ezcFooBar class looks now like:</p><code class="block">/**
+ * ezcFooBar does....
+ *
+ * @property ezcFooBarOptions $options
+ */
+class ezcFooBar
+{
+    /**
+     * Options for the foo bar class
+     */
+    private $options;
+
+    /**
+     * ...
+     * @param ezcFooBarOptions $options
+     */
+    public function __construct( ezcFooBarOptions $options = null )
+    {
+        $this-&gt;options = $options === null ? new ezcFooBarOptions() : $options;
+    }
+
+    public function setOptions( ezcFooBarOptions $options )
+    {
+        $this-&gt;options = $options;
+    }
+
+    public function getOptions()
+    {
+        return $this-&gt;options;
+    }
+
+    /**
+     * Returns the value of the property $name.
+     *
+     * @throws ezcBasePropertyNotFoundException
+     *         if the property $name does not exist
+     * @param string $name
+     * @ignore
+     */
+    public function __get( $name )
+    {
+        switch ( $name )
+        {
+            case 'options':
+                return $this-&gt;options;
+                break;
+        }
+        throw new ezcBasePropertyNotFoundException( $name );
+    }
+
+    /**
+     * Sets the property $name to $value.
+     *
+     * @throws ezcBasePropertyNotFoundException
+     *         if the property $name does not exist
+     * @throws ezcBaseValueException
+     *         if $value is not accepted for the property $name
+     * @param string $name
+     * @param mixed $value
+     * @ignore
+     */
+    public function __set( $name, $value )
+    {
+        switch ( $name )
+        {
+            case 'options':
+                if ( !( $value instanceof ezcFooBarOptions ) )
+                {
+                    throw new ezcBaseValueException( 'options', $value, 'instanceof ezcFooBarOptions' );
+                }
+                $this-&gt;options = $value;
+                break;
+
+            default:
+                throw new ezcBasePropertyNotFoundException( $name );
+        }
+    }
+
+    /**
+     * Returns true if the property $name is set, otherwise false.
+     *
+     * @param string $name
+     * @return bool
+     * @ignore
+     */
+    public function __isset( $name )
+    {
+        switch ( $name )
+        {
+            case 'options':
+                return true;
+
+            default:
+                return false;
+        }
+    }
+}</code><a name="option-class-example"></a><h5>Option Class Example</h5><p>The option class itself, could look like the following:</p><code class="block">&lt;?php
+/**
+ * File containing the ezcFooBar class
+ *
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ *
+ * @package Mail
+ * @version //autogen//
+ * @license http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
+ */
+
+/**
+ * Class containing the basic options for foo bar things.
+ *
+ * @property int $timeout
+ *           Specifies the time in seconds until the connection is closed if
+ *           there is no activity through the connection.
+ * @property bool $ssl
+ *           Specifies whether to use an SSL connection or not.
+ *
+ * @package Mail
+ * @version //autogen//
+ */
+class ezcFooBarOptions extends ezcBaseOptions
+{
+    /**
+     * Constructs an object with the specified values.
+     *
+     * @throws ezcBasePropertyNotFoundException
+     *         if $options contains a property not defined
+     * @throws ezcBaseValueException
+     *         if $options contains a property with a value not allowed
+     * @param array(string=&gt;mixed) $options
+     */
+    public function __construct( array $options = array() )
+    {
+        $this-&gt;timeout = 5; // default value for timeout is 5 seconds
+        $this-&gt;ssl = false; // default value for ssl is false
+
+        parent::__construct( $options );
+    }
+
+    /**
+     * Sets the option $name to $value.
+     *
+     * @throws ezcBasePropertyNotFoundException
+     *         if the property $name is not defined
+     * @throws ezcBaseValueException
+     *         if $value is not correct for the property $name
+     * @param string $name
+     * @param mixed $value
+     * @ignore
+     */
+    public function __set( $name, $value )
+    {
+        switch ( $name )
+        {
+            case 'timeout':
+                if ( !is_numeric( $value ) || ( $value &lt; 1 ) )
+                {
+                    throw new ezcBaseValueException( $name, $value, 'int &gt;= 1' );
+                }
+                $this-&gt;properties[$name] = (int) $value;
+                break;
+
+            case 'ssl':
+                if ( !is_bool( $value ) )
+                {
+                    throw new ezcBaseValueException( $name, $value, 'bool' );
+                }
+                $this-&gt;properties[$name] = $value;
+                break;
+
+            default:
+                throw new ezcBasePropertyNotFoundException( $name );
+        }
+    }
+}
+?&gt;</code><a name="options-for-static-classes"></a><h5>Options for Static Classes</h5><p>In case a static class requires options, then it is impossible to have the __set and __get magic methods catch the classname::$options. Because of that, for static classes and options the integration in the class should go like this:</p><code class="block">/**
+ * ezcFooBar does....
+ *
+ */
+class ezcFooBar
+{
+    /**
+     * Options for the foo bar class
+     * @var ezcFooBarOptions
+     */
+    static private $options;
+
+    /**
+     * Associates an option object with this static class.
+     *
+     * @param ezcFooBarOptions $options
+     */
+    static public function setOptions( ezcFooBarOptions $options )
+    {
+        self::$options = $options;
+    }
+}</code><a name="structs"></a><a name="id31"></a><h4>Structs</h4><p>Complex arrays are not used in the Apache Zeta Components. In many cases we prefer to use a very lightweight class with a few methods that can be more conveniently used compared to simple arrays. THis is because we can control which "keys" are available in those classes. Those light weigth classes are called "structs" and can be found in the "structs/" directory which is a sub-directory of "src/".</p><a name="layout"></a><h5>Layout</h5><p>Each struct class extends from ezcBaseStruct:</p><code class="block">class ezcBaseRepositoryDirectory extends ezcBaseStruct</code><p>And defines a public property (including documentation) for each element in the "array":</p><code class="block">/**
+ * The type of repository. Either "ezc" or "external".
+ *
+ * @var string
+ */
+public $type;</code><p>The constructor of the class accepts all the allowed elements as parameters, sets default values, and assigns the values to the class' properties:</p><code class="block">/**
+ * Constructs a new ezcMailAddress with the mail address $email and the
+ * optional name $name.
+ *
+ * @param string $email
+ * @param string $name
+ */
+public function __construct( $email, $name = '', $charset = 'us-ascii' )
+{
+    $this-&gt;name = $name;
+    $this-&gt;email = $email;
+    $this-&gt;charset = $charset;
+}</code><p>A __set_state() method is not required, but recommended. The __set_state() method can be used to create an object of this class from a serialized PHP variable. The method's implementation looks like:</p><code class="block">static public function __set_state( array $array )
+{
+    return new ezcMailAddress( $array['email'], $array['name'] );
+}</code><p>See also <a href="#documenting-set-state">Documenting __set_state</a> on how to document this method.</p><a name="dealing-with-files"></a><a name="id32"></a><h3>Dealing with Files</h3><a name="reading-files"></a><a name="id33"></a><h4>Reading files</h4><p>If possible try to use some of the PHP functions for reading in files, eg. file(), instead of having custom PHP code.</p><p>Avoid reading in whole files in memory if this is not needed. In this cases you should not use file() and the likes. Instead read a chunk of the file into a buffer (e.g. 4096 bytes) and work on that.</p><a name="writing-files"></a><a name="id34"></a><h4>Writing files</h4><p>When writing to files never assume that only one process will access the same file at the same time.  This means you should create code that does either (or both):</p><ul><li><p>File locking, lock the file for reading until the writing is finished, this avoids other processes reading half-finished files.</p></li><li><p>Temporary files, create a new file which is used for writing (locking might be a good idea too).  When the file writing is done the original file is backed up (renamed/moved) and the new one copied/moved as the original.  (A caveat: using tail -f will not work).</p></li></ul><a name="unicode-and-utf-8"></a><a name="id35"></a><h3>Unicode and UTF-8</h3><p>All components internally should handle UTF-8, and where possible parsers should always return UTF-8 as well.</p><a name="unicode-caveats"></a><a name="id36"></a><h4>Unicode caveats</h4><p>Case handling in PHP 6 will differ from earlier because it uses the current locale when doing the operation. This means that in some locales you can have non-revertible case changes.</p><p>There is no workaround for this at the moment other than checking for the original string and the lowercase string at the same time or using only lowercase characters at all times.</p><a name="id2"></a><a name="id37"></a><h3>Documentation</h3><p>This document explains how PHP source and source files should be documented in order to meet the required standards for documentation.</p><p>All PHP source should be documented using phpDocumentor syntax. The rest of this document is concerned with:</p><ul><li><p>Source that is required to be documented.</p></li><li><p>The tags that are required to be used in the various contexts.</p></li><li><p>Optional documentation.</p></li><li><p>Wording rules.</p></li></ul><p>In general the examples show in what order the various tags should be used.</p><a name="file-documentation"></a><a name="id38"></a><h4>File documentation</h4><p>Required in all source files with and without a class. PHPDocumentor will show a warning message otherwise. In addition, the license information must be available in <strong>all files</strong>.</p><p>The following fields are required:</p><ul><li><p>A short (one line) description of the file.</p></li><li><p>@version</p></li><li><p>@package</p></li><li><p>@license</p></li></ul><p>The following fields are optional:</p><ul><li><p>a longer description of the file if the short description does not suffice. Only needed when the file doesn't contain one class.</p></li><li><p>@subpackage Tests To be used for files/classes that make out a part of the test suite.</p></li></ul><p>The following fields may not occur:</p><ul><li><p>@copyright</p></li></ul><p>Example:</p><code class="block">/**
+ * Short description of the contents of the file.
+ *
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ *
+ * @version //autogen//
+ * @package PackageName
+ * @license http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
+ */</code><a name="class-documentation"></a><a name="id39"></a><h4>Class documentation</h4><p>Required for all classes.</p><p>The following fields are required:</p><ul><li><p>A brief one line description of the class.</p></li><li><p>An extensive description of the class. Use examples unless it is obvious how to use the class.</p></li><li><p>@package</p></li><li><p>@version</p></li></ul><p>The following fields are optional:</p><ul><li><p>@tutorial, if there are relevant tutorials</p></li><li><p>@uses, if this class depends on other packages</p></li><li><p>@see, if this class has related classes</p></li><li><p>@property, @property-read and @property-write are used to document properties of normal and <a href="#option-class">Option Class</a>.</p></li></ul><p>Example:</p><code class="block">/**
+ * One line description of the class.
+ *
+ * Extensive documentation of the class. Feel free to use some
+ * inline code. For example, the following code is "like this":
+ * &lt;code&gt;
+ * $archive = new ezcArchive( "/tmp/archive.tar.gz" );
+ * $entry = $archive-&gt;getEntry();
+ * print( "First entry in the archive: " . $entry-&gt;getPath() );
+ * &lt;/code&gt;
+ *
+ * Continue documentation.
+ *
+ * @see all_related_classes
+ * @uses other_packages
+ *
+ * @package PackageName
+ * @version //autogen//
+ */</code><a name="property-documentation"></a><h5>Property Documentation</h5><p>This describes a new way of documenting properties, something that phpDocumentor does not yet understand directly. However, our patched version does.</p><p>Properties are documented in the class' docblock, and not with the __set() and __get() methods. Documentation of properties goes as follows:</p><code class="block">* @property        &lt;type&gt; $name  Description
+* @property-read   &lt;type&gt; $name  Description
+* @property-write  &lt;type&gt; $name  Description</code><p>Examples are:</p><code class="block">* @property        string  $pass   password or null
+* @property-read   int     $port   port, only values &gt; 1024 are allowed
+* @property-write  array   $query  complete query string as an associative array</code><p>@property is used for properties that can be read from and written to, @property-read is for read-only properties and @property-write for write-only properties.</p><a name="exception-class-documentation"></a><h5>Exception Class Documentation</h5><p>Exception class documentation follows the following template:</p><code class="block">&lt;?php
+/**
+ * File containing the &lt;exception name&gt; class
+ *
+ * [… license …]
+ *
+ * @package &lt;packagename&gt;
+ * @version //autogentag//
+ * @license http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
+ */
+/**
+ * Exception for &lt;shortdesc&gt;.
+ * &lt;longdesc&gt;
+ *
+ * @package &lt;packagename&gt;
+ * @version //autogentag//
+ */
+class ezcTemplateElementParserException extends ezcTemplateException
+{
+    /**
+     * Creates a new exception.
+     *
+     * Initializes the exception with the parser error object ($error) and
+     * sets the exception message from it.
+     *
+     * @param ezcTemplateParserError $error The object containing error details.
+     */
+    public function __construct( ezcTemplateParserError $error )
+    {
+        $this-&gt;parserError = $error;
+
+        parent::__construct( $error-&gt;getErrorMessage() );
+    }
+}
+?&gt;</code><a name="structured-arrays"></a><h5>Structured arrays</h5><p>Due to efficiency reasons we use a lot of "struct" like objects in our Components instead of associative arrays. Those should be documented just like normal classes.</p><a name="method-documentation"></a><a name="id40"></a><h4>Method documentation</h4><p>Required for all methods and functions</p><p>The following fields are required:</p><ul><li><p>A brief (one line) description of what the class does. We use the following wording conventions (snatched from the excellent Qt documentation)</p><ul><li><p>Wording: First word of description should always be a verb.</p></li><li><p>Wording: "Constructs a/the" for all constructors</p></li><li><p>Wording: "Returns ...." for all functions returning something except if the returned value is not the significant for the duty of the method.</p></li></ul></li><li><p>@throws, syntax: @throws ExceptionType if [your reason here], like:</p><code class="block">* @throws ezcConfigurationIniFileNotWritable if the current location values
+* cannot be used for storage.</code></li><li><p>@param</p></li><li><p>@return, but only if there is something returned from the method.</p></li></ul><p>The following fields are optional:</p><ul><li><p>A longer description of what the function does. If natural mention the various parameters. If used the description field must follow the brief description.</p></li><li><p>@see, if there are other related methods/functions.</p></li></ul><p>Example 1: (With object parameters)</p><code class="block">/**
+ * Returns the length of the line defined in the two dimensional space
+ * between $point1 and $point2.
+ *
+ * Example:
+ * &lt;code&gt;
+ * $point1 = new Point( 5, 10 );
+ * $point2 = new Point( 15, 42 );
+ *
+ * $length = getLength( $point1, $point2 );
+ * &lt;/code&gt;
+ *
+ * @see getLength3D()
+ *
+ * @throws PointException if any of the points are imaginary.
+ * @param Point $point1
+ * @param Point $point2
+ * @return int
+ */
+public function getLength2D( Point $point1, Point $point2 )
+{</code><p>Note how the parameters are not documented since they are already mentioned in the description.</p><p>Example 2: (Same as above but with optional extra parameter and array arguments):</p><code class="block">/**
+ * Returns the length of the line defined in two dimensional space
+ * between point1 and point2.
+ *
+ * @param array $point1     Format array( 'x' =&gt; int, 'y' =&gt; int )
+ * @param array $point2     Format array( 'x' =&gt; int, 'y' =&gt; int )
+ * @param int   $multiplier Multiplies the result by the given factor.
+ * @return int
+ */</code><p>Note how the additional optional parameter <em>is</em> documented since it is not mentioned in the normal description. Of course in this case you could choose to mention it there instead.</p><a name="function-parameter-and-return-types"></a><h5>Function parameter and return types</h5><ul><li><p>All parameters must be documented with at least their type, parameter name and short description. All returns should be documented with at least their type. If it is not obvious what the return value/parameter does with the short description, it should be described in the long description of the method, a description must be written. Do not add long descriptions of obvious parameters/return types if they are explained in the description text.  This is to avoid cluttering the documentation with obvious stuff.</p></li><li><p>Type names should be written as described on this page <a href="http://no.php.net/manual/en/language.types.php">http://no.php.net/manual/en/language.types.php</a>. Basically the allowed types are:</p><ul><li><p>bool</p></li><li><p>int</p></li><li><p>float</p></li><li><p>string</p></li><li><p>array</p></li><li><p>object (use class name)</p></li><li><p>resource</p></li><li><p>mixed (avoid making functions that use mixed parameters/return types)</p></li></ul></li><li><p>If the type is array, we must describe the requirements to the contents of the array. This is done by specifying the type for normal arrays or the expected key's and corresponding value type if it is a hash array.</p><p>Example of normal array of integers:</p><code class="block">array(int)</code></li></ul><blockquote><p>Example of a hash array:</p></blockquote><ul><li><p>Default values are auto documented, never document the default unless it is not obvious what it does.</p></li><li><p>Parameters can be documented in either of the following styles:</p><code class="block">/**
+ * @param array(int) $somewhatLongerName A long description of
+ *                                       myParameter and it doesn't
+ *                                       fit with the 79 characters.
+ */
+
+/**
+ * @param array(int) $somewhatLongerName
+ *        A long description of myParameter and it doesn't fit with the 79
+ *        characters.
+ */</code></li></ul><p>The first format is preferred, but in case the parameters short description does not fit behind the type and parameter name on the line, then the multi-line comment like in format 2 is preferred. Do not use the "short" description for extensive documentation, this should go to the method's long function description.</p><a name="documenting-set-and-get"></a><h5>Documenting set and get</h5><p>If you use class properties then the __set and __get methods get the following documentation:</p><code class="block">/**
+ * Sets the property $name to $value.
+ *
+ * @throws ezcBasePropertyNotFoundException if the property does not exist.
+ * @throws ezcBaseFileNotFoundException when setting the property with an invalid filename.
+ * @param string $name
+ * @param mixed $value
+ * @ignore
+ */
+public function __set( $name, $value )
+
+/**
+ * Returns the value of property $value.
+ *
+ * @throws ezcBasePropertyNotFoundException if the property does not exist.
+ * @param string $name
+ * @param mixed $value
+ * @return mixed
+ * @ignore
+ */
+public function __get( $name )</code><p>For documentation how properties really work, please refer to the section <a href="#property-documentation">Property Documentation</a>.</p><a name="documenting-set-state"></a><h5>Documenting __set_state</h5><p>If you have such a method for your class, it should be documented like this:</p><code class="block">/**
+ * Returns a new instance of this class with the data specified by $array.
+ *
+ * $array contains all the data members of this class in the form:
+ * array('member_name'=&gt;value).
+ *
+ * __set_state makes this class exportable with var_export.
+ * var_export() generates code, that calls this method when it
+ * is parsed with PHP.
+ *
+ * @param array(string=&gt;mixed)
+ * @return ezcPhpGeneratoReturnData
+ */</code><a name="documenting-the-properties-variable"></a><h5>Documenting the properties variable</h5><p>The properties variable should be documented like this:</p><code class="block">/**
+ * Holds the properties of this class.
+ *
+ * @var array(string=&gt;mixed)
+ */</code><a name="documenting-private-classes"></a><h5>Documenting private classes</h5><p>If you are documenting a private class make sure to mark both the file and the class docblock with @access private. Documentation for these classes will <em>not</em> be generated for the end user documentation.</p><p>It is important that private classes are not exposed anywhere within the public classes.</p><a name="documenting-options"></a><h5>Documenting options</h5><p>Options should be documented in the class doc block as properties of the option class. It should follow directly after the main description. See <a href="#property-documentation">Property Documentation</a> for more information.</p><a name="phpdocumentor-tags-and-required-usage"></a><h5>phpDocumentor tags and required usage</h5><dl><dt>@apichange</dt><dd>Use this in any form of block level to document something that can be removed or changed when we bump the major version number of a component.</dd><dt>@category</dt><dd>Required in the page level doc blocks in source files of tie-in packages. That is packages directly related to some main package where the separation exists only to avoid dependencies.</dd><dt>@copyright</dt><dd>Required in either the page or class level doc blocks. It should be in the form:</dd><dt>@deprecated</dt><dd>Required to use for everything that is deprecated. If a complete page or class is deprecated you should add this tag only to the page or class level doc block.</dd><dt>@example</dt><dd>Optional usage when making big examples. These can be in source files which we can then actually check for correct behavior.</dd><dt>@filesource</dt><dd>Required in the page level documentation.</dd><dt>@global</dt><dd>Required when creating global variables. I can't think of any reasons why we would want to create that though.</dd><dt>@ignore</dt><dd>Use if needed. __set, __get and __isset method documentation always get this tag.</dd><dt>@internal</dt><dd>Required when documenting public functionality and you want to add information that is developer specific.</dd><dt>@license</dt><dd>Required for the documentation of all files. It should always read:<code class="block">@license http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0</code></dd><dt>@link</dt><dd>Required when linking in the documentation.</dd><dt>@package</dt><dd>Required in the page level doc block of all source files. Always use the package name.</dd><dt>@param</dt><dd>Required for all function parameters. The type and variable name parameters are required. The description should be used if the purpose of the parameter is not mentioned in the method description. Documentation of parameters in the description is recommended.</dd><dt>@return</dt><dd>Required for all methods, and the type parameter is required. This tag should not exist for non-returning methods. The description should be used if the purpose of the return value is not mentioned in the method description.</dd><dt>@see</dt><dd>Required to use when documenting methods or classes that have similar purpose.</dd><dt>@since</dt><dd>Required when adding new functionality to a package after the initial release.</dd><dt>@throws</dt><dd>Required for all methods that can throw an exception. You should also mention any exceptions that might bubble up.</dd><dt>@todo</dt><dd>Required to use when functionality is not finished. Packages should never contain TODO items when they are released.</dd><dt>@uses</dt><dd>Required for classes that have dependencies on other packages. The use should display what package you use. Should only be used in class documentation.</dd><dt>@var</dt><dd>Required for all class variables. The only allowed syntax is:<code class="block">/**
+ * Short description
+ * Longer description that can also span multiple lines, like
+ * this.
+ * @var type
+ */
+private $variableName;</code>An example:<code class="block">/**
+ * ezcPhpGenerator writes to the file with this name during execution.
+ * When {@link finish()} is called this file is moved to
+ * $resultFileName.
+ * @var string
+ */
+private $tmpFilename;</code></dd><dt>@version</dt><dd>Required in all file <em>and</em> class descriptions. The values are auto generated, so just use the format:<code class="block">@version //autogentag//</code></dd></dl><!--Local Variables:
+mode: rst
+fill-column: 79
+End:
+vim: et syn=rst tw=79-->
+
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

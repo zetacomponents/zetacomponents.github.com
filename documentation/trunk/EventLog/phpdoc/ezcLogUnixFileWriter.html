@@ -1,0 +1,293 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="PHP, apache, components, framework, quality" />
+	<meta name="author" content="dotxp" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Wed, 04 Aug 2010 13:07:37 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="ezcLogUnixFileWriter.html" />
+	<meta name="DC.creator" content="dotxp" />
+	<meta name="DC.date" content="Wed, 04 Aug 2010 13:07:37 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/EventLog/phpdoc/ezcLogUnixFileWriter.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/EventLog/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/trunk/EventLog/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+
+</ul>
+
+		
+  <div class="phpdoc">
+    <h2>Apache Zeta Components Manual :: Docs For Class ezcLogUnixFileWriter</h2>
+
+                  <h3>EventLog::ezcLogUnixFileWriter</h3>
+    
+<a name="sec-description"></a>
+<h3>Class ezcLogUnixFileWriter</h3>
+
+<p>Writes the log messages to a file in a format that is frequently used on the Unix operating system.</p>
+<p>Source for this file: <a href="http://fisheye6.atlassian.com/browse/zetacomponents/trunk/EventLog/src/writers/writer_unix_file.php?r=HEAD">/EventLog/src/writers/writer_unix_file.php</a></p>
+       
+
+
+<pre><a href="ezcLogFileWriter.html">ezcLogFileWriter</a>
+   |
+   --ezcLogUnixFileWriter</pre>
+
+
+  <table><tr><td>
+            <strong>Version:</strong>&#8192;&#8192;
+          </td>
+          <td>//autogentag//</td>
+        </tr></table><h3>Inherited Member Variables</h3>
+  <table class="summary"><thead><tr><th colspan="2">
+            From <span class="classname"><a href="ezcLogFileWriter.html">ezcLogFileWriter</a></span>         
+          </th>
+        </tr></thead><tbody><tr><td class="right">
+              <em>protected</em>                          </td>
+            <td>
+              <code><a href="ezcLogFileWriter.html#var%24fileMap">ezcLogFileWriter::$fileMap</a></code>
+              
+            </td>
+          </tr><tr><td class="right">
+              <em>protected</em>                          </td>
+            <td>
+              <code><a href="ezcLogFileWriter.html#var%24logDirectory">ezcLogFileWriter::$logDirectory</a></code>
+              
+            </td>
+          </tr><tr><td class="right">
+              <em>protected</em>                          </td>
+            <td>
+              <code><a href="ezcLogFileWriter.html#var%24maxFiles">ezcLogFileWriter::$maxFiles</a></code>
+              
+            </td>
+          </tr><tr><td class="right">
+              <em>protected</em>                          </td>
+            <td>
+              <code><a href="ezcLogFileWriter.html#var%24maxSize">ezcLogFileWriter::$maxSize</a></code>
+              
+            </td>
+          </tr><tr><td class="right">
+              <em>protected</em>                          </td>
+            <td>
+              <code><a href="ezcLogFileWriter.html#var%24openFiles">ezcLogFileWriter::$openFiles</a></code>
+              
+            </td>
+          </tr></tbody></table><a name="sec-method-summary"></a>
+  <h3>Method Summary</h3>
+  <table class="summary"><tr><td class="right">
+            <em>protected</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#implodeWithKey"><b>implodeWithKey</b></a>(
+                                                                                    $splitEntry
+                                                    ,                                     $splitKeyVal
+                                                    ,                                     $data
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns a string from the hash $data.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#writeLogMessage"><b>writeLogMessage</b></a>(
+                                                                                    $message
+                                                    ,                                     $eventType
+                                                    ,                                     $eventSource
+                                                    ,                                     $eventCategory
+                                                    ,                   [                  $extraInfo
+                   = array()]                               )
+            </code>
+            <br><div style="margin-left: 20px">Write the logEntries to a file.</div>          </td>
+        </tr></table><h3>Inherited Methods</h3>
+  <table class="summary"><thead><tr><th colspan="2">
+            From <span class="classname"><a href="ezcLogFileWriter.html">ezcLogFileWriter</a></span>
+          </th>
+        </tr></thead><tbody><tr><td class="right">
+              <em>public</em>                                          <em>ezcLogFileWriter</em>            </td>
+            <td>
+              <code><b><a href="ezcLogFileWriter.html#method__construct">ezcLogFileWriter::__construct()</a></b></code>
+              <br><div style="margin-left: 20px">Constructs an ezcLogFileWriter.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>protected</em>                                          <em>resource</em>            </td>
+            <td>
+              <code><b><a href="ezcLogFileWriter.html#methodopenFile">ezcLogFileWriter::openFile()</a></b></code>
+              <br><div style="margin-left: 20px">Returns the filehandle of the $fileName.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>protected</em>                                          <em>bool</em>            </td>
+            <td>
+              <code><b><a href="ezcLogFileWriter.html#methodrotateLog">ezcLogFileWriter::rotateLog()</a></b></code>
+              <br><div style="margin-left: 20px">Rotates a log and returns true upon success.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b><a href="ezcLogFileWriter.html#methodsetFile">ezcLogFileWriter::setFile()</a></b></code>
+              <br><div style="margin-left: 20px">Maps the filename $fileName to the messages specified by the <a href="ezcLogFilter.html">ezcLogFilter</a> $logFilter.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>protected</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b><a href="ezcLogFileWriter.html#methodwrite">ezcLogFileWriter::write()</a></b></code>
+              <br><div style="margin-left: 20px">This method writes the $string to a file.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b><a href="ezcLogFileWriter.html#method__destruct">ezcLogFileWriter::__destruct()</a></b></code>
+              <br><div style="margin-left: 20px">Destructs the object and closes all open file handles.</div>                          </td>
+          </tr></tbody></table><a name="sec-methods"></a>
+  <h3>Methods</h3>
+  <a name="method_detail"></a>
+    
+      <a name="methodimplodeWithKey" id="implodeWithKey"><!-- --></a>
+
+    <h4>implodeWithKey</h4>
+
+    <div class="method-signature">
+      string
+      implodeWithKey(
+                                  string
+          $splitEntry
+                            ,           string
+          $splitKeyVal
+                            ,           array(mixed=&gt;mixed)
+          $data
+                        )
+    </div>
+
+    <p>Returns a string from the hash $data.</p><div><p>The string $splitEntry specifies the string that will be inserted between the pairs.  The string $splitKeyVal specifies the string that will be inserted in each pair.</p><p>Example:  </p><ol><li><div class="src-line">&#8192;<span class="src-var">$this</span><span class="src-sym">-&gt;</span><a href="ezcLogUnixFileWriter.html#methodimplodeWithKey">implodeWithKey</a><span class="src-sym">(&#8192;</span><span class="src-str">",&#8192;"</span><span class="src-sym">,&#8192;</span><span class="src-str">":&#8192;"</span><span class="src-sym">,&#8192;</span><span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-str">"Car"&#8192;</span>=&gt;&#8192;<span class="src-str">"red"</span><span class="src-sym">,&#8192;</span><span class="src-str">"Curtains"&#8192;</span>=&gt;&#8192;<span class="src-str">"blue"&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol><p>Will create the following string:  </p><pre> Car: red, Curtains: blue</pre></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$splitEntry</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$splitKeyVal</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$data</code></td>
+              <td><em>array(mixed=&gt;mixed)</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodwriteLogMessage" id="writeLogMessage"><!-- --></a>
+
+    <h4>writeLogMessage</h4>
+
+    <div class="method-signature">
+      void
+      writeLogMessage(
+                                  string
+          $message
+                            ,           int
+          $eventType
+                            ,           string
+          $eventSource
+                            ,           string
+          $eventCategory
+                            ,           [array(string=&gt;string)
+          $extraInfo
+           = array()]              )
+    </div>
+
+    <p>Write the logEntries to a file.</p><div><p>Each line in the log file represents a log message. The log  messages have the following style:  </p><pre> MMM dd HH:mm:ss [Severity] [Source] [Category] Message (ExtraInfo)</pre><p>With: </p><ul><li>MMM: The 3 letter abbreviation of the month.</li><li>dd: The day of the month.</li><li>HH: The hour.</li><li>mm: The minutes.</li><li>ss: The seconds.</li></ul>  Example:  <pre> Jan 24 15:32:56 [Debug] [Paynet] [Shop] Connecting to the paynet server (file: paynet_server.php, line: 224).
+ Jan 24 15:33:01 [Debug] [Paynet] [Shop] Connected with the server (file: paynet_server.php, line: 710).</pre><p>This method will be called by the <a href="ezcLog.html">ezcLog</a> class.  The $eventSource and $eventCategory are either given  in the <a href="ezcLog.html#methodlog">ezcLog::log()</a> method or are the defaults from the <a href="ezcLog.html">ezcLog</a> class.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$message</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$eventType</code></td>
+              <td><em>int</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$eventSource</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$eventCategory</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$extraInfo</code></td>
+              <td><em>array(string=&gt;string)</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><div class="credit">
+      Documentation generated by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+    </div>
+  </div>
+  
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

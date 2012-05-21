@@ -1,0 +1,634 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="PHP, apache, components, framework, quality" />
+	<meta name="author" content="dotxp" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Wed, 04 Aug 2010 13:07:08 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="ConsoleTools" />
+	<meta name="DC.creator" content="dotxp" />
+	<meta name="DC.date" content="Wed, 04 Aug 2010 13:07:08 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/ConsoleTools/tutorial.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/ConsoleTools/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+
+</ul>
+
+		<h2>eZ Components - ConsoleTools</h2><div class="toc"><h3>Table of Contents</h3><ul><li><p><a href="#introduction">Introduction</a></p></li><li><p><a href="#class-overview">Class overview</a></p></li><li><p><a href="#usage">Usage</a></p><ul><li><p><a href="#printing-text-to-the-console">Printing text to the console</a></p></li><li><p><a href="#mastering-options-and-arguments">Mastering options and arguments</a></p></li><li><p><a href="#progress-indication">Progress indication</a></p></li><li><p><a href="#large-data-served-in-a-table">Large data served in a table</a></p></li><li><p><a href="#interacting-with-the-user">Interacting with the user</a></p></li></ul></li></ul></div><a name="introduction"></a><a name="id2"></a><h3>Introduction</h3><p>The ConsoleTools component provides several useful tools to build applications that run on a computer console (sometimes also called shell or command line). For example, eZ Publish includes several shell scripts that perform tasks like clearing caches.</p><div class="note"><p>From version 1.5.2 on, all necessary string operations in ConsoleTools are performed using <a href="http://php.net/iconv">ext/iconv</a>. This makes the component binary safe and allows you to use arbitrary unicode characters in your texts. Please make sure to convert your text to UTF-8 before submitting it to a method in ConsoleTools, if you use a different, non ASCII-compatible encoding.</p></div><a name="class-overview"></a><a name="id3"></a><h3>Class overview</h3><p>The ConsoleTools component offers several (mostly independent) classes to perform different tasks. The main classes are:</p><dl><dt>ezcConsoleOutput</dt><dd>ezcConsoleOutput is responsible for printing text to the console. It allows you to print text in different colors with different background colors. It can also apply other styling information to the text, making it bold or underlined for example. It can automatically wrap text after a certain number of characters are printed (keeping words intact) and handle output of different verbosity levels. ATTENTION: Windows does not support the styling of text.</dd><dt>ezcConsoleInput</dt><dd>Using this little tool, you can handle the options and arguments provided to your shell application. It is capable of handling and validating three types of option datatypes (string, int and none) and can handle optional and mandatory options as well as rules to define relations between them. Rules can include dependencies and exclusions between options.</dd><dt>ezcConsoleProgressbar</dt><dd>Most often you will use a console application in favor of a web application when it comes to processing time-consuming tasks. To indicate the current progress of a task, a kind of "status indicator" will be used, which is most commonly a progress bar. <a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleProgressbar.html'>ezcConsoleProgressbar</a> gives you an easy-to-use interface to display this. It will keep track of re-drawing the bar as needed, showing current and maximum values, as well as percentage completion. It is fully configurable regarding its visual appearance.</dd><dt>ezcConsoleStatusbar</dt><dd>ezcConsoleStatusbar is the "little brother" of <a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleProgressbar.html'>ezcConsoleProgressbar</a>. It also allows you to display the progress of a time-consuming action, but does not use a fixed bar-like appearance. Instead, it indicates successful and failed operations by displaying specific characters and keeps a count of successes and failures. This allows you to indicate the progress of a process where you don't initially know the number of actions to be performed.</dd><dt>ezcConsoleProgressMonitor</dt><dd>Sometimes you need to display the progress of several actions and don't want to use a progress bar to do so. In this case you need the status indicator. It allows you to display a status entry for each action and generates the percentage completion of the current step.</dd><dt>ezcConsoleTable</dt><dd>This class lets you easily create tables to be displayed on the console. It has a very convenient interface to create a table and manage the data it contains. It is highly configurable regarding the table's appearance (for example, different color and style information for content and borders on a per-cell basis, character selection for borders, variable width of the table and so on). <a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleTable.html'>ezcConsoleTable</a> will also take care of measuring the best width for table columns (to make your content fit best), automatically wrapping content and aligning the content in the cells as indicated.</dd><dt>ezcConsoleDialog</dt><dd>This interface provides a common API for user interaction elements. A console dialog can request information from a user and react on this information interactively. For you as a user of <a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleDialog.html'>ezcConsoleDialog</a>, a dialog is displayed to the user and returns a result value to you, which was provided by the user of your application in some way. Currently 2 implementations of <a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleDialog.html'>ezcConsoleDialog</a> exist: <a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleQuestionDialog.html'>ezcConsoleQuestionDialog</a> is a dialog for asking a simply question and retrieving the answer from the user of an application. Instances of the  <a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleMenuDialog.html'>ezcConsoleMenuDialog</a> class display a menu to the user and retrieves his choice of a menu item.</dd></dl><a name="usage"></a><a name="id4"></a><h3>Usage</h3><a name="printing-text-to-the-console"></a><a name="id5"></a><h4>Printing text to the console</h4><p>As mentioned, the class <a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleOutput.html'>ezcConsoleOutput</a> is used to print text to the console. Let's look at a basic example:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li></li>
+<li><span style="color: #0000FF">require_once&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #000000">$output&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleOutput.html'>ezcConsoleOutput</a></span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #000000">$output</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">formats</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">info</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">color&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">'blue'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #000000">$output</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">outputText</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'Test&nbsp;text&nbsp;in&nbsp;color&nbsp;blue'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'info'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><p>The <a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleOutput.html'>ezcConsoleOutput</a> object is simply instantiated. You can optionally submit options and predefined formatting options to its constructor, but this can also be done later.</p><p>In line 7, you can see how format is defined. Formats are created on the fly, as soon as you access them (for reading or writing) through the $output-&gt;formats attribute. There, we create a format called "info" and assign the color value "blue" to it. This will make all text printed with this format blue. In line 9, you can see how the format is applied to some text at printing time.</p><p>The second example shows some more advanced code:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li></li>
+<li><span style="color: #0000FF">require_once&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #000000">$output&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleOutput.html'>ezcConsoleOutput</a></span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #000000">$output</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">formats</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">info</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">color&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">'blue'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #000000">$output</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">formats</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">error</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">color&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">'red'</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000">$output</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">formats</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">error</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">style&nbsp;</span><span style="color: #0000FF">=&nbsp;array(&nbsp;</span><span style="color: #335533">'bold'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #000000">$output</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">formats</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">fatal</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">color&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">'red'</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000">$output</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">formats</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">fatal</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">style&nbsp;</span><span style="color: #0000FF">=&nbsp;array(&nbsp;</span><span style="color: #335533">'bold'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'underlined'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$output</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">formats</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">fatal</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">bgcolor&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">'black'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #000000">$output</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">outputText</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'This&nbsp;is&nbsp;some&nbsp;standard&nbsp;text&nbsp;'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$output</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">outputText</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'including&nbsp;some&nbsp;error'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'error'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$output</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">outputText</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'&nbsp;wrapped&nbsp;in&nbsp;standard&nbsp;text.'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$output</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">outputText</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">"\n"&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #000000">$output</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">outputLine</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'This&nbsp;is&nbsp;a&nbsp;fatal&nbsp;error&nbsp;message.'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'fatal'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #000000">$output</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">outputText</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'Test'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><p>In this example, two more formats are defined: "error" and "fatal". These formats have an additional style attribute set, which makes them both appear bold. The "fatal" format will also underline the text and give it a black background color.</p><p>The difference between <a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleOutput.html#outputText'>ezcConsoleOutput-&gt;outputText</a>() and <a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleOutput.html#outputLine'>ezcConsoleOutput-&gt;outputLine</a>() is that the latter automatically adds a newline value to your text. The newline sequence used here is adjusted based on the operating system. The use of <a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleOutput.html#outputLine'>ezcConsoleOutput-&gt;outputLine</a>() is recommended over the direct output of, for example, "n".</p><p>If you leave the second parameter of <a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleOutput.html#outputText'>ezcConsoleOutput::outputText</a>() and <a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleOutput.html#outputLine'>ezcConsoleOutput::outputLine</a>() out, the "default" format is used. The default is set to your console's default setting, but you can also change this as for any other format you define. A third variant to format text is <a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleOutput.html#formatText'>ezcConsoleOutput-&gt;formatText</a>(), which returns the formatted string instead of printing it.</p><p>This example shows some of the options <a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleOutput.html'>ezcConsoleOutput</a> supports:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li></li>
+<li><span style="color: #0000FF">require_once&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #000000">$output&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleOutput.html'>ezcConsoleOutput</a></span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #000000">$output</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">formats</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">info</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">color&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">'blue'</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000">$output</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">formats</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">info</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">style&nbsp;</span><span style="color: #0000FF">=&nbsp;array(&nbsp;</span><span style="color: #335533">'bold'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #000000">$output</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">setOptions</span><span style="color: #0000FF">(&nbsp;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;array(&nbsp;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #335533">'autobreak'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #000000">78</span><span style="color: #0000FF">,</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #335533">'verbosityLevel'&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #000000">3</span></li>
+<li><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #000000">$output</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">outputLine</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'This&nbsp;is&nbsp;a&nbsp;very&nbsp;very&nbsp;long&nbsp;info&nbsp;text.&nbsp;It&nbsp;has&nbsp;so&nbsp;much&nbsp;information&nbsp;in&nbsp;'</span><span style="color: #0000FF">.</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #335533">'it,&nbsp;that&nbsp;it&nbsp;will&nbsp;definitly&nbsp;not&nbsp;fit&nbsp;into&nbsp;1&nbsp;line.&nbsp;Therefore,&nbsp;'</span><span style="color: #0000FF">.</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #335533">'<a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleOutput.html'>ezcConsoleOutput</a>&nbsp;will&nbsp;automatically&nbsp;wrap&nbsp;the&nbsp;line&nbsp;for&nbsp;us.'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'info'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #000000">$output</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">outputLine</span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #000000">$output</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">outputLine</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'This&nbsp;verbose&nbsp;information&nbsp;will&nbsp;currently&nbsp;not&nbsp;be&nbsp;displayed.'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'info'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">10&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #000000">$output</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">outputLine</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'But&nbsp;this&nbsp;verbose&nbsp;information&nbsp;will&nbsp;be&nbsp;displayed.'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'info'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">2&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><dl><dt>autobreak</dt><dd>Will wrap lines automatically after the set amount of characters, keeping word boundaries intact.</dd><dt>verbosityLevel</dt><dd>Allows you to specify a third parameter to <a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleOutput.html#outputLine'>ezcConsoleOutput-&gt;outputLine</a>() and <a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleOutput.html#outputText'>ezcConsoleOutput-&gt;outputText</a>() to indicate a verbosity level for when the text should be printed. By setting the "verbosityLevel" option for <a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleOutput.html'>ezcConsoleOutput</a>, you define which texts will and will not be printed.</dd></dl><p>In our example, the call on line 23 would not print out text with the "verbosityLevel" option set to 3, but the call on line 25 would.</p><p>The last example shows how to change the target of a format, which allows you to print text e.g. to STDERR.</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li></li>
+<li><span style="color: #0000FF">require_once&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #000000">$output&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleOutput.html'>ezcConsoleOutput</a></span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #000000">$output</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">formats</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">error</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">color&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">'red'</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000">$output</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">formats</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">error</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">style&nbsp;</span><span style="color: #0000FF">=&nbsp;array(&nbsp;</span><span style="color: #335533">'bold'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$output</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">formats</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">error</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">target&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleOutput.html#constTARGET_STDERR'>ezcConsoleOutput::TARGET_STDERR</a></span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #000000">$output</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">outputLine</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'Unable&nbsp;to&nbsp;connect&nbsp;to&nbsp;database'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'error'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><p>The error message 'Unable to connect to database' will be printed in bold, with a red foreground color to STDOUT. The default target is <a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleOutput.html#constTARGET_OUTPUT'>ezcConsoleOutput::TARGET_OUTPUT</a>, which prints to STDOUT and has standar output buffering in place. If you want to switch out the standard output bufferung, use <a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleOutput.html#constTARGET_STDOUT'>ezcConsoleOutput::TARGET_STDOUT</a>.</p><p>Although this feature was originally not designed for that purpose, you can also use any other arbitrary PHP stream definition as a target. For example '<a href="file:///var/log/my.log">file:///var/log/my.log</a>' to get the messages redirected to a log file instead of displaying them.</p><a name="mastering-options-and-arguments"></a><a name="id6"></a><h4>Mastering options and arguments</h4><p>Below is a simple example for <a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleInput.html'>ezcConsoleInput</a>:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li></li>
+<li><span style="color: #0000FF">require_once&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #000000">$input&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleInput.html'>ezcConsoleInput</a></span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #000000">$helpOption&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$input</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">registerOption</span><span style="color: #0000FF">(&nbsp;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleOption.html'>ezcConsoleOption</a></span><span style="color: #0000FF">(&nbsp;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #335533">'h'</span><span style="color: #0000FF">,</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #335533">'help'</span></li>
+<li><span style="color: #335533">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #0000FF">try</span></li>
+<li><span style="color: #0000FF">{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$input</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">process</span><span style="color: #0000FF">();</span></li>
+<li><span style="color: #0000FF">}</span></li>
+<li><span style="color: #0000FF">catch&nbsp;(&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleOptionException.html'>ezcConsoleOptionException</a>&nbsp;$e&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;die(&nbsp;</span><span style="color: #000000">$e</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">getMessage</span><span style="color: #0000FF">()&nbsp;);</span></li>
+<li><span style="color: #0000FF">}</span></li>
+<li></li>
+<li><span style="color: #0000FF">if&nbsp;(&nbsp;</span><span style="color: #000000">$helpOption</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">value&nbsp;</span><span style="color: #0000FF">!==&nbsp;</span><span style="color: #000000">false&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #335533">"Help&nbsp;requested."</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">}</span></li>
+<li><span style="color: #0000FF">else</span></li>
+<li><span style="color: #0000FF">{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #335533">"No&nbsp;help&nbsp;requested."</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">}</span></li>
+<li></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><p>After instantiating a new <a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleInput.html'>ezcConsoleInput</a> object to handle the options, an option is registered on lines 7-12. This option will be available as "-h" and "--help". The <a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleInput.html#process'>ezcConsoleInput-&gt;process</a>() call makes <a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleInput.html'>ezcConsoleInput</a> respond to the options submitted by the user. If any error occurs with the submitted user data, the method will throw an exception of type <a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleOptionException.html'>ezcConsoleOptionException</a>. By default, all options are registered with the value type <a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleInput.html#constTYPE_NONE'>ezcConsoleInput::TYPE_NONE</a>, which indicates that they don't expect a value from the user. If a value is submitted anyway, <a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleInput.html#process'>ezcConsoleInput-&gt;process</a>() will throw a <a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleOptionTypeViolationException.html'>ezcConsoleOptionTypeViolationException</a>.</p><p>On line 23, a check is performed to see whether an option was submitted. If an option was not submitted, its $value property will contain bool <em>false</em>. Depending on the $type set, it can contain different value types if it was submitted. If you use the (not shown here) <a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleOption.html'>ezcConsoleOption</a>-&gt;$multiple property, the value will be an array containing the specified value types.</p><p>The next example is more advanced:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li></li>
+<li><span style="color: #0000FF">require_once&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #000000">$input&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleInput.html'>ezcConsoleInput</a></span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #000000">$helpOption&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$input</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">registerOption</span><span style="color: #0000FF">(&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleOption.html'>ezcConsoleOption</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'h'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'help'&nbsp;</span><span style="color: #0000FF">)&nbsp;);</span></li>
+<li></li>
+<li><span style="color: #000000">$inputOption&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$input</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">registerOption</span><span style="color: #0000FF">(&nbsp;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleOption.html'>ezcConsoleOption</a></span><span style="color: #0000FF">(&nbsp;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #335533">'i'</span><span style="color: #0000FF">,</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #335533">'input'</span><span style="color: #0000FF">,</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleInput.html#constTYPE_STRING'>ezcConsoleInput::TYPE_STRING</a></span></li>
+<li><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #000000">$outputOption&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$input</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">registerOption</span><span style="color: #0000FF">(</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleOption.html'>ezcConsoleOption</a></span><span style="color: #0000FF">(&nbsp;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #335533">'o'</span><span style="color: #0000FF">,</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #335533">'output'</span></li>
+<li><span style="color: #335533">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$outputOption</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">type&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleInput.html#constTYPE_STRING'>ezcConsoleInput::TYPE_STRING</a></span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #000000">$inputOption</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">addDependency</span><span style="color: #0000FF">(&nbsp;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleOptionRule.html'>ezcConsoleOptionRule</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$outputOption&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$outputOption</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">addDependency</span><span style="color: #0000FF">(&nbsp;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleOptionRule.html'>ezcConsoleOptionRule</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$inputOption&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #0000FF">try</span></li>
+<li><span style="color: #0000FF">{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$input</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">process</span><span style="color: #0000FF">();</span></li>
+<li><span style="color: #0000FF">}</span></li>
+<li><span style="color: #0000FF">catch&nbsp;(&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleOptionException.html'>ezcConsoleOptionException</a>&nbsp;$e&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;die(&nbsp;</span><span style="color: #000000">$e</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">getMessage</span><span style="color: #0000FF">()&nbsp;);</span></li>
+<li><span style="color: #0000FF">}</span></li>
+<li></li>
+<li><span style="color: #0000FF">if&nbsp;(&nbsp;</span><span style="color: #000000">$helpOption</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">value&nbsp;</span><span style="color: #0000FF">===&nbsp;</span><span style="color: #000000">true&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #000000">$input</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">getSynopsis</span><span style="color: #0000FF">()&nbsp;.&nbsp;</span><span style="color: #335533">"\n"</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;foreach&nbsp;(&nbsp;</span><span style="color: #000000">$input</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">getOptions</span><span style="color: #0000FF">()&nbsp;as&nbsp;</span><span style="color: #000000">$option&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #335533">"-</span><span style="color: #0000FF">{</span><span style="color: #000000">$option</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">short</span><span style="color: #0000FF">}</span><span style="color: #335533">/</span><span style="color: #0000FF">{</span><span style="color: #000000">$option</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">long</span><span style="color: #0000FF">}</span><span style="color: #335533">:&nbsp;</span><span style="color: #0000FF">{</span><span style="color: #000000">$option</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">shorthelp</span><span style="color: #0000FF">}</span><span style="color: #335533">\n"</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;}</span></li>
+<li><span style="color: #0000FF">}</span></li>
+<li><span style="color: #0000FF">elseif&nbsp;(&nbsp;</span><span style="color: #000000">$outputOption</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">value&nbsp;</span><span style="color: #0000FF">!==&nbsp;</span><span style="color: #000000">false&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #335533">"Input:&nbsp;</span><span style="color: #0000FF">{</span><span style="color: #000000">$inputOption</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">value</span><span style="color: #0000FF">}</span><span style="color: #335533">,&nbsp;Output:&nbsp;</span><span style="color: #0000FF">{</span><span style="color: #000000">$outputOption</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">value</span><span style="color: #0000FF">}</span><span style="color: #335533">\n"</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #335533">"Arguments:&nbsp;"&nbsp;</span><span style="color: #0000FF">.&nbsp;</span><span style="color: #000000">implode</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">",&nbsp;"</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">$input</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">getArguments</span><span style="color: #0000FF">()&nbsp;)&nbsp;.&nbsp;</span><span style="color: #335533">"\n"</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">}</span></li>
+<li></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><p>Two options are registered here: "-i" / "--input" and "-o" / "--output". For the first one, additional properties for the <a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleOption.html'>ezcConsoleOption</a> object are submitted through the constructor. For the second <a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleOption.html'>ezcConsoleOption</a> object, you see how to provide additional properties after construction. We change the type of both options to expect a string value from the user (lines 13 and 20).</p><p>In lines 25 and 28 we make both parameters depend on each other. If one of them is submitted without the other, <a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleInput.html#process'>ezcConsoleInput-&gt;process</a>() will throw an <a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleOptionDependencyViolationException.html'>ezcConsoleOptionDependencyViolationException</a>. Aside from dependency rules, you can also define exclusion rules using <a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleOption.html#addExclusion'>ezcConsoleOption-&gt;addExclusion</a>().</p><p>On line 43, the method <a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleInput.html#getSynopsis'>ezcConsoleInput-&gt;getSynopsis</a>() is used to retrieve a synopsis string for the program. The synopsis for our example would look like this:</p><code class="block">$ ./tutorial_example_05_input_advanced.php [-h] [-i &lt;string&gt; [-o &lt;string&gt;] ]  [[--] &lt;args&gt;]</code><p>The synopsis will indicate the option value types, whether they are optional, the inter-option dependencies and default values (if set). On line 46, the property <a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleOption.html'>ezcConsoleOption</a>-&gt;$shorthelp is accessed, where you can store some short help information. It has a reasonable default value set.</p><p>On line 49, the submission of the "-o" option is checked. Because this has a dependency on the "-i" option, a check for that is not necessary. Line 52 shows how you can access the arguments submitted to the program. <a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleInput.html#getArguments'>ezcConsoleInput-&gt;getArguments</a>() always returns an array (which is empty if no arguments are submitted). A more advanced way of handling arguments is explained further below.</p><p>Here is an example of how the defined program would be called:</p><code class="block">$ ./tutorial_example_05_input_advanced.php -i /var/www -o /tmp foo bar</code><p>The program would respond by printing the following:</p><code class="block">Input: /var/www, Output: /tmp
+Arguments: foo, bar</code><p>As you can see, this example does not define, which arguments are expected and therefore, the program simply accepts any number of arguments and provides them through the <a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleInput.html#getArguments'>ezcConsoleInput-&gt;getArguments</a>() method. The following example shows, how specific arguments can be defined:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li></li>
+<li><span style="color: #0000FF">require_once&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #000000">$input&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleInput.html'>ezcConsoleInput</a></span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #000000">$helpOption&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$input</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">registerOption</span><span style="color: #0000FF">(&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleOption.html'>ezcConsoleOption</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'h'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'help'&nbsp;</span><span style="color: #0000FF">)&nbsp;);</span></li>
+<li><span style="color: #000000">$helpOption</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">isHelpOption&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">true</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #000000">$input</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">argumentDefinition&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleArguments.html'>ezcConsoleArguments</a></span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #000000">$input</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">argumentDefinition</span><span style="color: #0000FF">[</span><span style="color: #000000">0</span><span style="color: #0000FF">]&nbsp;=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleArgument.html'>ezcConsoleArgument</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">"source"&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$input</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">argumentDefinition</span><span style="color: #0000FF">[</span><span style="color: #000000">0</span><span style="color: #0000FF">]-&gt;</span><span style="color: #000000">shorthelp&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">"The&nbsp;source&nbsp;directory."</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #000000">$input</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">argumentDefinition</span><span style="color: #0000FF">[</span><span style="color: #000000">1</span><span style="color: #0000FF">]&nbsp;=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleArgument.html'>ezcConsoleArgument</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">"destination"&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$input</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">argumentDefinition</span><span style="color: #0000FF">[</span><span style="color: #000000">1</span><span style="color: #0000FF">]-&gt;</span><span style="color: #000000">mandatory&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">false</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000">$input</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">argumentDefinition</span><span style="color: #0000FF">[</span><span style="color: #000000">1</span><span style="color: #0000FF">]-&gt;</span><span style="color: #000000">default&nbsp;&nbsp;&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">'./'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #000000">$input</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">argumentDefinition</span><span style="color: #0000FF">[</span><span style="color: #000000">2</span><span style="color: #0000FF">]&nbsp;=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleArgument.html'>ezcConsoleArgument</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">"iterations"&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$input</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">argumentDefinition</span><span style="color: #0000FF">[</span><span style="color: #000000">2</span><span style="color: #0000FF">]-&gt;</span><span style="color: #000000">type&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleInput.html#constTYPE_INT'>ezcConsoleInput::TYPE_INT</a></span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000">$input</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">argumentDefinition</span><span style="color: #0000FF">[</span><span style="color: #000000">2</span><span style="color: #0000FF">]-&gt;</span><span style="color: #000000">shorthelp&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">"Number&nbsp;of&nbsp;iterations."</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000">$input</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">argumentDefinition</span><span style="color: #0000FF">[</span><span style="color: #000000">2</span><span style="color: #0000FF">]-&gt;</span><span style="color: #000000">longhelp&nbsp;&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">"The&nbsp;number&nbsp;of&nbsp;iterations&nbsp;to&nbsp;perform."</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li></li>
+<li><span style="color: #0000FF">try</span></li>
+<li><span style="color: #0000FF">{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$input</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">process</span><span style="color: #0000FF">();</span></li>
+<li><span style="color: #0000FF">}</span></li>
+<li><span style="color: #0000FF">catch&nbsp;(&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleException.html'>ezcConsoleException</a>&nbsp;$e&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;die(&nbsp;</span><span style="color: #000000">$e</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">getMessage</span><span style="color: #0000FF">()&nbsp;);</span></li>
+<li><span style="color: #0000FF">}</span></li>
+<li></li>
+<li><span style="color: #0000FF">if&nbsp;(&nbsp;</span><span style="color: #000000">$helpOption</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">value&nbsp;</span><span style="color: #0000FF">===&nbsp;</span><span style="color: #000000">true&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #000000">$input</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">getHelpText</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">"A&nbsp;simple&nbsp;text&nbsp;program"&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #0000FF">}</span></li>
+<li><span style="color: #0000FF">else</span></li>
+<li><span style="color: #0000FF">{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #335533">"Source:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000FF">{</span><span style="color: #000000">$input</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">argumentDefinition</span><span style="color: #0000FF">[</span><span style="color: #335533">"source"</span><span style="color: #0000FF">]-&gt;</span><span style="color: #000000">value</span><span style="color: #0000FF">}</span><span style="color: #335533">\n"</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #335533">"Destination:&nbsp;</span><span style="color: #0000FF">{</span><span style="color: #000000">$input</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">argumentDefinition</span><span style="color: #0000FF">[</span><span style="color: #335533">"destination"</span><span style="color: #0000FF">]-&gt;</span><span style="color: #000000">value</span><span style="color: #0000FF">}</span><span style="color: #335533">\n"</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #335533">"Iterations:&nbsp;&nbsp;"&nbsp;</span><span style="color: #0000FF">.&nbsp;(&nbsp;</span><span style="color: #000000">$input</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">argumentDefinition</span><span style="color: #0000FF">[</span><span style="color: #335533">"iterations"</span><span style="color: #0000FF">]-&gt;</span><span style="color: #000000">value&nbsp;</span><span style="color: #0000FF">===&nbsp;</span><span style="color: #000000">null</span></li>
+<li><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000FF">?&nbsp;</span><span style="color: #335533">"not&nbsp;set"</span></li>
+<li><span style="color: #335533">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000FF">:&nbsp;</span><span style="color: #000000">$input</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">argumentDefinition</span><span style="color: #0000FF">[</span><span style="color: #335533">"iterations"</span><span style="color: #0000FF">]-&gt;</span><span style="color: #000000">value</span></li>
+<li><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #0000FF">}</span></li>
+<li></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><p>As seen before, a help option is registered. In addition, 3 arguments are registered: The first one with the name "source" is a standard argument. It is mandatory for the user to submit a value here. The second argument, "destination" is optional and a default value is assigned, which will be used, if the user does not provide a value for it.</p><p>The third one ("iterations") is not of type string, but an integer. Because the second argument is optional, this third one is automatically optional, too. Since no default value is assigned, it will be null, if the user does not submit it. If a value is provided, it must be an integer.</p><p>Argument definitions are processed as usual inside the <a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleInput.html#process'>ezcConsoleInput-&gt;process</a>() method, but will throw an <a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleArgumentException.html'>ezcConsoleArgumentException</a> if something goes wrong. If desired, exceptions about options and arguments can be caught together using <a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleException.html'>ezcConsoleException</a> or be handled on their own.</p><p>The value of an argument can be fetched from its definition, using its value property. As can be seen at the very end of the example, for reading purpose, arguments can be accessed by their name. This does not work for writing purpose, since a specific order must be given there.</p><p>If the --help option is set, mandatory arguments don't need to be submitted and are silently ignored. The help text generated by <a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleInput.html'>ezcConsoleInput</a> for this example looks like this:</p><code class="block">Usage: $ tutorial_example_12_input_arguments.php [-h] [--] &lt;string:source&gt; [&lt;string:destination&gt;] [&lt;int:iterations&gt;]
+A simple text program
+
+-h / --help           No help available.
+Arguments:
+&lt;string:source&gt;       The source directory.
+&lt;string:destination&gt;  No help available.
+&lt;int:iterations&gt;      Number of iterations.</code><p>For further information, please refer to the API documentation of <a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleInput.html'>ezcConsoleInput</a>.</p><a name="progress-indication"></a><a name="id7"></a><h4>Progress indication</h4><p>This example defines a simple progress bar:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li></li>
+<li><span style="color: #0000FF">require_once&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #000000">$output&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleOutput.html'>ezcConsoleOutput</a></span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #000000">$bar&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleProgressbar.html'>ezcConsoleProgressbar</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$output</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">15&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #0000FF">for&nbsp;(&nbsp;</span><span style="color: #000000">$i&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">0</span><span style="color: #0000FF">;&nbsp;</span><span style="color: #000000">$i&nbsp;</span><span style="color: #0000FF">&lt;&nbsp;</span><span style="color: #000000">15</span><span style="color: #0000FF">;&nbsp;</span><span style="color: #000000">$i</span><span style="color: #0000FF">++&nbsp;)</span></li>
+<li><span style="color: #0000FF">{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$bar</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">advance</span><span style="color: #0000FF">();</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">usleep</span><span style="color: #0000FF">(&nbsp;&nbsp;</span><span style="color: #000000">mt_rand</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">2000</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">200000&nbsp;</span><span style="color: #0000FF">)&nbsp;);</span></li>
+<li><span style="color: #0000FF">}</span></li>
+<li></li>
+<li><span style="color: #000000">$bar</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">finish</span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #000000">$output</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">outputLine</span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><p>The created progressbar will count to a maximum value of 15, submitted to <a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleProgressbar.html#__construct'>ezcConsoleProgressbar-&gt;__construct</a>() in line 7. <a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleProgressbar.html'>ezcConsoleProgressbar</a> utilizes <a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleOutput.html'>ezcConsoleOutput</a> to print the generated progress bar. The call to <a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleProgressbar.html#advance'>ezcConsoleProgressbar-&gt;advance</a>() pushes the progress bar one step further on each call and redraws it (line 11). Calling <a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleProgressbar.html#finish'>ezcConsoleProgressbar-&gt;finish</a>() will set the progress bar to 100% immediately.</p><p>The progress bar generated by the example will look like this:</p><div class="&#10;&#9;&#9;&#9;&#9;&#9;image &#10;&#9;&#9;&#9;&#9;&#9;&#10;&#9;&#9;&#9;&#9;&#9;&#9;&#9;center&#10;&#9;&#9;&#9;&#9;&#9;&#9; "><img alt="" title="" src="img/consoletools_tutorial_example_06.png"/><span class="image_title"/></div><p>The next example performs more customization on the progress bar appearance:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li></li>
+<li><span style="color: #0000FF">require_once&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #000000">$output&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleOutput.html'>ezcConsoleOutput</a></span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #000000">$output</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">formats</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">bar</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">color&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">'blue'</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000">$output</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">formats</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">bar</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">style&nbsp;</span><span style="color: #0000FF">=&nbsp;array(&nbsp;</span><span style="color: #335533">'bold'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #000000">$options&nbsp;</span><span style="color: #0000FF">=&nbsp;array(&nbsp;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #335533">'emptyChar'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #335533">'&nbsp;'</span><span style="color: #0000FF">,</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #335533">'barChar'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #335533">'-'</span><span style="color: #0000FF">,</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #335533">'formatString'&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #335533">'%fraction%%&nbsp;&lt;'&nbsp;</span><span style="color: #0000FF">.&nbsp;</span><span style="color: #000000">$output</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">formatText</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'%bar%'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'bar'&nbsp;</span><span style="color: #0000FF">)&nbsp;.&nbsp;</span><span style="color: #335533">'&gt;&nbsp;Uploaded&nbsp;%act%&nbsp;/&nbsp;%max%&nbsp;kb'</span><span style="color: #0000FF">,</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #335533">'redrawFrequency'&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #000000">50</span><span style="color: #0000FF">,</span></li>
+<li><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #000000">$bar&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleProgressbar.html'>ezcConsoleProgressbar</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$output</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">1024</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">$options&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #0000FF">for&nbsp;(&nbsp;</span><span style="color: #000000">$i&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">0</span><span style="color: #0000FF">;&nbsp;</span><span style="color: #000000">$i&nbsp;</span><span style="color: #0000FF">&lt;&nbsp;</span><span style="color: #000000">1024</span><span style="color: #0000FF">;&nbsp;</span><span style="color: #000000">$i</span><span style="color: #0000FF">++&nbsp;)</span></li>
+<li><span style="color: #0000FF">{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$bar</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">advance</span><span style="color: #0000FF">();</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">usleep</span><span style="color: #0000FF">(&nbsp;&nbsp;</span><span style="color: #000000">mt_rand</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">200</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">2000&nbsp;</span><span style="color: #0000FF">)&nbsp;);</span></li>
+<li><span style="color: #0000FF">}</span></li>
+<li></li>
+<li><span style="color: #000000">$bar</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">finish</span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #000000">$output</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">outputLine</span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><p>The defined options array demonstrates only a small subset of options. For detailed information, see the API documentation on <a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleProgressbarOptions.html'>ezcConsoleProgressbarOptions</a>. The "emptyChar" value defines the character to prefill the bar, the "barChar" option defines the character to fill the bar with when calling <a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleProgressbar.html#advance'>ezcConsoleProgressbar-&gt;advance</a>(). Using the "formatString" option, you define the appearance of the whole bar. Here the substitution of several placeholders (like "%fraction%" and "%bar%") is permitted. "formatString" must contain the "%bar%" placeholder, while all other values are optional. Any other printable character is permitted. Formatting options are allowed in the "formatString" option, but not in any other option. "redrawFrequency" defines how often the progressbar will be redrawn. In the example this will be every 50th call to <a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleProgressbar.html#advance'>ezcConsoleProgressbar-&gt;advance</a>().</p><p>The resulting progress bar looks like this:</p><div class="&#10;&#9;&#9;&#9;&#9;&#9;image &#10;&#9;&#9;&#9;&#9;&#9;&#10;&#9;&#9;&#9;&#9;&#9;&#9;&#9;center&#10;&#9;&#9;&#9;&#9;&#9;&#9; "><img alt="" title="" src="img/consoletools_tutorial_example_07.png"/><span class="image_title"/></div><p>With <a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleStatusbar.html'>ezcConsoleStatusbar</a>, you can indicate the progress of a time-consuming action in a simpler way. Here is an example:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li></li>
+<li><span style="color: #0000FF">require_once&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #000000">$output&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleOutput.html'>ezcConsoleOutput</a></span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #000000">$output</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">formats</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">success</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">color&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">'green'</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000">$output</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">formats</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">failure</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">color&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">'red'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #000000">$options&nbsp;</span><span style="color: #0000FF">=&nbsp;array(&nbsp;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #335533">'successChar'&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #000000">$output</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">formatText</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'+'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'success'&nbsp;</span><span style="color: #0000FF">),</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #335533">'failureChar'&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #000000">$output</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">formatText</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'-'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'failure'&nbsp;</span><span style="color: #0000FF">),</span></li>
+<li><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #000000">$status&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleStatusbar.html'>ezcConsoleStatusbar</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$output</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">$options&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #0000FF">for&nbsp;(&nbsp;</span><span style="color: #000000">$i&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">0</span><span style="color: #0000FF">;&nbsp;</span><span style="color: #000000">$i&nbsp;</span><span style="color: #0000FF">&lt;&nbsp;</span><span style="color: #000000">120</span><span style="color: #0000FF">;&nbsp;</span><span style="color: #000000">$i</span><span style="color: #0000FF">++&nbsp;)</span></li>
+<li><span style="color: #0000FF">{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$nextStatus&nbsp;</span><span style="color: #0000FF">=&nbsp;(&nbsp;bool&nbsp;)</span><span style="color: #000000">mt_rand</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">0</span><span style="color: #0000FF">,</span><span style="color: #000000">1&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$status</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">add</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$nextStatus&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">usleep</span><span style="color: #0000FF">(&nbsp;&nbsp;</span><span style="color: #000000">mt_rand</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">200</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">2000&nbsp;</span><span style="color: #0000FF">)&nbsp;);</span></li>
+<li><span style="color: #0000FF">}</span></li>
+<li></li>
+<li><span style="color: #000000">$output</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">outputLine</span><span style="color: #0000FF">();</span></li>
+<li><span style="color: #000000">$output</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">outputLine</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'Successes:&nbsp;'&nbsp;</span><span style="color: #0000FF">.&nbsp;</span><span style="color: #000000">$status</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">getSuccessCount</span><span style="color: #0000FF">()&nbsp;.&nbsp;</span><span style="color: #335533">',&nbsp;Failures:&nbsp;'&nbsp;</span><span style="color: #0000FF">.&nbsp;</span><span style="color: #000000">$status</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">getFailureCount</span><span style="color: #0000FF">()&nbsp;);</span></li>
+<li></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><p>This variant of indicating progress only displays success or failure indicators for an action and allows you to run any number of actions, without specifying in advance how many you will perform. The "successChar" and "failureChar" options indicate which string to print on a successful or failed action. Lines 11 and 12 format these strings.</p><p>Indicating a status is done using <a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleStatusbar.html#add'>ezcConsoleStatusbar-&gt;add</a>(), which expects <em>true</em> for a succeeded action and <em>false</em> for a failed one (line 20). You can access the number of successes and failures through <a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleStatusbar.html#getSuccessCount'>ezcConsoleStatusbar-&gt;getSuccessCount</a>() and <a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleStatusbar.html#getFailureCount'>ezcConsoleStatusbar-&gt;getFailureCount</a>(). To make <a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleStatusbar.html'>ezcConsoleStatusbar</a> wrap a line after a certain amount of statuses, you can use <a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleOutput.html'>ezcConsoleOutput</a>-&gt;$autobreak.</p><p>Here the result of the example:</p><div class="&#10;&#9;&#9;&#9;&#9;&#9;image &#10;&#9;&#9;&#9;&#9;&#9;&#10;&#9;&#9;&#9;&#9;&#9;&#9;&#9;center&#10;&#9;&#9;&#9;&#9;&#9;&#9; "><img alt="" title="" src="img/consoletools_tutorial_example_08.png"/><span class="image_title"/></div><p>Finally, <a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleProgressMonitor.html'>ezcConsoleProgressMonitor</a> can indicate progress, but does not use a bar-like interface. It simply prints status information about each action you perform and shows the current progress as a percentage value in relation to the number of actions you plan to perform overall.</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li></li>
+<li><span style="color: #0000FF">require_once&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #000000">$output&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleOutput.html'>ezcConsoleOutput</a></span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #000000">$status&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleProgressMonitor.html'>ezcConsoleProgressMonitor</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$output</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">7&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #000000">$i&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">0</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">while(&nbsp;</span><span style="color: #000000">$i</span><span style="color: #0000FF">++&nbsp;&lt;&nbsp;</span><span style="color: #000000">7&nbsp;</span><span style="color: #0000FF">)&nbsp;</span></li>
+<li><span style="color: #0000FF">{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">usleep</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">mt_rand</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">20000</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">2000000&nbsp;</span><span style="color: #0000FF">)&nbsp;);</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$status</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">addEntry</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'ACTION'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">"Performed&nbsp;action&nbsp;#</span><span style="color: #0000FF">{</span><span style="color: #000000">$i</span><span style="color: #0000FF">}</span><span style="color: #335533">."&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #0000FF">}</span></li>
+<li></li>
+<li><span style="color: #000000">$output</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">outputLine</span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><p>Line 7 creates a new status indicator, which will iterate over 7 actions. Inside the while loop, we simulate some actions. The call to $status-&gt;addEntry() adds a status entry and causes the indicator to print the entry. Every entry consists of a tag (first parameter) and a message.</p><p>The result of the example is as follows:</p><code class="block"> 14.3% ACTION Performed action #1.
+ 28.6% ACTION Performed action #2.
+ 42.9% ACTION Performed action #3.
+ 57.1% ACTION Performed action #4.
+ 71.4% ACTION Performed action #5.
+ 85.7% ACTION Performed action #6.
+100.0% ACTION Performed action #7.</code><p>More information on these classes can be found in the API documentation of <a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleProgressbar.html'>ezcConsoleProgressbar</a>, <a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleStatusbar.html'>ezcConsoleStatusbar</a> and <a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleProgressMonitor.html'>ezcConsoleProgressMonitor</a>.</p><a name="large-data-served-in-a-table"></a><a name="id8"></a><h4>Large data served in a table</h4><p>This is the result of a table generated by <a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleTable.html'>ezcConsoleTable</a>:</p><div class="&#10;&#9;&#9;&#9;&#9;&#9;image &#10;&#9;&#9;&#9;&#9;&#9;&#10;&#9;&#9;&#9;&#9;&#9;&#9;&#9;center&#10;&#9;&#9;&#9;&#9;&#9;&#9; "><img alt="" title="" src="img/consoletools_tutorial_example_09.png"/><span class="image_title"/></div><p>Here is its corresponding source code:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li></li>
+<li><span style="color: #0000FF">require_once&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #000000">$data&nbsp;</span><span style="color: #0000FF">=&nbsp;array(&nbsp;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;array(&nbsp;</span><span style="color: #335533">'Name'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'Nationality'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'Birthday'&nbsp;</span><span style="color: #0000FF">),</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;array(&nbsp;</span><span style="color: #335533">'Derick&nbsp;Rethans'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'Dutch'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'1978-12-22'&nbsp;</span><span style="color: #0000FF">),</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;array(&nbsp;</span><span style="color: #335533">'Frederik&nbsp;Holljen'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'Canadian&nbsp;/&nbsp;Norwegian'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'1978-11-15'&nbsp;</span><span style="color: #0000FF">),</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;array(&nbsp;</span><span style="color: #335533">'Jan&nbsp;Borsodi'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'Norwegian'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'1977-10-13'&nbsp;</span><span style="color: #0000FF">),</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;array(&nbsp;</span><span style="color: #335533">'Raymond&nbsp;Bosman'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'Dutch'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'1979-07-24'&nbsp;</span><span style="color: #0000FF">),</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;array(&nbsp;</span><span style="color: #335533">'Tobias&nbsp;Schlitt'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'German'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'1980-05-19'&nbsp;</span><span style="color: #0000FF">),</span></li>
+<li><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #000000">$output&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleOutput.html'>ezcConsoleOutput</a></span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #000000">$output</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">formats</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">headBorder</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">color&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">'blue'</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000">$output</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">formats</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">normalBorder</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">color&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">'gray'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #000000">$output</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">formats</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">headContent</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">color&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">'blue'</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000">$output</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">formats</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">headContent</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">style&nbsp;</span><span style="color: #0000FF">=&nbsp;array(&nbsp;</span><span style="color: #335533">'bold'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #000000">$table&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleTable.html'>ezcConsoleTable</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$output</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">78&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #000000">$table</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">options</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">defaultBorderFormat&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">'normalBorder'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #000000">$table</span><span style="color: #0000FF">[</span><span style="color: #000000">0</span><span style="color: #0000FF">]-&gt;</span><span style="color: #000000">borderFormat&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">'headBorder'</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000">$table</span><span style="color: #0000FF">[</span><span style="color: #000000">0</span><span style="color: #0000FF">]-&gt;</span><span style="color: #000000">format&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">'headContent'</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000">$table</span><span style="color: #0000FF">[</span><span style="color: #000000">0</span><span style="color: #0000FF">]-&gt;</span><span style="color: #000000">align&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleTable.html#constALIGN_CENTER'>ezcConsoleTable::ALIGN_CENTER</a></span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #0000FF">foreach&nbsp;(&nbsp;</span><span style="color: #000000">$data&nbsp;</span><span style="color: #0000FF">as&nbsp;</span><span style="color: #000000">$row&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #000000">$cells&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;foreach&nbsp;(&nbsp;</span><span style="color: #000000">$cells&nbsp;</span><span style="color: #0000FF">as&nbsp;</span><span style="color: #000000">$cell&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$table</span><span style="color: #0000FF">[</span><span style="color: #000000">$row</span><span style="color: #0000FF">][]-&gt;</span><span style="color: #000000">content&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$cell</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;}</span></li>
+<li><span style="color: #0000FF">}</span></li>
+<li></li>
+<li><span style="color: #000000">$output</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">outputLine</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'eZ&nbsp;components&nbsp;team:'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$table</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">outputTable</span><span style="color: #0000FF">();</span></li>
+<li><span style="color: #000000">$output</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">outputLine</span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><p>ezcConsoleTable (like <a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleStatusbar.html'>ezcConsoleStatusbar</a> and <a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleProgressbar.html'>ezcConsoleProgressbar</a>) uses the <a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleOutput.html'>ezcConsoleOutput</a> class to print to the console. To create a table, you just need to submit the maximum width of the table to its constructor: <a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleTable.html#__construct'>ezcConsoleTable-&gt;__construct</a>(). Options for table formatting are inherited from the table itself to the table rows and from there to the table cells. On each inheritance level, options can be overridden individually. The "defaultBorderFormat" option sets the global format value for all borders (line 24). This is overridden in line 26 for the first row of the table.</p><p>Table rows are accessed like an array in PHP (this is achieved by implementing the <a href="http://www.php.net/~helly/php/ext/spl/interfaceArrayAccess.html">ArrayAccess</a> interface from <a href="http://php.net/spl">SPL</a>). <a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleTable.html'>ezcConsoleTable</a> implements the Iterator interface (<a href="http://php.net/spl">SPL</a>, too) to allow iteration over table rows using foreach. Each table row is represented by an object of type <a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleTableRow.html'>ezcConsoleTableRow</a>, which also implements the <a href="http://www.php.net/~helly/php/ext/spl/interfaceArrayAccess.html">ArrayAccess</a> and Iterator interfaces to access cells contained in the rows in the same way. Each of the named classes allows the access of its properties as usual, in addition to access to its contained objects through the array interface.</p><p>ezcConsoleTableRow and <a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleTableCell.html'>ezcConsoleTableCell</a> have a $format setting to define the format of the contained text. All cells (as described above) will inherit the setting of their parent <a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleTableRow.html'>ezcConsoleTableRow</a>, as long as this has not been explicitly overridden. The same applies to <a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleTableRow.html'>ezcConsoleTableRow</a>-&gt;$align and <a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleTableCell.html'>ezcConsoleTableCell</a>-&gt;$align. Possible align values are:</p><ul><li><p><a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleTable.html#constALIGN_DEFAULT'>ezcConsoleTable::ALIGN_DEFAULT</a> (inherit from parent)</p></li><li><p><a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleTable.html#constALIGN_LEFT'>ezcConsoleTable::ALIGN_LEFT</a></p></li><li><p><a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleTable.html#constALIGN_RIGHT'>ezcConsoleTable::ALIGN_RIGHT</a></p></li><li><p><a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleTable.html#constALIGN_CENTER'>ezcConsoleTable::ALIGN_CENTER</a></p></li></ul><p>The content of a cell is stored in the <a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleTableCell.html'>ezcConsoleTableCell</a>-&gt;$content property (line 34). The usage of formatted text in a cell is possible, but not recommended. If you want to define the format of cell content, use the <a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleTableCell.html'>ezcConsoleTableCell</a>-&gt;$format property.</p><p>Below is a more advanced (but in a way useless) example to show the handling of tables:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li></li>
+<li><span style="color: #0000FF">require_once&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #000000">$output&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleOutput.html'>ezcConsoleOutput</a></span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #000000">$output</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">formats</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">blue</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">color&nbsp;&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">'blue'</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000">$output</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">formats</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">blue</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">style&nbsp;</span><span style="color: #0000FF">=&nbsp;array(&nbsp;&nbsp;</span><span style="color: #335533">'bold'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$output</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">formats</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">red</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">color&nbsp;&nbsp;&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">'red'</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000">$output</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">formats</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">red</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">style&nbsp;</span><span style="color: #0000FF">=&nbsp;array(&nbsp;&nbsp;</span><span style="color: #335533">'bold'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$output</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">formats</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">green</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">color&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">'green'</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000">$output</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">formats</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">green</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">style&nbsp;</span><span style="color: #0000FF">=&nbsp;array(&nbsp;&nbsp;</span><span style="color: #335533">'bold'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #000000">$colors&nbsp;</span><span style="color: #0000FF">=&nbsp;array(&nbsp;</span><span style="color: #335533">'red'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'blue'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'green'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$aligns&nbsp;</span><span style="color: #0000FF">=&nbsp;array(&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleTable.html#constALIGN_LEFT'>ezcConsoleTable::ALIGN_LEFT</a></span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleTable.html#constALIGN_CENTER'>ezcConsoleTable::ALIGN_CENTER</a></span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleTable.html#constALIGN_RIGHT'>ezcConsoleTable::ALIGN_RIGHT</a>&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #000000">$table&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleTable.html'>ezcConsoleTable</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$output</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">78&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #000000">$table</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">options</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">corner&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">'&nbsp;'</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000">$table</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">options</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">lineHorizontal&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">'&nbsp;'</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000">$table</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">options</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">lineVertical&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">'&nbsp;'</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000">$table</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">options</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">widthType&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleTable.html#constWIDTH_FIXED'>ezcConsoleTable::WIDTH_FIXED</a></span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #0000FF">for&nbsp;(&nbsp;</span><span style="color: #000000">$i&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">0</span><span style="color: #0000FF">;&nbsp;</span><span style="color: #000000">$i&nbsp;</span><span style="color: #0000FF">&lt;&nbsp;</span><span style="color: #000000">10</span><span style="color: #0000FF">;&nbsp;</span><span style="color: #000000">$i</span><span style="color: #0000FF">++&nbsp;)</span></li>
+<li><span style="color: #0000FF">{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;(&nbsp;</span><span style="color: #000000">$j&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">0</span><span style="color: #0000FF">;&nbsp;</span><span style="color: #000000">$j&nbsp;</span><span style="color: #0000FF">&lt;&nbsp;</span><span style="color: #000000">10</span><span style="color: #0000FF">;&nbsp;</span><span style="color: #000000">$j</span><span style="color: #0000FF">++&nbsp;)</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$table</span><span style="color: #0000FF">[</span><span style="color: #000000">$i</span><span style="color: #0000FF">][</span><span style="color: #000000">$j</span><span style="color: #0000FF">]-&gt;</span><span style="color: #000000">content&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">'*'</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$table</span><span style="color: #0000FF">[</span><span style="color: #000000">$i</span><span style="color: #0000FF">][</span><span style="color: #000000">$j</span><span style="color: #0000FF">]-&gt;</span><span style="color: #000000">format&nbsp;&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$colors</span><span style="color: #0000FF">[</span><span style="color: #000000">array_rand</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$colors&nbsp;</span><span style="color: #0000FF">)];</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$table</span><span style="color: #0000FF">[</span><span style="color: #000000">$i</span><span style="color: #0000FF">][</span><span style="color: #000000">$j</span><span style="color: #0000FF">]-&gt;</span><span style="color: #000000">align&nbsp;&nbsp;&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$aligns</span><span style="color: #0000FF">[</span><span style="color: #000000">array_rand</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$aligns&nbsp;</span><span style="color: #0000FF">)];</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;}</span></li>
+<li><span style="color: #0000FF">}</span></li>
+<li></li>
+<li><span style="color: #000000">$table</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">outputTable</span><span style="color: #0000FF">();</span></li>
+<li><span style="color: #000000">$output</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">outputLine</span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><p>The "corner", "lineHorizontal" and "lineVertical" options define which characters to use for the borders of the table. These options must be exactly one character long and cannot contain formatting information. To style the borders, use the <a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleTable.html'>ezcConsoleTable</a>-&gt;$defaultBorderFormat and <a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleTableRow.html'>ezcConsoleTableRow</a>-&gt;$borderFormat properties.</p><p>The random format and alignment options selected above create the following table:</p><div class="&#10;&#9;&#9;&#9;&#9;&#9;image &#10;&#9;&#9;&#9;&#9;&#9;&#10;&#9;&#9;&#9;&#9;&#9;&#9;&#9;center&#10;&#9;&#9;&#9;&#9;&#9;&#9; "><img alt="" title="" src="img/consoletools_tutorial_example_10.png"/><span class="image_title"/></div><p>More information on the handling of tables on the shell can be found in the API documentation of <a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleTable.html'>ezcConsoleTable</a>, <a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleTableRow.html'>ezcConsoleTableRow</a> and <a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleTableCell.html'>ezcConsoleTableCell</a>.</p><a name="interacting-with-the-user"></a><a name="id9"></a><h4>Interacting with the user</h4><p>Implementations of the interface <a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleDialog.html'>ezcConsoleDialog</a> are generic building blocks, which allow to interact with the user of a shell application using STDIN. A dialog is initialized, displayed and will return a value provided by the user. What exactly happens inside a specific dialog may vary. Commonly, the dialog validates and possibly manipulates the provided value before returning it.</p><p>The most basic dialog is the <a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleQuestionDialog.html'>ezcConsoleQuestionDialog</a>, which prints out some text and retrieves a single value back.</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li></li>
+<li><span style="color: #0000FF">require_once&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #000000">$output&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleOutput.html'>ezcConsoleOutput</a></span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #000000">$question&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleQuestionDialog.html'>ezcConsoleQuestionDialog</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$output&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$question</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">options</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">text&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">"Do&nbsp;you&nbsp;want&nbsp;to&nbsp;proceed?"</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000">$question</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">options</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">showResults&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">true</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000">$question</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">options</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">validator&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleQuestionDialogCollectionValidator.html'>ezcConsoleQuestionDialogCollectionValidator</a></span><span style="color: #0000FF">(</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;array(&nbsp;</span><span style="color: #335533">"y"</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">"n"&nbsp;</span><span style="color: #0000FF">),</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #335533">"y"</span><span style="color: #0000FF">,</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleQuestionDialogCollectionValidator.html#constCONVERT_LOWER'>ezcConsoleQuestionDialogCollectionValidator::CONVERT_LOWER</a></span></li>
+<li><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #0000FF">do</span></li>
+<li><span style="color: #0000FF">{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #335533">"\nSome&nbsp;action&nbsp;performed...\n\n"</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">}</span></li>
+<li><span style="color: #0000FF">while&nbsp;(&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleDialogViewer.html#displayDialog'>ezcConsoleDialogViewer::displayDialog</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$question&nbsp;</span><span style="color: #0000FF">)&nbsp;!==&nbsp;</span><span style="color: #335533">"n"&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #0000FF">echo&nbsp;</span><span style="color: #335533">"Goodbye!\n"</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><p>Every dialog expects an instance of <a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleOutput.html'>ezcConsoleOutput</a> which is used to display it. The question dialog here will display the text "Do you want to proceed?" and expects an answer from the user. The $showResults option indicates, that the possible values the user may provide will be indicated, as well as the default value, if one is set.</p><p>The mechanism for validating the answer is defined by an instance of <a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleQuestionDialogValidator.html'>ezcConsoleQuestionDialogValidator</a>. In the example, a collection validator is used, which defines a collection of valid values. Beside that, it performs a case conversion on the user provided result before validating it, if desired.</p><p>Displaying a dialog can either be done directly, by calling <a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleDialog.html#display'>ezcConsoleDialog-&gt;display</a>(), or the more convenient way, shown in the example. The <a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleDialogViewer.html#displayDialog'>ezcConsoleDialogViewer::displayDialog</a>() method displays the dialog in a loop, until the user provided a valid value, so that the program can rely on this. In the example, the user is asked after every performed action, if he still wants to proceed. If the answer is "n" or "N", the program stops.</p><p>An example run of this application could look like this:</p><code class="block">Some action performed...
+
+Do you want to proceed? (y/n) [y] y
+
+Some action performed...
+
+Do you want to proceed? (y/n) [y]
+
+Some action performed...
+
+Do you want to proceed? (y/n) [y] n
+Goodbye!</code><p>A very similar yes/no question can be created through convenience method very easily:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li></li>
+<li><span style="color: #0000FF">require_once&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #000000">$output&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleOutput.html'>ezcConsoleOutput</a></span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #000000">$question&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleQuestionDialog.html#constY'>ezcConsoleQuestionDialog::Y</a>esNoQuestion</span><span style="color: #0000FF">(</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$output</span><span style="color: #0000FF">,</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #335533">"Do&nbsp;you&nbsp;want&nbsp;to&nbsp;proceed?"</span><span style="color: #0000FF">,</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #335533">"y"</span></li>
+<li><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #0000FF">do</span></li>
+<li><span style="color: #0000FF">{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #335533">"\nSome&nbsp;action&nbsp;performed...\n\n"</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">}</span></li>
+<li><span style="color: #0000FF">while&nbsp;(&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleDialogViewer.html#displayDialog'>ezcConsoleDialogViewer::displayDialog</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$question&nbsp;</span><span style="color: #0000FF">)&nbsp;!==&nbsp;</span><span style="color: #335533">"n"&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #0000FF">echo&nbsp;</span><span style="color: #335533">"Goodbye!\n"</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><p>The created yes/no question dialog contains a custom question and defaults to "y", if nothing is selected. In contrast to the last example, the dialog created here also accepts "yes" and "no" as answers. Both phrases can be used in any typing, e.g. like "yEs" or "NO". This is made possibly by the <a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleQuestionDialogMappingValidator.html'>ezcConsoleQuestionDialogMappingValidator</a>, which extends <a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleQuestionDialogCollectionValidator.html'>ezcConsoleQuestionDialogCollectionValidator</a>. The mapping validator allows to define an arbitrary mapping between the user typed answers and expected ones. Therefore the dialog still only returns either "y" or "n".</p><p>The second dialog type, provided with ConsoleTools, is the <a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleMenuDialog.html'>ezcConsoleMenuDialog</a>. Similar to the <a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleQuestionDialog.html'>ezcConsoleQuestionDialog</a>, it displays a list of menu items to the user and requires him to choose one of these. An example for this class looks like this:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li></li>
+<li><span style="color: #0000FF">require_once&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #000000">$output&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleOutput.html'>ezcConsoleOutput</a></span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #000000">$menu&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleMenuDialog.html'>ezcConsoleMenuDialog</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$output&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$menu</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">options&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleMenuDialogOptions.html'>ezcConsoleMenuDialogOptions</a></span><span style="color: #0000FF">();</span></li>
+<li><span style="color: #000000">$menu</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">options</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">text&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">"Please&nbsp;choose&nbsp;a&nbsp;possibility:\n"</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000">$menu</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">options</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">validator&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleMenuDialogDefaultValidator.html'>ezcConsoleMenuDialogDefaultValidator</a></span><span style="color: #0000FF">(</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;array(</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #335533">"1"&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #335533">"Perform&nbsp;some&nbsp;more&nbsp;actions"</span><span style="color: #0000FF">,</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #335533">"2"&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #335533">"Perform&nbsp;another&nbsp;action"</span><span style="color: #0000FF">,</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #335533">"0"&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #335533">"Quit"</span><span style="color: #0000FF">,</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;),</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #335533">"0"</span></li>
+<li><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #0000FF">while&nbsp;(&nbsp;(&nbsp;</span><span style="color: #000000">$choice&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleDialogViewer.html#displayDialog'>ezcConsoleDialogViewer::displayDialog</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$menu&nbsp;</span><span style="color: #0000FF">)&nbsp;)&nbsp;!=&nbsp;</span><span style="color: #000000">0&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;switch&nbsp;(&nbsp;</span><span style="color: #000000">$choice&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;</span><span style="color: #000000">1</span><span style="color: #0000FF">:</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #335533">"Performing&nbsp;some&nbsp;more&nbsp;actions...\n"</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;</span><span style="color: #000000">2</span><span style="color: #0000FF">:</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #335533">"Performing&nbsp;some&nbsp;other&nbsp;actions!\n"</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;}</span></li>
+<li><span style="color: #0000FF">}</span></li>
+<li></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><p>Again the dialog is instantiated and some options are tweaked to get the desired behaviour. The validator in this case receives an array of possible menu items, while the key represents the identifier and the value contains the text to be displayed for the item. The second argument is the default value, chosen if the user simply presses &lt;return&gt;.</p><p>An example run of this program could look like this:</p><code class="block">Please choose a possibility:
+
+  1) Perform some more actions
+  2) Perform another action
+  0) Quit
+
+Select: [0] 1
+Performing some more actions...
+Please choose a possibility:
+
+  1) Perform some more actions
+  2) Perform another action
+  0) Quit
+
+Select: [0] 2
+Performing some other actions!
+Please choose a possibility:
+
+  1) Perform some more actions
+  2) Perform another action
+  0) Quit
+
+Select: [0]</code><p>The character used to divide the identifier and text, as well as the text indicating that a selection must be done, can be tweaked, too.</p><p>Further information about dialogs can be found in the API documentation of <a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleDialog.html'>ezcConsoleDialog</a>, <a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleQuestionDialog.html'>ezcConsoleQuestionDialog</a> and <a href='/zetacomponents/documentation/trunk/ConsoleTools/phpdoc/ezcConsoleMenuDialog.html'>ezcConsoleMenuDialog</a>.</p><!--Local Variables:
+mode: rst
+fill-column: 79
+End:
+vim: et syn=rst tw=79-->
+
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

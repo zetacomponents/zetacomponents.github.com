@@ -1,0 +1,305 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="" />
+	<meta name="author" content="jerome" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Sun, 10 Jul 2011 11:11:01 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="ezcMailParser.html" />
+	<meta name="DC.creator" content="jerome" />
+	<meta name="DC.date" content="Sun, 10 Jul 2011 11:11:01 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailParser.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/Mail/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/trunk/Mail/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Mail/mail-listing-example.html" title="Mail-listing-example ">Mail-listing-example </a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Mail/display-example.html" title="Display-example ">Display-example </a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Mail/rfcs.html" title="Rfcs ">Rfcs </a>
+	</li>
+
+</ul>
+
+		
+  <div class="phpdoc">
+    <h2>Apache Zeta Components Manual :: Docs For Class ezcMailParser</h2>
+
+                  <h3>Mail::ezcMailParser</h3>
+    
+<a name="sec-description"></a>
+<h3>Class ezcMailParser</h3>
+
+<p>Parses a mail in RFC822 format to an ezcMail structure.</p><div><p>By default an object of class <a href="ezcMail.html">ezcMail</a> is returned by the parser. If  you want to use your own mail class (which extends <a href="ezcMail.html">ezcMail</a>),  use <a href="ezcMailParserOptions.html">ezcMailParserOptions</a>. Example:</p><p></p><ol><li><div class="src-line">&#8192;<span class="src-var">$options&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcMailParserOptions.html">ezcMailParserOptions</a></span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$options</span><span class="src-sym">-&gt;</span><span class="src-id">mailClass&#8192;</span>=&#8192;<span class="src-str">'myCustomMailClass'</span><span class="src-sym">;&#8192;</span><span class="src-comm">//&#8192;extends&#8192;ezcMail</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$parser&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcMailParser.html">ezcMailParser</a></span><span class="src-sym">(&#8192;</span><span class="src-var">$options&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol><p>Another way to do this is:  </p><ol><li><div class="src-line">&#8192;<span class="src-var">$parser&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcMailParser.html">ezcMailParser</a></span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$parser</span><span class="src-sym">-&gt;</span><span class="src-id">options</span><span class="src-sym">-&gt;</span><span class="src-id">mailClass&#8192;</span>=&#8192;<span class="src-str">'myCustomMailClass'</span><span class="src-sym">;&#8192;</span><span class="src-comm">//&#8192;extends&#8192;ezcMail</span></div></li>
+</ol><p>File attachments will be written to disk in a temporary directory.  This temporary directory and the file attachment will be removed  when PHP ends execution. If you want to keep the file you should move it  to another directory.</p><p>By default objects of class <a href="ezcMailFile.html">ezcMailFile</a> are created to handle file  attachments. If you want to use your own file class (which extends  <a href="ezcMailFile.html">ezcMailFile</a>), use <a href="ezcMailParserOptions.html">ezcMailParserOptions</a>. Example:</p><p></p><ol><li><div class="src-line">&#8192;<span class="src-var">$options&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcMailParserOptions.html">ezcMailParserOptions</a></span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$options</span><span class="src-sym">-&gt;</span><span class="src-id">fileClass&#8192;</span>=&#8192;<span class="src-str">'myCustomFileClass'</span><span class="src-sym">;&#8192;</span><span class="src-comm">//&#8192;extends&#8192;ezcMailFile</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$parser&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcMailParser.html">ezcMailParser</a></span><span class="src-sym">(&#8192;</span><span class="src-var">$options&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol><p>Another way to do this is:  </p><ol><li><div class="src-line">&#8192;<span class="src-var">$parser&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcMailParser.html">ezcMailParser</a></span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$parser</span><span class="src-sym">-&gt;</span><span class="src-id">options</span><span class="src-sym">-&gt;</span><span class="src-id">fileClass&#8192;</span>=&#8192;<span class="src-str">'myCustomFileClass'</span><span class="src-sym">;&#8192;</span><span class="src-comm">//&#8192;extends&#8192;ezcMailFile</span></div></li>
+</ol><p>By default objects of class ezcMailTextPart are created for text  attachments. If you want to use ezcMailFile objects instead, use  <a href="ezcMailParserOptions.html">ezcMailParserOptions</a>. Example:</p><p></p><ol><li><div class="src-line">&#8192;<span class="src-var">$options&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcMailParserOptions.html">ezcMailParserOptions</a></span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$options</span><span class="src-sym">-&gt;</span><span class="src-id">parseTextAttachmentsAsFiles&#8192;</span>=&#8192;<span class="src-id">true</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$parser&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcMailParser.html">ezcMailParser</a></span><span class="src-sym">(&#8192;</span><span class="src-var">$options&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol><p>Another way to do this is:  </p><ol><li><div class="src-line">&#8192;<span class="src-var">$parser&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcMailParser.html">ezcMailParser</a></span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$parser</span><span class="src-sym">-&gt;</span><span class="src-id">options</span><span class="src-sym">-&gt;</span><span class="src-id">parseTextAttachmentsAsFiles&#8192;</span>=&#8192;<span class="src-id">true</span><span class="src-sym">;</span></div></li>
+</ol></div>
+<p>Source for this file: <a href="http://fisheye6.atlassian.com/browse/zetacomponents/trunk/Mail/src/parser/parser.php?r=HEAD">/Mail/src/parser/parser.php</a></p>
+       
+
+
+
+
+  <table><tr><td>
+            <strong>Version:</strong>&#8192;&#8192;
+          </td>
+          <td>//autogen//</td>
+        </tr></table><a name="sec-prop-summary"></a>
+  <h3>Properties</h3>
+  <table class="summary"><tr><td class="right">
+          <a name="prop%24options" id="$options"></a>
+          <a name="prop-%24options" id="$options"></a>
+          <em><a href="ezcMailParserOptions.html">ezcMailParserOptions</a></em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24options" title="details" class="var-name-summary">$options</a>
+                      </code>
+          <br><div style="margin-left: 20px">Holds the options you can set to the mail parser.</div>        </td>
+      </tr></table><a name="sec-method-summary"></a>
+  <h3>Method Summary</h3>
+  <table class="summary"><tr><td class="right">
+            <em>public</em>            static
+                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#getTmpDir"><b>getTmpDir</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns the temporary directory.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>            static
+                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#setTmpDir"><b>setTmpDir</b></a>(
+                                                                                    $dir
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Sets the temporary directory.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>ezcMailParser</em>          </td>
+          <td>
+            <code>
+              <a href="#__construct"><b>__construct</b></a>(
+                                                                  [                  $options
+                   = array()]                               )
+            </code>
+            <br><div style="margin-left: 20px">Constructs a new mail parser.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>array(ezcMail)</em>          </td>
+          <td>
+            <code>
+              <a href="#parseMail"><b>parseMail</b></a>(
+                                                                                    $set
+                                                    ,                   [                  $class
+                   = null]                               )
+            </code>
+            <br><div style="margin-left: 20px">Returns an array of ezcMail objects parsed from the mail set $set.</div>          </td>
+        </tr></table><a name="sec-methods"></a>
+  <h3>Methods</h3>
+  <a name="method_detail"></a>
+        <a name="methodgetTmpDir" id="getTmpDir"><!-- --></a>
+
+    <h4>getTmpDir</h4>
+
+    <div class="method-signature">
+      static string
+      getTmpDir(
+      )
+    </div>
+
+      <p>Returns the temporary directory.</p><div><p>Uses the PHP 5.2.1 function sys_get_temp_dir().</p><p>Note that the directory name returned will have a "slash" at the end  ("/" for Linux and "\" for Windows).</p></div>      
+      
+      
+      
+      
+      
+          <a name="methodsetTmpDir" id="setTmpDir"><!-- --></a>
+
+    <h4>setTmpDir</h4>
+
+    <div class="method-signature">
+      static void
+      setTmpDir(
+                                  string
+          $dir
+                        )
+    </div>
+
+      <p>Sets the temporary directory.</p><div><p>The temporary directory must be writeable by PHP. It will be used to store  file attachments.</p></div>      
+              <h5>Parameters:</h5>
+        <table class="detail"><thead><tr><th>Name</th>
+              <th>Type</th>
+              <th class="desc">Description</th>
+            </tr></thead><tbody><tr><td><code>$dir</code></td>
+                <td><em>string</em></td>
+                <td>
+                                  </td>
+              </tr></tbody></table><a name="method__construct" id="__construct"><!-- --></a>
+
+    <h4>__construct</h4>
+
+    <div class="method-signature">
+      ezcMailParser
+      __construct(
+                                  [<a href="ezcMailParserOptions.html">ezcMailParserOptions</a>|array(string=&gt;mixed)
+          $options
+           = array()]              )
+    </div>
+
+    <p>Constructs a new mail parser.</p><div><p>For options you can set to the mail parser see <a href="ezcMailParserOptions.html">ezcMailParserOptions</a>.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$options</code></td>
+              <td><em><a href="ezcMailParserOptions.html">ezcMailParserOptions</a>|array(string=&gt;mixed)</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseValueException.html">ezcBaseValueException</a></code></td>
+              <td>
+                                  if $options contains a property with a value not allowed
+                              </td>
+            </tr><tr><td><code><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBasePropertyNotFoundException.html">ezcBasePropertyNotFoundException</a></code></td>
+              <td>
+                                  if $options contains a property not defined
+                              </td>
+            </tr></tbody></table><a name="methodparseMail" id="parseMail"><!-- --></a>
+
+    <h4>parseMail</h4>
+
+    <div class="method-signature">
+      array(ezcMail)
+      parseMail(
+                                  <a href="ezcMailParserSet.html">ezcMailParserSet</a>
+          $set
+                            ,           [string
+          $class
+           = null]              )
+    </div>
+
+    <p>Returns an array of ezcMail objects parsed from the mail set $set.</p><div><p>You can optionally use ezcMailParserOptions to provide an alternate class  name which will be instantiated instead of ezcMail, if you need to extend  ezcMail.</p><p>Example:  </p><ol><li><div class="src-line">&#8192;<span class="src-var">$options&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcMailParserOptions.html">ezcMailParserOptions</a></span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$options</span><span class="src-sym">-&gt;</span><span class="src-id">mailClass&#8192;</span>=&#8192;<span class="src-str">'MyMailClass'</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$parser&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcMailParser.html">ezcMailParser</a></span><span class="src-sym">(&#8192;</span><span class="src-var">$options&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;if&#8192;you&#8192;want&#8192;to&#8192;use&#8192;MyMailClass&#8192;which&#8192;extends&#8192;ezcMail</span></div></li>
+</ol></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$set</code></td>
+              <td><em><a href="ezcMailParserSet.html">ezcMailParserSet</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$class</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  Deprecated. Use $mailClass in ezcMailParserOptions class instead.
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseFileNotFoundException.html">ezcBaseFileNotFoundException</a></code></td>
+              <td>
+                                  if a neccessary temporary file could not be openened.
+                              </td>
+            </tr></tbody></table><div class="credit">
+      Documentation generated by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+    </div>
+  </div>
+  
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

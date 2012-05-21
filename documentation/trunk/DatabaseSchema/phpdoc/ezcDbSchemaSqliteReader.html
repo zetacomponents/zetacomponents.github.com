@@ -1,0 +1,268 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="PHP, apache, components, framework, quality" />
+	<meta name="author" content="dotxp" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Wed, 04 Aug 2010 13:07:25 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="ezcDbSchemaSqliteReader.html" />
+	<meta name="DC.creator" content="dotxp" />
+	<meta name="DC.date" content="Wed, 04 Aug 2010 13:07:25 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/DatabaseSchema/phpdoc/ezcDbSchemaSqliteReader.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/DatabaseSchema/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/trunk/DatabaseSchema/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+
+</ul>
+
+		
+  <div class="phpdoc">
+    <h2>Apache Zeta Components Manual :: Docs For Class ezcDbSchemaSqliteReader</h2>
+
+                  <h3>DatabaseSchema::ezcDbSchemaSqliteReader</h3>
+    
+<a name="sec-description"></a>
+<h3>Class ezcDbSchemaSqliteReader</h3>
+
+<p>Handler for SQLite connections representing a DB schema.</p>
+<p>Source for this file: <a href="http://fisheye6.atlassian.com/browse/zetacomponents/trunk/DatabaseSchema/src/handlers/sqlite/reader.php?r=HEAD">/DatabaseSchema/src/handlers/sqlite/reader.php</a></p>
+       
+  <h3>Implements interfaces:</h3>
+  <ul><li><a href="ezcDbSchemaDbReader.html">ezcDbSchemaDbReader</a></li>  </ul><pre><a href="ezcDbSchemaCommonSqlReader.html">ezcDbSchemaCommonSqlReader</a>
+   |
+   --ezcDbSchemaSqliteReader</pre>
+
+
+  <table><tr><td>
+            <strong>Version:</strong>&#8192;&#8192;
+          </td>
+          <td>//autogentag//</td>
+        </tr></table><a name="sec-method-summary"></a>
+  <h3>Method Summary</h3>
+  <table class="summary"><tr><td class="right">
+            <em>public</em>            static
+                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#convertToGenericType"><b>convertToGenericType</b></a>(
+                                                                                    $typeString
+                                                    ,                                     &amp;$typeLength
+                                                    ,                                     &amp;$typePrecision
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Converts the native SQLite type in $typeString to a generic DbSchema type.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em><a href="ezcDbSchema.html">ezcDbSchema</a></em>          </td>
+          <td>
+            <code>
+              <a href="#fetchSchema"><b>fetchSchema</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Loops over all the tables in the database and extracts schema information.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>array(string=&gt;ezcDbSchemaField)</em>          </td>
+          <td>
+            <code>
+              <a href="#fetchTableFields"><b>fetchTableFields</b></a>(
+                                                                                    $tableName
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Fetch fields definition for the table $tableName</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>array(string=&gt;ezcDbSchemaIndex)</em>          </td>
+          <td>
+            <code>
+              <a href="#fetchTableIndexes"><b>fetchTableIndexes</b></a>(
+                                                                                    $tableName
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Loops over all the indexes in the table $table and extracts information.</div>          </td>
+        </tr></table><h3>Inherited Methods</h3>
+  <table class="summary"><thead><tr><th colspan="2">
+            From <span class="classname"><a href="ezcDbSchemaCommonSqlReader.html">ezcDbSchemaCommonSqlReader</a></span>
+          </th>
+        </tr></thead><tbody><tr><td class="right">
+              <em>public</em>                                          <em>int</em>            </td>
+            <td>
+              <code><b><a href="ezcDbSchemaCommonSqlReader.html#methodgetReaderType">ezcDbSchemaCommonSqlReader::getReaderType()</a></b></code>
+              <br><div style="margin-left: 20px">Returns what type of schema reader this class implements.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em><a href="ezcDbSchema.html">ezcDbSchema</a></em>            </td>
+            <td>
+              <code><b><a href="ezcDbSchemaCommonSqlReader.html#methodloadFromDb">ezcDbSchemaCommonSqlReader::loadFromDb()</a></b></code>
+              <br><div style="margin-left: 20px">Returns an ezcDbSchema created from the database schema in the database referenced by $db</div>                          </td>
+          </tr><tr><td class="right">
+              <em>protected</em>                                          <em><a href="ezcDbSchema.html">ezcDbSchema</a></em>            </td>
+            <td>
+              <code><b><a href="ezcDbSchemaCommonSqlReader.html#methodprocessSchema">ezcDbSchemaCommonSqlReader::processSchema()</a></b></code>
+              <br><div style="margin-left: 20px">Loops over all the table names in the array and extracts schema  information.</div>                          </td>
+          </tr></tbody></table><a name="sec-methods"></a>
+  <h3>Methods</h3>
+  <a name="method_detail"></a>
+      <a name="methodconvertToGenericType" id="convertToGenericType"><!-- --></a>
+
+    <h4>convertToGenericType</h4>
+
+    <div class="method-signature">
+      static string
+      convertToGenericType(
+                                  string
+          $typeString
+                            ,           int
+          &amp;$typeLength
+                            ,           int
+          &amp;$typePrecision
+                        )
+    </div>
+
+      <p>Converts the native SQLite type in $typeString to a generic DbSchema type.</p><div><p>This method converts a string like "float(5,10)" to the generic DbSchema  type and uses the by-reference parameters $typeLength and $typePrecision  to communicate the optional length and precision of the field's type.</p></div>      
+              <h5>Parameters:</h5>
+        <table class="detail"><thead><tr><th>Name</th>
+              <th>Type</th>
+              <th class="desc">Description</th>
+            </tr></thead><tbody><tr><td><code>$typeString</code></td>
+                <td><em>string</em></td>
+                <td>
+                                  </td>
+              </tr><tr><td><code>&amp;$typeLength</code></td>
+                <td><em>int</em></td>
+                <td>
+                                  </td>
+              </tr><tr><td><code>&amp;$typePrecision</code></td>
+                <td><em>int</em></td>
+                <td>
+                                  </td>
+              </tr></tbody></table><a name="methodfetchSchema" id="fetchSchema"><!-- --></a>
+
+    <h4>fetchSchema</h4>
+
+    <div class="method-signature">
+      <a href="ezcDbSchema.html">ezcDbSchema</a>
+      fetchSchema(
+      )
+    </div>
+
+    <p>Loops over all the tables in the database and extracts schema information.</p><div><p>This method extracts information about a database's schema from the  database itself and returns this schema as an ezcDbSchema object.</p></div>
+    
+        
+
+    
+    
+    
+        <a name="methodfetchTableFields" id="fetchTableFields"><!-- --></a>
+
+    <h4>fetchTableFields</h4>
+
+    <div class="method-signature">
+      array(string=&gt;ezcDbSchemaField)
+      fetchTableFields(
+                                  string
+          $tableName
+                        )
+    </div>
+
+    <p>Fetch fields definition for the table $tableName</p><div><p>This method loops over all the fields in the table $tableName and  returns an array with the field specification. The key in the returned  array is the name of the field.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$tableName</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodfetchTableIndexes" id="fetchTableIndexes"><!-- --></a>
+
+    <h4>fetchTableIndexes</h4>
+
+    <div class="method-signature">
+      array(string=&gt;ezcDbSchemaIndex)
+      fetchTableIndexes(
+                                  string
+          $tableName
+                        )
+    </div>
+
+    <p>Loops over all the indexes in the table $table and extracts information.</p><div><p>This method extracts information about the table $tableName's indexes  from the database and returns this schema as an array of  ezcDbSchemaIndex objects. The key in the array is the index' name.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$tableName</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><div class="credit">
+      Documentation generated by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+    </div>
+  </div>
+  
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

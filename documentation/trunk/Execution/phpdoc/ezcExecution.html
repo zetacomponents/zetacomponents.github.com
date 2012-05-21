@@ -1,0 +1,292 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="PHP, apache, components, framework, quality" />
+	<meta name="author" content="dotxp" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Wed, 04 Aug 2010 13:07:37 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="ezcExecution.html" />
+	<meta name="DC.creator" content="dotxp" />
+	<meta name="DC.date" content="Wed, 04 Aug 2010 13:07:37 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/Execution/phpdoc/ezcExecution.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/Execution/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/trunk/Execution/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+
+</ul>
+
+		
+  <div class="phpdoc">
+    <h2>Apache Zeta Components Manual :: Docs For Class ezcExecution</h2>
+
+                  <h3>Execution::ezcExecution</h3>
+    
+<a name="sec-description"></a>
+<h3>Class ezcExecution</h3>
+
+<p>Class for handling fatal errors</p><div><p>This class allows you to invoke a handler whenever a fatal error occurs, or  when an uncatched exception happens.  You can specify which callback  function to use and signal whether your application cleanly exited.</p><p>Example:  </p><ol><li><div class="src-line">&#8192;<span class="src-php">&lt;?php</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-key">class&#8192;</span><span class="src-id">myExecutionHandler&#8192;</span><span class="src-key">extends&#8192;</span><a href="ezcExecutionBasicErrorHandler.html">ezcExecutionBasicErrorHandler</a></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">{</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-key">public&#8192;</span><span class="src-key">static&#8192;</span><span class="src-key">function&#8192;</span><span class="src-id">onError</span><span class="src-sym">(&#8192;</span><span class="src-id">Exception&#8192;</span><span class="src-var">$exception&#8192;</span>=&#8192;<span class="src-id">null&#8192;</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-sym">{</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;echo&#8192;<span class="src-str">"Error!\n"</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-comm">//&#8192;If&#8192;you&#8192;want,&#8192;you&#8192;can&#8192;use&#8192;the&#8192;parent's&#8192;onError&#8192;method,&#8192;but&#8192;that</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-comm">//&#8192;will&#8192;only&#8192;show&#8192;a&#8192;standard&#8192;message.</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-id">parent</span><span class="src-sym">::</span><span class="src-id">onError</span><span class="src-sym">(&#8192;</span><span class="src-var">$exception&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-sym">}</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">}</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-id"><a href="ezcExecution.html">ezcExecution</a></span><span class="src-sym">::</span><a href="ezcExecution.html#methodinit">init</a><span class="src-sym">(&#8192;</span><span class="src-str">'myExecutionHandler'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;....</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-id"><a href="ezcExecution.html">ezcExecution</a></span><span class="src-sym">::</span><a href="ezcExecution.html#methodcleanExit">cleanExit</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-php">?&gt;</span></div></li>
+</ol></div>
+<p>Source for this file: <a href="http://fisheye6.atlassian.com/browse/zetacomponents/trunk/Execution/src/execution.php?r=HEAD">/Execution/src/execution.php</a></p>
+       
+
+
+
+
+  <table><tr><td>
+            <strong>Version:</strong>&#8192;&#8192;
+          </td>
+          <td>//autogentag//</td>
+        </tr></table><a name="sec-method-summary"></a>
+  <h3>Method Summary</h3>
+  <table class="summary"><tr><td class="right">
+            <em>public</em>            static
+                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#cleanExit"><b>cleanExit</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Marks the current application as cleanly-exited.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>            static
+                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#exceptionCallbackHandler"><b>exceptionCallbackHandler</b></a>(
+                                                                                    $e
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Handler for uncaught exceptions.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>            static
+                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#init"><b>init</b></a>(
+                                                                                    $callbackClassName
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Initializes the ezcExecution environment.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>            static
+                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#reset"><b>reset</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Resets the ezcExecution environment.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>            static
+                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#shutdownCallbackHandler"><b>shutdownCallbackHandler</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Shutdown handler</div>          </td>
+        </tr></table><a name="sec-methods"></a>
+  <h3>Methods</h3>
+  <a name="method_detail"></a>
+      <a name="methodcleanExit" id="cleanExit"><!-- --></a>
+
+    <h4>cleanExit</h4>
+
+    <div class="method-signature">
+      static void
+      cleanExit(
+      )
+    </div>
+
+      <p>Marks the current application as cleanly-exited.</p><div><p>With this method you signal the ezcExecution environment that your  application ended without errors. This is usually done just before you  reach the end of your script, or just before you call  <a href="http://www.php.net/exit">exit()</a> or  <a href="http://www.php.net/die">die()</a>.</p></div>      
+      
+              <h5>Exceptions:</h5>
+        <table class="detail"><thead><tr><th>Type</th>
+              <th class="desc">Description</th>
+            </tr></thead><tbody><tr><td><code><a href="ezcExecutionNotInitializedException.html">ezcExecutionNotInitializedException</a></code></td>
+                <td>
+                                      if the environment was not yet initialized.
+                                  </td>
+              </tr></tbody></table><a name="methodexceptionCallbackHandler" id="exceptionCallbackHandler"><!-- --></a>
+
+    <h4>exceptionCallbackHandler</h4>
+
+    <div class="method-signature">
+      static void
+      exceptionCallbackHandler(
+                                  
+          $e
+                        )
+    </div>
+
+      <p>Handler for uncaught exceptions.</p><div><p>The ezcExecution environment installs this method as handler for  uncaught exceptions and will be called when one is found.  This method's  only function is to call the ::onError() static method of the error  handler set with the init() method. It passes along the uncaught  exception to this method.</p><p>This method has to be public otherwise PHP can not call it, but you  should never call this method yourself.</p></div>      
+              <h5>Parameters:</h5>
+        <table class="detail"><thead><tr><th>Name</th>
+              <th>Type</th>
+              <th class="desc">Description</th>
+            </tr></thead><tbody><tr><td><code>$e</code></td>
+                <td><em>Exception</em></td>
+                <td>
+                                  </td>
+              </tr></tbody></table><a name="methodinit" id="init"><!-- --></a>
+
+    <h4>init</h4>
+
+    <div class="method-signature">
+      static void
+      init(
+                                  string
+          $callbackClassName
+                        )
+    </div>
+
+      <p>Initializes the ezcExecution environment.</p><div><p>With this method you initialize the ezcExecution environment. You need  to specify a class name $callBackClassName that will be used to call the  onError() method on in case of an error. The class name that you  pass should implement the ezcExecutionErrorHandler interface. This  method takes care of registering the uncaught exception and shutdown  handlers.</p></div>      
+              <h5>Parameters:</h5>
+        <table class="detail"><thead><tr><th>Name</th>
+              <th>Type</th>
+              <th class="desc">Description</th>
+            </tr></thead><tbody><tr><td><code>$callbackClassName</code></td>
+                <td><em>string</em></td>
+                <td>
+                                  </td>
+              </tr></tbody></table><h5>Exceptions:</h5>
+        <table class="detail"><thead><tr><th>Type</th>
+              <th class="desc">Description</th>
+            </tr></thead><tbody><tr><td><code><a href="ezcExecutionAlreadyInitializedException.html">ezcExecutionAlreadyInitializedException</a></code></td>
+                <td>
+                                      if the environment was already initialized.
+                                  </td>
+              </tr><tr><td><code><a href="ezcExecutionInvalidCallbackException.html">ezcExecutionInvalidCallbackException</a></code></td>
+                <td>
+                                      if an unknown callback class was passed.
+                                  </td>
+              </tr><tr><td><code><a href="ezcExecutionWrongClassException.html">ezcExecutionWrongClassException</a></code></td>
+                <td>
+                                      if an invalid callback class was passed.
+                                  </td>
+              </tr></tbody></table><a name="methodreset" id="reset"><!-- --></a>
+
+    <h4>reset</h4>
+
+    <div class="method-signature">
+      static void
+      reset(
+      )
+    </div>
+
+      <p>Resets the ezcExecution environment.</p><div><p>With this function you reset the environment. Usually this method should  not be used, but in the cases when you want to restart the environment  this is the method to use. It also takes care of restoring the user  defined uncaught exception handler, but it can not undo the registered  shutdown handler as PHP doesn't provide that functionality.</p></div>      
+      
+      
+      
+      
+      
+        <a name="methodshutdownCallbackHandler" id="shutdownCallbackHandler"><!-- --></a>
+
+    <h4>shutdownCallbackHandler</h4>
+
+    <div class="method-signature">
+      static void
+      shutdownCallbackHandler(
+      )
+    </div>
+
+      <p>Shutdown handler</p><div><p>The ezcExecution environment installs this method as general shutdown handler.  This method's only function is to call the ::onError() static method of  the error handler set with the init() method.</p></div>      
+      
+      
+      
+      
+      
+  
+          
+    <div class="credit">
+      Documentation generated by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+    </div>
+  </div>
+  
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

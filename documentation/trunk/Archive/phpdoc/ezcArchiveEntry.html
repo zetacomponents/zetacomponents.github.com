@@ -1,0 +1,961 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="PHP, apache, components, framework, quality" />
+	<meta name="author" content="dotxp" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Wed, 04 Aug 2010 13:07:12 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="ezcArchiveEntry.html" />
+	<meta name="DC.creator" content="dotxp" />
+	<meta name="DC.date" content="Wed, 04 Aug 2010 13:07:12 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/Archive/phpdoc/ezcArchiveEntry.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/Archive/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/trunk/Archive/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+
+</ul>
+
+		
+  <div class="phpdoc">
+    <h2>Apache Zeta Components Manual :: Docs For Class ezcArchiveEntry</h2>
+
+                  <h3>Archive::ezcArchiveEntry</h3>
+    
+<a name="sec-description"></a>
+<h3>Class ezcArchiveEntry</h3>
+
+<p>The ezcArchiveEntry class provides system-independent file information.</p><div><p>ezcArchiveEntry provides file information about the file path, it's access rights and whether the file is an  directory, symbolic link, hard link, block-file, etc. The owner name, the group name, the last access time  are also available. ezcArchiveEntry can be used to get the file information directly from the file-system or  from an archive.</p><p>The main purpose of ezcArchiveEntry is to provide information about: </p><ul><li>Files on the file-system that should be appended to the archive.</li><li>Files currently in the archive that can be extracted to the file-system.</li></ul>  Use the <a href="ezcArchiveEntry.html#methodgetEntryFromFile">getEntryFromFile()</a> to create an ezcArchiveEntry from a file in the filesystem.  Important is that the prefix is set.  This specifies which part of the path should be stripped, before the entry is appended to the archive.  See also <a href="ezcArchive.html#methodappend">ezcArchive::append()</a> or <a href="ezcArchive.html#methodappendToCurrent">ezcArchive::appendToCurrent()</a>.<p>When the ezcArchiveEntry is an entry in the archive, the <a href="ezcArchiveEntry.html#methodgetPath">getPath()</a> method contains always an  relative path, and the prefix is not set.</p></div>
+<p>Source for this file: <a href="http://fisheye6.atlassian.com/browse/zetacomponents/trunk/Archive/src/entry.php?r=HEAD">/Archive/src/entry.php</a></p>
+       
+
+
+
+
+  <table><tr><td>
+            <strong>Version:</strong>&#8192;&#8192;
+          </td>
+          <td>//autogentag//</td>
+        </tr></table><a name="sec-const-summary"></a>
+  <h3>Constants</h3>
+  <table class="summary"><tr><td class="right">
+          <a name="const-IS_BLOCK_DEVICE" id=""></a>
+          <code>
+            <a href="#const-IS_BLOCK_DEVICE" title="details" class="const-name-summary">IS_BLOCK_DEVICE</a>
+             =  4
+          </code>
+        </td>
+        <td>
+          Is a block device.                  </td>
+      </tr><tr><td class="right">
+          <a name="const-IS_CHARACTER_DEVICE" id=""></a>
+          <code>
+            <a href="#const-IS_CHARACTER_DEVICE" title="details" class="const-name-summary">IS_CHARACTER_DEVICE</a>
+             =  3
+          </code>
+        </td>
+        <td>
+          Is a character device.                  </td>
+      </tr><tr><td class="right">
+          <a name="const-IS_DIRECTORY" id=""></a>
+          <code>
+            <a href="#const-IS_DIRECTORY" title="details" class="const-name-summary">IS_DIRECTORY</a>
+             =  5
+          </code>
+        </td>
+        <td>
+          Is a directory.                  </td>
+      </tr><tr><td class="right">
+          <a name="const-IS_FIFO" id=""></a>
+          <code>
+            <a href="#const-IS_FIFO" title="details" class="const-name-summary">IS_FIFO</a>
+             =  6
+          </code>
+        </td>
+        <td>
+          Is a FIFO.                  </td>
+      </tr><tr><td class="right">
+          <a name="const-IS_FILE" id=""></a>
+          <code>
+            <a href="#const-IS_FILE" title="details" class="const-name-summary">IS_FILE</a>
+             =  0
+          </code>
+        </td>
+        <td>
+          Is a regular file.                  </td>
+      </tr><tr><td class="right">
+          <a name="const-IS_LINK" id=""></a>
+          <code>
+            <a href="#const-IS_LINK" title="details" class="const-name-summary">IS_LINK</a>
+             =  1
+          </code>
+        </td>
+        <td>
+          Is a hard link.                  </td>
+      </tr><tr><td class="right">
+          <a name="const-IS_RESERVED" id=""></a>
+          <code>
+            <a href="#const-IS_RESERVED" title="details" class="const-name-summary">IS_RESERVED</a>
+             =  7
+          </code>
+        </td>
+        <td>
+          Not used, is Tar specific?                  </td>
+      </tr><tr><td class="right">
+          <a name="const-IS_SYMBOLIC_LINK" id=""></a>
+          <code>
+            <a href="#const-IS_SYMBOLIC_LINK" title="details" class="const-name-summary">IS_SYMBOLIC_LINK</a>
+             =  2
+          </code>
+        </td>
+        <td>
+          Is a symbolic link.                  </td>
+      </tr></table><a name="sec-var-summary"></a>
+  <h3>Member Variables</h3>
+  <table class="summary"><tr><td class="right">
+            <em>protected</em>            <em>ezcArchiveFileStructure</em>          </td>
+          <td>
+            <code>
+              $fileStructure
+                          </code>
+            <br><div style="margin-left: 20px">Contains the file information.</div>                      </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            <em>string</em>          </td>
+          <td>
+            <code>
+              $prefix
+                          </code>
+            <br><div style="margin-left: 20px">The prefix of the file that may be removed from the path.</div>                      </td>
+        </tr></table><a name="sec-method-summary"></a>
+  <h3>Method Summary</h3>
+  <table class="summary"><tr><td class="right">
+            <em>public</em>            static
+                        <em><a href="ezcArchiveEntry.html">ezcArchiveEntry</a></em>          </td>
+          <td>
+            <code>
+              <a href="#getEntryFromFile"><b>getEntryFromFile</b></a>(
+                                                                                    $files
+                                                    ,                                     $prefix
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns one or an array of ezcArchiveEntry's from one or multiple files in the file system.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            static
+                        <em>ezcArchiveFileStructure</em>          </td>
+          <td>
+            <code>
+              <a href="#getFileStructureFromFile"><b>getFileStructureFromFile</b></a>(
+                                                                                    $file
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Create a file structure from a $file in the file system.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            static
+                        <em>int</em>          </td>
+          <td>
+            <code>
+              <a href="#getLinkType"><b>getLinkType</b></a>(
+                                                                                    $stat
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns an ezcArchiveEntry-type that corresponds to the ezcArchiveStatMode-type</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>ezcArchiveEntry</em>          </td>
+          <td>
+            <code>
+              <a href="#__construct"><b>__construct</b></a>(
+                                                                                    $struct
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Constructs an archiveEntry from the ezcArchiveFileStructure.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>int</em>          </td>
+          <td>
+            <code>
+              <a href="#getAccessTime"><b>getAccessTime</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns the last access time as a timestamp.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>int</em>          </td>
+          <td>
+            <code>
+              <a href="#getDevice"><b>getDevice</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns the device.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>int</em>          </td>
+          <td>
+            <code>
+              <a href="#getGroupId"><b>getGroupId</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns the group ID of the entry.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>int</em>          </td>
+          <td>
+            <code>
+              <a href="#getInode"><b>getInode</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns the inode.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#getLink"><b>getLink</b></a>(
+                                                                  [                  $withPrefix
+                   = true]                               )
+            </code>
+            <br><div style="margin-left: 20px">Returns the link with or without prefix.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>int</em>          </td>
+          <td>
+            <code>
+              <a href="#getMajor"><b>getMajor</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns the major device number.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>int</em>          </td>
+          <td>
+            <code>
+              <a href="#getMinor"><b>getMinor</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns the minor device number.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>int</em>          </td>
+          <td>
+            <code>
+              <a href="#getModificationTime"><b>getModificationTime</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns the modification time as a timestamp.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#getPath"><b>getPath</b></a>(
+                                                                  [                  $withPrefix
+                   = true]                               )
+            </code>
+            <br><div style="margin-left: 20px">Returns the complete path or path without the prefix.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#getPermissions"><b>getPermissions</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns a bit mask representing the permissions of this entry.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#getPermissionsString"><b>getPermissionsString</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns the permissions as a string.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#getPrefix"><b>getPrefix</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns the prefix.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>int</em>          </td>
+          <td>
+            <code>
+              <a href="#getSize"><b>getSize</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns the file size.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>int</em>          </td>
+          <td>
+            <code>
+              <a href="#getType"><b>getType</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns type of the entry.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#getTypeString"><b>getTypeString</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns the type string for the current type of the entry.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>int</em>          </td>
+          <td>
+            <code>
+              <a href="#getUserId"><b>getUserId</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns the user ID of the entry.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>bool</em>          </td>
+          <td>
+            <code>
+              <a href="#isDirectory"><b>isDirectory</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns true when this entry represents a directory.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>bool</em>          </td>
+          <td>
+            <code>
+              <a href="#isFile"><b>isFile</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns true when this entry represents a file.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>bool</em>          </td>
+          <td>
+            <code>
+              <a href="#isHardLink"><b>isHardLink</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns true when this entry represents a hard link.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>bool</em>          </td>
+          <td>
+            <code>
+              <a href="#isLink"><b>isLink</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns true when this entry represents a symbolic or a hard link.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>bool</em>          </td>
+          <td>
+            <code>
+              <a href="#isSymLink"><b>isSymLink</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns true when this entry represents a symbolic link.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#removePrefixFromPath"><b>removePrefixFromPath</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Removes the prefix from the path and clears the prefix.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#setPrefix"><b>setPrefix</b></a>(
+                                                                                    $prefix
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Sets the prefix.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#__toString"><b>__toString</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns a string representing the current entry.</div>          </td>
+        </tr></table><a name="sec-methods"></a>
+  <h3>Methods</h3>
+  <a name="method_detail"></a>
+            <a name="methodgetEntryFromFile" id="getEntryFromFile"><!-- --></a>
+
+    <h4>getEntryFromFile</h4>
+
+    <div class="method-signature">
+      static <a href="ezcArchiveEntry.html">ezcArchiveEntry</a>
+      getEntryFromFile(
+                                  string|array(string)
+          $files
+                            ,           string
+          $prefix
+                        )
+    </div>
+
+      <p>Returns one or an array of ezcArchiveEntry's from one or multiple files in the file system.</p><div><p>One or multiple ezcArchiveEntry's are created upon the given files.  The prefix will directly set for the ezcArchiveEntry with $prefix.</p><p>If $files contains a path to a file, then one ezcArchiveEntry will be created and returned.  If $files is an array of paths, then all those ezcArchiveEntry's will be created and returned in an array.</p><p>When multiple files are given in an array, this method will search for hard links among other files in the array.</p></div>      
+              <h5>Parameters:</h5>
+        <table class="detail"><thead><tr><th>Name</th>
+              <th>Type</th>
+              <th class="desc">Description</th>
+            </tr></thead><tbody><tr><td><code>$files</code></td>
+                <td><em>string|array(string)</em></td>
+                <td>
+                                  </td>
+              </tr><tr><td><code>$prefix</code></td>
+                <td><em>string</em></td>
+                <td>
+                                  </td>
+              </tr></tbody></table><h5>Exceptions:</h5>
+        <table class="detail"><thead><tr><th>Type</th>
+              <th class="desc">Description</th>
+            </tr></thead><tbody><tr><td><code><a href="ezcArchiveEntryPrefixException.html">ezcArchiveEntryPrefixException</a></code></td>
+                <td>
+                                      if the prefix is invalid.
+                                  </td>
+              </tr></tbody></table><a name="methodgetFileStructureFromFile" id="getFileStructureFromFile"><!-- --></a>
+
+    <h4>getFileStructureFromFile</h4>
+
+    <div class="method-signature">
+      static ezcArchiveFileStructure
+      getFileStructureFromFile(
+                                  string
+          $file
+                        )
+    </div>
+
+      <p>Create a file structure from a $file in the file system.</p>      
+              <h5>Parameters:</h5>
+        <table class="detail"><thead><tr><th>Name</th>
+              <th>Type</th>
+              <th class="desc">Description</th>
+            </tr></thead><tbody><tr><td><code>$file</code></td>
+                <td><em>string</em></td>
+                <td>
+                                  </td>
+              </tr></tbody></table><a name="methodgetLinkType" id="getLinkType"><!-- --></a>
+
+    <h4>getLinkType</h4>
+
+    <div class="method-signature">
+      static int
+      getLinkType(
+                                  ezcArchiveStatMode
+          $stat
+                        )
+    </div>
+
+      <p>Returns an ezcArchiveEntry-type that corresponds to the ezcArchiveStatMode-type</p>      
+              <h5>Parameters:</h5>
+        <table class="detail"><thead><tr><th>Name</th>
+              <th>Type</th>
+              <th class="desc">Description</th>
+            </tr></thead><tbody><tr><td><code>$stat</code></td>
+                <td><em>ezcArchiveStatMode</em></td>
+                <td>
+                                      Possible values are: ezcArchiveStatMode::S_IFIFO, ezcArchiveStatMode::S_IFCHR,                                  ezcArchiveStatMode::S_IFDIR, ezcArchiveStatMode::S_IFBLK,                                  ezcArchiveStatMode::S_IFREG, or ezcArchiveStatMode::S_IFLNK.
+                                  </td>
+              </tr></tbody></table><a name="method__construct" id="__construct"><!-- --></a>
+
+    <h4>__construct</h4>
+
+    <div class="method-signature">
+      ezcArchiveEntry
+      __construct(
+                                  
+          $struct
+                        )
+    </div>
+
+    <p>Constructs an archiveEntry from the ezcArchiveFileStructure.</p><div><p>The $struct parameter contains the raw file information.  This class encapsulates the file information structure and provides convenient methods to retrieve  the information.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$struct</code></td>
+              <td><em>ezcArchiveFileStructure</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodgetAccessTime" id="getAccessTime"><!-- --></a>
+
+    <h4>getAccessTime</h4>
+
+    <div class="method-signature">
+      int
+      getAccessTime(
+      )
+    </div>
+
+    <p>Returns the last access time as a timestamp.</p>
+    
+        
+
+    
+    
+    
+        <a name="methodgetDevice" id="getDevice"><!-- --></a>
+
+    <h4>getDevice</h4>
+
+    <div class="method-signature">
+      int
+      getDevice(
+      )
+    </div>
+
+    <p>Returns the device.</p><div><p>FIXME DEPRECATED?</p></div>
+    
+        
+
+    
+    
+    
+            <a name="methodgetGroupId" id="getGroupId"><!-- --></a>
+
+    <h4>getGroupId</h4>
+
+    <div class="method-signature">
+      int
+      getGroupId(
+      )
+    </div>
+
+    <p>Returns the group ID of the entry.</p>
+    
+        
+
+    
+    
+    
+        <a name="methodgetInode" id="getInode"><!-- --></a>
+
+    <h4>getInode</h4>
+
+    <div class="method-signature">
+      int
+      getInode(
+      )
+    </div>
+
+    <p>Returns the inode.</p>
+    
+        
+
+    
+    
+    
+        <a name="methodgetLink" id="getLink"><!-- --></a>
+
+    <h4>getLink</h4>
+
+    <div class="method-signature">
+      void
+      getLink(
+                                  [bool
+          $withPrefix
+           = true]              )
+    </div>
+
+    <p>Returns the link with or without prefix.</p><div><p>This method is similar to <a href="ezcArchiveEntry.html#methodgetPath">getPath()</a>, but returns the link instead of the path.  If the current does not represents a link, an empty string is returned.  Use the <a href="ezcArchiveEntry.html#methodisLink">isLink()</a> method to see if the current entry is a link.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$withPrefix</code></td>
+              <td><em>bool</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodgetMajor" id="getMajor"><!-- --></a>
+
+    <h4>getMajor</h4>
+
+    <div class="method-signature">
+      int
+      getMajor(
+      )
+    </div>
+
+    <p>Returns the major device number.</p>
+    
+        
+
+    
+    
+    
+        <a name="methodgetMinor" id="getMinor"><!-- --></a>
+
+    <h4>getMinor</h4>
+
+    <div class="method-signature">
+      int
+      getMinor(
+      )
+    </div>
+
+    <p>Returns the minor device number.</p>
+    
+        
+
+    
+    
+    
+        <a name="methodgetModificationTime" id="getModificationTime"><!-- --></a>
+
+    <h4>getModificationTime</h4>
+
+    <div class="method-signature">
+      int
+      getModificationTime(
+      )
+    </div>
+
+    <p>Returns the modification time as a timestamp.</p>
+    
+        
+
+    
+    
+    
+        <a name="methodgetPath" id="getPath"><!-- --></a>
+
+    <h4>getPath</h4>
+
+    <div class="method-signature">
+      string
+      getPath(
+                                  [bool
+          $withPrefix
+           = true]              )
+    </div>
+
+    <p>Returns the complete path or path without the prefix.</p><div><p>By default the full path is returned, unless the $withPrefix is set  to true.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$withPrefix</code></td>
+              <td><em>bool</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodgetPermissions" id="getPermissions"><!-- --></a>
+
+    <h4>getPermissions</h4>
+
+    <div class="method-signature">
+      string
+      getPermissions(
+      )
+    </div>
+
+    <p>Returns a bit mask representing the permissions of this entry.</p><div><p>It returns the permissions in octal numbers as a string, for example:  "0000755"</p></div>
+    
+        
+
+    
+    
+    
+        <a name="methodgetPermissionsString" id="getPermissionsString"><!-- --></a>
+
+    <h4>getPermissionsString</h4>
+
+    <div class="method-signature">
+      string
+      getPermissionsString(
+      )
+    </div>
+
+    <p>Returns the permissions as a string.</p><div><p>If the entry has all the permissions, it will return: "rwxrwx" Where the first three letters  represent the group permissions and the last three letters the user permissions.</p></div>
+    
+        
+
+    
+    
+    
+        <a name="methodgetPrefix" id="getPrefix"><!-- --></a>
+
+    <h4>getPrefix</h4>
+
+    <div class="method-signature">
+      string
+      getPrefix(
+      )
+    </div>
+
+    <p>Returns the prefix.</p>
+    
+        
+
+    
+    
+    
+        <a name="methodgetSize" id="getSize"><!-- --></a>
+
+    <h4>getSize</h4>
+
+    <div class="method-signature">
+      int
+      getSize(
+      )
+    </div>
+
+    <p>Returns the file size.</p>
+    
+        
+
+    
+    
+    
+        <a name="methodgetType" id="getType"><!-- --></a>
+
+    <h4>getType</h4>
+
+    <div class="method-signature">
+      int
+      getType(
+      )
+    </div>
+
+    <p>Returns type of the entry.</p>
+    
+        
+
+    
+    
+    
+        <a name="methodgetTypeString" id="getTypeString"><!-- --></a>
+
+    <h4>getTypeString</h4>
+
+    <div class="method-signature">
+      string
+      getTypeString(
+      )
+    </div>
+
+    <p>Returns the type string for the current type of the entry.</p><div><p>Returns a type string for the current entry. If the entry is a: </p><ul><li>directory: "d".</li><li>file: "-".</li><li>symbolic link: "l".</li><li>hard link: "h".</li></ul></div>
+    
+        
+
+    
+    
+    
+        <a name="methodgetUserId" id="getUserId"><!-- --></a>
+
+    <h4>getUserId</h4>
+
+    <div class="method-signature">
+      int
+      getUserId(
+      )
+    </div>
+
+    <p>Returns the user ID of the entry.</p>
+    
+        
+
+    
+    
+    
+        <a name="methodisDirectory" id="isDirectory"><!-- --></a>
+
+    <h4>isDirectory</h4>
+
+    <div class="method-signature">
+      bool
+      isDirectory(
+      )
+    </div>
+
+    <p>Returns true when this entry represents a directory.</p>
+    
+        
+
+    
+    
+    
+        <a name="methodisFile" id="isFile"><!-- --></a>
+
+    <h4>isFile</h4>
+
+    <div class="method-signature">
+      bool
+      isFile(
+      )
+    </div>
+
+    <p>Returns true when this entry represents a file.</p>
+    
+        
+
+    
+    
+    
+        <a name="methodisHardLink" id="isHardLink"><!-- --></a>
+
+    <h4>isHardLink</h4>
+
+    <div class="method-signature">
+      bool
+      isHardLink(
+      )
+    </div>
+
+    <p>Returns true when this entry represents a hard link.</p>
+    
+        
+
+    
+    
+    
+        <a name="methodisLink" id="isLink"><!-- --></a>
+
+    <h4>isLink</h4>
+
+    <div class="method-signature">
+      bool
+      isLink(
+      )
+    </div>
+
+    <p>Returns true when this entry represents a symbolic or a hard link.</p>
+    
+        
+
+    
+    
+    
+        <a name="methodisSymLink" id="isSymLink"><!-- --></a>
+
+    <h4>isSymLink</h4>
+
+    <div class="method-signature">
+      bool
+      isSymLink(
+      )
+    </div>
+
+    <p>Returns true when this entry represents a symbolic link.</p>
+    
+        
+
+    
+    
+    
+        <a name="methodremovePrefixFromPath" id="removePrefixFromPath"><!-- --></a>
+
+    <h4>removePrefixFromPath</h4>
+
+    <div class="method-signature">
+      void
+      removePrefixFromPath(
+      )
+    </div>
+
+    <p>Removes the prefix from the path and clears the prefix.</p><div><p>This method is useful when it comes to adding a entry to an archive  and the complete path to the file is no longer needed.</p></div>
+    
+        
+
+    
+    
+    
+        <a name="methodsetPrefix" id="setPrefix"><!-- --></a>
+
+    <h4>setPrefix</h4>
+
+    <div class="method-signature">
+      void
+      setPrefix(
+                                  string
+          $prefix
+                        )
+    </div>
+
+    <p>Sets the prefix.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$prefix</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="method__toString" id="__toString"><!-- --></a>
+
+    <h4>__toString</h4>
+
+    <div class="method-signature">
+      string
+      __toString(
+      )
+    </div>
+
+    <p>Returns a string representing the current entry.</p>
+    
+        
+
+    
+    
+    
+  
+    <div class="credit">
+      Documentation generated by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+    </div>
+  </div>
+  
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

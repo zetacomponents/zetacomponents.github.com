@@ -1,0 +1,527 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="PHP, apache, components, framework, quality" />
+	<meta name="author" content="dotxp" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Wed, 04 Aug 2010 13:07:46 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="ezcImageTransformation.html" />
+	<meta name="DC.creator" content="dotxp" />
+	<meta name="DC.date" content="Wed, 04 Aug 2010 13:07:46 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/ImageConversion/phpdoc/ezcImageTransformation.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/ImageConversion/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/trunk/ImageConversion/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+
+</ul>
+
+		
+  <div class="phpdoc">
+    <h2>Apache Zeta Components Manual :: Docs For Class ezcImageTransformation</h2>
+
+                  <h3>ImageConversion::ezcImageTransformation</h3>
+    
+<a name="sec-description"></a>
+<h3>Class ezcImageTransformation</h3>
+
+<p>Provides transformations on images using filters and MIME conversions.</p><div><p>Objects of this class group MIME type conversion and filtering of images  into transformations of images. Transformations can be chained by referencing  to another transformation so that multiple transformations will be produced  after each other.</p><p></p><ol><li><div class="src-line">&#8192;<span class="src-var">$filters&#8192;</span>=&#8192;<span class="src-key">array</span><span class="src-sym">(</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcImageFilter.html">ezcImageFilter</a></span><span class="src-sym">(&#8192;</span><span class="src-str">'scaleDownByWidth'</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-key">array</span><span class="src-sym">(</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'width'&#8192;</span>=&gt;&#8192;<span class="src-num">100</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-sym">)</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-sym">)</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcImageFilter.html">ezcImageFilter</a></span><span class="src-sym">(&#8192;</span><span class="src-str">'crop'</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-key">array</span><span class="src-sym">(</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'x'&#8192;</span>=&gt;&#8192;<span class="src-num">0</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'y'&#8192;</span>=&gt;&#8192;<span class="src-num">0</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'width'&#8192;&#8192;</span>=&gt;&#8192;<span class="src-num">100</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'height'&#8192;</span>=&gt;&#8192;<span class="src-num">100</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-sym">)</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-sym">)</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$mimeTypes&#8192;</span>=&#8192;<span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-str">'image/jpeg'</span><span class="src-sym">,&#8192;</span><span class="src-str">'image/png'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;ezcImageTransformation&#8192;object&#8192;returned&#8192;for&#8192;further&#8192;manipulation</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$thumbnail&#8192;</span>=&#8192;<span class="src-var">$converter</span><span class="src-sym">-&gt;</span><span class="src-id">createTransformation</span><span class="src-sym">(</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'thumbnail'</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-var">$filters</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-var">$mimeTypes</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$converter</span><span class="src-sym">-&gt;</span><a href="ezcImageTransformation.html#methodtransform">transform</a><span class="src-sym">(&#8192;</span><span class="src-str">'thumbnail'</span><span class="src-sym">,&#8192;</span><span class="src-str">'var/storage/myOriginal1.jpg'</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'var/storage/myThumbnail1'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;&#8192;</span><span class="src-comm">//&#8192;res:&#8192;image/jpeg</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$converter</span><span class="src-sym">-&gt;</span><a href="ezcImageTransformation.html#methodtransform">transform</a><span class="src-sym">(&#8192;</span><span class="src-str">'thumbnail'</span><span class="src-sym">,&#8192;</span><span class="src-str">'var/storage/myOriginal2.png'</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'var/storage/myThumbnail2'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;&#8192;</span><span class="src-comm">//&#8192;res:&#8192;image/png</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$converter</span><span class="src-sym">-&gt;</span><a href="ezcImageTransformation.html#methodtransform">transform</a><span class="src-sym">(&#8192;</span><span class="src-str">'thumbnail'</span><span class="src-sym">,&#8192;</span><span class="src-str">'var/storage/myOriginal3.gif'</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'var/storage/myThumbnail3'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;&#8192;</span><span class="src-comm">//&#8192;res:&#8192;image/.png</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;Animated&#8192;GIF,&#8192;will&#8192;simply&#8192;be&#8192;copied!</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$converter</span><span class="src-sym">-&gt;</span><a href="ezcImageTransformation.html#methodtransform">transform</a><span class="src-sym">(&#8192;</span><span class="src-str">'thumbnail'</span><span class="src-sym">,&#8192;</span><span class="src-str">'var/storage/myOriginal4.gif'</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'var/storage/myThumbnail4'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;&#8192;</span><span class="src-comm">//&#8192;res:&#8192;image/gif</span></div></li>
+</ol></div>
+<p>Source for this file: <a href="http://fisheye6.atlassian.com/browse/zetacomponents/trunk/ImageConversion/src/transformation.php?r=HEAD">/ImageConversion/src/transformation.php</a></p>
+       
+
+
+
+
+  <table><tr><td>
+            <strong>Version:</strong>&#8192;&#8192;
+          </td>
+          <td>//autogentag//</td>
+        </tr></table><a name="sec-var-summary"></a>
+  <h3>Member Variables</h3>
+  <table class="summary"><tr><td class="right">
+            <em>protected</em>            <em><a href="ezcImageConverter.html">ezcImageConverter</a></em>          </td>
+          <td>
+            <code>
+              $converter
+                          </code>
+            <br><div style="margin-left: 20px">The ezcImageConverter</div>                      </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            <em>array(ezcImageFilter)</em>          </td>
+          <td>
+            <code>
+              $filters
+                          </code>
+            <br><div style="margin-left: 20px">Stores the filters utilized by a transformation.</div>                      </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            <em><a href="ezcImageHandler.html">ezcImageHandler</a></em>          </td>
+          <td>
+            <code>
+              $lastHandler
+                          </code>
+            <br><div style="margin-left: 20px">The handler last used for filtering.</div>                      </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            <em>array(string)</em>          </td>
+          <td>
+            <code>
+              $mimeOut
+                          </code>
+            <br><div style="margin-left: 20px">Array of MIME types allowed as output for this transformation.</div>            <br><div style="margin-left: 20px"><p>Leave empty, for all MIME types to be allowed.</p></div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            <em>string</em>          </td>
+          <td>
+            <code>
+              $name
+                          </code>
+            <br><div style="margin-left: 20px">Stores the name of this transformation.</div>                      </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            <em>ezcSaveOptions</em>          </td>
+          <td>
+            <code>
+              $saveOptions
+                          </code>
+            <br><div style="margin-left: 20px">Options for the final save step.</div>                      </td>
+        </tr></table><a name="sec-method-summary"></a>
+  <h3>Method Summary</h3>
+  <table class="summary"><tr><td class="right">
+            <em>public</em>                        <em>ezcImageTransformation</em>          </td>
+          <td>
+            <code>
+              <a href="#__construct"><b>__construct</b></a>(
+                                                                                    $converter
+                                                    ,                                     $name
+                                                    ,                   [                  $filters
+                   = array()]                                  ,                   [                  $mimeOut
+                   = array()]                                  ,                   [                  $saveOptions
+                   = null]                               )
+            </code>
+            <br><div style="margin-left: 20px">Initialize transformation.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#addFilter"><b>addFilter</b></a>(
+                                                                                    $filter
+                                                    ,                   [                  $before
+                   = null]                               )
+            </code>
+            <br><div style="margin-left: 20px">Add a filter to the conversion.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#getOutMime"><b>getOutMime</b></a>(
+                                                                                    $fileIn
+                                                    ,                   [                  $mimeIn
+                   = null]                               )
+            </code>
+            <br><div style="margin-left: 20px">Determine output MIME type  Returns the MIME type that the transformation will output.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#setFilters"><b>setFilters</b></a>(
+                                                                                    $filters
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Set the filters for this transformation.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#setMimeOut"><b>setMimeOut</b></a>(
+                                                                                    $mime
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Sets the MIME types which are allowed for output.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#setSaveOptions"><b>setSaveOptions</b></a>(
+                                                                                    $options
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Sets the save options.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#transform"><b>transform</b></a>(
+                                                                                    $fileIn
+                                                    ,                                     $fileOut
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Apply the given filters for the transformation.</div>          </td>
+        </tr></table><a name="sec-methods"></a>
+  <h3>Methods</h3>
+  <a name="method_detail"></a>
+              
+      <a name="method__construct" id="__construct"><!-- --></a>
+
+    <h4>__construct</h4>
+
+    <div class="method-signature">
+      ezcImageTransformation
+      __construct(
+                                  <a href="ezcImageConverter.html">ezcImageConverter</a>
+          $converter
+                            ,           string
+          $name
+                            ,           [
+          $filters
+           = array()]                  ,           [
+          $mimeOut
+           = array()]                  ,           [<a href="ezcImageSaveOptions.html">ezcImageSaveOptions</a>
+          $saveOptions
+           = null]              )
+    </div>
+
+    <p>Initialize transformation.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$converter</code></td>
+              <td><em><a href="ezcImageConverter.html">ezcImageConverter</a></em></td>
+              <td>
+                                  The global converter.
+                              </td>
+            </tr><tr><td><code>$name</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  Name for the transformation.
+                              </td>
+            </tr><tr><td><code>$filters</code></td>
+              <td><em>array(ezcImageFilter)</em></td>
+              <td>
+                                  Filters to apply.
+                              </td>
+            </tr><tr><td><code>$mimeOut</code></td>
+              <td><em>array(string)</em></td>
+              <td>
+                                  Output MIME types.
+                              </td>
+            </tr><tr><td><code>$saveOptions</code></td>
+              <td><em><a href="ezcImageSaveOptions.html">ezcImageSaveOptions</a></em></td>
+              <td>
+                                  Options for saving images.
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcImageMimeTypeUnsupportedException.html">ezcImageMimeTypeUnsupportedException</a></code></td>
+              <td>
+                                  If the output type is unsupported.
+                              </td>
+            </tr><tr><td><code>ezcImageFiltersException</code></td>
+              <td>
+                                  On invalid filter or filter settings error.
+                              </td>
+            </tr></tbody></table><a name="methodaddFilter" id="addFilter"><!-- --></a>
+
+    <h4>addFilter</h4>
+
+    <div class="method-signature">
+      void
+      addFilter(
+                                  <a href="ezcImageFilter.html">ezcImageFilter</a>
+          $filter
+                            ,           [int
+          $before
+           = null]              )
+    </div>
+
+    <p>Add a filter to the conversion.</p><div><p>Adds a filter with the specific settings. Filters can be added either  before an existing filter or at the end (leave out $before parameter).</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$filter</code></td>
+              <td><em><a href="ezcImageFilter.html">ezcImageFilter</a></em></td>
+              <td>
+                                  The filter definition.
+                              </td>
+            </tr><tr><td><code>$before</code></td>
+              <td><em>int</em></td>
+              <td>
+                                  Where to add the filter
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcImageFilterNotAvailableException.html">ezcImageFilterNotAvailableException</a></code></td>
+              <td>
+                                  If the given filter is not available.
+                              </td>
+            </tr></tbody></table><a name="methodgetOutMime" id="getOutMime"><!-- --></a>
+
+    <h4>getOutMime</h4>
+
+    <div class="method-signature">
+      string
+      getOutMime(
+                                  string
+          $fileIn
+                            ,           [string
+          $mimeIn
+           = null]              )
+    </div>
+
+    <p>Determine output MIME type  Returns the MIME type that the transformation will output.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$fileIn</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  File that should deal as input for the transformation.
+                              </td>
+            </tr><tr><td><code>$mimeIn</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  Specify the MIME type, so method does not need to.
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="/zetacomponents/documentation/trunk/ImageAnalysis/phpdoc/ezcImageAnalyzerException.html">ezcImageAnalyzerException</a></code></td>
+              <td>
+                                  If the input type is unsupported.
+                              </td>
+            </tr></tbody></table><a name="methodsetFilters" id="setFilters"><!-- --></a>
+
+    <h4>setFilters</h4>
+
+    <div class="method-signature">
+      void
+      setFilters(
+                                  
+          $filters
+                        )
+    </div>
+
+    <p>Set the filters for this transformation.</p><div><p>Checks if the filters defined are available and saves them to the created  transformation if everything is okay.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$filters</code></td>
+              <td><em>array(ezcImageFilter)</em></td>
+              <td>
+                                  Array of <a href="ezcImageFilter.html">filter objects</a>.
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseFileException.html">ezcBaseFileException</a></code></td>
+              <td>
+                                  If the filter array contains invalid object entries.
+                              </td>
+            </tr><tr><td><code><a href="ezcImageFilterNotAvailableException.html">ezcImageFilterNotAvailableException</a></code></td>
+              <td>
+                                  If a filter is not available.
+                              </td>
+            </tr></tbody></table><a name="methodsetMimeOut" id="setMimeOut"><!-- --></a>
+
+    <h4>setMimeOut</h4>
+
+    <div class="method-signature">
+      void
+      setMimeOut(
+                                  
+          $mime
+                        )
+    </div>
+
+    <p>Sets the MIME types which are allowed for output.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$mime</code></td>
+              <td><em>array</em></td>
+              <td>
+                                  MIME types to allow output for.
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcImageMimeTypeUnsupportedException.html">ezcImageMimeTypeUnsupportedException</a></code></td>
+              <td>
+                                  If the MIME types cannot be used as output of any of the handlers in the converter.
+                              </td>
+            </tr></tbody></table><a name="methodsetSaveOptions" id="setSaveOptions"><!-- --></a>
+
+    <h4>setSaveOptions</h4>
+
+    <div class="method-signature">
+      void
+      setSaveOptions(
+                                  <a href="ezcImageSaveOptions.html">ezcImageSaveOptions</a>
+          $options
+                        )
+    </div>
+
+    <p>Sets the save options.</p><div><p>Sets the save options, that are used for the final save step of the  transformation.</p><p><a href="ezcImageSaveOptions.html">ezcImageSaveOptions</a></p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$options</code></td>
+              <td><em><a href="ezcImageSaveOptions.html">ezcImageSaveOptions</a></em></td>
+              <td>
+                                  Save options.
+                              </td>
+            </tr></tbody></table><a name="methodtransform" id="transform"><!-- --></a>
+
+    <h4>transform</h4>
+
+    <div class="method-signature">
+      void
+      transform(
+                                  string
+          $fileIn
+                            ,           string
+          $fileOut
+                        )
+    </div>
+
+    <p>Apply the given filters for the transformation.</p><div><p>Applies the conversion as defined to the given file and saves it as  defined.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$fileIn</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  The file to transform.
+                              </td>
+            </tr><tr><td><code>$fileOut</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  The file to save the transformed image to.
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcImageTransformationException.html">ezcImageTransformationException</a></code></td>
+              <td>
+                                  If an error occurs during the transformation. The returned exception contains the exception the problem resulted from in it's public $parent attribute.
+                              </td>
+            </tr><tr><td><code><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseFileNotFoundException.html">ezcBaseFileNotFoundException</a></code></td>
+              <td>
+                                  If the file you are trying to transform does not exists.
+                              </td>
+            </tr><tr><td><code><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseFilePermissionException.html">ezcBaseFilePermissionException</a></code></td>
+              <td>
+                                  If the file you are trying to transform is not readable.
+                              </td>
+            </tr></tbody></table><div class="credit">
+      Documentation generated by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+    </div>
+  </div>
+  
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

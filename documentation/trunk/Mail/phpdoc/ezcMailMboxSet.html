@@ -1,0 +1,308 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="" />
+	<meta name="author" content="jerome" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Sun, 10 Jul 2011 11:11:01 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="ezcMailMboxSet.html" />
+	<meta name="DC.creator" content="jerome" />
+	<meta name="DC.date" content="Sun, 10 Jul 2011 11:11:01 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailMboxSet.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/Mail/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/trunk/Mail/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Mail/mail-listing-example.html" title="Mail-listing-example ">Mail-listing-example </a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Mail/display-example.html" title="Display-example ">Display-example </a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Mail/rfcs.html" title="Rfcs ">Rfcs </a>
+	</li>
+
+</ul>
+
+		
+  <div class="phpdoc">
+    <h2>Apache Zeta Components Manual :: Docs For Class ezcMailMboxSet</h2>
+
+                  <h3>Mail::ezcMailMboxSet</h3>
+    
+<a name="sec-description"></a>
+<h3>Class ezcMailMboxSet</h3>
+
+<p>ezcMailMboxSet is an internal class that fetches a series of mail  from an mbox file.</p><div><p>The mbox set is constructed from a file pointer and iterates over all the  messages in an mbox file.</p></div>
+<p>Source for this file: <a href="http://fisheye6.atlassian.com/browse/zetacomponents/trunk/Mail/src/transports/mbox/mbox_set.php?r=HEAD">/Mail/src/transports/mbox/mbox_set.php</a></p>
+       
+  <h3>Implements interfaces:</h3>
+  <ul><li><a href="ezcMailParserSet.html">ezcMailParserSet</a></li>  </ul><table><tr><td>
+            <strong>Version:</strong>&#8192;&#8192;
+          </td>
+          <td>//autogen//</td>
+        </tr></table><a name="sec-method-summary"></a>
+  <h3>Method Summary</h3>
+  <table class="summary"><tr><td class="right">
+            <em>public</em>                        <em>ezcMailMboxSet</em>          </td>
+          <td>
+            <code>
+              <a href="#__construct"><b>__construct</b></a>(
+                                                                                    $fh
+                                                    ,                                     $messages
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Constructs a new mbox parser set.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>array(int=&gt;int)</em>          </td>
+          <td>
+            <code>
+              <a href="#getMessageNumbers"><b>getMessageNumbers</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns message numbers for current set.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#getNextLine"><b>getNextLine</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns one line of data from the current mail in the set  including the ending linebreak.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>bool</em>          </td>
+          <td>
+            <code>
+              <a href="#hasData"><b>hasData</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns whether the set contains mails.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>bool</em>          </td>
+          <td>
+            <code>
+              <a href="#isFinished"><b>isFinished</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns true if all the data has been fetched from this set.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>bool</em>          </td>
+          <td>
+            <code>
+              <a href="#nextMail"><b>nextMail</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Moves the set to the next mail and returns true upon success.</div>          </td>
+        </tr></table><a name="sec-methods"></a>
+  <h3>Methods</h3>
+  <a name="method_detail"></a>
+            
+      <a name="method__construct" id="__construct"><!-- --></a>
+
+    <h4>__construct</h4>
+
+    <div class="method-signature">
+      ezcMailMboxSet
+      __construct(
+                                  resource(filepointer)
+          $fh
+                            ,           
+          $messages
+                        )
+    </div>
+
+    <p>Constructs a new mbox parser set.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$fh</code></td>
+              <td><em>resource(filepointer)</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$messages</code></td>
+              <td><em>array(int=&gt;int)</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseFileIoException.html">ezcBaseFileIoException</a></code></td>
+              <td>
+                                  if $fh is not a filepointer resource.
+                              </td>
+            </tr></tbody></table><a name="methodgetMessageNumbers" id="getMessageNumbers"><!-- --></a>
+
+    <h4>getMessageNumbers</h4>
+
+    <div class="method-signature">
+      array(int=&gt;int)
+      getMessageNumbers(
+      )
+    </div>
+
+    <p>Returns message numbers for current set.</p>
+    
+        
+
+    
+    
+    
+        <a name="methodgetNextLine" id="getNextLine"><!-- --></a>
+
+    <h4>getNextLine</h4>
+
+    <div class="method-signature">
+      string
+      getNextLine(
+      )
+    </div>
+
+    <p>Returns one line of data from the current mail in the set  including the ending linebreak.</p><div><p>Null is returned if there is no current mail in the set or  the end of the mail is reached.</p></div>
+    
+        
+
+    
+          <h5>Implementation of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcMailParserSet.html#methodgetNextLine">ezcMailParserSet::getNextLine()</a></code></td>
+              <td>
+                                  Returns one line of data from the current mail in the set  including the ending linebreak.
+                              </td>
+            </tr></tbody></table><a name="methodhasData" id="hasData"><!-- --></a>
+
+    <h4>hasData</h4>
+
+    <div class="method-signature">
+      bool
+      hasData(
+      )
+    </div>
+
+    <p>Returns whether the set contains mails.</p>
+    
+        
+
+    
+          <h5>Implementation of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcMailParserSet.html#methodhasData">ezcMailParserSet::hasData()</a></code></td>
+              <td>
+                                  Returns true if mail data is available for parsing.
+                              </td>
+            </tr></tbody></table><a name="methodisFinished" id="isFinished"><!-- --></a>
+
+    <h4>isFinished</h4>
+
+    <div class="method-signature">
+      bool
+      isFinished(
+      )
+    </div>
+
+    <p>Returns true if all the data has been fetched from this set.</p>
+    
+        
+
+    
+    
+    
+        <a name="methodnextMail" id="nextMail"><!-- --></a>
+
+    <h4>nextMail</h4>
+
+    <div class="method-signature">
+      bool
+      nextMail(
+      )
+    </div>
+
+    <p>Moves the set to the next mail and returns true upon success.</p><div><p>False is returned if there are no more mail in the set.</p></div>
+    
+        
+
+    
+          <h5>Implementation of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcMailParserSet.html#methodnextMail">ezcMailParserSet::nextMail()</a></code></td>
+              <td>
+                                  Moves the set to the next mail and returns true upon success.
+                              </td>
+            </tr></tbody></table><div class="credit">
+      Documentation generated by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+    </div>
+  </div>
+  
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

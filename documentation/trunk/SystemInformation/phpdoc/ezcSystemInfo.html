@@ -1,0 +1,372 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="PHP, apache, components, framework, quality" />
+	<meta name="author" content="dotxp" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Wed, 04 Aug 2010 13:07:58 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="ezcSystemInfo.html" />
+	<meta name="DC.creator" content="dotxp" />
+	<meta name="DC.date" content="Wed, 04 Aug 2010 13:07:58 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/SystemInformation/phpdoc/ezcSystemInfo.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/SystemInformation/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/trunk/SystemInformation/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+
+</ul>
+
+		
+  <div class="phpdoc">
+    <h2>Apache Zeta Components Manual :: Docs For Class ezcSystemInfo</h2>
+
+                  <h3>SystemInformation::ezcSystemInfo</h3>
+    
+<a name="sec-description"></a>
+<h3>Class ezcSystemInfo</h3>
+
+<p>Provides access to common system variables.</p><div><p>Variables not available from PHP directly are fetched using readers  specific for each supported system. Corresponding reader is automatically  detected, attached and forced to scan system info during initialization.  An exception is thrown if the reader can't scan the system info.</p><p>Available readers are: </p><ul><li><a href="ezcSystemInfoLinuxReader.html">ezcSystemInfoLinuxReader</a> reader</li><li><a href="ezcSystemInfoMacReader.html">ezcSystemInfoMacReader</a> reader</li><li><a href="ezcSystemInfoFreeBsdReader.html">ezcSystemInfoFreeBsdReader</a> reader</li><li><a href="ezcSystemInfoWindowsReader.html">ezcSystemInfoWindowsReader</a> reader</li></ul>  Readers for other systems can be added by  implementing the <a href="ezcSystemInfoReader.html">ezcSystemInfoReader</a> interface.<p>The ezcSystemInfo class has the following properties:</p><p>Reader independent, these properties are available even if system reader was not initialized.</p></div>
+<p>Source for this file: <a href="http://fisheye6.atlassian.com/browse/zetacomponents/trunk/SystemInformation/src/info.php?r=HEAD">/SystemInformation/src/info.php</a></p>
+       
+
+
+
+
+  <table><tr><td>
+            <strong>Version:</strong>&#8192;&#8192;
+          </td>
+          <td>//autogentag//</td>
+        </tr></table><a name="sec-prop-summary"></a>
+  <h3>Properties</h3>
+  <table class="summary"><tr><td class="right">
+          <a name="prop%24backupFileName" id="$backupFileName"></a>
+          <a name="prop-%24backupFileName" id="$backupFileName"></a>
+          <em>string</em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24backupFileName" title="details" class="var-name-summary">$backupFileName</a>
+                      </code>
+          <br><div style="margin-left: 20px">Backup filename for this platform, '.bak' for win32 and '~' for unix and mac.</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24cpuCount" id="$cpuCount"></a>
+          <a name="prop-%24cpuCount" id="$cpuCount"></a>
+          <em>integer</em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24cpuCount" title="details" class="var-name-summary">$cpuCount</a>
+                      </code>
+          <br><div style="margin-left: 20px">Number of CPUs in system or null.</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24cpuSpeed" id="$cpuSpeed"></a>
+          <a name="prop-%24cpuSpeed" id="$cpuSpeed"></a>
+          <em>float</em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24cpuSpeed" title="details" class="var-name-summary">$cpuSpeed</a>
+                      </code>
+          <br><div style="margin-left: 20px">CPU speed as float (e.g 1808.743) in Mhz or null.</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24cpuType" id="$cpuType"></a>
+          <a name="prop-%24cpuType" id="$cpuType"></a>
+          <em>string</em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24cpuType" title="details" class="var-name-summary">$cpuType</a>
+                      </code>
+          <br><div style="margin-left: 20px">CPU type string (e.g 'AMD Sempron(tm) Processor 3000+') or null.</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24fileSystemType" id="$fileSystemType"></a>
+          <a name="prop-%24fileSystemType" id="$fileSystemType"></a>
+          <em>string</em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24fileSystemType" title="details" class="var-name-summary">$fileSystemType</a>
+                      </code>
+          <br><div style="margin-left: 20px">Filesystem type (e.g 'linux') or null.</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24isShellExecution" id="$isShellExecution"></a>
+          <a name="prop-%24isShellExecution" id="$isShellExecution"></a>
+          <em>bool</em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24isShellExecution" title="details" class="var-name-summary">$isShellExecution</a>
+                      </code>
+          <br><div style="margin-left: 20px"><p>The flag which indicates if the script was executed over the web or the shell/command line.</p><p>Reader dependent, these properties are not available if reader was not initialized and didn't scan OS:</p></div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24lineSeparator" id="$lineSeparator"></a>
+          <a name="prop-%24lineSeparator" id="$lineSeparator"></a>
+          <em>string</em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24lineSeparator" title="details" class="var-name-summary">$lineSeparator</a>
+                      </code>
+          <br><div style="margin-left: 20px">Symbols which is used for line separators on the current OS.</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24memorySize" id="$memorySize"></a>
+          <a name="prop-%24memorySize" id="$memorySize"></a>
+          <em>integer</em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24memorySize" title="details" class="var-name-summary">$memorySize</a>
+                      </code>
+          <br><div style="margin-left: 20px"><p>Memory Size in bytes int (e.g. 528424960) or null.</p><p>Example:   </p><ol><li><div class="src-line">&#8192;&#8192;<span class="src-var">$info&#8192;</span>=&#8192;<span class="src-id"><a href="ezcSystemInfo.html">ezcSystemInfo</a></span><span class="src-sym">::</span><a href="ezcSystemInfo.html#methodgetInstance">getInstance</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;&#8192;echo&#8192;<span class="src-str">'Processors:&#8192;'</span><span class="src-sym">,&#8192;</span><span class="src-var">$info</span><span class="src-sym">-&gt;</span><span class="src-id">cpuCount</span><span class="src-sym">,&#8192;</span><span class="src-str">"\n"</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;&#8192;echo&#8192;<span class="src-str">'CPU&#8192;Type:&#8192;'</span><span class="src-sym">,&#8192;</span><span class="src-var">$info</span><span class="src-sym">-&gt;</span><span class="src-id">cpuType</span><span class="src-sym">,&#8192;</span><span class="src-str">"\n"</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;&#8192;echo&#8192;<span class="src-str">'CPU&#8192;Speed:&#8192;'</span><span class="src-sym">,&#8192;</span><span class="src-var">$info</span><span class="src-sym">-&gt;</span><span class="src-id">cpuSpeed</span><span class="src-sym">,&#8192;</span><span class="src-str">"\n"</span><span class="src-sym">;</span></div></li>
+</ol></div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24osName" id="$osName"></a>
+          <a name="prop-%24osName" id="$osName"></a>
+          <em>string</em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24osName" title="details" class="var-name-summary">$osName</a>
+                      </code>
+          <br><div style="margin-left: 20px">OS name (e.g 'Linux') or null.</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24osType" id="$osType"></a>
+          <a name="prop-%24osType" id="$osType"></a>
+          <em>string</em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24osType" title="details" class="var-name-summary">$osType</a>
+                      </code>
+          <br><div style="margin-left: 20px">OS type (e.g 'unix') or null.</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24phpAccelerator" id="$phpAccelerator"></a>
+          <a name="prop-%24phpAccelerator" id="$phpAccelerator"></a>
+          <em><a href="ezcSystemInfoAccelerator.html">ezcSystemInfoAccelerator</a></em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24phpAccelerator" title="details" class="var-name-summary">$phpAccelerator</a>
+                      </code>
+          <br><div style="margin-left: 20px">Structure with PHP accelerator info or null.  <a href="ezcSystemInfoAccelerator.html">ezcSystemInfoAccelerator</a>.</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24phpVersion" id="$phpVersion"></a>
+          <a name="prop-%24phpVersion" id="$phpVersion"></a>
+          <em>array</em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24phpVersion" title="details" class="var-name-summary">$phpVersion</a>
+                      </code>
+          <br><div style="margin-left: 20px">Array with PHP version (e.g. array(5,1,1) ).</div>        </td>
+      </tr></table><a name="sec-method-summary"></a>
+  <h3>Method Summary</h3>
+  <table class="summary"><tr><td class="right">
+            <em>public</em>            static
+                        <em><a href="ezcSystemInfo.html">ezcSystemInfo</a></em>          </td>
+          <td>
+            <code>
+              <a href="#getInstance"><b>getInstance</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns the single instance of the ezcSystemInfo class.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>            static
+                        <em>bool</em>          </td>
+          <td>
+            <code>
+              <a href="#isShellExecution"><b>isShellExecution</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Determines if the script was executed over the web or the shell/command line.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>            static
+                        <em><a href="ezcSystemInfoAccelerator.html">ezcSystemInfoAccelerator</a></em>          </td>
+          <td>
+            <code>
+              <a href="#phpAccelerator"><b>phpAccelerator</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Detects if a PHP accelerator is running and what type it is.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>            static
+                        <em>array(string)</em>          </td>
+          <td>
+            <code>
+              <a href="#phpVersion"><b>phpVersion</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns the PHP version as an array with the version elements.</div>          </td>
+        </tr></table><a name="sec-methods"></a>
+  <h3>Methods</h3>
+  <a name="method_detail"></a>
+      <a name="methodgetInstance" id="getInstance"><!-- --></a>
+
+    <h4>getInstance</h4>
+
+    <div class="method-signature">
+      static <a href="ezcSystemInfo.html">ezcSystemInfo</a>
+      getInstance(
+      )
+    </div>
+
+      <p>Returns the single instance of the ezcSystemInfo class.</p>      
+      
+              <h5>Exceptions:</h5>
+        <table class="detail"><thead><tr><th>Type</th>
+              <th class="desc">Description</th>
+            </tr></thead><tbody><tr><td><code><a href="ezcSystemInfoReaderCantScanOSException.html">ezcSystemInfoReaderCantScanOSException</a></code></td>
+                <td>
+                                      If system variables can't be received from OS.
+                                  </td>
+              </tr></tbody></table><a name="methodisShellExecution" id="isShellExecution"><!-- --></a>
+
+    <h4>isShellExecution</h4>
+
+    <div class="method-signature">
+      static bool
+      isShellExecution(
+      )
+    </div>
+
+      <p>Determines if the script was executed over the web or the shell/command line.</p>      
+      
+      
+      
+      
+      
+        <a name="methodphpAccelerator" id="phpAccelerator"><!-- --></a>
+
+    <h4>phpAccelerator</h4>
+
+    <div class="method-signature">
+      static <a href="ezcSystemInfoAccelerator.html">ezcSystemInfoAccelerator</a>
+      phpAccelerator(
+      )
+    </div>
+
+      <p>Detects if a PHP accelerator is running and what type it is.</p>      
+      
+      
+      
+      
+      
+        <a name="methodphpVersion" id="phpVersion"><!-- --></a>
+
+    <h4>phpVersion</h4>
+
+    <div class="method-signature">
+      static array(string)
+      phpVersion(
+      )
+    </div>
+
+      <p>Returns the PHP version as an array with the version elements.</p>      
+      
+      
+      
+      
+      
+  
+        
+    <div class="credit">
+      Documentation generated by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+    </div>
+  </div>
+  
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

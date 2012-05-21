@@ -1,0 +1,505 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="" />
+	<meta name="author" content="jerome" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Sun, 10 Jul 2011 11:11:10 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="ezcWebdavServerConfigurationManager.html" />
+	<meta name="DC.creator" content="jerome" />
+	<meta name="DC.date" content="Sun, 10 Jul 2011 11:11:10 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/Webdav/phpdoc/ezcWebdavServerConfigurationManager.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/Webdav/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/trunk/Webdav/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Webdav/clients.html" title="Clients ">Clients </a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Webdav/plugin_architecture.html" title="Plugin_architecture ">Plugin_architecture </a>
+	</li>
+
+</ul>
+
+		
+  <div class="phpdoc">
+    <h2>Apache Zeta Components Manual :: Docs For Class ezcWebdavServerConfigurationManager</h2>
+
+                  <h3>Webdav::ezcWebdavServerConfigurationManager</h3>
+    
+<a name="sec-description"></a>
+<h3>Class ezcWebdavServerConfigurationManager</h3>
+
+<p>Manages and dispatches server configurations.</p><div><p>An instance of this class is kept in the singleton instance of <a href="ezcWebdavServer.html">ezcWebdavServer</a> and keeps track of different server configurations to be  used with different clients.</p><p>Several special configurations exist per default: </p><ul><li>MS InternetExplorer compatible</li><li>GNOME Nautilus compatible</li></ul>  In addtion, a default configuration that behaves RFC compliant is included  as fallback for any other client.<p>Configurations can be accessed by the ArrayAccess and Iterator interfaces.  To insert new configurations, the method <a href="ezcWebdavServerConfigurationManager.html#methodinsertBefore">insertBefore()</a> should be  used.</p></div>
+<p>Source for this file: <a href="http://fisheye6.atlassian.com/browse/zetacomponents/trunk/Webdav/src/server_configuration_manager.php?r=HEAD">/Webdav/src/server_configuration_manager.php</a></p>
+       
+  <h3>Implements interfaces:</h3>
+  <ul><li>ArrayAccess (internal interface)</li><li>Iterator (internal interface)</li>  </ul><table><tr><td>
+            <strong>Version:</strong>&#8192;&#8192;
+          </td>
+          <td>//autogen//</td>
+        </tr></table><a name="sec-var-summary"></a>
+  <h3>Member Variables</h3>
+  <table class="summary"><tr><td class="right">
+            <em>protected</em>            <em>array(int=&gt;ezcWebdavServerConfiguration)</em>          </td>
+          <td>
+            <code>
+              $configurations
+               = <span class="var-default">array()</span>            </code>
+            <br><div style="margin-left: 20px">Transport configurations to dispatch.</div>                      </td>
+        </tr></table><a name="sec-method-summary"></a>
+  <h3>Method Summary</h3>
+  <table class="summary"><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#__construct"><b>__construct</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Creates a new dispatcher.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#checkOffset"><b>checkOffset</b></a>(
+                                                                                    $offset
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Checks the given $offset for validity.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#checkValue"><b>checkValue</b></a>(
+                                                                                    $value
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Checks the given $value for validity.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#configure"><b>configure</b></a>(
+                                                                                    $server
+                                                    ,                                     $userAgent
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Configures the server for handling a request by the given User-Agent.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>mixed</em>          </td>
+          <td>
+            <code>
+              <a href="#current"><b>current</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Implements current() for Iterator</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#insertBefore"><b>insertBefore</b></a>(
+                                                                                    $config
+                                                    ,                   [                  $offset
+                   = 0]                               )
+            </code>
+            <br><div style="margin-left: 20px">Inserts a configuration right before a certain offset.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>int</em>          </td>
+          <td>
+            <code>
+              <a href="#key"><b>key</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Implements key() for Iterator</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>mixed</em>          </td>
+          <td>
+            <code>
+              <a href="#next"><b>next</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Implements next() for Iterator</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#offsetSet"><b>offsetSet</b></a>(
+                                                                                    $offset
+                                                    ,                                     $value
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Array set access.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#rewind"><b>rewind</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Implements rewind() for Iterator</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>boolean</em>          </td>
+          <td>
+            <code>
+              <a href="#valid"><b>valid</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Implements valid() for Iterator</div>          </td>
+        </tr></table><a name="sec-methods"></a>
+  <h3>Methods</h3>
+  <a name="method_detail"></a>
+                      
+      <a name="method__construct" id="__construct"><!-- --></a>
+
+    <h4>__construct</h4>
+
+    <div class="method-signature">
+      void
+      __construct(
+      )
+    </div>
+
+    <p>Creates a new dispatcher.</p><div><p>This creates a new manager object and registers the default <a href="ezcWebdavServerConfiguration.html">ezcWebdavServerConfiguration</a> instances automatically. The last added  configuration is the RFC compliant one, which matches for every client  if no other configurations matched before. That means, all following  should be added by <a href="ezcWebdavServerConfigurationManager.html#methodinsertBefore">insertBefore()</a> to ensure, this  catchall will not break the transfer layer.</p></div>
+    
+        
+
+    
+    
+    
+        <a name="methodcheckOffset" id="checkOffset"><!-- --></a>
+
+    <h4>checkOffset</h4>
+
+    <div class="method-signature">
+      void
+      checkOffset(
+                                  int|null
+          $offset
+                        )
+    </div>
+
+    <p>Checks the given $offset for validity.</p><div><p>This method checks if the given $offset is either of type int, then  larger 0 and not larger as the number of elements in $this-&gt;configurations, or null.</p><p>The method is primarily used in the ArrayAccess methods.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$offset</code></td>
+              <td><em>int|null</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseValueException.html">ezcBaseValueException</a></code></td>
+              <td>
+                                  if the given $offset is not an an int with the given criteria and not null.
+                              </td>
+            </tr></tbody></table><a name="methodcheckValue" id="checkValue"><!-- --></a>
+
+    <h4>checkValue</h4>
+
+    <div class="method-signature">
+      void
+      checkValue(
+                                  <a href="ezcWebdavServerConfiguration.html">ezcWebdavServerConfiguration</a>|null
+          $value
+                        )
+    </div>
+
+    <p>Checks the given $value for validity.</p><div><p>This method checks if the given $value is either an instance of <a href="ezcWebdavServerConfiguration.html">ezcWebdavServerConfiguration</a> or null.</p><p>The method is primarily used in the ArrayAccess methods.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$value</code></td>
+              <td><em><a href="ezcWebdavServerConfiguration.html">ezcWebdavServerConfiguration</a>|null</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseValueException.html">ezcBaseValueException</a></code></td>
+              <td>
+                                  if the given $value is not an instance of ezcWebdavServerConfiguration or null.
+                              </td>
+            </tr></tbody></table><a name="methodconfigure" id="configure"><!-- --></a>
+
+    <h4>configure</h4>
+
+    <div class="method-signature">
+      void
+      configure(
+                                  <a href="ezcWebdavServer.html">ezcWebdavServer</a>
+          $server
+                            ,           mixed
+          $userAgent
+                        )
+    </div>
+
+    <p>Configures the server for handling a request by the given User-Agent.</p><div><p>This method is used by <a href="ezcWebdavServer.html">ezcWebdavServer</a> to determine the correct  <a href="ezcWebdavTransport.html">ezcWebdavTransport</a> for the current request. It returns the  <a href="ezcWebdavTransport.html">ezcWebdavTransport</a> created by the <a href="ezcWebdavServerConfiguration.html">ezcWebdavServerConfiguration</a> which matched the submitted User-Agent  header first.</p><p>Per default, the RFC compliant default implementation <a href="ezcWebdavTransport.html">ezcWebdavTransport</a> is configured to catch all User-Agent headers for  which no specific implementation could be found. If this configuration  has been removed or manipulated incorrectly, an <a href="ezcWebdavMissingTransportConfigurationException.html">ezcWebdavMissingTransportConfigurationException</a> might be thrown.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$server</code></td>
+              <td><em><a href="ezcWebdavServer.html">ezcWebdavServer</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$userAgent</code></td>
+              <td><em>mixed</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcWebdavMissingTransportConfigurationException.html">ezcWebdavMissingTransportConfigurationException</a></code></td>
+              <td>
+                                  if no <a href="ezcWebdavServerConfiguration.html">ezcWebdavServerConfiguration</a> could be found that matches the given $userAgent.
+                              </td>
+            </tr></tbody></table><a name="methodcurrent" id="current"><!-- --></a>
+
+    <h4>current</h4>
+
+    <div class="method-signature">
+      mixed
+      current(
+      )
+    </div>
+
+    <p>Implements current() for Iterator</p>
+    
+        
+
+    
+          <h5>Implementation of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>Iterator::current</code></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodinsertBefore" id="insertBefore"><!-- --></a>
+
+    <h4>insertBefore</h4>
+
+    <div class="method-signature">
+      void
+      insertBefore(
+                                  <a href="ezcWebdavServerConfiguration.html">ezcWebdavServerConfiguration</a>
+          $config
+                            ,           [int
+          $offset
+           = 0]              )
+    </div>
+
+    <p>Inserts a configuration right before a certain offset.</p><div><p>This method inserts a given $config right before the given $offset. The  $offset must be of type integer and between 0 and the number of elements  in $this-&gt;configurations minus 1.</p><p>If these preconditions do not match for the given $offset, an  <a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseValueException.html">ezcBaseValueException</a> is thrown.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$config</code></td>
+              <td><em><a href="ezcWebdavServerConfiguration.html">ezcWebdavServerConfiguration</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$offset</code></td>
+              <td><em>int</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseValueException.html">ezcBaseValueException</a></code></td>
+              <td>
+                                  if the given $offset is not an integer that is larger or equal to 0 and smaller than the number of elements in $this-&gt;configurations.
+                              </td>
+            </tr></tbody></table><a name="methodkey" id="key"><!-- --></a>
+
+    <h4>key</h4>
+
+    <div class="method-signature">
+      int
+      key(
+      )
+    </div>
+
+    <p>Implements key() for Iterator</p>
+    
+        
+
+    
+          <h5>Implementation of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>Iterator::key</code></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodnext" id="next"><!-- --></a>
+
+    <h4>next</h4>
+
+    <div class="method-signature">
+      mixed
+      next(
+      )
+    </div>
+
+    <p>Implements next() for Iterator</p>
+    
+        
+
+    
+          <h5>Implementation of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>Iterator::next</code></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodoffsetSet" id="offsetSet"><!-- --></a>
+
+    <h4>offsetSet</h4>
+
+    <div class="method-signature">
+      void
+      offsetSet(
+                                  string
+          $offset
+                            ,           string
+          $value
+                        )
+    </div>
+
+    <p>Array set access.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$offset</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$value</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Implementation of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>ArrayAccess::offsetSet</code></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodrewind" id="rewind"><!-- --></a>
+
+    <h4>rewind</h4>
+
+    <div class="method-signature">
+      void
+      rewind(
+      )
+    </div>
+
+    <p>Implements rewind() for Iterator</p>
+    
+        
+
+    
+          <h5>Implementation of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>Iterator::rewind</code></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodvalid" id="valid"><!-- --></a>
+
+    <h4>valid</h4>
+
+    <div class="method-signature">
+      boolean
+      valid(
+      )
+    </div>
+
+    <p>Implements valid() for Iterator</p>
+    
+        
+
+    
+          <h5>Implementation of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>Iterator::valid</code></td>
+              <td>
+                              </td>
+            </tr></tbody></table><div class="credit">
+      Documentation generated by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+    </div>
+  </div>
+  
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,329 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="" />
+	<meta name="author" content="jerome" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Sun, 10 Jul 2011 11:10:50 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="ezcCacheManager.html" />
+	<meta name="DC.creator" content="jerome" />
+	<meta name="DC.date" content="Sun, 10 Jul 2011 11:10:50 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/Cache/phpdoc/ezcCacheManager.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/Cache/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/trunk/Cache/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+
+</ul>
+
+		
+  <div class="phpdoc">
+    <h2>Apache Zeta Components Manual :: Docs For Class ezcCacheManager</h2>
+
+                  <h3>Cache::ezcCacheManager</h3>
+    
+<a name="sec-description"></a>
+<h3>Class ezcCacheManager</h3>
+
+<p>This is the main class of the Cache package. It gives you a handy interface  to create and manage multiple caches at once. It enables you to configure  all caches you need in your application in a central place and access them  on demand in any place in your application.</p><div><p>The use of ezcCacheManager is not required, but recommended. If you only  need a few (or maybe just 1) cache instance, you can use and instantiate  a <a href="ezcCacheStorage.html">ezcCacheStorage</a> class directly.</p><p>Usage example for ezcCacheManager:  </p><ol><li><div class="src-line">&#8192;<span class="src-comm">//&#8192;Some&#8192;pre-work,&#8192;needed&#8192;by&#8192;the&#8192;example</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$basePath&#8192;</span>=&#8192;<a href="http://www.php.net/dirname">dirname</a><span class="src-sym">(&#8192;</span>__FILE__&#8192;<span class="src-sym">)</span>.<span class="src-str">'/cache'</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-key">function&#8192;</span><span class="src-id">getUniqueId</span><span class="src-sym">(</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">{</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-key">return&#8192;</span><span class="src-str">'This&#8192;is&#8192;a&#8192;unique&#8192;ID'</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">}</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;Central&#8192;creation&#8192;and&#8192;configuration&#8192;of&#8192;the&#8192;caches</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;The&#8192;ezcCacheManager&#8192;just&#8192;stores&#8192;the&#8192;configuration&#8192;right&#8192;now&#8192;and</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;performs&#8192;sanity&#8192;checks.&#8192;The&#8192;ezcCacheStorage&#8192;instances</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;will&#8192;be&#8192;created&#8192;on&#8192;demand,&#8192;when&#8192;you&#8192;use&#8192;them&#8192;for&#8192;the&#8192;first&#8192;time</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;Configuration&#8192;options&#8192;for&#8192;a&#8192;cache&#8192;(see&#8192;ezcCacheStorage)</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$options&#8192;</span>=&#8192;<span class="src-key">array</span><span class="src-sym">(</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'ttl'&#8192;&#8192;&#8192;</span>=&gt;&#8192;<span class="src-num">60</span>*<span class="src-num">60</span>*<span class="src-num">24</span>*<span class="src-num">2</span><span class="src-sym">,&#8192;&#8192;&#8192;&#8192;&#8192;</span><span class="src-comm">//&#8192;Default&#8192;would&#8192;be&#8192;1&#8192;day,&#8192;here&#8192;2&#8192;days</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;Create&#8192;a&#8192;cache&#8192;named&#8192;"content",&#8192;that&#8192;resides&#8192;in&#8192;/var/cache/content</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;The&#8192;cache&#8192;instance&#8192;will&#8192;use&#8192;the&#8192;ezcCacheStorageFileArray&#8192;class</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;to&#8192;store&#8192;the&#8192;cache&#8192;data.&#8192;The&#8192;time-to-live&#8192;for&#8192;cache&#8192;items&#8192;is&#8192;set&#8192;as</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;defined&#8192;above.</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-id"><a href="ezcCacheManager.html">ezcCacheManager</a></span><span class="src-sym">::</span><a href="ezcCacheManager.html#methodcreateCache">createCache</a><span class="src-sym">(&#8192;</span><span class="src-str">'content'</span><span class="src-sym">,&#8192;</span><span class="src-var">$basePath</span>.<span class="src-str">'/content'</span><span class="src-sym">,&#8192;</span><span class="src-str">'ezcCacheStorageFileArray'</span><span class="src-sym">,&#8192;</span><span class="src-var">$options&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;Create&#8192;another&#8192;cache,&#8192;called&#8192;"template"&#8192;in&#8192;/var/cache/templates.</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;This&#8192;cache&#8192;will&#8192;use&#8192;the&#8192;ezcCacheStorageFilePlain&#8192;class&#8192;to&#8192;store</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;cache&#8192;data.&#8192;It&#8192;has&#8192;the&#8192;same&#8192;TTL&#8192;as&#8192;the&#8192;cache&#8192;defined&#8192;above.</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-id"><a href="ezcCacheManager.html">ezcCacheManager</a></span><span class="src-sym">::</span><a href="ezcCacheManager.html#methodcreateCache">createCache</a><span class="src-sym">(&#8192;</span><span class="src-str">'template'</span><span class="src-sym">,&#8192;</span><span class="src-var">$basePath</span>.<span class="src-str">'/templates'</span><span class="src-sym">,&#8192;</span><span class="src-str">'ezcCacheStorageFilePlain'</span><span class="src-sym">,&#8192;</span><span class="src-var">$options&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;Somewhere&#8192;in&#8192;the&#8192;application&#8192;you&#8192;can&#8192;access&#8192;the&#8192;caches</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;Get&#8192;the&#8192;instance&#8192;of&#8192;the&#8192;cache&#8192;called&#8192;"content"</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;Now&#8192;the&#8192;instance&#8192;of&#8192;ezcCacheStorageFileArray&#8192;is&#8192;created&#8192;and</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;returned&#8192;to&#8192;be&#8192;used.&#8192;Next&#8192;time&#8192;you&#8192;access&#8192;this&#8192;cache,&#8192;the&#8192;created</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;instance&#8192;will&#8192;be&#8192;reused.</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$cache&#8192;</span>=&#8192;<span class="src-id"><a href="ezcCacheManager.html">ezcCacheManager</a></span><span class="src-sym">::</span><a href="ezcCacheManager.html#methodgetCache">getCache</a><span class="src-sym">(&#8192;</span><span class="src-str">'content'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;Instead&#8192;of&#8192;using&#8192;the&#8192;createCache()/getCache()&#8192;mechanism&#8192;you&#8192;can&#8192;also</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;create&#8192;cache&#8192;on-demand&#8192;with&#8192;delayed&#8192;initialization.&#8192;You&#8192;can&#8192;find</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;information&#8192;on&#8192;how&#8192;to&#8192;use&#8192;that&#8192;in&#8192;the&#8192;tutorial.</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;Specify&#8192;any&#8192;number&#8192;of&#8192;attributes&#8192;to&#8192;identify&#8192;the&#8192;cache&#8192;item&#8192;you&#8192;want</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;to&#8192;store.&#8192;This&#8192;attributes&#8192;can&#8192;be&#8192;used&#8192;later&#8192;to&#8192;perform&#8192;operations</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;on&#8192;a&#8192;set&#8192;of&#8192;cache&#8192;items,&#8192;that&#8192;share&#8192;a&#8192;common&#8192;attribute.</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$attributes&#8192;</span>=&#8192;<span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-str">'node'&#8192;</span>=&gt;&#8192;<span class="src-num">2</span><span class="src-sym">,&#8192;</span><span class="src-str">'area'&#8192;</span>=&gt;&#8192;<span class="src-str">'admin'</span><span class="src-sym">,&#8192;</span><span class="src-str">'lang'&#8192;</span>=&gt;&#8192;<span class="src-str">'en-GB'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;This&#8192;function&#8192;is&#8192;not&#8192;part&#8192;of&#8192;the&#8192;Cache&#8192;package.&#8192;You&#8192;have&#8192;to&#8192;define</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;unique&#8192;IDs&#8192;for&#8192;your&#8192;cache&#8192;items&#8192;yourself.</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$id&#8192;</span>=&#8192;<span class="src-id">getUniqueId</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;Initialize&#8192;the&#8192;data&#8192;variable&#8192;you&#8192;want&#8192;to&#8192;restore</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$data&#8192;</span>=&#8192;<span class="src-str">''</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;Check&#8192;if&#8192;data&#8192;is&#8192;available&#8192;in&#8192;the&#8192;cache.&#8192;The&#8192;restore&#8192;method&#8192;returns</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;the&#8192;cached&#8192;data,&#8192;if&#8192;available,&#8192;or&#8192;bool&#8192;false.</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-key">if&#8192;</span><span class="src-sym">(&#8192;(&#8192;</span><span class="src-var">$data&#8192;</span>=&#8192;<span class="src-var">$cache</span><span class="src-sym">-&gt;</span><span class="src-id">restore</span><span class="src-sym">(&#8192;</span><span class="src-var">$id</span><span class="src-sym">,&#8192;</span><span class="src-var">$attributes&#8192;</span><span class="src-sym">)&#8192;)&#8192;</span>===&#8192;<span class="src-id">false&#8192;</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">{</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-comm">//&#8192;The&#8192;cache&#8192;item&#8192;we&#8192;tried&#8192;to&#8192;restore&#8192;does&#8192;not&#8192;exist,&#8192;so&#8192;we&#8192;have&#8192;to</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-comm">//&#8192;generate&#8192;the&#8192;data.</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-var">$data&#8192;</span>=&#8192;<span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-str">'This&#8192;is&#8192;some&#8192;data'</span><span class="src-sym">,&#8192;</span><span class="src-str">'and&#8192;some&#8192;more&#8192;data.'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-comm">//&#8192;For&#8192;testing&#8192;we&#8192;echo&#8192;something&#8192;here...</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;echo&#8192;<span class="src-str">"No&#8192;cache&#8192;data&#8192;found.&#8192;Generated&#8192;some.\n"</span>.<a href="http://www.php.net/var_export">var_export</a><span class="src-sym">(&#8192;</span><span class="src-var">$data</span><span class="src-sym">,&#8192;</span><span class="src-id">true&#8192;</span><span class="src-sym">)</span>.<span class="src-str">"\n"</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-comm">//&#8192;Now&#8192;we&#8192;store&#8192;the&#8192;data&#8192;in&#8192;the&#8192;cache.&#8192;It&#8192;will&#8192;be&#8192;available&#8192;through</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-comm">//&#8192;restore,&#8192;next&#8192;time&#8192;the&#8192;code&#8192;is&#8192;reached</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-var">$cache</span><span class="src-sym">-&gt;</span><span class="src-id">store</span><span class="src-sym">(&#8192;</span><span class="src-var">$id</span><span class="src-sym">,&#8192;</span><span class="src-var">$data</span><span class="src-sym">,&#8192;</span><span class="src-var">$attributes&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">}</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-key">else</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">{</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-comm">//&#8192;We&#8192;found&#8192;cache&#8192;data.&#8192;Let's&#8192;echo&#8192;the&#8192;information.</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;echo&#8192;<span class="src-str">"Cache&#8192;data&#8192;found.\n"</span>.<a href="http://www.php.net/var_export">var_export</a><span class="src-sym">(&#8192;</span><span class="src-var">$data</span><span class="src-sym">,&#8192;</span><span class="src-id">true&#8192;</span><span class="src-sym">)</span>.<span class="src-str">"\n"</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">}</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;In&#8192;some&#8192;other&#8192;place&#8192;you&#8192;can&#8192;access&#8192;the&#8192;second&#8192;defined&#8192;cache.</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$cache&#8192;</span>=&#8192;<span class="src-id"><a href="ezcCacheManager.html">ezcCacheManager</a></span><span class="src-sym">::</span><a href="ezcCacheManager.html#methodgetCache">getCache</a><span class="src-sym">(&#8192;</span><span class="src-str">'template'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;Here&#8192;we&#8192;are&#8192;removing&#8192;cache&#8192;items.&#8192;We&#8192;do&#8192;not&#8192;specify&#8192;an&#8192;ID&#8192;(which&#8192;would</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;have&#8192;meant&#8192;to&#8192;delete&#8192;1&#8192;specific&#8192;cache&#8192;item),&#8192;but&#8192;only&#8192;an&#8192;array&#8192;of</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;attributes.&#8192;This&#8192;will&#8192;result&#8192;in&#8192;all&#8192;cache&#8192;items&#8192;to&#8192;be&#8192;deleted,&#8192;that</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;have&#8192;this&#8192;attribute&#8192;assigned.</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$cache</span><span class="src-sym">-&gt;</span><span class="src-id">delete</span><span class="src-sym">(&#8192;</span><span class="src-id">null</span><span class="src-sym">,&#8192;</span><span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-str">'node'&#8192;</span>=&gt;&#8192;<span class="src-num">5&#8192;</span><span class="src-sym">)&#8192;)</span><span class="src-sym">;</span></div></li>
+</ol></div>
+<p>Source for this file: <a href="http://fisheye6.atlassian.com/browse/zetacomponents/trunk/Cache/src/manager.php?r=HEAD">/Cache/src/manager.php</a></p>
+       
+
+
+
+
+  <table><tr><td>
+            <strong>Version:</strong>&#8192;&#8192;
+          </td>
+          <td>//autogentag//</td>
+        </tr></table><a name="sec-method-summary"></a>
+  <h3>Method Summary</h3>
+  <table class="summary"><tr><td class="right">
+            <em>public</em>            static
+                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#createCache"><b>createCache</b></a>(
+                                                                                    $id
+                                                    ,                   [                  $location
+                   = null]                                  ,                                     $storageClass
+                                                    ,                   [                  $options
+                   = array()]                               )
+            </code>
+            <br><div style="margin-left: 20px">Creates a new cache in the manager.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>            static
+                        <em><a href="ezcCacheStorage.html">ezcCacheStorage</a></em>          </td>
+          <td>
+            <code>
+              <a href="#getCache"><b>getCache</b></a>(
+                                                                                    $id
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns the ezcCacheStorage object with the given ID.</div>          </td>
+        </tr></table><a name="sec-methods"></a>
+  <h3>Methods</h3>
+  <a name="method_detail"></a>
+      <a name="methodcreateCache" id="createCache"><!-- --></a>
+
+    <h4>createCache</h4>
+
+    <div class="method-signature">
+      static void
+      createCache(
+                                  string
+          $id
+                            ,           [string
+          $location
+           = null]                  ,           string
+          $storageClass
+                            ,           [array(string=&gt;string)
+          $options
+           = array()]              )
+    </div>
+
+      <p>Creates a new cache in the manager.</p><div><p>This method is used to create a new cache inside the manager.  Each cache has a unique ID to access it during the application  runtime. Each location may only be used by 1 cache.</p><p>The $storageClass parameter must be a subclass of  <a href="ezcCacheStorage.html">ezcCacheStorage</a> and tells the manager which object  will be used for the cache.</p><p>The $location parameter depends on the kind of <a href="ezcCacheStorage.html">ezcCacheStorage</a>  used for the cache you create. Usually this is a directory on your  file system, but may also be e.g. a data source name, if you cache in  a database or similar. For memory-based storage (<a href="ezcCacheStorageApcPlain.html">ezcCacheStorageApcPlain</a>  or <a href="ezcCacheStorageMemcachePlain.html">ezcCacheStorageMemcachePlain</a>) it is null, but for  memory/file hybrid storage (<a href="ezcCacheStorageFileApcArray.html">ezcCacheStorageFileApcArray</a>) it should  be an existing writeable path.</p><p>The $options array consists of several standard attributes and can  additionally contain options defined by the <a href="ezcCacheStorage.html">ezcCacheStorage</a>  class. Standard options are:</p><p></p><ol><li><div class="src-line">&#8192;<span class="src-key">array</span><span class="src-sym">(</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'ttl'&#8192;&#8192;&#8192;</span>=&gt;&#8192;<span class="src-num">60</span>*<span class="src-num">60</span>*<span class="src-num">24</span><span class="src-sym">,&#8192;&#8192;&#8192;&#8192;</span><span class="src-comm">//&#8192;Time-to-life,&#8192;default:&#8192;1&#8192;day</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol></div>      
+              <h5>Parameters:</h5>
+        <table class="detail"><thead><tr><th>Name</th>
+              <th>Type</th>
+              <th class="desc">Description</th>
+            </tr></thead><tbody><tr><td><code>$id</code></td>
+                <td><em>string</em></td>
+                <td>
+                                      ID of the cache to create.
+                                  </td>
+              </tr><tr><td><code>$location</code></td>
+                <td><em>string</em></td>
+                <td>
+                                      Location to create the cache in. Null for                                        memory-based storage and an existing                                        writeable path for file or memory/file                                        storage.
+                                  </td>
+              </tr><tr><td><code>$storageClass</code></td>
+                <td><em>string</em></td>
+                <td>
+                                      Subclass of <a href="ezcCacheStorage.html">ezcCacheStorage</a>.
+                                  </td>
+              </tr><tr><td><code>$options</code></td>
+                <td><em>array(string=&gt;string)</em></td>
+                <td>
+                                      Options for the cache.
+                                  </td>
+              </tr></tbody></table><h5>Exceptions:</h5>
+        <table class="detail"><thead><tr><th>Type</th>
+              <th class="desc">Description</th>
+            </tr></thead><tbody><tr><td><code><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseFileNotFoundException.html">ezcBaseFileNotFoundException</a></code></td>
+                <td>
+                                      If the given location does not exist or is not a directory (thrown by sanity checks performed when storing the configuration of a cache to ensure the latter calls to <a href="ezcCacheManager.html#methodgetCache">ezcCacheManager::getCache()</a> do not fail).
+                                  </td>
+              </tr><tr><td><code><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseFilePermissionException.html">ezcBaseFilePermissionException</a></code></td>
+                <td>
+                                      If the given location is not read/writeable (thrown by sanity checks performed when storing the configuration of a cache to ensure the latter calls to <a href="ezcCacheManager.html#methodgetCache">ezcCacheManager::getCache()</a> do not fail).
+                                  </td>
+              </tr><tr><td><code><a href="ezcCacheInvalidStorageClassException.html">ezcCacheInvalidStorageClassException</a></code></td>
+                <td>
+                                      If the given storage class does not exist or is no subclass of ezcCacheStorage.
+                                  </td>
+              </tr><tr><td><code><a href="ezcCacheUsedLocationException.html">ezcCacheUsedLocationException</a></code></td>
+                <td>
+                                      If the given location is already in use by another cache.
+                                  </td>
+              </tr></tbody></table><a name="methodgetCache" id="getCache"><!-- --></a>
+
+    <h4>getCache</h4>
+
+    <div class="method-signature">
+      static <a href="ezcCacheStorage.html">ezcCacheStorage</a>
+      getCache(
+                                  string
+          $id
+                        )
+    </div>
+
+      <p>Returns the ezcCacheStorage object with the given ID.</p><div><p>The cache ID has to be defined before using the  <a href="ezcCacheManager.html#methodcreateCache">ezcCacheManager::createCache()</a> method. If no instance of this  cache does exist yet, it's created on the fly. If one exists, it will  be reused.</p></div>      
+              <h5>Parameters:</h5>
+        <table class="detail"><thead><tr><th>Name</th>
+              <th>Type</th>
+              <th class="desc">Description</th>
+            </tr></thead><tbody><tr><td><code>$id</code></td>
+                <td><em>string</em></td>
+                <td>
+                                      The ID of the cache to return.
+                                  </td>
+              </tr></tbody></table><h5>Exceptions:</h5>
+        <table class="detail"><thead><tr><th>Type</th>
+              <th class="desc">Description</th>
+            </tr></thead><tbody><tr><td><code><a href="ezcCacheInvalidIdException.html">ezcCacheInvalidIdException</a></code></td>
+                <td>
+                                      If the ID of a cache you try to access does not exist. To access a cache using this method, it first hast to be created using <a href="ezcCacheManager.html#methodcreateCache">ezcCacheManager::createCache()</a>.
+                                  </td>
+              </tr><tr><td><code><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBasePropertyNotFoundException.html">ezcBasePropertyNotFoundException</a></code></td>
+                <td>
+                                      If you tried to set a non-existent option value. The accepted options depend on the ezcCacheStorage implementation and may vary.
+                                  </td>
+              </tr><tr><td><code><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseFileNotFoundException.html">ezcBaseFileNotFoundException</a></code></td>
+                <td>
+                                      If the storage location does not exist. This should usually not happen, since <a href="ezcCacheManager.html#methodcreateCache">ezcCacheManager::createCache()</a> already performs sanity checks for the cache location. In case this exception is thrown, your cache location has been corrupted after the cache was configured.
+                                  </td>
+              </tr><tr><td><code><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseFileNotFoundException.html">ezcBaseFileNotFoundException</a></code></td>
+                <td>
+                                      If the storage location is not a directory. This should usually not happen, since <a href="ezcCacheManager.html#methodcreateCache">ezcCacheManager::createCache()</a> already performs sanity checks for the cache location. In case this exception is thrown, your cache location has been corrupted after the cache was configured.
+                                  </td>
+              </tr><tr><td><code><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseFilePermissionException.html">ezcBaseFilePermissionException</a></code></td>
+                <td>
+                                      If the storage location is not writeable. This should usually not happen, since <a href="ezcCacheManager.html#methodcreateCache">ezcCacheManager::createCache()</a> already performs sanity checks for the cache location. In case this exception is thrown, your cache location has been corrupted after the cache was configured.
+                                  </td>
+              </tr></tbody></table><div class="credit">
+      Documentation generated by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+    </div>
+  </div>
+  
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,267 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="PHP, apache, components, framework, quality" />
+	<meta name="author" content="dotxp" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Wed, 04 Aug 2010 13:07:46 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="ezcImageWatermarkFilters.html" />
+	<meta name="DC.creator" content="dotxp" />
+	<meta name="DC.date" content="Wed, 04 Aug 2010 13:07:46 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/ImageConversion/phpdoc/ezcImageWatermarkFilters.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/ImageConversion/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/trunk/ImageConversion/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+
+</ul>
+
+		
+  <div class="phpdoc">
+    <h2>Apache Zeta Components Manual :: Docs For Class ezcImageWatermarkFilters</h2>
+
+              
+              <h3>ImageConversion::ezcImageWatermarkFilters</h3>
+    
+<a name="sec-description"></a>
+<h3>Interface ezcImageWatermarkFilters</h3>
+
+<p>This interface has to implemented by ezcImageFilters classes to  support watermark filters.</p>
+<p>Source for this file: <a href="http://fisheye6.atlassian.com/browse/zetacomponents/trunk/ImageConversion/src/interfaces/watermark.php?r=HEAD">/ImageConversion/src/interfaces/watermark.php</a></p>
+       
+
+
+
+
+  <table><tr><td>
+            <strong>Version:</strong>&#8192;&#8192;
+          </td>
+          <td>//autogentag//</td>
+        </tr></table><a name="sec-method-summary"></a>
+  <h3>Method Summary</h3>
+  <table class="summary"><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#watermarkAbsolute"><b>watermarkAbsolute</b></a>(
+                                                                                    $image
+                                                    ,                                     $posX
+                                                    ,                                     $posY
+                                                    ,                   [                  $width
+                   = false]                                  ,                   [                  $height
+                   = false]                               )
+            </code>
+            <br><div style="margin-left: 20px">Watermark filter.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#watermarkPercent"><b>watermarkPercent</b></a>(
+                                                                                    $image
+                                                    ,                                     $posX
+                                                    ,                                     $posY
+                                                    ,                   [                  $size
+                   = false]                               )
+            </code>
+            <br><div style="margin-left: 20px">Watermark filter.</div>          </td>
+        </tr></table><a name="sec-methods"></a>
+  <h3>Methods</h3>
+  <a name="method_detail"></a>
+    
+      <a name="methodwatermarkAbsolute" id="watermarkAbsolute"><!-- --></a>
+
+    <h4>watermarkAbsolute</h4>
+
+    <div class="method-signature">
+      void
+      watermarkAbsolute(
+                                  string
+          $image
+                            ,           int
+          $posX
+                            ,           int
+          $posY
+                            ,           [int|bool
+          $width
+           = false]                  ,           [int|bool
+          $height
+           = false]              )
+    </div>
+
+    <p>Watermark filter.</p><div><p>Places a watermark on the image. The file to use as the watermark image  is given as $image. The $posX, $posY and $size values are given in  pixel. The watermark appear at $posX, $posY in the destination image  with a size of $size pixel. If $size is ommitted, the watermark image  will not be resized.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$image</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  The image file to use as the watermark
+                              </td>
+            </tr><tr><td><code>$posX</code></td>
+              <td><em>int</em></td>
+              <td>
+                                  X position in the destination image in pixel.
+                              </td>
+            </tr><tr><td><code>$posY</code></td>
+              <td><em>int</em></td>
+              <td>
+                                  Y position in the destination image in pixel.
+                              </td>
+            </tr><tr><td><code>$width</code></td>
+              <td><em>int|bool</em></td>
+              <td>
+                                  Pixel size of the watermark, false to keep size.
+                              </td>
+            </tr><tr><td><code>$height</code></td>
+              <td><em>int|bool</em></td>
+              <td>
+                                  Pixel size of the watermark, false to keep size.
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcImageInvalidReferenceException.html">ezcImageInvalidReferenceException</a></code></td>
+              <td>
+                                  If no valid resource for the active reference could be found.
+                              </td>
+            </tr><tr><td><code><a href="ezcImageFilterFailedException.html">ezcImageFilterFailedException</a></code></td>
+              <td>
+                                  If the operation performed by the the filter failed.
+                              </td>
+            </tr><tr><td><code><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseValueException.html">ezcBaseValueException</a></code></td>
+              <td>
+                                  If a submitted parameter was out of range or type.
+                              </td>
+            </tr></tbody></table><a name="methodwatermarkPercent" id="watermarkPercent"><!-- --></a>
+
+    <h4>watermarkPercent</h4>
+
+    <div class="method-signature">
+      void
+      watermarkPercent(
+                                  string
+          $image
+                            ,           int
+          $posX
+                            ,           int
+          $posY
+                            ,           [int|bool
+          $size
+           = false]              )
+    </div>
+
+    <p>Watermark filter.</p><div><p>Places a watermark on the image. The file to use as the watermark image  is given as $image. The $posX, $posY and $size values are given in  percent, related to the destination image. A $size value of 10 will make  the watermark appear in 10% of the destination image size.  $posX = $posY = 10 will make the watermark appear in the top left corner  of the destination image, 10% of its size away from its borders. If  $size is ommitted, the watermark image will not be resized.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$image</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  The image file to use as the watermark
+                              </td>
+            </tr><tr><td><code>$posX</code></td>
+              <td><em>int</em></td>
+              <td>
+                                  X position in the destination image in percent.
+                              </td>
+            </tr><tr><td><code>$posY</code></td>
+              <td><em>int</em></td>
+              <td>
+                                  Y position in the destination image in percent.
+                              </td>
+            </tr><tr><td><code>$size</code></td>
+              <td><em>int|bool</em></td>
+              <td>
+                                  Percentage size of the watermark, false for none.
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcImageInvalidReferenceException.html">ezcImageInvalidReferenceException</a></code></td>
+              <td>
+                                  If no valid resource for the active reference could be found.
+                              </td>
+            </tr><tr><td><code><a href="ezcImageFilterFailedException.html">ezcImageFilterFailedException</a></code></td>
+              <td>
+                                  If the operation performed by the the filter failed.
+                              </td>
+            </tr><tr><td><code><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseValueException.html">ezcBaseValueException</a></code></td>
+              <td>
+                                  If a submitted parameter was out of range or type.
+                              </td>
+            </tr></tbody></table><div class="credit">
+      Documentation generated by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+    </div>
+  </div>
+  
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

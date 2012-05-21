@@ -1,0 +1,340 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="PHP, apache, components, framework, quality" />
+	<meta name="author" content="dotxp" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Wed, 04 Aug 2010 13:07:45 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="ezcImageAnalyzerPhpHandler.html" />
+	<meta name="DC.creator" content="dotxp" />
+	<meta name="DC.date" content="Wed, 04 Aug 2010 13:07:45 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/ImageAnalysis/phpdoc/ezcImageAnalyzerPhpHandler.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/ImageAnalysis/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/trunk/ImageAnalysis/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+
+</ul>
+
+		
+  <div class="phpdoc">
+    <h2>Apache Zeta Components Manual :: Docs For Class ezcImageAnalyzerPhpHandler</h2>
+
+                  <h3>ImageAnalysis::ezcImageAnalyzerPhpHandler</h3>
+    
+<a name="sec-description"></a>
+<h3>Class ezcImageAnalyzerPhpHandler</h3>
+
+<p>Class to retrieve information about a given image file.</p><div><p>This handler implements image analyzation using direct PHP functionality,  mainly the <a href="http://www.php.net/getimagesize">http://www.php.net/getimagesize</a> function and, if available, the EXIF  extension <a href="http://www.php.net/exif_read_data">http://www.php.net/exif_read_data</a>. The driver is capable of determining  the type the following file formats:</p><p></p><ul><li>GIF</li><li>JPG</li><li>PNG</li><li>SWF</li><li>SWC</li><li>PSD</li><li>TIFF</li><li>BMP</li><li>IFF</li><li>JP2</li><li>JPX</li><li>JB2</li><li>JPC</li><li>XBM</li><li>WBMP</li></ul>  The driver determines the MIME type of these images (using the  <a href="ezcImageAnalyzerPhpHandler.html#methodanalyzeType">ezcImageAnalyzerPhpHandler::analyzeType()</a> method). The width,  height and size of the given image are always available after analyzing a  file, if the file in general can be analyzed  <a href="ezcImageAnalyzerPhpHandler.html#methodcanAnalyze">ezcImageAnalyzerPhpHandler::canAnalyze()</a>.<p>For JPEG and TIFF images this driver will try to read in information using  the EXIF extension in PHP and fills in the following properties of the  <a href="ezcImageAnalyzerData.html">ezcImageAnalyzerData</a> struct, returned by the  <a href="ezcImageAnalyzerPhpHandler.html#methodanalyzeImage">ezcImageAnalyzerPhpHandler::analyzeImage()</a> method: </p><ul><li>exif</li><li>isColor</li><li>comment</li><li>copyright</li><li>date</li><li>hasThumbnail</li><li>isAnimated</li></ul>  For GIF (also animated) it finds information by scanning the file manually  and fills in the following properties of the  <a href="ezcImageAnalyzerData.html">ezcImageAnalyzerData</a> struct, returned by the  <a href="ezcImageAnalyzerPhpHandler.html#methodanalyzeImage">ezcImageAnalyzerPhpHandler::analyzeImage()</a> method: <ul><li>mode</li><li>transparencyType</li><li>comment</li><li>commentList</li><li>colorCount</li><li>isAnimated</li></ul></div>
+<p>Source for this file: <a href="http://fisheye6.atlassian.com/browse/zetacomponents/trunk/ImageAnalysis/src/handlers/php.php?r=HEAD">/ImageAnalysis/src/handlers/php.php</a></p>
+       
+
+
+<pre><a href="ezcImageAnalyzerHandler.html">ezcImageAnalyzerHandler</a>
+   |
+   --ezcImageAnalyzerPhpHandler</pre>
+
+
+  <table><tr><td>
+            <strong>Version:</strong>&#8192;&#8192;
+          </td>
+          <td>//autogentag//</td>
+        </tr></table><a name="sec-inherited-consts"></a>
+  <h3>Inherited Constants</h3>
+  <table class="summary"><thead><tr><th colspan="2">
+              From <span class="classname"><a href="ezcImageAnalyzerHandler.html">ezcImageAnalyzerHandler</a></span>:
+            </th>
+          </tr></thead><tbody><tr><td class="right">
+                <code><a href="ezcImageAnalyzerHandler.html#constMODE_INDEXED">ezcImageAnalyzerHandler::MODE_INDEXED</a></code>
+              </td>
+              <td>
+                &#8192;&#8192;&#8192;Image is built with a palette and consists of indexed values per pixel.              </td>
+            </tr><tr><td class="right">
+                <code><a href="ezcImageAnalyzerHandler.html#constMODE_TRUECOLOR">ezcImageAnalyzerHandler::MODE_TRUECOLOR</a></code>
+              </td>
+              <td>
+                &#8192;&#8192;&#8192;Image consists of RGB value per pixel.              </td>
+            </tr><tr><td class="right">
+                <code><a href="ezcImageAnalyzerHandler.html#constTRANSPARENCY_OPAQUE">ezcImageAnalyzerHandler::TRANSPARENCY_OPAQUE</a></code>
+              </td>
+              <td>
+                &#8192;&#8192;&#8192;No parts of image is transparent.              </td>
+            </tr><tr><td class="right">
+                <code><a href="ezcImageAnalyzerHandler.html#constTRANSPARENCY_TRANSLUCENT">ezcImageAnalyzerHandler::TRANSPARENCY_TRANSLUCENT</a></code>
+              </td>
+              <td>
+                &#8192;&#8192;&#8192;Transparency determined pixel per pixel with a fuzzy value.              </td>
+            </tr><tr><td class="right">
+                <code><a href="ezcImageAnalyzerHandler.html#constTRANSPARENCY_TRANSPARENT">ezcImageAnalyzerHandler::TRANSPARENCY_TRANSPARENT</a></code>
+              </td>
+              <td>
+                              </td>
+            </tr></tbody></table><h3>Inherited Member Variables</h3>
+  <table class="summary"><thead><tr><th colspan="2">
+            From <span class="classname"><a href="ezcImageAnalyzerHandler.html">ezcImageAnalyzerHandler</a></span>         
+          </th>
+        </tr></thead><tbody><tr><td class="right">
+              <em>protected</em>                          </td>
+            <td>
+              <code><a href="ezcImageAnalyzerHandler.html#var%24options">ezcImageAnalyzerHandler::$options</a></code>
+              
+            </td>
+          </tr></tbody></table><a name="sec-method-summary"></a>
+  <h3>Method Summary</h3>
+  <table class="summary"><tr><td class="right">
+            <em>public</em>                        <em><a href="ezcImageAnalyzerData.html">ezcImageAnalyzerData</a></em>          </td>
+          <td>
+            <code>
+              <a href="#analyzeImage"><b>analyzeImage</b></a>(
+                                                                                    $file
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Analyze the image for detailed information.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>string|bool</em>          </td>
+          <td>
+            <code>
+              <a href="#analyzeType"><b>analyzeType</b></a>(
+                                                                                    $file
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Analyzes the image type.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>bool</em>          </td>
+          <td>
+            <code>
+              <a href="#canAnalyze"><b>canAnalyze</b></a>(
+                                                                                    $mime
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns if the handler can analyze a given MIME type.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>bool</em>          </td>
+          <td>
+            <code>
+              <a href="#isAvailable"><b>isAvailable</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Checks wether the GD handler is available on the system.</div>          </td>
+        </tr></table><h3>Inherited Methods</h3>
+  <table class="summary"><thead><tr><th colspan="2">
+            From <span class="classname"><a href="ezcImageAnalyzerHandler.html">ezcImageAnalyzerHandler</a></span>
+          </th>
+        </tr></thead><tbody><tr><td class="right">
+              <em>public</em>                                          <em>ezcImageAnalyzerHandler</em>            </td>
+            <td>
+              <code><b><a href="ezcImageAnalyzerHandler.html#method__construct">ezcImageAnalyzerHandler::__construct()</a></b></code>
+              <br><div style="margin-left: 20px">Create an ezcImageAnalyzerHandler to analyze a file.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>              abstract                            <em><a href="ezcImageAnalyzerData.html">ezcImageAnalyzerData</a></em>            </td>
+            <td>
+              <code><b><a href="ezcImageAnalyzerHandler.html#methodanalyzeImage">ezcImageAnalyzerHandler::analyzeImage()</a></b></code>
+              <br><div style="margin-left: 20px">Analyze the image for detailed information.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>              abstract                            <em>string|bool</em>            </td>
+            <td>
+              <code><b><a href="ezcImageAnalyzerHandler.html#methodanalyzeType">ezcImageAnalyzerHandler::analyzeType()</a></b></code>
+              <br><div style="margin-left: 20px">Analyzes the image type.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>              abstract                            <em>bool</em>            </td>
+            <td>
+              <code><b><a href="ezcImageAnalyzerHandler.html#methodcanAnalyze">ezcImageAnalyzerHandler::canAnalyze()</a></b></code>
+              <br><div style="margin-left: 20px">Returns if the handler can analyze a given MIME type.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>              abstract                            <em>bool</em>            </td>
+            <td>
+              <code><b><a href="ezcImageAnalyzerHandler.html#methodisAvailable">ezcImageAnalyzerHandler::isAvailable()</a></b></code>
+              <br><div style="margin-left: 20px">Checks wether the given handler is available for analyzing images.</div>                          </td>
+          </tr></tbody></table><a name="sec-methods"></a>
+  <h3>Methods</h3>
+  <a name="method_detail"></a>
+        
+      <a name="methodanalyzeImage" id="analyzeImage"><!-- --></a>
+
+    <h4>analyzeImage</h4>
+
+    <div class="method-signature">
+      <a href="ezcImageAnalyzerData.html">ezcImageAnalyzerData</a>
+      analyzeImage(
+                                  string
+          $file
+                        )
+    </div>
+
+    <p>Analyze the image for detailed information.</p><div><p>This may return various information about the image, depending on it's  type. All information is collected in the struct  <a href="ezcImageAnalyzerData.html">ezcImageAnalyzerData</a>. At least the  <a href="ezcImageAnalyzerData.html#var%24mime">ezcImageAnalyzerData::$mime</a> attribute is always available, if the  image type can be analyzed at all. Additionally this handler will always  set the <a href="ezcImageAnalyzerData.html#var%24width">ezcImageAnalyzerData::$width</a>,  <a href="ezcImageAnalyzerData.html#var%24height">ezcImageAnalyzerData::$height</a> and  <a href="ezcImageAnalyzerData.html#var%24size">ezcImageAnalyzerData::$size</a> attributes. For detailes information  on the additional data returned, see <a href="ezcImageAnalyzerPhpHandler.html">ezcImageAnalyzerPhpHandler</a>.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$file</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  The file to analyze.
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcImageAnalyzerFileNotProcessableException.html">ezcImageAnalyzerFileNotProcessableException</a></code></td>
+              <td>
+                                  If image file can not be processed.
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcImageAnalyzerHandler.html#methodanalyzeImage">ezcImageAnalyzerHandler::analyzeImage()</a></code></td>
+            <td>
+                              Analyze the image for detailed information.
+                          </td>
+          </tr></tbody></table><a name="methodanalyzeType" id="analyzeType"><!-- --></a>
+
+    <h4>analyzeType</h4>
+
+    <div class="method-signature">
+      string|bool
+      analyzeType(
+                                  string
+          $file
+                        )
+    </div>
+
+    <p>Analyzes the image type.</p><div><p>This method analyzes image data to determine the MIME type. This method  returns the MIME type of the file to analyze in lowercase letters (e.g.  "image/jpeg") or false, if the images MIME type could not be determined.</p><p>For a list of image types this handler will be able to analyze, see  <a href="ezcImageAnalyzerPhpHandler.html">ezcImageAnalyzerPhpHandler</a>.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$file</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  The file to analyze.
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcImageAnalyzerHandler.html#methodanalyzeType">ezcImageAnalyzerHandler::analyzeType()</a></code></td>
+            <td>
+                              Analyzes the image type.
+                          </td>
+          </tr></tbody></table><a name="methodcanAnalyze" id="canAnalyze"><!-- --></a>
+
+    <h4>canAnalyze</h4>
+
+    <div class="method-signature">
+      bool
+      canAnalyze(
+                                  string
+          $mime
+                        )
+    </div>
+
+    <p>Returns if the handler can analyze a given MIME type.</p><div><p>This method returns if the driver is capable of analyzing a given MIME  type. This method should be called before trying to actually analyze an  image using the drivers self::analyzeImage() method.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$mime</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  The MIME type to check for.
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcImageAnalyzerHandler.html#methodcanAnalyze">ezcImageAnalyzerHandler::canAnalyze()</a></code></td>
+            <td>
+                              Returns if the handler can analyze a given MIME type.
+                          </td>
+          </tr></tbody></table><a name="methodisAvailable" id="isAvailable"><!-- --></a>
+
+    <h4>isAvailable</h4>
+
+    <div class="method-signature">
+      bool
+      isAvailable(
+      )
+    </div>
+
+    <p>Checks wether the GD handler is available on the system.</p><div><p>Returns if PHP's <a href="http://www.php.net/getimagesize">http://www.php.net/getimagesize</a> function is available.</p></div>
+    
+        
+
+          <h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcImageAnalyzerHandler.html#methodisAvailable">ezcImageAnalyzerHandler::isAvailable()</a></code></td>
+            <td>
+                              Checks wether the given handler is available for analyzing images.
+                          </td>
+          </tr></tbody></table><div class="credit">
+      Documentation generated by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+    </div>
+  </div>
+  
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

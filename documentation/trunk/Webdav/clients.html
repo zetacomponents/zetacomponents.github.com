@@ -1,0 +1,95 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="PHP, apache, components, framework, quality" />
+	<meta name="author" content="jerome" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Sun, 10 Jul 2011 11:10:40 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="Clients " />
+	<meta name="DC.creator" content="jerome" />
+	<meta name="DC.date" content="Sun, 10 Jul 2011 11:10:40 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/Webdav/clients.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/Webdav/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Webdav/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/trunk/Webdav/clients.html" title="Clients ">Clients </a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Webdav/plugin_architecture.html" title="Plugin_architecture ">Plugin_architecture </a>
+	</li>
+
+</ul>
+
+		<h2>eZ Components: Webdav, client support</h2><div class="toc"><h3>Contents</h3><ul><li><p><a href="#supported-clients">Supported clients</a></p></li><li><p><a href="#client-issues">Client issues</a></p><ul><li><p><a href="#nautilus">Nautilus</a></p><ul><li><p><a href="#downloading-of-folders">Downloading of folders</a></p></li><li><p><a href="#copying-of-folders">Copying of folders</a></p></li></ul></li><li><p><a href="#konqueror">Konqueror</a></p></li></ul></li></ul></div><a name="supported-clients"></a><a name="id2"></a><h3>Supported clients</h3><p>The Webdav component is constantly tested against different WebDAV clients. The following clients are included in the tests:</p><ul><li><p>Nautilus (GNOME)</p></li><li><p>Konqueror (KDE)</p></li><li><p>Cadaver (Unix/Linux shell)</p></li><li><p>MS InternetExplorer 6 (Windows)</p></li><li><p>MS InternetExplorer 7 (Windows)</p></li><li><p>Litmus (Unix test suite for WebDAV servers)</p></li></ul><a name="client-issues"></a><a name="id3"></a><h3>Client issues</h3><p>Some clients do not behave compliant to RFC 2518. While the WebDAV component is designed to work around such issues, some client problems cannot be fixed. This sections lists known bugs in WebDAV clients, which prevent some actions to work correctly with the Webdav component.</p><a name="nautilus"></a><a name="id4"></a><h4>Nautilus</h4><a name="downloading-of-folders"></a><a name="id5"></a><h5>Downloading of folders</h5><p>Nautilus does not support downloading of folders recursively. While it handles recursive upload fine, it attempts to download a collection using a simple GET request and fails, since it retrieves an empty file. This issue occurs in every version at least until Nautilus 2.28.1 (gvfs/1.4.1).</p><a name="copying-of-folders"></a><a name="id6"></a><h5>Copying of folders</h5><p>It is not possible to copy folders on a WebDAV server using Nautilus due to the previously named issue. Instead of using the WebDAV COPY statement, Nautilus tries to download the collection using GET and PUT it up again.</p><p>A <a href="http://bugzilla.gnome.org/show_bug.cgi?id=551339">bug for this issue</a> exists in the Gnome bug tracker.</p><a name="konqueror"></a><a name="id7"></a><h4>Konqueror</h4><p>Version 3.5.9 (possibly earlier) did not perform uploads of new file. The client first checks if the file to upload already exists on the server, which results in a (usually expected) 404 error. Konquerors error handling steps in here and avoids the upload.</p><p>Version 3.5.10 (possibly earlier and later) works fine with the Webdav component, due to a workaround added in version 1.1.</p><p><a href="https://bugs.kde.org/show_bug.cgi?id=166081">https://bugs.kde.org/show_bug.cgi?id=166081</a></p>
+
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,569 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="PHP, apache, components, framework, quality" />
+	<meta name="author" content="dotxp" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Wed, 04 Aug 2010 13:07:52 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="ezcPersistentIdentityMap.html" />
+	<meta name="DC.creator" content="dotxp" />
+	<meta name="DC.date" content="Wed, 04 Aug 2010 13:07:52 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/PersistentObject/phpdoc/ezcPersistentIdentityMap.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/PersistentObject/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/trunk/PersistentObject/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+
+</ul>
+
+		
+  <div class="phpdoc">
+    <h2>Apache Zeta Components Manual :: Docs For Class ezcPersistentIdentityMap</h2>
+
+              
+              <h3>PersistentObject::ezcPersistentIdentityMap</h3>
+    
+<a name="sec-description"></a>
+<h3>Interface ezcPersistentIdentityMap</h3>
+
+<p>Identity map interface.</p><div><p>An instance of a class implementing this interface is used in <a href="ezcPersistentSessionIdentityDecorator.html">ezcPersistentSessionIdentityDecorator</a> to performs the internal work of  storing and retrieving object identities.</p></div>
+<p>Source for this file: <a href="http://fisheye6.atlassian.com/browse/zetacomponents/trunk/PersistentObject/src/interfaces/identity_map.php?r=HEAD">/PersistentObject/src/interfaces/identity_map.php</a></p>
+       
+
+
+
+
+  <table><tr><td>
+            <strong>Version:</strong>&#8192;&#8192;
+          </td>
+          <td>//autogen//</td>
+        </tr></table><a name="sec-method-summary"></a>
+  <h3>Method Summary</h3>
+  <table class="summary"><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#addRelatedObject"><b>addRelatedObject</b></a>(
+                                                                                    $sourceObject
+                                                    ,                                     $relatedObject
+                                                    ,                   [                  $relationName
+                   = null]                               )
+            </code>
+            <br><div style="margin-left: 20px">Appends a new $relatedObject to a related object set of $sourceObject.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>object($class)|null</em>          </td>
+          <td>
+            <code>
+              <a href="#getIdentity"><b>getIdentity</b></a>(
+                                                                                    $class
+                                                    ,                                     $id
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns the object of $class with $id or null.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>array(object($relatedClass))|null</em>          </td>
+          <td>
+            <code>
+              <a href="#getRelatedObjects"><b>getRelatedObjects</b></a>(
+                                                                                    $sourceObject
+                                                    ,                                     $relatedClass
+                                                    ,                   [                  $relationName
+                   = null]                               )
+            </code>
+            <br><div style="margin-left: 20px">Returns the set of related objects of $relatedClass for $sourceObject.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>array(object($relatedClass))|null</em>          </td>
+          <td>
+            <code>
+              <a href="#getRelatedObjectSet"><b>getRelatedObjectSet</b></a>(
+                                                                                    $sourceObject
+                                                    ,                                     $setName
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns the named set of related objects for $sourceObject with $setName.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#removeIdentity"><b>removeIdentity</b></a>(
+                                                                                    $class
+                                                    ,                                     $id
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Removes the object of $class width $id from the map.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#removeRelatedObject"><b>removeRelatedObject</b></a>(
+                                                                                    $sourceObject
+                                                    ,                                     $relatedObject
+                                                    ,                   [                  $relationName
+                   = null]                               )
+            </code>
+            <br><div style="margin-left: 20px">Removes a $relatedObject from the sets of related objects of $sourceObject.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#reset"><b>reset</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Resets the complete identity map.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#setIdentity"><b>setIdentity</b></a>(
+                                                                                    $object
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Records the identity of $object.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>array(mixed=&gt;object($relatedClass))</em>          </td>
+          <td>
+            <code>
+              <a href="#setRelatedObjects"><b>setRelatedObjects</b></a>(
+                                                                                    $sourceObject
+                                                    ,                                     $relatedObjects
+                                                    ,                                     $relatedClass
+                                                    ,                   [                  $relationName
+                   = null]                                  ,                   [                  $replaceIdentities
+                   = false]                               )
+            </code>
+            <br><div style="margin-left: 20px">Records a set of $relatedObjects to $sourceObject.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>array(ezcPersistentObject)</em>          </td>
+          <td>
+            <code>
+              <a href="#setRelatedObjectSet"><b>setRelatedObjectSet</b></a>(
+                                                                                    $sourceObject
+                                                    ,                                     $relatedObjects
+                                                    ,                                     $setName
+                                                    ,                   [                  $replaceIdentities
+                   = false]                               )
+            </code>
+            <br><div style="margin-left: 20px">Records a named set of $relatedObjects for $sourceObject.</div>          </td>
+        </tr></table><a name="sec-methods"></a>
+  <h3>Methods</h3>
+  <a name="method_detail"></a>
+                    
+      <a name="methodaddRelatedObject" id="addRelatedObject"><!-- --></a>
+
+    <h4>addRelatedObject</h4>
+
+    <div class="method-signature">
+      void
+      addRelatedObject(
+                                  <a href="ezcPersistentObject.html">ezcPersistentObject</a>
+          $sourceObject
+                            ,           <a href="ezcPersistentObject.html">ezcPersistentObject</a>
+          $relatedObject
+                            ,           [string
+          $relationName
+           = null]              )
+    </div>
+
+    <p>Appends a new $relatedObject to a related object set of $sourceObject.</p><div><p>Appends the given $relatedObject to the set of related objects for  $sourceObject with the class of $relatedObject and optionally  $relationName.</p><p>In case that no set of related objects with the specific class has been  recorded for $object, yet, the call is ignored and related objects are  newly fetched whenever <a href="ezcPersistentIdentityMap.html#methodgetRelatedObjects">getRelatedObjects()</a> is called.</p><p>Note: All named related object sub-sets for $relatedObject are  automatically invalidated by a call to the method. The identity map can  not determine, to which named related object sub-set the $relatedObject  might be added.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$sourceObject</code></td>
+              <td><em><a href="ezcPersistentObject.html">ezcPersistentObject</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$relatedObject</code></td>
+              <td><em><a href="ezcPersistentObject.html">ezcPersistentObject</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$relationName</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcPersistentRelationNotFoundException.html">ezcPersistentRelationNotFoundException</a></code></td>
+              <td>
+                                  if no relation from $sourceObject to $relatedObject is defined.
+                              </td>
+            </tr><tr><td><code><a href="ezcPersistentIdentityMissingException.html">ezcPersistentIdentityMissingException</a></code></td>
+              <td>
+                                  if no identity has been recorded for $sourceObject or $relatedObject, yet.
+                              </td>
+            </tr><tr><td><code><a href="ezcPersistentIdentityRelatedObjectAlreadyExistsException.html">ezcPersistentIdentityRelatedObjectAlreadyExistsException</a></code></td>
+              <td>
+                                  if the given $relatedObject is already part of the set of related objects it should be added to.
+                              </td>
+            </tr></tbody></table><a name="methodgetIdentity" id="getIdentity"><!-- --></a>
+
+    <h4>getIdentity</h4>
+
+    <div class="method-signature">
+      object($class)|null
+      getIdentity(
+                                  string
+          $class
+                            ,           mixed
+          $id
+                        )
+    </div>
+
+    <p>Returns the object of $class with $id or null.</p><div><p>Returns the object of $class with $id, if its identity has already been  recorded. Otherwise null is returned.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$class</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$id</code></td>
+              <td><em>mixed</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodgetRelatedObjects" id="getRelatedObjects"><!-- --></a>
+
+    <h4>getRelatedObjects</h4>
+
+    <div class="method-signature">
+      array(object($relatedClass))|null
+      getRelatedObjects(
+                                  <a href="ezcPersistentObject.html">ezcPersistentObject</a>
+          $sourceObject
+                            ,           string
+          $relatedClass
+                            ,           [string
+          $relationName
+           = null]              )
+    </div>
+
+    <p>Returns the set of related objects of $relatedClass for $sourceObject.</p><div><p>Returns the set of related objects of $relatedClass for $sourceObject.  This might also be an empty set (empty array). In case no related  objects are recorded, yet, null is returned.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$sourceObject</code></td>
+              <td><em><a href="ezcPersistentObject.html">ezcPersistentObject</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$relatedClass</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$relationName</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcPersistentRelationNotFoundException.html">ezcPersistentRelationNotFoundException</a></code></td>
+              <td>
+                                  if not relation between the class of $sourceObject and $relatedClass (with optionally $relationName) is defined.
+                              </td>
+            </tr></tbody></table><a name="methodgetRelatedObjectSet" id="getRelatedObjectSet"><!-- --></a>
+
+    <h4>getRelatedObjectSet</h4>
+
+    <div class="method-signature">
+      array(object($relatedClass))|null
+      getRelatedObjectSet(
+                                  <a href="ezcPersistentObject.html">ezcPersistentObject</a>
+          $sourceObject
+                            ,           string
+          $setName
+                        )
+    </div>
+
+    <p>Returns the named set of related objects for $sourceObject with $setName.</p><div><p>Returns the named set of related objects for $sourceObject identified by  $setName. This might also be an empty set (empty array). In case no  related objects with this name are recorded, yet, null is returned.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$sourceObject</code></td>
+              <td><em><a href="ezcPersistentObject.html">ezcPersistentObject</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$setName</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodremoveIdentity" id="removeIdentity"><!-- --></a>
+
+    <h4>removeIdentity</h4>
+
+    <div class="method-signature">
+      void
+      removeIdentity(
+                                  string
+          $class
+                            ,           mixed
+          $id
+                        )
+    </div>
+
+    <p>Removes the object of $class width $id from the map.</p><div><p>Removes the identity of the object of $class with $id from the map and  deletes all references of it. If the identity does not exist, the call  is silently ignored.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$class</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$id</code></td>
+              <td><em>mixed</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodremoveRelatedObject" id="removeRelatedObject"><!-- --></a>
+
+    <h4>removeRelatedObject</h4>
+
+    <div class="method-signature">
+      void
+      removeRelatedObject(
+                                  <a href="ezcPersistentObject.html">ezcPersistentObject</a>
+          $sourceObject
+                            ,           <a href="ezcPersistentObject.html">ezcPersistentObject</a>
+          $relatedObject
+                            ,           [string
+          $relationName
+           = null]              )
+    </div>
+
+    <p>Removes a $relatedObject from the sets of related objects of $sourceObject.</p><div><p>Removes the $relatedObject from all recorded sets of related objects  (named and unnamed) for $sourceObject. This method (in contrast to  <a href="ezcPersistentIdentityMap.html#methodaddRelatedObject">addRelatedObject()</a>) does not invalidate named related object  sets, but simply removes the $relatedObject from them.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$sourceObject</code></td>
+              <td><em><a href="ezcPersistentObject.html">ezcPersistentObject</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$relatedObject</code></td>
+              <td><em><a href="ezcPersistentObject.html">ezcPersistentObject</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$relationName</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcPersistentIdentityMissingException.html">ezcPersistentIdentityMissingException</a></code></td>
+              <td>
+                                  if no identity for $sourceObject has been recorded, yet.
+                              </td>
+            </tr></tbody></table><a name="methodreset" id="reset"><!-- --></a>
+
+    <h4>reset</h4>
+
+    <div class="method-signature">
+      void
+      reset(
+      )
+    </div>
+
+    <p>Resets the complete identity map.</p><div><p>Removes all stored identities from the map and resets it into its  initial state.</p></div>
+    
+        
+
+    
+    
+    
+        <a name="methodsetIdentity" id="setIdentity"><!-- --></a>
+
+    <h4>setIdentity</h4>
+
+    <div class="method-signature">
+      void
+      setIdentity(
+                                  <a href="ezcPersistentObject.html">ezcPersistentObject</a>
+          $object
+                        )
+    </div>
+
+    <p>Records the identity of $object.</p><div><p>Records the identity of $object. If an identity is already recorded for  this object, it is silently replaced. The user of this method must take  care of checking for already recorded identities of the given $object  itself.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$object</code></td>
+              <td><em><a href="ezcPersistentObject.html">ezcPersistentObject</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodsetRelatedObjects" id="setRelatedObjects"><!-- --></a>
+
+    <h4>setRelatedObjects</h4>
+
+    <div class="method-signature">
+      array(mixed=&gt;object($relatedClass))
+      setRelatedObjects(
+                                  <a href="ezcPersistentObject.html">ezcPersistentObject</a>
+          $sourceObject
+                            ,           
+          $relatedObjects
+                            ,           string
+          $relatedClass
+                            ,           [string
+          $relationName
+           = null]                  ,           [bool
+          $replaceIdentities
+           = false]              )
+    </div>
+
+    <p>Records a set of $relatedObjects to $sourceObject.</p><div><p>Records the given set of $relatedObjects for $sourceObject.  $relationName is the optional name of the relation, which must be  provided, if multiple relations from $sourceObject to the class of the  objects in $relatedObjects exist.</p><p>In case a set of related objects has already been recorded for  $sourceObject and the class of the objects in $relatedObjects (and  optionally $relationName), the existing set is silently replaced and all  references to it are removed.</p><p>If for any object in $relatedObjects no identity is recorded, yet, it  will be recorded. Otherwise, the object will be replaced by its existing  identity in the set. Except for if the $replaceIdentities parameter is  set to true: In this case a new identity will be recorded for every  object in $relatedObjects, replacing potentially existing ones silently.</p><p>If the given array of $relatedObjects is inconsistent (any contained  object is not of $relatedClass), an <a href="ezcPersistentIdentityRelatedObjectsInconsistentException.html">ezcPersistentIdentityRelatedObjectsInconsistentException</a> is thrown.</p><p>To avoid a call to <a href="ezcPersistentIdentityMap.html#methodgetRelatedObjects">getRelatedObjects()</a> after this method has  been called, the recorded set of related objects (including potentially  replaced identities) is returned.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$sourceObject</code></td>
+              <td><em><a href="ezcPersistentObject.html">ezcPersistentObject</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$relatedObjects</code></td>
+              <td><em>array(ezcPersistentObject)</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$relatedClass</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$relationName</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$replaceIdentities</code></td>
+              <td><em>bool</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcPersistentIdentityRelatedObjectsInconsistentException.html">ezcPersistentIdentityRelatedObjectsInconsistentException</a></code></td>
+              <td>
+                                  if an object in $relatedObjects is not of $relatedClass.
+                              </td>
+            </tr></tbody></table><a name="methodsetRelatedObjectSet" id="setRelatedObjectSet"><!-- --></a>
+
+    <h4>setRelatedObjectSet</h4>
+
+    <div class="method-signature">
+      array(ezcPersistentObject)
+      setRelatedObjectSet(
+                                  <a href="ezcPersistentObject.html">ezcPersistentObject</a>
+          $sourceObject
+                            ,           
+          $relatedObjects
+                            ,           string
+          $setName
+                            ,           [bool
+          $replaceIdentities
+           = false]              )
+    </div>
+
+    <p>Records a named set of $relatedObjects for $sourceObject.</p><div><p>Records the given array of $relatedObjects with as a "named related  object sub-set" for $sourceObject, using $setName. A named "named  related object sub-set" contains only objects related to $sourceObject,  but not necessarily all such objects of a certain class. Such a set is  the result of <a href="ezcPersistentSessionIdentityDecorator.html#methodfind">ezcPersistentSessionIdentityDecorator::find()</a> with  a find query generated by <a href="ezcPersistentSessionIdentityDecorator.html#methodcreateFindQueryWithRelations">ezcPersistentSessionIdentityDecorator::createFindQueryWithRelations()</a>  and manipulated using a WHERE clause.</p><p>In case a named set of related objects with $setName has already been  recorded for $sourceObject, this set is silently replaced.</p><p>If for any of the objects in $relatedObjects no identity is recorded,  yet, it will be recorded. Otherwise, the object will be replaced by its  existing identity in the set. Except for if $replaceIdentities is set to  true: In this case a new identity will be recorded for every object in  $relatedObjects.</p><p>The method returns the created set of related objects to avoid another  call to <a href="ezcPersistentIdentityMap.html#methodgetRelatedObjectSet">getRelatedObjectSet()</a> by the using objct.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$sourceObject</code></td>
+              <td><em><a href="ezcPersistentObject.html">ezcPersistentObject</a></em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$relatedObjects</code></td>
+              <td><em>array(ezcPersistentObject)</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$setName</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$replaceIdentities</code></td>
+              <td><em>bool</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcPersistentIdentityRelatedObjectsInconsistentException.html">ezcPersistentIdentityRelatedObjectsInconsistentException</a></code></td>
+              <td>
+                                  if an object in $relatedObjects is not of $relatedClass.
+                              </td>
+            </tr></tbody></table><div class="credit">
+      Documentation generated by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+    </div>
+  </div>
+  
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

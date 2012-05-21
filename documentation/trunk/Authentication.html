@@ -1,0 +1,877 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="PHP, apache, components, framework, quality" />
+	<meta name="author" content="jerome" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Sun, 10 Jul 2011 11:10:40 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="Authentication" />
+	<meta name="DC.creator" content="jerome" />
+	<meta name="DC.date" content="Sun, 10 Jul 2011 11:10:40 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/Authentication/tutorial.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/Authentication/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Authentication/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Authentication/security.html" title="Security ">Security </a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Authentication/rfcs.html" title="Rfcs ">Rfcs </a>
+	</li>
+
+</ul>
+
+		<h2>eZ Components - Authentication</h2><div class="toc"><h3>Table of Contents</h3><ul><li><p><a href="#introduction">Introduction</a></p><ul><li><p><a href="#description">Description</a></p></li></ul></li><li><p><a href="#class-overview">Class overview</a></p><ul><li><p><a href="#base-classes">Base classes</a></p></li><li><p><a href="#authentication-filters">Authentication filters</a></p></li><li><p><a href="#stores">Stores</a></p></li></ul></li><li><p><a href="#general-authentication">General authentication</a></p><ul><li><p><a href="#stateless-authentication">Stateless authentication</a></p></li><li><p><a href="#using-session">Using session</a></p><ul><li><p><a href="#improving-authentication-performance-when-using-the-session">Improving authentication performance when using the session</a></p></li></ul></li></ul></li><li><p><a href="#id1">Authentication filters</a></p><ul><li><p><a href="#database">Database</a></p></li><li><p><a href="#group">Group</a></p><ul><li><p><a href="#multiple-credentials">Multiple credentials</a></p></li></ul></li><li><p><a href="#htpasswd">Htpasswd</a></p></li><li><p><a href="#ldap">LDAP</a></p><ul><li><p><a href="#fetch-extra-data-during-ldap-authentication">Fetch extra data during LDAP authentication</a></p></li></ul></li><li><p><a href="#openid">OpenID</a></p><ul><li><p><a href="#openid-dumb-stateless-mode">OpenID "dumb" (stateless) mode</a></p></li><li><p><a href="#openid-smart-stateful-mode">OpenID "smart" (stateful) mode</a></p></li><li><p><a href="#openid-immediate-mode">OpenID immediate mode</a></p></li><li><p><a href="#fetch-extra-data-during-openid-authentication">Fetch extra data during OpenID authentication</a></p></li><li><p><a href="#openid-2-0">OpenID 2.0</a></p></li></ul></li><li><p><a href="#token">Token</a></p></li><li><p><a href="#typekey">TypeKey</a></p><ul><li><p><a href="#fetch-extra-data-during-typekey-authentication">Fetch extra data during TypeKey authentication</a></p></li></ul></li></ul></li><li><p><a href="#securing-applications">Securing applications</a></p></li></ul></div><a name="introduction"></a><a name="id3"></a><h3>Introduction</h3><a name="description"></a><a name="id4"></a><h4>Description</h4><p>The purpose of the Authentication component is to provide support for different means of identification and authentication of users using different providers and protocols.</p><a name="class-overview"></a><a name="id5"></a><h3>Class overview</h3><p>An overview of the most important classes in the Authentication component.</p><a name="base-classes"></a><a name="id6"></a><h4>Base classes</h4><dl><dt>ezcAuthentication</dt><dd>Main class of Authentication. It is a container for authentication filters, which will be run in sequence. The method run() returns true or false depending on the success of the authentication filters.</dd><dt>ezcAuthenticationCredentials</dt><dd>Structure which holds user credentials. Types are id credentials (<a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationIdCredentials.html'>ezcAuthenticationIdCredentials</a>) and id + password credentials (<a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationPasswordCredentials.html'>ezcAuthenticationPasswordCredentials</a>). Usually there is only one credentials object in the application. Multiple credentials can be used via the <a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationGroupFilter.html'>ezcAuthenticationGroupFilter</a> class.</dd><dt>ezcAuthenticationSession</dt><dd>Used to store the authenticated username and the timestamp between requests.</dd></dl><a name="authentication-filters"></a><a name="id7"></a><h4>Authentication filters</h4><dl><dt>ezcAuthenticationDatabaseFilter</dt><dd>Filter to authenticate against a database. Uses a database instance provided by the Database component (via the <a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcDbInstance.html#get'>ezcDbInstance::get</a>() function). It depends on the Database component, so it is implemented in the the tie-in component <a href="../AuthenticationDatabaseTiein/tutorial.html#introduction">AuthenticationDatabaseTiein</a>.</dd><dt>ezcAuthenticationGroupFilter</dt><dd>Container filter for 2 or more filters. Depending on configuration, at least one filter needs to succeed in order for the group to succeed, or all filters need to succeed in order for the group to succeed.</dd><dt>ezcAuthenticationHtpasswdFilter</dt><dd>Filter to authenticate against a htpasswd password file. Supports the same encryption methods as the Unix command htpasswd, and the encryption method is detected automatically from the file.</dd><dt>ezcAuthenticationLdapFilter</dt><dd>Filter to authenticate against an LDAP directory. For now the password can be only in plain text. It depends on the PHP ldap extension.</dd><dt>ezcAuthenticationOpenidFilter</dt><dd>Filter to authenticate against OpenID. For now the OpenID versions 1.0 and 1.1 are supported.</dd><dt>ezcAuthenticationTokenFilter</dt><dd>Filter used to implement CAPTCHA tests. It basically compares the server generated token with the value entered by the user, using a specified hashing callback function.</dd></dl><a name="stores"></a><a name="id8"></a><h4>Stores</h4><p>OpenID uses a store to hold the generated nonces and the associations (in "smart" mode). If there is no store specified, then nonces are not checked.</p><dl><dt>ezcAuthenticationOpenidStore</dt><dd>Abstract class from which the different stores inherit.</dd><dt>ezcAuthenticationOpenidFileStore</dt><dd>Uses file storage. Nonces are stored in files named after the nonce itself, and associations are stored in files named after the OpenID provider with which the association is made.</dd><dt>ezcAuthenticationOpenidDbStore</dt><dd>Database storage. Nonces and associations are stored in two tables, with names defined as options in <a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationOpenidDbStoreOptions.html'>ezcAuthenticationOpenidDbStoreOptions</a>. Implemented in <a href="../AuthenticationDatabaseTiein/tutorial.html#introduction">AuthenticationDatabaseTiein</a>.</dd></dl><a name="general-authentication"></a><a name="id9"></a><h3>General authentication</h3><a name="stateless-authentication"></a><a name="id10"></a><h4>Stateless authentication</h4><p>The general template for authentication is:</p><ul><li><p>get the user credentials (eg. in a <a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationPasswordCredentials.html'>ezcAuthenticationPasswordCredentials</a> object)</p></li><li><p>create an object of class <a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthentication.html'>ezcAuthentication</a> and pass the credentials object to it</p></li><li><p>add authentication filters to the authentication object with addFilter()</p></li><li><p>call the run() method of the authentication object</p></li><li><p>call the getStatus() method of the authentication object and analyse it</p></li></ul><p>The following example demonstrates the above steps.</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #0000FF">require_once&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #000000">$credentials&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationPasswordCredentials.html'>ezcAuthenticationPasswordCredentials</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'jan.modaal'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'b1b3773a05c0ed0176787a4f1574ff0075f7521e'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$authentication&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthentication.html'>ezcAuthentication</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$credentials&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$authentication</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">addFilter</span><span style="color: #0000FF">(&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationHtpasswdFilter.html'>ezcAuthenticationHtpasswdFilter</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'/etc/htpasswd'&nbsp;</span><span style="color: #0000FF">)&nbsp;);</span></li>
+<li><span style="color: #007700">//&nbsp;add&nbsp;more&nbsp;filters&nbsp;if&nbsp;needed</span></li>
+<li><span style="color: #0000FF">if&nbsp;(&nbsp;!</span><span style="color: #000000">$authentication</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">run</span><span style="color: #0000FF">()&nbsp;)</span></li>
+<li><span style="color: #0000FF">{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">//&nbsp;authentication&nbsp;did&nbsp;not&nbsp;succeed,&nbsp;so&nbsp;inform&nbsp;the&nbsp;user</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$status&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$authentication</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">getStatus</span><span style="color: #0000FF">();</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$err&nbsp;</span><span style="color: #0000FF">=&nbsp;array(</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #335533">'<a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationHtpasswdFilter.html'>ezcAuthenticationHtpasswdFilter</a>'&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;array(</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationHtpasswdFilter.html#constSTATUS_USERNAME_INCORRECT'>ezcAuthenticationHtpasswdFilter::STATUS_USERNAME_INCORRECT</a>&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #335533">'Incorrect&nbsp;username'</span><span style="color: #0000FF">,</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationHtpasswdFilter.html#constSTATUS_PASSWORD_INCORRECT'>ezcAuthenticationHtpasswdFilter::STATUS_PASSWORD_INCORRECT</a>&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #335533">'Incorrect&nbsp;password'</span></li>
+<li><span style="color: #335533">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;foreach&nbsp;(&nbsp;</span><span style="color: #000000">$status&nbsp;</span><span style="color: #0000FF">as&nbsp;</span><span style="color: #000000">$line&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;list(&nbsp;</span><span style="color: #000000">$key</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">$value&nbsp;</span><span style="color: #0000FF">)&nbsp;=&nbsp;</span><span style="color: #000000">each</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$line&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #000000">$err</span><span style="color: #0000FF">[</span><span style="color: #000000">$key</span><span style="color: #0000FF">][</span><span style="color: #000000">$value</span><span style="color: #0000FF">]&nbsp;.&nbsp;</span><span style="color: #335533">"\n"</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;}</span></li>
+<li><span style="color: #0000FF">}</span></li>
+<li><span style="color: #0000FF">else</span></li>
+<li><span style="color: #0000FF">{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">//&nbsp;authentication&nbsp;succeeded,&nbsp;so&nbsp;allow&nbsp;the&nbsp;user&nbsp;to&nbsp;see&nbsp;his&nbsp;content</span></li>
+<li><span style="color: #0000FF">}</span></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><p>First, a credentials object is created with username jan.modaal and password 'b1b3773a05c0ed0176787a4f1574ff0075f7521e' (sha1() hash).</p><p>An authentication object is created using the credentials object, and a htpasswd filter (using the /etc/htpasswd file) is added to it.</p><p>After running the authentication (line 8), if the username and the password do not pass through the htpasswd filter, then the credentials are incorrect and the user must be informed. The getStatus() method is used for this. The values in the status returned must be cycled through and for each value a response is created for the user ("Username incorrect", "Password incorrect").</p><p>If run() returned true (line 24) then the user is logged-in and he can see his content.</p><a name="using-session"></a><a name="id11"></a><h4>Using session</h4><p>The following example shows how to use the session class to store authentication information (username and timestamp) between requests.</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #0000FF">require_once&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;no&nbsp;headers&nbsp;should&nbsp;be&nbsp;sent&nbsp;before&nbsp;calling&nbsp;$session-&gt;start()</span></li>
+<li><span style="color: #000000">$session&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationSession.html'>ezcAuthenticationSession</a></span><span style="color: #0000FF">();</span></li>
+<li><span style="color: #000000">$session</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">start</span><span style="color: #0000FF">();</span></li>
+<li><span style="color: #000000">$user&nbsp;</span><span style="color: #0000FF">=&nbsp;isset(&nbsp;</span><span style="color: #000000">$_POST</span><span style="color: #0000FF">[</span><span style="color: #335533">'user'</span><span style="color: #0000FF">]&nbsp;)&nbsp;?&nbsp;</span><span style="color: #000000">$_POST</span><span style="color: #0000FF">[</span><span style="color: #335533">'user'</span><span style="color: #0000FF">]&nbsp;:&nbsp;</span><span style="color: #000000">$session</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">load</span><span style="color: #0000FF">();</span></li>
+<li><span style="color: #000000">$password&nbsp;</span><span style="color: #0000FF">=&nbsp;isset(&nbsp;</span><span style="color: #000000">$_POST</span><span style="color: #0000FF">[</span><span style="color: #335533">'password'</span><span style="color: #0000FF">]&nbsp;)&nbsp;?&nbsp;</span><span style="color: #000000">$_POST</span><span style="color: #0000FF">[</span><span style="color: #335533">'password'</span><span style="color: #0000FF">]&nbsp;:&nbsp;</span><span style="color: #000000">null</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000">$credentials&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationPasswordCredentials.html'>ezcAuthenticationPasswordCredentials</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$user</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">$password&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$authentication&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthentication.html'>ezcAuthentication</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$credentials&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$authentication</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">session&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$session</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000">$authentication</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">addFilter</span><span style="color: #0000FF">(&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationHtpasswdFilter.html'>ezcAuthenticationHtpasswdFilter</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'/etc/htpasswd'&nbsp;</span><span style="color: #0000FF">)&nbsp;);</span></li>
+<li><span style="color: #007700">//&nbsp;add&nbsp;other&nbsp;filters&nbsp;if&nbsp;needed</span></li>
+<li><span style="color: #0000FF">if&nbsp;(&nbsp;!</span><span style="color: #000000">$authentication</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">run</span><span style="color: #0000FF">()&nbsp;)</span></li>
+<li><span style="color: #0000FF">{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">//&nbsp;authentication&nbsp;did&nbsp;not&nbsp;succeed,&nbsp;so&nbsp;inform&nbsp;the&nbsp;user</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$status&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$authentication</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">getStatus</span><span style="color: #0000FF">();</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$err&nbsp;</span><span style="color: #0000FF">=&nbsp;array(</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #335533">'<a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationHtpasswdFilter.html'>ezcAuthenticationHtpasswdFilter</a>'&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;array(</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationHtpasswdFilter.html#constSTATUS_USERNAME_INCORRECT'>ezcAuthenticationHtpasswdFilter::STATUS_USERNAME_INCORRECT</a>&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #335533">'Incorrect&nbsp;username'</span><span style="color: #0000FF">,</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationHtpasswdFilter.html#constSTATUS_PASSWORD_INCORRECT'>ezcAuthenticationHtpasswdFilter::STATUS_PASSWORD_INCORRECT</a>&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #335533">'Incorrect&nbsp;password'</span></li>
+<li><span style="color: #335533">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000FF">),</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #335533">'<a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationSession.html'>ezcAuthenticationSession</a>'&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;array(</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationSession.html#constSTATUS_EMPTY'>ezcAuthenticationSession::STATUS_EMPTY</a>&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #335533">''</span><span style="color: #0000FF">,</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationSession.html#constSTATUS_EXPIRED'>ezcAuthenticationSession::STATUS_EXPIRED</a>&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #335533">'Session&nbsp;expired'</span></li>
+<li><span style="color: #335533">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;foreach&nbsp;(&nbsp;</span><span style="color: #000000">$status&nbsp;</span><span style="color: #0000FF">as&nbsp;</span><span style="color: #000000">$line&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;list(&nbsp;</span><span style="color: #000000">$key</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">$value&nbsp;</span><span style="color: #0000FF">)&nbsp;=&nbsp;</span><span style="color: #000000">each</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$line&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #000000">$err</span><span style="color: #0000FF">[</span><span style="color: #000000">$key</span><span style="color: #0000FF">][</span><span style="color: #000000">$value</span><span style="color: #0000FF">]&nbsp;.&nbsp;</span><span style="color: #335533">"\n"</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;}</span></li>
+<li><span style="color: #0000FF">}</span></li>
+<li><span style="color: #0000FF">else</span></li>
+<li><span style="color: #0000FF">{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">//&nbsp;authentication&nbsp;succeeded,&nbsp;so&nbsp;allow&nbsp;the&nbsp;user&nbsp;to&nbsp;see&nbsp;his&nbsp;content</span></li>
+<li><span style="color: #0000FF">}</span></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><p>A session class is created and used to start the PHP session. The username and password (provided by the user through a POST form) are fetched and used to create a credentials object.</p><p>An authentication object is created using the credentials object, and the session class is added to the authentication object. In addition an htpasswd filter (using the /etc/htpasswd file) is added to the authentication object.</p><p>After running the authentication (line 14), if the username and the password do not pass through the session class or the htpasswd filter, then the credentials are incorrect and the user must be informed. The getStatus() method is used for this. The values in the status returned must be cycled through and for each value a response is created for the user ("Username incorrect", "Password incorrect", "Session expired").</p><p>If run() returned true (line 34) then the user is logged-in and he can see his content.</p><a name="improving-authentication-performance-when-using-the-session"></a><a name="id12"></a><h5>Improving authentication performance when using the session</h5><p>When using the session, it is often desirable to take advantage of the fact that the authenticated state of the user is kept in the session and not create and initialize the other filters (which might slow things down on every request).</p><p>The application can be structured like this:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #000000">$session&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationSession.html'>ezcAuthenticationSession</a></span><span style="color: #0000FF">();</span></li>
+<li><span style="color: #000000">$session</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">start</span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #000000">$credentials&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationPasswordCredentials.html'>ezcAuthenticationPasswordCredentials</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$user</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">$pass&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #000000">$authenticated&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">false</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">if&nbsp;(&nbsp;!</span><span style="color: #000000">$session</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">isValid</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$credentials&nbsp;</span><span style="color: #0000FF">)&nbsp;)</span></li>
+<li><span style="color: #0000FF">{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">//&nbsp;create&nbsp;the&nbsp;authentication&nbsp;object</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$authentication&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthentication.html'>ezcAuthentication</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$credentials&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$authentication</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">session&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$session</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">//&nbsp;create&nbsp;filters&nbsp;and&nbsp;add&nbsp;them&nbsp;to&nbsp;the&nbsp;authentication&nbsp;object</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$authentication</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">addFilter</span><span style="color: #0000FF">(&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationOpenidFilter.html'>ezcAuthenticationOpenidFilter</a></span><span style="color: #0000FF">()&nbsp;);</span></li>
+<li></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">//&nbsp;run&nbsp;the&nbsp;authentication&nbsp;object</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000FF">if&nbsp;(&nbsp;!</span><span style="color: #000000">$authentication</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">run</span><span style="color: #0000FF">()&nbsp;)</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$status&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$authentication</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">getStatus</span><span style="color: #0000FF">();</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">//&nbsp;build&nbsp;an&nbsp;error&nbsp;message&nbsp;based&nbsp;on&nbsp;$status</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000FF">}</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;else</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$authenticated&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">true</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;}</span></li>
+<li><span style="color: #0000FF">}</span></li>
+<li><span style="color: #0000FF">else</span></li>
+<li><span style="color: #0000FF">{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$authenticated&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">true</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">}</span></li>
+<li></li>
+<li><span style="color: #0000FF">if&nbsp;(&nbsp;</span><span style="color: #000000">$authenticated&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">//&nbsp;the&nbsp;authentication&nbsp;succeeded&nbsp;and&nbsp;the&nbsp;user&nbsp;can&nbsp;see&nbsp;his&nbsp;content</span></li>
+<li><span style="color: #0000FF">}</span></li>
+<li><span style="color: #0000FF">else</span></li>
+<li><span style="color: #0000FF">{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">//&nbsp;inform&nbsp;the&nbsp;user&nbsp;that&nbsp;the&nbsp;authentication&nbsp;failed&nbsp;(with&nbsp;the&nbsp;error</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;message&nbsp;that&nbsp;was&nbsp;created&nbsp;earlier)</span></li>
+<li><span style="color: #0000FF">}</span></li>
+<span style="color: #000000">?&gt;</span>
+</ol><p>In this way, the creation and initialization of the authentication filters is not performed if the credentials are stored in the session.</p><a name="id1"></a><a name="id13"></a><h3>Authentication filters</h3><a name="database"></a><a name="id14"></a><h4>Database</h4><p>See the <a href="../AuthenticationDatabaseTiein/tutorial.html#introduction">AuthenticationDatabaseTiein</a> component.</p><a name="group"></a><a name="id15"></a><h4>Group</h4><p>The following example shows how to use a group filter to authenticate against EITHER a database or an LDAP directory.</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #0000FF">require_once&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #000000">$credentials&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationPasswordCredentials.html'>ezcAuthenticationPasswordCredentials</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'jan.modaal'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'qwerty'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;create&nbsp;a&nbsp;database&nbsp;filter</span></li>
+<li><span style="color: #000000">$database&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationDatabaseInfo.html'>ezcAuthenticationDatabaseInfo</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcDbInstance.html#get'>ezcDbInstance::get</a></span><span style="color: #0000FF">(),&nbsp;</span><span style="color: #335533">'users'</span><span style="color: #0000FF">,&nbsp;array(&nbsp;</span><span style="color: #335533">'user'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'password'&nbsp;</span><span style="color: #0000FF">)&nbsp;);</span></li>
+<li><span style="color: #000000">$databaseFilter&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationDatabaseFilter.html'>ezcAuthenticationDatabaseFilter</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$database&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;create&nbsp;an&nbsp;LDAP&nbsp;filter</span></li>
+<li><span style="color: #000000">$ldap&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationLdapInfo.html'>ezcAuthenticationLdapInfo</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'localhost'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'uid=%id%'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'dc=example,dc=com'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">389&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$ldapFilter&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationLdapFilter.html'>ezcAuthenticationLdapFilter</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$ldap&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$authentication&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthentication.html'>ezcAuthentication</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$credentials&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;use&nbsp;the&nbsp;database&nbsp;and&nbsp;LDAP&nbsp;filters&nbsp;in&nbsp;paralel&nbsp;(only&nbsp;one&nbsp;needs&nbsp;to&nbsp;succeed&nbsp;in</span></li>
+<li><span style="color: #007700">//&nbsp;order&nbsp;for&nbsp;the&nbsp;user&nbsp;to&nbsp;be&nbsp;authenticated</span></li>
+<li><span style="color: #000000">$authentication</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">addFilter</span><span style="color: #0000FF">(&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationGroupFilter.html'>ezcAuthenticationGroupFilter</a></span><span style="color: #0000FF">(&nbsp;array(&nbsp;</span><span style="color: #000000">$databaseFilter</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">$ldapFilter&nbsp;</span><span style="color: #0000FF">)&nbsp;)&nbsp;);</span></li>
+<li><span style="color: #007700">//&nbsp;add&nbsp;more&nbsp;filters&nbsp;if&nbsp;needed</span></li>
+<li><span style="color: #0000FF">if&nbsp;(&nbsp;!</span><span style="color: #000000">$authentication</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">run</span><span style="color: #0000FF">()&nbsp;)</span></li>
+<li><span style="color: #0000FF">{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">//&nbsp;authentication&nbsp;did&nbsp;not&nbsp;succeed,&nbsp;so&nbsp;inform&nbsp;the&nbsp;user</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$status&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$authentication</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">getStatus</span><span style="color: #0000FF">();</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$err&nbsp;</span><span style="color: #0000FF">=&nbsp;array(</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #335533">'<a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationLdapFilter.html'>ezcAuthenticationLdapFilter</a>'&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;array(</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationLdapFilter.html#constSTATUS_USERNAME_INCORRECT'>ezcAuthenticationLdapFilter::STATUS_USERNAME_INCORRECT</a>&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #335533">'Incorrect&nbsp;username'</span><span style="color: #0000FF">,</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationLdapFilter.html#constSTATUS_PASSWORD_INCORRECT'>ezcAuthenticationLdapFilter::STATUS_PASSWORD_INCORRECT</a>&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #335533">'Incorrect&nbsp;password'</span></li>
+<li><span style="color: #335533">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000FF">),</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #335533">'<a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationDatabaseFilter.html'>ezcAuthenticationDatabaseFilter</a>'&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;array(</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationDatabaseFilter.html#constSTATUS_USERNAME_INCORRECT'>ezcAuthenticationDatabaseFilter::STATUS_USERNAME_INCORRECT</a>&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #335533">'Incorrect&nbsp;username'</span><span style="color: #0000FF">,</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationDatabaseFilter.html#constSTATUS_PASSWORD_INCORRECT'>ezcAuthenticationDatabaseFilter::STATUS_PASSWORD_INCORRECT</a>&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #335533">'Incorrect&nbsp;password'</span></li>
+<li><span style="color: #335533">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;foreach&nbsp;(&nbsp;</span><span style="color: #000000">$status&nbsp;</span><span style="color: #0000FF">as&nbsp;</span><span style="color: #000000">$line&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;list(&nbsp;</span><span style="color: #000000">$key</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">$value&nbsp;</span><span style="color: #0000FF">)&nbsp;=&nbsp;</span><span style="color: #000000">each</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$line&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #000000">$err</span><span style="color: #0000FF">[</span><span style="color: #000000">$key</span><span style="color: #0000FF">][</span><span style="color: #000000">$value</span><span style="color: #0000FF">]&nbsp;.&nbsp;</span><span style="color: #335533">"\n"</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;}</span></li>
+<li><span style="color: #0000FF">}</span></li>
+<li><span style="color: #0000FF">else</span></li>
+<li><span style="color: #0000FF">{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">//&nbsp;authentication&nbsp;succeeded,&nbsp;so&nbsp;allow&nbsp;the&nbsp;user&nbsp;to&nbsp;see&nbsp;his&nbsp;content</span></li>
+<li><span style="color: #0000FF">}</span></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><p>First, a credentials object is created with username 'jan.modaal' and password 'qwerty'.</p><p>An authentication object is created using the credentials object. A group filter is added to it, consisting of a Database filter and an LDAP filter.</p><p>After running the authentication (line 19), if the username and the password do not pass through any of the filters in the group, then the credentials are incorrect and the user must be informed. The getStatus() method is used for this. The values in the status returned must be cycled through and for each value a response is created for the user ("Username incorrect", "Password incorrect").</p><p>If run() returned true (line 39) then the user is logged-in and he can see his content.</p><a name="multiple-credentials"></a><a name="id16"></a><h5>Multiple credentials</h5><p>To be able to use multiple credentials for authentication (each filter with its own credentials), you must enable the multipleCredentials option for <a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationGroupFilter.html'>ezcAuthenticationGroupFilter</a>.</p><p>The following example demonstrates how to use multiple credentials.</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #0000FF">require_once&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #000000">$credentials1&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationPasswordCredentials.html'>ezcAuthenticationPasswordCredentials</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'jan.modaal'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'b1b3773a05c0ed0176787a4f1574ff0075f7521e'&nbsp;</span><span style="color: #0000FF">);&nbsp;</span><span style="color: #007700">//&nbsp;incorrect&nbsp;password</span></li>
+<li><span style="color: #000000">$credentials2&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationPasswordCredentials.html'>ezcAuthenticationPasswordCredentials</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'john.doe'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'wpeE20wyWHnLE'&nbsp;</span><span style="color: #0000FF">);&nbsp;</span><span style="color: #007700">//&nbsp;correct&nbsp;username&nbsp;+&nbsp;password</span></li>
+<li></li>
+<li><span style="color: #000000">$options&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationGroupOptions.html'>ezcAuthenticationGroupOptions</a></span><span style="color: #0000FF">();</span></li>
+<li><span style="color: #000000">$options</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">multipleCredentials&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">true</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000">$options</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">mode&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationGroupFilter.html#constMODE_AND'>ezcAuthenticationGroupFilter::MODE_AND</a></span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000">$group&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationGroupFilter.html'>ezcAuthenticationGroupFilter</a></span><span style="color: #0000FF">(&nbsp;array(),&nbsp;</span><span style="color: #000000">$options&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #000000">$group</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">addFilter</span><span style="color: #0000FF">(&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationHtpasswdFilter.html'>ezcAuthenticationHtpasswdFilter</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'../../tests/filters/htpasswd/data/htpasswd'&nbsp;</span><span style="color: #0000FF">),&nbsp;</span><span style="color: #000000">$credentials1&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$group</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">addFilter</span><span style="color: #0000FF">(&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationHtpasswdFilter.html'>ezcAuthenticationHtpasswdFilter</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'../../tests/filters/htpasswd/data/htpasswd'&nbsp;</span><span style="color: #0000FF">),&nbsp;</span><span style="color: #000000">$credentials2&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #000000">$authentication&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthentication.html'>ezcAuthentication</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$credentials1&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$authentication</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">addFilter</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$group&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #007700">//&nbsp;add&nbsp;more&nbsp;filters&nbsp;if&nbsp;needed</span></li>
+<li></li>
+<li><span style="color: #0000FF">if&nbsp;(&nbsp;!</span><span style="color: #000000">$authentication</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">run</span><span style="color: #0000FF">()&nbsp;)</span></li>
+<li><span style="color: #0000FF">{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">//&nbsp;authentication&nbsp;did&nbsp;not&nbsp;succeed,&nbsp;so&nbsp;inform&nbsp;the&nbsp;user</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$status&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$authentication</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">getStatus</span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$err&nbsp;</span><span style="color: #0000FF">=&nbsp;array(</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array(&nbsp;</span><span style="color: #335533">'<a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationHtpasswdFilter.html'>ezcAuthenticationHtpasswdFilter</a>'&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;array(</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationHtpasswdFilter.html#constSTATUS_OK'>ezcAuthenticationHtpasswdFilter::STATUS_OK</a>&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #335533">''</span><span style="color: #0000FF">,</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationHtpasswdFilter.html#constSTATUS_USERNAME_INCORRECT'>ezcAuthenticationHtpasswdFilter::STATUS_USERNAME_INCORRECT</a>&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #335533">'Incorrect&nbsp;username&nbsp;'&nbsp;</span><span style="color: #0000FF">.&nbsp;</span><span style="color: #000000">$credentials1</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">id</span><span style="color: #0000FF">,</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationHtpasswdFilter.html#constSTATUS_PASSWORD_INCORRECT'>ezcAuthenticationHtpasswdFilter::STATUS_PASSWORD_INCORRECT</a>&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #335533">'Incorrect&nbsp;password&nbsp;for&nbsp;'&nbsp;</span><span style="color: #0000FF">.&nbsp;</span><span style="color: #000000">$credentials1</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">id</span></li>
+<li><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000FF">)&nbsp;),</span></li>
+<li></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array(&nbsp;</span><span style="color: #335533">'<a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationHtpasswdFilter.html'>ezcAuthenticationHtpasswdFilter</a>'&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;array(</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationHtpasswdFilter.html#constSTATUS_OK'>ezcAuthenticationHtpasswdFilter::STATUS_OK</a>&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #335533">''</span><span style="color: #0000FF">,</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationHtpasswdFilter.html#constSTATUS_USERNAME_INCORRECT'>ezcAuthenticationHtpasswdFilter::STATUS_USERNAME_INCORRECT</a>&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #335533">'Incorrect&nbsp;username&nbsp;'&nbsp;</span><span style="color: #0000FF">.&nbsp;</span><span style="color: #000000">$credentials2</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">id</span><span style="color: #0000FF">,</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationHtpasswdFilter.html#constSTATUS_PASSWORD_INCORRECT'>ezcAuthenticationHtpasswdFilter::STATUS_PASSWORD_INCORRECT</a>&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #335533">'Incorrect&nbsp;password&nbsp;for&nbsp;'&nbsp;</span><span style="color: #0000FF">.&nbsp;</span><span style="color: #000000">$credentials2</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">id</span></li>
+<li><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000FF">)&nbsp;)</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);</span></li>
+<li></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;foreach&nbsp;(&nbsp;</span><span style="color: #000000">$status&nbsp;</span><span style="color: #0000FF">as&nbsp;</span><span style="color: #000000">$line&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #000000">$error&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;list(&nbsp;</span><span style="color: #000000">$key</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">$value&nbsp;</span><span style="color: #0000FF">)&nbsp;=&nbsp;</span><span style="color: #000000">each</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$error&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #000000">$err</span><span style="color: #0000FF">[</span><span style="color: #000000">$line</span><span style="color: #0000FF">][</span><span style="color: #000000">$key</span><span style="color: #0000FF">][</span><span style="color: #000000">$value</span><span style="color: #0000FF">]&nbsp;.&nbsp;</span><span style="color: #335533">"\n"</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;}</span></li>
+<li><span style="color: #0000FF">}</span></li>
+<li><span style="color: #0000FF">else</span></li>
+<li><span style="color: #0000FF">{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">//&nbsp;authentication&nbsp;succeeded,&nbsp;so&nbsp;allow&nbsp;the&nbsp;user&nbsp;to&nbsp;see&nbsp;his&nbsp;content</span></li>
+<li><span style="color: #0000FF">}</span></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><p>First, two credentials objects are created.</p><p>A Group filter is created with the multipleCredentials option enabled.</p><p>Two Htpasswd filters are added to the Group filter, each with their own credentials.</p><p>An Authentication object is created with a default credentials (which would have been used for other filters outside the Group filter, and to save the authenticated state in the session).</p><p>The Group filter is then added to the Authentication object.</p><p>After running the authentication (line 19), if the usernames and the passwords do not pass through the htpasswd filters, then the credentials are incorrect and the user must be informed. The getStatus() method is used for this. The values in the status returned must be cycled through and for each value a response is created for the user ("Username incorrect john.doe", "Password incorrect for john.doe", etc).</p><p>If run() returned true (line 44) then the user is logged-in and he can see his content.</p><p>The above example will output:</p><code class="block">Incorrect password for jan.modaal</code><a name="htpasswd"></a><a name="id17"></a><h4>Htpasswd</h4><p>The following example shows how to authenticate against an htpasswd file.</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #0000FF">require_once&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #000000">$credentials&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationPasswordCredentials.html'>ezcAuthenticationPasswordCredentials</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'jan.modaal'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'b1b3773a05c0ed0176787a4f1574ff0075f7521e'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$authentication&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthentication.html'>ezcAuthentication</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$credentials&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$authentication</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">session&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationSession.html'>ezcAuthenticationSession</a></span><span style="color: #0000FF">();</span></li>
+<li><span style="color: #000000">$authentication</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">addFilter</span><span style="color: #0000FF">(&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationHtpasswdFilter.html'>ezcAuthenticationHtpasswdFilter</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'/etc/htpasswd'&nbsp;</span><span style="color: #0000FF">)&nbsp;);</span></li>
+<li><span style="color: #007700">//&nbsp;add&nbsp;other&nbsp;filters&nbsp;if&nbsp;needed</span></li>
+<li><span style="color: #0000FF">if&nbsp;(&nbsp;!</span><span style="color: #000000">$authentication</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">run</span><span style="color: #0000FF">()&nbsp;)</span></li>
+<li><span style="color: #0000FF">{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">//&nbsp;authentication&nbsp;did&nbsp;not&nbsp;succeed,&nbsp;so&nbsp;inform&nbsp;the&nbsp;user</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$status&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$authentication</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">getStatus</span><span style="color: #0000FF">();</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$err&nbsp;</span><span style="color: #0000FF">=&nbsp;array(</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #335533">'<a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationHtpasswdFilter.html'>ezcAuthenticationHtpasswdFilter</a>'&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;array(</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationHtpasswdFilter.html#constSTATUS_USERNAME_INCORRECT'>ezcAuthenticationHtpasswdFilter::STATUS_USERNAME_INCORRECT</a>&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #335533">'Incorrect&nbsp;username'</span><span style="color: #0000FF">,</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationHtpasswdFilter.html#constSTATUS_PASSWORD_INCORRECT'>ezcAuthenticationHtpasswdFilter::STATUS_PASSWORD_INCORRECT</a>&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #335533">'Incorrect&nbsp;password'</span></li>
+<li><span style="color: #335533">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;foreach&nbsp;(&nbsp;</span><span style="color: #000000">$status&nbsp;</span><span style="color: #0000FF">as&nbsp;</span><span style="color: #000000">$line&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;list(&nbsp;</span><span style="color: #000000">$key</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">$value&nbsp;</span><span style="color: #0000FF">)&nbsp;=&nbsp;</span><span style="color: #000000">each</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$line&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #000000">$err</span><span style="color: #0000FF">[</span><span style="color: #000000">$key</span><span style="color: #0000FF">][</span><span style="color: #000000">$value</span><span style="color: #0000FF">]&nbsp;.&nbsp;</span><span style="color: #335533">"\n"</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;}</span></li>
+<li><span style="color: #0000FF">}</span></li>
+<li><span style="color: #0000FF">else</span></li>
+<li><span style="color: #0000FF">{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">//&nbsp;authentication&nbsp;succeeded,&nbsp;so&nbsp;allow&nbsp;the&nbsp;user&nbsp;to&nbsp;see&nbsp;his&nbsp;content</span></li>
+<li><span style="color: #0000FF">}</span></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><p>First, a credentials object is created with username jan.modaal and password 'b1b3773a05c0ed0176787a4f1574ff0075f7521e' (sha1() hash).</p><p>An authentication object is created using the credentials object, and a htpasswd filter (using the /etc/htpasswd file) is added to it.</p><p>After running the authentication (line 9), if the username and the password do not pass through the htpasswd filter, then the credentials are incorrect and the user must be informed. The getStatus() method is used for this. The values in the status returned must be cycled through and for each value a response is created for the user ("Username incorrect", "Password incorrect").</p><p>If run() returned true (line 25) then the user is logged-in and he can see his content.</p><a name="ldap"></a><a name="id18"></a><h4>LDAP</h4><p>The following example shows how to authenticate agains an LDAP directory.</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #0000FF">require_once&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #000000">$credentials&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationPasswordCredentials.html'>ezcAuthenticationPasswordCredentials</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'jan.modaal'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'qwerty'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$ldap&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationLdapInfo.html'>ezcAuthenticationLdapInfo</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'localhost'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'uid=%id%'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'dc=example,dc=com'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">389&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$authentication&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthentication.html'>ezcAuthentication</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$credentials&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$authentication</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">addFilter</span><span style="color: #0000FF">(&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationLdapFilter.html'>ezcAuthenticationLdapFilter</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$ldap&nbsp;</span><span style="color: #0000FF">)&nbsp;);</span></li>
+<li><span style="color: #007700">//&nbsp;add&nbsp;more&nbsp;filters&nbsp;if&nbsp;needed</span></li>
+<li><span style="color: #0000FF">if&nbsp;(&nbsp;!</span><span style="color: #000000">$authentication</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">run</span><span style="color: #0000FF">()&nbsp;)</span></li>
+<li><span style="color: #0000FF">{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">//&nbsp;authentication&nbsp;did&nbsp;not&nbsp;succeed,&nbsp;so&nbsp;inform&nbsp;the&nbsp;user</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$status&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$authentication</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">getStatus</span><span style="color: #0000FF">();</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$err&nbsp;</span><span style="color: #0000FF">=&nbsp;array(</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #335533">'<a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationLdapFilter.html'>ezcAuthenticationLdapFilter</a>'&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;array(</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationLdapFilter.html#constSTATUS_USERNAME_INCORRECT'>ezcAuthenticationLdapFilter::STATUS_USERNAME_INCORRECT</a>&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #335533">'Incorrect&nbsp;username'</span><span style="color: #0000FF">,</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationLdapFilter.html#constSTATUS_PASSWORD_INCORRECT'>ezcAuthenticationLdapFilter::STATUS_PASSWORD_INCORRECT</a>&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #335533">'Incorrect&nbsp;password'</span></li>
+<li><span style="color: #335533">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;foreach&nbsp;(&nbsp;</span><span style="color: #000000">$status&nbsp;</span><span style="color: #0000FF">as&nbsp;</span><span style="color: #000000">$line&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;list(&nbsp;</span><span style="color: #000000">$key</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">$value&nbsp;</span><span style="color: #0000FF">)&nbsp;=&nbsp;</span><span style="color: #000000">each</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$line&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #000000">$err</span><span style="color: #0000FF">[</span><span style="color: #000000">$key</span><span style="color: #0000FF">][</span><span style="color: #000000">$value</span><span style="color: #0000FF">]&nbsp;.&nbsp;</span><span style="color: #335533">"\n"</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;}</span></li>
+<li><span style="color: #0000FF">}</span></li>
+<li><span style="color: #0000FF">else</span></li>
+<li><span style="color: #0000FF">{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">//&nbsp;authentication&nbsp;succeeded,&nbsp;so&nbsp;allow&nbsp;the&nbsp;user&nbsp;to&nbsp;see&nbsp;his&nbsp;content</span></li>
+<li><span style="color: #0000FF">}</span></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><p>First, a credentials object is created with username jan.modaal and password 'qwerty'.</p><p>An authentication object is created using the credentials object, and an LDAP filter is added to it. The $ldap structure specifies the LDAP host (localhost), the format of the directory entry (%id% is a placeholder which will be replaced by the actual value at bind time), the base of the directory entry ('dc=example,dc=com') and the port on which to connect to the host (389).</p><p>After running the authentication (line 7), if the username and the password do not pass through the LDAP filter, then the credentials are incorrect and the user must be informed. The getStatus() method is used for this. The values in the status returned must be cycled through and for each value a response is created for the user ("Username incorrect", "Password incorrect").</p><p>If run() returned true (line 34) then the user is logged-in and he can see his content.</p><a name="fetch-extra-data-during-ldap-authentication"></a><a name="id19"></a><h5>Fetch extra data during LDAP authentication</h5><p>Any data that is defined for an acount can be fetched. Before running the authentication process (before calling run(), register which data needs to be fetched. Example:</p><code class="block">// $filter is an <a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationLdapFilter.html'>ezcAuthenticationLdapFilter</a> object
+$filter-&gt;registerFetchData( array( 'name', 'company', 'mobile' ) );</code><p>After the authentication process is finished (after run()), retrieve the data that was registered:</p><code class="block">// $filter is an <a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationLdapFilter.html'>ezcAuthenticationLdapFilter</a> object
+$data = $filter-&gt;fetchData();</code><p>For the previous example, the $data array will be something like this:</p><code class="block">array( 'name' =&gt; array( 'Dr. No' ),
+       'company' =&gt; array( 'SPECTRE' ),
+       'mobile' =&gt; array( '555-7732873' )
+     );</code><a name="openid"></a><a name="id20"></a><h4>OpenID</h4><p>OpenID has 2 modes of operation: <em>dumb</em> and <em>smart</em>. These modes define the way the consumer (the application server, on which the Components run) is communicating with the OpenID provider (another server where users authenticate with their OpenID username and password; there are many of these and users can register on which one they want).</p><p><em>Dumb mode</em> (stateless)</p><p>In this mode there are 3 http requests:</p><dl><dt>Discovery</dt><dd>The consumer requests the URL which the user entered and finds out the URL of the provider.</dd><dt>openid.checkid_setup</dt><dd>The consumer redirects the browser to the provider, so that the user can enter his username and password to the provider. The provider then redirects back to the consumer. The URL to which the provider redirects back can be configured with the OpenID option redirectUrl (see <a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationOpenidOptions.html'>ezcAuthenticationOpenidOptions</a>). The checkid_immediate mode is supported as well, for authentication in a pop-up window or iframe (or similar techniques). See below the section <a href="#openid-immediate-mode">OpenID immediate mode</a> for details.</dd><dt>openid.check_authentication</dt><dd>The consumer sends to the provider the values received in step 2 and receives the information if the user is authenticated or not.</dd></dl><p><em>Smart mode</em> (keeping state)</p><p>In this mode there are also 3 http requests, but only 2 every time and 1 request from time to time:</p><dl><dt>Discovery</dt><dd>Same as in dumb mode.</dd><dt>openid.checkid_setup</dt><dd>Same as in dumb mode, but the handle associated with the shared secret is sent as well.</dd></dl><p>The extra request (which is done from time to time) is:</p><dl><dt>openid.associate</dt><dd>The consumer and the provider establish a shared secret, which the consumer uses when it redirects in step 2, and it will use the same secret for all requests to the same provider. Step 3 (openid.check_authentication) is not required anymore. The shared secret has a timeout period, so it must be renewed from time to time.</dd></dl><a name="openid-dumb-stateless-mode"></a><a name="id21"></a><h5>OpenID "dumb" (stateless) mode</h5><p>The following example shows how to authenticate against OpenID in "dumb" (stateless) mode.</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #0000FF">require_once&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;no&nbsp;headers&nbsp;should&nbsp;be&nbsp;sent&nbsp;before&nbsp;calling&nbsp;$session-&gt;start()</span></li>
+<li><span style="color: #000000">$session&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationSession.html'>ezcAuthenticationSession</a></span><span style="color: #0000FF">();</span></li>
+<li><span style="color: #000000">$session</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">start</span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #000000">$url&nbsp;</span><span style="color: #0000FF">=&nbsp;isset(&nbsp;</span><span style="color: #000000">$_GET</span><span style="color: #0000FF">[</span><span style="color: #335533">'openid_identifier'</span><span style="color: #0000FF">]&nbsp;)&nbsp;?&nbsp;</span><span style="color: #000000">$_GET</span><span style="color: #0000FF">[</span><span style="color: #335533">'openid_identifier'</span><span style="color: #0000FF">]&nbsp;:&nbsp;</span><span style="color: #000000">$session</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">load</span><span style="color: #0000FF">();</span></li>
+<li><span style="color: #000000">$action&nbsp;</span><span style="color: #0000FF">=&nbsp;isset(&nbsp;</span><span style="color: #000000">$_GET</span><span style="color: #0000FF">[</span><span style="color: #335533">'action'</span><span style="color: #0000FF">]&nbsp;)&nbsp;?&nbsp;</span><span style="color: #000000">strtolower</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$_GET</span><span style="color: #0000FF">[</span><span style="color: #335533">'action'</span><span style="color: #0000FF">]&nbsp;)&nbsp;:&nbsp;</span><span style="color: #000000">null</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #000000">$credentials&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationIdCredentials.html'>ezcAuthenticationIdCredentials</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$url&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$authentication&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthentication.html'>ezcAuthentication</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$credentials&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$authentication</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">session&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$session</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #0000FF">if&nbsp;(&nbsp;</span><span style="color: #000000">$action&nbsp;</span><span style="color: #0000FF">===&nbsp;</span><span style="color: #335533">'logout'&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$session</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">destroy</span><span style="color: #0000FF">();</span></li>
+<li><span style="color: #0000FF">}</span></li>
+<li><span style="color: #0000FF">else</span></li>
+<li><span style="color: #0000FF">{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$filter&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationOpenidFilter.html'>ezcAuthenticationOpenidFilter</a></span><span style="color: #0000FF">();</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$authentication</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">addFilter</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$filter&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #0000FF">}</span></li>
+<li></li>
+<li><span style="color: #0000FF">if&nbsp;(&nbsp;!</span><span style="color: #000000">$authentication</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">run</span><span style="color: #0000FF">()&nbsp;)</span></li>
+<li><span style="color: #0000FF">{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">//&nbsp;authentication&nbsp;did&nbsp;not&nbsp;succeed,&nbsp;so&nbsp;inform&nbsp;the&nbsp;user</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$status&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$authentication</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">getStatus</span><span style="color: #0000FF">();</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$err&nbsp;</span><span style="color: #0000FF">=&nbsp;array(</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #335533">'<a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationOpenidFilter.html'>ezcAuthenticationOpenidFilter</a>'&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;array(</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationOpenidFilter.html#constSTATUS_SIGNATURE_INCORRECT'>ezcAuthenticationOpenidFilter::STATUS_SIGNATURE_INCORRECT</a>&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #335533">'OpenID&nbsp;said&nbsp;the&nbsp;provided&nbsp;identifier&nbsp;was&nbsp;incorrect'</span><span style="color: #0000FF">,</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationOpenidFilter.html#constSTATUS_CANCELLED'>ezcAuthenticationOpenidFilter::STATUS_CANCELLED</a>&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #335533">'The&nbsp;OpenID&nbsp;authentication&nbsp;was&nbsp;cancelled'</span><span style="color: #0000FF">,</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationOpenidFilter.html#constSTATUS_URL_INCORRECT'>ezcAuthenticationOpenidFilter::STATUS_URL_INCORRECT</a>&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #335533">'The&nbsp;identifier&nbsp;you&nbsp;provided&nbsp;is&nbsp;invalid'</span></li>
+<li><span style="color: #335533">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000FF">),</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #335533">'<a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationSession.html'>ezcAuthenticationSession</a>'&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;array(</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationSession.html#constSTATUS_EMPTY'>ezcAuthenticationSession::STATUS_EMPTY</a>&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #335533">''</span><span style="color: #0000FF">,</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationSession.html#constSTATUS_EXPIRED'>ezcAuthenticationSession::STATUS_EXPIRED</a>&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #335533">'Session&nbsp;expired'</span></li>
+<li><span style="color: #335533">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;foreach&nbsp;(&nbsp;</span><span style="color: #000000">$status&nbsp;</span><span style="color: #0000FF">as&nbsp;</span><span style="color: #000000">$line&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;list(&nbsp;</span><span style="color: #000000">$key</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">$value&nbsp;</span><span style="color: #0000FF">)&nbsp;=&nbsp;</span><span style="color: #000000">each</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$line&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #000000">$err</span><span style="color: #0000FF">[</span><span style="color: #000000">$key</span><span style="color: #0000FF">][</span><span style="color: #000000">$value</span><span style="color: #0000FF">]&nbsp;.&nbsp;</span><span style="color: #335533">"\n"</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;}</span></li>
+<li><span style="color: #000000">?&gt;</span></li>
+<li>Please&nbsp;login&nbsp;with&nbsp;your&nbsp;OpenID&nbsp;identifier&nbsp;(an&nbsp;URL,&nbsp;eg.&nbsp;www.example.com&nbsp;or&nbsp;http://www.example.com):</li>
+<li>&lt;form&nbsp;method="GET"&nbsp;action=""&gt;</li>
+<li>&lt;input&nbsp;type="hidden"&nbsp;name="action"&nbsp;value="login"&nbsp;/&gt;</li>
+<li>&lt;img&nbsp;src="http://openid.net/login-bg.gif"&nbsp;/&gt;&nbsp;&lt;input&nbsp;type="text"&nbsp;name="openid_identifier"&nbsp;/&gt;</li>
+<li>&lt;input&nbsp;type="submit"&nbsp;value="Login"&nbsp;/&gt;</li>
+<li>&lt;/form&gt;</li>
+<li></li>
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #0000FF">}</span></li>
+<li><span style="color: #0000FF">else</span></li>
+<li><span style="color: #0000FF">{</span></li>
+<li><span style="color: #000000">?&gt;</span></li>
+<li></li>
+<li>You&nbsp;are&nbsp;logged-in&nbsp;as&nbsp;&lt;b&gt;<span style="color: #000000">&lt;?php&nbsp;</span><span style="color: #0000FF">echo&nbsp;</span><span style="color: #000000">$url</span><span style="color: #0000FF">;&nbsp;</span><span style="color: #000000">?&gt;</span>&lt;/b&gt;&nbsp;|&nbsp;&lt;a&nbsp;href="?action=logout"&gt;Logout&lt;/a&gt;</li>
+<li></li>
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #0000FF">}</span></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><p>A session class is created and used to start the PHP session. The OpenID identifier (provided by the user through a GET form) is fetched and used to create a credentials object. On subsequent requests to the page, the token is loaded from session instead of the GET form. OpenID specifications recommend the name 'openid_identifier' for the text field of the form in which users type their OpenID identifier (so that browser can prefill the field if user chooses this).</p><p>An authentication object is created using the credentials object, and the session handler is added to it.</p><p>If the user is at logout (line 15), then the session is destroyed, which means the user will see the login form.</p><p>If the user is not at logout (line 19), then an OpenID filter is created with the credentials object.</p><p>After running the authentication (line 25), if the OpenID server did not authorize the identifier, then the credentials are incorrect and the user must be informed. The getStatus() method is used for this. The values in the status returned must be cycled through and for each value a response is created for the user ("Signature incorrect", "Session expired"). At line 46 a simple HTML form is displayed, as example. The form displays the OpenID logo (as suggested by the OpenID specifications).</p><p>If run() returned true (line 55) then the user is logged-in and he can see his content. Line 59 contains an example of how to implement a logout option for the application.</p><a name="openid-smart-stateful-mode"></a><a name="id22"></a><h5>OpenID "smart" (stateful) mode</h5><p>The following example shows how to authenticate against OpenID in "smart" (stateful) mode.</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #0000FF">require_once&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;no&nbsp;headers&nbsp;should&nbsp;be&nbsp;sent&nbsp;before&nbsp;calling&nbsp;$session-&gt;start()</span></li>
+<li><span style="color: #000000">$options&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationSessionOptions.html'>ezcAuthenticationSessionOptions</a></span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #000000">$session&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationSession.html'>ezcAuthenticationSession</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$options&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$session</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">start</span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;URL&nbsp;after&nbsp;returning&nbsp;from&nbsp;OpenID&nbsp;authentication</span></li>
+<li><span style="color: #000000">$url&nbsp;</span><span style="color: #0000FF">=&nbsp;isset(&nbsp;</span><span style="color: #000000">$_GET</span><span style="color: #0000FF">[</span><span style="color: #335533">'openid_identity'</span><span style="color: #0000FF">]&nbsp;)&nbsp;?&nbsp;</span><span style="color: #000000">$_GET</span><span style="color: #0000FF">[</span><span style="color: #335533">'openid_identity'</span><span style="color: #0000FF">]&nbsp;:&nbsp;</span><span style="color: #000000">$session</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">load</span><span style="color: #0000FF">();</span></li>
+<li><span style="color: #0000FF">if&nbsp;(&nbsp;</span><span style="color: #000000">$url&nbsp;</span><span style="color: #0000FF">===&nbsp;</span><span style="color: #000000">null&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">//&nbsp;URL&nbsp;at&nbsp;the&nbsp;start&nbsp;of&nbsp;authentication</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$url&nbsp;</span><span style="color: #0000FF">=&nbsp;isset(&nbsp;</span><span style="color: #000000">$_GET</span><span style="color: #0000FF">[</span><span style="color: #335533">'openid_identifier'</span><span style="color: #0000FF">]&nbsp;)&nbsp;?&nbsp;</span><span style="color: #000000">$_GET</span><span style="color: #0000FF">[</span><span style="color: #335533">'openid_identifier'</span><span style="color: #0000FF">]&nbsp;:&nbsp;</span><span style="color: #000000">$session</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">load</span><span style="color: #0000FF">();</span></li>
+<li><span style="color: #0000FF">}</span></li>
+<li></li>
+<li><span style="color: #000000">$action&nbsp;</span><span style="color: #0000FF">=&nbsp;isset(&nbsp;</span><span style="color: #000000">$_GET</span><span style="color: #0000FF">[</span><span style="color: #335533">'action'</span><span style="color: #0000FF">]&nbsp;)&nbsp;?&nbsp;</span><span style="color: #000000">strtolower</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$_GET</span><span style="color: #0000FF">[</span><span style="color: #335533">'action'</span><span style="color: #0000FF">]&nbsp;)&nbsp;:&nbsp;</span><span style="color: #000000">null</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #000000">$credentials&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationIdCredentials.html'>ezcAuthenticationIdCredentials</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$url&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$authentication&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthentication.html'>ezcAuthentication</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$credentials&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$authentication</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">session&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$session</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #0000FF">if&nbsp;(&nbsp;</span><span style="color: #000000">$action&nbsp;</span><span style="color: #0000FF">===&nbsp;</span><span style="color: #335533">'logout'&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$session</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">destroy</span><span style="color: #0000FF">();</span></li>
+<li><span style="color: #0000FF">}</span></li>
+<li><span style="color: #0000FF">else</span></li>
+<li><span style="color: #0000FF">{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$options&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationOpenidOptions.html'>ezcAuthenticationOpenidOptions</a></span><span style="color: #0000FF">();</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$options</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">mode&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationOpenidFilter.html#constMODE_SMART'>ezcAuthenticationOpenidFilter::MODE_SMART</a></span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$options</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">openidVersion&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationOpenidFilter.html#constVERSION_'>ezcAuthenticationOpenidFilter::VERSION_</a>2_0</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$options</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">store&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationOpenidFileStore.html'>ezcAuthenticationOpenidFileStore</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'/tmp/store'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$filter&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationOpenidFilter.html'>ezcAuthenticationOpenidFilter</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$options&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$filter</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">registerFetchData</span><span style="color: #0000FF">(&nbsp;array(&nbsp;</span><span style="color: #335533">'fullname'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'gender'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'country'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'language'&nbsp;</span><span style="color: #0000FF">)&nbsp;);</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$authentication</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">addFilter</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$filter&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #0000FF">}</span></li>
+<li></li>
+<li><span style="color: #0000FF">if&nbsp;(&nbsp;!</span><span style="color: #000000">$authentication</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">run</span><span style="color: #0000FF">()&nbsp;)</span></li>
+<li><span style="color: #0000FF">{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">//&nbsp;authentication&nbsp;did&nbsp;not&nbsp;succeed,&nbsp;so&nbsp;inform&nbsp;the&nbsp;user</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$status&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$authentication</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">getStatus</span><span style="color: #0000FF">();</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$err&nbsp;</span><span style="color: #0000FF">=&nbsp;array();</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$err</span><span style="color: #0000FF">[</span><span style="color: #335533">"user"</span><span style="color: #0000FF">]&nbsp;=&nbsp;</span><span style="color: #335533">""</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$err</span><span style="color: #0000FF">[</span><span style="color: #335533">"session"</span><span style="color: #0000FF">]&nbsp;=&nbsp;</span><span style="color: #335533">""</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;(&nbsp;</span><span style="color: #000000">$i&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">0</span><span style="color: #0000FF">;&nbsp;</span><span style="color: #000000">$i&nbsp;</span><span style="color: #0000FF">&lt;&nbsp;</span><span style="color: #000000">count</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$status&nbsp;</span><span style="color: #0000FF">);&nbsp;</span><span style="color: #000000">$i</span><span style="color: #0000FF">++&nbsp;)</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;list(&nbsp;</span><span style="color: #000000">$key</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">$value&nbsp;</span><span style="color: #0000FF">)&nbsp;=&nbsp;</span><span style="color: #000000">each</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$status</span><span style="color: #0000FF">[</span><span style="color: #000000">$i</span><span style="color: #0000FF">]&nbsp;);</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;switch&nbsp;(&nbsp;</span><span style="color: #000000">$key&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;</span><span style="color: #335533">'<a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationOpenidFilter.html'>ezcAuthenticationOpenidFilter</a>'</span><span style="color: #0000FF">:</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(&nbsp;</span><span style="color: #000000">$value&nbsp;</span><span style="color: #0000FF">===&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationOpenidFilter.html#constSTATUS_SIGNATURE_INCORRECT'>ezcAuthenticationOpenidFilter::STATUS_SIGNATURE_INCORRECT</a>&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$err</span><span style="color: #0000FF">[</span><span style="color: #335533">"user"</span><span style="color: #0000FF">]&nbsp;=&nbsp;</span><span style="color: #335533">"&lt;span&nbsp;class='error'&gt;OpenID&nbsp;said&nbsp;the&nbsp;provided&nbsp;identifier&nbsp;was&nbsp;incorrect.&lt;/span&gt;"</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(&nbsp;</span><span style="color: #000000">$value&nbsp;</span><span style="color: #0000FF">===&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationOpenidFilter.html#constSTATUS_CANCELLED'>ezcAuthenticationOpenidFilter::STATUS_CANCELLED</a>&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$err</span><span style="color: #0000FF">[</span><span style="color: #335533">"user"</span><span style="color: #0000FF">]&nbsp;=&nbsp;</span><span style="color: #335533">"&lt;span&nbsp;class='error'&gt;The&nbsp;OpenID&nbsp;authentication&nbsp;was&nbsp;cancelled,&nbsp;please&nbsp;re-login.&lt;/span&gt;"</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(&nbsp;</span><span style="color: #000000">$value&nbsp;</span><span style="color: #0000FF">===&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationOpenidFilter.html#constSTATUS_URL_INCORRECT'>ezcAuthenticationOpenidFilter::STATUS_URL_INCORRECT</a>&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$err</span><span style="color: #0000FF">[</span><span style="color: #335533">"user"</span><span style="color: #0000FF">]&nbsp;=&nbsp;</span><span style="color: #335533">"&lt;span&nbsp;class='error'&gt;The&nbsp;identifier&nbsp;you&nbsp;provided&nbsp;is&nbsp;empty&nbsp;or&nbsp;invalid.&nbsp;It&nbsp;must&nbsp;be&nbsp;a&nbsp;URL&nbsp;(eg.&nbsp;www.example.com&nbsp;or&nbsp;http://www.example.com)&lt;/span&gt;"</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;</span></li>
+<li></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;</span><span style="color: #335533">'<a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationSessionFilter.html'>ezcAuthenticationSessionFilter</a>'</span><span style="color: #0000FF">:</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(&nbsp;</span><span style="color: #000000">$value&nbsp;</span><span style="color: #0000FF">===&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationSessionFilter.html#constSTATUS_EXPIRED'>ezcAuthenticationSessionFilter::STATUS_EXPIRED</a>&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$err</span><span style="color: #0000FF">[</span><span style="color: #335533">"session"</span><span style="color: #0000FF">]&nbsp;=&nbsp;</span><span style="color: #335533">"&lt;span&nbsp;class='error'&gt;Session&nbsp;expired&lt;/span&gt;"</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;}</span></li>
+<li><span style="color: #000000">?&gt;</span></li>
+<li></li>
+<li>&lt;style&gt;</li>
+<li>.error&nbsp;{</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;color:&nbsp;#FF0000;</li>
+<li>}</li>
+<li>&lt;/style&gt;</li>
+<li>Please&nbsp;login&nbsp;with&nbsp;your&nbsp;OpenID&nbsp;identifier&nbsp;(an&nbsp;URL,&nbsp;eg.&nbsp;www.example.com&nbsp;or&nbsp;http://www.example.com):</li>
+<li>&lt;form&nbsp;method="GET"&nbsp;action=""&gt;</li>
+<li>&lt;input&nbsp;type="hidden"&nbsp;name="action"&nbsp;value="login"&nbsp;/&gt;</li>
+<li>&lt;img&nbsp;src="http://openid.net/login-bg.gif"&nbsp;/&gt;&nbsp;&lt;input&nbsp;type="text"&nbsp;name="openid_identifier"&nbsp;/&gt;</li>
+<li>&lt;input&nbsp;type="submit"&nbsp;value="Login"&nbsp;/&gt;</li>
+<li><span style="color: #000000">&lt;?php&nbsp;</span><span style="color: #0000FF">echo&nbsp;</span><span style="color: #000000">$err</span><span style="color: #0000FF">[</span><span style="color: #335533">"user"</span><span style="color: #0000FF">];&nbsp;</span><span style="color: #000000">?&gt;</span>&nbsp;<span style="color: #000000">&lt;?php&nbsp;</span><span style="color: #0000FF">echo&nbsp;</span><span style="color: #000000">$err</span><span style="color: #0000FF">[</span><span style="color: #335533">"session"</span><span style="color: #0000FF">];&nbsp;</span><span style="color: #000000">?&gt;</span></li>
+<li>&lt;/form&gt;</li>
+<li></li>
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #0000FF">}</span></li>
+<li><span style="color: #0000FF">else</span></li>
+<li><span style="color: #0000FF">{</span></li>
+<li><span style="color: #000000">?&gt;</span></li>
+<li></li>
+<li>You&nbsp;are&nbsp;logged-in&nbsp;as&nbsp;&lt;b&gt;<span style="color: #000000">&lt;?php&nbsp;</span><span style="color: #0000FF">echo&nbsp;</span><span style="color: #000000">$url</span><span style="color: #0000FF">;&nbsp;</span><span style="color: #000000">?&gt;</span>&lt;/b&gt;&nbsp;|&nbsp;&lt;a&nbsp;href="?action=logout"&gt;Logout&lt;/a&gt;</li>
+<li></li>
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #0000FF">}</span></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><p>The only differences between this example and the one in the previous section is defining the mode of the OpenID filter, and defining a store (file store in this example or database store as shown in the OpenID example in <a href="../AuthenticationDatabaseTiein/tutorial.html#introduction">AuthenticationDatabaseTiein</a>) which will hold the associations. In addition the store will also hold the nonces which are used to prevent replay attacks.</p><p>The example also introduces the OpenID 2.0 version features, namely the possibility to use a common URL for all users of an OpenID provider (for example using <em>http://yahoo.com</em> in the login box), and then being redirected to the OpenID provider to enter the provider credentials, and in the end being redirected back with the unique user OpenID URL in the response from the OpenID provider (in the <strong>$url</strong> variable in the example above). See the section <a href="#openid-2-0">OpenID 2.0</a> below for more information.</p><a name="openid-immediate-mode"></a><a name="id23"></a><h5>OpenID immediate mode</h5><p>The OpenID request checkid_immediate is supported, which allows for user authentication in a pop-up window or iframe (or similar techniques). Instead of redirecting the user agent as in the checkid_setup step, the developer has the possibility to open a pop-up/iframe for the user to authenticate with the OpenID provider.</p><p>A more detailed description of the process: when using checkid_immediate, the OpenID provider is asked if the user can be authenticated on the spot, with no redirection of the user agent. If the user cannot be authenticated, the provider sends back a setup URL, which the application can use in a pop-up window or iframe to display to the user so that he can authenticate himself to the OpenID provider. After user enters his OpenID username and password at this page and accepts the originating site, the pop-up window or iframe is redirected to the return URL value (which should be a different page than the page which opens the pop-up window). The return URL page will then inform the main page of success or failure through JavaScript, and the main page can do the action that it needs to perform based on the outcome in the pop-up page.</p><p>The checkid_immediate mode is enabled by setting the option immediate to true.</p><p>Note: retrieval of extra data during authentication (fullname, email, etc) is not possible at the moment when using the immediate mode.</p><p>For example, this is one simple way of implementing checkid_immediate:</p><ul><li><p>the main page contains the OpenID login form (where the user types in his OpenID identifier). This page contains also a hidded form value which specifies to which page to return to in the pop-up window. The Enter key and the submit button should be disabled on the form. When user clicks on the Login button, the main page should employ AJAX to request the return URL. When the return URL finishes loading, the main page will read from the return URL page the setup URL and it will open it in a pop-up/iframe.</p></li><li><p>the return URL page enables the option immediate to the OpenID filter, and runs the filter. It gets back the setup URL and it echoes it to be picked-up by the main page once the return URL page will finish loading. The setup URL should be the only thing that the return URL page is echoing, to not interfere with the main page.</p></li><li><p>in the pop-up/iframe the setup URL will load, which basically depends on the OpenID provider how it is handled by the user. After the user enters his credentials on the setup URL page, he will be redirected to the return URL, which should detect this, and which should inform the main page that the user was authenticated to the OpenID provider.</p></li></ul><p>A rudimentary source code example is provided below. It does not contain code to inform the user that the session expired or the errors experienced during the authentication process. The code has been tested on some browsers (Firefox 1.5, Konqueror 3.5, Internet Explorer 6.0), but it is possible that some browsers might have issues with the JavaScript code.</p><p>The main page:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #0000FF">require_once&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;no&nbsp;headers&nbsp;should&nbsp;be&nbsp;sent&nbsp;before&nbsp;calling&nbsp;$session-&gt;start()</span></li>
+<li><span style="color: #000000">$options&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationSessionOptions.html'>ezcAuthenticationSessionOptions</a></span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;setting&nbsp;60&nbsp;seconds&nbsp;timeout&nbsp;for&nbsp;session&nbsp;for&nbsp;testing&nbsp;purposes&nbsp;only</span></li>
+<li><span style="color: #000000">$options</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">validity&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">60</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #000000">$session&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationSession.html'>ezcAuthenticationSession</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$options&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$session</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">start</span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #000000">$identity&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$session</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">load</span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #000000">$url&nbsp;</span><span style="color: #0000FF">=&nbsp;isset(&nbsp;</span><span style="color: #000000">$_GET</span><span style="color: #0000FF">[</span><span style="color: #335533">'openid_identifier'</span><span style="color: #0000FF">]&nbsp;)&nbsp;?&nbsp;</span><span style="color: #000000">$_GET</span><span style="color: #0000FF">[</span><span style="color: #335533">'openid_identifier'</span><span style="color: #0000FF">]&nbsp;:&nbsp;</span><span style="color: #000000">$identity</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000">$action&nbsp;</span><span style="color: #0000FF">=&nbsp;isset(&nbsp;</span><span style="color: #000000">$_GET</span><span style="color: #0000FF">[</span><span style="color: #335533">'action'</span><span style="color: #0000FF">]&nbsp;)&nbsp;?&nbsp;</span><span style="color: #000000">strtolower</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$_GET</span><span style="color: #0000FF">[</span><span style="color: #335533">'action'</span><span style="color: #0000FF">]&nbsp;)&nbsp;:&nbsp;</span><span style="color: #000000">null</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #000000">$credentials&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationIdCredentials.html'>ezcAuthenticationIdCredentials</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$url&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$authentication&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthentication.html'>ezcAuthentication</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$credentials&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$authentication</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">session&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$session</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #0000FF">if&nbsp;(&nbsp;</span><span style="color: #000000">$action&nbsp;</span><span style="color: #0000FF">===&nbsp;</span><span style="color: #335533">'logout'&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$session</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">destroy</span><span style="color: #0000FF">();</span></li>
+<li><span style="color: #0000FF">}</span></li>
+<li></li>
+<li><span style="color: #0000FF">if&nbsp;(&nbsp;!</span><span style="color: #000000">$authentication</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">run</span><span style="color: #0000FF">()&nbsp;)</span></li>
+<li><span style="color: #0000FF">{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">//&nbsp;authentication&nbsp;did&nbsp;not&nbsp;succeed,&nbsp;so&nbsp;inform&nbsp;the&nbsp;user</span></li>
+<li></li>
+<li><span style="color: #000000">?&gt;</span></li>
+<li></li>
+<li>&lt;script&nbsp;language="JavaScript"&gt;</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;var&nbsp;xmlhttp&nbsp;=&nbsp;false;</li>
+<li></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;/*@cc_on&nbsp;@*/</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;/*@if&nbsp;(&nbsp;@_jscript_version&nbsp;&gt;=&nbsp;5&nbsp;)</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;try</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;{</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;xmlhttp&nbsp;=&nbsp;new&nbsp;ActiveXObject(&nbsp;"Msxml2.XMLHTTP"&nbsp;);</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;}</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;catch&nbsp;(&nbsp;e&nbsp;)</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;{</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;try</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;xmlhttp&nbsp;=&nbsp;new&nbsp;ActiveXObject(&nbsp;"Microsoft.XMLHTTP"&nbsp;);</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;catch&nbsp;(&nbsp;E&nbsp;)</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;xmlhttp&nbsp;=&nbsp;false;</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;}</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;@end&nbsp;@*/</li>
+<li></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(&nbsp;!xmlhttp&nbsp;&amp;&amp;&nbsp;typeof&nbsp;XMLHttpRequest&nbsp;!=&nbsp;'undefined'&nbsp;)</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;{</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;try</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;xmlhttp&nbsp;=&nbsp;new&nbsp;XMLHttpRequest();</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;catch&nbsp;(&nbsp;e&nbsp;)</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;xmlhttp&nbsp;=&nbsp;false;</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;}</li>
+<li></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(&nbsp;!xmlhttp&nbsp;&amp;&amp;&nbsp;window.createRequest&nbsp;)</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;{</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;try</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;xmlhttp&nbsp;=&nbsp;window.createRequest();</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;catch&nbsp;(&nbsp;e&nbsp;)</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;xmlhttp&nbsp;=&nbsp;false;</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;}</li>
+<li>&lt;/script&gt;</li>
+<li></li>
+<li>&lt;script&nbsp;language="JavaScript"&gt;</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;disableEnterKey(&nbsp;e&nbsp;)</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;{</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var&nbsp;key;</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;key&nbsp;=&nbsp;(&nbsp;window.event&nbsp;)&nbsp;?&nbsp;window.event.keyCode&nbsp;:&nbsp;e.which;</li>
+<li></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;(&nbsp;key&nbsp;!=&nbsp;13&nbsp;);</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;}</li>
+<li></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;login()</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;{</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var&nbsp;url;</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var&nbsp;form1;</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var&nbsp;setupUrl;</li>
+<li></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;form1&nbsp;=&nbsp;document.form1;</li>
+<li></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;url&nbsp;=&nbsp;form1.url.value&nbsp;+&nbsp;'?openid_identifier='&nbsp;+&nbsp;escape(&nbsp;form1.openid_identifier.value&nbsp;)&nbsp;+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'&amp;action=login&amp;immediate=true';</li>
+<li></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;xmlhttp.open(&nbsp;"GET",&nbsp;url,&nbsp;true&nbsp;);</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;xmlhttp.onreadystatechange&nbsp;=&nbsp;function()</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(&nbsp;xmlhttp.readyState&nbsp;==&nbsp;4&nbsp;)</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;setupUrl&nbsp;=&nbsp;xmlhttp.responseText;</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;hwnd&nbsp;=&nbsp;window.open(&nbsp;setupUrl,&nbsp;'Login'&nbsp;);</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(&nbsp;hwnd.opener&nbsp;==&nbsp;null&nbsp;)</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;hwnd.opener&nbsp;=&nbsp;self;</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;xmlhttp.send(&nbsp;null&nbsp;);</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;}</li>
+<li>&lt;/script&gt;</li>
+<li>Please&nbsp;login&nbsp;with&nbsp;your&nbsp;OpenID&nbsp;identifier&nbsp;(an&nbsp;URL,&nbsp;eg.&nbsp;www.example.com&nbsp;or&nbsp;http://www.example.com):</li>
+<li>&lt;form&nbsp;method="GET"&nbsp;name="form1"&gt;</li>
+<li>&lt;input&nbsp;type="hidden"&nbsp;name="url"&nbsp;value="http://localhost/openid/openid_immediate.php"&nbsp;/&gt;</li>
+<li>&lt;input&nbsp;type="hidden"&nbsp;name="action"&nbsp;value="login"&nbsp;/&gt;</li>
+<li>&lt;img&nbsp;src="http://openid.net/login-bg.gif"&nbsp;/&gt;&nbsp;&lt;input&nbsp;type="text"&nbsp;name="openid_identifier"&nbsp;onKeyPress="return&nbsp;disableEnterKey(&nbsp;event&nbsp;)"&nbsp;/&gt;</li>
+<li>&lt;input&nbsp;type="button"&nbsp;onclick="javascript:&nbsp;login();"&nbsp;value="Login"&nbsp;/&gt;</li>
+<li>&lt;div&nbsp;name="status"&nbsp;id="status"&gt;&lt;/div&gt;</li>
+<li>&lt;/form&gt;</li>
+<li></li>
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #0000FF">}</span></li>
+<li><span style="color: #0000FF">else</span></li>
+<li><span style="color: #0000FF">{</span></li>
+<li><span style="color: #000000">?&gt;</span></li>
+<li></li>
+<li>You&nbsp;are&nbsp;logged-in&nbsp;as&nbsp;&lt;b&gt;<span style="color: #000000">&lt;?php&nbsp;</span><span style="color: #0000FF">echo&nbsp;</span><span style="color: #000000">$url</span><span style="color: #0000FF">;&nbsp;</span><span style="color: #000000">?&gt;</span>&lt;/b&gt;&nbsp;|&nbsp;&lt;a&nbsp;href="?action=logout"&gt;Logout&lt;/a&gt;</li>
+<li></li>
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #0000FF">}</span></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><p>This page handles the session, and contains JavaScript code to read from the return URL page the setup URL, and to open a pop-up page with that setup URL.</p><p>The pop-up page (also return URL):</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #0000FF">require_once&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;no&nbsp;headers&nbsp;should&nbsp;be&nbsp;sent&nbsp;before&nbsp;calling&nbsp;$session-&gt;start()</span></li>
+<li><span style="color: #000000">$options&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationSessionOptions.html'>ezcAuthenticationSessionOptions</a></span><span style="color: #0000FF">();</span></li>
+<li><span style="color: #007700">//&nbsp;setting&nbsp;10&nbsp;seconds&nbsp;timeout&nbsp;for&nbsp;session&nbsp;for&nbsp;testing&nbsp;purposes&nbsp;only</span></li>
+<li><span style="color: #000000">$options</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">validity&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">60</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #000000">$session&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationSession.html'>ezcAuthenticationSession</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$options&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$session</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">start</span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #000000">$setupUrl&nbsp;</span><span style="color: #0000FF">=&nbsp;isset(&nbsp;</span><span style="color: #000000">$_GET</span><span style="color: #0000FF">[</span><span style="color: #335533">'openid_user_setup_url'</span><span style="color: #0000FF">]&nbsp;)&nbsp;?&nbsp;</span><span style="color: #000000">$_GET</span><span style="color: #0000FF">[</span><span style="color: #335533">'openid_user_setup_url'</span><span style="color: #0000FF">]&nbsp;:&nbsp;</span><span style="color: #000000">null</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000">$immediate&nbsp;</span><span style="color: #0000FF">=&nbsp;isset(&nbsp;</span><span style="color: #000000">$_GET</span><span style="color: #0000FF">[</span><span style="color: #335533">'immediate'</span><span style="color: #0000FF">]&nbsp;)&nbsp;?&nbsp;</span><span style="color: #000000">$_GET</span><span style="color: #0000FF">[</span><span style="color: #335533">'immediate'</span><span style="color: #0000FF">]&nbsp;:&nbsp;</span><span style="color: #000000">false</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #0000FF">if&nbsp;(&nbsp;</span><span style="color: #000000">$setupUrl&nbsp;</span><span style="color: #0000FF">!==&nbsp;</span><span style="color: #000000">null&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$urlParts&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">parse_url</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$setupUrl&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">parse_str</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$urlParts</span><span style="color: #0000FF">[</span><span style="color: #335533">'query'</span><span style="color: #0000FF">],&nbsp;</span><span style="color: #000000">$parts&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$identity&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$parts</span><span style="color: #0000FF">[</span><span style="color: #335533">'openid_identity'</span><span style="color: #0000FF">];</span></li>
+<li><span style="color: #0000FF">}</span></li>
+<li><span style="color: #0000FF">else</span></li>
+<li><span style="color: #0000FF">{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$identity&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$session</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">load</span><span style="color: #0000FF">();</span></li>
+<li><span style="color: #0000FF">}</span></li>
+<li></li>
+<li><span style="color: #000000">$url&nbsp;</span><span style="color: #0000FF">=&nbsp;isset(&nbsp;</span><span style="color: #000000">$_GET</span><span style="color: #0000FF">[</span><span style="color: #335533">'openid_identifier'</span><span style="color: #0000FF">]&nbsp;)&nbsp;?&nbsp;</span><span style="color: #000000">$_GET</span><span style="color: #0000FF">[</span><span style="color: #335533">'openid_identifier'</span><span style="color: #0000FF">]&nbsp;:&nbsp;</span><span style="color: #000000">$identity</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000">$action&nbsp;</span><span style="color: #0000FF">=&nbsp;isset(&nbsp;</span><span style="color: #000000">$_GET</span><span style="color: #0000FF">[</span><span style="color: #335533">'action'</span><span style="color: #0000FF">]&nbsp;)&nbsp;?&nbsp;</span><span style="color: #000000">strtolower</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$_GET</span><span style="color: #0000FF">[</span><span style="color: #335533">'action'</span><span style="color: #0000FF">]&nbsp;)&nbsp;:&nbsp;</span><span style="color: #000000">null</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #000000">$credentials&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationIdCredentials.html'>ezcAuthenticationIdCredentials</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$url&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$authentication&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthentication.html'>ezcAuthentication</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$credentials&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$authentication</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">session&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$session</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #0000FF">if&nbsp;(&nbsp;</span><span style="color: #000000">$action&nbsp;</span><span style="color: #0000FF">===&nbsp;</span><span style="color: #335533">'logout'&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$session</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">destroy</span><span style="color: #0000FF">();</span></li>
+<li><span style="color: #0000FF">}</span></li>
+<li><span style="color: #0000FF">else</span></li>
+<li><span style="color: #0000FF">{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$options&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationOpenidOptions.html'>ezcAuthenticationOpenidOptions</a></span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">//&nbsp;for&nbsp;checkid_immediate</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000FF">if&nbsp;(&nbsp;</span><span style="color: #000000">$immediate&nbsp;</span><span style="color: #0000FF">!==&nbsp;</span><span style="color: #000000">false&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$options</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">immediate&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">true</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;}</span></li>
+<li></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$filter&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationOpenidFilter.html'>ezcAuthenticationOpenidFilter</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$options&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">//&nbsp;it&nbsp;seems&nbsp;that&nbsp;fetching&nbsp;extra&nbsp;data&nbsp;does&nbsp;not&nbsp;work&nbsp;with&nbsp;checkid_immediate</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$filter</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">registerFetchData</span><span style="color: #0000FF">(&nbsp;array(&nbsp;</span><span style="color: #335533">'fullname'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'gender'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'country'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'language'&nbsp;</span><span style="color: #0000FF">)&nbsp;);</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$authentication</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">addFilter</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$filter&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #0000FF">}</span></li>
+<li></li>
+<li><span style="color: #0000FF">if&nbsp;(&nbsp;!</span><span style="color: #000000">$authentication</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">run</span><span style="color: #0000FF">()&nbsp;)</span></li>
+<li><span style="color: #0000FF">{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$setupUrl&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$filter</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">getSetupUrl</span><span style="color: #0000FF">();</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(&nbsp;!empty(&nbsp;</span><span style="color: #000000">$setupUrl&nbsp;</span><span style="color: #0000FF">)&nbsp;)</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">//&nbsp;the&nbsp;setup&nbsp;URL&nbsp;will&nbsp;be&nbsp;read&nbsp;by&nbsp;the&nbsp;main&nbsp;window</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000FF">echo&nbsp;</span><span style="color: #000000">$setupUrl</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;}</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;else</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #335533">'Authentication&nbsp;did&nbsp;not&nbsp;succeed.'</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;}</span></li>
+<li><span style="color: #0000FF">}</span></li>
+<li><span style="color: #0000FF">else</span></li>
+<li><span style="color: #0000FF">{</span></li>
+<li><span style="color: #000000">?&gt;</span></li>
+<li>&lt;script&nbsp;language="JavaScript"&gt;</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;inform&nbsp;the&nbsp;parent&nbsp;window&nbsp;that&nbsp;authentication&nbsp;was&nbsp;successful</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;top.opener.window.document.getElementById(&nbsp;'status'&nbsp;).innerHTML&nbsp;=&nbsp;'&lt;b&nbsp;style="color:&nbsp;#009900;"&gt;logged-in&lt;/b&gt;&nbsp;|&nbsp;&lt;a&nbsp;href="openid_ajax.php?action=logout"&gt;Logout&lt;/a&gt;';</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;window.close();</li>
+<li>&lt;/script&gt;</li>
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #0000FF">}</span></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><p>This page also contains code to handle the session, in addition to handling the OpenID authentication. It will be called 2 times:</p><ul><li><p>first by the main page, with the immediate=true query parameter. A connection to the OpenID provider is created, and a setup URL is fetched, which will be echoed to be picked up by the main page. The main page then opens the setup URL in a pop-up window.</p></li><li><p>second, by the setup URL, as the openid.return_to query parameter is set to redirect back to this page. The OpenID filter is called again, this time to check the signature in the return URL, and if it authenticates successfully, the main page is informed of this (line 80) and the pop-up window is closed. Other methods can be employed to inform the main page, and the main page can do other actions instead of just displaying a message.</p></li></ul><a name="fetch-extra-data-during-openid-authentication"></a><a name="id24"></a><h5>Fetch extra data during OpenID authentication</h5><p>Any data that is defined for an acount can be fetched. Before running the authentication process (before calling run(), register which data needs to be fetched. Example:</p><code class="block">// $filter is an <a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationOpenidFilter.html'>ezcAuthenticationOpenidFilter</a> object
+$filter-&gt;registerFetchData( array( 'fullname', 'gender', 'country',
+'language' ) );</code><p>After the authentication process is finished (after run()), retrieve the data that was registered:</p><code class="block">// $filter is an <a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationOpenidFilter.html'>ezcAuthenticationOpenidFilter</a> object
+$data = $filter-&gt;fetchData();</code><p>For the previous example, the $data array will be something like this:</p><code class="block">array( 'fullname' =&gt; array( 'John Doe' ),
+       'gender' =&gt; array( 'M' ),
+       'country' =&gt; array( 'US' ),
+       'language' =&gt; array( 'FR' )
+     );</code><p>Note: when using the immediate OpenID mode (by setting the option immediate to true), extra data cannot be fetched during authentication.</p><a name="openid-2-0"></a><a name="id25"></a><h5>OpenID 2.0</h5><p>OpenID 2.0 introduced XRDS discovery of OpenID providers. The user can enter a short URL (same for all users) and by using XRDS discovery the provider can be extracted and the user will be redirected to it, where he will authenticate using his username and password for that provider.</p><p>Here is a list with common OpenID providers and the corresponding OpenID provider URLs:</p><code class="block">Google       https://www.google.com/accounts/o8/id
+Yahoo        http://yahoo.com/
+AOL          http://openid.aol.com/{username}
+myopenid.com http://{username}.myopenid.com/
+flickr       http://flickr.com/{username}/
+technorati   http://technorati.com/people/technorati/{username}/
+wordpress    http://{username}.wordpress.com
+blogspot     http://{username}.blogspot.com/
+livejournal  http://{username}.livejournal.com
+claimid      http://claimid.com/{username}
+myvidoop     http://{username}.myvidoop.com/
+verisignlabs http://{username}.pip.verisignlabs.com/</code><p>So for example a user can login to a website by entering only <em>http://yahoo.com</em>, and the website will redirect the user to this OpenID provider where the user will enter his credentials, and then being redirected to the initial website with the user's unique OpenID URL in the redirect URL. The user's unique OpenID URL will be used by the website to identify the user. See the example in the <a href="#openid-smart-stateful-mode">OpenID "smart" (stateful) mode</a> section.</p><p>Technically the login box can be made up of buttons, one for each OpenID provider, and the user would click the one that he/she is using.</p><p>For OpenID providers which do not support this feature yet, the only possibility is to use the user's unique OpenID URL from the start.</p><a name="token"></a><a name="id26"></a><h4>Token</h4><p>The following example shows how to create a CAPTCHA test. The example is divided into 2 parts: the initial request (where the user sees the CAPTCHA image and enters the characters he sees in a form) and the follow-up request (after the user submits the form).</p><p>On the initial request:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #0000FF">require_once&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;generate&nbsp;a&nbsp;token&nbsp;and&nbsp;save&nbsp;it&nbsp;in&nbsp;the&nbsp;session&nbsp;or&nbsp;in&nbsp;a&nbsp;file/database</span></li>
+<li><span style="color: #000000">$pattern&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">"1234567890abcdefghijklmnopqrstuvwxyz"</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000">$token&nbsp;&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">""</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">for(&nbsp;</span><span style="color: #000000">$i&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">1</span><span style="color: #0000FF">;&nbsp;</span><span style="color: #000000">$i&nbsp;</span><span style="color: #0000FF">&lt;=&nbsp;</span><span style="color: #000000">6&nbsp;</span><span style="color: #0000FF">;&nbsp;</span><span style="color: #000000">$i</span><span style="color: #0000FF">++&nbsp;)</span></li>
+<li><span style="color: #0000FF">{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$token&nbsp;</span><span style="color: #0000FF">.=&nbsp;</span><span style="color: #000000">$pattern</span><span style="color: #0000FF">{</span><span style="color: #000000">rand</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">0</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">36&nbsp;</span><span style="color: #0000FF">)};</span></li>
+<li><span style="color: #0000FF">}</span></li>
+<li><span style="color: #000000">$encryptedToken&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">sha1</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$token&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;save&nbsp;the&nbsp;$encryptedToken&nbsp;in&nbsp;the&nbsp;session</span></li>
+<li><span style="color: #000000">session_start</span><span style="color: #0000FF">();</span></li>
+<li><span style="color: #000000">$_SESSION</span><span style="color: #0000FF">[</span><span style="color: #335533">'encryptedToken'</span><span style="color: #0000FF">]&nbsp;=&nbsp;</span><span style="color: #000000">$encryptedToken</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;also&nbsp;generate&nbsp;a&nbsp;distorted&nbsp;image&nbsp;which&nbsp;contains&nbsp;the&nbsp;symbols&nbsp;from&nbsp;$token&nbsp;and&nbsp;use&nbsp;it</span></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><p>A 6 characters random token is created and encrypted using sha1(). The token is saved in the session to be available in the follow-up request. An image must be generated from the unencrypted token to be displayed to the user.</p><p>On the follow-up request:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #0000FF">require_once&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;load&nbsp;the&nbsp;$encryptedToken&nbsp;as&nbsp;it&nbsp;was&nbsp;generated&nbsp;on&nbsp;a&nbsp;previous&nbsp;request</span></li>
+<li><span style="color: #000000">session_start</span><span style="color: #0000FF">();</span></li>
+<li><span style="color: #000000">$encryptedToken&nbsp;</span><span style="color: #0000FF">=&nbsp;isset(&nbsp;</span><span style="color: #000000">$_SESSION</span><span style="color: #0000FF">[</span><span style="color: #335533">'encryptedToken'</span><span style="color: #0000FF">]&nbsp;)&nbsp;?&nbsp;</span><span style="color: #000000">$_SESSION</span><span style="color: #0000FF">[</span><span style="color: #335533">'encryptedToken'</span><span style="color: #0000FF">]&nbsp;:&nbsp;</span><span style="color: #000000">null</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;also&nbsp;load&nbsp;the&nbsp;value&nbsp;entered&nbsp;by&nbsp;the&nbsp;user&nbsp;in&nbsp;response&nbsp;to&nbsp;the&nbsp;CAPTCHA&nbsp;image</span></li>
+<li><span style="color: #000000">$captcha&nbsp;</span><span style="color: #0000FF">=&nbsp;isset(&nbsp;</span><span style="color: #000000">$_POST</span><span style="color: #0000FF">[</span><span style="color: #335533">'captcha'</span><span style="color: #0000FF">]&nbsp;)&nbsp;?&nbsp;</span><span style="color: #000000">$_POST</span><span style="color: #0000FF">[</span><span style="color: #335533">'captcha'</span><span style="color: #0000FF">]&nbsp;:&nbsp;</span><span style="color: #000000">null</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #000000">$credentials&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationIdCredentials.html'>ezcAuthenticationIdCredentials</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$captcha&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$authentication&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthentication.html'>ezcAuthentication</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$credentials&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$authentication</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">addFilter</span><span style="color: #0000FF">(&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationTokenFilter.html'>ezcAuthenticationTokenFilter</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$encryptedToken</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'sha1'&nbsp;</span><span style="color: #0000FF">)&nbsp;);</span></li>
+<li><span style="color: #0000FF">if&nbsp;(&nbsp;!</span><span style="color: #000000">$authentication</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">run</span><span style="color: #0000FF">()&nbsp;)</span></li>
+<li><span style="color: #0000FF">{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">//&nbsp;CAPTCHA&nbsp;was&nbsp;incorrect,&nbsp;so&nbsp;inform&nbsp;the&nbsp;user&nbsp;to&nbsp;try&nbsp;again,&nbsp;eventually</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;by&nbsp;generating&nbsp;another&nbsp;token&nbsp;and&nbsp;CAPTCHA&nbsp;image</span></li>
+<li><span style="color: #0000FF">}</span></li>
+<li><span style="color: #0000FF">else</span></li>
+<li><span style="color: #0000FF">{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">//&nbsp;CAPTCHA&nbsp;was&nbsp;correct,&nbsp;so&nbsp;let&nbsp;the&nbsp;user&nbsp;send&nbsp;his&nbsp;spam&nbsp;or&nbsp;whatever</span></li>
+<li><span style="color: #0000FF">}</span></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><p>The token generated on the initial request is fetched from the session, and the CAPTCHA value entered by the user is fetched from the POST request.</p><p>A credentials object is created from the CAPTCHA value, and it is used to create an authentication object.</p><p>A Token filter is created from the stored encrypted token value, and it is added to the authentication object. The second argument of the Token constructor indicates that the CAPTCHA value will be hashed with sha1() before comparing it with the token value.</p><p>After calling run() on the authentication object (line 14), if the token and CAPTCHA values don't match, then the CAPTCHA test was incorrect. The developer decides how to handle this situation (user tries again, user is banned, etc).</p><p>If the values match (line 19) then it means the user passed the CAPTCHA test (or the bots managed to OCR the image).</p><a name="typekey"></a><a name="id27"></a><h4>TypeKey</h4><p>The following example shows how to authenticate against TypeKey.</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #0000FF">require_once&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;no&nbsp;headers&nbsp;should&nbsp;be&nbsp;sent&nbsp;before&nbsp;calling&nbsp;$session-&gt;start()</span></li>
+<li><span style="color: #000000">$session&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationSession.html'>ezcAuthenticationSession</a></span><span style="color: #0000FF">();</span></li>
+<li><span style="color: #000000">$session</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">start</span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;$token&nbsp;is&nbsp;used&nbsp;as&nbsp;a&nbsp;key&nbsp;in&nbsp;the&nbsp;session&nbsp;to&nbsp;store&nbsp;the&nbsp;authenticated&nbsp;state&nbsp;between&nbsp;requests</span></li>
+<li><span style="color: #000000">$token&nbsp;</span><span style="color: #0000FF">=&nbsp;isset(&nbsp;</span><span style="color: #000000">$_GET</span><span style="color: #0000FF">[</span><span style="color: #335533">'token'</span><span style="color: #0000FF">]&nbsp;)&nbsp;?&nbsp;</span><span style="color: #000000">$_GET</span><span style="color: #0000FF">[</span><span style="color: #335533">'token'</span><span style="color: #0000FF">]&nbsp;:&nbsp;</span><span style="color: #000000">$session</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">load</span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #000000">$credentials&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationIdCredentials.html'>ezcAuthenticationIdCredentials</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$token&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$authentication&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthentication.html'>ezcAuthentication</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$credentials&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$authentication</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">session&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$session</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #000000">$filter&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationTypekeyFilter.html'>ezcAuthenticationTypekeyFilter</a></span><span style="color: #0000FF">();</span></li>
+<li><span style="color: #000000">$authentication</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">addFilter</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$filter&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #007700">//&nbsp;add&nbsp;other&nbsp;filters&nbsp;if&nbsp;needed</span></li>
+<li></li>
+<li><span style="color: #0000FF">if&nbsp;(&nbsp;!</span><span style="color: #000000">$authentication</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">run</span><span style="color: #0000FF">()&nbsp;)</span></li>
+<li><span style="color: #0000FF">{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">//&nbsp;authentication&nbsp;did&nbsp;not&nbsp;succeed,&nbsp;so&nbsp;inform&nbsp;the&nbsp;user</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$status&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$authentication</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">getStatus</span><span style="color: #0000FF">();</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$err&nbsp;</span><span style="color: #0000FF">=&nbsp;array(</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #335533">'<a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationTypekeyFilter.html'>ezcAuthenticationTypekeyFilter</a>'&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;array(</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationTypekeyFilter.html#constSTATUS_SIGNATURE_INCORRECT'>ezcAuthenticationTypekeyFilter::STATUS_SIGNATURE_INCORRECT</a>&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #335533">'Signature&nbsp;returned&nbsp;by&nbsp;TypeKey&nbsp;is&nbsp;incorrect'</span><span style="color: #0000FF">,</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationTypekeyFilter.html#constSTATUS_SIGNATURE_EXPIRED'>ezcAuthenticationTypekeyFilter::STATUS_SIGNATURE_EXPIRED</a>&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #335533">'The&nbsp;signature&nbsp;returned&nbsp;by&nbsp;TypeKey&nbsp;expired'</span></li>
+<li><span style="color: #335533">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000FF">),</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #335533">'<a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationSession.html'>ezcAuthenticationSession</a>'&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;array(</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationSession.html#constSTATUS_EMPTY'>ezcAuthenticationSession::STATUS_EMPTY</a>&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #335533">''</span><span style="color: #0000FF">,</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationSession.html#constSTATUS_EXPIRED'>ezcAuthenticationSession::STATUS_EXPIRED</a>&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #335533">'Session&nbsp;expired'</span></li>
+<li><span style="color: #335533">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;foreach&nbsp;(&nbsp;</span><span style="color: #000000">$status&nbsp;</span><span style="color: #0000FF">as&nbsp;</span><span style="color: #000000">$line&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;list(&nbsp;</span><span style="color: #000000">$key</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">$value&nbsp;</span><span style="color: #0000FF">)&nbsp;=&nbsp;</span><span style="color: #000000">each</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$line&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #000000">$err</span><span style="color: #0000FF">[</span><span style="color: #000000">$key</span><span style="color: #0000FF">][</span><span style="color: #000000">$value</span><span style="color: #0000FF">]&nbsp;.&nbsp;</span><span style="color: #335533">"\n"</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;}</span></li>
+<li><span style="color: #000000">?&gt;</span></li>
+<li>&lt;form&nbsp;method="GET"&nbsp;action="https://www.typekey.com/t/typekey/login"&nbsp;onsubmit="document.getElementById('_return').value&nbsp;+=&nbsp;'?token='&nbsp;+&nbsp;document.getElementById('t').value;"&gt;</li>
+<li>TypeKey&nbsp;token:&nbsp;&lt;input&nbsp;type="text"&nbsp;name="t"&nbsp;id="t"&nbsp;/&gt;</li>
+<li>&lt;input&nbsp;type="hidden"&nbsp;name="_return"&nbsp;id="_return"&nbsp;value="http://localhost/typekey.php"&nbsp;/&gt;</li>
+<li>&lt;input&nbsp;type="submit"&nbsp;/&gt;</li>
+<li>&lt;/form&gt;</li>
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #0000FF">}</span></li>
+<li><span style="color: #0000FF">else</span></li>
+<li><span style="color: #0000FF">{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">//&nbsp;authentication&nbsp;succeeded,&nbsp;so&nbsp;allow&nbsp;the&nbsp;user&nbsp;to&nbsp;see&nbsp;his&nbsp;content</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000FF">echo&nbsp;</span><span style="color: #335533">"&lt;b&gt;Logged-in&lt;/b&gt;"</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">}</span></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><p>A session class is created and used to start the PHP session. The TypeKey token (provided by the user through a GET form) is fetched and used to create a credentials object. On subsequent requests to the page, the token is loaded from session instead of the GET form.</p><p>An authentication object is created using the credentials object, and a TypeKey filter is added to it, along with the session class.</p><p>After running the authentication (line 19), if the TypeKey server did not authorize the token, then the credentials are incorrect and the user must be informed. The getStatus() method is used for this. The values in the status returned must be cycled through and for each value a response is created for the user ("Signature incorrect", "Session expired"). At line 39 an HTML form is displayed, as example on how to attach the TypeKey token to the _return hidded field which will be sent to the TypeKey server.</p><p>If run() returned true (line 46) then the user is logged-in and he can see his content.</p><a name="fetch-extra-data-during-typekey-authentication"></a><a name="id28"></a><h5>Fetch extra data during TypeKey authentication</h5><p>The extra data that can be fetched is name (the TypeKey username), nick (the TypeKey display name) and email (the user email address). The email address can only be fetched if need_email was included in the initial request to the TypeKey server with a value other than 0, and if the user allowed the sharing of his email address. Example:</p><code class="block">https://www.typekey.com/t/typekey/login?t=&lt;token&gt;&amp;_return=&lt;url&gt;&amp;need_email=1</code><p>After the authentication process is finished (after run()), retrieve the extra data:</p><code class="block">// $filter is an <a href='/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationTypekeyFilter.html'>ezcAuthenticationTypekeyFilter</a> object
+$data = $filter-&gt;fetchData();</code><p>The $data array will be something like this:</p><code class="block">array( 'name' =&gt; array( 'john' ),
+       'nick' =&gt; array( 'John Doe' ),
+       'email' =&gt; array( 'john.doe@example.com' ) // or not set
+     );</code><a name="securing-applications"></a><a name="id29"></a><h3>Securing applications</h3><p><a href="../Authentication/security.html">Securing applications</a> - A guide to improve the security of online applications. It is not exhaustive, but it provides solutions against common attacks.</p><!--Local Variables:
+mode: rst
+fill-column: 79
+End:
+vim: et syn=rst tw=79 nocin-->
+
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

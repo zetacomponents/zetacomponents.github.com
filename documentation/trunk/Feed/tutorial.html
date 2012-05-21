@@ -1,0 +1,901 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="PHP, apache, components, framework, quality" />
+	<meta name="author" content="jerome" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Sun, 10 Jul 2011 11:10:41 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="Tutorial" />
+	<meta name="DC.creator" content="jerome" />
+	<meta name="DC.date" content="Sun, 10 Jul 2011 11:10:41 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/Feed/tutorial.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li class="requested">
+	<a href="/zetacomponents/documentation/trunk/Feed/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Feed/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Feed/specifications.html" title="Specifications ">Specifications </a>
+	</li>
+
+</ul>
+
+		<h2>eZ Components - Feed</h2><div class="toc"><h3>Table of Contents</h3><ul><li><p><a href="#introduction">Introduction</a></p><ul><li><p><a href="#description">Description</a></p></li></ul></li><li><p><a href="#xml-feeds-overview">XML feeds overview</a></p><ul><li><p><a href="#xml-feeds">XML feeds</a></p></li><li><p><a href="#modules">Modules</a></p></li><li><p><a href="#applications">Applications</a></p></li></ul></li><li><p><a href="#class-overview">Class overview</a></p><ul><li><p><a href="#base-classes">Base classes</a></p></li><li><p><a href="#supported-feed-types">Supported feed types</a></p></li><li><p><a href="#supported-feed-modules">Supported feed modules</a></p></li><li><p><a href="#feed-element-types">Feed element types</a></p></li></ul></li><li><p><a href="#how-to-create-a-feed">How to create a feed</a></p><ul><li><p><a href="#step-1-create-a-feed-object">Step 1. Create a feed object</a></p></li><li><p><a href="#step-2-add-feed-elements">Step 2. Add feed elements</a></p></li><li><p><a href="#step-3-add-an-item">Step 3. Add an item</a></p></li><li><p><a href="#step-4-add-more-items">Step 4. Add more items</a></p></li><li><p><a href="#step-5-generate-the-xml-feed">Step 5. Generate the XML feed</a></p></li><li><p><a href="#step-6-save-the-xml-feed-to-a-file">Step 6. Save the XML feed to a file</a></p></li><li><p><a href="#step-7-feed-validation">Step 7. Feed validation</a></p></li><li><p><a href="#step-8-make-the-xml-feed-accessible">Step 8. Make the XML feed accessible</a></p><ul><li><p><a href="#automatic-feed-discovery">Automatic feed discovery</a></p></li><li><p><a href="#link-to-the-feed-document">Link to the feed document</a></p></li></ul></li><li><p><a href="#feed-creator-example">Feed creator example</a></p></li></ul></li><li><p><a href="#how-to-create-an-itunes-podcast">How to create an iTunes podcast</a></p><ul><li><p><a href="#step-1-create-an-rss2-feed">Step 1. Create an RSS2 feed</a></p></li><li><p><a href="#step-2-add-itunes-feed-elements">Step 2. Add iTunes feed elements</a></p></li><li><p><a href="#id2">Step 3. Add an item</a></p></li><li><p><a href="#step-4-add-itunes-item-elements">Step 4. Add iTunes item elements</a></p></li><li><p><a href="#step-5-add-more-items">Step 5. Add more items</a></p></li><li><p><a href="#step-6-generate-the-xml-feed">Step 6. Generate the XML feed</a></p></li><li><p><a href="#step-7-submit-the-podcast-to-the-itunes-store">Step 7. Submit the podcast to the iTunes Store</a></p></li></ul></li><li><p><a href="#how-to-parse-an-xml-feed">How to parse an XML feed</a></p><ul><li><p><a href="#step-1-parse-an-xml-feed">Step 1. Parse an XML feed</a></p></li><li><p><a href="#step-2-read-the-feed-elements">Step 2. Read the feed elements</a></p></li><li><p><a href="#step-3-iterate-over-the-feed-items">Step 3. Iterate over the feed items</a></p></li></ul></li><li><p><a href="#how-to-parse-an-itunes-podcast">How to parse an iTunes podcast</a></p><ul><li><p><a href="#id3">Step 1. Parse an XML feed</a></p></li><li><p><a href="#id4">Step 2. Read the feed elements</a></p></li><li><p><a href="#step-3-read-the-itunes-feed-elements">Step 3. Read the iTunes feed elements</a></p></li><li><p><a href="#step-4-iterate-over-the-feed-items">Step 4. Iterate over the feed items</a></p></li><li><p><a href="#step-5-read-the-itunes-item-elements">Step 5. Read the iTunes item elements</a></p></li></ul></li><li><p><a href="#best-practices">Best practices</a></p><ul><li><p><a href="#universal-feed-generator">Universal feed generator</a></p></li><li><p><a href="#self-link">Self link</a></p><ul><li><p><a href="#atom">ATOM</a></p></li><li><p><a href="#rss1">RSS1</a></p></li><li><p><a href="#rss2">RSS2</a></p></li></ul></li><li><p><a href="#media-type">Media type</a></p><ul><li><p><a href="#id5">ATOM</a></p></li><li><p><a href="#id6">RSS1</a></p></li><li><p><a href="#id7">RSS2</a></p></li></ul></li></ul></li><li><p><a href="#extending-the-feed-component">Extending the Feed component</a></p><ul><li><p><a href="#register-a-new-feed-type">Register a new feed type</a></p></li><li><p><a href="#register-a-new-module">Register a new module</a></p></li></ul></li><li><p><a href="#specifications-and-rfcs">Specifications and RFCs</a></p></li></ul></div><a name="introduction"></a><a name="id8"></a><h3>Introduction</h3><a name="description"></a><a name="id9"></a><h4>Description</h4><p>The purpose of the Feed component is to handle parsing and creating RSS and ATOM feeds.</p><a name="xml-feeds-overview"></a><a name="id10"></a><h3>XML feeds overview</h3><a name="xml-feeds"></a><a name="id11"></a><h4>XML feeds</h4><p>An XML feed is an XML document with a certain structure, which lists a series of <em>entries</em> or <em>items</em>.</p><p>An example XML feed:</p><code class="block">&lt;?xml version="1.0"?&gt;
+&lt;rss version="2.0"&gt;
+&lt;channel&gt;
+  &lt;title&gt;Liftoff News&lt;/title&gt;
+  &lt;link&gt;http://liftoff.msfc.nasa.gov/&lt;/link&gt;
+  &lt;description&gt;Liftoff to Space Exploration.&lt;/description&gt;
+  &lt;language&gt;en-us&lt;/language&gt;
+  &lt;pubDate&gt;Tue, 10 Jun 2003 04:00:00 GMT&lt;/pubDate&gt;
+  &lt;webMaster&gt;webmaster@example.com&lt;/webMaster&gt;
+  &lt;item&gt;
+        &lt;title&gt;The Engine That Does More&lt;/title&gt;
+        &lt;link&gt;http://liftoff.msfc.nasa.gov/news/2003/news-VASIMR.asp&lt;/link&gt;
+        &lt;description&gt;Before man travels to Mars, NASA hopes to design new engines
+        that will let us fly through the Solar System more quickly. The proposed
+        VASIMR engine would do that.&lt;/description&gt;
+        &lt;pubDate&gt;Tue, 27 May 2003 08:37:32 GMT&lt;/pubDate&gt;
+        &lt;guid&gt;http://liftoff.msfc.nasa.gov/2003/05/27.html#item571&lt;/guid&gt;
+  &lt;/item&gt;
+  &lt;item&gt;
+        &lt;title&gt;Astronauts' Dirty Laundry&lt;/title&gt;
+        &lt;link&gt;http://liftoff.msfc.nasa.gov/news/2003/news-laundry.asp&lt;/link&gt;
+        &lt;description&gt;Compared to earlier spacecraft, the International Space Station
+        has many luxuries, but laundry facilities are not one of them. Instead,
+        astronauts have other options.&lt;/description&gt;
+        &lt;pubDate&gt;Tue, 20 May 2003 08:56:02 GMT&lt;/pubDate&gt;
+        &lt;guid&gt;http://liftoff.msfc.nasa.gov/2003/05/20.html#item570&lt;/guid&gt;
+  &lt;/item&gt;
+&lt;/channel&gt;
+&lt;/rss&gt;
+</code><p>This XML document describes an RSS2 feed, with channel elements <em>title</em>, <em>link</em>, <em>description</em>, <em>language</em>, <em>pubDate</em> and <em>webMaster</em>. The XML document also contains 2 entries (<em>item</em>), each one with the elements <em>title</em>, <em>link</em>, <em>description</em>, <em>pubDate</em> and <em>guid</em>. These elements are not the only ones present in RSS2 feeds, and some elements are not required to be present.</p><p>The Feed document allows creating and parsing such XML documents. The feed types supported by the Feed component are ATOM, RSS1 and RSS2.</p><a name="modules"></a><a name="id12"></a><h4>Modules</h4><p>XML feeds are extensible through modules. A module has a namespace and certain XML elements. An example of a feed module is iTunes, which allows creating and parsing podcasts for the <a href="http://www.apple.com/itunes/">iTunes</a> media player.</p><p>Example of feed (podcast) with the iTunes module:</p><code class="block">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;rss xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" version="2.0"&gt;
+&lt;channel&gt;
+  &lt;title&gt;All About Everything&lt;/title&gt;
+  &lt;link&gt;http://www.example.com/podcasts/everything/index.html&lt;/link&gt;
+  &lt;description&gt;All About Everything is a show about everything. Each week we dive
+  into any subject known to man and talk about it as much as we can. Look for our
+  Podcast in the iTunes Music Store&lt;/description&gt;
+  &lt;itunes:subtitle&gt;A show about everything&lt;/itunes:subtitle&gt;
+  &lt;itunes:author&gt;John Doe&lt;/itunes:author&gt;
+  &lt;itunes:summary&gt;All About Everything is a show about everything. Each week we dive
+  into any subject known to man and talk about it as much as we can. Look for our
+  Podcast in the iTunes Music Store&lt;/itunes:summary&gt;
+  &lt;itunes:image href="http://example.com/podcasts/everything/AllAboutEverything.jpg" /&gt;
+  &lt;itunes:category text="Technology"&gt;
+    &lt;itunes:category text="Gadgets"/&gt;
+  &lt;/itunes:category&gt;
+  &lt;itunes:category text="TV &amp;amp; Film"/&gt;
+
+  &lt;item&gt;
+    &lt;title&gt;Shake Shake Shake Your Spices&lt;/title&gt;
+    &lt;enclosure url="http://example.com/podcasts/everything/AllAboutEverythingEpisode3.m4a" length="8727310" type="audio/x-m4a" /&gt;
+    &lt;guid&gt;http://example.com/podcasts/archive/aae20050615.m4a&lt;/guid&gt;
+    &lt;pubDate&gt;Wed, 15 Jun 2005 19:00:00 GMT&lt;/pubDate&gt;
+    &lt;itunes:author&gt;John Doe&lt;/itunes:author&gt;
+    &lt;itunes:subtitle&gt;A short primer on table spices&lt;/itunes:subtitle&gt;
+    &lt;itunes:summary&gt;This week we talk about salt and pepper shakers, comparing and
+        contrasting pour rates, construction materials, and overall aesthetics. Come
+        and join the party!&lt;/itunes:summary&gt;
+    &lt;itunes:duration&gt;7:04&lt;/itunes:duration&gt;
+    &lt;itunes:keywords&gt;salt, pepper, shaker, exciting&lt;/itunes:keywords&gt;
+  &lt;/item&gt;
+ 
+  &lt;item&gt;
+    &lt;title&gt;Red, Whine, &amp;amp; Blue&lt;/title&gt;
+    &lt;enclosure url="http://example.com/podcasts/everything/AllAboutEverythingEpisode1.mp3" length="4989537" type="audio/mpeg" /&gt;
+    &lt;guid&gt;http://example.com/podcasts/archive/aae20050601.mp3&lt;/guid&gt;
+    &lt;pubDate&gt;Wed, 1 Jun 2005 19:00:00 GMT&lt;/pubDate&gt;
+    &lt;itunes:author&gt;Various&lt;/itunes:author&gt;
+    &lt;itunes:subtitle&gt;Red + Blue != Purple&lt;/itunes:subtitle&gt;
+    &lt;itunes:summary&gt;This week we talk about surviving in a Red state if you are a
+        Blue person. Or vice versa.&lt;/itunes:summary&gt;
+    &lt;itunes:duration&gt;3:59&lt;/itunes:duration&gt;
+    &lt;itunes:keywords&gt;politics, red, blue, state&lt;/itunes:keywords&gt;
+  &lt;/item&gt;
+&lt;/channel&gt;
+&lt;/rss&gt;
+</code><p>The elements of the iTunes module are the ones with <code class="inline">itunes:</code> in the element name. They describe the feed (<em>subtitle</em>, <em>author</em>, <em>summary</em>, <em>image</em>, <em>category</em>) and the items (called episodes) in the feed (<em>author</em>, <em>subtitle</em>, <em>summary</em>, <em>duration</em>, <em>keywords</em>). These iTunes elements are not the only ones present in iTunes podcasts.</p><a name="applications"></a><a name="id13"></a><h4>Applications</h4><p>XML feeds can be used in many applications:</p><ul><li><p><strong>content aggregation</strong> - blogs or journals can provide their content in an XML feed form. Subscribers to a feed are able to view content aggregated from  multiple websites in one location, using an <a href="http://en.wikipedia.org/wiki/List_of_feed_aggregators">aggregator</a> software program.</p></li><li><p><strong>news</strong> - websites can provide news in a feed format. The advantage is that users do not need to check a website or subscribe to newsletters, but instead can have news from multiple sources in their <a href="http://en.wikipedia.org/wiki/List_of_feed_aggregators">aggregator</a> program.</p></li><li><p><strong>podcasts</strong> - XML feeds can have <em>enclosures</em>, which are links to media files (audio, video, pdf, etc). Some <a href="http://en.wikipedia.org/wiki/List_of_feed_aggregators">aggregator</a> programs or the <a href="http://www.apple.com/itunes/">iTunes</a> media player can download automatically these media files when they become available.</p></li></ul><a name="class-overview"></a><a name="id14"></a><h3>Class overview</h3><p>An overview of the most important classes in the Feed component.</p><a name="base-classes"></a><a name="id15"></a><h4>Base classes</h4><dl><dt>ezcFeed</dt><dd>Defines a feed object of a specified type. Can be created from scratch or from an existing XML document (with autodetection of type). It can be generated into an XML document.</dd><dt>ezcFeedElement</dt><dd>Base class for all feed element types.</dd><dt>ezcFeedModule</dt><dd>Base class for all feed modules.</dd></dl><a name="supported-feed-types"></a><a name="id16"></a><h4>Supported feed types</h4><p>A feed has a type (eg. RSS1, RSS2 or ATOM). The feed type defines which processor is used to parse and generate that type. The following feed processors are supported by the Feed component:</p><ul><li><p><strong>ATOM</strong> (<a href='/zetacomponents/documentation/trunk/Feed/phpdoc/ezcFeedAtom.html'>ezcFeedAtom</a>) - <a href="http://atompub.org/rfc4287.html">RFC 4287</a></p></li><li><p><strong>RSS1</strong> (<a href='/zetacomponents/documentation/trunk/Feed/phpdoc/ezcFeedRss1.html'>ezcFeedRss1</a>) - (RDF Site Summary) <a href="http://web.resource.org/rss/1.0/spec">Specifications</a></p></li><li><p><strong>RSS2</strong> (<a href='/zetacomponents/documentation/trunk/Feed/phpdoc/ezcFeedRss2.html'>ezcFeedRss2</a>) - (Really Simple Syndication) - <a href="http://www.rssboard.org/rss-specification">Specifications</a></p></li></ul><p>A new processor can be defined by creating a class which extends the class <a href='/zetacomponents/documentation/trunk/Feed/phpdoc/ezcFeedProcessor.html'>ezcFeedProcessor</a> and implements the interface <a href='/zetacomponents/documentation/trunk/Feed/phpdoc/ezcFeedParser.html'>ezcFeedParser</a>. The new class needs to be added to the supported feed types list by calling the <a href='/zetacomponents/documentation/trunk/Feed/phpdoc/ezcFeed.html#registerFeed'>ezcFeed::registerFeed</a>() function.</p><a name="supported-feed-modules"></a><a name="id17"></a><h4>Supported feed modules</h4><p>The following modules are supported by the Feed component:</p><ul><li><p><strong>Content</strong> (<a href='/zetacomponents/documentation/trunk/Feed/phpdoc/ezcFeedContentModule.html'>ezcFeedContentModule</a>) - <a href="http://purl.org/rss/1.0/modules/content/">Specifications</a></p></li><li><p><strong>CreativeCommons</strong> (<a href='/zetacomponents/documentation/trunk/Feed/phpdoc/ezcFeedCreativeCommonsModule.html'>ezcFeedCreativeCommonsModule</a>) - <a href="http://backend.userland.com/creativeCommonsRssModule">Specifications</a></p></li><li><p><strong>DublinCore</strong> (<a href='/zetacomponents/documentation/trunk/Feed/phpdoc/ezcFeedDublinCoreModule.html'>ezcFeedDublinCoreModule</a>) - <a href="http://dublincore.org/documents/dces/">Specifications</a></p></li><li><p><strong>Geo</strong> (<a href='/zetacomponents/documentation/trunk/Feed/phpdoc/ezcFeedGeoModule.html'>ezcFeedGeoModule</a>) - <a href="http://www.w3.org/2003/01/geo/">Specifications</a></p></li><li><p><strong>iTunes</strong> (<a href='/zetacomponents/documentation/trunk/Feed/phpdoc/ezcFeedITunesModule.html'>ezcFeedITunesModule</a>) - <a href="http://www.apple.com/itunes/store/podcaststechspecs.html">Specifications</a></p></li></ul><p>A new module can be defined by creating a class which extends the class <a href='/zetacomponents/documentation/trunk/Feed/phpdoc/ezcFeedModule.html'>ezcFeedModule</a>. The new class needs to be added to the supported modules list by calling the <a href='/zetacomponents/documentation/trunk/Feed/phpdoc/ezcFeed.html#registerModule'>ezcFeed::registerModule</a>() function.</p><a name="feed-element-types"></a><a name="id18"></a><h4>Feed element types</h4><p>The following element types are implemented in the Feed component (extending the class <a href='/zetacomponents/documentation/trunk/Feed/phpdoc/ezcFeedElement.html'>ezcFeedElement</a>):</p><ul><li><p><strong>item</strong> (<a href='/zetacomponents/documentation/trunk/Feed/phpdoc/ezcFeedEntryElement.html'>ezcFeedEntryElement</a>) - specifies a feed item (entry) with the sub-elements <em>author</em>, <em>category</em>, <em>comments</em>, <em>content</em>, <em>contributor</em>, <em>copyright</em>, <em>description</em>, <em>enclosure</em>, <em>id</em>, <em>link</em>, <em>published</em>, <em>title</em>, <em>updated</em>, <em>source</em></p></li><li><p><strong>category</strong> (<a href='/zetacomponents/documentation/trunk/Feed/phpdoc/ezcFeedCategoryElement.html'>ezcFeedCategoryElement</a>) - specifies a category with the attributes <em>term</em>, <em>scheme</em>, <em>label</em> and <em>category</em> (for iTunes subcategories).</p></li><li><p><strong>cloud</strong> (<a href='/zetacomponents/documentation/trunk/Feed/phpdoc/ezcFeedCloudElement.html'>ezcFeedCloudElement</a>) - specifies an RSS2 cloud element with the attributes <em>domain</em>, <em>port</em>, <em>path</em>, <em>registerProcedure</em>, <em>protocol</em></p></li><li><p><strong>content</strong> (<a href='/zetacomponents/documentation/trunk/Feed/phpdoc/ezcFeedContentElement.html'>ezcFeedContentElement</a>) - specifies an ATOM content element with the attributes <em>text</em>, <em>type</em>, <em>language</em>, <em>src</em></p></li><li><p><strong>date</strong> (<a href='/zetacomponents/documentation/trunk/Feed/phpdoc/ezcFeedDateElement.html'>ezcFeedDateElement</a>) - specifies a date element with the attribute <em>date</em>. The date is stored as a DateTime object (assigning an integer timestamp or a formatted date works as well)</p></li><li><p><strong>enclosure</strong> (<a href='/zetacomponents/documentation/trunk/Feed/phpdoc/ezcFeedEnclosureElement.html'>ezcFeedEnclosureElement</a>) - specifies an RSS2 enclosure element with the attributes <em>url</em>, <em>type</em>, <em>length</em>. Converted to an <a href='/zetacomponents/documentation/trunk/Feed/phpdoc/ezcFeedLinkElement.html'>ezcFeedLinkElement</a> when generating an ATOM feed.</p></li><li><p><strong>generator</strong> (<a href='/zetacomponents/documentation/trunk/Feed/phpdoc/ezcFeedGeneratorElement.html'>ezcFeedGeneratorElement</a>) - specifies a generator element with the attributes <em>name</em>, <em>url</em>, <em>version</em></p></li><li><p><strong>id</strong> (<a href='/zetacomponents/documentation/trunk/Feed/phpdoc/ezcFeedIdElement.html'>ezcFeedIdElement</a>) - specifies an identifier element with the attributes <em>id</em>, <em>isPermaLink</em></p></li><li><p><strong>image</strong> (<a href='/zetacomponents/documentation/trunk/Feed/phpdoc/ezcFeedImageElement.html'>ezcFeedImageElement</a>) - specifies an image with the attributes <em>link</em>, <em>title</em>, <em>url</em> (RSS1 and RSS2), <em>description</em>, <em>width</em>, <em>height</em> (RSS2 only), <em>about</em> (RSS1 only)</p></li><li><p><strong>language</strong> (<a href='/zetacomponents/documentation/trunk/Feed/phpdoc/ezcFeedTextElement.html'>ezcFeedTextElement</a>) - specifies a language for the feed, one of <a href="http://www.rssboard.org/rss-language-codes">RSS language codes</a>. It is rendered as an <em>xml:lang</em> attribute in XML for ATOM and RSS1 feeds, and as a <em>language</em> element for RSS2 feeds. For item elements it will always be rendered as an <em>xml:lang</em> attribute in all feed types.</p></li><li><p><strong>link</strong> (<a href='/zetacomponents/documentation/trunk/Feed/phpdoc/ezcFeedLinkElement.html'>ezcFeedLinkElement</a>) - specifies a link with the attributes <em>href</em>, <em>rel</em>, <em>hreflang</em>, <em>title</em>, <em>type</em>, <em>length</em></p></li><li><p><strong>person</strong> (<a href='/zetacomponents/documentation/trunk/Feed/phpdoc/ezcFeedPersonElement.html'>ezcFeedPersonElement</a>) - specifies a person with the attributes <em>name</em>, <em>email</em>, <em>uri</em> (ATOM only)</p></li><li><p><strong>skipDays</strong> (<a href='/zetacomponents/documentation/trunk/Feed/phpdoc/ezcFeedSkipDaysElement.html'>ezcFeedSkipDaysElement</a>) - specifies an RSS2 skipDays element with the attributes <em>days</em></p></li><li><p><strong>skipHours</strong> (<a href='/zetacomponents/documentation/trunk/Feed/phpdoc/ezcFeedSkipHoursElement.html'>ezcFeedSkipHoursElement</a>) - specifies an RSS2 skipHours element with the attributes <em>hours</em></p></li><li><p><strong>source</strong> (<a href='/zetacomponents/documentation/trunk/Feed/phpdoc/ezcFeedSourceElement.html'>ezcFeedSourceElement</a>) - specifies a source element with the RSS2 attributes <em>source</em> and <em>url</em>, and ATOM elements <em>title</em>, <em>description</em>, <em>copyright</em>, <em>author</em>, <em>contributor</em>, <em>updated</em>, <em>generator</em>, <em>image</em>, <em>icon</em>, <em>id</em>, <em>link</em>, <em>category</em></p></li><li><p><strong>text</strong> (<a href='/zetacomponents/documentation/trunk/Feed/phpdoc/ezcFeedTextElement.html'>ezcFeedTextElement</a>) - specifies a text with the attributes <em>text</em>, <em>type</em> (ATOM only), <em>language</em> (ATOM only)</p></li><li><p><strong>textInput</strong> (<a href='/zetacomponents/documentation/trunk/Feed/phpdoc/ezcFeedTextInputElement.html'>ezcFeedTextInputElement</a>) - specifies an RSS1 and RSS2 text input element with the attributes <em>name</em>, <em>link</em>, <em>title</em>, <em>description</em>, <em>about</em> (RSS1 only)</p></li></ul><p>Assigning values to feed elements should be done in a way that will not break the resulting XML document. In other words, encoding of special characters to HTML entities is not done by default, and the developer is responsible with calling htmlentities() himself when assigning values to feed elements. Example: if the feed title contains the <code class="inline">&amp;</code> character, it is the responsability of the developer to encode it properly as <code class="inline">&amp;amp;</code>.</p><a name="how-to-create-a-feed"></a><a name="id19"></a><h3>How to create a feed</h3><p>This part of the tutorial will show you step by step how to create an RSS2 feed which handles the news on a website. Creating an ATOM or RSS1 is similar, although some code needs to be changed. See the <a href="#feed-creator-example">Feed creator example</a> for a sample application which can be used to create simple XML feeds of any type (ATOM, RSS1 or RSS2) by providing a simple text file as input.</p><p>The information which we want to show in the feed is:</p><ul><li><p>the <em>title</em> of the feed: <code class="inline">eZ news feed</code></p></li><li><p>a <em>description</em> of the feed: <code class="inline">This RSS feed contains news feeds for eZ
+Publish and eZ Components.</code></p></li><li><p>a <em>published</em> date (called <em>pubDate</em> in RSS2) for the feed: <code class="inline">Wed, 05 Mar 2008 14:28:45 +0000</code></p></li><li><p>an <em>author</em> (called <em>managerEditor</em> in RSS2): <code class="inline">nospam@ez.no (Derick)</code> (this is the recommended way to specify an author in RSS2, with an email address and the name of the person in paranthesis)</p></li><li><p>a <em>link</em> to our website: <code class="inline">http://ez.no/</code></p></li><li><p>the news <em>items</em> (a short story about each product release)</p></li></ul><p>A news item can be defined by these elements (example for one news item):</p><ul><li><p>the <em>title</em> of the news item: <code class="inline">eZ Components 2007.1 released</code></p></li><li><p>a short <em>description</em> of the news item: <code class="inline">The new release of eZ Components
+include Workflow, Authentication...</code></p></li><li><p>a <em>published</em> date (called <em>pubDate</em> in RSS2) for the news item: <code class="inline">Mon, 02 Jul 2007 11:36:45 +0000</code></p></li><li><p>an <em>author</em> of the news item: <code class="inline">nospam@ez.no (Derick)</code> (this is the recommended way to specify an author in RSS2, with an email address and the name of the person in paranthesis)</p></li><li><p>a <em>link</em> to the detailed article on our website: <code class="inline">http://ezcomponents.org/resources/news/news-2007-07-02</code> (this will show in most <a href="http://en.wikipedia.org/wiki/List_of_feed_aggregators">aggregator</a> programs as a <code class="inline">Complete story</code> link)</p></li></ul><a name="step-1-create-a-feed-object"></a><a name="id20"></a><h4>Step 1. Create a feed object</h4><p>A feed object can be created by calling the constructor with the optional feed type (<code class="inline">atom</code>, <code class="inline">rss1</code> or <code class="inline">rss2</code>). In our case we create an generic feed:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #007700">//&nbsp;use&nbsp;eZ&nbsp;Components&nbsp;autoload&nbsp;mechanism</span></li>
+<li><span style="color: #0000FF">require_once&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #000000">$feed&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Feed/phpdoc/ezcFeed.html'>ezcFeed</a></span><span style="color: #0000FF">();</span></li>
+<span style="color: #000000">?&gt;</span>
+</ol><p>The type of the resulting XML feed document will be specified in <a href="#step-5-generate-the-xml-feed">Step 5. Generate the XML feed</a>.</p><a name="step-2-add-feed-elements"></a><a name="id21"></a><h4>Step 2. Add feed elements</h4><p>We add the <em>title</em>, <em>description</em> and <em>author</em> to the feed:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #000000">$feed</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">title&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">'eZ&nbsp;news&nbsp;feed'</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000">$feed</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">description&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">'This&nbsp;RSS&nbsp;feed&nbsp;contains&nbsp;news&nbsp;feeds&nbsp;for&nbsp;eZ&nbsp;Publish&nbsp;and&nbsp;eZ&nbsp;Components'</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000">$feed</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">published&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">'Wed,&nbsp;05&nbsp;Mar&nbsp;2008&nbsp;14:28:45&nbsp;+0000'</span><span style="color: #0000FF">;</span></li>
+<span style="color: #000000">?&gt;</span>
+</ol><p>Because some feed types support multiple <em>link</em> and <em>author</em> elements, multiple elements of this type can be added to a feed (although this is not fully supported by RSS2 <a href="http://www.rssboard.org/rss-specification">Specifications</a> or by <a href="http://en.wikipedia.org/wiki/List_of_feed_aggregators">aggregator</a> programs).</p><p>The way to add an element which can appear multiple times, or an element which supports attributes, is to call the method <strong>add()</strong> from <a href='/zetacomponents/documentation/trunk/Feed/phpdoc/ezcFeed.html'>ezcFeed</a> or <a href='/zetacomponents/documentation/trunk/Feed/phpdoc/ezcFeedElement.html'>ezcFeedElement</a> classes. The attributes of the element are set as simple properties (the way <strong>$feed-&gt;title</strong> is set).</p><p>So to add a <em>author</em> element to our feed, we will do:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #000000">$author&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$feed</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">add</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'author'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$author</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">name&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">'Derick'</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000">$author</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">email&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">'nospam@ez.no'</span><span style="color: #0000FF">;</span></li>
+<span style="color: #000000">?&gt;</span>
+</ol><p>In the above example. $author is an object of type <a href='/zetacomponents/documentation/trunk/Feed/phpdoc/ezcFeedPersonElement.html'>ezcFeedPersonElement</a>. Other properties can be set on it (<em>uri</em>) which are mainly used for ATOM feeds. When generating an RSS2 feed, the generated XML element will look like this (from the values added to the $author object above):</p><code class="block">&lt;managingEditor&gt;nospam@ez.no (Derick)&lt;/managingEditor&gt;</code><p>In ATOM it will look like this:</p><code class="block">&lt;author&gt;
+  &lt;name&gt;Derick&lt;/name&gt;
+  &lt;email&gt;nospam@ez.no&lt;/email&gt;
+&lt;/author&gt;</code><p>To add a <em>link</em> element to our feed, we will do:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #000000">$link&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$feed</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">add</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'link'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$link</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">href&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">'http://ez.no/'</span><span style="color: #0000FF">;</span></li>
+<span style="color: #000000">?&gt;</span>
+</ol><p>In the above example. $link is an object of type <a href='/zetacomponents/documentation/trunk/Feed/phpdoc/ezcFeedLinkElement.html'>ezcFeedLinkElement</a>. Other properties can be set on it (<em>title</em>, <em>rel</em>, <em>hreflang</em>, <em>type</em>, <em>length</em>) which are mainly used for ATOM feeds.</p><a name="step-3-add-an-item"></a><a name="id22"></a><h4>Step 3. Add an item</h4><p>A feed <em>item</em> is an element which can appear multiple times, so it is added via the method <strong>add()</strong> of <a href='/zetacomponents/documentation/trunk/Feed/phpdoc/ezcFeed.html'>ezcFeed</a>:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #000000">$item&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$feed</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">add</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'item'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<span style="color: #000000">?&gt;</span>
+</ol><p>Next we add the <em>title</em>, <em>description</em> and <em>author</em> elements to the news item:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #000000">$item</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">title&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">'eZ&nbsp;Components&nbsp;2007.1&nbsp;released'</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000">$item</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">description&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">'The&nbsp;new&nbsp;release&nbsp;of&nbsp;eZ&nbsp;Components&nbsp;include&nbsp;Workflow,&nbsp;Authentication...'</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000">$item</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">published&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">'Mon,&nbsp;02&nbsp;Jul&nbsp;2007&nbsp;11:36:45&nbsp;+0000'</span><span style="color: #0000FF">;</span></li>
+<span style="color: #000000">?&gt;</span>
+</ol><p>We add the <em>link</em> and <em>author</em> elements to the news item in the same way as for the feed:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #000000">$author&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$item</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">add</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'author'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$author</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">name&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">'Derick'</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000">$author</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">email&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">'nospam@ez.no'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #000000">$link&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$item</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">add</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'link'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$link</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">href&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">'http://ezcomponents.org/resources/news/news-2007-07-02'</span><span style="color: #0000FF">;</span></li>
+<span style="color: #000000">?&gt;</span>
+</ol><a name="step-4-add-more-items"></a><a name="id23"></a><h4>Step 4. Add more items</h4><p>To add more news items to our feed, we repeat the step 3 as many times as needed.</p><a name="step-5-generate-the-xml-feed"></a><a name="id24"></a><h4>Step 5. Generate the XML feed</h4><p>To create the XML feed from the $feed object, we call the <strong>generate()</strong> method of <a href='/zetacomponents/documentation/trunk/Feed/phpdoc/ezcFeed.html'>ezcFeed</a>:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #000000">$xml&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$feed</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">generate</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'rss2'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<span style="color: #000000">?&gt;</span>
+</ol><p>After running this line, $xml will contain the XML string of the feed (in case no exceptions were thrown due to required elements not being present).</p><p>This is the string from $xml with 3 news items:</p><code class="block">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;rss version="2.0"&gt;
+  &lt;channel&gt;
+    &lt;title&gt;eZ news feed&lt;/title&gt;
+    &lt;link&gt;http://ez.no/&lt;/link&gt;
+    &lt;description&gt;This RSS feed contains news feeds for eZ Publish and eZ Components.&lt;/description&gt;
+    &lt;managingEditor&gt;nospam@ez.no (Derick)&lt;/managingEditor&gt;
+    &lt;pubDate&gt;Wed, 05 Mar 2008 14:28:45 +0000&lt;/pubDate&gt;
+    &lt;lastBuildDate&gt;Thu, 22 May 2008 08:45:26 +0000&lt;/lastBuildDate&gt;
+    &lt;generator&gt;eZ Components Feed dev (http://ezcomponents.org/docs/tutorials/Feed)&lt;/generator&gt;
+    &lt;docs&gt;http://www.rssboard.org/rss-specification&lt;/docs&gt;
+    &lt;item&gt;
+      &lt;title&gt;eZ Components 2007.1 released&lt;/title&gt;
+      &lt;link&gt;http://ezcomponents.org/resources/news/news-2007-07-02&lt;/link&gt;
+      &lt;description&gt;The new release of eZ Components include Workflow, Authentication...&lt;/description&gt;
+      &lt;author&gt;nospam@ez.no (Derick)&lt;/author&gt;
+      &lt;guid isPermaLink="true"&gt;http://ezcomponents.org/resources/news/news-2007-07-02&lt;/guid&gt;
+      &lt;pubDate&gt;Mon, 02 Jul 2007 11:36:45 +0000&lt;/pubDate&gt;
+    &lt;/item&gt;
+    &lt;item&gt;
+      &lt;title&gt;eZ Publish 4.0 released&lt;/title&gt;
+      &lt;link&gt;http://ez.no/company/news/first_stable_ez_publish_4_0_release_for_php_5&lt;/link&gt;
+      &lt;description&gt;The new release of eZ Publish is based on PHP 5....&lt;/description&gt;
+      &lt;author&gt;nospam@ez.no (Ole)&lt;/author&gt;
+      &lt;guid isPermaLink="true"&gt;http://ez.no/company/news/first_stable_ez_publish_4_0_release_for_php_5&lt;/guid&gt;
+      &lt;pubDate&gt;Tue, 03 Jul 2007 16:59:00 +0000&lt;/pubDate&gt;
+    &lt;/item&gt;
+    &lt;item&gt;
+      &lt;title&gt;eZ Find 1.0 released&lt;/title&gt;
+      &lt;link&gt;http://ez.no/ezfind/news/ez_find_1_0_2_for_ez_publish_3_10_and_ez_find_1_0_0beta2_for_ez_publish_4_0_released&lt;/link&gt;
+      &lt;description&gt;A new product in the eZ family of open-source solutions...&lt;/description&gt;
+      &lt;author&gt;nospam@ez.no (Kåre)&lt;/author&gt;
+      &lt;guid isPermaLink="true"&gt;http://ez.no/ezfind/news/ez_find_1_0_2_for_ez_publish_3_10_and_ez_find_1_0_0beta2_for_ez_publish_4_0_released&lt;/guid&gt;
+      &lt;pubDate&gt;Wed, 04 Jul 2007 14:35:00 +0000&lt;/pubDate&gt;
+    &lt;/item&gt;
+  &lt;/channel&gt;
+&lt;/rss&gt;
+</code><p>Some elements were added automatically, namely <em>lastBuildDate</em> (current system time at generation time), <em>generator</em> (<code class="inline">eZ Components Feed</code> along with the version of the Feed component (<code class="inline">dev</code>) and a link to this tutorial) and <em>docs</em> (<code class="inline">http://www.rssboard.org/rss-specification</code> - a link to the RSS2 <a href="http://www.rssboard.org/rss-specification">Specifications</a>).</p><p>If you want to generate ATOM and RSS1 feed documents at this step, you can call <strong>generate()</strong> with <code class="inline">atom</code> and <code class="inline">rss1</code> respectively as arguments. As some elements are required for ATOM and RSS1, you might receive an exception. In this case add the required elements and call <strong>generate()</strong> again.</p><a name="step-6-save-the-xml-feed-to-a-file"></a><a name="id25"></a><h4>Step 6. Save the XML feed to a file</h4><p>The generated XML feed needs to be saved in a file in order to be made accessible to users of your website:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #000000">file_put_contents</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'feeds/news.xml'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">$xml&nbsp;</span><span style="color: #0000FF">);</span></li>
+<span style="color: #000000">?&gt;</span>
+</ol><p>Assuming that our host is <code class="inline">ez.no</code>, this will be the location of our newly created XML feed: <code class="inline">http://ez.no/feeds/news.xml</code>.</p><p>You can also output the XML directly, while setting the HTTP Content-Type header:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #000000">$xml&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$feed</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">generate</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'rss2'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">header</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'Content-Type:&nbsp;'&nbsp;</span><span style="color: #0000FF">.&nbsp;</span><span style="color: #000000">$feed</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">getContentType</span><span style="color: #0000FF">()&nbsp;.&nbsp;</span><span style="color: #335533">';&nbsp;charset=utf-8'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #0000FF">echo&nbsp;</span><span style="color: #000000">$xml</span><span style="color: #0000FF">;</span></li>
+<span style="color: #000000">?&gt;</span>
+</ol><p>Assuming that this script is kept in <code class="inline">http://ez.no/feeds/news.php</code>, when opening this URL in a web browser, the XML will be output with the content-type <em>application/rss+xml</em>. If the browser is configured properly to handle this content-type, it will open the feed aggregator software program, otherwise it will ask the user which application to use for that content-type.</p><a name="step-7-feed-validation"></a><a name="id26"></a><h4>Step 7. Feed validation</h4><p>Use a <a href="http://validator.w3.org/feed/">feed validator</a> to validate your newly created feed. Some warnings can appear, but unless the feed is not validated, it should be parseable by most applications and <a href="http://en.wikipedia.org/wiki/List_of_feed_aggregators">aggregator</a> programs.</p><a name="step-8-make-the-xml-feed-accessible"></a><a name="id27"></a><h4>Step 8. Make the XML feed accessible</h4><p>There are some methods to let the user know that a website provides an XML feed, so that the user can save the feed link in his feed <a href="http://en.wikipedia.org/wiki/List_of_feed_aggregators">aggregator</a>.</p><a name="automatic-feed-discovery"></a><a name="id28"></a><h5>Automatic feed discovery</h5><p>In the HTML source of every page add this line for RSS1 or RSS2 feeds:</p><code class="block">&lt;link rel="alternate"
+      type="application/rss+xml"
+      href="http://ez.no/feeds/news.xml"
+      title="eZ news feed" /&gt;</code><p>Or this line for ATOM feeds:</p><code class="block">&lt;link rel="alternate"
+      type="application/atom+xml"
+      href="http://ez.no/feeds/news.xml"
+      title="eZ news feed" /&gt;</code><p>In modern browsers the user will be informed (usually via a small icon like <img alt="feed icon" title="feed icon" src="img/feed-icon-14x14.png"/> in one corner of the browser or in the address bar) that the current page has a web feed. If the user clicks on this icon his feed aggregator client will start and save the link to the feed in its database (if the user's system has a feed aggregator client and is configured to handle <code class="inline">application/rss+xml</code> and <code class="inline">application/atom+xml</code> content with the aggregator).</p><p>Multiple feeds can be added to the same page (for example you can provide ATOM and RSS2 feeds). Note: some browsers might not recognize the non-standard <code class="inline">application/rss+xml</code> type and select the ATOM feed by default.</p><p>The <em>title</em> attribute of the <em>link</em> HTML tag can be used to differentiate between multiple feeds (for example <code class="inline">News</code>, <code class="inline">Latest offers</code>, etc).</p><a name="link-to-the-feed-document"></a><a name="id29"></a><h5>Link to the feed document</h5><p>In the HTML source of every page (usually in the header and/or footer) add this line for RSS1 or RSS2 feeds:</p><code class="block">&lt;a type="application/rss+xml"
+   href="http://ez.no/feeds/news.xml"
+   title="eZ news feed"&gt;RSS feed&lt;/a&gt;</code><p>Or this line for ATOM feeds:</p><code class="block">&lt;a type="application/atom+xml"
+   href="http://ez.no/feeds/news.xml"
+   title="eZ news feed"&gt;ATOM feed&lt;/a&gt;</code><p>The user can drag this link to his feed <a href="http://en.wikipedia.org/wiki/List_of_feed_aggregators">aggregator</a>, where it will be added to the aggregator's database of feeds.</p><p>It is customary to add the feed icon <img alt="feed icon" title="feed icon" src="img/feed-icon-14x14.png"/> next to a feed link, so that the user finds the feed link easier on the page. See this <a href="http://www.mozilla.org/foundation/feed-icon-guidelines/">Mozilla</a> page for more information about the feed icon.</p><a name="feed-creator-example"></a><a name="id30"></a><h4>Feed creator example</h4><p>In the sub-directory <code class="inline">Feed/docs/examples</code> there is a <strong>feed_creator</strong> application which can be used to create simple XML feeds from minimal text files.</p><p>The structure of the text files accepted by this application is:</p><code class="block">Feed title
+Feed link
+Feed published date
+Feed author name
+Feed author email
+Feed description
+
+Item 1 title
+Item 1 link
+Item 1 published date
+Item 1 author name
+Item 1 author email
+Item 1 description
+
+Item 2 title
+Item 2 link
+Item 2 published date
+Item 2 author name
+Item 2 author email
+Item 2 description
+
+.. etc</code><p>An example of an input text file:</p><code class="block">eZ news feed
+http://ez.no/
+Wed, 05 Mar 2008 14:28:45 +0000
+Derick
+nospam@ez.no
+This RSS feed contains news feeds for eZ Publish and eZ Components.
+
+eZ Components 2007.1 released
+http://ezcomponents.org/resources/news/news-2007-07-02
+Mon, 02 Jul 2007 11:36:45 +0000
+Derick
+nospam@ez.no
+The new release of eZ Components include Workflow, Authentication...
+
+eZ Publish 4.0 released
+http://ez.no/company/news/first_stable_ez_publish_4_0_release_for_php_5
+Tue, 03 Jul 2007 16:59:00 +0000
+Ole
+nospam@ez.no
+The new release of eZ Publish is based on PHP 5....
+
+eZ Find 1.0 released
+http://ez.no/ezfind/news/ez_find_1_0_2_for_ez_publish_3_10_and_ez_find_1_0_0beta2_for_ez_publish_4_0_released
+Wed, 04 Jul 2007 14:35:00 +0000
+Kåre
+nospam@ez.no
+A new product in the eZ family of open-source solutions...
+</code><p>The <strong>feed_creator</strong> application will read an input file with the above structure and output an XML feed of the chosen type (<code class="inline">rss1</code>, <code class="inline">rss2</code> or <code class="inline">atom</code>). An XML file will also be written in the same directory as the input file, with the name of the input file plus the <code class="inline">.xml</code> extension.</p><p>Special characters need to be encoded already in the input text file (eg. if the title contains <code class="inline">&amp;</code>, it should appear as <code class="inline">&amp;amp;</code> in the input text file).</p><p>Example of usage (current directory is the <strong>feed_creator</strong> directory):</p><code class="block">php feed_creator.php rss2 data/news.txt</code><p>After running this command, the file <code class="inline">data/news.xml</code> will be created, containing an RSS2 feed with the values read from <code class="inline">data/news.txt</code>:</p><code class="block">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;rss version="2.0"&gt;
+  &lt;channel&gt;
+    &lt;title&gt;eZ news feed&lt;/title&gt;
+    &lt;link&gt;http://ez.no/&lt;/link&gt;
+    &lt;description&gt;This RSS feed contains news feeds for eZ Publish and eZ Components.&lt;/description&gt;
+    &lt;managingEditor&gt;nospam@ez.no (Derick)&lt;/managingEditor&gt;
+    &lt;pubDate&gt;Wed, 05 Mar 2008 14:28:45 +0000&lt;/pubDate&gt;
+    &lt;lastBuildDate&gt;Thu, 22 May 2008 08:45:26 +0000&lt;/lastBuildDate&gt;
+    &lt;generator&gt;eZ Components Feed dev (http://ezcomponents.org/docs/tutorials/Feed)&lt;/generator&gt;
+    &lt;docs&gt;http://www.rssboard.org/rss-specification&lt;/docs&gt;
+    &lt;item&gt;
+      &lt;title&gt;eZ Components 2007.1 released&lt;/title&gt;
+      &lt;link&gt;http://ezcomponents.org/resources/news/news-2007-07-02&lt;/link&gt;
+      &lt;description&gt;The new release of eZ Components include Workflow, Authentication...&lt;/description&gt;
+      &lt;author&gt;nospam@ez.no (Derick)&lt;/author&gt;
+      &lt;guid isPermaLink="true"&gt;http://ezcomponents.org/resources/news/news-2007-07-02&lt;/guid&gt;
+      &lt;pubDate&gt;Mon, 02 Jul 2007 11:36:45 +0000&lt;/pubDate&gt;
+    &lt;/item&gt;
+    &lt;item&gt;
+      &lt;title&gt;eZ Publish 4.0 released&lt;/title&gt;
+      &lt;link&gt;http://ez.no/company/news/first_stable_ez_publish_4_0_release_for_php_5&lt;/link&gt;
+      &lt;description&gt;The new release of eZ Publish is based on PHP 5....&lt;/description&gt;
+      &lt;author&gt;nospam@ez.no (Ole)&lt;/author&gt;
+      &lt;guid isPermaLink="true"&gt;http://ez.no/company/news/first_stable_ez_publish_4_0_release_for_php_5&lt;/guid&gt;
+      &lt;pubDate&gt;Tue, 03 Jul 2007 16:59:00 +0000&lt;/pubDate&gt;
+    &lt;/item&gt;
+    &lt;item&gt;
+      &lt;title&gt;eZ Find 1.0 released&lt;/title&gt;
+      &lt;link&gt;http://ez.no/ezfind/news/ez_find_1_0_2_for_ez_publish_3_10_and_ez_find_1_0_0beta2_for_ez_publish_4_0_released&lt;/link&gt;
+      &lt;description&gt;A new product in the eZ family of open-source solutions...&lt;/description&gt;
+      &lt;author&gt;nospam@ez.no (Kåre)&lt;/author&gt;
+      &lt;guid isPermaLink="true"&gt;http://ez.no/ezfind/news/ez_find_1_0_2_for_ez_publish_3_10_and_ez_find_1_0_0beta2_for_ez_publish_4_0_released&lt;/guid&gt;
+      &lt;pubDate&gt;Wed, 04 Jul 2007 14:35:00 +0000&lt;/pubDate&gt;
+    &lt;/item&gt;
+  &lt;/channel&gt;
+&lt;/rss&gt;
+</code><p>See the section <a href="#step-8-make-the-xml-feed-accessible">Step 8. Make the XML feed accessible</a> for details on how to provide access to the generated XML feed.</p><a name="how-to-create-an-itunes-podcast"></a><a name="id31"></a><h3>How to create an iTunes podcast</h3><p>A podcast is a collection of media files (called episodes) distributed over the Internet using XML feeds. The podcast doesn't contain the media file, but it contains links to these media files, plus information about the files (meta-information) like creator, duration, category, copyright information, etc.</p><p>The Feed component supports creating and parsing feeds which define podcasts.</p><p>This part of the tutorial will show you step by step how to create an RSS2 podcast with <a href="http://www.apple.com/itunes/">iTunes</a> elements. The <a href="http://www.apple.com/itunes/">iTunes</a> media player supports RSS2 feeds, so creating ATOM or RSS1 podcasts for iTunes is not recommended (although possible).</p><p>The information which we want to show in the podcast is:</p><ul><li><p>the <em>title</em> of the feed: <code class="inline">Flight of the RC plane</code></p></li><li><p>a <em>description</em> of the feed. This will also be used if we don't declare the <em>summary</em> iTunes element. The contents of this element are shown in <a href="http://www.apple.com/itunes/">iTunes</a> in a separate window that appears when the "circled i" in the Description column is clicked: <code class="inline">A podcast for fans of remote-control planes,
+with information about planes, competitions, tutorials and tips</code></p></li><li><p>an <em>author</em> (called <em>managerEditor</em> in RSS2): <code class="inline">editor@rcplanes.example.com (Derick)</code> (this is the recommended way to specify an author in RSS2, with an email address and the name of the person in paranthesis)</p></li><li><p>a <em>link</em> to our website: <code class="inline">http://rcplanes.example.com/</code></p></li><li><p>the episodes or <em>items</em> (information about each episode, a link to the media file associated with the episode and iTunes meta-information for the media files)</p></li><li><p>iTunes elements needed to be able to submit our podcast to <a href="http://www.apple.com/itunes/">iTunes</a>.</p></li></ul><p>iTunes elements for the whole feed:</p><ul><li><p>one or more <em>category</em> elements (from the page <a href="http://www.apple.com/itunes/store/podcaststechspecs.html#categories">iTunes categories</a>). Our podcast could be for example in the category <code class="inline">Technology</code>, sub-category <code class="inline">Gadgets</code></p></li><li><p>one or more <em>keywords</em>, separated by commas: <code class="inline">RC planes,gadgets,flying</code></p></li><li><p>an <em>image</em> for our podcast. <a href="http://www.apple.com/itunes/">iTunes</a> recommends an image of at least 500x500 pixels: <code class="inline">http://rcplanes.example.com/images/rc_plane_big.jpg</code></p></li><li><p>a <em>subtitle</em> for our podcast. This is shown in the Description column in <a href="http://www.apple.com/itunes/">iTunes</a>. Should be a very short description: <code class="inline">Competitions, tutorials and
+tips for remote-control planes</code>.</p></li><li><p><em>explicit</em> status (some of our RC pilots are known to curse a lot): <code class="inline">yes</code> (other values are <code class="inline">no</code> and <code class="inline">clean</code>, with <code class="inline">no</code> being the default)</p></li></ul><p>An episode can be defined by these elements (example for one episode):</p><ul><li><p>the <em>title</em> of the episode: <code class="inline">Flying an RC plane indoors</code></p></li><li><p>a short <em>description</em> of the episode: <code class="inline">In this episode, Derick talks about
+how to fly an RC plane in a big hall, around people working and throwing
+stuff at the plane.</code></p></li><li><p>an <em>author</em> of the episode: <code class="inline">derick@rcplanes.example.com (Derick)</code> (this is the recommended way to specify an author in RSS2, with an email address and the name of the person in paranthesis)</p></li><li><p>a <em>link</em> to the detailed article on our website: <code class="inline">http://rcplanes.example.com/articles/fly-an-rc-plane-indoors.html</code></p></li><li><p>an <em>enclosure</em>, which is a link to a media file: <code class="inline">http://rcplanes.example.com/media/003-flying-indoors.mp3</code>. Other information can also be provided as attributes for the <em>enclosure</em>, namely <em>length</em> in bytes and <em>type</em> (<code class="inline">audio/x-mp3</code> in our case)</p></li><li><p>the date and time of the episode, or <em>published</em> (called <em>pubDate</em> in RSS2). The <a href="http://www.apple.com/itunes/">iTunes</a> program uses this timestamp to download the latest episode automatically: <code class="inline">Fri, 04 Jan 2008 11:18:34 +0100</code></p></li></ul><p>In addition, these iTunes elements are added for each episode:</p><ul><li><p><em>duration</em> of the episode: <code class="inline">29:20</code> (29 minutes 20 seconds). Other ways to specify the duration are <code class="inline">S</code>, <code class="inline">M:SS</code>, <code class="inline">MM:SS</code>, <code class="inline">H:MM:SS</code> or <code class="inline">HH:MM:SS</code> (H = hours, M = minutes, S = seconds).</p></li><li><p>one or more <em>keywords</em>, separated by commas: <code class="inline">RC planes,office,flying,enemies</code></p></li></ul><p>See the section <a href="#how-to-create-a-feed">How to create a feed</a> for detailed steps. This part of the tutorial will concentrate on how to add the <a href="http://www.apple.com/itunes/">iTunes</a> information to the feed.</p><a name="step-1-create-an-rss2-feed"></a><a name="id32"></a><h4>Step 1. Create an RSS2 feed</h4><p>We start with creating an RSS2 feed object, which we fill with <em>title</em>, <em>description</em>, <em>author</em> and <em>link</em> elements:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #007700">//&nbsp;use&nbsp;eZ&nbsp;Components&nbsp;autoload&nbsp;mechanism</span></li>
+<li><span style="color: #0000FF">require_once&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #000000">$feed&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Feed/phpdoc/ezcFeed.html'>ezcFeed</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'rss2'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #000000">$feed</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">title&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">'Flight&nbsp;of&nbsp;the&nbsp;RC&nbsp;plane'</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000">$feed</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">description&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">'A&nbsp;podcast&nbsp;for&nbsp;fans&nbsp;of&nbsp;remote-control&nbsp;planes,&nbsp;with&nbsp;information&nbsp;about&nbsp;planes,&nbsp;competitions,&nbsp;tutorials&nbsp;and&nbsp;tips'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #000000">$author&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$feed</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">add</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'author'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$author</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">name&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">'Derick'</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000">$author</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">email&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">'editor@rcplanes.example.com'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #000000">$link&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$feed</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">add</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'link'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$link</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">href&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">'http://rcplanes.examples.com/'</span><span style="color: #0000FF">;</span></li>
+<span style="color: #000000">?&gt;</span>
+</ol><a name="step-2-add-itunes-feed-elements"></a><a name="id33"></a><h4>Step 2. Add iTunes feed elements</h4><p>The iTunes elements will be contained in an iTunes module. A module is added to an <a href='/zetacomponents/documentation/trunk/Feed/phpdoc/ezcFeed.html'>ezcFeed</a> or <a href='/zetacomponents/documentation/trunk/Feed/phpdoc/ezcFeedItem.html'>ezcFeedItem</a> object using the method <strong>addModule()</strong>. A module is an object of class <a href='/zetacomponents/documentation/trunk/Feed/phpdoc/ezcFeedModule.html'>ezcFeedModule</a>.</p><p>Next we will add <em>category</em>, <em>keywords</em>, <em>image</em>, <em>subtitle</em> and <em>explicit</em> iTunes elements to our $feed object:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #000000">$iTunes&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$feed</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">addModule</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'iTunes'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #000000">$iTunes</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">keywords&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">'RC&nbsp;planes,gadgets,flying'</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000">$iTunes</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">explicit&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">'yes'</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000">$iTunes</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">subtitle&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">'Competitions,&nbsp;tutorials&nbsp;and&nbsp;tips&nbsp;for&nbsp;remote-control&nbsp;planes'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;add&nbsp;an&nbsp;image&nbsp;for&nbsp;the&nbsp;podcast</span></li>
+<li><span style="color: #000000">$image&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$iTunes</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">add</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'image'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$image</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">link&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">'http://rcplanes.example.com/images/rc_plane_big.jpg'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;add&nbsp;the&nbsp;podcast&nbsp;in&nbsp;the&nbsp;category&nbsp;Technology-&gt;Gadgets</span></li>
+<li><span style="color: #000000">$category&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$iTunes</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">add</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'category'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$category</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">term&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">'Technology'</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000">$subCategory&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$category</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">add</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'category'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$subCategory</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">term&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">'Gadgets'</span><span style="color: #0000FF">;</span></li>
+<span style="color: #000000">?&gt;</span>
+</ol><p>See the <a href="http://www.apple.com/itunes/store/podcaststechspecs.html#categories">iTunes categories</a> page for a list of the iTunes categories you can add a podcast to. Note: some category names contain <code class="inline">&amp;</code> which should be encoded as <code class="inline">&amp;amp;</code> (eg. <code class="inline">Society &amp;amp; Culture</code>).</p><a name="id2"></a><a name="id34"></a><h4>Step 3. Add an item</h4><p>Next we will add an episode (<em>item</em>) to our $feed object, and we will add the <em>title</em>, <em>description</em>, <em>author</em> and <em>link</em> elements to it:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #000000">$item&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$feed</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">add</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'item'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #000000">$item</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">title&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">'Flying&nbsp;an&nbsp;RC&nbsp;plane&nbsp;indoors'</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000">$item</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">description&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">'In&nbsp;this&nbsp;episode,&nbsp;Derick&nbsp;talks&nbsp;about&nbsp;how&nbsp;to&nbsp;fly&nbsp;an&nbsp;RC&nbsp;plane&nbsp;in&nbsp;a&nbsp;big&nbsp;hall,&nbsp;around&nbsp;people&nbsp;working&nbsp;and&nbsp;throwing&nbsp;stuff&nbsp;at&nbsp;the&nbsp;plane'</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000">$item</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">published&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">'Fri,&nbsp;04&nbsp;Jan&nbsp;2008&nbsp;11:18:34&nbsp;+0100'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #000000">$author&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$item</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">add</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'author'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$author</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">name&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">'Derick'</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000">$author</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">email&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">'derick@rcplanes.example.com'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #000000">$link&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$item</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">add</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'link'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$link</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">href&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">'http://rcplanes.example.com/articles/fly-an-rc-plane-indoors.html'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #000000">$enclosure&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$item</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">add</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'enclosure'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$enclosure</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">url&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">'http://rcplanes.example.com/media/003-flying-indoors.mp3'</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000">$enclosure</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">length&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">49099054</span><span style="color: #0000FF">;&nbsp;</span><span style="color: #007700">//&nbsp;bytes</span></li>
+<li><span style="color: #000000">$enclosure</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">type&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">'audio/x-mp3'</span><span style="color: #0000FF">;</span></li>
+<span style="color: #000000">?&gt;</span>
+</ol><a name="step-4-add-itunes-item-elements"></a><a name="id35"></a><h4>Step 4. Add iTunes item elements</h4><p>We will add the iTunes elements <em>duration</em> and <em>keywords</em> to our $item object from the previous step:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #000000">$iTunes&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$item</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">addModule</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'iTunes'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #000000">$iTunes</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">duration&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">'29:20'</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000">$iTunes</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">keywords&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">'RC&nbsp;planes,office,flying,enemies'</span><span style="color: #0000FF">;</span></li>
+<span style="color: #000000">?&gt;</span>
+</ol><a name="step-5-add-more-items"></a><a name="id36"></a><h4>Step 5. Add more items</h4><p>To add more episodes to our podcast, we repeat the steps 3 and 4 as many times as needed.</p><a name="step-6-generate-the-xml-feed"></a><a name="id37"></a><h4>Step 6. Generate the XML feed</h4><p>Follow these steps from the previous tutorial <a href="#how-to-create-a-feed">How to create a feed</a>:</p><ul><li><p><a href="#step-5-generate-the-xml-feed">Step 5. Generate the XML feed</a></p></li><li><p><a href="#step-6-save-the-xml-feed-to-a-file">Step 6. Save the XML feed to a file</a></p></li><li><p><a href="#step-7-feed-validation">Step 7. Feed validation</a></p></li><li><p><a href="#step-8-make-the-xml-feed-accessible">Step 8. Make the XML feed accessible</a></p></li></ul><p>In the end, our podcast will look like this (with 3 episodes added):</p><code class="block">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd"&gt;
+  &lt;channel&gt;
+    &lt;title&gt;Flight of the RC plane&lt;/title&gt;
+    &lt;link&gt;http://rcplanes.examples.com/&lt;/link&gt;
+    &lt;description&gt;A podcast for fans of remote-control planes, with information about planes, competitions, tutorials and tips&lt;/description&gt;
+    &lt;managingEditor&gt;editor@rcplanes.example.com (Derick)&lt;/managingEditor&gt;
+    &lt;pubDate&gt;Thu, 24 Apr 2008 08:55:49 +0000&lt;/pubDate&gt;
+    &lt;generator&gt;eZ Components Feed dev (http://ezcomponents.org/docs/tutorials/Feed)&lt;/generator&gt;
+    &lt;docs&gt;http://www.rssboard.org/rss-specification&lt;/docs&gt;
+    &lt;itunes:category text="Technology"&gt;
+      &lt;itunes:category text="Gadgets"/&gt;
+    &lt;/itunes:category&gt;
+    &lt;itunes:explicit&gt;yes&lt;/itunes:explicit&gt;
+    &lt;itunes:image href="http://rcplanes.example.com/images/rc_plane_big.jpg"/&gt;
+    &lt;itunes:keywords&gt;RC planes,gadgets,flying&lt;/itunes:keywords&gt;
+    &lt;itunes:subtitle&gt;Competitions, tutorials and tips for remote-control planes&lt;/itunes:subtitle&gt;
+    &lt;item&gt;
+      &lt;title&gt;Flying an RC plane indoors&lt;/title&gt;
+      &lt;link&gt;http://rcplanes.example.com/articles/fly-an-rc-plane-indoors.html&lt;/link&gt;
+      &lt;description&gt;In this episode, Derick talks about how to fly an RC plane in a big hall, around people working and throwing stuff at the plane&lt;/description&gt;
+      &lt;author&gt;derick@rcplanes.example.com (Derick)&lt;/author&gt;
+      &lt;enclosure url="http://rcplanes.example.com/media/003-flying-indoors.mp3" length="49099054" type="audio/x-mp3"/&gt;
+      &lt;pubDate&gt;Fri, 04 Jan 2008 11:18:34 +0100&lt;/pubDate&gt;
+      &lt;itunes:duration&gt;29:20&lt;/itunes:duration&gt;
+      &lt;itunes:keywords&gt;RC planes,office,flying,enemies&lt;/itunes:keywords&gt;
+    &lt;/item&gt;
+    &lt;item&gt;
+      &lt;title&gt;The mutant RC flying insect from Hell&lt;/title&gt;
+      &lt;link&gt;http://rcplanes.example.com/articles/mutant-rc-flying-insect.html&lt;/link&gt;
+      &lt;description&gt;Gunny just got back from a 2-months vacation in Tokyo with the ultimate RC toy ever (TM) - a mean and noisy RC flying insect based on top-secret Japanese technology&lt;/description&gt;
+      &lt;author&gt;gunny@rcplanes.example.com (Gunny)&lt;/author&gt;
+      &lt;enclosure url="http://rcplanes.example.com/media/004-mutant-rc-flying-insect.mp3" length="74039198" type="audio/x-mp3"/&gt;
+      &lt;pubDate&gt;Tue, 22 Jan 2008 16:58:00 +0100&lt;/pubDate&gt;
+      &lt;itunes:duration&gt;44:37&lt;/itunes:duration&gt;
+      &lt;itunes:keywords&gt;RC planes,office,flying,insect,Japanese&lt;/itunes:keywords&gt;
+    &lt;/item&gt;
+    &lt;item&gt;
+      &lt;title&gt;The catcher in the potato field&lt;/title&gt;
+      &lt;link&gt;http://rcplanes.example.com/articles/potato-field.html&lt;/link&gt;
+      &lt;description&gt;Five RC planes fight to the death for the total control of the potato field - who will win?&lt;/description&gt;
+      &lt;author&gt;derick@rcplanes.example.com (Derick)&lt;/author&gt;
+      &lt;enclosure url="http://rcplanes.example.com/media/005-potato-field.mp3" length="95039198" type="audio/x-mp3"/&gt;
+      &lt;pubDate&gt;Tue, 22 Apr 2008 18:30:00 +0100&lt;/pubDate&gt;
+      &lt;itunes:duration&gt;58:20&lt;/itunes:duration&gt;
+      &lt;itunes:keywords&gt;RC planes,potato,field,flying,fight&lt;/itunes:keywords&gt;
+    &lt;/item&gt;
+  &lt;/channel&gt;
+&lt;/rss&gt;
+</code><a name="step-7-submit-the-podcast-to-the-itunes-store"></a><a name="id38"></a><h4>Step 7. Submit the podcast to the iTunes Store</h4><p>Follow the steps on the section <a href="http://www.apple.com/itunes/store/podcaststechspecs.html#submitting">Submitting Your Podcast to the iTunes Store</a> from the iTunes <a href="http://www.apple.com/itunes/store/podcaststechspecs.html">Specifications</a>.</p><p>The iTunes <a href="http://www.apple.com/itunes/store/podcaststechspecs.html">Specifications</a> contains other useful information you might need when you are creating podcasts.</p><a name="how-to-parse-an-xml-feed"></a><a name="id39"></a><h3>How to parse an XML feed</h3><p>An XML feed can be stored in a file, at an URL or in a string variable. By using the methods <strong>parse()</strong> (for files and URLs) or <strong>parseContent()</strong> (for string variables), an <a href='/zetacomponents/documentation/trunk/Feed/phpdoc/ezcFeed.html'>ezcFeed</a> object can be created from an XML feed.</p><p>This part of the tutorial will show you step by step how to parse an XML feed, read its elements, iterate over the items in the feed and read the items' elements.</p><a name="step-1-parse-an-xml-feed"></a><a name="id40"></a><h4>Step 1. Parse an XML feed</h4><p>If the XML feed is stored in a file or URL, use the static method <strong>parse()</strong> from <a href='/zetacomponents/documentation/trunk/Feed/phpdoc/ezcFeed.html'>ezcFeed</a> to parse the feed and create an <a href='/zetacomponents/documentation/trunk/Feed/phpdoc/ezcFeed.html'>ezcFeed</a> object out of it:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #007700">//&nbsp;use&nbsp;eZ&nbsp;Components&nbsp;autoload&nbsp;mechanism</span></li>
+<li><span style="color: #0000FF">require_once&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #000000">$feed&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Feed/phpdoc/ezcFeed.html#parse'>ezcFeed::parse</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'http://ezcomponents.org/feed/news.xml'&nbsp;</span><span style="color: #0000FF">);&nbsp;</span><span style="color: #007700">//&nbsp;URL</span></li>
+<li><span style="color: #000000">$feed&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Feed/phpdoc/ezcFeed.html#parse'>ezcFeed::parse</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'/tmp/news.xml'&nbsp;</span><span style="color: #0000FF">);&nbsp;</span><span style="color: #007700">//&nbsp;local&nbsp;file</span></li>
+<span style="color: #000000">?&gt;</span>
+</ol><p>If the XML feed is protected with HTTP authentication (username and password required in order to access it), provide the username and password in the URL:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #007700">//&nbsp;use&nbsp;eZ&nbsp;Components&nbsp;autoload&nbsp;mechanism</span></li>
+<li><span style="color: #0000FF">require_once&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #000000">$feed&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Feed/phpdoc/ezcFeed.html#parse'>ezcFeed::parse</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'http://username:password@ezcomponents.org/feed/news.xml'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<span style="color: #000000">?&gt;</span>
+</ol><p>If trying to parse an XML document protected with HTTP authentication without providing a valid username and password, an <a href='/zetacomponents/documentation/trunk/Feed/phpdoc/ezcFeedParseErrorException.html'>ezcFeedParseErrorException</a> will be thrown.</p><p>If the XML feed is stored in a string variable, use the static method <strong>parseContent()</strong> from <a href='/zetacomponents/documentation/trunk/Feed/phpdoc/ezcFeed.html'>ezcFeed</a> to parse the feed and create an <a href='/zetacomponents/documentation/trunk/Feed/phpdoc/ezcFeed.html'>ezcFeed</a> object out of it:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #007700">//&nbsp;use&nbsp;eZ&nbsp;Components&nbsp;autoload&nbsp;mechanism</span></li>
+<li><span style="color: #0000FF">require_once&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #000000">$feed&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Feed/phpdoc/ezcFeed.html#parseContent'>ezcFeed::parseContent</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$xml&nbsp;</span><span style="color: #0000FF">);&nbsp;</span><span style="color: #007700">//&nbsp;$xml&nbsp;is&nbsp;a&nbsp;string</span></li>
+<span style="color: #000000">?&gt;</span>
+</ol><p>These exceptions can be thrown while parsing a feed:</p><ul><li><p>ezcBaseFileNotFoundException - if the feed URL or file is not found</p></li><li><p>ezcFeedParseErrorException - if the XML content is broken, or not a feed, or unsupported feed type, or if RSS1 and RSS2 feeds are missing the &lt;channel&gt; element</p></li></ul><a name="step-2-read-the-feed-elements"></a><a name="id41"></a><h4>Step 2. Read the feed elements</h4><p>At step 1 we created an <a href='/zetacomponents/documentation/trunk/Feed/phpdoc/ezcFeed.html'>ezcFeed</a> object by parsing an XML feed. Next we will read the elements from the feed.</p><p>Depending on the feed type, certain elements are present while others are not. The feed type can be retrieved via the method <strong>getFeedType()</strong> from <a href='/zetacomponents/documentation/trunk/Feed/phpdoc/ezcFeed.html'>ezcFeed</a>:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #000000">$feedType&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$feed</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">getFeedType</span><span style="color: #0000FF">();</span></li>
+<span style="color: #000000">?&gt;</span>
+</ol><p>This will return <code class="inline">rss1</code>, <code class="inline">rss2</code> or <code class="inline">atom</code>.</p><p>It is always a good idea to read only those elements which are present in $feed. To test if an element is present, call <strong>isset()</strong> on it:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #0000FF">if&nbsp;(&nbsp;isset(&nbsp;</span><span style="color: #000000">$feed</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">title&nbsp;</span><span style="color: #0000FF">)&nbsp;)</span></li>
+<li><span style="color: #0000FF">{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$title&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$feed</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">title</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">__toString</span><span style="color: #0000FF">();</span></li>
+<li><span style="color: #0000FF">}</span></li>
+<span style="color: #000000">?&gt;</span>
+</ol><p>Another way to write this is (assuming that a missing <em>title</em> can be considered null):</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #000000">$title&nbsp;</span><span style="color: #0000FF">=&nbsp;isset(&nbsp;</span><span style="color: #000000">$feed</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">title&nbsp;</span><span style="color: #0000FF">)&nbsp;?&nbsp;</span><span style="color: #000000">$feed</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">title</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">__toString</span><span style="color: #0000FF">()&nbsp;:&nbsp;</span><span style="color: #000000">null</span><span style="color: #0000FF">;</span></li>
+<span style="color: #000000">?&gt;</span>
+</ol><p>Depending on your application, you might need only some elements, let's say <em>title</em>, <em>description</em>, <em>author</em> and <em>link</em>. So to read those elements you will use:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #000000">$title&nbsp;</span><span style="color: #0000FF">=&nbsp;isset(&nbsp;</span><span style="color: #000000">$feed</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">title&nbsp;</span><span style="color: #0000FF">)&nbsp;?&nbsp;</span><span style="color: #000000">$feed</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">title</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">__toString</span><span style="color: #0000FF">()&nbsp;:&nbsp;</span><span style="color: #000000">null</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000">$description&nbsp;</span><span style="color: #0000FF">=&nbsp;isset(&nbsp;</span><span style="color: #000000">$feed</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">description&nbsp;</span><span style="color: #0000FF">)&nbsp;?&nbsp;</span><span style="color: #000000">$feed</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">description</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">__toString</span><span style="color: #0000FF">()&nbsp;:&nbsp;</span><span style="color: #000000">null</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #0000FF">if&nbsp;(&nbsp;isset(&nbsp;</span><span style="color: #000000">$feed</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">author&nbsp;</span><span style="color: #0000FF">)&nbsp;)</span></li>
+<li><span style="color: #0000FF">{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$author&nbsp;</span><span style="color: #0000FF">=&nbsp;isset(&nbsp;</span><span style="color: #000000">$feed</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">author</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">name&nbsp;</span><span style="color: #0000FF">)&nbsp;?&nbsp;</span><span style="color: #000000">$feed</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">author</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">name&nbsp;</span><span style="color: #0000FF">:&nbsp;</span><span style="color: #000000">null</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">//&nbsp;RSS2&nbsp;feeds&nbsp;usually&nbsp;have&nbsp;the&nbsp;author&nbsp;in&nbsp;this&nbsp;format:&nbsp;email_address&nbsp;(author_name)</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;the&nbsp;$author&nbsp;string&nbsp;can&nbsp;be&nbsp;parsed&nbsp;to&nbsp;extract&nbsp;the&nbsp;email&nbsp;and&nbsp;name.</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;//</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;ATOM&nbsp;feeds&nbsp;contain&nbsp;the&nbsp;author's&nbsp;email&nbsp;in&nbsp;a&nbsp;separate&nbsp;element:&nbsp;$feed-&gt;author-&gt;email.</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;and&nbsp;in&nbsp;addition&nbsp;they&nbsp;have&nbsp;the&nbsp;uri&nbsp;element&nbsp;for&nbsp;authors:&nbsp;$feed-&gt;author-&gt;uri</span></li>
+<li><span style="color: #0000FF">}</span></li>
+<li></li>
+<li><span style="color: #000000">$links&nbsp;</span><span style="color: #0000FF">=&nbsp;array();</span></li>
+<li><span style="color: #0000FF">if&nbsp;(&nbsp;isset(&nbsp;</span><span style="color: #000000">$feed</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">link&nbsp;</span><span style="color: #0000FF">)&nbsp;)</span></li>
+<li><span style="color: #0000FF">{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;foreach&nbsp;(&nbsp;</span><span style="color: #000000">$feed</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">link&nbsp;</span><span style="color: #0000FF">as&nbsp;</span><span style="color: #000000">$link&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$links</span><span style="color: #0000FF">[]&nbsp;=&nbsp;</span><span style="color: #000000">$link</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">href</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;}</span></li>
+<li><span style="color: #0000FF">}</span></li>
+<span style="color: #000000">?&gt;</span>
+</ol><p>Because <em>link</em> can appear multiple times, we had to resort to this long code to get the links out of the feed. The $links array will be empty if no links are in the XML feed, or will contain all the links that appear on the feed-level.</p><a name="step-3-iterate-over-the-feed-items"></a><a name="id42"></a><h4>Step 3. Iterate over the feed items</h4><p>A feed can contain zero or more <em>item</em> elements.</p><p>Let's say we want to extract the <em>title</em>, <em>description</em>, <em>published</em>, <em>author</em> and <em>link</em> of all items. This is how we will do it:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #000000">$items&nbsp;</span><span style="color: #0000FF">=&nbsp;array();</span></li>
+<li><span style="color: #0000FF">foreach&nbsp;(&nbsp;</span><span style="color: #000000">$feed</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">item&nbsp;</span><span style="color: #0000FF">as&nbsp;</span><span style="color: #000000">$item&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$title&nbsp;</span><span style="color: #0000FF">=&nbsp;isset(&nbsp;</span><span style="color: #000000">$item</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">title&nbsp;</span><span style="color: #0000FF">)&nbsp;?&nbsp;</span><span style="color: #000000">$item</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">title</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">__toString</span><span style="color: #0000FF">()&nbsp;:&nbsp;</span><span style="color: #000000">null</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$description&nbsp;</span><span style="color: #0000FF">=&nbsp;isset(&nbsp;</span><span style="color: #000000">$item</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">description&nbsp;</span><span style="color: #0000FF">)&nbsp;?&nbsp;</span><span style="color: #000000">$item</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">description</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">__toString</span><span style="color: #0000FF">()&nbsp;:&nbsp;</span><span style="color: #000000">null</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$published&nbsp;</span><span style="color: #0000FF">=&nbsp;isset(&nbsp;</span><span style="color: #000000">$item</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">published&nbsp;</span><span style="color: #0000FF">)&nbsp;?&nbsp;</span><span style="color: #000000">$item</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">published</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">date</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">format</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'c'&nbsp;</span><span style="color: #0000FF">)&nbsp;:&nbsp;</span><span style="color: #000000">null</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(&nbsp;isset(&nbsp;</span><span style="color: #000000">$item</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">author&nbsp;</span><span style="color: #0000FF">)&nbsp;)</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$author&nbsp;</span><span style="color: #0000FF">=&nbsp;isset(&nbsp;</span><span style="color: #000000">$item</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">author</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">name&nbsp;</span><span style="color: #0000FF">)&nbsp;?&nbsp;</span><span style="color: #000000">$item</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">author</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">name&nbsp;</span><span style="color: #0000FF">:&nbsp;</span><span style="color: #000000">null</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">//&nbsp;RSS2&nbsp;feeds&nbsp;usually&nbsp;have&nbsp;the&nbsp;author&nbsp;in&nbsp;this&nbsp;format:&nbsp;email_address&nbsp;(author_name)</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;the&nbsp;$author&nbsp;string&nbsp;can&nbsp;be&nbsp;parsed&nbsp;to&nbsp;extract&nbsp;the&nbsp;email&nbsp;and&nbsp;name</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;ATOM&nbsp;feeds&nbsp;contain&nbsp;the&nbsp;author's&nbsp;email&nbsp;in&nbsp;a&nbsp;separate&nbsp;element:&nbsp;$item-&gt;author-&gt;email.</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;and&nbsp;in&nbsp;addition&nbsp;they&nbsp;have&nbsp;the&nbsp;uri&nbsp;element&nbsp;for&nbsp;authors:&nbsp;$item-&gt;author-&gt;uri</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000FF">}</span></li>
+<li></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$links&nbsp;</span><span style="color: #0000FF">=&nbsp;array();</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(&nbsp;isset(&nbsp;</span><span style="color: #000000">$item</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">link&nbsp;</span><span style="color: #0000FF">)&nbsp;)</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;foreach&nbsp;(&nbsp;</span><span style="color: #000000">$item</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">link&nbsp;</span><span style="color: #0000FF">as&nbsp;</span><span style="color: #000000">$link&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$links</span><span style="color: #0000FF">[]&nbsp;=&nbsp;</span><span style="color: #000000">$link</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">href</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;}</span></li>
+<li></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$items</span><span style="color: #0000FF">[]&nbsp;=&nbsp;array(&nbsp;</span><span style="color: #335533">'title'&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #000000">$title</span><span style="color: #0000FF">,</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #335533">'description'&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #000000">$description</span><span style="color: #0000FF">,</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #335533">'author'&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #000000">$author</span><span style="color: #0000FF">,</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #335533">'links'&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #000000">$links&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #0000FF">}</span></li>
+<span style="color: #000000">?&gt;</span>
+</ol><p>The <em>published</em> element is an <a href='/zetacomponents/documentation/trunk/Feed/phpdoc/ezcFeedDateElement.html'>ezcFeedDateElement</a> object encapsulating a DateTime object, so we return the date as a string with <strong>format( 'c' )</strong>. Other formats can be used also, see the documentation for <a href="http://php.net/manual/en/function.date-format.php">date_format()</a>.</p><a name="how-to-parse-an-itunes-podcast"></a><a name="id43"></a><h3>How to parse an iTunes podcast</h3><p>See the section <a href="#how-to-parse-an-xml-feed">How to parse an XML feed</a> for detailed steps. This part of the tutorial will concentrate on how to fetch the <a href="http://www.apple.com/itunes/">iTunes</a> information from an RSS2 feed.</p><a name="id3"></a><a name="id44"></a><h4>Step 1. Parse an XML feed</h4><p>If the XML feed is stored in a file or URL, use the static method <strong>parse()</strong> from <a href='/zetacomponents/documentation/trunk/Feed/phpdoc/ezcFeed.html'>ezcFeed</a> to parse the feed and create an <a href='/zetacomponents/documentation/trunk/Feed/phpdoc/ezcFeed.html'>ezcFeed</a> object out of it:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #007700">//&nbsp;use&nbsp;eZ&nbsp;Components&nbsp;autoload&nbsp;mechanism</span></li>
+<li><span style="color: #0000FF">require_once&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #000000">$feed&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Feed/phpdoc/ezcFeed.html#parse'>ezcFeed::parse</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'http://rcplanes.example.com/feed/podcast.xml'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$feed&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Feed/phpdoc/ezcFeed.html#parse'>ezcFeed::parse</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'/tmp/podcast.xml'&nbsp;</span><span style="color: #0000FF">);&nbsp;</span><span style="color: #007700">//&nbsp;local&nbsp;file</span></li>
+<span style="color: #000000">?&gt;</span>
+</ol><p>If the XML feed is protected with HTTP authentication (username and password required in order to access it), provide the username and password in the URL:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #007700">//&nbsp;use&nbsp;eZ&nbsp;Components&nbsp;autoload&nbsp;mechanism</span></li>
+<li><span style="color: #0000FF">require_once&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #000000">$feed&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Feed/phpdoc/ezcFeed.html#parse'>ezcFeed::parse</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'http://username:password@rcplanes.example.com/feed/podcast.xml'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<span style="color: #000000">?&gt;</span>
+</ol><p>If trying to parse an XML document protected with HTTP authentication without providing a valid username and password, an <a href='/zetacomponents/documentation/trunk/Feed/phpdoc/ezcFeedParseErrorException.html'>ezcFeedParseErrorException</a> will be thrown.</p><p>If the XML feed is stored in a string variable, use the static method <strong>parseContent()</strong> from <a href='/zetacomponents/documentation/trunk/Feed/phpdoc/ezcFeed.html'>ezcFeed</a> to parse the feed and create an <a href='/zetacomponents/documentation/trunk/Feed/phpdoc/ezcFeed.html'>ezcFeed</a> object out of it:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #007700">//&nbsp;use&nbsp;eZ&nbsp;Components&nbsp;autoload&nbsp;mechanism</span></li>
+<li><span style="color: #0000FF">require_once&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #000000">$feed&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Feed/phpdoc/ezcFeed.html#parseContent'>ezcFeed::parseContent</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$xml&nbsp;</span><span style="color: #0000FF">);&nbsp;</span><span style="color: #007700">//&nbsp;$xml&nbsp;is&nbsp;a&nbsp;string</span></li>
+<span style="color: #000000">?&gt;</span>
+</ol><a name="id4"></a><a name="id45"></a><h4>Step 2. Read the feed elements</h4><p>Depending on the feed type, certain elements are present while others are not. The feed type can be retrieved via the method <strong>getFeedType()</strong> from <a href='/zetacomponents/documentation/trunk/Feed/phpdoc/ezcFeed.html'>ezcFeed</a>:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #000000">$feedType&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$feed</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">getFeedType</span><span style="color: #0000FF">();</span></li>
+<span style="color: #000000">?&gt;</span>
+</ol><p>This will return <code class="inline">rss1</code>, <code class="inline">rss2</code> or <code class="inline">atom</code>.</p><p>Depending on your application, you might need only some elements, let's say <em>title</em>, <em>description</em>, <em>author</em> and <em>link</em>. So to read those elements you will use:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #000000">$title&nbsp;</span><span style="color: #0000FF">=&nbsp;isset(&nbsp;</span><span style="color: #000000">$feed</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">title&nbsp;</span><span style="color: #0000FF">)&nbsp;?&nbsp;</span><span style="color: #000000">$feed</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">title</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">__toString</span><span style="color: #0000FF">()&nbsp;:&nbsp;</span><span style="color: #000000">null</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000">$description&nbsp;</span><span style="color: #0000FF">=&nbsp;isset(&nbsp;</span><span style="color: #000000">$feed</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">description&nbsp;</span><span style="color: #0000FF">)&nbsp;?&nbsp;</span><span style="color: #000000">$feed</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">description</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">__toString</span><span style="color: #0000FF">()&nbsp;:&nbsp;</span><span style="color: #000000">null</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #0000FF">if&nbsp;(&nbsp;isset(&nbsp;</span><span style="color: #000000">$feed</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">author&nbsp;</span><span style="color: #0000FF">)&nbsp;)</span></li>
+<li><span style="color: #0000FF">{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$author&nbsp;</span><span style="color: #0000FF">=&nbsp;isset(&nbsp;</span><span style="color: #000000">$feed</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">author</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">name&nbsp;</span><span style="color: #0000FF">)&nbsp;?&nbsp;</span><span style="color: #000000">$feed</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">author</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">name&nbsp;</span><span style="color: #0000FF">:&nbsp;</span><span style="color: #000000">null</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">//&nbsp;RSS2&nbsp;feeds&nbsp;usually&nbsp;have&nbsp;the&nbsp;author&nbsp;in&nbsp;this&nbsp;format:&nbsp;email_address&nbsp;(author_name)</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;the&nbsp;$author&nbsp;string&nbsp;can&nbsp;be&nbsp;parsed&nbsp;to&nbsp;extract&nbsp;the&nbsp;email&nbsp;and&nbsp;name</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;//</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;ATOM&nbsp;feeds&nbsp;contain&nbsp;the&nbsp;author's&nbsp;email&nbsp;in&nbsp;a&nbsp;separate&nbsp;element:&nbsp;$feed-&gt;author-&gt;email.</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;and&nbsp;in&nbsp;addition&nbsp;they&nbsp;have&nbsp;the&nbsp;uri&nbsp;element&nbsp;for&nbsp;authors:&nbsp;$feed-&gt;author-&gt;uri</span></li>
+<li><span style="color: #0000FF">}</span></li>
+<li></li>
+<li><span style="color: #000000">$links&nbsp;</span><span style="color: #0000FF">=&nbsp;array();</span></li>
+<li><span style="color: #0000FF">if&nbsp;(&nbsp;isset(&nbsp;</span><span style="color: #000000">$feed</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">link&nbsp;</span><span style="color: #0000FF">)&nbsp;)</span></li>
+<li><span style="color: #0000FF">{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;foreach&nbsp;(&nbsp;</span><span style="color: #000000">$feed</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">link&nbsp;</span><span style="color: #0000FF">as&nbsp;</span><span style="color: #000000">$link&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$links</span><span style="color: #0000FF">[]&nbsp;=&nbsp;</span><span style="color: #000000">$link</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">href</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;}</span></li>
+<li><span style="color: #0000FF">}</span></li>
+<span style="color: #000000">?&gt;</span>
+</ol><a name="step-3-read-the-itunes-feed-elements"></a><a name="id46"></a><h4>Step 3. Read the iTunes feed elements</h4><p>Before reading iTunes elements from the feed, we need to make sure that the feed has the iTunes module. We use the method <strong>hasModule()</strong> from <a href='/zetacomponents/documentation/trunk/Feed/phpdoc/ezcFeed.html'>ezcFeed</a> or <a href='/zetacomponents/documentation/trunk/Feed/phpdoc/ezcFeedItem.html'>ezcFeedItem</a>:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #0000FF">if&nbsp;(&nbsp;</span><span style="color: #000000">$feed</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">hasModule</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'iTunes'&nbsp;</span><span style="color: #0000FF">)&nbsp;)</span></li>
+<li><span style="color: #0000FF">{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">//&nbsp;process&nbsp;the&nbsp;iTunes&nbsp;module</span></li>
+<li><span style="color: #0000FF">}</span></li>
+<span style="color: #000000">?&gt;</span>
+</ol><p>We can also call the <strong>isset()</strong> method to check if the iTunes module is present:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #0000FF">if&nbsp;(&nbsp;isset(&nbsp;</span><span style="color: #000000">$feed</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">iTunes&nbsp;</span><span style="color: #0000FF">)&nbsp;)</span></li>
+<li><span style="color: #0000FF">{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">//&nbsp;process&nbsp;the&nbsp;iTunes&nbsp;module</span></li>
+<li><span style="color: #0000FF">}</span></li>
+<span style="color: #000000">?&gt;</span>
+</ol><p>This is how we fetch information from the iTunes module. Let's say we want to fetch the <em>keywords</em>, <em>subtitle</em>, <em>image</em> and <em>category</em> elements:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #0000FF">if&nbsp;(&nbsp;isset(&nbsp;</span><span style="color: #000000">$feed</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">iTunes&nbsp;</span><span style="color: #0000FF">)&nbsp;)</span></li>
+<li><span style="color: #0000FF">{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$iTunes&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$feed</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">iTunes</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$keywords&nbsp;</span><span style="color: #0000FF">=&nbsp;isset(&nbsp;</span><span style="color: #000000">$iTunes</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">keywords&nbsp;</span><span style="color: #0000FF">)&nbsp;?&nbsp;</span><span style="color: #000000">$iTunes</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">keywords</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">__toString</span><span style="color: #0000FF">()&nbsp;:&nbsp;</span><span style="color: #000000">null</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$subtitle&nbsp;</span><span style="color: #0000FF">=&nbsp;isset(&nbsp;</span><span style="color: #000000">$iTunes</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">subtitle&nbsp;</span><span style="color: #0000FF">)&nbsp;?&nbsp;</span><span style="color: #000000">$iTunes</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">subtitle</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">__toString</span><span style="color: #0000FF">()&nbsp;:&nbsp;</span><span style="color: #000000">null</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$image&nbsp;</span><span style="color: #0000FF">=&nbsp;isset(&nbsp;</span><span style="color: #000000">$iTunes</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">image&nbsp;</span><span style="color: #0000FF">)&nbsp;?&nbsp;</span><span style="color: #000000">$iTunes</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">image</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">__toString</span><span style="color: #0000FF">()&nbsp;:&nbsp;</span><span style="color: #000000">null</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$categories&nbsp;</span><span style="color: #0000FF">=&nbsp;array();</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(&nbsp;isset(&nbsp;</span><span style="color: #000000">$iTunes</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">category&nbsp;</span><span style="color: #0000FF">)&nbsp;)</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;foreach&nbsp;(&nbsp;</span><span style="color: #000000">$iTunes</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">category&nbsp;</span><span style="color: #0000FF">as&nbsp;</span><span style="color: #000000">$category&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$cat&nbsp;</span><span style="color: #0000FF">=&nbsp;array(&nbsp;</span><span style="color: #335533">'term'&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #000000">$category</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">term&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(&nbsp;isset(&nbsp;</span><span style="color: #000000">$category</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">category&nbsp;</span><span style="color: #0000FF">)&nbsp;)</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$cat</span><span style="color: #0000FF">[</span><span style="color: #335533">'subCategory'</span><span style="color: #0000FF">]&nbsp;=&nbsp;</span><span style="color: #000000">$category</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">category</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">term</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</span></li>
+<li></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$categories</span><span style="color: #0000FF">[]&nbsp;=&nbsp;</span><span style="color: #000000">$cat</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;}</span></li>
+<li><span style="color: #0000FF">}</span></li>
+<span style="color: #000000">?&gt;</span>
+</ol><p>In iTunes, <em>category</em> is an element which can have sub-categories. The code above reads the <em>category</em> values (from the <em>text</em> attribute) and the sub-category (if any) from each <em>category</em>. The $categories array can look like this:</p><code class="block">array( 0 =&gt; array( 'term' =&gt; 'Technology',
+                   'subCategory' =&gt; 'Gadgets' ),
+     );</code><p>if the iTunes elements appeared like this in the XML feed:</p><code class="block">&lt;category text="Technology"&gt;
+  &lt;category text="Gadgets"/&gt;
+&lt;/category&gt;</code><a name="step-4-iterate-over-the-feed-items"></a><a name="id47"></a><h4>Step 4. Iterate over the feed items</h4><p>Let's say we want to extract the <em>title</em>, <em>description</em>, <em>published</em>, <em>author</em> and <em>link</em> of all items. This is how we will do it:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #000000">$items&nbsp;</span><span style="color: #0000FF">=&nbsp;array();</span></li>
+<li><span style="color: #0000FF">foreach&nbsp;(&nbsp;</span><span style="color: #000000">$feed</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">item&nbsp;</span><span style="color: #0000FF">as&nbsp;</span><span style="color: #000000">$item&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$title&nbsp;</span><span style="color: #0000FF">=&nbsp;isset(&nbsp;</span><span style="color: #000000">$item</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">title&nbsp;</span><span style="color: #0000FF">)&nbsp;?&nbsp;</span><span style="color: #000000">$item</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">title</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">__toString</span><span style="color: #0000FF">()&nbsp;:&nbsp;</span><span style="color: #000000">null</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$description&nbsp;</span><span style="color: #0000FF">=&nbsp;isset(&nbsp;</span><span style="color: #000000">$item</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">description&nbsp;</span><span style="color: #0000FF">)&nbsp;?&nbsp;</span><span style="color: #000000">$item</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">description</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">__toString</span><span style="color: #0000FF">()&nbsp;:&nbsp;</span><span style="color: #000000">null</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$published&nbsp;</span><span style="color: #0000FF">=&nbsp;isset(&nbsp;</span><span style="color: #000000">$item</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">published&nbsp;</span><span style="color: #0000FF">)&nbsp;?&nbsp;</span><span style="color: #000000">$item</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">published</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">date</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">format</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'c'&nbsp;</span><span style="color: #0000FF">)&nbsp;:&nbsp;</span><span style="color: #000000">null</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(&nbsp;isset(&nbsp;</span><span style="color: #000000">$item</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">author&nbsp;</span><span style="color: #0000FF">)&nbsp;)</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$author&nbsp;</span><span style="color: #0000FF">=&nbsp;isset(&nbsp;</span><span style="color: #000000">$item</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">author</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">name&nbsp;</span><span style="color: #0000FF">)&nbsp;?&nbsp;</span><span style="color: #000000">$item</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">author</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">name&nbsp;</span><span style="color: #0000FF">:&nbsp;</span><span style="color: #000000">null</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">//&nbsp;RSS2&nbsp;feeds&nbsp;usually&nbsp;have&nbsp;the&nbsp;author&nbsp;in&nbsp;this&nbsp;format:&nbsp;email_address&nbsp;(author_name)</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;the&nbsp;$author&nbsp;string&nbsp;can&nbsp;be&nbsp;parsed&nbsp;to&nbsp;extract&nbsp;the&nbsp;email&nbsp;and&nbsp;name</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;ATOM&nbsp;feeds&nbsp;contain&nbsp;the&nbsp;author's&nbsp;email&nbsp;in&nbsp;a&nbsp;separate&nbsp;element:&nbsp;$item-&gt;author-&gt;email.</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;and&nbsp;in&nbsp;addition&nbsp;they&nbsp;have&nbsp;the&nbsp;uri&nbsp;element&nbsp;for&nbsp;authors:&nbsp;$item-&gt;author-&gt;uri</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000FF">}</span></li>
+<li></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$links&nbsp;</span><span style="color: #0000FF">=&nbsp;array();</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(&nbsp;isset(&nbsp;</span><span style="color: #000000">$item</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">link&nbsp;</span><span style="color: #0000FF">)&nbsp;)</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;foreach&nbsp;(&nbsp;</span><span style="color: #000000">$item</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">link&nbsp;</span><span style="color: #0000FF">as&nbsp;</span><span style="color: #000000">$link&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$links</span><span style="color: #0000FF">[]&nbsp;=&nbsp;</span><span style="color: #000000">$link</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">__toString</span><span style="color: #0000FF">();</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;}</span></li>
+<li></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$media&nbsp;</span><span style="color: #0000FF">=&nbsp;array();</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(&nbsp;isset(&nbsp;</span><span style="color: #000000">$item</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">enclosure&nbsp;</span><span style="color: #0000FF">)&nbsp;)</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$enclosure&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$item</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">enclosure</span><span style="color: #0000FF">[</span><span style="color: #000000">0</span><span style="color: #0000FF">];</span></li>
+<li></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$media&nbsp;</span><span style="color: #0000FF">=&nbsp;array(</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #335533">'url'&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;isset(&nbsp;</span><span style="color: #000000">$enclosure</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">url&nbsp;</span><span style="color: #0000FF">)&nbsp;?&nbsp;</span><span style="color: #000000">$enclosure</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">url&nbsp;</span><span style="color: #0000FF">:&nbsp;</span><span style="color: #000000">null</span><span style="color: #0000FF">,</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #335533">'length'&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;isset(&nbsp;</span><span style="color: #000000">$enclosure</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">length&nbsp;</span><span style="color: #0000FF">)&nbsp;?&nbsp;</span><span style="color: #000000">$enclosure</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">length&nbsp;</span><span style="color: #0000FF">:&nbsp;</span><span style="color: #000000">null</span><span style="color: #0000FF">,</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #335533">'type'&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;isset(&nbsp;</span><span style="color: #000000">$enclosure</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">type&nbsp;</span><span style="color: #0000FF">)&nbsp;?&nbsp;</span><span style="color: #000000">$enclosure</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">type&nbsp;</span><span style="color: #0000FF">:&nbsp;</span><span style="color: #000000">null</span></li>
+<li><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;}</span></li>
+<li></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$items</span><span style="color: #0000FF">[]&nbsp;=&nbsp;array(&nbsp;</span><span style="color: #335533">'title'&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #000000">$title</span><span style="color: #0000FF">,</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #335533">'description'&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #000000">$description</span><span style="color: #0000FF">,</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #335533">'author'&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #000000">$author</span><span style="color: #0000FF">,</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #335533">'links'&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #000000">$links</span><span style="color: #0000FF">,</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #335533">'media'&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;</span><span style="color: #000000">$media&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #0000FF">}</span></li>
+<span style="color: #000000">?&gt;</span>
+</ol><p>After running the code, the $media array will contain the <em>url</em>, <em>length</em> and <em>type</em> of the media file specified in the feed item. The $media array is added to the $items array to be processed later by the application.</p><a name="step-5-read-the-itunes-item-elements"></a><a name="id48"></a><h4>Step 5. Read the iTunes item elements</h4><p>Let's say we want to fetch the <em>duration</em> of the iTunes module inside an item. The code from the previous section is altered as follows:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #007700">//&nbsp;...</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$media&nbsp;</span><span style="color: #0000FF">=&nbsp;array();</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(&nbsp;isset(&nbsp;</span><span style="color: #000000">$item</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">enclosure&nbsp;</span><span style="color: #0000FF">)&nbsp;)</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$enclosure&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$item</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">enclosure</span><span style="color: #0000FF">[</span><span style="color: #000000">0</span><span style="color: #0000FF">];</span></li>
+<li></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$media&nbsp;</span><span style="color: #0000FF">=&nbsp;array(</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #335533">'url'&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;isset(&nbsp;</span><span style="color: #000000">$enclosure</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">url&nbsp;</span><span style="color: #0000FF">)&nbsp;?&nbsp;</span><span style="color: #000000">$enclosure</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">url&nbsp;</span><span style="color: #0000FF">:&nbsp;</span><span style="color: #000000">null</span><span style="color: #0000FF">,</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #335533">'length'&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;isset(&nbsp;</span><span style="color: #000000">$enclosure</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">length&nbsp;</span><span style="color: #0000FF">)&nbsp;?&nbsp;</span><span style="color: #000000">$enclosure</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">length&nbsp;</span><span style="color: #0000FF">:&nbsp;</span><span style="color: #000000">null</span><span style="color: #0000FF">,</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #335533">'type'&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;isset(&nbsp;</span><span style="color: #000000">$enclosure</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">type&nbsp;</span><span style="color: #0000FF">)&nbsp;?&nbsp;</span><span style="color: #000000">$enclosure</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">type&nbsp;</span><span style="color: #0000FF">:&nbsp;</span><span style="color: #000000">null</span></li>
+<li><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(&nbsp;isset(&nbsp;</span><span style="color: #000000">$item</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">iTunes&nbsp;</span><span style="color: #0000FF">)&nbsp;)</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$iTunes&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$item</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">iTunes</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$media</span><span style="color: #0000FF">[</span><span style="color: #335533">'duration'</span><span style="color: #0000FF">]&nbsp;=&nbsp;isset(&nbsp;</span><span style="color: #000000">$iTunes</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">duration&nbsp;</span><span style="color: #0000FF">)&nbsp;?&nbsp;</span><span style="color: #000000">$iTunes</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">duration&nbsp;</span><span style="color: #0000FF">:&nbsp;</span><span style="color: #000000">null</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;}</span></li>
+<li><span style="color: #007700">//&nbsp;...</span></li>
+<span style="color: #000000">?&gt;</span>
+</ol><p>After running the code, the $media array will contain the <em>url</em>, <em>length</em> and <em>type</em> of the media file specified in the feed item, and the <em>duration</em> of the media file taken from the iTunes module (if available).</p><a name="best-practices"></a><a name="id49"></a><h3>Best practices</h3><p>This section lists some useful tips for handling feed documents.</p><a name="universal-feed-generator"></a><a name="id50"></a><h4>Universal feed generator</h4><p>In order to generate all 3 feed types (ATOM, RSS1, RSS2) from the same <a href='/zetacomponents/documentation/trunk/Feed/phpdoc/ezcFeed.html'>ezcFeed</a> data, these elements must be added to an <a href='/zetacomponents/documentation/trunk/Feed/phpdoc/ezcFeed.html'>ezcFeed</a> object:</p><ul><li><p><em>author</em></p></li><li><p><em>description</em></p></li><li><p><em>id</em></p></li><li><p>at least one <em>item</em> with all required elements</p></li><li><p><em>link</em></p></li><li><p><em>title</em></p></li><li><p><em>updated</em></p></li></ul><p>And these elements must be added to an <a href='/zetacomponents/documentation/trunk/Feed/phpdoc/ezcFeedEntryElement.html'>ezcFeedEntryElement</a> object:</p><ul><li><p><em>author</em></p></li><li><p><em>description</em></p></li><li><p><em>id</em></p></li><li><p><em>link</em></p></li><li><p><em>title</em></p></li><li><p><em>updated</em></p></li></ul><p>This is a minimal script to be able to generate all 3 feed types from the same <a href='/zetacomponents/documentation/trunk/Feed/phpdoc/ezcFeed.html'>ezcFeed</a> data:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #007700">//&nbsp;use&nbsp;eZ&nbsp;Components&nbsp;autoload&nbsp;mechanism</span></li>
+<li><span style="color: #0000FF">require_once&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #000000">$feed&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Feed/phpdoc/ezcFeed.html'>ezcFeed</a></span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #000000">$author&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$feed</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">add</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'author'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$author</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">name&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">"Indiana&nbsp;Jones"</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000">$author</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">email&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">"indy@example.com"</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #000000">$feed</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">description&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">"This&nbsp;feed&nbsp;shows&nbsp;Indiana&nbsp;Jones&nbsp;movie&nbsp;releases"</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000">$feed</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">id&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">"http://indy.example.com/"</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #000000">$link&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$feed</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">add</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'link'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$link</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">href&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">"http://indy.example.com/"</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #000000">$feed</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">title&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">"Indiana&nbsp;Jones&nbsp;movie&nbsp;releases"</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000">$feed</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">updated&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">time</span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;add&nbsp;a&nbsp;feed&nbsp;item</span></li>
+<li><span style="color: #000000">$item&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$feed</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">add</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'item'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #000000">$author&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$item</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">add</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'author'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$author</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">name&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">"Indiana&nbsp;Jones"</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000">$author</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">email&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">"indy@example.com"</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #000000">$item</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">description&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">"Indy&nbsp;meets&nbsp;******&nbsp;and&nbsp;has&nbsp;a&nbsp;hell&nbsp;of&nbsp;an&nbsp;adventure"</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000">$item</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">id&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">"http://indy.example.com/4"</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #000000">$link&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$item</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">add</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'link'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$link</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">href&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">"http://indy.example.com/4"</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #000000">$item</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">title&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">"Indiana&nbsp;Jones&nbsp;and&nbsp;the&nbsp;Kingdom&nbsp;of&nbsp;the&nbsp;Crystal&nbsp;Skull"</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #000000">$item</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">updated&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">time</span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #000000">$atom&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$feed</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">generate</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'atom'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$rss1&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$feed</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">generate</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'rss1'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$rss2&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$feed</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">generate</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'rss2'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<span style="color: #000000">?&gt;</span>
+</ol><a name="self-link"></a><a name="id51"></a><h4>Self link</h4><p>A <a href="http://validator.w3.org/feed/">feed validator</a> application will usually recommend that a feed contains a link to itself, in other words the URL of the feed should be included inside the feed.</p><p>To add this information to a feed, use the following section.</p><a name="atom"></a><a name="id52"></a><h5>ATOM</h5><p>Add a <em>link</em> element with the attribute <em>rel=self</em> (this is required):</p><code class="block">$link = $feed-&gt;add( 'link' );
+$link-&gt;href = 'http://example.com/';
+$link-&gt;rel = 'self';</code><a name="rss1"></a><a name="id53"></a><h5>RSS1</h5><p>Use the <em>about</em> attribute, accessed as <em>id</em> (this is required):</p><code class="block">$feed-&gt;id = 'http://example.com/';</code><a name="rss2"></a><a name="id54"></a><h5>RSS2</h5><p>Most <a href="http://validator.w3.org/feed/">feed validator</a> applications will recommend to include in an RSS2 feed a link to the location of the feed. For example, if the XML document containing the RSS2 feed is located at '<a href="http://example.com/rss/">http://example.com/rss/</a>', then this URL should be contained in the feed itself in an <em>atom:link</em> element, since RSS2 does not offer a mechanism to specify self-links.</p><p>Use the <em>id</em> element of a feed to add this self-link:</p><code class="block">$feed-&gt;id = 'http://example.com/';</code><p>This will be rendered in XML as:</p><code class="block">&lt;rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"&gt;
+...
+&lt;atom:link href="http://example.com/" rel="self" type="application/rss+xml"/&gt;</code><a name="media-type"></a><a name="id55"></a><h4>Media type</h4><a name="id5"></a><a name="id56"></a><h5>ATOM</h5><p>All ATOM feeds must be identified with the <code class="inline">application/atom+xml</code> media type. Use the <strong>getContentType()</strong> method after calling <strong>generate( 'atom' )</strong> on an <a href='/zetacomponents/documentation/trunk/Feed/phpdoc/ezcFeed.html'>ezcFeed</a> object to get this string, or use <strong><a href='/zetacomponents/documentation/trunk/Feed/phpdoc/ezcFeedAtom.html#constCONTENT_TYPE'>ezcFeedAtom::CONTENT_TYPE</a></strong>.</p><a name="id6"></a><a name="id57"></a><h5>RSS1</h5><p>All RSS1 feeds should be identified with the <code class="inline">application/rss+xml</code> media type (although it is not a standard yet). Use the <strong>getContentType()</strong> method after calling <strong>generate( 'rss1' )</strong> on an <a href='/zetacomponents/documentation/trunk/Feed/phpdoc/ezcFeed.html'>ezcFeed</a> object to get this string, or use <strong><a href='/zetacomponents/documentation/trunk/Feed/phpdoc/ezcFeedRss1.html#constCONTENT_TYPE'>ezcFeedRss1::CONTENT_TYPE</a></strong>.</p><a name="id7"></a><a name="id58"></a><h5>RSS2</h5><p>All RSS2 feeds should be identified with the <code class="inline">application/rss+xml</code> media type (although it is not a standard yet). Use the <strong>getContentType()</strong> method after calling <strong>generate( 'rss2' )</strong> on an <a href='/zetacomponents/documentation/trunk/Feed/phpdoc/ezcFeed.html'>ezcFeed</a> object to get this string, or use <strong><a href='/zetacomponents/documentation/trunk/Feed/phpdoc/ezcFeedRss2.html#constCONTENT_TYPE'>ezcFeedRss2::CONTENT_TYPE</a></strong>.</p><a name="extending-the-feed-component"></a><a name="id59"></a><h3>Extending the Feed component</h3><a name="register-a-new-feed-type"></a><a name="id60"></a><h4>Register a new feed type</h4><p>A new feed type can be defined by creating a class which extends the class <a href='/zetacomponents/documentation/trunk/Feed/phpdoc/ezcFeedProcessor.html'>ezcFeedProcessor</a> and implements the interface <a href='/zetacomponents/documentation/trunk/Feed/phpdoc/ezcFeedParser.html'>ezcFeedParser</a>. The new class needs to be added to the supported feed types list by calling the <a href='/zetacomponents/documentation/trunk/Feed/phpdoc/ezcFeed.html#registerFeed'>ezcFeed::registerFeed</a>() function.</p><p>Example of new feed type:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #0000FF">class&nbsp;</span><span style="color: #000000">myOpmlHandler&nbsp;</span><span style="color: #0000FF">extends&nbsp;</span><span style="color: #000000">ezcFeedProcessor&nbsp;</span><span style="color: #0000FF">implements&nbsp;</span><span style="color: #000000">ezcFeedParser</span></li>
+<li><span style="color: #0000FF">{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;</span><span style="color: #000000">CONTENT_TYPE&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">'text/x-opml'</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;</span><span style="color: #000000">FEED_TYPE&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">'opml'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;function&nbsp;</span><span style="color: #000000">__construct</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">ezcFeed&nbsp;$container&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$this</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">feedContainer&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$container</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$this</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">feedType&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">self</span><span style="color: #0000FF">::</span><span style="color: #000000">FEED_TYPE</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$this</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">contentType&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">self</span><span style="color: #0000FF">::</span><span style="color: #000000">CONTENT_TYPE</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;}</span></li>
+<li></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;function&nbsp;</span><span style="color: #000000">generate</span><span style="color: #0000FF">()</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">//&nbsp;write&nbsp;implementation&nbsp;here</span></li>
+<li></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;should&nbsp;return&nbsp;XML&nbsp;as&nbsp;a&nbsp;string&nbsp;based&nbsp;on&nbsp;the&nbsp;feed&nbsp;elements&nbsp;from</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;$this-&gt;feedContainer&nbsp;which&nbsp;are&nbsp;accessed&nbsp;as&nbsp;$this-&gt;element_name</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;(example&nbsp;$this-&gt;title)</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000FF">}</span></li>
+<li></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;static&nbsp;function&nbsp;</span><span style="color: #000000">canParse</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">DOMDocument&nbsp;$xml&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">//&nbsp;write&nbsp;implementation&nbsp;here</span></li>
+<li></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;should&nbsp;return&nbsp;true&nbsp;if&nbsp;this&nbsp;class&nbsp;can&nbsp;parse&nbsp;the&nbsp;$xml&nbsp;DOMDocument&nbsp;received</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;and&nbsp;false&nbsp;otherwise</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000FF">}</span></li>
+<li></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;function&nbsp;</span><span style="color: #000000">parse</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">DOMDocument&nbsp;$xml&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">//&nbsp;write&nbsp;implementation&nbsp;here</span></li>
+<li></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$feed&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Feed/phpdoc/ezcFeed.html'>ezcFeed</a></span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">//&nbsp;parse&nbsp;$xml&nbsp;and&nbsp;fill&nbsp;$feed&nbsp;with&nbsp;properties&nbsp;fetched&nbsp;from&nbsp;$xml</span></li>
+<li></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000FF">return&nbsp;</span><span style="color: #000000">$feed</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;}</span></li>
+<li><span style="color: #0000FF">}</span></li>
+<span style="color: #000000">?&gt;</span>
+</ol><p>Example of how to use the feed type above:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #007700">//&nbsp;use&nbsp;eZ&nbsp;Components&nbsp;autoload&nbsp;mechanism</span></li>
+<li><span style="color: #0000FF">require_once&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Feed/phpdoc/ezcFeed.html#registerFeed'>ezcFeed::registerFeed</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'opml'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'myOpmlHandler'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$feed&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Feed/phpdoc/ezcFeed.html'>ezcFeed</a></span><span style="color: #0000FF">();</span></li>
+<li><span style="color: #007700">//&nbsp;fill&nbsp;$feed&nbsp;with&nbsp;OPML&nbsp;properties</span></li>
+<li></li>
+<li><span style="color: #000000">$xml&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$feed</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">generate</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'opml'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<span style="color: #000000">?&gt;</span>
+</ol><a name="register-a-new-module"></a><a name="id61"></a><h4>Register a new module</h4><p>A new module can be defined by creating a class which extends the class <a href='/zetacomponents/documentation/trunk/Feed/phpdoc/ezcFeedModule.html'>ezcFeedModule</a>. The new class needs to be added to the supported modules list by calling the <a href='/zetacomponents/documentation/trunk/Feed/phpdoc/ezcFeed.html#registerModule'>ezcFeed::registerModule</a>() function.</p><p>Example of a new module type:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #0000FF">class&nbsp;</span><span style="color: #000000">mySlashHandler&nbsp;</span><span style="color: #0000FF">extends&nbsp;</span><span style="color: #000000">ezcFeedModule</span></li>
+<li><span style="color: #0000FF">{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;function&nbsp;</span><span style="color: #000000">__construct</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$level&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">'feed'&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">parent</span><span style="color: #0000FF">::</span><span style="color: #000000">__construct</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$level&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;}</span></li>
+<li></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;function&nbsp;</span><span style="color: #000000">generate</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">DOMDocument&nbsp;$xml</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">DOMNode&nbsp;$root&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">//&nbsp;write&nbsp;implementation&nbsp;here</span></li>
+<li></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;should&nbsp;fill&nbsp;$root&nbsp;with&nbsp;values&nbsp;from&nbsp;$this</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000FF">}</span></li>
+<li></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;function&nbsp;</span><span style="color: #000000">parse</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$name</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">DOMElement&nbsp;$node&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">//&nbsp;write&nbsp;implementation&nbsp;here</span></li>
+<li></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;should&nbsp;parse&nbsp;$node&nbsp;and&nbsp;add&nbsp;a&nbsp;new&nbsp;<a href='/zetacomponents/documentation/trunk/Feed/phpdoc/ezcFeedElement.html'>ezcFeedElement</a>&nbsp;to&nbsp;$this&nbsp;with&nbsp;name&nbsp;$name</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000FF">}</span></li>
+<li></li>
+<li></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;function&nbsp;</span><span style="color: #000000">isElementAllowed</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$name&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">//&nbsp;return&nbsp;true&nbsp;if&nbsp;the&nbsp;element&nbsp;$name&nbsp;is&nbsp;allowed&nbsp;in&nbsp;this&nbsp;module&nbsp;at&nbsp;level&nbsp;$this-&gt;level,</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;and&nbsp;false&nbsp;otherwise</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000FF">}</span></li>
+<li></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;function&nbsp;</span><span style="color: #000000">add</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$name&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">//&nbsp;add&nbsp;the&nbsp;element&nbsp;$name&nbsp;to&nbsp;this&nbsp;module&nbsp;at&nbsp;level&nbsp;$this-&gt;level&nbsp;(feed-level&nbsp;or&nbsp;item-level)</span></li>
+<li><span style="color: #007700">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000FF">}</span></li>
+<li></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;static&nbsp;function&nbsp;</span><span style="color: #000000">getModuleName</span><span style="color: #0000FF">()</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;</span><span style="color: #335533">'Slash'</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;}</span></li>
+<li></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;static&nbsp;function&nbsp;</span><span style="color: #000000">getNamespace</span><span style="color: #0000FF">()</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;</span><span style="color: #335533">'http://purl.org/rss/1.0/modules/slash/'</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;}</span></li>
+<li></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;static&nbsp;function&nbsp;</span><span style="color: #000000">getNamespacePrefix</span><span style="color: #0000FF">()</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;</span><span style="color: #335533">'slash'</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;}</span></li>
+<li><span style="color: #0000FF">}</span></li>
+<span style="color: #000000">?&gt;</span>
+</ol><p>Example of how to use the module above:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #007700">//&nbsp;use&nbsp;eZ&nbsp;Components&nbsp;autoload&nbsp;mechanism</span></li>
+<li><span style="color: #0000FF">require_once&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Feed/phpdoc/ezcFeed.html#registerModule'>ezcFeed::registerModule</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'Slash'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'mySlashHandler'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'slash'</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #000000">$feed&nbsp;</span><span style="color: #0000FF">=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Feed/phpdoc/ezcFeed.html'>ezcFeed</a></span><span style="color: #0000FF">();</span></li>
+<li><span style="color: #000000">$item&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$feed</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">add</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'item'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$slash&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$item</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">addModule</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'Slash'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #007700">//&nbsp;add&nbsp;properties&nbsp;for&nbsp;the&nbsp;Slash&nbsp;module&nbsp;to&nbsp;$slash</span></li>
+<li></li>
+<li><span style="color: #000000">$xml&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$feed</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">generate</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'rss2'&nbsp;</span><span style="color: #0000FF">);&nbsp;</span><span style="color: #007700">//&nbsp;or&nbsp;the&nbsp;feed&nbsp;type&nbsp;which&nbsp;is&nbsp;needed</span></li>
+<span style="color: #000000">?&gt;</span>
+</ol><a name="specifications-and-rfcs"></a><a name="id62"></a><h3>Specifications and RFCs</h3><p>For a list of supported RFCs and specifications of the feed types and modules, please see the <a href="../Feed/specifications.html">specifications</a> page.</p><!--Local Variables:
+mode: rst
+fill-column: 79
+End:
+vim: et syn=rst tw=79 nocin-->
+
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,412 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="PHP, apache, components, framework, quality" />
+	<meta name="author" content="dotxp" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Wed, 04 Aug 2010 13:07:45 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="ezcImageAnalyzer.html" />
+	<meta name="DC.creator" content="dotxp" />
+	<meta name="DC.date" content="Wed, 04 Aug 2010 13:07:45 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/ImageAnalysis/phpdoc/ezcImageAnalyzer.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/ImageAnalysis/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/trunk/ImageAnalysis/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+
+</ul>
+
+		
+  <div class="phpdoc">
+    <h2>Apache Zeta Components Manual :: Docs For Class ezcImageAnalyzer</h2>
+
+                  <h3>ImageAnalysis::ezcImageAnalyzer</h3>
+    
+<a name="sec-description"></a>
+<h3>Class ezcImageAnalyzer</h3>
+
+<p>Class to retreive information about a given image file.</p><div><p>This class scans the specified image file and leaves the information  available through the public property ezcImageAnalyzer::$data.  The information available depends on the handlers used by the  ezcImageAnalyzer and the type of image you select. In case the  ezcImageAnalyzer does not find a suitable handler to analyze an image,  it will throw a <a href="ezcImageAnalyzerFileNotProcessableException.html">ezcImageAnalyzerFileNotProcessableException</a>.</p><p>In this package the following handlers are available (in their priority  order): </p><ul><li><a href="ezcImageAnalyzerImagemagickHandler.html">ezcImageAnalyzerImagemagickHandler</a>, which uses the ImageMagick
+   binary "identify" to collect information about an image.</li><li><a href="ezcImageAnalyzerPhpHandler.html">ezcImageAnalyzerPhpHandler</a>, which relies on the GD extension and
+   is capable of using the exif extension to determine additional data.</li></ul>  For detailed information on the data provided by these handlers,  their capabilities on analyzing images and their speciallties, please  take a look at their documentation. For general information on handlers,  look at <a href="ezcImageAnalyzerHandler.html">ezcImageAnalyzerHandler</a>,  <a href="ezcImageAnalyzer.html#methodgetHandlerClasses">ezcImageAnalyzer::getHandlerClasses()</a> and  <a href="ezcImageAnalyzer.html#methodsetHandlerClasses">ezcImageAnalyzer::setHandlerClasses()</a>.<p>A simple example.  </p><ol><li><div class="src-line">&#8192;<span class="src-comm">//&#8192;Analyzation&#8192;of&#8192;the&#8192;MIME&#8192;type&#8192;is&#8192;done&#8192;during&#8192;creation.</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$image&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcImageAnalyzer.html">ezcImageAnalyzer</a></span><span class="src-sym">(&#8192;</span><a href="http://www.php.net/dirname">dirname</a><span class="src-sym">(&#8192;</span>__FILE__&#8192;<span class="src-sym">)</span>.<span class="src-str">'/toby.jpg'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-key">if&#8192;</span><span class="src-sym">(&#8192;</span><span class="src-var">$image</span><span class="src-sym">-&gt;</span><span class="src-id">mime&#8192;</span>==&#8192;<span class="src-str">'image/tiff'&#8192;</span>||&#8192;<span class="src-var">$image</span><span class="src-sym">-&gt;</span><span class="src-id">mime&#8192;</span>==&#8192;<span class="src-str">'image/jpeg'&#8192;</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">{</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-comm">//&#8192;Analyzation&#8192;of&#8192;further&#8192;image&#8192;data&#8192;is&#8192;done&#8192;during&#8192;access&#8192;of&#8192;the&#8192;data</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;echo&#8192;<span class="src-str">'Photo&#8192;taken&#8192;on&#8192;'</span>.<a href="http://www.php.net/date">date</a><span class="src-sym">(&#8192;</span><span class="src-str">'Y/m/d,&#8192;H:i'</span><span class="src-sym">,&#8192;</span><span class="src-var">$image</span><span class="src-sym">-&gt;</span><span class="src-id">data</span><span class="src-sym">-&gt;</span><a href="http://www.php.net/date">date</a>&#8192;<span class="src-sym">)</span>.<span class="src-str">".\n"</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">}</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-key">elseif&#8192;</span><span class="src-sym">(&#8192;</span><span class="src-var">$mime&#8192;</span>!==&#8192;<span class="src-id">false&#8192;</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">{</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;echo&#8192;<span class="src-str">"</span><span class="src-str">Format&#8192;was&#8192;detected&#8192;as&#8192;{<span class="src-var">$mime</span><span class="src-sym">}</span>.\n</span><span class="src-str">"</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">}</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-key">else</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">{</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;echo&#8192;<span class="src-str">"Unknown&#8192;photo&#8192;format.\n"</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">}</span></div></li>
+</ol><p>If you want to manipulate the handlers used by ezcImageAnalyzer, you can do  this globally like this:  </p><ol><li><div class="src-line">&#8192;<span class="src-comm">//&#8192;Retreive&#8192;the&#8192;predefined&#8192;handler&#8192;classes</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$originalHandlers&#8192;</span>=&#8192;<span class="src-id"><a href="ezcImageAnalyzer.html">ezcImageAnalyzer</a></span><span class="src-sym">::</span><a href="ezcImageAnalyzer.html#methodgetHandlerClasses">getHandlerClasses</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-key">foreach&#8192;</span><span class="src-sym">(&#8192;</span><span class="src-var">$handlerClasses&#8192;</span><span class="src-key">as&#8192;</span><span class="src-var">$id&#8192;</span>=&gt;&#8192;<span class="src-var">$handlerClass&#8192;</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">{</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-comm">//&#8192;Unset&#8192;the&#8192;ezcImageAnalyzerPhpHandler&#8192;(do&#8192;not&#8192;use&#8192;that&#8192;anymore!)</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-key">if&#8192;</span><span class="src-sym">(&#8192;</span><span class="src-var">$handlerClass&#8192;</span>===&#8192;<span class="src-str">'ezcImageAnalyzerPhpHandler'&#8192;</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-sym">{</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;unset<span class="src-sym">(&#8192;</span><span class="src-var">$handlerClasses</span><span class="src-sym">[</span><span class="src-var">$id</span><span class="src-sym">]&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-sym">}</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">}</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;Set&#8192;the&#8192;new&#8192;collection&#8192;of&#8192;handler&#8192;classes.</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-id"><a href="ezcImageAnalyzer.html">ezcImageAnalyzer</a></span><span class="src-sym">::</span><a href="ezcImageAnalyzer.html#methodsetHandlerClasses">setHandlerClasses</a><span class="src-sym">(&#8192;</span><span class="src-var">$handlerClasses&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;Somewhere&#8192;else&#8192;in&#8192;the&#8192;code...&#8192;This&#8192;now&#8192;tries&#8192;to&#8192;use&#8192;your&#8192;handler&#8192;in&#8192;the</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;first&#8192;place</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$image&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcImageAnalyzer.html">ezcImageAnalyzer</a></span><span class="src-sym">(&#8192;</span><span class="src-str">'/var/cache/images/toby.jpg'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol><p>Or you can define your own handler classes to be used (beware, those must  either be already loaded or load automatically on access).  </p><ol><li><div class="src-line">&#8192;<span class="src-comm">//&#8192;Define&#8192;your&#8192;onw&#8192;handler&#8192;class&#8192;to&#8192;be&#8192;used&#8192;in&#8192;the&#8192;first&#8192;place&#8192;and&#8192;fall&#8192;back&#8192;on</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;ImageMagick,&#8192;if&#8192;necessary.</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$handlerClasses&#8192;</span>=&#8192;<span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-str">'MyOwnHandlerClass'</span><span class="src-sym">,&#8192;</span><span class="src-str">'ezcImageAnalyzerImagemagickHandler'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-id"><a href="ezcImageAnalyzer.html">ezcImageAnalyzer</a></span><span class="src-sym">::</span><a href="ezcImageAnalyzer.html#methodsetHandlerClasses">setHandlerClasses</a><span class="src-sym">(&#8192;</span><span class="src-var">$handlerClasses&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;Somewehre&#8192;else&#8192;in&#8192;the&#8192;code...&#8192;This&#8192;now&#8192;tries&#8192;to&#8192;use&#8192;your&#8192;handler&#8192;in&#8192;the</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;first&#8192;place</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$image&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcImageAnalyzer.html">ezcImageAnalyzer</a></span><span class="src-sym">(&#8192;</span><span class="src-str">'/var/cache/images/toby.jpg'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol></div>
+<p>Source for this file: <a href="http://fisheye6.atlassian.com/browse/zetacomponents/trunk/ImageAnalysis/src/analyzer.php?r=HEAD">/ImageAnalysis/src/analyzer.php</a></p>
+       
+
+
+
+
+  <table><tr><td>
+            <strong>Version:</strong>&#8192;&#8192;
+          </td>
+          <td>//autogentag//</td>
+        </tr></table><a name="sec-prop-summary"></a>
+  <h3>Properties</h3>
+  <table class="summary"><tr><td class="right">
+          <a name="prop%24data" id="$data"></a>
+          <a name="prop-%24data" id="$data"></a>
+          <em><a href="ezcImageAnalyzerData.html">ezcImageAnalyzerData</a></em>        </td>
+        <td class="right">
+          <em>read</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24data" title="details" class="var-name-summary">$data</a>
+                      </code>
+          <br><div style="margin-left: 20px">Extended data about the image.</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24mime" id="$mime"></a>
+          <a name="prop-%24mime" id="$mime"></a>
+          <em>string</em>        </td>
+        <td class="right">
+          <em>read</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24mime" title="details" class="var-name-summary">$mime</a>
+                      </code>
+          <br><div style="margin-left: 20px">The MIME type of the image.</div>        </td>
+      </tr></table><a name="sec-var-summary"></a>
+  <h3>Member Variables</h3>
+  <table class="summary"><tr><td class="right">
+            <em>protected</em>            static
+            <em>array</em>          </td>
+          <td>
+            <code>
+              $availableHandlers
+                          </code>
+            <br><div style="margin-left: 20px">Available handler classes and their options.</div>                      </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            static
+            <em>array(string=&gt;mixed)</em>          </td>
+          <td>
+            <code>
+              $knownHandlers
+                          </code>
+            <br><div style="margin-left: 20px">Collection of known handler classes. Classes are ordered by priority.</div>                      </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            <em>string</em>          </td>
+          <td>
+            <code>
+              $filePath
+                          </code>
+            <br><div style="margin-left: 20px">The path of the file to analyze.</div>                      </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            <em>bool</em>          </td>
+          <td>
+            <code>
+              $isAnalyzed
+                          </code>
+            <br><div style="margin-left: 20px">Determines whether the image file has been analyzed or not.</div>            <br><div style="margin-left: 20px"><p>This is used internally.</p></div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            <em>array(string=&gt;mixed)</em>          </td>
+          <td>
+            <code>
+              $properties
+                          </code>
+            <br><div style="margin-left: 20px">Container to hold the properties</div>                      </td>
+        </tr></table><a name="sec-method-summary"></a>
+  <h3>Method Summary</h3>
+  <table class="summary"><tr><td class="right">
+            <em>public</em>            static
+                        <em>array(string=&gt;array(string=&gt;string))</em>          </td>
+          <td>
+            <code>
+              <a href="#getHandlerClasses"><b>getHandlerClasses</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns an array of known handler classes.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>            static
+                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#setHandlerClasses"><b>setHandlerClasses</b></a>(
+                                                                                    $handlerClasses
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Set the array of known handlers.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>ezcImageAnalyzer</em>          </td>
+          <td>
+            <code>
+              <a href="#__construct"><b>__construct</b></a>(
+                                                                                    $file
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Create an image analyzer for the specified file.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#analyzeImage"><b>analyzeImage</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Analyze the image file.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#analyzeType"><b>analyzeType</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Analyze the image file's MIME type.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#checkHandlers"><b>checkHandlers</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Check all known handlers for availability.</div>          </td>
+        </tr></table><a name="sec-methods"></a>
+  <h3>Methods</h3>
+  <a name="method_detail"></a>
+              <a name="methodgetHandlerClasses" id="getHandlerClasses"><!-- --></a>
+
+    <h4>getHandlerClasses</h4>
+
+    <div class="method-signature">
+      static array(string=&gt;array(string=&gt;string))
+      getHandlerClasses(
+      )
+    </div>
+
+      <p>Returns an array of known handler classes.</p><div><p>This method returns an array of available handler classes. The array is  indexed by the handler names, which are assigned to an array of options  set for this handler.</p></div>      
+      
+      
+      
+      
+      
+        <a name="methodsetHandlerClasses" id="setHandlerClasses"><!-- --></a>
+
+    <h4>setHandlerClasses</h4>
+
+    <div class="method-signature">
+      static void
+      setHandlerClasses(
+                                  
+          $handlerClasses
+                        )
+    </div>
+
+      <p>Set the array of known handlers.</p><div><p>Sets the available handlers. The array submitted must be indexed by  the handler classes names (attention: handler classes must extend  ezcImageAnalyzerHandler), assigned to an array of options for this  handler. Most handlers don't have any options. Which options a handler  may accept depends on the handler implementation.</p></div>      
+              <h5>Parameters:</h5>
+        <table class="detail"><thead><tr><th>Name</th>
+              <th>Type</th>
+              <th class="desc">Description</th>
+            </tr></thead><tbody><tr><td><code>$handlerClasses</code></td>
+                <td><em>array(string=&gt;array(string=&gt;string))</em></td>
+                <td>
+                                      Handlers                                                              and options.
+                                  </td>
+              </tr></tbody></table><a name="method__construct" id="__construct"><!-- --></a>
+
+    <h4>__construct</h4>
+
+    <div class="method-signature">
+      ezcImageAnalyzer
+      __construct(
+                                  string
+          $file
+                        )
+    </div>
+
+    <p>Create an image analyzer for the specified file.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$file</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  The file to analyze.
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseFilePermissionException.html">ezcBaseFilePermissionException</a></code></td>
+              <td>
+                                  If image file is not readable.
+                              </td>
+            </tr><tr><td><code><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseFileNotFoundException.html">ezcBaseFileNotFoundException</a></code></td>
+              <td>
+                                  If image file does not exist.
+                              </td>
+            </tr><tr><td><code><a href="ezcImageAnalyzerFileNotProcessableException.html">ezcImageAnalyzerFileNotProcessableException</a></code></td>
+              <td>
+                                  If the file could not be processed.
+                              </td>
+            </tr></tbody></table><a name="methodanalyzeImage" id="analyzeImage"><!-- --></a>
+
+    <h4>analyzeImage</h4>
+
+    <div class="method-signature">
+      void
+      analyzeImage(
+      )
+    </div>
+
+    <p>Analyze the image file.</p><div><p>This method triggers a handler to analyze the given image file for more data.</p></div>
+    
+          <h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseFileIoException.html">ezcBaseFileIoException</a></code></td>
+              <td>
+                                  If an error occurs while the file is read.
+                              </td>
+            </tr><tr><td><code><a href="ezcImageAnalyzerFileNotProcessableException.html">ezcImageAnalyzerFileNotProcessableException</a></code></td>
+              <td>
+                                  If the no handler is capable to analyze the given image file.
+                              </td>
+            </tr></tbody></table><a name="methodanalyzeType" id="analyzeType"><!-- --></a>
+
+    <h4>analyzeType</h4>
+
+    <div class="method-signature">
+      void
+      analyzeType(
+      )
+    </div>
+
+    <p>Analyze the image file's MIME type.</p><div><p>This method triggers a handler to analyze the MIME type of the given image file.</p></div>
+    
+          <h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcImageAnalyzerFileNotProcessableException.html">ezcImageAnalyzerFileNotProcessableException</a></code></td>
+              <td>
+                                  If the no handler is capable to analyze the given image file.
+                              </td>
+            </tr></tbody></table><a name="methodcheckHandlers" id="checkHandlers"><!-- --></a>
+
+    <h4>checkHandlers</h4>
+
+    <div class="method-signature">
+      void
+      checkHandlers(
+      )
+    </div>
+
+    <p>Check all known handlers for availability.</p><div><p>This method checks all registered handler classes for if the they are  available (using <a href="ezcImageAnalyzerHandler.html#methodisAvailable">ezcImageAnalyzerHandler::isAvailable()</a>).</p></div>
+    
+          <h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcImageAnalyzerInvalidHandlerException.html">ezcImageAnalyzerInvalidHandlerException</a></code></td>
+              <td>
+                                  If a registered handler class does not exist or does not inherit from <a href="ezcImageAnalyzerHandler.html">ezcImageAnalyzerHandler</a>.
+                              </td>
+            </tr></tbody></table><div class="credit">
+      Documentation generated by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+    </div>
+  </div>
+  
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

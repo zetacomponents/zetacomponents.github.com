@@ -1,0 +1,376 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="PHP, apache, components, framework, quality" />
+	<meta name="author" content="dotxp" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Wed, 04 Aug 2010 13:07:45 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="ezcImageAnalyzerData.html" />
+	<meta name="DC.creator" content="dotxp" />
+	<meta name="DC.date" content="Wed, 04 Aug 2010 13:07:45 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/ImageAnalysis/phpdoc/ezcImageAnalyzerData.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/ImageAnalysis/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/trunk/ImageAnalysis/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+
+</ul>
+
+		
+  <div class="phpdoc">
+    <h2>Apache Zeta Components Manual :: Docs For Class ezcImageAnalyzerData</h2>
+
+                  <h3>ImageAnalysis::ezcImageAnalyzerData</h3>
+    
+<a name="sec-description"></a>
+<h3>Class ezcImageAnalyzerData</h3>
+
+<p>Struct to store the data retrieved from an image analysis.</p><div><p>This class is used as a struct for the data retrieved from  an <a href="ezcImageAnalyzerHandler.html">ezcImageAnalyzerHandler</a>. It stores various information about  an analyzed image and pre-fills it's attributes with sensible default  values, to make the usage as easy as possible.</p><p>Ths struct class should not be accessed directly (except form  <a href="ezcImageAnalyzerHandler.html">ezcImageAnalyzerHandler</a> classes, where it is created). From a  users view it is transparently accessable through  ezcImageAnalyzer::$data, more specific using  </p><ol><li><div class="src-line">&#8192;<span class="src-var">$analyzer&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcImageAnalyzer.html">ezcImageAnalyzer</a></span><span class="src-sym">(&#8192;</span><span class="src-str">'myfile.jpg'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;echo&#8192;<span class="src-var">$analyzer</span><span class="src-sym">-&gt;</span><span class="src-id">data</span><span class="src-sym">-&gt;</span><span class="src-id"><a href="ezcImageAnalyzerData.html#var%24size">size</a></span><span class="src-sym">;</span></div></li>
+</ol></div>
+<p>Source for this file: <a href="http://fisheye6.atlassian.com/browse/zetacomponents/trunk/ImageAnalysis/src/structs/analyzer_data.php?r=HEAD">/ImageAnalysis/src/structs/analyzer_data.php</a></p>
+       
+
+
+<pre><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseStruct.html">ezcBaseStruct</a>
+   |
+   --ezcImageAnalyzerData</pre>
+
+
+  <table><tr><td>
+            <strong>Version:</strong>&#8192;&#8192;
+          </td>
+          <td>//autogentag//</td>
+        </tr></table><a name="sec-var-summary"></a>
+  <h3>Member Variables</h3>
+  <table class="summary"><tr><td class="right">
+            <em>public</em>            <em>int</em>          </td>
+          <td>
+            <code>
+              $colorCount
+               = <span class="var-default"> 0</span>            </code>
+            <br><div style="margin-left: 20px">Number of colors in image.</div>                      </td>
+        </tr><tr><td class="right">
+            <em>public</em>            <em>string</em>          </td>
+          <td>
+            <code>
+              $comment
+               = <span class="var-default"> null</span>            </code>
+            <br><div style="margin-left: 20px">First inline comment for the image.</div>                      </td>
+        </tr><tr><td class="right">
+            <em>public</em>            <em>array(string)</em>          </td>
+          <td>
+            <code>
+              $commentList
+               = <span class="var-default">array()</span>            </code>
+            <br><div style="margin-left: 20px">List of inline comments for the image.</div>                      </td>
+        </tr><tr><td class="right">
+            <em>public</em>            <em>string</em>          </td>
+          <td>
+            <code>
+              $copyright
+               = <span class="var-default"> null</span>            </code>
+            <br><div style="margin-left: 20px">Copyright text for the image.</div>                      </td>
+        </tr><tr><td class="right">
+            <em>public</em>            <em>int</em>          </td>
+          <td>
+            <code>
+              $date
+                          </code>
+            <br><div style="margin-left: 20px">The date when the picture was taken as UNIX timestamp.</div>                      </td>
+        </tr><tr><td class="right">
+            <em>public</em>            <em>array(string=&gt;string)</em>          </td>
+          <td>
+            <code>
+              $exif
+               = <span class="var-default">array()</span>            </code>
+            <br><div style="margin-left: 20px">EXIF information retrieved from image.</div>            <br><div style="margin-left: 20px"><p>This will only be filled in for images which supports EXIF entries,  currently they are: </p><ul><li>image/jpeg</li><li>image/tiff</li></ul></div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>            <em>bool</em>          </td>
+          <td>
+            <code>
+              $hasThumbnail
+               = <span class="var-default"> false</span>            </code>
+            <br><div style="margin-left: 20px">Does the image have a thumbnail?</div>                      </td>
+        </tr><tr><td class="right">
+            <em>public</em>            <em>int</em>          </td>
+          <td>
+            <code>
+              $height
+               = <span class="var-default"> 0</span>            </code>
+            <br><div style="margin-left: 20px">Height of image in pixels.</div>                      </td>
+        </tr><tr><td class="right">
+            <em>public</em>            <em>bool</em>          </td>
+          <td>
+            <code>
+              $isAnimated
+               = <span class="var-default"> false</span>            </code>
+            <br><div style="margin-left: 20px">Is the image animated?</div>                      </td>
+        </tr><tr><td class="right">
+            <em>public</em>            <em>bool</em>          </td>
+          <td>
+            <code>
+              $isColor
+               = <span class="var-default"> true</span>            </code>
+            <br><div style="margin-left: 20px">Does the image have colors?</div>                      </td>
+        </tr><tr><td class="right">
+            <em>public</em>            <em>string</em>          </td>
+          <td>
+            <code>
+              $mime
+                          </code>
+            <br><div style="margin-left: 20px">Detected MIME type for the image.</div>                      </td>
+        </tr><tr><td class="right">
+            <em>public</em>            <em>int</em>          </td>
+          <td>
+            <code>
+              $mode
+               = <span class="var-default"> ezcImageAnalyzerHandler::MODE_TRUECOLOR</span>            </code>
+            <br><div style="margin-left: 20px">The image mode.</div>            <br><div style="margin-left: 20px"><p>Can be one of: </p><ul><li>ezcImageAnalyzerHandler::MODE_INDEXED   - Image is built with a palette and consists of
+                          indexed values per pixel.</li><li>ezcImageAnalyzerHandler::MODE_TRUECOLOR - Image consists of RGB value per pixel.</li></ul></div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>            <em>int</em>          </td>
+          <td>
+            <code>
+              $size
+               = <span class="var-default"> 0</span>            </code>
+            <br><div style="margin-left: 20px">Size of image file in bytes.</div>                      </td>
+        </tr><tr><td class="right">
+            <em>public</em>            <em>int</em>          </td>
+          <td>
+            <code>
+              $transparencyType
+                          </code>
+            <br><div style="margin-left: 20px">Type of transparency in image.</div>            <br><div style="margin-left: 20px"><p>Can be one of: </p><ul><li>ezcImageAnalyzerHandler::TRANSPARENCY_OPAQUE      - No parts of image is transparent.</li><li>ezcImageAnalyzerHandler::TRANSPARENCY_TRANSPARENT - Selected palette entries are
+                                    completely see-through.</li><li>ezcImageAnalyzerHandler::TRANSPARENCY_TRANSLUCENT - Transparency determined pixel per
+                                    pixel with a fuzzy value.</li></ul></div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>            <em>int</em>          </td>
+          <td>
+            <code>
+              $width
+               = <span class="var-default"> 0</span>            </code>
+            <br><div style="margin-left: 20px">Width of image in pixels.</div>                      </td>
+        </tr></table><a name="sec-method-summary"></a>
+  <h3>Method Summary</h3>
+  <table class="summary"><tr><td class="right">
+            <em>public</em>                        <em>ezcImageAnalyzerData</em>          </td>
+          <td>
+            <code>
+              <a href="#__construct"><b>__construct</b></a>(
+                                                                  [                  $mime
+                   = null]                                  ,                   [                  $exif
+                   = array()]                                  ,                   [                  $width
+                   = 0]                                  ,                   [                  $height
+                   = 0]                                  ,                   [                  $size
+                   = 0]                                  ,                   [                  $mode
+                   = ezcImageAnalyzerHandler::MODE_TRUECOLOR]                                  ,                   [                  $transparencyType
+                   = null]                                  ,                   [                  $isColor
+                   = true]                                  ,                   [                  $colorCount
+                   = 0]                                  ,                   [                  $comment
+                   = null]                                  ,                   [                  $commentList
+                   = array()]                                  ,                   [                  $copyright
+                   = null]                                  ,                   [                  $date
+                   = null]                                  ,                   [                  $hasThumbnail
+                   = false]                                  ,                   [                  $isAnimated
+                   = false]                               )
+            </code>
+            <br><div style="margin-left: 20px">Create a new instance of ezcImageAnalyzerData.</div>          </td>
+        </tr></table><a name="sec-methods"></a>
+  <h3>Methods</h3>
+  <a name="method_detail"></a>
+  
+      <a name="method__construct" id="__construct"><!-- --></a>
+
+    <h4>__construct</h4>
+
+    <div class="method-signature">
+      ezcImageAnalyzerData
+      __construct(
+                                  [string
+          $mime
+           = null]                  ,           [array
+          $exif
+           = array()]                  ,           [int
+          $width
+           = 0]                  ,           [int
+          $height
+           = 0]                  ,           [int
+          $size
+           = 0]                  ,           [int
+          $mode
+           = ezcImageAnalyzerHandler::MODE_TRUECOLOR]                  ,           [int
+          $transparencyType
+           = null]                  ,           [bool
+          $isColor
+           = true]                  ,           [int
+          $colorCount
+           = 0]                  ,           [string
+          $comment
+           = null]                  ,           [array
+          $commentList
+           = array()]                  ,           [string
+          $copyright
+           = null]                  ,           [int
+          $date
+           = null]                  ,           [bool
+          $hasThumbnail
+           = false]                  ,           [bool
+          $isAnimated
+           = false]              )
+    </div>
+
+    <p>Create a new instance of ezcImageAnalyzerData.</p><div><p>Create a new instance of ezcImageAnalyzerData to be used with  <a href="ezcImageAnalyzer.html">ezcImageAnalyzer</a> objects.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$mime</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  <a href="ezcImageAnalyzerData.html#var%24mime">ezcImageAnalyzerData::$mime</a>
+                              </td>
+            </tr><tr><td><code>$exif</code></td>
+              <td><em>array</em></td>
+              <td>
+                                  <a href="ezcImageAnalyzerData.html#var%24exif">ezcImageAnalyzerData::$exif</a>
+                              </td>
+            </tr><tr><td><code>$width</code></td>
+              <td><em>int</em></td>
+              <td>
+                                  <a href="ezcImageAnalyzerData.html#var%24width">ezcImageAnalyzerData::$width</a>
+                              </td>
+            </tr><tr><td><code>$height</code></td>
+              <td><em>int</em></td>
+              <td>
+                                  <a href="ezcImageAnalyzerData.html#var%24height">ezcImageAnalyzerData::$height</a>
+                              </td>
+            </tr><tr><td><code>$size</code></td>
+              <td><em>int</em></td>
+              <td>
+                                  <a href="ezcImageAnalyzerData.html#var%24size">ezcImageAnalyzerData::$size</a>
+                              </td>
+            </tr><tr><td><code>$mode</code></td>
+              <td><em>int</em></td>
+              <td>
+                                  <a href="ezcImageAnalyzerData.html#var%24mode">ezcImageAnalyzerData::$mode</a>
+                              </td>
+            </tr><tr><td><code>$transparencyType</code></td>
+              <td><em>int</em></td>
+              <td>
+                                  <a href="ezcImageAnalyzerData.html#var%24transparencyType">ezcImageAnalyzerData::$transparencyType</a>
+                              </td>
+            </tr><tr><td><code>$isColor</code></td>
+              <td><em>bool</em></td>
+              <td>
+                                  <a href="ezcImageAnalyzerData.html#var%24isColor">ezcImageAnalyzerData::$isColor</a>
+                              </td>
+            </tr><tr><td><code>$colorCount</code></td>
+              <td><em>int</em></td>
+              <td>
+                                  <a href="ezcImageAnalyzerData.html#var%24colorCount">ezcImageAnalyzerData::$colorCount</a>
+                              </td>
+            </tr><tr><td><code>$comment</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  <a href="ezcImageAnalyzerData.html#var%24comment">ezcImageAnalyzerData::$comment</a>
+                              </td>
+            </tr><tr><td><code>$commentList</code></td>
+              <td><em>array</em></td>
+              <td>
+                                  <a href="ezcImageAnalyzerData.html#var%24commentList">ezcImageAnalyzerData::$commentList</a>
+                              </td>
+            </tr><tr><td><code>$copyright</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  <a href="ezcImageAnalyzerData.html#var%24copyright">ezcImageAnalyzerData::$copyright</a>
+                              </td>
+            </tr><tr><td><code>$date</code></td>
+              <td><em>int</em></td>
+              <td>
+                                  <a href="ezcImageAnalyzerData.html#var%24date">ezcImageAnalyzerData::$date</a>
+                              </td>
+            </tr><tr><td><code>$hasThumbnail</code></td>
+              <td><em>bool</em></td>
+              <td>
+                                  <a href="ezcImageAnalyzerData.html#var%24hasThumbnail">ezcImageAnalyzerData::$hasThumbnail</a>
+                              </td>
+            </tr><tr><td><code>$isAnimated</code></td>
+              <td><em>bool</em></td>
+              <td>
+                                  <a href="ezcImageAnalyzerData.html#var%24isAnimated">ezcImageAnalyzerData::$isAnimated</a>
+                              </td>
+            </tr></tbody></table><div class="credit">
+      Documentation generated by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+    </div>
+  </div>
+  
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,1172 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="PHP, apache, components, framework, quality" />
+	<meta name="author" content="dotxp" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Wed, 04 Aug 2010 13:07:44 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="ezcGraphSvgDriver.html" />
+	<meta name="DC.creator" content="dotxp" />
+	<meta name="DC.date" content="Wed, 04 Aug 2010 13:07:44 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/Graph/phpdoc/ezcGraphSvgDriver.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/Graph/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/trunk/Graph/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Graph/gallery.html" title="Gallery ">Gallery </a>
+	</li>
+
+</ul>
+
+		
+  <div class="phpdoc">
+    <h2>Apache Zeta Components Manual :: Docs For Class ezcGraphSvgDriver</h2>
+
+                  <h3>Graph::ezcGraphSvgDriver</h3>
+    
+<a name="sec-description"></a>
+<h3>Class ezcGraphSvgDriver</h3>
+
+<p>Extension of the basic Driver package to utilize the SVGlib.</p><div><p>This drivers options are defined in the class  <a href="ezcGraphSvgDriverOptions.html">ezcGraphSvgDriverOptions</a> extending the basic driver options class  <a href="ezcGraphDriverOptions.html">ezcGraphDriverOptions</a>.</p><p>As this is the default driver you do not need to explicitely set anything to  use it, but may use some of its advanced features.</p><p></p><ol><li><div class="src-line">&#8192;&#8192;&#8192;<span class="src-var">$graph&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcGraphPieChart.html">ezcGraphPieChart</a></span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;<span class="src-var">$graph</span><span class="src-sym">-&gt;</span><span class="src-id">background</span><span class="src-sym">-&gt;</span><span class="src-id">color&#8192;</span>=&#8192;<span class="src-str">'#FFFFFFFF'</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;<span class="src-var">$graph</span><span class="src-sym">-&gt;</span><span class="src-id">title&#8192;</span>=&#8192;<span class="src-str">'Access&#8192;statistics'</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;<span class="src-var">$graph</span><span class="src-sym">-&gt;</span><span class="src-id">legend&#8192;</span>=&#8192;<span class="src-id">false</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;<span class="src-var">$graph</span><span class="src-sym">-&gt;</span><span class="src-id">data</span><span class="src-sym">[</span><span class="src-str">'Access&#8192;statistics'</span><span class="src-sym">]&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcGraphArrayDataSet.html">ezcGraphArrayDataSet</a></span><span class="src-sym">(&#8192;</span><span class="src-key">array</span><span class="src-sym">(</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'Mozilla'&#8192;</span>=&gt;&#8192;<span class="src-num">19113</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'Explorer'&#8192;</span>=&gt;&#8192;<span class="src-num">10917</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'Opera'&#8192;</span>=&gt;&#8192;<span class="src-num">1464</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'Safari'&#8192;</span>=&gt;&#8192;<span class="src-num">652</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'Konqueror'&#8192;</span>=&gt;&#8192;<span class="src-num">474</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;<span class="src-sym">)&#8192;)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;<span class="src-var">$graph</span><span class="src-sym">-&gt;</span><span class="src-id">renderer&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcGraphRenderer3d.html">ezcGraphRenderer3d</a></span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;<span class="src-var">$graph</span><span class="src-sym">-&gt;</span><span class="src-id">renderer</span><span class="src-sym">-&gt;</span><span class="src-id"><a href="ezcGraphDriver.html#var%24options">options</a></span><span class="src-sym">-&gt;</span><span class="src-id">pieChartShadowSize&#8192;</span>=&#8192;<span class="src-num">10</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;<span class="src-var">$graph</span><span class="src-sym">-&gt;</span><span class="src-id">renderer</span><span class="src-sym">-&gt;</span><span class="src-id"><a href="ezcGraphDriver.html#var%24options">options</a></span><span class="src-sym">-&gt;</span><span class="src-id">pieChartGleam&#8192;</span>=&#8192;<span class="src-num">.5</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;<span class="src-var">$graph</span><span class="src-sym">-&gt;</span><span class="src-id">renderer</span><span class="src-sym">-&gt;</span><span class="src-id"><a href="ezcGraphDriver.html#var%24options">options</a></span><span class="src-sym">-&gt;</span><span class="src-id">dataBorder&#8192;</span>=&#8192;<span class="src-id">false</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;<span class="src-var">$graph</span><span class="src-sym">-&gt;</span><span class="src-id">renderer</span><span class="src-sym">-&gt;</span><span class="src-id"><a href="ezcGraphDriver.html#var%24options">options</a></span><span class="src-sym">-&gt;</span><span class="src-id">pieChartHeight&#8192;</span>=&#8192;<span class="src-num">16</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;<span class="src-var">$graph</span><span class="src-sym">-&gt;</span><span class="src-id">renderer</span><span class="src-sym">-&gt;</span><span class="src-id"><a href="ezcGraphDriver.html#var%24options">options</a></span><span class="src-sym">-&gt;</span><span class="src-id">legendSymbolGleam&#8192;</span>=&#8192;<span class="src-num">.5</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;<span class="src-comm">//&#8192;SVG&#8192;driver&#8192;options</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;<span class="src-var">$graph</span><span class="src-sym">-&gt;</span><span class="src-id">driver</span><span class="src-sym">-&gt;</span><span class="src-id"><a href="ezcGraphDriver.html#var%24options">options</a></span><span class="src-sym">-&gt;</span><span class="src-id">templateDocument&#8192;</span>=&#8192;<a href="http://www.php.net/dirname">dirname</a><span class="src-sym">(&#8192;</span>__FILE__&#8192;<span class="src-sym">)&#8192;</span>.&#8192;<span class="src-str">'/template.svg'</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;<span class="src-var">$graph</span><span class="src-sym">-&gt;</span><span class="src-id">driver</span><span class="src-sym">-&gt;</span><span class="src-id"><a href="ezcGraphDriver.html#var%24options">options</a></span><span class="src-sym">-&gt;</span><span class="src-id">graphOffset&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcGraphCoordinate.html">ezcGraphCoordinate</a></span><span class="src-sym">(&#8192;</span><span class="src-num">25</span><span class="src-sym">,&#8192;</span><span class="src-num">40&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;<span class="src-var">$graph</span><span class="src-sym">-&gt;</span><span class="src-id">driver</span><span class="src-sym">-&gt;</span><span class="src-id"><a href="ezcGraphDriver.html#var%24options">options</a></span><span class="src-sym">-&gt;</span><span class="src-id">insertIntoGroup&#8192;</span>=&#8192;<span class="src-str">'ezcGraph'</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;<span class="src-var">$graph</span><span class="src-sym">-&gt;</span><a href="ezcGraphSvgDriver.html#methodrender">render</a><span class="src-sym">(&#8192;</span><span class="src-num">400</span><span class="src-sym">,&#8192;</span><span class="src-num">200</span><span class="src-sym">,&#8192;</span><span class="src-str">'tutorial_driver_svg.svg'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol></div>
+<p>Source for this file: <a href="http://fisheye6.atlassian.com/browse/zetacomponents/trunk/Graph/src/driver/svg.php?r=HEAD">/Graph/src/driver/svg.php</a></p>
+       
+
+
+<pre><a href="ezcGraphDriver.html">ezcGraphDriver</a>
+   |
+   --ezcGraphSvgDriver</pre>
+
+
+  <table><tr><td>
+            <strong>Version:</strong>&#8192;&#8192;
+          </td>
+          <td>//autogentag//</td>
+        </tr></table><a name="sec-var-summary"></a>
+  <h3>Member Variables</h3>
+  <table class="summary"><tr><td class="right">
+            <em>protected</em>            <em>DOMElement</em>          </td>
+          <td>
+            <code>
+              $defs
+                          </code>
+            <br><div style="margin-left: 20px">DOMElement containing all svg style definitions</div>                      </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            <em>DOMDocument</em>          </td>
+          <td>
+            <code>
+              $dom
+                          </code>
+            <br><div style="margin-left: 20px">DOM tree of the svg document</div>                      </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            <em>array</em>          </td>
+          <td>
+            <code>
+              $drawnGradients
+               = <span class="var-default">array()</span>            </code>
+            <br><div style="margin-left: 20px">List of already created gradients</div>                      </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            <em>int</em>          </td>
+          <td>
+            <code>
+              $elementID
+               = <span class="var-default"> 0</span>            </code>
+            <br><div style="margin-left: 20px">Numeric unique element id</div>                      </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            <em>DOMElement</em>          </td>
+          <td>
+            <code>
+              $elements
+                          </code>
+            <br><div style="margin-left: 20px">DOMElement containing all svg objects</div>                      </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            <em><a href="ezcGraphSvgFont.html">ezcGraphSvgFont</a></em>          </td>
+          <td>
+            <code>
+              $font
+               = <span class="var-default"> null</span>            </code>
+            <br><div style="margin-left: 20px">Font storage for SVG font glyphs and kernings.</div>                      </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            <em>array</em>          </td>
+          <td>
+            <code>
+              $strings
+               = <span class="var-default">array()</span>            </code>
+            <br><div style="margin-left: 20px">List of strings to draw</div>            <br><div style="margin-left: 20px"><p>array ( array(           'text' =&gt; array( 'strings' ),           'options' =&gt; ezcGraphFontOptions,       )</p></div>          </td>
+        </tr></table><h3>Inherited Member Variables</h3>
+  <table class="summary"><thead><tr><th colspan="2">
+            From <span class="classname"><a href="ezcGraphDriver.html">ezcGraphDriver</a></span>         
+          </th>
+        </tr></thead><tbody><tr><td class="right">
+              <em>protected</em>                          </td>
+            <td>
+              <code><a href="ezcGraphDriver.html#var%24options">ezcGraphDriver::$options</a></code>
+              
+            </td>
+          </tr></tbody></table><a name="sec-method-summary"></a>
+  <h3>Method Summary</h3>
+  <table class="summary"><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#createDocument"><b>createDocument</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Creates the DOM object to insert SVG nodes in.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#drawAllTexts"><b>drawAllTexts</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Draw all collected texts</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#drawCircle"><b>drawCircle</b></a>(
+                                                                                    $center
+                                                    ,                                     $width
+                                                    ,                                     $height
+                                                    ,                                     $color
+                                                    ,                   [                  $filled
+                   = true]                               )
+            </code>
+            <br><div style="margin-left: 20px">Draw circle</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#drawCircleSector"><b>drawCircleSector</b></a>(
+                                                                                    $center
+                                                    ,                                     $width
+                                                    ,                                     $height
+                                                    ,                                     $startAngle
+                                                    ,                                     $endAngle
+                                                    ,                                     $color
+                                                    ,                   [                  $filled
+                   = true]                               )
+            </code>
+            <br><div style="margin-left: 20px">Draws a sector of cirlce</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#drawCircularArc"><b>drawCircularArc</b></a>(
+                                                                                    $center
+                                                    ,                                     $width
+                                                    ,                                     $height
+                                                    ,                                     $size
+                                                    ,                                     $startAngle
+                                                    ,                                     $endAngle
+                                                    ,                                     $color
+                                                    ,                   [                  $filled
+                   = true]                               )
+            </code>
+            <br><div style="margin-left: 20px">Draws a circular arc</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#drawImage"><b>drawImage</b></a>(
+                                                                                    $file
+                                                    ,                                     $position
+                                                    ,                                     $width
+                                                    ,                                     $height
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Draw an image</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#drawLine"><b>drawLine</b></a>(
+                                                                                    $start
+                                                    ,                                     $end
+                                                    ,                                     $color
+                                                    ,                   [                  $thickness
+                   = 1.]                               )
+            </code>
+            <br><div style="margin-left: 20px">Draws a line</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#drawPolygon"><b>drawPolygon</b></a>(
+                                                                                    $points
+                                                    ,                                     $color
+                                                    ,                   [                  $filled
+                   = true]                                  ,                   [                  $thickness
+                   = 1.]                               )
+            </code>
+            <br><div style="margin-left: 20px">Draws a single polygon.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#drawTextBox"><b>drawTextBox</b></a>(
+                                                                                    $string
+                                                    ,                                     $position
+                                                    ,                                     $width
+                                                    ,                                     $height
+                                                    ,                                     $align
+                                                    ,                   [                  $rotation
+                   = null]                               )
+            </code>
+            <br><div style="margin-left: 20px">Writes text in a box of desired size</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#encode"><b>encode</b></a>(
+                                                                                    $string
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Encodes non-utf-8 strings</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#getGradientUrl"><b>getGradientUrl</b></a>(
+                                                                                    $color
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Return gradient URL</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#getMimeType"><b>getMimeType</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Return mime type for current image format</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>DOMDocument</em>          </td>
+          <td>
+            <code>
+              <a href="#getResource"><b>getResource</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Get resource of rendered result</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#getStyle"><b>getStyle</b></a>(
+                                                                                    $color
+                                                    ,                   [                  $filled
+                   = true]                                  ,                   [                  $thickness
+                   = 1.]                               )
+            </code>
+            <br><div style="margin-left: 20px">Get SVG style definition</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>ezcGraphBoundings</em>          </td>
+          <td>
+            <code>
+              <a href="#getTextBoundings"><b>getTextBoundings</b></a>(
+                                                                                    $size
+                                                    ,                                     $font
+                                                    ,                                     $text
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns boundings of text depending on the available font extension</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#getTextWidth"><b>getTextWidth</b></a>(
+                                                                                    $string
+                                                    ,                                     $size
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Guess text width for string</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#render"><b>render</b></a>(
+                                                                                    $file
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Finally save image</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#renderToOutput"><b>renderToOutput</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Render image directly to output</div>          </td>
+        </tr></table><h3>Inherited Methods</h3>
+  <table class="summary"><thead><tr><th colspan="2">
+            From <span class="classname"><a href="ezcGraphDriver.html">ezcGraphDriver</a></span>
+          </th>
+        </tr></thead><tbody><tr><td class="right">
+              <em>public</em>              abstract                            <em>void</em>            </td>
+            <td>
+              <code><b><a href="ezcGraphDriver.html#methoddrawCircle">ezcGraphDriver::drawCircle()</a></b></code>
+              <br><div style="margin-left: 20px">Draw circle</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>              abstract                            <em>void</em>            </td>
+            <td>
+              <code><b><a href="ezcGraphDriver.html#methoddrawCircleSector">ezcGraphDriver::drawCircleSector()</a></b></code>
+              <br><div style="margin-left: 20px">Draws a sector of cirlce</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>              abstract                            <em>void</em>            </td>
+            <td>
+              <code><b><a href="ezcGraphDriver.html#methoddrawCircularArc">ezcGraphDriver::drawCircularArc()</a></b></code>
+              <br><div style="margin-left: 20px">Draws a circular arc</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>              abstract                            <em>void</em>            </td>
+            <td>
+              <code><b><a href="ezcGraphDriver.html#methoddrawImage">ezcGraphDriver::drawImage()</a></b></code>
+              <br><div style="margin-left: 20px">Draw an image</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>              abstract                            <em>void</em>            </td>
+            <td>
+              <code><b><a href="ezcGraphDriver.html#methoddrawLine">ezcGraphDriver::drawLine()</a></b></code>
+              <br><div style="margin-left: 20px">Draws a line</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>              abstract                            <em>void</em>            </td>
+            <td>
+              <code><b><a href="ezcGraphDriver.html#methoddrawPolygon">ezcGraphDriver::drawPolygon()</a></b></code>
+              <br><div style="margin-left: 20px">Draws a single polygon.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>              abstract                            <em>void</em>            </td>
+            <td>
+              <code><b><a href="ezcGraphDriver.html#methoddrawTextBox">ezcGraphDriver::drawTextBox()</a></b></code>
+              <br><div style="margin-left: 20px">Writes text in a box of desired size</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>              abstract                            <em>string</em>            </td>
+            <td>
+              <code><b><a href="ezcGraphDriver.html#methodgetMimeType">ezcGraphDriver::getMimeType()</a></b></code>
+              <br><div style="margin-left: 20px">Return mime type for current image format</div>                          </td>
+          </tr><tr><td class="right">
+              <em>protected</em>              abstract                            <em>ezcGraphBoundings</em>            </td>
+            <td>
+              <code><b><a href="ezcGraphDriver.html#methodgetTextBoundings">ezcGraphDriver::getTextBoundings()</a></b></code>
+              <br><div style="margin-left: 20px">Returns boundings of text depending on the available font extension</div>                          </td>
+          </tr><tr><td class="right">
+              <em>protected</em>                                          <em>array</em>            </td>
+            <td>
+              <code><b><a href="ezcGraphDriver.html#methodreduceEllipseSize">ezcGraphDriver::reduceEllipseSize()</a></b></code>
+              <br><div style="margin-left: 20px">Reduce the size of an ellipse</div>                          </td>
+          </tr><tr><td class="right">
+              <em>protected</em>                                          <em>array(</em>            </td>
+            <td>
+              <code><b><a href="ezcGraphDriver.html#methodreducePolygonSize">ezcGraphDriver::reducePolygonSize()</a></b></code>
+              <br><div style="margin-left: 20px">Reduces the size of a polygon</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>              abstract                            <em>void</em>            </td>
+            <td>
+              <code><b><a href="ezcGraphDriver.html#methodrender">ezcGraphDriver::render()</a></b></code>
+              <br><div style="margin-left: 20px">Finally save image</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b><a href="ezcGraphDriver.html#methodrenderToOutput">ezcGraphDriver::renderToOutput()</a></b></code>
+              <br><div style="margin-left: 20px">Render image directly to output</div>                          </td>
+          </tr><tr><td class="right">
+              <em>protected</em>                                          <em>mixed</em>            </td>
+            <td>
+              <code><b><a href="ezcGraphDriver.html#methodtestFitStringInTextBox">ezcGraphDriver::testFitStringInTextBox()</a></b></code>
+              <br><div style="margin-left: 20px">Test if string fits in a box with given font size</div>                          </td>
+          </tr><tr><td class="right">
+              <em>protected</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b><a href="ezcGraphDriver.html#methodtryFitShortenedString">ezcGraphDriver::tryFitShortenedString()</a></b></code>
+              <br><div style="margin-left: 20px">If it is allow to shortened the string, this method tries to extract as  many chars as possible to display a decent amount of characters.</div>                          </td>
+          </tr></tbody></table><a name="sec-methods"></a>
+  <h3>Methods</h3>
+  <a name="method_detail"></a>
+                                    
+      <a name="methodcreateDocument" id="createDocument"><!-- --></a>
+
+    <h4>createDocument</h4>
+
+    <div class="method-signature">
+      void
+      createDocument(
+      )
+    </div>
+
+    <p>Creates the DOM object to insert SVG nodes in.</p><div><p>If the DOM document does not exists it will be created or loaded  according to the settings.</p></div>
+    
+        
+
+    
+    
+    
+        <a name="methoddrawAllTexts" id="drawAllTexts"><!-- --></a>
+
+    <h4>drawAllTexts</h4>
+
+    <div class="method-signature">
+      void
+      drawAllTexts(
+      )
+    </div>
+
+    <p>Draw all collected texts</p><div><p>The texts are collected and their maximum possible font size is  calculated. This function finally draws the texts on the image, this  delayed drawing has two reasons:</p><p>1) This way the text strings are always on top of the image, what     results in better readable texts  2) The maximum possible font size can be calculated for a set of texts     with the same font configuration. Strings belonging to one chart     element normally have the same font configuration, so that all texts     belonging to one element will have the same font size.</p></div>
+    
+        
+
+    
+    
+    
+        <a name="methoddrawCircle" id="drawCircle"><!-- --></a>
+
+    <h4>drawCircle</h4>
+
+    <div class="method-signature">
+      void
+      drawCircle(
+                                  <a href="ezcGraphCoordinate.html">ezcGraphCoordinate</a>
+          $center
+                            ,           mixed
+          $width
+                            ,           mixed
+          $height
+                            ,           <a href="ezcGraphColor.html">ezcGraphColor</a>
+          $color
+                            ,           [mixed
+          $filled
+           = true]              )
+    </div>
+
+    <p>Draw circle</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$center</code></td>
+              <td><em><a href="ezcGraphCoordinate.html">ezcGraphCoordinate</a></em></td>
+              <td>
+                                  Center of ellipse
+                              </td>
+            </tr><tr><td><code>$width</code></td>
+              <td><em>mixed</em></td>
+              <td>
+                                  Width of ellipse
+                              </td>
+            </tr><tr><td><code>$height</code></td>
+              <td><em>mixed</em></td>
+              <td>
+                                  height of ellipse
+                              </td>
+            </tr><tr><td><code>$color</code></td>
+              <td><em><a href="ezcGraphColor.html">ezcGraphColor</a></em></td>
+              <td>
+                                  Color
+                              </td>
+            </tr><tr><td><code>$filled</code></td>
+              <td><em>mixed</em></td>
+              <td>
+                                  Filled
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcGraphDriver.html#methoddrawCircle">ezcGraphDriver::drawCircle()</a></code></td>
+            <td>
+                              Draw circle
+                          </td>
+          </tr></tbody></table><a name="methoddrawCircleSector" id="drawCircleSector"><!-- --></a>
+
+    <h4>drawCircleSector</h4>
+
+    <div class="method-signature">
+      void
+      drawCircleSector(
+                                  <a href="ezcGraphCoordinate.html">ezcGraphCoordinate</a>
+          $center
+                            ,           mixed
+          $width
+                            ,           mixed
+          $height
+                            ,           mixed
+          $startAngle
+                            ,           mixed
+          $endAngle
+                            ,           <a href="ezcGraphColor.html">ezcGraphColor</a>
+          $color
+                            ,           [mixed
+          $filled
+           = true]              )
+    </div>
+
+    <p>Draws a sector of cirlce</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$center</code></td>
+              <td><em><a href="ezcGraphCoordinate.html">ezcGraphCoordinate</a></em></td>
+              <td>
+                                  Center of circle
+                              </td>
+            </tr><tr><td><code>$width</code></td>
+              <td><em>mixed</em></td>
+              <td>
+                                  Width
+                              </td>
+            </tr><tr><td><code>$height</code></td>
+              <td><em>mixed</em></td>
+              <td>
+                                  Height
+                              </td>
+            </tr><tr><td><code>$startAngle</code></td>
+              <td><em>mixed</em></td>
+              <td>
+                                  Start angle of circle sector
+                              </td>
+            </tr><tr><td><code>$endAngle</code></td>
+              <td><em>mixed</em></td>
+              <td>
+                                  End angle of circle sector
+                              </td>
+            </tr><tr><td><code>$color</code></td>
+              <td><em><a href="ezcGraphColor.html">ezcGraphColor</a></em></td>
+              <td>
+                                  Color
+                              </td>
+            </tr><tr><td><code>$filled</code></td>
+              <td><em>mixed</em></td>
+              <td>
+                                  Filled;
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcGraphDriver.html#methoddrawCircleSector">ezcGraphDriver::drawCircleSector()</a></code></td>
+            <td>
+                              Draws a sector of cirlce
+                          </td>
+          </tr></tbody></table><a name="methoddrawCircularArc" id="drawCircularArc"><!-- --></a>
+
+    <h4>drawCircularArc</h4>
+
+    <div class="method-signature">
+      void
+      drawCircularArc(
+                                  <a href="ezcGraphCoordinate.html">ezcGraphCoordinate</a>
+          $center
+                            ,           integer
+          $width
+                            ,           integer
+          $height
+                            ,           integer
+          $size
+                            ,           float
+          $startAngle
+                            ,           float
+          $endAngle
+                            ,           <a href="ezcGraphColor.html">ezcGraphColor</a>
+          $color
+                            ,           [bool
+          $filled
+           = true]              )
+    </div>
+
+    <p>Draws a circular arc</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$center</code></td>
+              <td><em><a href="ezcGraphCoordinate.html">ezcGraphCoordinate</a></em></td>
+              <td>
+                                  Center of ellipse
+                              </td>
+            </tr><tr><td><code>$width</code></td>
+              <td><em>integer</em></td>
+              <td>
+                                  Width of ellipse
+                              </td>
+            </tr><tr><td><code>$height</code></td>
+              <td><em>integer</em></td>
+              <td>
+                                  Height of ellipse
+                              </td>
+            </tr><tr><td><code>$size</code></td>
+              <td><em>integer</em></td>
+              <td>
+                                  Height of border
+                              </td>
+            </tr><tr><td><code>$startAngle</code></td>
+              <td><em>float</em></td>
+              <td>
+                                  Starting angle of circle sector
+                              </td>
+            </tr><tr><td><code>$endAngle</code></td>
+              <td><em>float</em></td>
+              <td>
+                                  Ending angle of circle sector
+                              </td>
+            </tr><tr><td><code>$color</code></td>
+              <td><em><a href="ezcGraphColor.html">ezcGraphColor</a></em></td>
+              <td>
+                                  Color of Border
+                              </td>
+            </tr><tr><td><code>$filled</code></td>
+              <td><em>bool</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcGraphDriver.html#methoddrawCircularArc">ezcGraphDriver::drawCircularArc()</a></code></td>
+            <td>
+                              Draws a circular arc
+                          </td>
+          </tr></tbody></table><a name="methoddrawImage" id="drawImage"><!-- --></a>
+
+    <h4>drawImage</h4>
+
+    <div class="method-signature">
+      void
+      drawImage(
+                                  mixed
+          $file
+                            ,           <a href="ezcGraphCoordinate.html">ezcGraphCoordinate</a>
+          $position
+                            ,           mixed
+          $width
+                            ,           mixed
+          $height
+                        )
+    </div>
+
+    <p>Draw an image</p><div><p>The image will be inlined in the SVG document using data URL scheme. For  this the mime type and base64 encoded file content will be merged to  URL.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$file</code></td>
+              <td><em>mixed</em></td>
+              <td>
+                                  Image file
+                              </td>
+            </tr><tr><td><code>$position</code></td>
+              <td><em><a href="ezcGraphCoordinate.html">ezcGraphCoordinate</a></em></td>
+              <td>
+                                  Top left position
+                              </td>
+            </tr><tr><td><code>$width</code></td>
+              <td><em>mixed</em></td>
+              <td>
+                                  Width of image in destination image
+                              </td>
+            </tr><tr><td><code>$height</code></td>
+              <td><em>mixed</em></td>
+              <td>
+                                  Height of image in destination image
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcGraphDriver.html#methoddrawImage">ezcGraphDriver::drawImage()</a></code></td>
+            <td>
+                              Draw an image
+                          </td>
+          </tr></tbody></table><a name="methoddrawLine" id="drawLine"><!-- --></a>
+
+    <h4>drawLine</h4>
+
+    <div class="method-signature">
+      void
+      drawLine(
+                                  <a href="ezcGraphCoordinate.html">ezcGraphCoordinate</a>
+          $start
+                            ,           <a href="ezcGraphCoordinate.html">ezcGraphCoordinate</a>
+          $end
+                            ,           <a href="ezcGraphColor.html">ezcGraphColor</a>
+          $color
+                            ,           [float
+          $thickness
+           = 1.]              )
+    </div>
+
+    <p>Draws a line</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$start</code></td>
+              <td><em><a href="ezcGraphCoordinate.html">ezcGraphCoordinate</a></em></td>
+              <td>
+                                  Start point
+                              </td>
+            </tr><tr><td><code>$end</code></td>
+              <td><em><a href="ezcGraphCoordinate.html">ezcGraphCoordinate</a></em></td>
+              <td>
+                                  End point
+                              </td>
+            </tr><tr><td><code>$color</code></td>
+              <td><em><a href="ezcGraphColor.html">ezcGraphColor</a></em></td>
+              <td>
+                                  Line color
+                              </td>
+            </tr><tr><td><code>$thickness</code></td>
+              <td><em>float</em></td>
+              <td>
+                                  Line thickness
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcGraphDriver.html#methoddrawLine">ezcGraphDriver::drawLine()</a></code></td>
+            <td>
+                              Draws a line
+                          </td>
+          </tr></tbody></table><a name="methoddrawPolygon" id="drawPolygon"><!-- --></a>
+
+    <h4>drawPolygon</h4>
+
+    <div class="method-signature">
+      void
+      drawPolygon(
+                                  
+          $points
+                            ,           <a href="ezcGraphColor.html">ezcGraphColor</a>
+          $color
+                            ,           [mixed
+          $filled
+           = true]                  ,           [float
+          $thickness
+           = 1.]              )
+    </div>
+
+    <p>Draws a single polygon.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$points</code></td>
+              <td><em>array</em></td>
+              <td>
+                                  Point array
+                              </td>
+            </tr><tr><td><code>$color</code></td>
+              <td><em><a href="ezcGraphColor.html">ezcGraphColor</a></em></td>
+              <td>
+                                  Polygon color
+                              </td>
+            </tr><tr><td><code>$filled</code></td>
+              <td><em>mixed</em></td>
+              <td>
+                                  Filled
+                              </td>
+            </tr><tr><td><code>$thickness</code></td>
+              <td><em>float</em></td>
+              <td>
+                                  Line thickness
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcGraphDriver.html#methoddrawPolygon">ezcGraphDriver::drawPolygon()</a></code></td>
+            <td>
+                              Draws a single polygon.
+                          </td>
+          </tr></tbody></table><a name="methoddrawTextBox" id="drawTextBox"><!-- --></a>
+
+    <h4>drawTextBox</h4>
+
+    <div class="method-signature">
+      void
+      drawTextBox(
+                                  string
+          $string
+                            ,           <a href="ezcGraphCoordinate.html">ezcGraphCoordinate</a>
+          $position
+                            ,           float
+          $width
+                            ,           float
+          $height
+                            ,           int
+          $align
+                            ,           [
+          $rotation
+           = null]              )
+    </div>
+
+    <p>Writes text in a box of desired size</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$string</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  Text
+                              </td>
+            </tr><tr><td><code>$position</code></td>
+              <td><em><a href="ezcGraphCoordinate.html">ezcGraphCoordinate</a></em></td>
+              <td>
+                                  Top left position
+                              </td>
+            </tr><tr><td><code>$width</code></td>
+              <td><em>float</em></td>
+              <td>
+                                  Width of text box
+                              </td>
+            </tr><tr><td><code>$height</code></td>
+              <td><em>float</em></td>
+              <td>
+                                  Height of text box
+                              </td>
+            </tr><tr><td><code>$align</code></td>
+              <td><em>int</em></td>
+              <td>
+                                  Alignement of text
+                              </td>
+            </tr><tr><td><code>$rotation</code></td>
+              <td><em>ezcGraphRotation</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcGraphDriver.html#methoddrawTextBox">ezcGraphDriver::drawTextBox()</a></code></td>
+            <td>
+                              Writes text in a box of desired size
+                          </td>
+          </tr></tbody></table><a name="methodencode" id="encode"><!-- --></a>
+
+    <h4>encode</h4>
+
+    <div class="method-signature">
+      string
+      encode(
+                                  string
+          $string
+                        )
+    </div>
+
+    <p>Encodes non-utf-8 strings</p><div><p>Transforms non-utf-8 strings to their hex entities, because ext/DOM  fails here with conversion errors.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$string</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodgetGradientUrl" id="getGradientUrl"><!-- --></a>
+
+    <h4>getGradientUrl</h4>
+
+    <div class="method-signature">
+      string
+      getGradientUrl(
+                                  <a href="ezcGraphColor.html">ezcGraphColor</a>
+          $color
+                        )
+    </div>
+
+    <p>Return gradient URL</p><div><p>Creates the definitions needed for a gradient, if a proper gradient does  not yet exists. In each case a URL referencing the correct gradient will  be returned.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$color</code></td>
+              <td><em><a href="ezcGraphColor.html">ezcGraphColor</a></em></td>
+              <td>
+                                  Gradient
+                              </td>
+            </tr></tbody></table><a name="methodgetMimeType" id="getMimeType"><!-- --></a>
+
+    <h4>getMimeType</h4>
+
+    <div class="method-signature">
+      string
+      getMimeType(
+      )
+    </div>
+
+    <p>Return mime type for current image format</p>
+    
+        
+
+          <h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcGraphDriver.html#methodgetMimeType">ezcGraphDriver::getMimeType()</a></code></td>
+            <td>
+                              Return mime type for current image format
+                          </td>
+          </tr></tbody></table><a name="methodgetResource" id="getResource"><!-- --></a>
+
+    <h4>getResource</h4>
+
+    <div class="method-signature">
+      DOMDocument
+      getResource(
+      )
+    </div>
+
+    <p>Get resource of rendered result</p><div><p>Return the resource of the rendered result. You should not use this  method before you called either renderToOutput() or render(), as the  image may not be completely rendered until then.</p></div>
+    
+        
+
+    
+    
+    
+        <a name="methodgetStyle" id="getStyle"><!-- --></a>
+
+    <h4>getStyle</h4>
+
+    <div class="method-signature">
+      string
+      getStyle(
+                                  <a href="ezcGraphColor.html">ezcGraphColor</a>
+          $color
+                            ,           [mixed
+          $filled
+           = true]                  ,           [float
+          $thickness
+           = 1.]              )
+    </div>
+
+    <p>Get SVG style definition</p><div><p>Returns a string with SVG style definitions created from color,  fillstatus and line thickness.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$color</code></td>
+              <td><em><a href="ezcGraphColor.html">ezcGraphColor</a></em></td>
+              <td>
+                                  Color
+                              </td>
+            </tr><tr><td><code>$filled</code></td>
+              <td><em>mixed</em></td>
+              <td>
+                                  Filled
+                              </td>
+            </tr><tr><td><code>$thickness</code></td>
+              <td><em>float</em></td>
+              <td>
+                                  Line thickness.
+                              </td>
+            </tr></tbody></table><a name="methodgetTextBoundings" id="getTextBoundings"><!-- --></a>
+
+    <h4>getTextBoundings</h4>
+
+    <div class="method-signature">
+      ezcGraphBoundings
+      getTextBoundings(
+                                  float
+          $size
+                            ,           <a href="ezcGraphFontOptions.html">ezcGraphFontOptions</a>
+          $font
+                            ,           string
+          $text
+                        )
+    </div>
+
+    <p>Returns boundings of text depending on the available font extension</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$size</code></td>
+              <td><em>float</em></td>
+              <td>
+                                  Textsize
+                              </td>
+            </tr><tr><td><code>$font</code></td>
+              <td><em><a href="ezcGraphFontOptions.html">ezcGraphFontOptions</a></em></td>
+              <td>
+                                  Font
+                              </td>
+            </tr><tr><td><code>$text</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  Text
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcGraphDriver.html#methodgetTextBoundings">ezcGraphDriver::getTextBoundings()</a></code></td>
+            <td>
+                              Returns boundings of text depending on the available font extension
+                          </td>
+          </tr></tbody></table><a name="methodgetTextWidth" id="getTextWidth"><!-- --></a>
+
+    <h4>getTextWidth</h4>
+
+    <div class="method-signature">
+      void
+      getTextWidth(
+                                  mixed
+          $string
+                            ,           mixed
+          $size
+                        )
+    </div>
+
+    <p>Guess text width for string</p><div><p>The is no way to know the font or fontsize used by the SVG renderer to  render the string. We assume some character width defined in the SVG  driver options, tu guess the length of a string. We discern between  numeric an non numeric strings, because we often use only numeric  strings to display chart data and numbers tend to be a bit wider then  characters.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$string</code></td>
+              <td><em>mixed</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$size</code></td>
+              <td><em>mixed</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodrender" id="render"><!-- --></a>
+
+    <h4>render</h4>
+
+    <div class="method-signature">
+      void
+      render(
+                                  string
+          $file
+                        )
+    </div>
+
+    <p>Finally save image</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$file</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  Destination filename
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcGraphDriver.html#methodrender">ezcGraphDriver::render()</a></code></td>
+            <td>
+                              Finally save image
+                          </td>
+          </tr></tbody></table><a name="methodrenderToOutput" id="renderToOutput"><!-- --></a>
+
+    <h4>renderToOutput</h4>
+
+    <div class="method-signature">
+      void
+      renderToOutput(
+      )
+    </div>
+
+    <p>Render image directly to output</p><div><p>The method renders the image directly to the standard output. You  normally do not want to use this function, because it makes it harder  to proper cache the generated graphs.</p></div>
+    
+        
+
+          <h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcGraphDriver.html#methodrenderToOutput">ezcGraphDriver::renderToOutput()</a></code></td>
+            <td>
+                              Render image directly to output
+                          </td>
+          </tr></tbody></table><div class="credit">
+      Documentation generated by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+    </div>
+  </div>
+  
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

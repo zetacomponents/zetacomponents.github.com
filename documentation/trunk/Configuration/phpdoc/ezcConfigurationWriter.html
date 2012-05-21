@@ -1,0 +1,444 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="PHP, apache, components, framework, quality" />
+	<meta name="author" content="dotxp" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Wed, 04 Aug 2010 13:07:19 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="ezcConfigurationWriter.html" />
+	<meta name="DC.creator" content="dotxp" />
+	<meta name="DC.date" content="Wed, 04 Aug 2010 13:07:19 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/Configuration/phpdoc/ezcConfigurationWriter.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/Configuration/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/trunk/Configuration/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+
+</ul>
+
+		
+  <div class="phpdoc">
+    <h2>Apache Zeta Components Manual :: Docs For Class ezcConfigurationWriter</h2>
+
+                  <h3>Configuration::ezcConfigurationWriter</h3>
+    
+<a name="sec-description"></a>
+<h3>Class ezcConfigurationWriter</h3>
+
+<p>This class provides the interface for writers of configuration objects of type  ezcConfiguration.</p><div><p>The writer will serialize the data to a given format e.g. to an INI file or a  given XML format which can later be read by a ezcConfigurationReader.</p><p>The writer is meant to be initialized with setLocation() and setConfig() and  then a call to save(). It is also possible to initialize everything with the  init() function.</p><p></p><ol><li><div class="src-line">&#8192;<span class="src-var">$writer&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcConfigurationIniWriter.html">ezcConfigurationIniWriter</a></span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$writer</span><span class="src-sym">-&gt;</span><a href="ezcConfigurationWriter.html#methodsetConfig">setConfig</a><span class="src-sym">(&#8192;</span><span class="src-var">$configrationObject&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$writer</span><span class="src-sym">-&gt;</span><span class="src-id">setLocation</span><span class="src-sym">(&#8192;</span><span class="src-str">'site'</span><span class="src-sym">,&#8192;</span><span class="src-str">'settings'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$writer</span><span class="src-sym">-&gt;</span><a href="ezcConfigurationWriter.html#methodsave">save</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;&lt;<span class="src-id">code</span>&gt;</div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-id">Classes&#8192;that&#8192;</span><span class="src-key">implements&#8192;</span><span class="src-id">this&#8192;</span><span class="src-key">interface&#8192;</span><span class="src-id">are&#8192;adviced&#8192;to&#8192;create&#8192;a&#8192;constructor&#8192;with</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-id">all&#8192;the&#8192;initialization&#8192;</span><span class="src-key">as&#8192;</span><span class="src-id">parameter&#8192;to&#8192;make&#8192;it&#8192;easier&#8192;to&#8192;</span>use&#8192;<span class="src-id">the&#8192;</span><span class="src-key">class</span>.&#8192;<span class="src-key">For</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-id">instance&#8192;this&#8192;could&#8192;transform&#8192;the&#8192;above&#8192;example&#8192;into</span>:</div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;&lt;<span class="src-id">code</span>&gt;</div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$writer&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id">ezcConfigurationIniWriter</span><span class="src-sym">(&#8192;</span><span class="src-var">$conf</span><span class="src-sym">,&#8192;</span><span class="src-str">'site'</span><span class="src-sym">,&#8192;</span><span class="src-str">'settings'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$writer</span><span class="src-sym">-&gt;</span><span class="src-id">save</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol></div>
+<p>Source for this file: <a href="http://fisheye6.atlassian.com/browse/zetacomponents/trunk/Configuration/src/interfaces/writer.php?r=HEAD">/Configuration/src/interfaces/writer.php</a></p>
+       
+
+
+
+
+  <table><tr><td>
+            <strong>Version:</strong>&#8192;&#8192;
+          </td>
+          <td>//autogen//</td>
+        </tr></table><a name="sec-descendants"></a>
+  <h3>Descendants</h3>
+  <table class="detail"><thead><tr><th>Child Class</th>
+        <th>Description</th>
+      </tr></thead><tbody><tr><td><a href="ezcConfigurationFileWriter.html">ezcConfigurationFileWriter</a></td>          <td>
+                          ezcConfigurationFileWriter class provides the functionality for writing  file based configuration formats.
+                      </td>
+        </tr></tbody></table><a name="sec-method-summary"></a>
+  <h3>Method Summary</h3>
+  <table class="summary"><tr><td class="right">
+            <em>public</em>            abstract            <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#getLocation"><b>getLocation</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns the current location string.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>            abstract            <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#getName"><b>getName</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns the current name for the configuration to be written.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>            abstract            <em>array</em>          </td>
+          <td>
+            <code>
+              <a href="#getOptions"><b>getOptions</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns the current options for the writer.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            abstract            <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#getSuffix"><b>getSuffix</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns the suffix used in the storage filename.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>            abstract            <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#init"><b>init</b></a>(
+                                                                                    $location
+                                                    ,                                     $name
+                                                    ,                                     $config
+                                                    ,                   [                  $options
+                   = array()]                               )
+            </code>
+            <br><div style="margin-left: 20px">Initializes the writer with a $location and a $name.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>            abstract            <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#save"><b>save</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Saves the current config object.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>            abstract            <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#setConfig"><b>setConfig</b></a>(
+                                                                                    $config
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Sets the configuration object that will be used for the next call to save().</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>            abstract            <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#setOptions"><b>setOptions</b></a>(
+                                                                                    $options
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Sets the options for the writer.</div>          </td>
+        </tr></table><a name="sec-methods"></a>
+  <h3>Methods</h3>
+  <a name="method_detail"></a>
+                
+      <a name="methodgetLocation" id="getLocation"><!-- --></a>
+
+    <h4>getLocation</h4>
+
+    <div class="method-signature">
+      string
+      getLocation(
+      )
+    </div>
+
+    <p>Returns the current location string.</p>
+    
+        
+
+    
+    
+          <h5>Redefined in descendants as:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcConfigurationFileWriter.html#methodgetLocation">ezcConfigurationFileWriter::getLocation()</a></code></td>
+              <td>
+                Return the current location string.&#8192;
+              </td>
+            </tr></tbody></table><a name="methodgetName" id="getName"><!-- --></a>
+
+    <h4>getName</h4>
+
+    <div class="method-signature">
+      string
+      getName(
+      )
+    </div>
+
+    <p>Returns the current name for the configuration to be written.</p>
+    
+        
+
+    
+    
+          <h5>Redefined in descendants as:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcConfigurationFileWriter.html#methodgetName">ezcConfigurationFileWriter::getName()</a></code></td>
+              <td>
+                Return the current name for the configuration to be written.&#8192;
+              </td>
+            </tr></tbody></table><a name="methodgetOptions" id="getOptions"><!-- --></a>
+
+    <h4>getOptions</h4>
+
+    <div class="method-signature">
+      array
+      getOptions(
+      )
+    </div>
+
+    <p>Returns the current options for the writer.</p>
+    
+        
+
+    
+    
+          <h5>Redefined in descendants as:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcConfigurationFileWriter.html#methodgetOptions">ezcConfigurationFileWriter::getOptions()</a></code></td>
+              <td>
+                Returns the current options for the writer.&#8192;
+              </td>
+            </tr></tbody></table><a name="methodgetSuffix" id="getSuffix"><!-- --></a>
+
+    <h4>getSuffix</h4>
+
+    <div class="method-signature">
+      string
+      getSuffix(
+      )
+    </div>
+
+    <p>Returns the suffix used in the storage filename.</p>
+    
+        
+
+    
+    
+          <h5>Redefined in descendants as:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcConfigurationArrayWriter.html#methodgetSuffix">ezcConfigurationArrayWriter::getSuffix()</a></code></td>
+              <td>
+                Returns the suffix used in the storage filename.&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcConfigurationIniWriter.html#methodgetSuffix">ezcConfigurationIniWriter::getSuffix()</a></code></td>
+              <td>
+                Returns 'ini'. The suffix used in the storage filename.&#8192;
+              </td>
+            </tr></tbody></table><a name="methodinit" id="init"><!-- --></a>
+
+    <h4>init</h4>
+
+    <div class="method-signature">
+      void
+      init(
+                                  string
+          $location
+                            ,           string
+          $name
+                            ,           <a href="ezcConfiguration.html">ezcConfiguration</a>
+          $config
+                            ,           [array
+          $options
+           = array()]              )
+    </div>
+
+    <p>Initializes the writer with a $location and a $name.</p><div><p>These values determine where the configuration will be  serialized.</p><p>The location string can be used to determine the directory  location for an INI file.</p><p>The name parameter can be the basename for the INI file, so  a value of 'site' would create a file with name 'site.ini'.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$location</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  The main placement for the configuration. It is                          up to the specific writer to interpret this                          value.
+                              </td>
+            </tr><tr><td><code>$name</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  The name for the configuration. It is up to the                      specific writer to interpret this value. For a file writer                      it could be the basename for the INI file, so a value of                      'site' would create a file with name 'site.ini'.
+                              </td>
+            </tr><tr><td><code>$config</code></td>
+              <td><em><a href="ezcConfiguration.html">ezcConfiguration</a></em></td>
+              <td>
+                                  The current configuration object which                                  should be serialized by the current                                  writer.
+                              </td>
+            </tr><tr><td><code>$options</code></td>
+              <td><em>array</em></td>
+              <td>
+                                  An associative array of options for the writer.                        Which options to use is determined by the specific                        writer class.
+                              </td>
+            </tr></tbody></table><h5>Redefined in descendants as:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcConfigurationFileWriter.html#methodinit">ezcConfigurationFileWriter::init()</a></code></td>
+              <td>
+                Initializes the writer with a $location and a $name.&#8192;
+              </td>
+            </tr></tbody></table><a name="methodsave" id="save"><!-- --></a>
+
+    <h4>save</h4>
+
+    <div class="method-signature">
+      void
+      save(
+      )
+    </div>
+
+    <p>Saves the current config object.</p><div><p>The configuration retrieved later with a ezcConfigurationReader.</p></div>
+    
+          <h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcConfigurationReadFailedException.html">ezcConfigurationReadFailedException</a></code></td>
+              <td>
+                                  if the configuration could not be written to the given location.
+                              </td>
+            </tr><tr><td><code><a href="ezcConfigurationNoConfigException.html">ezcConfigurationNoConfigException</a></code></td>
+              <td>
+                                  if there is no config object set to be written to the location.
+                              </td>
+            </tr><tr><td><code><a href="ezcConfigurationInvalidSuffixException.html">ezcConfigurationInvalidSuffixException</a></code></td>
+              <td>
+                                  if the current location values cannot be used for writing.
+                              </td>
+            </tr></tbody></table><h5>Redefined in descendants as:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcConfigurationFileWriter.html#methodsave">ezcConfigurationFileWriter::save()</a></code></td>
+              <td>
+                Saves the current config object.&#8192;
+              </td>
+            </tr></tbody></table><a name="methodsetConfig" id="setConfig"><!-- --></a>
+
+    <h4>setConfig</h4>
+
+    <div class="method-signature">
+      void
+      setConfig(
+                                  <a href="ezcConfiguration.html">ezcConfiguration</a>
+          $config
+                        )
+    </div>
+
+    <p>Sets the configuration object that will be used for the next call to save().</p><div><p>Pass false if you wish to remove the current configuration object.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$config</code></td>
+              <td><em><a href="ezcConfiguration.html">ezcConfiguration</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefined in descendants as:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcConfigurationFileWriter.html#methodsetConfig">ezcConfigurationFileWriter::setConfig()</a></code></td>
+              <td>
+                Sets the configuration object that will be used for the next call to save().&#8192;
+              </td>
+            </tr></tbody></table><a name="methodsetOptions" id="setOptions"><!-- --></a>
+
+    <h4>setOptions</h4>
+
+    <div class="method-signature">
+      void
+      setOptions(
+                                  array
+          $options
+                        )
+    </div>
+
+    <p>Sets the options for the writer.</p><div><p>The options will be used the next time the save() method is called. The  $options array is an associative array with the options for the writer.  It depends on the specific writer which options are allowed here.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$options</code></td>
+              <td><em>array</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefined in descendants as:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcConfigurationFileWriter.html#methodsetOptions">ezcConfigurationFileWriter::setOptions()</a></code></td>
+              <td>
+                Sets the options $configurationData.&#8192;
+              </td>
+            </tr></tbody></table><div class="credit">
+      Documentation generated by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+    </div>
+  </div>
+  
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

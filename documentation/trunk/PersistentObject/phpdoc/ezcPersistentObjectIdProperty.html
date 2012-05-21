@@ -1,0 +1,293 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="PHP, apache, components, framework, quality" />
+	<meta name="author" content="dotxp" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Wed, 04 Aug 2010 13:07:53 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="ezcPersistentObjectIdProperty.html" />
+	<meta name="DC.creator" content="dotxp" />
+	<meta name="DC.date" content="Wed, 04 Aug 2010 13:07:53 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/PersistentObject/phpdoc/ezcPersistentObjectIdProperty.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/PersistentObject/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/trunk/PersistentObject/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+
+</ul>
+
+		
+  <div class="phpdoc">
+    <h2>Apache Zeta Components Manual :: Docs For Class ezcPersistentObjectIdProperty</h2>
+
+                  <h3>PersistentObject::ezcPersistentObjectIdProperty</h3>
+    
+<a name="sec-description"></a>
+<h3>Class ezcPersistentObjectIdProperty</h3>
+
+<p>Defines a persistent object id field.</p><div><p>The column should be of type int both in PHP and in the database, usually.  If you want to use a string ID, you need to use the <a href="ezcPersistentManualGenerator.html">ezcPersistentManualGenerator</a> and set the ID property of the affected object  yourself. Alternatively you can implement your own <a href="ezcPersistentIdentifierGenerator.html">ezcPersistentIdentifierGenerator</a> to perform this operation consistently.</p><p>The default value for the ID should be null, since <a href="ezcPersistentSession.html#methodsave">ezcPersistentSession::save()</a> determines if an object was already saved this  way for integer IDs.</p><p>For descriptions for some the constants used in this class see:  ezcPersisentObjectProperty</p></div>
+<p>Source for this file: <a href="http://fisheye6.atlassian.com/browse/zetacomponents/trunk/PersistentObject/src/object/persistent_object_id_property.php?r=HEAD">/PersistentObject/src/object/persistent_object_id_property.php</a></p>
+       
+
+
+
+
+  <table><tr><td>
+            <strong>Version:</strong>&#8192;&#8192;
+          </td>
+          <td>//autogen//</td>
+        </tr></table><a name="sec-prop-summary"></a>
+  <h3>Properties</h3>
+  <table class="summary"><tr><td class="right">
+          <a name="prop%24columnName" id="$columnName"></a>
+          <a name="prop-%24columnName" id="$columnName"></a>
+          <em>string</em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24columnName" title="details" class="var-name-summary">$columnName</a>
+                      </code>
+          <br><div style="margin-left: 20px">The name of the database field that stores the                                 value.</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24databaseType" id="$databaseType"></a>
+          <a name="prop-%24databaseType" id="$databaseType"></a>
+          <em>int</em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24databaseType" title="details" class="var-name-summary">$databaseType</a>
+                      </code>
+          <br><div style="margin-left: 20px">Type of the database column, as defined by PDO constants: PDO::PARAM_BOOL, PDO::PARAM_INT, PDO::PARAM_STR            (default as defined by <a href="/zetacomponents/documentation/trunk/Database/phpdoc/ezcQuery.html#methodbindValue">ezcQuery::bindValue()</a>) or PDO::PARAM_LOB (important for binary data).</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24generator" id="$generator"></a>
+          <a name="prop-%24generator" id="$generator"></a>
+          <em><a href="ezcPersistentGeneratorDefinition.html">ezcPersistentGeneratorDefinition</a></em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24generator" title="details" class="var-name-summary">$generator</a>
+                      </code>
+          <br><div style="margin-left: 20px">The type of generator to use for the identifier.                                 The identifier generator must be an object that extends the                                 abstract class ezcPersistentIdentifierGenerator. The current                                 options that are part of this package are: <ul><li>ezcPersistentSequenceGenerator</li><li>ezcPersistentManualGenerator</li><li>ezcPersistentNativeGenerator</li></ul></div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24propertyName" id="$propertyName"></a>
+          <a name="prop-%24propertyName" id="$propertyName"></a>
+          <em>string</em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24propertyName" title="details" class="var-name-summary">$propertyName</a>
+                      </code>
+          <br><div style="margin-left: 20px">The name of the PersistentObject property                                 that holds the value in the PHP object.</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24propertyType" id="$propertyType"></a>
+          <a name="prop-%24propertyType" id="$propertyType"></a>
+          <em>int</em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24propertyType" title="details" class="var-name-summary">$propertyType</a>
+                      </code>
+          <br><div style="margin-left: 20px">The type of the PHP property. See class                                 constants ezcPersistentObjectProperty::PHP_TYPE_*.</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24visibility" id="$visibility"></a>
+          <a name="prop-%24visibility" id="$visibility"></a>
+          <em>int</em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24visibility" title="details" class="var-name-summary">$visibility</a>
+                      </code>
+          <br><div style="margin-left: 20px">The visibility of the property. This property is deprecated!</div>        </td>
+      </tr></table><a name="sec-method-summary"></a>
+  <h3>Method Summary</h3>
+  <table class="summary"><tr><td class="right">
+            <em>public</em>            static
+                        <em><a href="ezcPersistentObjectIdProperty.html">ezcPersistentObjectIdProperty</a></em>          </td>
+          <td>
+            <code>
+              <a href="#__set_state"><b>__set_state</b></a>(
+                                                                                    $array
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns a new instance of this class with the data specified by $array.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>ezcPersistentObjectIdProperty</em>          </td>
+          <td>
+            <code>
+              <a href="#__construct"><b>__construct</b></a>(
+                                                                  [                  $columnName
+                   = null]                                  ,                   [                  $propertyName
+                   = null]                                  ,                   [                  $visibility
+                   = null]                                  ,                   [                  $generator
+                   = null]                                  ,                   [                  $propertyType
+                   = ezcPersistentObjectProperty::PHP_TYPE_INT]                                  ,                   [                  $databaseType
+                   = PDO::PARAM_STR]                               )
+            </code>
+            <br><div style="margin-left: 20px">Constructs a new PersistentObjectField</div>          </td>
+        </tr></table><a name="sec-methods"></a>
+  <h3>Methods</h3>
+  <a name="method_detail"></a>
+        <a name="method__set_state" id="__set_state"><!-- --></a>
+
+    <h4>__set_state</h4>
+
+    <div class="method-signature">
+      static <a href="ezcPersistentObjectIdProperty.html">ezcPersistentObjectIdProperty</a>
+      __set_state(
+                                  
+          $array
+                        )
+    </div>
+
+      <p>Returns a new instance of this class with the data specified by $array.</p><div><p>$array contains all the data members of this class in the form:  array('member_name'=&gt;value).</p><p>__set_state makes this class exportable with var_export.  var_export() generates code, that calls this method when it  is parsed with PHP.</p></div>      
+              <h5>Parameters:</h5>
+        <table class="detail"><thead><tr><th>Name</th>
+              <th>Type</th>
+              <th class="desc">Description</th>
+            </tr></thead><tbody><tr><td><code>$array</code></td>
+                <td><em>array(string=&gt;mixed)</em></td>
+                <td>
+                                  </td>
+              </tr></tbody></table><a name="method__construct" id="__construct"><!-- --></a>
+
+    <h4>__construct</h4>
+
+    <div class="method-signature">
+      ezcPersistentObjectIdProperty
+      __construct(
+                                  [string
+          $columnName
+           = null]                  ,           [string
+          $propertyName
+           = null]                  ,           [int
+          $visibility
+           = null]                  ,           [<a href="ezcPersistentGeneratorDefinition.html">ezcPersistentGeneratorDefinition</a>
+          $generator
+           = null]                  ,           [int
+          $propertyType
+           = ezcPersistentObjectProperty::PHP_TYPE_INT]                  ,           [int
+          $databaseType
+           = PDO::PARAM_STR]              )
+    </div>
+
+    <p>Constructs a new PersistentObjectField</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$columnName</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  The name of the database field that stores the value.
+                              </td>
+            </tr><tr><td><code>$propertyName</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  The name of the class member
+                              </td>
+            </tr><tr><td><code>$visibility</code></td>
+              <td><em>int</em></td>
+              <td>
+                                  See $visibility for possible values.
+                              </td>
+            </tr><tr><td><code>$generator</code></td>
+              <td><em><a href="ezcPersistentGeneratorDefinition.html">ezcPersistentGeneratorDefinition</a></em></td>
+              <td>
+                                  Definition of the identifier generator
+                              </td>
+            </tr><tr><td><code>$propertyType</code></td>
+              <td><em>int</em></td>
+              <td>
+                                  See <a href="ezcPersistentObjectProperty.html">ezcPersistentObjectProperty</a> for possible values.
+                              </td>
+            </tr><tr><td><code>$databaseType</code></td>
+              <td><em>int</em></td>
+              <td>
+                                  See PDO::* for possible values.
+                              </td>
+            </tr></tbody></table><div class="credit">
+      Documentation generated by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+    </div>
+  </div>
+  
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,679 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="PHP, apache, components, framework, quality" />
+	<meta name="author" content="dotxp" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Wed, 04 Aug 2010 13:07:42 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="ezcGraphChartElementLabeledAxis.html" />
+	<meta name="DC.creator" content="dotxp" />
+	<meta name="DC.date" content="Wed, 04 Aug 2010 13:07:42 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/Graph/phpdoc/ezcGraphChartElementLabeledAxis.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/Graph/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/trunk/Graph/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Graph/gallery.html" title="Gallery ">Gallery </a>
+	</li>
+
+</ul>
+
+		
+  <div class="phpdoc">
+    <h2>Apache Zeta Components Manual :: Docs For Class ezcGraphChartElementLabeledAxis</h2>
+
+                  <h3>Graph::ezcGraphChartElementLabeledAxis</h3>
+    
+<a name="sec-description"></a>
+<h3>Class ezcGraphChartElementLabeledAxis</h3>
+
+<p>Class to represent a labeled axis.</p><div><p>Axis elements represent the axis in a bar, line or radar chart. They are  chart elements (ezcGraphChartElement) extending from  ezcGraphChartElementAxis, where additional formatting options can be found.  You should generally use the axis, which matches your input data best, so  that the automatic chart layouting works best. Aavailable axis types are:</p><p></p><ul><li>ezcGraphChartElementDateAxis</li><li>ezcGraphChartElementLabeledAxis</li><li>ezcGraphChartElementLogarithmicalAxis</li><li>ezcGraphChartElementNumericAxis</li></ul>  The labeled axis will accept any values and converts them to strings. The  labeled axis does not know about any special meanings of values and  maintains the order of the given labels with equidistant spaces between all  values. If your data has a special meaning, like a set of numbers or dates,  use one of the other more appropriate axis.<p>Because it is not always possible to fit all labels in a chart you may  define the count of labels drawn using the $labelCount option. For all other  labels only a small step will be rendered.</p><p>The labeled axis may be used like:</p><p></p><ol><li><div class="src-line">&#8192;&#8192;<span class="src-var">$graph&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcGraphLineChart.html">ezcGraphLineChart</a></span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;&#8192;<span class="src-var">$graph</span><span class="src-sym">-&gt;</span><span class="src-id">options</span><span class="src-sym">-&gt;</span><span class="src-id">fillLines&#8192;</span>=&#8192;<span class="src-num">210</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;&#8192;<span class="src-var">$graph</span><span class="src-sym">-&gt;</span><span class="src-id">options</span><span class="src-sym">-&gt;</span><span class="src-id">font</span><span class="src-sym">-&gt;</span><span class="src-id">maxFontSize&#8192;</span>=&#8192;<span class="src-num">10</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;&#8192;<span class="src-var">$graph</span><span class="src-sym">-&gt;</span><span class="src-id">title&#8192;</span>=&#8192;<span class="src-str">'Error&#8192;level&#8192;colors'</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;&#8192;<span class="src-var">$graph</span><span class="src-sym">-&gt;</span><span class="src-id">legend&#8192;</span>=&#8192;<span class="src-id">false</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;&#8192;<span class="src-var">$graph</span><span class="src-sym">-&gt;</span><span class="src-id">yAxis&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcGraphChartElementLabeledAxis.html">ezcGraphChartElementLabeledAxis</a></span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;&#8192;<span class="src-var">$graph</span><span class="src-sym">-&gt;</span><span class="src-id">yAxis</span><span class="src-sym">-&gt;</span><span class="src-id"><a href="ezcGraphChartElementAxis.html#var%24axisLabelRenderer">axisLabelRenderer</a></span><span class="src-sym">-&gt;</span><span class="src-id">showZeroValue&#8192;</span>=&#8192;<span class="src-id">true</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;&#8192;<span class="src-var">$graph</span><span class="src-sym">-&gt;</span><span class="src-id">yAxis</span><span class="src-sym">-&gt;</span><span class="src-id">label&#8192;</span>=&#8192;<span class="src-str">'Color'</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;&#8192;<span class="src-var">$graph</span><span class="src-sym">-&gt;</span><span class="src-id">xAxis</span><span class="src-sym">-&gt;</span><span class="src-id">label&#8192;</span>=&#8192;<span class="src-str">'Error&#8192;level'</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;&#8192;<span class="src-comm">//&#8192;Add&#8192;data</span></div></li>
+<li><div class="src-line">&#8192;&#8192;<span class="src-var">$graph</span><span class="src-sym">-&gt;</span><span class="src-id">data</span><span class="src-sym">[</span><span class="src-str">'colors'</span><span class="src-sym">]&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcGraphArrayDataSet.html">ezcGraphArrayDataSet</a></span><span class="src-sym">(</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-key">array</span><span class="src-sym">(</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'info'&#8192;</span>=&gt;&#8192;<span class="src-str">'blue'</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'notice'&#8192;</span>=&gt;&#8192;<span class="src-str">'green'</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'warning'&#8192;</span>=&gt;&#8192;<span class="src-str">'orange'</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'error'&#8192;</span>=&gt;&#8192;<span class="src-str">'red'</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'fatal'&#8192;</span>=&gt;&#8192;<span class="src-str">'red'</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-sym">)</span></div></li>
+<li><div class="src-line">&#8192;&#8192;<span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;&#8192;<span class="src-var">$graph</span><span class="src-sym">-&gt;</span><a href="ezcGraphChartElementAxis.html#methodrender">render</a><span class="src-sym">(&#8192;</span><span class="src-num">400</span><span class="src-sym">,&#8192;</span><span class="src-num">150</span><span class="src-sym">,&#8192;</span><span class="src-str">'tutorial_axis_labeled.svg'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol></div>
+<p>Source for this file: <a href="http://fisheye6.atlassian.com/browse/zetacomponents/trunk/Graph/src/axis/labeled.php?r=HEAD">/Graph/src/axis/labeled.php</a></p>
+       
+
+
+<pre><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseOptions.html">ezcBaseOptions</a>
+   |
+   --<a href="ezcGraphChartElement.html">ezcGraphChartElement</a>
+      |
+      --<a href="ezcGraphChartElementAxis.html">ezcGraphChartElementAxis</a>
+         |
+         --ezcGraphChartElementLabeledAxis</pre>
+
+
+  <table><tr><td>
+            <strong>Version:</strong>&#8192;&#8192;
+          </td>
+          <td>//autogentag//</td>
+        </tr></table><a name="sec-const-summary"></a>
+  <h3>Constants</h3>
+  <table class="summary"><tr><td class="right">
+          <a name="const-MAX_LABEL_COUNT" id=""></a>
+          <code>
+            <a href="#const-MAX_LABEL_COUNT" title="details" class="const-name-summary">MAX_LABEL_COUNT</a>
+             =  10
+          </code>
+        </td>
+        <td>
+          Maximum count of labels which can be displayed on one axis                  </td>
+      </tr></table><a name="sec-prop-summary"></a>
+  <h3>Properties</h3>
+  <table class="summary"><tr><td class="right">
+          <a name="prop%24labelCount" id="$labelCount"></a>
+          <a name="prop-%24labelCount" id="$labelCount"></a>
+          <em>float</em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24labelCount" title="details" class="var-name-summary">$labelCount</a>
+                      </code>
+          <br><div style="margin-left: 20px">Define count of displayed labels on the axis</div>        </td>
+      </tr></table><a name="sec-var-summary"></a>
+  <h3>Member Variables</h3>
+  <table class="summary"><tr><td class="right">
+            <em>protected</em>            <em>array</em>          </td>
+          <td>
+            <code>
+              $displayedLabels
+               = <span class="var-default">array()</span>            </code>
+            <br><div style="margin-left: 20px">Reduced amount of labels which will be displayed in the chart</div>                      </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            <em>array</em>          </td>
+          <td>
+            <code>
+              $labels
+               = <span class="var-default">array()</span>            </code>
+            <br><div style="margin-left: 20px">Array with labeles for data</div>                      </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            <em>array</em>          </td>
+          <td>
+            <code>
+              $labelsIndexed
+               = <span class="var-default">array()</span>            </code>
+            <br><div style="margin-left: 20px">Labels indexed by their name as key for faster lookups</div>                      </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            <em>array(ezcGraphAxisStep)</em>          </td>
+          <td>
+            <code>
+              $steps
+                          </code>
+            <br><div style="margin-left: 20px">Precalculated steps on the axis</div>                      </td>
+        </tr></table><h3>Inherited Member Variables</h3>
+  <table class="summary"><thead><tr><th colspan="2">
+            From <span class="classname"><a href="ezcGraphChartElementAxis.html">ezcGraphChartElementAxis</a></span>         
+          </th>
+        </tr></thead><tbody><tr><td class="right">
+              <em>protected</em>                          </td>
+            <td>
+              <code><a href="ezcGraphChartElementAxis.html#var%24axisLabelRenderer">ezcGraphChartElementAxis::$axisLabelRenderer</a></code>
+              
+            </td>
+          </tr><tr><td class="right">
+              <em>protected</em>                          </td>
+            <td>
+              <code><a href="ezcGraphChartElementAxis.html#var%24innerBoundings">ezcGraphChartElementAxis::$innerBoundings</a></code>
+              
+            </td>
+          </tr></tbody><thead><tr><th colspan="2">
+            From <span class="classname"><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseOptions.html">ezcBaseOptions</a></span>         
+          </th>
+        </tr></thead><tbody><tr><td class="right">
+              <em>protected</em>                          </td>
+            <td>
+              <code><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseOptions.html#var%24properties">ezcBaseOptions::$properties</a></code>
+              
+            </td>
+          </tr></tbody></table><a name="sec-method-summary"></a>
+  <h3>Method Summary</h3>
+  <table class="summary"><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#addData"><b>addData</b></a>(
+                                                                                    $values
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Add data for this axis</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>            abstract            <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#calculateAxisBoundings"><b>calculateAxisBoundings</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Calculate axis bounding values on base of the assigned values</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>float</em>          </td>
+          <td>
+            <code>
+              <a href="#getCoordinate"><b>getCoordinate</b></a>(
+                                                                                    $value
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Get coordinate for a dedicated value on the chart</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#getLabel"><b>getLabel</b></a>(
+                                                                                    $step
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Get label for a dedicated step on the axis</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>integer</em>          </td>
+          <td>
+            <code>
+              <a href="#getMajorStepCount"><b>getMajorStepCount</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Return count of major steps</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>integer</em>          </td>
+          <td>
+            <code>
+              <a href="#getMinorStepCount"><b>getMinorStepCount</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Return count of minor steps</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>array(</em>          </td>
+          <td>
+            <code>
+              <a href="#getSteps"><b>getSteps</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Return array of steps on this axis</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>array</em>          </td>
+          <td>
+            <code>
+              <a href="#increaseKeys"><b>increaseKeys</b></a>(
+                                                                                    $array
+                                                    ,                                     $startKey
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Increase the keys of all elements in the array up from the start key, to  insert an additional element at the correct position.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>bool</em>          </td>
+          <td>
+            <code>
+              <a href="#isZeroStep"><b>isZeroStep</b></a>(
+                                                                                    $step
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Is zero step</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#provideLabels"><b>provideLabels</b></a>(
+                                                                                    $labels
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Provide initial set of labels</div>          </td>
+        </tr></table><h3>Inherited Methods</h3>
+  <table class="summary"><thead><tr><th colspan="2">
+            From <span class="classname"><a href="ezcGraphChartElementAxis.html">ezcGraphChartElementAxis</a></span>
+          </th>
+        </tr></thead><tbody><tr><td class="right">
+              <em>public</em>              abstract                            <em>void</em>            </td>
+            <td>
+              <code><b><a href="ezcGraphChartElementAxis.html#methodaddData">ezcGraphChartElementAxis::addData()</a></b></code>
+              <br><div style="margin-left: 20px">Add data for this axis</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>              abstract                            <em>void</em>            </td>
+            <td>
+              <code><b><a href="ezcGraphChartElementAxis.html#methodcalculateAxisBoundings">ezcGraphChartElementAxis::calculateAxisBoundings()</a></b></code>
+              <br><div style="margin-left: 20px">Calculate axis bounding values on base of the assigned values</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>              abstract                            <em>float</em>            </td>
+            <td>
+              <code><b><a href="ezcGraphChartElementAxis.html#methodgetCoordinate">ezcGraphChartElementAxis::getCoordinate()</a></b></code>
+              <br><div style="margin-left: 20px">Get coordinate for a dedicated value on the chart</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>              abstract                            <em>string</em>            </td>
+            <td>
+              <code><b><a href="ezcGraphChartElementAxis.html#methodgetLabel">ezcGraphChartElementAxis::getLabel()</a></b></code>
+              <br><div style="margin-left: 20px">Get label for a dedicated step on the axis</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>              abstract                            <em>integer</em>            </td>
+            <td>
+              <code><b><a href="ezcGraphChartElementAxis.html#methodgetMajorStepCount">ezcGraphChartElementAxis::getMajorStepCount()</a></b></code>
+              <br><div style="margin-left: 20px">Return count of major steps</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>              abstract                            <em>integer</em>            </td>
+            <td>
+              <code><b><a href="ezcGraphChartElementAxis.html#methodgetMinorStepCount">ezcGraphChartElementAxis::getMinorStepCount()</a></b></code>
+              <br><div style="margin-left: 20px">Return count of minor steps</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>array(</em>            </td>
+            <td>
+              <code><b><a href="ezcGraphChartElementAxis.html#methodgetSteps">ezcGraphChartElementAxis::getSteps()</a></b></code>
+              <br><div style="margin-left: 20px">Return array of steps on this axis</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>              abstract                            <em>bool</em>            </td>
+            <td>
+              <code><b><a href="ezcGraphChartElementAxis.html#methodisZeroStep">ezcGraphChartElementAxis::isZeroStep()</a></b></code>
+              <br><div style="margin-left: 20px">Is zero step</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>ezcGraphBoundings</em>            </td>
+            <td>
+              <code><b><a href="ezcGraphChartElementAxis.html#methodrender">ezcGraphChartElementAxis::render()</a></b></code>
+              <br><div style="margin-left: 20px">Render the axis</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b><a href="ezcGraphChartElementAxis.html#methodsetFromPalette">ezcGraphChartElementAxis::setFromPalette()</a></b></code>
+              <br><div style="margin-left: 20px">Set colors and border fro this element</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b><a href="ezcGraphChartElementAxis.html#method__set">ezcGraphChartElementAxis::__set()</a></b></code>
+              <br><div style="margin-left: 20px">__set</div>                          </td>
+          </tr></tbody><thead><tr><th colspan="2">
+            From <span class="classname"><a href="ezcGraphChartElement.html">ezcGraphChartElement</a></span>
+          </th>
+        </tr></thead><tbody><tr><td class="right">
+              <em>protected</em>                                          <em>ezcGraphBoundings</em>            </td>
+            <td>
+              <code><b><a href="ezcGraphChartElement.html#methodgetTitleSize">ezcGraphChartElement::getTitleSize()</a></b></code>
+              <br><div style="margin-left: 20px">Returns calculated boundings based on available percentual space of  given bounding box specified in the elements options and direction of  the box.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>              abstract                            <em>ezcGraphBoundings</em>            </td>
+            <td>
+              <code><b><a href="ezcGraphChartElement.html#methodrender">ezcGraphChartElement::render()</a></b></code>
+              <br><div style="margin-left: 20px">Renders this chart element</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b><a href="ezcGraphChartElement.html#methodsetFromPalette">ezcGraphChartElement::setFromPalette()</a></b></code>
+              <br><div style="margin-left: 20px">Set colors and border fro this element</div>                          </td>
+          </tr></tbody><thead><tr><th colspan="2">
+            From <span class="classname"><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseOptions.html">ezcBaseOptions</a></span>
+          </th>
+        </tr></thead><tbody><tr><td class="right">
+              <em>public</em>                                          <em>ezcBaseOptions</em>            </td>
+            <td>
+              <code><b><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseOptions.html#method__construct">ezcBaseOptions::__construct()</a></b></code>
+              <br><div style="margin-left: 20px">Construct a new options object.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseOptions.html#methodmerge">ezcBaseOptions::merge()</a></b></code>
+              <br><div style="margin-left: 20px">Merge an array into the actual options object.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>bool</em>            </td>
+            <td>
+              <code><b><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseOptions.html#methodoffsetExists">ezcBaseOptions::offsetExists()</a></b></code>
+              <br><div style="margin-left: 20px">Returns if an option exists.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>mixed</em>            </td>
+            <td>
+              <code><b><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseOptions.html#methodoffsetGet">ezcBaseOptions::offsetGet()</a></b></code>
+              <br><div style="margin-left: 20px">Returns an option value.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseOptions.html#methodoffsetSet">ezcBaseOptions::offsetSet()</a></b></code>
+              <br><div style="margin-left: 20px">Set an option.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseOptions.html#methodoffsetUnset">ezcBaseOptions::offsetUnset()</a></b></code>
+              <br><div style="margin-left: 20px">Unset an option.</div>                          </td>
+          </tr></tbody></table><a name="sec-methods"></a>
+  <h3>Methods</h3>
+  <a name="method_detail"></a>
+                    
+      <a name="methodaddData" id="addData"><!-- --></a>
+
+    <h4>addData</h4>
+
+    <div class="method-signature">
+      void
+      addData(
+                                  
+          $values
+                        )
+    </div>
+
+    <p>Add data for this axis</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$values</code></td>
+              <td><em>array</em></td>
+              <td>
+                                  Value which will be displayed on this axis
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcGraphChartElementAxis.html#methodaddData">ezcGraphChartElementAxis::addData()</a></code></td>
+            <td>
+                              Add data for this axis
+                          </td>
+          </tr></tbody></table><a name="methodcalculateAxisBoundings" id="calculateAxisBoundings"><!-- --></a>
+
+    <h4>calculateAxisBoundings</h4>
+
+    <div class="method-signature">
+      void
+      calculateAxisBoundings(
+      )
+    </div>
+
+    <p>Calculate axis bounding values on base of the assigned values</p>
+    
+        
+
+          <h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcGraphChartElementAxis.html#methodcalculateAxisBoundings">ezcGraphChartElementAxis::calculateAxisBoundings()</a></code></td>
+            <td>
+                              Calculate axis bounding values on base of the assigned values
+                          </td>
+          </tr></tbody></table><a name="methodgetCoordinate" id="getCoordinate"><!-- --></a>
+
+    <h4>getCoordinate</h4>
+
+    <div class="method-signature">
+      float
+      getCoordinate(
+                                  string
+          $value
+                        )
+    </div>
+
+    <p>Get coordinate for a dedicated value on the chart</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$value</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  Value to determine position for
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcGraphChartElementAxis.html#methodgetCoordinate">ezcGraphChartElementAxis::getCoordinate()</a></code></td>
+            <td>
+                              Get coordinate for a dedicated value on the chart
+                          </td>
+          </tr></tbody></table><a name="methodgetLabel" id="getLabel"><!-- --></a>
+
+    <h4>getLabel</h4>
+
+    <div class="method-signature">
+      string
+      getLabel(
+                                  integer
+          $step
+                        )
+    </div>
+
+    <p>Get label for a dedicated step on the axis</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$step</code></td>
+              <td><em>integer</em></td>
+              <td>
+                                  Number of step
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcGraphChartElementAxis.html#methodgetLabel">ezcGraphChartElementAxis::getLabel()</a></code></td>
+            <td>
+                              Get label for a dedicated step on the axis
+                          </td>
+          </tr></tbody></table><a name="methodgetMajorStepCount" id="getMajorStepCount"><!-- --></a>
+
+    <h4>getMajorStepCount</h4>
+
+    <div class="method-signature">
+      integer
+      getMajorStepCount(
+      )
+    </div>
+
+    <p>Return count of major steps</p>
+    
+        
+
+          <h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcGraphChartElementAxis.html#methodgetMajorStepCount">ezcGraphChartElementAxis::getMajorStepCount()</a></code></td>
+            <td>
+                              Return count of major steps
+                          </td>
+          </tr></tbody></table><a name="methodgetMinorStepCount" id="getMinorStepCount"><!-- --></a>
+
+    <h4>getMinorStepCount</h4>
+
+    <div class="method-signature">
+      integer
+      getMinorStepCount(
+      )
+    </div>
+
+    <p>Return count of minor steps</p>
+    
+        
+
+          <h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcGraphChartElementAxis.html#methodgetMinorStepCount">ezcGraphChartElementAxis::getMinorStepCount()</a></code></td>
+            <td>
+                              Return count of minor steps
+                          </td>
+          </tr></tbody></table><a name="methodgetSteps" id="getSteps"><!-- --></a>
+
+    <h4>getSteps</h4>
+
+    <div class="method-signature">
+      array(
+      getSteps(
+      )
+    </div>
+
+    <p>Return array of steps on this axis</p>
+    
+        
+
+          <h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcGraphChartElementAxis.html#methodgetSteps">ezcGraphChartElementAxis::getSteps()</a></code></td>
+            <td>
+                              Return array of steps on this axis
+                          </td>
+          </tr></tbody></table><a name="methodincreaseKeys" id="increaseKeys"><!-- --></a>
+
+    <h4>increaseKeys</h4>
+
+    <div class="method-signature">
+      array
+      increaseKeys(
+                                  
+          $array
+                            ,           int
+          $startKey
+                        )
+    </div>
+
+    <p>Increase the keys of all elements in the array up from the start key, to  insert an additional element at the correct position.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$array</code></td>
+              <td><em>array</em></td>
+              <td>
+                                  Array
+                              </td>
+            </tr><tr><td><code>$startKey</code></td>
+              <td><em>int</em></td>
+              <td>
+                                  Key to increase keys from
+                              </td>
+            </tr></tbody></table><a name="methodisZeroStep" id="isZeroStep"><!-- --></a>
+
+    <h4>isZeroStep</h4>
+
+    <div class="method-signature">
+      bool
+      isZeroStep(
+                                  int
+          $step
+                        )
+    </div>
+
+    <p>Is zero step</p><div><p>Returns true if the given step is the one on the initial axis position</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$step</code></td>
+              <td><em>int</em></td>
+              <td>
+                                  Number of step
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcGraphChartElementAxis.html#methodisZeroStep">ezcGraphChartElementAxis::isZeroStep()</a></code></td>
+            <td>
+                              Is zero step
+                          </td>
+          </tr></tbody></table><a name="methodprovideLabels" id="provideLabels"><!-- --></a>
+
+    <h4>provideLabels</h4>
+
+    <div class="method-signature">
+      void
+      provideLabels(
+                                  
+          $labels
+                        )
+    </div>
+
+    <p>Provide initial set of labels</p><div><p>This method may be used to provide an ordered set of labels, containing  labels, which are not available in the datasets or to provide a label  order different to the one in the given dataset.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$labels</code></td>
+              <td><em>array</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><div class="credit">
+      Documentation generated by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+    </div>
+  </div>
+  
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

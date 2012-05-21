@@ -1,0 +1,823 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="" />
+	<meta name="author" content="jerome" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Sun, 10 Jul 2011 11:11:01 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="ezcMailPop3Transport.html" />
+	<meta name="DC.creator" content="jerome" />
+	<meta name="DC.date" content="Sun, 10 Jul 2011 11:11:01 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/Mail/phpdoc/ezcMailPop3Transport.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/Mail/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/trunk/Mail/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Mail/mail-listing-example.html" title="Mail-listing-example ">Mail-listing-example </a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Mail/display-example.html" title="Display-example ">Display-example </a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Mail/rfcs.html" title="Rfcs ">Rfcs </a>
+	</li>
+
+</ul>
+
+		
+  <div class="phpdoc">
+    <h2>Apache Zeta Components Manual :: Docs For Class ezcMailPop3Transport</h2>
+
+                  <h3>Mail::ezcMailPop3Transport</h3>
+    
+<a name="sec-description"></a>
+<h3>Class ezcMailPop3Transport</h3>
+
+<p>The class ezcMailPop3Transport implements functionality for handling POP3  mail servers.</p><div><p>The implementation supports most of the commands specified in: </p><ul><li><a href="http://www.faqs.org/rfcs/rfc1939.html">http://www.faqs.org/rfcs/rfc1939.html</a> (POP3)</li><li><a href="http://www.faqs.org/rfcs/rfc1734.html">http://www.faqs.org/rfcs/rfc1734.html</a> (POP3 AUTH)</li></ul>  The POP3 server can be in different states. Most POP3 commands require  that a connection is established and a user is authenticated.<p>The POP3 transport class allows developers to interface with a POP3 server.</p><p>Basic commands: </p><ul><li>connect to a POP3 server (<a href="ezcMailPop3Transport.html#method__construct">__construct()</a>)</li><li>authenticate a user with a username and password (<a href="ezcMailPop3Transport.html#methodauthenticate">authenticate()</a>)</li><li>disconnect from the POP3 server (<a href="ezcMailPop3Transport.html#methoddisconnect">disconnect()</a>)</li></ul>  Work with message numbers: <ul><li>get the message numbers and sizes of all the messages (<a href="ezcMailPop3Transport.html#methodlistMessages">listMessages()</a>)</li><li>get the message numbers and IDs of all the messages (<a href="ezcMailPop3Transport.html#methodlistUniqueIdentifiers">listUniqueIdentifiers()</a>)</li><li>get the headers of a certain message (<a href="ezcMailPop3Transport.html#methodtop">top()</a>)</li><li>delete a message (<a href="ezcMailPop3Transport.html#methoddelete">delete()</a>)</li></ul>  Work with ezcMailPop3Set sets (parseable with ezcMailParser): <ul><li>create a set from all messages (<a href="ezcMailPop3Transport.html#methodfetchAll">fetchAll()</a>)</li><li>create a set from a certain message (<a href="ezcMailPop3Transport.html#methodfetchByMessageNr">fetchByMessageNr()</a>)</li><li>create a set from a range of messages (<a href="ezcMailPop3Transport.html#methodfetchFromOffset">fetchFromOffset()</a>)</li></ul>  Miscellaneous commands: <ul><li>get the status of messages on the server (<a href="ezcMailPop3Transport.html#methodstatus">status()</a>)</li><li>issue a NOOP command to keep the connection alive (<a href="ezcMailPop3Transport.html#methodnoop">noop()</a>)</li></ul>  The usual operation with a POP3 server is illustrated by this example:  <ol><li><div class="src-line">&#8192;<span class="src-comm">//&#8192;create&#8192;a&#8192;new&#8192;POP3&#8192;transport&#8192;object&#8192;by&#8192;specifying&#8192;the&#8192;server&#8192;name,&#8192;optional</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;port&#8192;and&#8192;optional&#8192;SSL&#8192;mode</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$options&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcMailPop3TransportOptions.html">ezcMailPop3TransportOptions</a></span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$options</span><span class="src-sym">-&gt;</span><span class="src-id">ssl&#8192;</span>=&#8192;<span class="src-id">true</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$pop3&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcMailPop3Transport.html">ezcMailPop3Transport</a></span><span class="src-sym">(&#8192;</span><span class="src-str">'pop3.example.com'</span><span class="src-sym">,&#8192;</span><span class="src-id">null</span><span class="src-sym">,&#8192;</span><span class="src-var">$options&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;Authenticate&#8192;to&#8192;the&#8192;POP3&#8192;server</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$pop3</span><span class="src-sym">-&gt;</span><a href="ezcMailPop3Transport.html#methodauthenticate">authenticate</a><span class="src-sym">(&#8192;</span><span class="src-str">'username'</span><span class="src-sym">,&#8192;</span><span class="src-str">'password'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;issue&#8192;commands&#8192;to&#8192;the&#8192;POP3&#8192;server</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;for&#8192;example&#8192;get&#8192;the&#8192;headers&#8192;of&#8192;the&#8192;first&#8192;message,&#8192;which&#8192;can&#8192;be</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;parsed&#8192;with&#8192;ezcMailVariableSet&#8192;and&#8192;ezcMailParser</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$headers&#8192;</span>=&#8192;<span class="src-var">$pop3</span><span class="src-sym">-&gt;</span><a href="ezcMailPop3Transport.html#methodtop">top</a><span class="src-sym">(&#8192;</span><span class="src-num">1&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;see&#8192;the&#8192;above&#8192;list&#8192;of&#8192;commands&#8192;or&#8192;consult&#8192;the&#8192;online&#8192;documentation&#8192;for</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;the&#8192;full&#8192;list&#8192;of&#8192;commands&#8192;you&#8192;can&#8192;issue&#8192;to&#8192;an&#8192;POP3&#8192;server&#8192;and&#8192;examples</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;disconnect&#8192;from&#8192;the&#8192;POP3&#8192;server</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$pop3</span><span class="src-sym">-&gt;</span><a href="ezcMailPop3Transport.html#methoddisconnect">disconnect</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol><p>See <a href="ezcMailPop3TransportOptions.html">ezcMailPop3TransportOptions</a> for options you can specify for POP3.</p></div>
+<p>Source for this file: <a href="http://fisheye6.atlassian.com/browse/zetacomponents/trunk/Mail/src/transports/pop3/pop3_transport.php?r=HEAD">/Mail/src/transports/pop3/pop3_transport.php</a></p>
+       
+
+
+
+
+  <table><tr><td>
+            <strong>Version:</strong>&#8192;&#8192;
+          </td>
+          <td>//autogen//</td>
+        </tr><tr><td>
+            <strong>Todo:</strong>&#8192;&#8192;
+          </td>
+          <td>ignore messages of a certain size?</td>
+        </tr><tr><td>
+            <strong>Todo:</strong>&#8192;&#8192;
+          </td>
+          <td>// support for signing?</td>
+        </tr></table><a name="sec-const-summary"></a>
+  <h3>Constants</h3>
+  <table class="summary"><tr><td class="right">
+          <a name="const-AUTH_APOP" id=""></a>
+          <code>
+            <a href="#const-AUTH_APOP" title="details" class="const-name-summary">AUTH_APOP</a>
+             =  2
+          </code>
+        </td>
+        <td>
+          APOP authorization.                  </td>
+      </tr><tr><td class="right">
+          <a name="const-AUTH_PLAIN_TEXT" id=""></a>
+          <code>
+            <a href="#const-AUTH_PLAIN_TEXT" title="details" class="const-name-summary">AUTH_PLAIN_TEXT</a>
+             =  1
+          </code>
+        </td>
+        <td>
+          Plain text authorization.                  </td>
+      </tr></table><a name="sec-prop-summary"></a>
+  <h3>Properties</h3>
+  <table class="summary"><tr><td class="right">
+          <a name="prop%24options" id="$options"></a>
+          <a name="prop-%24options" id="$options"></a>
+          <em><a href="ezcMailPop3TransportOptions.html">ezcMailPop3TransportOptions</a></em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24options" title="details" class="var-name-summary">$options</a>
+                      </code>
+          <br><div style="margin-left: 20px">Holds the options you can set to the POP3 transport.</div>        </td>
+      </tr></table><a name="sec-var-summary"></a>
+  <h3>Member Variables</h3>
+  <table class="summary"><tr><td class="right">
+            <em>protected</em>            <em>ezcMailTransportConnection</em>          </td>
+          <td>
+            <code>
+              $connection
+               = <span class="var-default"> null</span>            </code>
+            <br><div style="margin-left: 20px">The connection to the POP3 server.</div>                      </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            <em>string</em>          </td>
+          <td>
+            <code>
+              $greeting
+               = <span class="var-default"> null</span>            </code>
+            <br><div style="margin-left: 20px">Holds the initial greeting from the POP3 server when connecting.</div>                      </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            <em>mixed</em>          </td>
+          <td>
+            <code>
+              $state
+               = <span class="var-default"> self::STATE_NOT_CONNECTED</span>            </code>
+            <br><div style="margin-left: 20px">Holds the connection state.</div>            <br><div style="margin-left: 20px"><p>$var int STATE_NOT_CONNECTED,           STATE_AUTHORIZATION,           STATE_TRANSACTION or           STATE_UPDATE.</p></div>          </td>
+        </tr></table><a name="sec-method-summary"></a>
+  <h3>Method Summary</h3>
+  <table class="summary"><tr><td class="right">
+            <em>public</em>                        <em>ezcMailPop3Transport</em>          </td>
+          <td>
+            <code>
+              <a href="#__construct"><b>__construct</b></a>(
+                                                                                    $server
+                                                    ,                   [                  $port
+                   = null]                                  ,                   [                  $options
+                   = array()]                               )
+            </code>
+            <br><div style="margin-left: 20px">Creates a new POP3 transport and connects to the $server at $port.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#__destruct"><b>__destruct</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Destructs the POP3 transport object.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#authenticate"><b>authenticate</b></a>(
+                                                                                    $user
+                                                    ,                                     $password
+                                                    ,                   [                  $method
+                   = null]                               )
+            </code>
+            <br><div style="margin-left: 20px">Authenticates the user to the POP3 server with $user and $password.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#delete"><b>delete</b></a>(
+                                                                                    $msgNum
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Deletes the message with the message number $msgNum from the server.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#disconnect"><b>disconnect</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Disconnects the transport from the POP3 server.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em><a href="ezcMailParserSet.html">ezcMailParserSet</a></em>          </td>
+          <td>
+            <code>
+              <a href="#fetchAll"><b>fetchAll</b></a>(
+                                                                  [                  $deleteFromServer
+                   = false]                               )
+            </code>
+            <br><div style="margin-left: 20px">Returns an ezcMailPop3Set with all the messages on the server.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em><a href="ezcMailPop3Set.html">ezcMailPop3Set</a></em>          </td>
+          <td>
+            <code>
+              <a href="#fetchByMessageNr"><b>fetchByMessageNr</b></a>(
+                                                                                    $number
+                                                    ,                   [                  $deleteFromServer
+                   = false]                               )
+            </code>
+            <br><div style="margin-left: 20px">Returns an ezcMailPop3Set containing only the $number -th message from  the server.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em><a href="ezcMailPop3Set.html">ezcMailPop3Set</a></em>          </td>
+          <td>
+            <code>
+              <a href="#fetchFromOffset"><b>fetchFromOffset</b></a>(
+                                                                                    $offset
+                                                    ,                   [                  $count
+                   = 0]                                  ,                   [                  $deleteFromServer
+                   = false]                               )
+            </code>
+            <br><div style="margin-left: 20px">Returns an ezcMailPop3Set with $count messages starting from $offset from  the server.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>bool</em>          </td>
+          <td>
+            <code>
+              <a href="#isPositiveResponse"><b>isPositiveResponse</b></a>(
+                                                                                    $line
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns true if the response from the server is a positive one.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>array(int)</em>          </td>
+          <td>
+            <code>
+              <a href="#listMessages"><b>listMessages</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns an array of the message numbers on the server and the size of the  messages in bytes.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>array(string)</em>          </td>
+          <td>
+            <code>
+              <a href="#listUniqueIdentifiers"><b>listUniqueIdentifiers</b></a>(
+                                                                  [                  $msgNum
+                   = null]                               )
+            </code>
+            <br><div style="margin-left: 20px">Returns the unique identifiers for messages on the POP3 server.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#noop"><b>noop</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Sends a NOOP command to the server, use it to keep the connection alive.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#status"><b>status</b></a>(
+                                                                                    &amp;$numMessages
+                                                    ,                                     &amp;$sizeMessages
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns information about the messages on the server.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#top"><b>top</b></a>(
+                                                                                    $msgNum
+                                                    ,                   [                  $numLines
+                   = 0]                               )
+            </code>
+            <br><div style="margin-left: 20px">Returns the headers and the $numLines first lines of the body of the mail with  the message number $msgNum.</div>          </td>
+        </tr></table><a name="sec-methods"></a>
+  <h3>Methods</h3>
+  <a name="method_detail"></a>
+                            
+      <a name="method__construct" id="__construct"><!-- --></a>
+
+    <h4>__construct</h4>
+
+    <div class="method-signature">
+      ezcMailPop3Transport
+      __construct(
+                                  string
+          $server
+                            ,           [int
+          $port
+           = null]                  ,           [<a href="ezcMailPop3TransportOptions.html">ezcMailPop3TransportOptions</a>|array(string=&gt;mixed)
+          $options
+           = array()]              )
+    </div>
+
+    <p>Creates a new POP3 transport and connects to the $server at $port.</p><div><p>You can specify the $port if the POP3 server is not on the default  port 995 (for SSL connections) or 110 (for plain connections). Use the  $options parameter to specify an SSL connection.</p><p>For options you can specify for POP3 see <a href="ezcMailPop3TransportOptions.html">ezcMailPop3TransportOptions</a>.</p><p>Example of creating a POP3 transport:  </p><ol><li><div class="src-line">&#8192;<span class="src-comm">//&#8192;replace&#8192;with&#8192;your&#8192;POP3&#8192;server&#8192;address</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$pop3&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcMailPop3Transport.html">ezcMailPop3Transport</a></span><span class="src-sym">(&#8192;</span><span class="src-str">'pop3.example.com'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;if&#8192;you&#8192;want&#8192;to&#8192;use&#8192;SSL:</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$options&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcMailPop3TransportOptions.html">ezcMailPop3TransportOptions</a></span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$options</span><span class="src-sym">-&gt;</span><span class="src-id">ssl&#8192;</span>=&#8192;<span class="src-id">true</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$pop3&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcMailPop3Transport.html">ezcMailPop3Transport</a></span><span class="src-sym">(&#8192;</span><span class="src-str">'pop3.example.com'</span><span class="src-sym">,&#8192;</span><span class="src-id">null</span><span class="src-sym">,&#8192;</span><span class="src-var">$options&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$server</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$port</code></td>
+              <td><em>int</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$options</code></td>
+              <td><em><a href="ezcMailPop3TransportOptions.html">ezcMailPop3TransportOptions</a>|array(string=&gt;mixed)</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcMailTransportException.html">ezcMailTransportException</a></code></td>
+              <td>
+                                  if it was not possible to connect to the server
+                              </td>
+            </tr><tr><td><code><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseValueException.html">ezcBaseValueException</a></code></td>
+              <td>
+                                  if $options contains a property with a value not allowed
+                              </td>
+            </tr><tr><td><code><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseExtensionNotFoundException.html">ezcBaseExtensionNotFoundException</a></code></td>
+              <td>
+                                  if trying to use SSL and the extension openssl is not installed
+                              </td>
+            </tr><tr><td><code><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBasePropertyNotFoundException.html">ezcBasePropertyNotFoundException</a></code></td>
+              <td>
+                                  if $options contains a property not defined
+                              </td>
+            </tr></tbody></table><a name="method__destruct" id="__destruct"><!-- --></a>
+
+    <h4>__destruct</h4>
+
+    <div class="method-signature">
+      void
+      __destruct(
+      )
+    </div>
+
+    <p>Destructs the POP3 transport object.</p><div><p>If there is an open connection to the POP3 server it is closed.</p></div>
+    
+        
+
+    
+    
+    
+        <a name="methodauthenticate" id="authenticate"><!-- --></a>
+
+    <h4>authenticate</h4>
+
+    <div class="method-signature">
+      void
+      authenticate(
+                                  string
+          $user
+                            ,           string
+          $password
+                            ,           [int
+          $method
+           = null]              )
+    </div>
+
+    <p>Authenticates the user to the POP3 server with $user and $password.</p><div><p>You can choose the authentication method with the $method parameter.  The default is to use plaintext username and password (specified in the  ezcMailPop3TransportOptions class).</p><p>This method should be called directly after the construction of this  object.</p><p>Example:  </p><ol><li><div class="src-line">&#8192;<span class="src-comm">//&#8192;replace&#8192;with&#8192;your&#8192;POP3&#8192;server&#8192;address</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$pop3&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcMailPop3Transport.html">ezcMailPop3Transport</a></span><span class="src-sym">(&#8192;</span><span class="src-str">'pop3.example.com'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;replace&#8192;the&#8192;values&#8192;with&#8192;your&#8192;username&#8192;and&#8192;password&#8192;for&#8192;the&#8192;POP3&#8192;server</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$pop3</span><span class="src-sym">-&gt;</span><a href="ezcMailPop3Transport.html#methodauthenticate">authenticate</a><span class="src-sym">(&#8192;</span><span class="src-str">'username'</span><span class="src-sym">,&#8192;</span><span class="src-str">'password'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$user</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$password</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$method</code></td>
+              <td><em>int</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcMailTransportException.html">ezcMailTransportException</a></code></td>
+              <td>
+                                  if there is no connection to the server or if already authenticated or if the authentication method is not accepted by the server or if the provided username/password combination did not work
+                              </td>
+            </tr></tbody></table><a name="methoddelete" id="delete"><!-- --></a>
+
+    <h4>delete</h4>
+
+    <div class="method-signature">
+      void
+      delete(
+                                  int
+          $msgNum
+                        )
+    </div>
+
+    <p>Deletes the message with the message number $msgNum from the server.</p><div><p>The message number must be a valid identifier fetched with (example)  <a href="ezcMailPop3Transport.html#methodlistMessages">listMessages()</a>.</p><p>Any future reference to the message-number associated with the message  in a command generates an error.</p><p>Before calling this method, a connection to the POP3 server must be  established and a user must be authenticated successfully.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$msgNum</code></td>
+              <td><em>int</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcMailTransportException.html">ezcMailTransportException</a></code></td>
+              <td>
+                                  if there was no connection to the server or if not authenticated or if the server sent a negative response
+                              </td>
+            </tr></tbody></table><a name="methoddisconnect" id="disconnect"><!-- --></a>
+
+    <h4>disconnect</h4>
+
+    <div class="method-signature">
+      void
+      disconnect(
+      )
+    </div>
+
+    <p>Disconnects the transport from the POP3 server.</p>
+    
+        
+
+    
+    
+    
+        <a name="methodfetchAll" id="fetchAll"><!-- --></a>
+
+    <h4>fetchAll</h4>
+
+    <div class="method-signature">
+      <a href="ezcMailParserSet.html">ezcMailParserSet</a>
+      fetchAll(
+                                  [bool
+          $deleteFromServer
+           = false]              )
+    </div>
+
+    <p>Returns an ezcMailPop3Set with all the messages on the server.</p><div><p>If $deleteFromServer is set to true the mail will be removed from the  server after retrieval. If not it will be left.</p><p>Before calling this method, a connection to the POP3 server must be  established and a user must be authenticated successfully.</p><p>Example:  </p><ol><li><div class="src-line">&#8192;<span class="src-var">$pop3&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcMailPop3Transport.html">ezcMailPop3Transport</a></span><span class="src-sym">(&#8192;</span><span class="src-str">'pop3.example.com'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$pop3</span><span class="src-sym">-&gt;</span><a href="ezcMailPop3Transport.html#methodauthenticate">authenticate</a><span class="src-sym">(&#8192;</span><span class="src-str">'username'</span><span class="src-sym">,&#8192;</span><span class="src-str">'password'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$set&#8192;</span>=&#8192;<span class="src-var">$pop3</span><span class="src-sym">-&gt;</span><a href="ezcMailPop3Transport.html#methodfetchAll">fetchAll</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;parse&#8192;$set&#8192;with&#8192;ezcMailParser</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$parser&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcMailParser.html">ezcMailParser</a></span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$mails&#8192;</span>=&#8192;<span class="src-var">$parser</span><span class="src-sym">-&gt;</span><span class="src-id">parseMail</span><span class="src-sym">(&#8192;</span><span class="src-var">$set&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-key">foreach&#8192;</span><span class="src-sym">(&#8192;</span><span class="src-var">$mails&#8192;</span><span class="src-key">as&#8192;</span><span class="src-var">$mail&#8192;</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">{</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-comm">//&#8192;process&#8192;$mail&#8192;which&#8192;is&#8192;an&#8192;ezcMail&#8192;object</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">}</span></div></li>
+</ol></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$deleteFromServer</code></td>
+              <td><em>bool</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcMailTransportException.html">ezcMailTransportException</a></code></td>
+              <td>
+                                  if there was no connection to the server or if not authenticated or if the server sent a negative response
+                              </td>
+            </tr></tbody></table><a name="methodfetchByMessageNr" id="fetchByMessageNr"><!-- --></a>
+
+    <h4>fetchByMessageNr</h4>
+
+    <div class="method-signature">
+      <a href="ezcMailPop3Set.html">ezcMailPop3Set</a>
+      fetchByMessageNr(
+                                  int
+          $number
+                            ,           [bool
+          $deleteFromServer
+           = false]              )
+    </div>
+
+    <p>Returns an ezcMailPop3Set containing only the $number -th message from  the server.</p><div><p>If $deleteFromServer is set to true the mail will be removed from the  server after retrieval. If not it will be left.</p><p>Note: for POP3 the first message is 1 (so for $number = 0 the exception  will be thrown).</p><p>Before calling this method, a connection to the POP3 server must be  established and a user must be authenticated successfully.</p><p>Example:  </p><ol><li><div class="src-line">&#8192;<span class="src-var">$pop3&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcMailPop3Transport.html">ezcMailPop3Transport</a></span><span class="src-sym">(&#8192;</span><span class="src-str">'pop3.example.com'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$pop3</span><span class="src-sym">-&gt;</span><a href="ezcMailPop3Transport.html#methodauthenticate">authenticate</a><span class="src-sym">(&#8192;</span><span class="src-str">'username'</span><span class="src-sym">,&#8192;</span><span class="src-str">'password'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$set&#8192;</span>=&#8192;<span class="src-var">$pop3</span><span class="src-sym">-&gt;</span><a href="ezcMailPop3Transport.html#methodfetchByMessageNr">fetchByMessageNr</a><span class="src-sym">(&#8192;</span><span class="src-num">1&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;$set&#8192;can&#8192;be&#8192;parsed&#8192;with&#8192;ezcMailParser</span></div></li>
+</ol></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$number</code></td>
+              <td><em>int</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$deleteFromServer</code></td>
+              <td><em>bool</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcMailNoSuchMessageException.html">ezcMailNoSuchMessageException</a></code></td>
+              <td>
+                                  if the message $number is out of range
+                              </td>
+            </tr><tr><td><code><a href="ezcMailTransportException.html">ezcMailTransportException</a></code></td>
+              <td>
+                                  if there was no connection to the server or if not authenticated or if the server sent a negative response
+                              </td>
+            </tr></tbody></table><a name="methodfetchFromOffset" id="fetchFromOffset"><!-- --></a>
+
+    <h4>fetchFromOffset</h4>
+
+    <div class="method-signature">
+      <a href="ezcMailPop3Set.html">ezcMailPop3Set</a>
+      fetchFromOffset(
+                                  int
+          $offset
+                            ,           [int
+          $count
+           = 0]                  ,           [bool
+          $deleteFromServer
+           = false]              )
+    </div>
+
+    <p>Returns an ezcMailPop3Set with $count messages starting from $offset from  the server.</p><div><p>Fetches $count messages starting from the $offset and returns them as a  ezcMailPop3Set. If $count is not specified or if it is 0, it fetches  all messages starting from the $offset.</p><p>Before calling this method, a connection to the POP3 server must be  established and a user must be authenticated successfully.</p><p>Example:  </p><ol><li><div class="src-line">&#8192;<span class="src-var">$pop3&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcMailPop3Transport.html">ezcMailPop3Transport</a></span><span class="src-sym">(&#8192;</span><span class="src-str">'pop3.example.com'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$pop3</span><span class="src-sym">-&gt;</span><a href="ezcMailPop3Transport.html#methodauthenticate">authenticate</a><span class="src-sym">(&#8192;</span><span class="src-str">'username'</span><span class="src-sym">,&#8192;</span><span class="src-str">'password'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$set&#8192;</span>=&#8192;<span class="src-var">$pop3</span><span class="src-sym">-&gt;</span><a href="ezcMailPop3Transport.html#methodfetchFromOffset">fetchFromOffset</a><span class="src-sym">(&#8192;</span><span class="src-num">1</span><span class="src-sym">,&#8192;</span><span class="src-num">10&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;$set&#8192;can&#8192;be&#8192;parsed&#8192;with&#8192;ezcMailParser</span></div></li>
+</ol></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$offset</code></td>
+              <td><em>int</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$count</code></td>
+              <td><em>int</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$deleteFromServer</code></td>
+              <td><em>bool</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcMailTransportException.html">ezcMailTransportException</a></code></td>
+              <td>
+                                  if there was no connection to the server or if not authenticated or if the server sent a negative response
+                              </td>
+            </tr><tr><td><code><a href="ezcMailInvalidLimitException.html">ezcMailInvalidLimitException</a></code></td>
+              <td>
+                                  if $count is negative
+                              </td>
+            </tr><tr><td><code><a href="ezcMailOffsetOutOfRangeException.html">ezcMailOffsetOutOfRangeException</a></code></td>
+              <td>
+                                  if $offset is outside of the existing range of messages
+                              </td>
+            </tr></tbody></table><a name="methodisPositiveResponse" id="isPositiveResponse"><!-- --></a>
+
+    <h4>isPositiveResponse</h4>
+
+    <div class="method-signature">
+      bool
+      isPositiveResponse(
+                                  string
+          $line
+                        )
+    </div>
+
+    <p>Returns true if the response from the server is a positive one.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$line</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodlistMessages" id="listMessages"><!-- --></a>
+
+    <h4>listMessages</h4>
+
+    <div class="method-signature">
+      array(int)
+      listMessages(
+      )
+    </div>
+
+    <p>Returns an array of the message numbers on the server and the size of the  messages in bytes.</p><div><p>The format of the returned array is:  </p><ol><li><div class="src-line">&#8192;&#8192;&#8192;<span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-id">message_id&#8192;</span>=&gt;&#8192;<span class="src-id">message_size&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol><p>Example:  </p><ol><li><div class="src-line">&#8192;&#8192;&#8192;<span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-num">2&#8192;</span>=&gt;&#8192;<span class="src-num">1700</span><span class="src-sym">,&#8192;</span><span class="src-num">5&#8192;</span>=&gt;&#8192;<span class="src-num">1450</span><span class="src-sym">,&#8192;</span><span class="src-num">6&#8192;</span>=&gt;&#8192;<span class="src-num">21043&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol><p>Before calling this method, a connection to the POP3 server must be  established and a user must be authenticated successfully.</p></div>
+    
+          <h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcMailTransportException.html">ezcMailTransportException</a></code></td>
+              <td>
+                                  if there was no connection to the server or if not authenticated or if the server sent a negative response
+                              </td>
+            </tr></tbody></table><a name="methodlistUniqueIdentifiers" id="listUniqueIdentifiers"><!-- --></a>
+
+    <h4>listUniqueIdentifiers</h4>
+
+    <div class="method-signature">
+      array(string)
+      listUniqueIdentifiers(
+                                  [int
+          $msgNum
+           = null]              )
+    </div>
+
+    <p>Returns the unique identifiers for messages on the POP3 server.</p><div><p>You can fetch the unique identifier for a specific message by providing  the $msgNum parameter.</p><p>The unique identifier can be used to recognize mail from servers  between requests. In contrast to the message numbers the unique numbers  assigned to an email usually never changes.</p><p>Note: POP3 servers are not required to support this command and it may fail.</p><p>The format of the returned array is:  </p><ol><li><div class="src-line">&#8192;&#8192;&#8192;<span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-id">message_num&#8192;</span>=&gt;&#8192;<span class="src-id">unique_id&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol><p>Before calling this method, a connection to the POP3 server must be  established and a user must be authenticated successfully.</p><p>Example:  </p><ol><li><div class="src-line">&#8192;&#8192;&#8192;<span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-num">1&#8192;</span>=&gt;&#8192;<span class="src-str">'000001fc4420e93a'</span><span class="src-sym">,&#8192;</span><span class="src-num">2&#8192;</span>=&gt;&#8192;<span class="src-str">'000001fd4420e93a'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$msgNum</code></td>
+              <td><em>int</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcMailTransportException.html">ezcMailTransportException</a></code></td>
+              <td>
+                                  if there was no connection to the server or if not authenticated or if the server sent a negative response
+                              </td>
+            </tr></tbody></table><a name="methodnoop" id="noop"><!-- --></a>
+
+    <h4>noop</h4>
+
+    <div class="method-signature">
+      void
+      noop(
+      )
+    </div>
+
+    <p>Sends a NOOP command to the server, use it to keep the connection alive.</p><div><p>Before calling this method, a connection to the POP3 server must be  established and a user must be authenticated successfully.</p></div>
+    
+          <h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcMailTransportException.html">ezcMailTransportException</a></code></td>
+              <td>
+                                  if there was no connection to the server or if not authenticated or if the server sent a negative response
+                              </td>
+            </tr></tbody></table><a name="methodstatus" id="status"><!-- --></a>
+
+    <h4>status</h4>
+
+    <div class="method-signature">
+      void
+      status(
+                                  int
+          &amp;$numMessages
+                            ,           int
+          &amp;$sizeMessages
+                        )
+    </div>
+
+    <p>Returns information about the messages on the server.</p><div><p>The information returned through the parameters is: </p><ul><li>$numMessages = number of messages</li><li>$sizeMessages = sum of the messages sizes</li></ul>  Before calling this method, a connection to the POP3 server must be  established and a user must be authenticated successfully.<p>Example of returning the status of messages on the server:  </p><ol><li><div class="src-line">&#8192;<span class="src-var">$pop3&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcMailPop3Transport.html">ezcMailPop3Transport</a></span><span class="src-sym">(&#8192;</span><span class="src-str">'pop3.example.com'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$pop3</span><span class="src-sym">-&gt;</span><a href="ezcMailPop3Transport.html#methodauthenticate">authenticate</a><span class="src-sym">(&#8192;</span><span class="src-str">'username'</span><span class="src-sym">,&#8192;</span><span class="src-str">'password'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$pop3</span><span class="src-sym">-&gt;</span><a href="ezcMailPop3Transport.html#methodstatus">status</a><span class="src-sym">(&#8192;</span><span class="src-var">$numMessages</span><span class="src-sym">,&#8192;</span><span class="src-var">$sizeMessages&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol><p>After running the above code, $numMessages and $sizeMessages will be  populated with values.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>&amp;$numMessages</code></td>
+              <td><em>int</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>&amp;$sizeMessages</code></td>
+              <td><em>int</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcMailTransportException.html">ezcMailTransportException</a></code></td>
+              <td>
+                                  if there was no connection to the server or if not authenticated or if the server sent a negative response
+                              </td>
+            </tr></tbody></table><a name="methodtop" id="top"><!-- --></a>
+
+    <h4>top</h4>
+
+    <div class="method-signature">
+      string
+      top(
+                                  int
+          $msgNum
+                            ,           [int
+          $numLines
+           = 0]              )
+    </div>
+
+    <p>Returns the headers and the $numLines first lines of the body of the mail with  the message number $msgNum.</p><div><p>If the command failed or if it was not supported by the server an empty string is  returned.</p><p>Note: POP3 servers are not required to support this command and it may fail.</p><p>Before calling this method, a connection to the POP3 server must be  established and a user must be authenticated successfully.</p><p>Example of listing the mail headers of all the messages from the server:  </p><ol><li><div class="src-line">&#8192;<span class="src-var">$pop3&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcMailPop3Transport.html">ezcMailPop3Transport</a></span><span class="src-sym">(&#8192;</span><span class="src-str">'pop3.example.com'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$pop3</span><span class="src-sym">-&gt;</span><a href="ezcMailPop3Transport.html#methodauthenticate">authenticate</a><span class="src-sym">(&#8192;</span><span class="src-str">'username'</span><span class="src-sym">,&#8192;</span><span class="src-str">'password'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$parser&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcMailParser.html">ezcMailParser</a></span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$messages&#8192;</span>=&#8192;<span class="src-var">$pop3</span><span class="src-sym">-&gt;</span><a href="ezcMailPop3Transport.html#methodlistMessages">listMessages</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-key">foreach&#8192;</span><span class="src-sym">(&#8192;</span><span class="src-var">$messages&#8192;</span><span class="src-key">as&#8192;</span><span class="src-var">$messageNr&#8192;</span>=&gt;&#8192;<span class="src-var">$size&#8192;</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">{</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-var">$set&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcMailVariableSet.html">ezcMailVariableSet</a></span><span class="src-sym">(&#8192;</span><span class="src-var">$pop3</span><span class="src-sym">-&gt;</span><a href="ezcMailPop3Transport.html#methodtop">top</a><span class="src-sym">(&#8192;</span><span class="src-var">$messageNr&#8192;</span><span class="src-sym">)&#8192;)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-var">$mail&#8192;</span>=&#8192;<span class="src-var">$parser</span><span class="src-sym">-&gt;</span><span class="src-id">parseMail</span><span class="src-sym">(&#8192;</span><span class="src-var">$set&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-var">$mail&#8192;</span>=&#8192;<span class="src-var">$mail</span><span class="src-sym">[</span><span class="src-num">0</span><span class="src-sym">]</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;echo&#8192;<span class="src-str">"</span><span class="src-str">From:&#8192;{<span class="src-var">$mail</span></span><span class="src-sym">-&gt;</span><span class="src-id">from</span><span class="src-str"></span><span class="src-sym">}</span>,&#8192;Subject:&#8192;{<span class="src-var">$mail</span><span class="src-sym">-&gt;</span><span class="src-id">subject</span><span class="src-str"></span><span class="src-sym">}</span>,&#8192;Size:&#8192;{<span class="src-var">$size</span><span class="src-sym">}</span>\n<span class="src-str">"</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">}</span></div></li>
+</ol></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$msgNum</code></td>
+              <td><em>int</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$numLines</code></td>
+              <td><em>int</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcMailTransportException.html">ezcMailTransportException</a></code></td>
+              <td>
+                                  if there was no connection to the server or if not authenticated or if the server sent a negative response
+                              </td>
+            </tr></tbody></table><div class="credit">
+      Documentation generated by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+    </div>
+  </div>
+  
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

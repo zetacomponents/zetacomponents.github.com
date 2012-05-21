@@ -1,0 +1,572 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="PHP, apache, components, framework, quality" />
+	<meta name="author" content="dotxp" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Wed, 04 Aug 2010 13:07:14 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="ezcAuthenticationTypekeyFilter.html" />
+	<meta name="DC.creator" content="dotxp" />
+	<meta name="DC.date" content="Wed, 04 Aug 2010 13:07:14 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/Authentication/phpdoc/ezcAuthenticationTypekeyFilter.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/Authentication/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/trunk/Authentication/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Authentication/security.html" title="Security ">Security </a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Authentication/rfcs.html" title="Rfcs ">Rfcs </a>
+	</li>
+
+</ul>
+
+		
+  <div class="phpdoc">
+    <h2>Apache Zeta Components Manual :: Docs For Class ezcAuthenticationTypekeyFilter</h2>
+
+                  <h3>Authentication::ezcAuthenticationTypekeyFilter</h3>
+    
+<a name="sec-description"></a>
+<h3>Class ezcAuthenticationTypekeyFilter</h3>
+
+<p>Filter to authenticate against TypeKey.</p><div><p>The filter deals with the validation of information returned by the TypeKey  server in response to a login command.</p><p>Specifications: <a href="http://www.sixapart.com/typekey/api">http://www.sixapart.com/typekey/api</a></p><p>In order to access a protected page, user logs in by using a request like: </p><ul><li>https://www.typekey.com/t/typekey/login?
+        t=391jbj25WAQANzJrKvb5&amp;
+        _return=http://example.com/login.php</li></ul>  where: <ul><li>t = TypeKey token generated for each TypeKey account.
+        It is found at https://www.typekey.com/t/typekey/prefs.
+        This value is also used as a session key, so it must be passed to the
+        page performing the TypeKey authentication via the _return URL.</li><li>_return = the URL where to return after user logs in with his TypeKey
+              username and password. The URL can contain query arguments, such
+              as the value t which can be used as a session key.</li></ul>  The login link can also contain these 2 optional values: <ul><li>v = TypeKey version to use. Default is 1.</li><li>need_email = the mail address which was used to register with TypeKey. It
+                 needs to be set to a value different than 0 in order to get
+                 the email address of the user when calling fetchData() after
+                 the authentication process has been completed.</li></ul>  So the TypeKey authentication filter will run in the _return page and will  verify the signature and the other information in the URL.<p>The application link (eg. http://example.com) must be registered in the  TypeKey preferences page (https://www.typekey.com/t/typekey/prefs) in one  of the 5 lines from "Your Weblog Preferences", otherwise TypeKey will  not accept the login request.</p><p>The link returned by TypeKey after user logs in with his TypeKey username  and password looks like this: </p><ul><li>http://example.com/typekey.php?
+       ts=1177319974&amp;email=5098f1e87a608675ded4d933f31899cae6b4f968&amp;
+       name=ezc&amp;nick=ezctest&amp;
+       sig=I9Dop72+oahY82bpL7ymBoxdQ+k=:Vj/t7oZVL2zMSzwHzdOWop5NG/g=</li></ul>  where: <ul><li>ts = timestamp (in seconds) of the TypeKey server time at login.
+         The TypeKey filter compares this timestamp with the application
+         server's timestamp to make sure the login is in a reasonable
+         time window (specified by the validity option). Don't use a too small
+         value for validity, because servers are not always synchronized.</li><li>email = sha1 hash of "mailto:$mail", where $mail is the mail address
+            used to register with TypeKey.</li><li>nick = TypeKey nickname/display name.</li><li>sig = signature which must be validated by the TypeKey filter.</li></ul>  For more information on the login request and the TypeKey response link see  <a href="http://www.sixapart.com/typekey/api">http://www.sixapart.com/typekey/api</a>.<p>Example of use (authentication + input form):  </p><ol><li><div class="src-line">&#8192;<span class="src-php">&lt;?php</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;no&#8192;headers&#8192;should&#8192;be&#8192;sent&#8192;before&#8192;calling&#8192;$session-&gt;start()</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$session&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcAuthenticationSession.html">ezcAuthenticationSession</a></span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$session</span><span class="src-sym">-&gt;</span><span class="src-id">start</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;$token&#8192;is&#8192;used&#8192;as&#8192;a&#8192;key&#8192;in&#8192;the&#8192;session&#8192;to&#8192;store&#8192;the&#8192;authenticated&#8192;state&#8192;between&#8192;requests</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$token&#8192;</span>=&#8192;isset<span class="src-sym">(&#8192;</span><span class="src-var">$_GET</span><span class="src-sym">[</span><span class="src-str">'token'</span><span class="src-sym">]&#8192;</span><span class="src-sym">)&#8192;</span>?&#8192;<span class="src-var">$_GET</span><span class="src-sym">[</span><span class="src-str">'token'</span><span class="src-sym">]&#8192;</span>:&#8192;<span class="src-var">$session</span><span class="src-sym">-&gt;</span><span class="src-id">load</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$credentials&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcAuthenticationIdCredentials.html">ezcAuthenticationIdCredentials</a></span><span class="src-sym">(&#8192;</span><span class="src-var">$token&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$authentication&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcAuthentication.html">ezcAuthentication</a></span><span class="src-sym">(&#8192;</span><span class="src-var">$credentials&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$authentication</span><span class="src-sym">-&gt;</span><span class="src-id">session&#8192;</span>=&#8192;<span class="src-var">$session</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$filter&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcAuthenticationTypekeyFilter.html">ezcAuthenticationTypekeyFilter</a></span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$authentication</span><span class="src-sym">-&gt;</span><span class="src-id">addFilter</span><span class="src-sym">(&#8192;</span><span class="src-var">$filter&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;add&#8192;other&#8192;filters&#8192;if&#8192;needed</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-key">if&#8192;</span><span class="src-sym">(&#8192;</span><span class="src-sym">!</span><span class="src-var">$authentication</span><span class="src-sym">-&gt;</span><a href="ezcAuthenticationTypekeyFilter.html#methodrun">run</a><span class="src-sym">(</span><span class="src-sym">)&#8192;)</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">{</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-comm">//&#8192;authentication&#8192;did&#8192;not&#8192;succeed,&#8192;so&#8192;inform&#8192;the&#8192;user</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-var">$status&#8192;</span>=&#8192;<span class="src-var">$authentication</span><span class="src-sym">-&gt;</span><span class="src-id">getStatus</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-var">$err&#8192;</span>=&#8192;<span class="src-key">array</span><span class="src-sym">(</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'ezcAuthenticationTypekeyFilter'&#8192;</span>=&gt;&#8192;<span class="src-key">array</span><span class="src-sym">(</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-id"><a href="ezcAuthenticationTypekeyFilter.html">ezcAuthenticationTypekeyFilter</a></span><span class="src-sym">::</span><span class="src-id">STATUS_SIGNATURE_INCORRECT&#8192;</span>=&gt;&#8192;<span class="src-str">'Signature&#8192;returned&#8192;by&#8192;TypeKey&#8192;is&#8192;incorrect'</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-id"><a href="ezcAuthenticationTypekeyFilter.html">ezcAuthenticationTypekeyFilter</a></span><span class="src-sym">::</span><span class="src-id">STATUS_SIGNATURE_EXPIRED&#8192;</span>=&gt;&#8192;<span class="src-str">'The&#8192;signature&#8192;returned&#8192;by&#8192;TypeKey&#8192;expired'</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-sym">)</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'ezcAuthenticationSession'&#8192;</span>=&gt;&#8192;<span class="src-key">array</span><span class="src-sym">(</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-id"><a href="ezcAuthenticationSession.html">ezcAuthenticationSession</a></span><span class="src-sym">::</span><span class="src-id">STATUS_EMPTY&#8192;</span>=&gt;&#8192;<span class="src-str">''</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-id"><a href="ezcAuthenticationSession.html">ezcAuthenticationSession</a></span><span class="src-sym">::</span><span class="src-id">STATUS_EXPIRED&#8192;</span>=&gt;&#8192;<span class="src-str">'Session&#8192;expired'</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-sym">)</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-key">foreach&#8192;</span><span class="src-sym">(&#8192;</span><span class="src-var">$status&#8192;</span><span class="src-key">as&#8192;</span><span class="src-var">$line&#8192;</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-sym">{</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;list<span class="src-sym">(&#8192;</span><span class="src-var">$key</span><span class="src-sym">,&#8192;</span><span class="src-var">$value&#8192;</span><span class="src-sym">)&#8192;</span>=&#8192;<a href="http://www.php.net/each">each</a><span class="src-sym">(&#8192;</span><span class="src-var">$line&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;echo&#8192;<span class="src-var">$err</span><span class="src-sym">[</span><span class="src-var">$key</span><span class="src-sym">]</span><span class="src-sym">[</span><span class="src-var">$value</span><span class="src-sym">]&#8192;</span>.&#8192;<span class="src-str">"\n"</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-sym">}</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-php">?&gt;</span></div></li>
+<li><div class="src-line">&#8192;&lt;!--&#8192;OnSubmit&#8192;hack&#8192;to&#8192;append&#8192;the&#8192;value&#8192;of&#8192;t&#8192;to&#8192;the&#8192;_return&#8192;value,&#8192;to&#8192;pass</div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;the&#8192;TypeKey&#8192;token&#8192;after&#8192;the&#8192;TypeKey&#8192;request&#8192;--&gt;</div></li>
+<li><div class="src-line">&#8192;&lt;form&#8192;method="GET"&#8192;action="https://www.typekey.com/t/typekey/login"&#8192;onsubmit="document.getElementById('_return').value&#8192;+=&#8192;'?token='&#8192;+&#8192;document.getElementById('t').value;"&gt;</div></li>
+<li><div class="src-line">&#8192;TypeKey&#8192;token:&#8192;&lt;input&#8192;type="text"&#8192;name="t"&#8192;id="t"&#8192;/&gt;</div></li>
+<li><div class="src-line">&#8192;&lt;input&#8192;type="hidden"&#8192;name="_return"&#8192;id="_return"&#8192;value="http://localhost/typekey.php"&#8192;/&gt;</div></li>
+<li><div class="src-line">&#8192;&lt;input&#8192;type="submit"&#8192;/&gt;</div></li>
+<li><div class="src-line">&#8192;&lt;/form&gt;</div></li>
+<li><div class="src-line">&#8192;<span class="src-php">&lt;?php</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">}</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-key">else</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">{</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-comm">//&#8192;authentication&#8192;succeeded,&#8192;so&#8192;allow&#8192;the&#8192;user&#8192;to&#8192;see&#8192;his&#8192;content</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;echo&#8192;<span class="src-str">"&lt;b&gt;Logged-in&lt;/b&gt;"</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">}</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-php">?&gt;</span></div></li>
+</ol><p>Another method, which doesn't use JavaScript, is using an intermediary page  which saves the token in the session, then calls the TypeKey login page:</p><p></p><ul><li>original file is modified as follows:
+ <ol><li><div class="src-line">&#8192;&lt;<span class="src-id">form&#8192;method</span>=<span class="src-str">"GET"&#8192;</span><span class="src-id">action</span>=<span class="src-str">"save_typekey.php"</span>&gt;</div></li>
+<li><div class="src-line">&#8192;<span class="src-id">TypeKey&#8192;token</span>:&#8192;&lt;<span class="src-id">input&#8192;type</span>=<span class="src-str">"text"&#8192;</span><span class="src-id">name</span>=<span class="src-str">"t"&#8192;</span><span class="src-id">id</span>=<span class="src-str">"t"&#8192;</span>/&gt;</div></li>
+<li><div class="src-line">&#8192;&lt;<span class="src-id">input&#8192;type</span>=<span class="src-str">"hidden"&#8192;</span><span class="src-id">name</span>=<span class="src-str">"_return"&#8192;</span><span class="src-id">id</span>=<span class="src-str">"_return"&#8192;</span><span class="src-id">value</span>=<span class="src-str">"http://localhost/typekey.php"&#8192;</span>/&gt;</div></li>
+<li><div class="src-line">&#8192;&lt;<span class="src-id">input&#8192;type</span>=<span class="src-str">"submit"&#8192;</span>/&gt;</div></li>
+<li><div class="src-line">&#8192;&lt;/<span class="src-id">form</span>&gt;</div></li>
+</ol></li></ul><ul><li>intermediary page:
+ <ol><li><div class="src-line">&#8192;<span class="src-php">&lt;?php</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;no&#8192;headers&#8192;should&#8192;be&#8192;sent&#8192;before&#8192;calling&#8192;$session-&gt;start()</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$session&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcAuthenticationSession.html">ezcAuthenticationSession</a></span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$session</span><span class="src-sym">-&gt;</span><span class="src-id">start</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;$token&#8192;is&#8192;used&#8192;as&#8192;a&#8192;key&#8192;in&#8192;the&#8192;session&#8192;to&#8192;store&#8192;the&#8192;authenticated&#8192;state&#8192;between&#8192;requests</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$token&#8192;</span>=&#8192;isset<span class="src-sym">(&#8192;</span><span class="src-var">$_GET</span><span class="src-sym">[</span><span class="src-str">'t'</span><span class="src-sym">]&#8192;</span><span class="src-sym">)&#8192;</span>?&#8192;<span class="src-var">$_GET</span><span class="src-sym">[</span><span class="src-str">'t'</span><span class="src-sym">]&#8192;</span>:&#8192;<span class="src-var">$session</span><span class="src-sym">-&gt;</span><span class="src-id">load</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-key">if&#8192;</span><span class="src-sym">(&#8192;</span><span class="src-var">$token&#8192;</span>!==&#8192;<span class="src-id">null&#8192;</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">{</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-var">$session</span><span class="src-sym">-&gt;</span><span class="src-id">save</span><span class="src-sym">(&#8192;</span><span class="src-var">$token&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">}</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$url&#8192;</span>=&#8192;isset<span class="src-sym">(&#8192;</span><span class="src-var">$_GET</span><span class="src-sym">[</span><span class="src-str">'_return'</span><span class="src-sym">]&#8192;</span><span class="src-sym">)&#8192;</span>?&#8192;<span class="src-var">$_GET</span><span class="src-sym">[</span><span class="src-str">'_return'</span><span class="src-sym">]&#8192;</span>:&#8192;<span class="src-id">null</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$url&#8192;</span>.=&#8192;<span class="src-str">"</span><span class="src-str">?token={<span class="src-var">$token</span><span class="src-sym">}</span></span><span class="src-str">"</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<a href="http://www.php.net/header">header</a><span class="src-sym">(&#8192;</span><span class="src-str">"</span><span class="src-str">Location:&#8192;https://www.typekey.com/t/typekey/login?t={<span class="src-var">$token</span><span class="src-sym">}</span>&amp;_return={<span class="src-var">$url</span><span class="src-sym">}</span></span><span class="src-str">"&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-php">?&gt;</span></div></li>
+</ol></li></ul>  Extra data can be fetched from the TypeKey server during the authentication  process. Different from the other filters, for TypeKey there is no registration  needed for fetching the extra data, because all the possible extra data is  available in the response sent by the TypeKey server.<p>To be able to get the email address of the user, need_email must be set  to a value different than 0 in the initial request sent to the TypeKey  server (along with the t and _return values). Example: </p><ul><li>https://www.typekey.com/t/typekey/login?t=&lt;token&gt;&amp;_return=&lt;url&gt;&amp;need_email=1</li></ul>  Example of fetching the extra data after the initial request has been sent:  <ol><li><div class="src-line">&#8192;<span class="src-comm">//&#8192;after&#8192;run()</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;$filter&#8192;is&#8192;an&#8192;ezcAuthenticationTypekeyFilter&#8192;object</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$data&#8192;</span>=&#8192;<span class="src-var">$filter</span><span class="src-sym">-&gt;</span><a href="ezcAuthenticationTypekeyFilter.html#methodfetchData">fetchData</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol><p>The $data array contains name (TypeKey username), nick (TypeKey display name)  and optionally email (if the user allowed the sharing of his email address  in the TypeKey profile page; otherwise it is not set).  </p><ol><li><div class="src-line">&#8192;<span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-str">'name'&#8192;</span>=&gt;&#8192;<span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-str">'john'&#8192;</span><span class="src-sym">)</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'nick'&#8192;</span>=&gt;&#8192;<span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-str">'John&#8192;Doe'&#8192;</span><span class="src-sym">)</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'email'&#8192;</span>=&gt;&#8192;<span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-str">'john.doe@example.com'&#8192;</span><span class="src-sym">)&#8192;</span><span class="src-comm">//&#8192;or&#8192;not&#8192;set</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol></div>
+<p>Source for this file: <a href="http://fisheye6.atlassian.com/browse/zetacomponents/trunk/Authentication/src/filters/typekey/typekey_filter.php?r=HEAD">/Authentication/src/filters/typekey/typekey_filter.php</a></p>
+       
+  <h3>Implements interfaces:</h3>
+  <ul><li><a href="ezcAuthenticationDataFetch.html">ezcAuthenticationDataFetch</a></li>  </ul><pre><a href="ezcAuthenticationFilter.html">ezcAuthenticationFilter</a>
+   |
+   --ezcAuthenticationTypekeyFilter</pre>
+
+
+  <table><tr><td>
+            <strong>Version:</strong>&#8192;&#8192;
+          </td>
+          <td>//autogen//</td>
+        </tr></table><a name="sec-const-summary"></a>
+  <h3>Constants</h3>
+  <table class="summary"><tr><td class="right">
+          <a name="const-STATUS_SIGNATURE_EXPIRED" id=""></a>
+          <code>
+            <a href="#const-STATUS_SIGNATURE_EXPIRED" title="details" class="const-name-summary">STATUS_SIGNATURE_EXPIRED</a>
+             =  3
+          </code>
+        </td>
+        <td>
+          Login is outside of the timeframe.                  </td>
+      </tr><tr><td class="right">
+          <a name="const-STATUS_SIGNATURE_INCORRECT" id=""></a>
+          <code>
+            <a href="#const-STATUS_SIGNATURE_INCORRECT" title="details" class="const-name-summary">STATUS_SIGNATURE_INCORRECT</a>
+             =  2
+          </code>
+        </td>
+        <td>
+          Signature verification was incorect.                  </td>
+      </tr><tr><td class="right">
+          <a name="const-STATUS_SIGNATURE_MISSING" id=""></a>
+          <code>
+            <a href="#const-STATUS_SIGNATURE_MISSING" title="details" class="const-name-summary">STATUS_SIGNATURE_MISSING</a>
+             =  1
+          </code>
+        </td>
+        <td>
+          The request does not contain the needed information (like $_GET['sig']).                  </td>
+      </tr></table><a name="sec-inherited-consts"></a>
+  <h3>Inherited Constants</h3>
+  <table class="summary"><thead><tr><th colspan="2">
+              From <span class="classname"><a href="ezcAuthenticationFilter.html">ezcAuthenticationFilter</a></span>:
+            </th>
+          </tr></thead><tbody><tr><td class="right">
+                <code><a href="ezcAuthenticationFilter.html#constSTATUS_OK">ezcAuthenticationFilter::STATUS_OK</a></code>
+              </td>
+              <td>
+                &#8192;&#8192;&#8192;Successful authentication.              </td>
+            </tr></tbody></table><a name="sec-prop-summary"></a>
+  <h3>Properties</h3>
+  <table class="summary"><tr><td class="right">
+          <a name="prop%24lib" id="$lib"></a>
+          <a name="prop-%24lib" id="$lib"></a>
+          <em>ezcAuthenticationBignumLibrary</em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24lib" title="details" class="var-name-summary">$lib</a>
+                      </code>
+          <br><div style="margin-left: 20px">The wrapper for the PHP extension to use for big number operations.            This will be autodetected in the constructor, but you can specify            your own wrapper before calling run().</div>        </td>
+      </tr></table><a name="sec-var-summary"></a>
+  <h3>Member Variables</h3>
+  <table class="summary"><tr><td class="right">
+            <em>protected</em>            <em>array(string=&gt;mixed)</em>          </td>
+          <td>
+            <code>
+              $data
+               = <span class="var-default">array()</span>            </code>
+            <br><div style="margin-left: 20px">Holds the extra data fetched during the authentication process.</div>            <br><div style="margin-left: 20px"><p>Contains name (TypeKey username), nick (TypeKey display name) and  optionally email (if the user allowed the sharing of his email address  in the TypeKey profile page; otherwise it is not set).</p><p>Usually it has this structure:  </p><ol><li><div class="src-line">&#8192;<span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-str">'name'&#8192;</span>=&gt;&#8192;<span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-str">'john'&#8192;</span><span class="src-sym">)</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'nick'&#8192;</span>=&gt;&#8192;<span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-str">'John&#8192;Doe'&#8192;</span><span class="src-sym">)</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'email'&#8192;</span>=&gt;&#8192;<span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-str">'john.doe@example.com'&#8192;</span><span class="src-sym">)&#8192;</span><span class="src-comm">//&#8192;or&#8192;not&#8192;set</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol></div>          </td>
+        </tr></table><h3>Inherited Member Variables</h3>
+  <table class="summary"><thead><tr><th colspan="2">
+            From <span class="classname"><a href="ezcAuthenticationFilter.html">ezcAuthenticationFilter</a></span>         
+          </th>
+        </tr></thead><tbody><tr><td class="right">
+              <em>protected</em>                          </td>
+            <td>
+              <code><a href="ezcAuthenticationFilter.html#var%24options">ezcAuthenticationFilter::$options</a></code>
+              
+            </td>
+          </tr></tbody></table><a name="sec-method-summary"></a>
+  <h3>Method Summary</h3>
+  <table class="summary"><tr><td class="right">
+            <em>public</em>                        <em>ezcAuthenticationTypekeyFilter</em>          </td>
+          <td>
+            <code>
+              <a href="#__construct"><b>__construct</b></a>(
+                                                                  [                  $options
+                   = null]                               )
+            </code>
+            <br><div style="margin-left: 20px">Creates a new object of this class.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>bool</em>          </td>
+          <td>
+            <code>
+              <a href="#checkSignature"><b>checkSignature</b></a>(
+                                                                                    $msg
+                                                    ,                                     $r
+                                                    ,                                     $s
+                                                    ,                                     $keys
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Checks the information returned by the TypeKey server.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>array(string=&gt;mixed)</em>          </td>
+          <td>
+            <code>
+              <a href="#fetchData"><b>fetchData</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns the extra data which was fetched during the authentication process.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>array(string=&gt;string)</em>          </td>
+          <td>
+            <code>
+              <a href="#fetchPublicKeys"><b>fetchPublicKeys</b></a>(
+                                                                                    $file
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Fetches the public keys from the specified file or URL $file.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#registerFetchData"><b>registerFetchData</b></a>(
+                                                                  [                  $data
+                   = array()]                               )
+            </code>
+            <br><div style="margin-left: 20px">Registers the extra data which will be fetched by the filter during the  authentication process.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>int</em>          </td>
+          <td>
+            <code>
+              <a href="#run"><b>run</b></a>(
+                                                                                    $credentials
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Runs the filter and returns a status code when finished.</div>          </td>
+        </tr></table><h3>Inherited Methods</h3>
+  <table class="summary"><thead><tr><th colspan="2">
+            From <span class="classname"><a href="ezcAuthenticationFilter.html">ezcAuthenticationFilter</a></span>
+          </th>
+        </tr></thead><tbody><tr><td class="right">
+              <em>public</em>                                          <em><a href="ezcAuthenticationFilterOptions.html">ezcAuthenticationFilterOptions</a></em>            </td>
+            <td>
+              <code><b><a href="ezcAuthenticationFilter.html#methodgetOptions">ezcAuthenticationFilter::getOptions()</a></b></code>
+              <br><div style="margin-left: 20px">Returns the options of this class.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>              abstract                            <em>int</em>            </td>
+            <td>
+              <code><b><a href="ezcAuthenticationFilter.html#methodrun">ezcAuthenticationFilter::run()</a></b></code>
+              <br><div style="margin-left: 20px">Runs the filter and returns a status code when finished.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b><a href="ezcAuthenticationFilter.html#methodsetOptions">ezcAuthenticationFilter::setOptions()</a></b></code>
+              <br><div style="margin-left: 20px">Sets the options of this class to $options.</div>                          </td>
+          </tr></tbody></table><a name="sec-methods"></a>
+  <h3>Methods</h3>
+  <a name="method_detail"></a>
+            
+      <a name="method__construct" id="__construct"><!-- --></a>
+
+    <h4>__construct</h4>
+
+    <div class="method-signature">
+      ezcAuthenticationTypekeyFilter
+      __construct(
+                                  [<a href="ezcAuthenticationTypekeyOptions.html">ezcAuthenticationTypekeyOptions</a>
+          $options
+           = null]              )
+    </div>
+
+    <p>Creates a new object of this class.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$options</code></td>
+              <td><em><a href="ezcAuthenticationTypekeyOptions.html">ezcAuthenticationTypekeyOptions</a></em></td>
+              <td>
+                                  Options for this class
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseExtensionNotFoundException.html">ezcBaseExtensionNotFoundException</a></code></td>
+              <td>
+                                  if neither of the PHP gmp and bcmath extensions are installed
+                              </td>
+            </tr></tbody></table><a name="methodcheckSignature" id="checkSignature"><!-- --></a>
+
+    <h4>checkSignature</h4>
+
+    <div class="method-signature">
+      bool
+      checkSignature(
+                                  string
+          $msg
+                            ,           string
+          $r
+                            ,           string
+          $s
+                            ,           array(string=&gt;string)
+          $keys
+                        )
+    </div>
+
+    <p>Checks the information returned by the TypeKey server.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$msg</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  Plain text signature which needs to be verified
+                              </td>
+            </tr><tr><td><code>$r</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  First part of the signature retrieved from TypeKey
+                              </td>
+            </tr><tr><td><code>$s</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  Second part of the signature retrieved from TypeKey
+                              </td>
+            </tr><tr><td><code>$keys</code></td>
+              <td><em>array(string=&gt;string)</em></td>
+              <td>
+                                  Public keys retrieved from TypeKey
+                              </td>
+            </tr></tbody></table><a name="methodfetchData" id="fetchData"><!-- --></a>
+
+    <h4>fetchData</h4>
+
+    <div class="method-signature">
+      array(string=&gt;mixed)
+      fetchData(
+      )
+    </div>
+
+    <p>Returns the extra data which was fetched during the authentication process.</p><div><p>The TypeKey extra data is an array containing the values for name (the  TypeKey username), nick (the TypeKey display name) and email (the email  address of the user, fetched only if the initial request to the TypeKey  server contains need_email, and the user allowed the sharing of his email  address).</p><p>Example of returned array:  </p><ol><li><div class="src-line">&#8192;<span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-str">'name'&#8192;</span>=&gt;&#8192;<span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-str">'john'&#8192;</span><span class="src-sym">)</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'nick'&#8192;</span>=&gt;&#8192;<span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-str">'John&#8192;Doe'&#8192;</span><span class="src-sym">)</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'email'&#8192;</span>=&gt;&#8192;<span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-str">'john.doe@example.com'&#8192;</span><span class="src-sym">)&#8192;</span><span class="src-comm">//&#8192;or&#8192;not&#8192;set</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol></div>
+    
+        
+
+    
+          <h5>Implementation of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcAuthenticationDataFetch.html#methodfetchData">ezcAuthenticationDataFetch::fetchData()</a></code></td>
+              <td>
+                                  Returns the extra data fetched during the authentication process.
+                              </td>
+            </tr></tbody></table><a name="methodfetchPublicKeys" id="fetchPublicKeys"><!-- --></a>
+
+    <h4>fetchPublicKeys</h4>
+
+    <div class="method-signature">
+      array(string=&gt;string)
+      fetchPublicKeys(
+                                  string
+          $file
+                        )
+    </div>
+
+    <p>Fetches the public keys from the specified file or URL $file.</p><div><p>The file must be composed of space-separated values for p, g, q, and  pub_key, like this:    p=&lt;value&gt; g=&lt;value&gt; q=&lt;value&gt; pub_key=&lt;value&gt;</p><p>The format of the returned array is:  </p><ol><li><div class="src-line">&#8192;&#8192;&#8192;<span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-str">'p'&#8192;</span>=&gt;&#8192;<span class="src-id">p_val</span><span class="src-sym">,&#8192;</span><span class="src-str">'g'&#8192;</span>=&gt;&#8192;<span class="src-id">g_val</span><span class="src-sym">,&#8192;</span><span class="src-str">'q'&#8192;</span>=&gt;&#8192;<span class="src-id">q_val</span><span class="src-sym">,&#8192;</span><span class="src-str">'pub_key'&#8192;</span>=&gt;&#8192;<span class="src-id">pub_key_val&#8192;</span><span class="src-sym">)</span></div></li>
+</ol></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$file</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  The public keys file or URL
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcAuthenticationTypekeyPublicKeysInvalidException.html">ezcAuthenticationTypekeyPublicKeysInvalidException</a></code></td>
+              <td>
+                                  if the keys fetched from the TypeKey public keys file are invalid
+                              </td>
+            </tr><tr><td><code><a href="ezcAuthenticationTypekeyPublicKeysMissingException.html">ezcAuthenticationTypekeyPublicKeysMissingException</a></code></td>
+              <td>
+                                  if the keys from the TypeKey public keys file could not be fetched
+                              </td>
+            </tr></tbody></table><a name="methodregisterFetchData" id="registerFetchData"><!-- --></a>
+
+    <h4>registerFetchData</h4>
+
+    <div class="method-signature">
+      void
+      registerFetchData(
+                                  [
+          $data
+           = array()]              )
+    </div>
+
+    <p>Registers the extra data which will be fetched by the filter during the  authentication process.</p><div><p>For TypeKey there is no registration needed, because all the possible  extra data is available in the response sent by the TypeKey server. So  a call to this function is not needed.</p><p>To be able to get the email address of the user, need_email must be set  to a value different than 0 in the initial request sent to the TypeKey  server (along with the t and _return values).</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$data</code></td>
+              <td><em>array(string)</em></td>
+              <td>
+                                  A list of attributes to fetch during authentication
+                              </td>
+            </tr></tbody></table><h5>Implementation of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcAuthenticationDataFetch.html#methodregisterFetchData">ezcAuthenticationDataFetch::registerFetchData()</a></code></td>
+              <td>
+                                  Registers which extra data to fetch during the authentication process.
+                              </td>
+            </tr></tbody></table><a name="methodrun" id="run"><!-- --></a>
+
+    <h4>run</h4>
+
+    <div class="method-signature">
+      int
+      run(
+                                  <a href="ezcAuthenticationIdCredentials.html">ezcAuthenticationIdCredentials</a>
+          $credentials
+                        )
+    </div>
+
+    <p>Runs the filter and returns a status code when finished.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$credentials</code></td>
+              <td><em><a href="ezcAuthenticationIdCredentials.html">ezcAuthenticationIdCredentials</a></em></td>
+              <td>
+                                  Authentication credentials
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcAuthenticationTypekeyException.html">ezcAuthenticationTypekeyException</a></code></td>
+              <td>
+                                  if the keys from the TypeKey public keys file could not be fetched
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcAuthenticationFilter.html#methodrun">ezcAuthenticationFilter::run()</a></code></td>
+            <td>
+                              Runs the filter and returns a status code when finished.
+                          </td>
+          </tr></tbody></table><div class="credit">
+      Documentation generated by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+    </div>
+  </div>
+  
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

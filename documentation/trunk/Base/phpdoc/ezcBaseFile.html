@@ -1,0 +1,518 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="PHP, apache, components, framework, quality" />
+	<meta name="author" content="dotxp" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Wed, 04 Aug 2010 13:07:15 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="ezcBaseFile.html" />
+	<meta name="DC.creator" content="dotxp" />
+	<meta name="DC.date" content="Wed, 04 Aug 2010 13:07:15 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseFile.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/Base/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/trunk/Base/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+
+</ul>
+
+		
+  <div class="phpdoc">
+    <h2>Apache Zeta Components Manual :: Docs For Class ezcBaseFile</h2>
+
+                  <h3>Base::ezcBaseFile</h3>
+    
+<a name="sec-description"></a>
+<h3>Class ezcBaseFile</h3>
+
+<p>Provides a selection of static independent methods to provide functionality  for file and file system handling.</p><div><p>This example shows how to use the findRecursive method:  </p><ol><li><div class="src-line">&#8192;<span class="src-php">&lt;?php</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;lists&#8192;all&#8192;the&#8192;files&#8192;under&#8192;/etc&#8192;(including&#8192;subdirectories)&#8192;that&#8192;end&#8192;in</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;.conf</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$confFiles&#8192;</span>=&#8192;<span class="src-id"><a href="ezcBaseFile.html">ezcBaseFile</a></span><span class="src-sym">::</span><a href="ezcBaseFile.html#methodfindRecursive">findRecursive</a><span class="src-sym">(&#8192;</span><span class="src-str">"/etc"</span><span class="src-sym">,&#8192;</span><span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-str">'@\.conf$@'&#8192;</span><span class="src-sym">)&#8192;)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;lists&#8192;all&#8192;autoload&#8192;files&#8192;in&#8192;the&#8192;components&#8192;source&#8192;tree&#8192;and&#8192;excludes&#8192;the</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;ones&#8192;in&#8192;the&#8192;autoload&#8192;subdirectory.&#8192;Statistics&#8192;are&#8192;returned&#8192;in&#8192;the&#8192;$stats</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;variable&#8192;which&#8192;is&#8192;passed&#8192;by&#8192;reference.</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$files&#8192;</span>=&#8192;<span class="src-id"><a href="ezcBaseFile.html">ezcBaseFile</a></span><span class="src-sym">::</span><a href="ezcBaseFile.html#methodfindRecursive">findRecursive</a><span class="src-sym">(</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">"/dat/dev/ezcomponents"</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-str">'@src/.*_autoload.php$@'&#8192;</span><span class="src-sym">)</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-str">'@/autoload/@'&#8192;</span><span class="src-sym">)</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-var">$stats</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;lists&#8192;all&#8192;binaries&#8192;in&#8192;/bin&#8192;except&#8192;the&#8192;ones&#8192;starting&#8192;with&#8192;a&#8192;"g"</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$data&#8192;</span>=&#8192;<span class="src-id"><a href="ezcBaseFile.html">ezcBaseFile</a></span><span class="src-sym">::</span><a href="ezcBaseFile.html#methodfindRecursive">findRecursive</a><span class="src-sym">(&#8192;</span><span class="src-str">"/bin"</span><span class="src-sym">,&#8192;</span><span class="src-key">array</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">,&#8192;</span><span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-str">'@^/bin/g@'&#8192;</span><span class="src-sym">)&#8192;)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-php">?&gt;</span></div></li>
+</ol></div>
+<p>Source for this file: <a href="http://fisheye6.atlassian.com/browse/zetacomponents/trunk/Base/src/file.php?r=HEAD">/Base/src/file.php</a></p>
+       
+
+
+
+
+  <table><tr><td>
+            <strong>Version:</strong>&#8192;&#8192;
+          </td>
+          <td>//autogentag//</td>
+        </tr></table><a name="sec-descendants"></a>
+  <h3>Descendants</h3>
+  <table class="detail"><thead><tr><th>Child Class</th>
+        <th>Description</th>
+      </tr></thead><tbody><tr><td><a href="/zetacomponents/documentation/trunk/File/phpdoc/ezcFile.html">ezcFile</a></td>          <td>
+                          Provides a selection of static independent methods to provide functionality  for file and file system handling. This class is deprecated, please use  ezcBaseFile instead.
+                      </td>
+        </tr></tbody></table><a name="sec-method-summary"></a>
+  <h3>Method Summary</h3>
+  <table class="summary"><tr><td class="right">
+            <em>public</em>            static
+                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#calculateRelativePath"><b>calculateRelativePath</b></a>(
+                                                                                    $path
+                                                    ,                                     $base
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Calculates the relative path of the file/directory '$path' to a given  $base path.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>            static
+                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#copyRecursive"><b>copyRecursive</b></a>(
+                                                                                    $source
+                                                    ,                                     $destination
+                                                    ,                   [                  $depth
+                   = -1]                                  ,                   [                  $dirMode
+                   = 0775]                                  ,                   [                  $fileMode
+                   = 0664]                               )
+            </code>
+            <br><div style="margin-left: 20px">Recursively copy a file or directory.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>            static
+                        <em>array</em>          </td>
+          <td>
+            <code>
+              <a href="#findRecursive"><b>findRecursive</b></a>(
+                                                                                    $sourceDir
+                                                    ,                   [                  $includeFilters
+                   = array()]                                  ,                   [                  $excludeFilters
+                   = array()]                                  ,                   [                  &amp;$statistics
+                   = null]                                  ,                                     $statistics
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Finds files recursively on a file system</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            static
+                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#findRecursiveCallback"><b>findRecursiveCallback</b></a>(
+                                                                                    $context
+                                                    ,                                     $sourceDir
+                                                    ,                                     $fileName
+                                                    ,                                     $fileInfo
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">This is the callback used by findRecursive to collect data.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>            static
+                        <em>bool</em>          </td>
+          <td>
+            <code>
+              <a href="#isAbsolutePath"><b>isAbsolutePath</b></a>(
+                                                                                    $path
+                                                    ,                   [                  $os
+                   = null]                               )
+            </code>
+            <br><div style="margin-left: 20px">Returns whether the passed $path is an absolute path, giving the current $os.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>            static
+                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#removeRecursive"><b>removeRecursive</b></a>(
+                                                                                    $directory
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Removes files and directories recursively from a file system</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>            static
+                        <em>array</em>          </td>
+          <td>
+            <code>
+              <a href="#walkRecursive"><b>walkRecursive</b></a>(
+                                                                                    $sourceDir
+                                                    ,                   [                  $includeFilters
+                   = array()]                                  ,                   [                  $excludeFilters
+                   = array()]                                  ,                                     $callback
+                                                    ,                                     &amp;$callbackContext
+                                                    ,                                     $callbackContext
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Walks files and directories recursively on a file system</div>          </td>
+        </tr></table><a name="sec-methods"></a>
+  <h3>Methods</h3>
+  <a name="method_detail"></a>
+      <a name="methodcalculateRelativePath" id="calculateRelativePath"><!-- --></a>
+
+    <h4>calculateRelativePath</h4>
+
+    <div class="method-signature">
+      static string
+      calculateRelativePath(
+                                  string
+          $path
+                            ,           string
+          $base
+                        )
+    </div>
+
+      <p>Calculates the relative path of the file/directory '$path' to a given  $base path.</p><div><p>$path and $base should be fully absolute paths. This function returns the  answer of "How do I go from $base to $path". If the $path and $base are  the same path, the function returns '.'. This method does not touch the  filesystem.</p></div>      
+              <h5>Parameters:</h5>
+        <table class="detail"><thead><tr><th>Name</th>
+              <th>Type</th>
+              <th class="desc">Description</th>
+            </tr></thead><tbody><tr><td><code>$path</code></td>
+                <td><em>string</em></td>
+                <td>
+                                  </td>
+              </tr><tr><td><code>$base</code></td>
+                <td><em>string</em></td>
+                <td>
+                                  </td>
+              </tr></tbody></table><a name="methodcopyRecursive" id="copyRecursive"><!-- --></a>
+
+    <h4>copyRecursive</h4>
+
+    <div class="method-signature">
+      static void
+      copyRecursive(
+                                  string
+          $source
+                            ,           string
+          $destination
+                            ,           [int
+          $depth
+           = -1]                  ,           [int
+          $dirMode
+           = 0775]                  ,           [int
+          $fileMode
+           = 0664]              )
+    </div>
+
+      <p>Recursively copy a file or directory.</p><div><p>Recursively copy a file or directory in $source to the given  destination. If a depth is given, the operation will stop, if the given  recursion depth is reached. A depth of -1 means no limit, while a depth  of 0 means, that only the current file or directory will be copied,  without any recursion.</p><p>You may optionally define modes used to create files and directories.</p></div>      
+              <h5>Parameters:</h5>
+        <table class="detail"><thead><tr><th>Name</th>
+              <th>Type</th>
+              <th class="desc">Description</th>
+            </tr></thead><tbody><tr><td><code>$source</code></td>
+                <td><em>string</em></td>
+                <td>
+                                  </td>
+              </tr><tr><td><code>$destination</code></td>
+                <td><em>string</em></td>
+                <td>
+                                  </td>
+              </tr><tr><td><code>$depth</code></td>
+                <td><em>int</em></td>
+                <td>
+                                  </td>
+              </tr><tr><td><code>$dirMode</code></td>
+                <td><em>int</em></td>
+                <td>
+                                  </td>
+              </tr><tr><td><code>$fileMode</code></td>
+                <td><em>int</em></td>
+                <td>
+                                  </td>
+              </tr></tbody></table><h5>Exceptions:</h5>
+        <table class="detail"><thead><tr><th>Type</th>
+              <th class="desc">Description</th>
+            </tr></thead><tbody><tr><td><code><a href="ezcBaseFileNotFoundException.html">ezcBaseFileNotFoundException</a></code></td>
+                <td>
+                                      If the $sourceDir directory is not a directory or does not exist.
+                                  </td>
+              </tr><tr><td><code><a href="ezcBaseFilePermissionException.html">ezcBaseFilePermissionException</a></code></td>
+                <td>
+                                      If the $sourceDir directory could not be opened for reading, or the destination is not writeable.
+                                  </td>
+              </tr></tbody></table><a name="methodfindRecursive" id="findRecursive"><!-- --></a>
+
+    <h4>findRecursive</h4>
+
+    <div class="method-signature">
+      static array
+      findRecursive(
+                                  string
+          $sourceDir
+                            ,           [
+          $includeFilters
+           = array()]                  ,           [
+          $excludeFilters
+           = array()]                  ,           [
+          &amp;$statistics
+           = null]                  ,           array()
+          $statistics
+                        )
+    </div>
+
+      <p>Finds files recursively on a file system</p><div><p>With this method you can scan the file system for files. You can use  $includeFilters to include only specific files, and $excludeFilters to  exclude certain files from being returned. The function will always go  into subdirectories even if the entry would not have passed the filters.  It uses the {@see walkRecursive()} method to do the actually recursion.</p><p>Filters are regular expressions and are therefore required to have  starting and ending delimiters. The Perl Compatible syntax is used as  regular expression language.</p><p>If you pass an empty array to the $statistics argument, the function  will in details about the number of files found into the 'count' array  element, and the total filesize in the 'size' array element. Because this  argument is passed by reference, you *have* to pass a variable and you  can not pass a constant value such as "array()".</p></div>      
+              <h5>Parameters:</h5>
+        <table class="detail"><thead><tr><th>Name</th>
+              <th>Type</th>
+              <th class="desc">Description</th>
+            </tr></thead><tbody><tr><td><code>$sourceDir</code></td>
+                <td><em>string</em></td>
+                <td>
+                                  </td>
+              </tr><tr><td><code>$includeFilters</code></td>
+                <td><em>array(string)</em></td>
+                <td>
+                                  </td>
+              </tr><tr><td><code>$excludeFilters</code></td>
+                <td><em>array(string)</em></td>
+                <td>
+                                  </td>
+              </tr><tr><td><code>$statistics</code></td>
+                <td><em>array()</em></td>
+                <td>
+                                  </td>
+              </tr><tr><td><code>&amp;$statistics</code></td>
+                <td><em></em></td>
+                <td>
+                                  </td>
+              </tr></tbody></table><h5>Exceptions:</h5>
+        <table class="detail"><thead><tr><th>Type</th>
+              <th class="desc">Description</th>
+            </tr></thead><tbody><tr><td><code><a href="ezcBaseFileNotFoundException.html">ezcBaseFileNotFoundException</a></code></td>
+                <td>
+                                      if the $sourceDir directory is not a directory or does not exist.
+                                  </td>
+              </tr><tr><td><code><a href="ezcBaseFilePermissionException.html">ezcBaseFilePermissionException</a></code></td>
+                <td>
+                                      if the $sourceDir directory could not be opened for reading.
+                                  </td>
+              </tr></tbody></table><a name="methodfindRecursiveCallback" id="findRecursiveCallback"><!-- --></a>
+
+    <h4>findRecursiveCallback</h4>
+
+    <div class="method-signature">
+      static void
+      findRecursiveCallback(
+                                  <a href="ezcBaseFileFindContext.html">ezcBaseFileFindContext</a>
+          $context
+                            ,           string
+          $sourceDir
+                            ,           string
+          $fileName
+                            ,           array(stat)
+          $fileInfo
+                        )
+    </div>
+
+      <p>This is the callback used by findRecursive to collect data.</p><div><p>This callback method works together with walkRecursive() and is called  for every file/and or directory. The $context is a callback specific  container in which data can be stored and shared between the different  calls to the callback function. The walkRecursive() function also passes  in the full absolute directory in $sourceDir, the filename in $fileName  and file information (such as size, modes, types) as an array as  returned by PHP's stat() in the $fileInfo parameter.</p></div>      
+              <h5>Parameters:</h5>
+        <table class="detail"><thead><tr><th>Name</th>
+              <th>Type</th>
+              <th class="desc">Description</th>
+            </tr></thead><tbody><tr><td><code>$context</code></td>
+                <td><em><a href="ezcBaseFileFindContext.html">ezcBaseFileFindContext</a></em></td>
+                <td>
+                                  </td>
+              </tr><tr><td><code>$sourceDir</code></td>
+                <td><em>string</em></td>
+                <td>
+                                  </td>
+              </tr><tr><td><code>$fileName</code></td>
+                <td><em>string</em></td>
+                <td>
+                                  </td>
+              </tr><tr><td><code>$fileInfo</code></td>
+                <td><em>array(stat)</em></td>
+                <td>
+                                  </td>
+              </tr></tbody></table><a name="methodisAbsolutePath" id="isAbsolutePath"><!-- --></a>
+
+    <h4>isAbsolutePath</h4>
+
+    <div class="method-signature">
+      static bool
+      isAbsolutePath(
+                                  string
+          $path
+                            ,           [string
+          $os
+           = null]              )
+    </div>
+
+      <p>Returns whether the passed $path is an absolute path, giving the current $os.</p><div><p>With the $os parameter you can tell this function to use the semantics  for a different operating system to determine whether a path is  absolute. The $os argument defaults to the OS that the script is running  on.</p></div>      
+              <h5>Parameters:</h5>
+        <table class="detail"><thead><tr><th>Name</th>
+              <th>Type</th>
+              <th class="desc">Description</th>
+            </tr></thead><tbody><tr><td><code>$path</code></td>
+                <td><em>string</em></td>
+                <td>
+                                  </td>
+              </tr><tr><td><code>$os</code></td>
+                <td><em>string</em></td>
+                <td>
+                                  </td>
+              </tr></tbody></table><a name="methodremoveRecursive" id="removeRecursive"><!-- --></a>
+
+    <h4>removeRecursive</h4>
+
+    <div class="method-signature">
+      static void
+      removeRecursive(
+                                  string
+          $directory
+                        )
+    </div>
+
+      <p>Removes files and directories recursively from a file system</p><div><p>This method recursively removes the $directory and all its contents.  You should be <strong>extremely</strong> careful with this method as it has the  potential to erase everything that the current user has access to.</p></div>      
+              <h5>Parameters:</h5>
+        <table class="detail"><thead><tr><th>Name</th>
+              <th>Type</th>
+              <th class="desc">Description</th>
+            </tr></thead><tbody><tr><td><code>$directory</code></td>
+                <td><em>string</em></td>
+                <td>
+                                  </td>
+              </tr></tbody></table><a name="methodwalkRecursive" id="walkRecursive"><!-- --></a>
+
+    <h4>walkRecursive</h4>
+
+    <div class="method-signature">
+      static array
+      walkRecursive(
+                                  string
+          $sourceDir
+                            ,           [
+          $includeFilters
+           = array()]                  ,           [
+          $excludeFilters
+           = array()]                  ,           callback
+          $callback
+                            ,           
+          &amp;$callbackContext
+                            ,           mixed
+          $callbackContext
+                        )
+    </div>
+
+      <p>Walks files and directories recursively on a file system</p><div><p>This method walks over a directory and calls a callback from every file  and directory it finds. You can use $includeFilters to include only  specific files, and $excludeFilters to exclude certain files from being  returned. The function will always go into subdirectories even if the  entry would not have passed the filters.</p><p>The callback is passed in the $callback parameter, and the  $callbackContext will be send to the callback function/method as  parameter so that you can store data in there that persists with all the  calls and recursive calls to this method. It's up to the callback method  to do something useful with this. The callback function's parameters are  in order:</p><p></p><ul><li>ezcBaseFileFindContext $context</li><li>string $sourceDir</li><li>string $fileName</li><li>array(stat) $fileInfo</li></ul><p>See {@see findRecursiveCallback()} for an example of a callback function.</p><p>Filters are regular expressions and are therefore required to have  starting and ending delimiters. The Perl Compatible syntax is used as  regular expression language.</p></div>      
+              <h5>Parameters:</h5>
+        <table class="detail"><thead><tr><th>Name</th>
+              <th>Type</th>
+              <th class="desc">Description</th>
+            </tr></thead><tbody><tr><td><code>$sourceDir</code></td>
+                <td><em>string</em></td>
+                <td>
+                                  </td>
+              </tr><tr><td><code>$includeFilters</code></td>
+                <td><em>array(string)</em></td>
+                <td>
+                                  </td>
+              </tr><tr><td><code>$excludeFilters</code></td>
+                <td><em>array(string)</em></td>
+                <td>
+                                  </td>
+              </tr><tr><td><code>$callback</code></td>
+                <td><em>callback</em></td>
+                <td>
+                                  </td>
+              </tr><tr><td><code>$callbackContext</code></td>
+                <td><em>mixed</em></td>
+                <td>
+                                  </td>
+              </tr><tr><td><code>&amp;$callbackContext</code></td>
+                <td><em></em></td>
+                <td>
+                                  </td>
+              </tr></tbody></table><h5>Exceptions:</h5>
+        <table class="detail"><thead><tr><th>Type</th>
+              <th class="desc">Description</th>
+            </tr></thead><tbody><tr><td><code><a href="ezcBaseFileNotFoundException.html">ezcBaseFileNotFoundException</a></code></td>
+                <td>
+                                      if the $sourceDir directory is not a directory or does not exist.
+                                  </td>
+              </tr><tr><td><code><a href="ezcBaseFilePermissionException.html">ezcBaseFilePermissionException</a></code></td>
+                <td>
+                                      if the $sourceDir directory could not be opened for reading.
+                                  </td>
+              </tr></tbody></table><div class="credit">
+      Documentation generated by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+    </div>
+  </div>
+  
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

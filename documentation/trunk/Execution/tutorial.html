@@ -1,0 +1,137 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="PHP, apache, components, framework, quality" />
+	<meta name="author" content="dotxp" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Wed, 04 Aug 2010 13:07:09 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="Tutorial" />
+	<meta name="DC.creator" content="dotxp" />
+	<meta name="DC.date" content="Wed, 04 Aug 2010 13:07:09 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/Execution/tutorial.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li class="requested">
+	<a href="/zetacomponents/documentation/trunk/Execution/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Execution/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+
+</ul>
+
+		<h2>eZ Components - Execution</h2><div class="toc"><h3>Table of Contents</h3><ul><li><p><a href="#introduction">Introduction</a></p></li><li><p><a href="#class-overview">Class overview</a></p></li><li><p><a href="#usage">Usage</a></p></li><li><p><a href="#more-information">More information</a></p></li></ul></div><a name="introduction"></a><a name="id1"></a><h3>Introduction</h3><p>When there is a problem with your web application, you do not want your visitors to see "fatal error" messages. Instead you want to be able to show them a more friendly page telling them what might be wrong or what they should do when they encounter such an error.</p><p>Fatal errors and uncaught exceptions in PHP abort your script, but with this component you can add hooks to the shutdown system of PHP. This allows you to show more user-friendly error messages.</p><a name="class-overview"></a><a name="id2"></a><h3>Class overview</h3><p>The Execution packages provides the <a href='/zetacomponents/documentation/trunk/Execution/phpdoc/ezcExecution.html'>ezcExecution</a> class. This class provides the full interface to catch "fatal" errors. The component also provides the <a href='/zetacomponents/documentation/trunk/Execution/phpdoc/ezcExecutionErrorHandler.html'>ezcExecutionErrorHandler</a> interface for implementation by error handlers. A basic error handler is supplied through the <a href='/zetacomponents/documentation/trunk/Execution/phpdoc/ezcExecutionBasicErrorHandler.html'>ezcExecutionBasicErrorHandler</a> class.</p><a name="usage"></a><a name="id3"></a><h3>Usage</h3><p>Start your application by calling <a href='/zetacomponents/documentation/trunk/Execution/phpdoc/ezcExecution.html#init'>ezcExecution::init</a>( $className ) to initialize the <a href='/zetacomponents/documentation/trunk/Execution/phpdoc/ezcExecution.html'>ezcExecution</a> class. $className is the name of the class that implements your handler. In our first example, we will use the default handler <a href='/zetacomponents/documentation/trunk/Execution/phpdoc/ezcExecutionBasicErrorHandler.html'>ezcExecutionBasicErrorHandler</a>. Calling the init() method sets up the environment and registers the necessary handlers with PHP.</p><p>Before your application quits with exit() or die(), you need to signal to the <a href='/zetacomponents/documentation/trunk/Execution/phpdoc/ezcExecution.html'>ezcExecution</a> environment that your application exited properly. Without this signal, the handlers assume that your application has ended unsuspectedly. The onError() method of the class you specified with the init() method will thus be called.</p><p>This is a basic example:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #0000FF">require_once&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Execution/phpdoc/ezcExecution.html#init'>ezcExecution::init</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'<a href='/zetacomponents/documentation/trunk/Execution/phpdoc/ezcExecutionBasicErrorHandler.html'>ezcExecutionBasicErrorHandler</a>'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Execution/phpdoc/ezcExecution.html#cleanExit'>ezcExecution::cleanExit</a></span><span style="color: #0000FF">();</span></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><p>In line 4, we initialize the environment and in line 6, we signal to the environment that we have a clean exit. Otherwise, the script would have displayed the following message:</p><code class="block">This application stopped in an unclean way.  Please contact the maintainer
+of this system and explain him that the system doesn't work properly at the
+moment.
+
+Have a nice day!</code><p>This is simply the default message and can be customized. To do so, create a new class that implements the <a href='/zetacomponents/documentation/trunk/Execution/phpdoc/ezcExecutionErrorHandler.html'>ezcExecutionErrorHandler</a> interface. You will only have to implement one method: onError(). In the next example, we create such a class and implement a custom message:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #0000FF">require_once&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #0000FF">class&nbsp;</span><span style="color: #000000">MyExecutionHandler&nbsp;</span><span style="color: #0000FF">implements&nbsp;</span><span style="color: #000000">ezcExecutionErrorHandler</span></li>
+<li><span style="color: #0000FF">{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;static&nbsp;function&nbsp;</span><span style="color: #000000">onError</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">Exception&nbsp;$e&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">NULL&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(&nbsp;!</span><span style="color: #000000">is_null</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$e&nbsp;</span><span style="color: #0000FF">)&nbsp;)</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$message&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$e</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">getMessage</span><span style="color: #0000FF">();</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">$message&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">"Unclean&nbsp;Exit&nbsp;-&nbsp;<a href='/zetacomponents/documentation/trunk/Execution/phpdoc/ezcExecution.html#cleanExit'>ezcExecution::cleanExit</a>()&nbsp;was&nbsp;not&nbsp;called."</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</span></li>
+<li></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #335533">"This&nbsp;application&nbsp;did&nbsp;not&nbsp;succesfully&nbsp;finish&nbsp;its&nbsp;request.&nbsp;"&nbsp;</span><span style="color: #0000FF">.</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #335533">"The&nbsp;reason&nbsp;was:\n</span><span style="color: #000000">$message</span><span style="color: #335533">\n\n"</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;}</span></li>
+<li><span style="color: #0000FF">}</span></li>
+<li></li>
+<li><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Execution/phpdoc/ezcExecution.html#init'>ezcExecution::init</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'MyExecutionHandler'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #0000FF">throw&nbsp;new&nbsp;</span><span style="color: #000000">Exception</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">"Throwing&nbsp;an&nbsp;exception&nbsp;that&nbsp;will&nbsp;not&nbsp;be&nbsp;caught."&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/Execution/phpdoc/ezcExecution.html#cleanExit'>ezcExecution::cleanExit</a></span><span style="color: #0000FF">();</span></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><p>In lines 4-20, we declare our handler class <em>MyExecutionHandler</em>, which implements the <a href='/zetacomponents/documentation/trunk/Execution/phpdoc/ezcExecutionErrorHandler.html'>ezcExecutionErrorHandler</a> interface. Using the onError method, on line 8 we check whether the error was caused by an uncaught exception. In that case, we insert the exception's message into the $message variable. Otherwise, we assign a static value to $message. $message is then displayed in lines 17 and 18.</p><p>When you run the above script, the following warning is displayed:</p><code class="block">This application did not succesfully finish its request. The reason was:
+Throwing an exception that will not be caught.</code><p>This is due to line 24, where we throw an uncaught exception. If lines 24 and 26 are commented out, the result will instead be as follows:</p><code class="block">This application did not succesfully finish its request. The reason was:
+Unclean Exit - <a href='/zetacomponents/documentation/trunk/Execution/phpdoc/ezcExecution.html#cleanExit'>ezcExecution::cleanExit</a>() was not called.</code><a name="more-information"></a><a name="id4"></a><h3>More information</h3><p>For more information, see the <a href='/zetacomponents/documentation/trunk/Execution/phpdoc/ezcExecution.html'>ezcExecution</a> API documentation.</p><!--Local Variables:
+mode: rst
+fill-column: 79
+End:
+vim: et syn=rst tw=79-->
+
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

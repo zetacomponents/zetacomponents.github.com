@@ -1,0 +1,664 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="PHP, apache, components, framework, quality" />
+	<meta name="author" content="dotxp" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Wed, 04 Aug 2010 13:07:25 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="ezcDbSchema.html" />
+	<meta name="DC.creator" content="dotxp" />
+	<meta name="DC.date" content="Wed, 04 Aug 2010 13:07:25 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/DatabaseSchema/phpdoc/ezcDbSchema.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/DatabaseSchema/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/trunk/DatabaseSchema/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+
+</ul>
+
+		
+  <div class="phpdoc">
+    <h2>Apache Zeta Components Manual :: Docs For Class ezcDbSchema</h2>
+
+                  <h3>DatabaseSchema::ezcDbSchema</h3>
+    
+<a name="sec-description"></a>
+<h3>Class ezcDbSchema</h3>
+
+<p>ezcDbSchema is the main class for schema operations.</p><div><p>ezcDbSchema represents the schema itself and provide proxy methods to the  handlers that are able to load/save schemas from/to files, databases or other  sources/destinations, depending on available schema handlers.</p><p>A database schema is a definition of all the tables inside a database,  including field definitions and indexes.</p><p>The available builtin handlers are currently for MySQL, XML files and PHP  arrays.</p><p>The following example shows you how you can load a database schema  from the PHP format and store it into the XML format.  </p><ol><li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-var">$schema&#8192;</span>=&#8192;<span class="src-id"><a href="ezcDbSchema.html">ezcDbSchema</a></span><span class="src-sym">::</span><a href="ezcDbSchema.html#methodcreateFromFile">createFromFile</a><span class="src-sym">(&#8192;</span><span class="src-str">'array'</span><span class="src-sym">,&#8192;</span><span class="src-str">'file.php'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-var">$schema</span><span class="src-sym">-&gt;</span><a href="ezcDbSchema.html#methodwriteToFile">writeToFile</a><span class="src-sym">(&#8192;</span><span class="src-str">'xml'</span><span class="src-sym">,&#8192;</span><span class="src-str">'file.xml'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol><p>The following example shows how you can load a database schema  from the XML format and store it into a database.  </p><ol><li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-var">$db&#8192;</span>=&#8192;<span class="src-id"><a href="/zetacomponents/documentation/trunk/Database/phpdoc/ezcDbFactory.html">ezcDbFactory</a></span><span class="src-sym">::</span><a href="/zetacomponents/documentation/trunk/Database/phpdoc/ezcDbFactory.html#methodcreate">create</a><span class="src-sym">(&#8192;</span><span class="src-str">'mysql://user:password@host/database'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-var">$schema&#8192;</span>=&#8192;<span class="src-id"><a href="ezcDbSchema.html">ezcDbSchema</a></span><span class="src-sym">::</span><a href="ezcDbSchema.html#methodcreateFromFile">createFromFile</a><span class="src-sym">(&#8192;</span><span class="src-str">'xml'</span><span class="src-sym">,&#8192;</span><span class="src-str">'file.php'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-var">$schema</span><span class="src-sym">-&gt;</span><a href="ezcDbSchema.html#methodwriteToDb">writeToDb</a><span class="src-sym">(&#8192;</span><span class="src-var">$db&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol><p>Example that shows how to make a comparison between a file on disk and a  database, and how to apply the changes.  </p><ol><li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-var">$xmlSchema&#8192;</span>=&#8192;<span class="src-id"><a href="ezcDbSchema.html">ezcDbSchema</a></span><span class="src-sym">::</span><a href="ezcDbSchema.html#methodcreateFromFile">createFromFile</a><span class="src-sym">(&#8192;</span><span class="src-str">'xml'</span><span class="src-sym">,&#8192;</span><span class="src-str">'wanted-schema.xml'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-var">$dbSchema&#8192;</span>=&#8192;<span class="src-id"><a href="ezcDbSchema.html">ezcDbSchema</a></span><span class="src-sym">::</span><a href="ezcDbSchema.html#methodcreateFromDb">createFromDb</a><span class="src-sym">(&#8192;</span><span class="src-var">$db&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-var">$diff&#8192;</span>=&#8192;<span class="src-id"><a href="ezcDbSchemaComparator.html">ezcDbSchemaComparator</a></span><span class="src-sym">::</span><a href="ezcDbSchemaComparator.html#methodcompareSchemas">compareSchemas</a><span class="src-sym">(&#8192;</span><span class="src-var">$xmlSchema</span><span class="src-sym">,&#8192;</span><span class="src-var">$dbSchema&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-var">$diff</span><span class="src-sym">-&gt;</span><span class="src-id">applyToDb</span><span class="src-sym">(&#8192;</span><span class="src-var">$db&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol></div>
+<p>Source for this file: <a href="http://fisheye6.atlassian.com/browse/zetacomponents/trunk/DatabaseSchema/src/schema.php?r=HEAD">/DatabaseSchema/src/schema.php</a></p>
+       
+
+
+
+
+  <table><tr><td>
+            <strong>Version:</strong>&#8192;&#8192;
+          </td>
+          <td>//autogentag//</td>
+        </tr></table><a name="sec-const-summary"></a>
+  <h3>Constants</h3>
+  <table class="summary"><tr><td class="right">
+          <a name="const-DATABASE" id=""></a>
+          <code>
+            <a href="#const-DATABASE" title="details" class="const-name-summary">DATABASE</a>
+             =  2
+          </code>
+        </td>
+        <td>
+          Used by reader and writer classes to inform that it implements a  database based handler.                  </td>
+      </tr><tr><td class="right">
+          <a name="const-FILE" id=""></a>
+          <code>
+            <a href="#const-FILE" title="details" class="const-name-summary">FILE</a>
+             =  1
+          </code>
+        </td>
+        <td>
+          Used by reader and writer classes to inform that it implements a file  based handler.                  </td>
+      </tr></table><a name="sec-var-summary"></a>
+  <h3>Member Variables</h3>
+  <table class="summary"><tr><td class="right">
+            <em>public</em>            static
+            <em><a href="ezcDbSchemaOptions.html">ezcDbSchemaOptions</a></em>          </td>
+          <td>
+            <code>
+              $options
+                          </code>
+            <br><div style="margin-left: 20px">Contains the options that are used by creating new schemas.</div>                      </td>
+        </tr><tr><td class="right">
+            <em>public</em>            static
+            <em>array(string)</em>          </td>
+          <td>
+            <code>
+              $supportedTypes
+                          </code>
+            <br><div style="margin-left: 20px">A list of all the supported database filed types</div>                      </td>
+        </tr></table><a name="sec-method-summary"></a>
+  <h3>Method Summary</h3>
+  <table class="summary"><tr><td class="right">
+            <em>public</em>            static
+                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#createFromDb"><b>createFromDb</b></a>(
+                                                                                    $db
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Factory method to create a ezcDbSchema object from the database $db.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>            static
+                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#createFromFile"><b>createFromFile</b></a>(
+                                                                                    $format
+                                                    ,                                     $file
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Factory method to create a ezcDbSchema object from the file $file with the format $format.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>            static
+                        <em><a href="ezcDbSchemaField.html">ezcDbSchemaField</a></em>          </td>
+          <td>
+            <code>
+              <a href="#createNewField"><b>createNewField</b></a>(
+                                                                                    $fieldType
+                                                    ,                                     $fieldLength
+                                                    ,                                     $fieldNotNull
+                                                    ,                                     $fieldDefault
+                                                    ,                                     $fieldAutoIncrement
+                                                    ,                                     $fieldUnsigned
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns an object to represent a table's field in the schema.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>            static
+                        <em><a href="ezcDbSchemaIndex.html">ezcDbSchemaIndex</a></em>          </td>
+          <td>
+            <code>
+              <a href="#createNewIndex"><b>createNewIndex</b></a>(
+                                                                                    $fields
+                                                    ,                                     $primary
+                                                    ,                                     $unique
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns an object to represent a table's field in the schema.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>            static
+                        <em><a href="ezcDbSchemaIndexField.html">ezcDbSchemaIndexField</a></em>          </td>
+          <td>
+            <code>
+              <a href="#createNewIndexField"><b>createNewIndexField</b></a>(
+                                                                  [                  $sorting
+                   = null]                               )
+            </code>
+            <br><div style="margin-left: 20px">Returns an object to represent a table's field in the schema.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>            static
+                        <em><a href="ezcDbSchemaTable.html">ezcDbSchemaTable</a></em>          </td>
+          <td>
+            <code>
+              <a href="#createNewTable"><b>createNewTable</b></a>(
+                                                                                    $fields
+                                                    ,                                     $indexes
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns an object to represent a table in the schema.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>            static
+                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#setOptions"><b>setOptions</b></a>(
+                                                                                    $options
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Associates an option object with this static class.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>array(string)</em>          </td>
+          <td>
+            <code>
+              <a href="#convertToDDL"><b>convertToDDL</b></a>(
+                                                                                    $db
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Returns the $db specific SQL queries that would create the tables  defined in the schema.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>ezcDbSchema</em>          </td>
+          <td>
+            <code>
+              <a href="#__construct"><b>__construct</b></a>(
+                                                                                    $schema
+                                                    ,                   [                  $data
+                   = array()]                               )
+            </code>
+            <br><div style="margin-left: 20px">Constructs a new ezcDbSchema object with schema definition $schema.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>array</em>          </td>
+          <td>
+            <code>
+              <a href="#getData"><b>getData</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns the internal data.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>array(string=&gt;ezcDbSchemaTable)</em>          </td>
+          <td>
+            <code>
+              <a href="#getSchema"><b>&amp;getSchema</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns the internal schema by reference.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#writeToDb"><b>writeToDb</b></a>(
+                                                                                    $db
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Creates the tables defined in the schema into the database specified through $db.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#writeToFile"><b>writeToFile</b></a>(
+                                                                                    $format
+                                                    ,                                     $file
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Writes the schema to the file $file in format $format.</div>          </td>
+        </tr></table><a name="sec-methods"></a>
+  <h3>Methods</h3>
+  <a name="method_detail"></a>
+        <a name="methodcreateFromDb" id="createFromDb"><!-- --></a>
+
+    <h4>createFromDb</h4>
+
+    <div class="method-signature">
+      static void
+      createFromDb(
+                                  
+          $db
+                        )
+    </div>
+
+      <p>Factory method to create a ezcDbSchema object from the database $db.</p>      
+              <h5>Parameters:</h5>
+        <table class="detail"><thead><tr><th>Name</th>
+              <th>Type</th>
+              <th class="desc">Description</th>
+            </tr></thead><tbody><tr><td><code>$db</code></td>
+                <td><em><a href="/zetacomponents/documentation/trunk/Database/phpdoc/ezcDbHandler.html">ezcDbHandler</a></em></td>
+                <td>
+                                  </td>
+              </tr></tbody></table><h5>Exceptions:</h5>
+        <table class="detail"><thead><tr><th>Type</th>
+              <th class="desc">Description</th>
+            </tr></thead><tbody><tr><td><code><a href="ezcDbSchemaInvalidReaderClassException.html">ezcDbSchemaInvalidReaderClassException</a></code></td>
+                <td>
+                                      if the handler associated with the $format is not a database schema reader.
+                                  </td>
+              </tr></tbody></table><a name="methodcreateFromFile" id="createFromFile"><!-- --></a>
+
+    <h4>createFromFile</h4>
+
+    <div class="method-signature">
+      static void
+      createFromFile(
+                                  string
+          $format
+                            ,           string
+          $file
+                        )
+    </div>
+
+      <p>Factory method to create a ezcDbSchema object from the file $file with the format $format.</p>      
+              <h5>Parameters:</h5>
+        <table class="detail"><thead><tr><th>Name</th>
+              <th>Type</th>
+              <th class="desc">Description</th>
+            </tr></thead><tbody><tr><td><code>$format</code></td>
+                <td><em>string</em></td>
+                <td>
+                                  </td>
+              </tr><tr><td><code>$file</code></td>
+                <td><em>string</em></td>
+                <td>
+                                  </td>
+              </tr></tbody></table><h5>Exceptions:</h5>
+        <table class="detail"><thead><tr><th>Type</th>
+              <th class="desc">Description</th>
+            </tr></thead><tbody><tr><td><code><a href="ezcDbSchemaInvalidReaderClassException.html">ezcDbSchemaInvalidReaderClassException</a></code></td>
+                <td>
+                                      if the handler associated with the $format is not a file schema reader.
+                                  </td>
+              </tr></tbody></table><a name="methodcreateNewField" id="createNewField"><!-- --></a>
+
+    <h4>createNewField</h4>
+
+    <div class="method-signature">
+      static <a href="ezcDbSchemaField.html">ezcDbSchemaField</a>
+      createNewField(
+                                  string
+          $fieldType
+                            ,           integer
+          $fieldLength
+                            ,           bool
+          $fieldNotNull
+                            ,           mixed
+          $fieldDefault
+                            ,           bool
+          $fieldAutoIncrement
+                            ,           bool
+          $fieldUnsigned
+                        )
+    </div>
+
+      <p>Returns an object to represent a table's field in the schema.</p>      
+              <h5>Parameters:</h5>
+        <table class="detail"><thead><tr><th>Name</th>
+              <th>Type</th>
+              <th class="desc">Description</th>
+            </tr></thead><tbody><tr><td><code>$fieldType</code></td>
+                <td><em>string</em></td>
+                <td>
+                                  </td>
+              </tr><tr><td><code>$fieldLength</code></td>
+                <td><em>integer</em></td>
+                <td>
+                                  </td>
+              </tr><tr><td><code>$fieldNotNull</code></td>
+                <td><em>bool</em></td>
+                <td>
+                                  </td>
+              </tr><tr><td><code>$fieldDefault</code></td>
+                <td><em>mixed</em></td>
+                <td>
+                                  </td>
+              </tr><tr><td><code>$fieldAutoIncrement</code></td>
+                <td><em>bool</em></td>
+                <td>
+                                  </td>
+              </tr><tr><td><code>$fieldUnsigned</code></td>
+                <td><em>bool</em></td>
+                <td>
+                                  </td>
+              </tr></tbody></table><a name="methodcreateNewIndex" id="createNewIndex"><!-- --></a>
+
+    <h4>createNewIndex</h4>
+
+    <div class="method-signature">
+      static <a href="ezcDbSchemaIndex.html">ezcDbSchemaIndex</a>
+      createNewIndex(
+                                  array(string=&gt;ezcDbSchemaIndexField)
+          $fields
+                            ,           bool
+          $primary
+                            ,           bool
+          $unique
+                        )
+    </div>
+
+      <p>Returns an object to represent a table's field in the schema.</p>      
+              <h5>Parameters:</h5>
+        <table class="detail"><thead><tr><th>Name</th>
+              <th>Type</th>
+              <th class="desc">Description</th>
+            </tr></thead><tbody><tr><td><code>$fields</code></td>
+                <td><em>array(string=&gt;ezcDbSchemaIndexField)</em></td>
+                <td>
+                                  </td>
+              </tr><tr><td><code>$primary</code></td>
+                <td><em>bool</em></td>
+                <td>
+                                  </td>
+              </tr><tr><td><code>$unique</code></td>
+                <td><em>bool</em></td>
+                <td>
+                                  </td>
+              </tr></tbody></table><a name="methodcreateNewIndexField" id="createNewIndexField"><!-- --></a>
+
+    <h4>createNewIndexField</h4>
+
+    <div class="method-signature">
+      static <a href="ezcDbSchemaIndexField.html">ezcDbSchemaIndexField</a>
+      createNewIndexField(
+                                  [int
+          $sorting
+           = null]              )
+    </div>
+
+      <p>Returns an object to represent a table's field in the schema.</p>      
+              <h5>Parameters:</h5>
+        <table class="detail"><thead><tr><th>Name</th>
+              <th>Type</th>
+              <th class="desc">Description</th>
+            </tr></thead><tbody><tr><td><code>$sorting</code></td>
+                <td><em>int</em></td>
+                <td>
+                                  </td>
+              </tr></tbody></table><a name="methodcreateNewTable" id="createNewTable"><!-- --></a>
+
+    <h4>createNewTable</h4>
+
+    <div class="method-signature">
+      static <a href="ezcDbSchemaTable.html">ezcDbSchemaTable</a>
+      createNewTable(
+                                  array(string=&gt;ezcDbSchemaField)
+          $fields
+                            ,           array(string=&gt;ezcDbSchemaIndex)
+          $indexes
+                        )
+    </div>
+
+      <p>Returns an object to represent a table in the schema.</p>      
+              <h5>Parameters:</h5>
+        <table class="detail"><thead><tr><th>Name</th>
+              <th>Type</th>
+              <th class="desc">Description</th>
+            </tr></thead><tbody><tr><td><code>$fields</code></td>
+                <td><em>array(string=&gt;ezcDbSchemaField)</em></td>
+                <td>
+                                  </td>
+              </tr><tr><td><code>$indexes</code></td>
+                <td><em>array(string=&gt;ezcDbSchemaIndex)</em></td>
+                <td>
+                                  </td>
+              </tr></tbody></table><a name="methodsetOptions" id="setOptions"><!-- --></a>
+
+    <h4>setOptions</h4>
+
+    <div class="method-signature">
+      static void
+      setOptions(
+                                  <a href="ezcDbSchemaOptions.html">ezcDbSchemaOptions</a>
+          $options
+                        )
+    </div>
+
+      <p>Associates an option object with this static class.</p>      
+              <h5>Parameters:</h5>
+        <table class="detail"><thead><tr><th>Name</th>
+              <th>Type</th>
+              <th class="desc">Description</th>
+            </tr></thead><tbody><tr><td><code>$options</code></td>
+                <td><em><a href="ezcDbSchemaOptions.html">ezcDbSchemaOptions</a></em></td>
+                <td>
+                                  </td>
+              </tr></tbody></table><a name="methodconvertToDDL" id="convertToDDL"><!-- --></a>
+
+    <h4>convertToDDL</h4>
+
+    <div class="method-signature">
+      array(string)
+      convertToDDL(
+                                  string|<a href="/zetacomponents/documentation/trunk/Database/phpdoc/ezcDbHandler.html">ezcDbHandler</a>
+          $db
+                        )
+    </div>
+
+    <p>Returns the $db specific SQL queries that would create the tables  defined in the schema.</p><div><p>The database type can be given as both a database handler (instanceof  ezcDbHandler) or the name of the database as string as retrieved through  calling getName() on the database handler object.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$db</code></td>
+              <td><em>string|<a href="/zetacomponents/documentation/trunk/Database/phpdoc/ezcDbHandler.html">ezcDbHandler</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcDbSchemaInvalidWriterClassException.html">ezcDbSchemaInvalidWriterClassException</a></code></td>
+              <td>
+                                  if the handler associated with the $format is not a database schema writer.
+                              </td>
+            </tr></tbody></table><a name="method__construct" id="__construct"><!-- --></a>
+
+    <h4>__construct</h4>
+
+    <div class="method-signature">
+      ezcDbSchema
+      __construct(
+                                  
+          $schema
+                            ,           [array
+          $data
+           = array()]              )
+    </div>
+
+    <p>Constructs a new ezcDbSchema object with schema definition $schema.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$schema</code></td>
+              <td><em>array(ezcDbSchemaTable)</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$data</code></td>
+              <td><em>array</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodgetData" id="getData"><!-- --></a>
+
+    <h4>getData</h4>
+
+    <div class="method-signature">
+      array
+      getData(
+      )
+    </div>
+
+    <p>Returns the internal data.</p><div><p>This data is not used anywhere though.</p></div>
+    
+        
+
+    
+    
+    
+        <a name="methodgetSchema" id="getSchema"><!-- --></a>
+
+    <h4>getSchema</h4>
+
+    <div class="method-signature">
+      array(string=&gt;ezcDbSchemaTable)
+      &amp;getSchema(
+      )
+    </div>
+
+    <p>Returns the internal schema by reference.</p><div><p>The method returns an array where the key is the table name, and the  value the table definition stored in a ezcDbSchemaTable struct.</p></div>
+    
+        
+
+    
+    
+    
+          <a name="methodwriteToDb" id="writeToDb"><!-- --></a>
+
+    <h4>writeToDb</h4>
+
+    <div class="method-signature">
+      void
+      writeToDb(
+                                  
+          $db
+                        )
+    </div>
+
+    <p>Creates the tables defined in the schema into the database specified through $db.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$db</code></td>
+              <td><em><a href="/zetacomponents/documentation/trunk/Database/phpdoc/ezcDbHandler.html">ezcDbHandler</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcDbSchemaInvalidWriterClassException.html">ezcDbSchemaInvalidWriterClassException</a></code></td>
+              <td>
+                                  if the handler associated with the $format is not a database schema writer.
+                              </td>
+            </tr></tbody></table><a name="methodwriteToFile" id="writeToFile"><!-- --></a>
+
+    <h4>writeToFile</h4>
+
+    <div class="method-signature">
+      void
+      writeToFile(
+                                  string
+          $format
+                            ,           string
+          $file
+                        )
+    </div>
+
+    <p>Writes the schema to the file $file in format $format.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$format</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  Available formats are at least: 'array' and 'xml'.
+                              </td>
+            </tr><tr><td><code>$file</code></td>
+              <td><em>string</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcDbSchemaInvalidWriterClassException.html">ezcDbSchemaInvalidWriterClassException</a></code></td>
+              <td>
+                                  if the handler associated with the $format is not a file schema writer.
+                              </td>
+            </tr></tbody></table><div class="credit">
+      Documentation generated by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+    </div>
+  </div>
+  
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

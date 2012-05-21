@@ -1,0 +1,412 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="PHP, apache, components, framework, quality" />
+	<meta name="author" content="dotxp" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Wed, 04 Aug 2010 13:07:42 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="ezcGraphChartElementLegend.html" />
+	<meta name="DC.creator" content="dotxp" />
+	<meta name="DC.date" content="Wed, 04 Aug 2010 13:07:42 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/Graph/phpdoc/ezcGraphChartElementLegend.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/Graph/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/trunk/Graph/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Graph/gallery.html" title="Gallery ">Gallery </a>
+	</li>
+
+</ul>
+
+		
+  <div class="phpdoc">
+    <h2>Apache Zeta Components Manual :: Docs For Class ezcGraphChartElementLegend</h2>
+
+                  <h3>Graph::ezcGraphChartElementLegend</h3>
+    
+<a name="sec-description"></a>
+<h3>Class ezcGraphChartElementLegend</h3>
+
+<p>Class to represent a legend as a chart element</p><div><p>Chart elements can be understood as widgets or layout container inside the  chart. The actual transformation to images happens inside the renderers.  They represent all elements inside the chart and contain mostly general  formatting options, while the renderer itself might define additional  formatting options for some chart elments. You can find more about the  general formatting options for chart elements in the base class  ezcGraphChartElement.</p><p>The legend chart element is used to display the legend of a chart. It can be  deactivated by setting the legend to false, like:</p><p></p><ol><li><div class="src-line">&#8192;&#8192;<span class="src-var">$chart</span><span class="src-sym">-&gt;</span><span class="src-id">legend&#8192;</span>=&#8192;<span class="src-id">false</span><span class="src-sym">;</span></div></li>
+</ol><p>The position of the legend in the chart can be influenced by the postion  property, set to one of the position constants from the ezcGraph base class,  like ezcGraph::BOTTOM, ezcGraph::LEFT, ezcGraph::RIGHT, ezcGraph::TOP.</p><p>Depending on the position of the legend, either the $portraitSize (RIGHT,  LEFT) or the $landscapeSize (TOP, BOTTOM) defines how much space will be  aqquired for the legend.</p><p></p><ol><li><div class="src-line">&#8192;&#8192;<span class="src-var">$graph&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcGraphPieChart.html">ezcGraphPieChart</a></span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;&#8192;<span class="src-var">$graph</span><span class="src-sym">-&gt;</span><span class="src-id">data</span><span class="src-sym">[</span><span class="src-str">'example'</span><span class="src-sym">]&#8192;</span>=&#8192;<span class="src-key">new&#8192;</span><span class="src-id"><a href="ezcGraphArrayDataSet.html">ezcGraphArrayDataSet</a></span><span class="src-sym">(&#8192;</span><span class="src-key">array</span><span class="src-sym">(</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'Foo'&#8192;</span>=&gt;&#8192;<span class="src-num">23</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'Bar'&#8192;</span>=&gt;&#8192;<span class="src-num">42</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;<span class="src-sym">)&#8192;)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;&#8192;<span class="src-comm">//&#8192;Format&#8192;the&#8192;legend&#8192;element</span></div></li>
+<li><div class="src-line">&#8192;&#8192;<span class="src-var">$graph</span><span class="src-sym">-&gt;</span><span class="src-id">legend</span><span class="src-sym">-&gt;</span><span class="src-id">background&#8192;&#8192;&#8192;&#8192;</span>=&#8192;<span class="src-str">'#FFFFFF80'</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;&#8192;<span class="src-comm">//&#8192;Place&#8192;at&#8192;the&#8192;bottom&#8192;of&#8192;the&#8192;chart,&#8192;with&#8192;a&#8192;height&#8192;of&#8192;5%&#8192;of&#8192;the&#8192;remaining</span></div></li>
+<li><div class="src-line">&#8192;&#8192;<span class="src-comm">//&#8192;chart&#8192;space.</span></div></li>
+<li><div class="src-line">&#8192;&#8192;<span class="src-var">$graph</span><span class="src-sym">-&gt;</span><span class="src-id">legend</span><span class="src-sym">-&gt;</span><span class="src-id">position&#8192;&#8192;&#8192;&#8192;&#8192;&#8192;</span>=&#8192;<span class="src-id"><a href="ezcGraph.html">ezcGraph</a></span><span class="src-sym">::</span><span class="src-id">BOTTOM</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;&#8192;<span class="src-var">$graph</span><span class="src-sym">-&gt;</span><span class="src-id">legend</span><span class="src-sym">-&gt;</span><span class="src-id">landscapeSize&#8192;</span>=&#8192;<span class="src-num">.05</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;&#8192;<span class="src-var">$graph</span><span class="src-sym">-&gt;</span><a href="ezcGraphChartElementLegend.html#methodrender">render</a><span class="src-sym">(&#8192;</span><span class="src-num">400</span><span class="src-sym">,&#8192;</span><span class="src-num">250</span><span class="src-sym">,&#8192;</span><span class="src-str">'legend.svg'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol></div>
+<p>Source for this file: <a href="http://fisheye6.atlassian.com/browse/zetacomponents/trunk/Graph/src/element/legend.php?r=HEAD">/Graph/src/element/legend.php</a></p>
+       
+
+
+<pre><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseOptions.html">ezcBaseOptions</a>
+   |
+   --<a href="ezcGraphChartElement.html">ezcGraphChartElement</a>
+      |
+      --ezcGraphChartElementLegend</pre>
+
+
+  <table><tr><td>
+            <strong>Version:</strong>&#8192;&#8192;
+          </td>
+          <td>//autogentag//</td>
+        </tr></table><a name="sec-prop-summary"></a>
+  <h3>Properties</h3>
+  <table class="summary"><tr><td class="right">
+          <a name="prop%24landscapeSize" id="$landscapeSize"></a>
+          <a name="prop-%24landscapeSize" id="$landscapeSize"></a>
+          <em>float</em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24landscapeSize" title="details" class="var-name-summary">$landscapeSize</a>
+                      </code>
+          <br><div style="margin-left: 20px">Size of a landscape style legend in percent of the size of the            complete chart.</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24minimumSymbolSize" id="$minimumSymbolSize"></a>
+          <a name="prop-%24minimumSymbolSize" id="$minimumSymbolSize"></a>
+          <em>float</em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24minimumSymbolSize" title="details" class="var-name-summary">$minimumSymbolSize</a>
+                      </code>
+          <br><div style="margin-left: 20px">Scale symbol size up to to percent of complete legends size for            very big legends.</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24portraitSize" id="$portraitSize"></a>
+          <a name="prop-%24portraitSize" id="$portraitSize"></a>
+          <em>float</em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24portraitSize" title="details" class="var-name-summary">$portraitSize</a>
+                      </code>
+          <br><div style="margin-left: 20px">Size of a portrait style legend in percent of the size of the            complete chart.</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24spacing" id="$spacing"></a>
+          <a name="prop-%24spacing" id="$spacing"></a>
+          <em>int</em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24spacing" title="details" class="var-name-summary">$spacing</a>
+                      </code>
+          <br><div style="margin-left: 20px">Space between labels elements in pixel.</div>        </td>
+      </tr><tr><td class="right">
+          <a name="prop%24symbolSize" id="$symbolSize"></a>
+          <a name="prop-%24symbolSize" id="$symbolSize"></a>
+          <em>int</em>        </td>
+        <td class="right">
+          <em>read/write</em>
+        </td>
+        <td>
+          <code>
+            <a href="#prop-%24symbolSize" title="details" class="var-name-summary">$symbolSize</a>
+                      </code>
+          <br><div style="margin-left: 20px">Standard size of symbols and text in legends.</div>        </td>
+      </tr></table><a name="sec-var-summary"></a>
+  <h3>Member Variables</h3>
+  <table class="summary"><tr><td class="right">
+            <em>protected</em>            <em>array</em>          </td>
+          <td>
+            <code>
+              $labels
+                          </code>
+            <br><div style="margin-left: 20px">Contains data which should be shown in the legend</div>            <br><div style="margin-left: 20px"><p>array(       array(           'label' =&gt; (string) 'Label of data element',           'color' =&gt; (ezcGraphColor) $color,           'symbol' =&gt; (integer) ezcGraph::DIAMOND,       ),       ...   )</p></div>          </td>
+        </tr></table><h3>Inherited Member Variables</h3>
+  <table class="summary"><thead><tr><th colspan="2">
+            From <span class="classname"><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseOptions.html">ezcBaseOptions</a></span>         
+          </th>
+        </tr></thead><tbody><tr><td class="right">
+              <em>protected</em>                          </td>
+            <td>
+              <code><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseOptions.html#var%24properties">ezcBaseOptions::$properties</a></code>
+              
+            </td>
+          </tr></tbody></table><a name="sec-method-summary"></a>
+  <h3>Method Summary</h3>
+  <table class="summary"><tr><td class="right">
+            <em>protected</em>                        <em>ezcGraphBoundings</em>          </td>
+          <td>
+            <code>
+              <a href="#calculateBoundings"><b>calculateBoundings</b></a>(
+                                                                                    $boundings
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Calculated boundings needed for the legend.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#generateFromDataSet"><b>generateFromDataSet</b></a>(
+                                                                                    $dataset
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Generate legend from single dataset with on entry per data element</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#generateFromDataSets"><b>generateFromDataSets</b></a>(
+                                                                                    $datasets
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Generate legend from several datasets with on entry per dataset</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>ezcGraphBoundings</em>          </td>
+          <td>
+            <code>
+              <a href="#render"><b>render</b></a>(
+                                                                                    $renderer
+                                                    ,                                     $boundings
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Render a legend</div>          </td>
+        </tr></table><h3>Inherited Methods</h3>
+  <table class="summary"><thead><tr><th colspan="2">
+            From <span class="classname"><a href="ezcGraphChartElement.html">ezcGraphChartElement</a></span>
+          </th>
+        </tr></thead><tbody><tr><td class="right">
+              <em>protected</em>                                          <em>ezcGraphBoundings</em>            </td>
+            <td>
+              <code><b><a href="ezcGraphChartElement.html#methodgetTitleSize">ezcGraphChartElement::getTitleSize()</a></b></code>
+              <br><div style="margin-left: 20px">Returns calculated boundings based on available percentual space of  given bounding box specified in the elements options and direction of  the box.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>              abstract                            <em>ezcGraphBoundings</em>            </td>
+            <td>
+              <code><b><a href="ezcGraphChartElement.html#methodrender">ezcGraphChartElement::render()</a></b></code>
+              <br><div style="margin-left: 20px">Renders this chart element</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b><a href="ezcGraphChartElement.html#methodsetFromPalette">ezcGraphChartElement::setFromPalette()</a></b></code>
+              <br><div style="margin-left: 20px">Set colors and border fro this element</div>                          </td>
+          </tr></tbody><thead><tr><th colspan="2">
+            From <span class="classname"><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseOptions.html">ezcBaseOptions</a></span>
+          </th>
+        </tr></thead><tbody><tr><td class="right">
+              <em>public</em>                                          <em>ezcBaseOptions</em>            </td>
+            <td>
+              <code><b><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseOptions.html#method__construct">ezcBaseOptions::__construct()</a></b></code>
+              <br><div style="margin-left: 20px">Construct a new options object.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseOptions.html#methodmerge">ezcBaseOptions::merge()</a></b></code>
+              <br><div style="margin-left: 20px">Merge an array into the actual options object.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>bool</em>            </td>
+            <td>
+              <code><b><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseOptions.html#methodoffsetExists">ezcBaseOptions::offsetExists()</a></b></code>
+              <br><div style="margin-left: 20px">Returns if an option exists.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>mixed</em>            </td>
+            <td>
+              <code><b><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseOptions.html#methodoffsetGet">ezcBaseOptions::offsetGet()</a></b></code>
+              <br><div style="margin-left: 20px">Returns an option value.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseOptions.html#methodoffsetSet">ezcBaseOptions::offsetSet()</a></b></code>
+              <br><div style="margin-left: 20px">Set an option.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseOptions.html#methodoffsetUnset">ezcBaseOptions::offsetUnset()</a></b></code>
+              <br><div style="margin-left: 20px">Unset an option.</div>                          </td>
+          </tr></tbody></table><a name="sec-methods"></a>
+  <h3>Methods</h3>
+  <a name="method_detail"></a>
+        
+      <a name="methodcalculateBoundings" id="calculateBoundings"><!-- --></a>
+
+    <h4>calculateBoundings</h4>
+
+    <div class="method-signature">
+      ezcGraphBoundings
+      calculateBoundings(
+                                  
+          $boundings
+                        )
+    </div>
+
+    <p>Calculated boundings needed for the legend.</p><div><p>Uses the position and the configured horizontal or vertical size of a  legend to calculate the boundings for the legend.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$boundings</code></td>
+              <td><em>ezcGraphBoundings</em></td>
+              <td>
+                                  Avalable boundings
+                              </td>
+            </tr></tbody></table><a name="methodgenerateFromDataSet" id="generateFromDataSet"><!-- --></a>
+
+    <h4>generateFromDataSet</h4>
+
+    <div class="method-signature">
+      void
+      generateFromDataSet(
+                                  <a href="ezcGraphDataSet.html">ezcGraphDataSet</a>
+          $dataset
+                        )
+    </div>
+
+    <p>Generate legend from single dataset with on entry per data element</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$dataset</code></td>
+              <td><em><a href="ezcGraphDataSet.html">ezcGraphDataSet</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodgenerateFromDataSets" id="generateFromDataSets"><!-- --></a>
+
+    <h4>generateFromDataSets</h4>
+
+    <div class="method-signature">
+      void
+      generateFromDataSets(
+                                  <a href="ezcGraphChartDataContainer.html">ezcGraphChartDataContainer</a>
+          $datasets
+                        )
+    </div>
+
+    <p>Generate legend from several datasets with on entry per dataset</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$datasets</code></td>
+              <td><em><a href="ezcGraphChartDataContainer.html">ezcGraphChartDataContainer</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodrender" id="render"><!-- --></a>
+
+    <h4>render</h4>
+
+    <div class="method-signature">
+      ezcGraphBoundings
+      render(
+                                  <a href="ezcGraphRenderer.html">ezcGraphRenderer</a>
+          $renderer
+                            ,           
+          $boundings
+                        )
+    </div>
+
+    <p>Render a legend</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$renderer</code></td>
+              <td><em><a href="ezcGraphRenderer.html">ezcGraphRenderer</a></em></td>
+              <td>
+                                  Renderer
+                              </td>
+            </tr><tr><td><code>$boundings</code></td>
+              <td><em>ezcGraphBoundings</em></td>
+              <td>
+                                  Boundings for the axis
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcGraphChartElement.html#methodrender">ezcGraphChartElement::render()</a></code></td>
+            <td>
+                              Renders this chart element
+                          </td>
+          </tr></tbody></table><div class="credit">
+      Documentation generated by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+    </div>
+  </div>
+  
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

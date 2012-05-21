@@ -1,0 +1,180 @@
+eZ Components - Debug
+~~~~~~~~~~~~~~~~~~~~~
+
+.. contents:: Table of Contents
+
+Introduction
+============
+
+The Debug component provides an API to log and time debug events. This
+component depends mainly on the EventLog component. The functionality of the
+Debug component is divided into two parts:
+
+- Writing debug messages.
+- Measuring the execution time.
+
+Writing a debug message is almost the same as writing a message with the
+EventLog component. However, there is one major distinction: messages written
+with the EventLog component are intended to be written to a storage element
+(such as a log file or database). Messages written with the Debug component are
+usually directly formatted and displayed. Note that the Debug::log() method has
+a slightly different signature than the EventLog::log() method.
+
+Timing information is captured by starting and stopping timers using the public
+methods from ezcDebug. The timing information is stored in a structure with raw
+data. This structure should be formatted and displayed at the end of the
+script.
+
+The Debug summary output can be formatted with an implementation from
+ezcDebugOutputFormatter. The default, and currently only, formatter is
+ezcDebugHtmlFormatter. This HTML formatter transforms the raw log
+messages and raw timing information into a HTML string for display.
+
+
+Class overview
+==============
+
+The following classes are the most important to use, extend or implement:
+
+ezcDebug
+  This provides the public API for writing Debug messages and capturing timing
+  information.
+
+ezcDebugOptions
+  Allows you to switch on debug stack traces and to configure their appearance.
+
+ezcDebugOutputFormatter
+  ezcDebugOutputFormatter provides an interface for the debug output
+  format. New implementations can format the raw log messages and timing
+  information to any output format.
+
+ezcDebugHtmlFormatter
+  ezcDebugHtmlFormatter is an implementation of the ezcDebugOutputFormatter
+  interface. This formatter reads the raw log and timing information and
+  returns it as an HTML string. This string can be output directly
+  to an HTML page.
+
+See the API documentation for more information.
+
+
+Usage
+=====
+
+Writing a log message to file
+-----------------------------
+
+The following script writes a message to the Debug component. At the end of the
+script, the log message is formatted and printed.
+
+.. include:: tutorial_log_message.php
+   :literal:
+
+Writing log messages is almost the same as writing them to the EventLog
+component. As a matter of fact, the EventLog component is internally used by
+Debug.
+
+Further information about writing log messages can be found in the EventLog
+component.
+
+Timers
+------
+
+The timers from ezcDebug can be used for two purposes:
+
+- Timers measure the time between two points in the program.
+- Accumulators get the current time after a certain point (for example after
+  starting the script).
+
+Both methods are executed with ezcDebug::startTimer(), ezcDebug::stopTimer()
+and ezcDebug::switchTimer(). The next script demonstrates the usage of these
+methods:
+
+.. include:: tutorial_timers.php
+   :literal:
+
+The output is as follows (if the CSS stylesheet is used that is available
+through "Example Stylesheet" in the menu):
+
+.. image:: img/debug_tutorial_timers.png
+
+
+The output has two groups: output and accumulators. There are two timers in the
+"output" group: "Hello world" and "Goodbye cruel world".
+
+The "accumulators" group has one timer called "Program runtime". This
+timer took a total of 0.00034 seconds. In this timer are several "switch
+timers". These show the time since the "Program runtime" was started.
+
+
+Recursive timers
+----------------
+
+You can also time repeating code blocks. For example, you can measure the time a
+PHP statement takes in a loop. The Debug timer will calculate the average time
+of the repeating statement and display it in the debug summary. See the next
+example:
+
+.. include:: tutorial_recursive_timers.php
+   :literal:
+
+The resulting output is as follows (if the CSS stylesheet is used that is available
+through "Example Stylesheet" in the menu):
+
+.. image:: img/debug_tutorial_recursive_timers.png
+
+Stack traces
+------------
+
+Sometimes it is useful to get a stack trace for log messages. To achieve this,
+there are 2 possibilities offered by the Debug component:
+
+1) Global stack trace switch
+````````````````````````````
+
+.. include:: tutorial_global_stacktrace.php
+   :literal:
+
+In this example, the debug options (see: ezcDebugOptions) are used to switch on
+stack traces globally. The effect is, that whenever a debug message is logged, a
+stack trace is logged in addition. When printing the debug information,
+stack traces in the manor of `Xdebug`_ are included in the output.
+
+.. _`Xdebug`: http://xdebug.org/docs/stack_trace
+
+Beside the $stackTrace option itself, the appearance of the stack traces is
+configured. This configuration only takes effect, if `Xdebug`_ is not
+installed. In this case, an own implementation is used to retrieve stack traces
+that look almost exactly like the Xdebug version. If Xdebug is installed, its
+internal settings will be used.
+
+The possible options for stack traces are:
+
+$stackTraceDepth
+  Defines the number of nested function calls included in the trace (starting
+  at the most recent one). This option also affects `Xdebug`_ generated stack
+  traces. The default is 5.
+$stackTraceMaxData
+  Maximum bytes of data to be dumped for variable values. The default is 512.
+$stackTraceMaxChildren
+  Defines the maximum number of child elements that will be dumped for array
+  and object structures. The default value is 128.
+$stackTraceMaxDepth
+  Maximum level of iteration that is performed when dumping nested array or
+  object structures.
+
+2) Local stack trace switch
+```````````````````````````
+
+If stack traces are not desired with every log message, it is also possible to
+activate them when the log message is issued:
+
+.. include:: tutorial_local_stacktrace.php
+   :literal:
+
+
+..
+   Local Variables:
+   mode: rst
+   fill-column: 79
+   End:
+   vim: et syn=rst tw=79

@@ -1,0 +1,527 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="PHP, apache, components, framework, quality" />
+	<meta name="author" content="dotxp" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Wed, 04 Aug 2010 13:07:31 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="ezcDocumentBBCodeDocbookVisitor.html" />
+	<meta name="DC.creator" content="dotxp" />
+	<meta name="DC.date" content="Wed, 04 Aug 2010 13:07:31 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/Document/phpdoc/ezcDocumentBBCodeDocbookVisitor.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/Document/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/trunk/Document/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Document/conversion.html" title="Conversion ">Conversion </a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/Document/styles.html" title="Styles ">Styles </a>
+	</li>
+
+</ul>
+
+		
+  <div class="phpdoc">
+    <h2>Apache Zeta Components Manual :: Docs For Class ezcDocumentBBCodeDocbookVisitor</h2>
+
+                  <h3>Document::ezcDocumentBBCodeDocbookVisitor</h3>
+    
+<a name="sec-description"></a>
+<h3>Class ezcDocumentBBCodeDocbookVisitor</h3>
+
+<p>Docbook visitor for the BBCode AST.</p>
+<p>Source for this file: <a href="http://fisheye6.atlassian.com/browse/zetacomponents/trunk/Document/src/document/bbcode/visitor/docbook.php?r=HEAD">/Document/src/document/bbcode/visitor/docbook.php</a></p>
+       
+
+
+<pre><a href="ezcDocumentBBCodeVisitor.html">ezcDocumentBBCodeVisitor</a>
+   |
+   --ezcDocumentBBCodeDocbookVisitor</pre>
+
+
+  <table><tr><td>
+            <strong>Version:</strong>&#8192;&#8192;
+          </td>
+          <td>//autogen//</td>
+        </tr></table><a name="sec-var-summary"></a>
+  <h3>Member Variables</h3>
+  <table class="summary"><tr><td class="right">
+            <em>protected</em>            <em>DOMDocument</em>          </td>
+          <td>
+            <code>
+              $document
+                          </code>
+            <br><div style="margin-left: 20px">DOM document</div>                      </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            <em>array</em>          </td>
+          <td>
+            <code>
+              $visitMapping
+               = <span class="var-default">array(<br>        'ezcDocumentBBCodeParagraphNode'      =&gt; 'visitParagraph',<br>        'ezcDocumentBBCodeTextNode'           =&gt; 'visitText',<br>        'ezcDocumentBBCodeTagNode'            =&gt; 'visitTag',<br>        'ezcDocumentBBCodeInlineLiteralNode'  =&gt; 'visitInlineLiteral',<br>        'ezcDocumentBBCodeLiteralBlockNode'   =&gt; 'visitLiteralBlock',<br>        'ezcDocumentBBCodeBulletListNode'     =&gt; 'visitBulletList',<br>        'ezcDocumentBBCodeEnumeratedListNode' =&gt; 'visitEnumeratedList',<br>    )</span>            </code>
+            <br><div style="margin-left: 20px">Mapping of AST nodes to the visitor methods, which are sued to transform  the respective node into Docbook</div>                      </td>
+        </tr></table><h3>Inherited Member Variables</h3>
+  <table class="summary"><thead><tr><th colspan="2">
+            From <span class="classname"><a href="ezcDocumentBBCodeVisitor.html">ezcDocumentBBCodeVisitor</a></span>         
+          </th>
+        </tr></thead><tbody><tr><td class="right">
+              <em>protected</em>                          </td>
+            <td>
+              <code><a href="ezcDocumentBBCodeVisitor.html#var%24ast">ezcDocumentBBCodeVisitor::$ast</a></code>
+              
+            </td>
+          </tr><tr><td class="right">
+              <em>protected</em>                          </td>
+            <td>
+              <code><a href="ezcDocumentBBCodeVisitor.html#var%24bbcode">ezcDocumentBBCodeVisitor::$bbcode</a></code>
+              
+            </td>
+          </tr><tr><td class="right">
+              <em>protected</em>                          </td>
+            <td>
+              <code><a href="ezcDocumentBBCodeVisitor.html#var%24errors">ezcDocumentBBCodeVisitor::$errors</a></code>
+              
+            </td>
+          </tr></tbody></table><a name="sec-method-summary"></a>
+  <h3>Method Summary</h3>
+  <table class="summary"><tr><td class="right">
+            <em>public</em>                        <em>mixed</em>          </td>
+          <td>
+            <code>
+              <a href="#visit"><b>visit</b></a>(
+                                                                                    $ast
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Docarate BBCode AST</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#visitBulletList"><b>visitBulletList</b></a>(
+                                                                                    $root
+                                                    ,                                     $node
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Visit bullet list</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#visitEnumeratedList"><b>visitEnumeratedList</b></a>(
+                                                                                    $root
+                                                    ,                                     $node
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Visit enumerated list</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#visitInlineLiteral"><b>visitInlineLiteral</b></a>(
+                                                                                    $root
+                                                    ,                                     $node
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Visit inlien literal markup</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#visitListItems"><b>visitListItems</b></a>(
+                                                                                    $list
+                                                    ,                                     $node
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Visit list items in a list</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#visitLiteralBlock"><b>visitLiteralBlock</b></a>(
+                                                                                    $root
+                                                    ,                                     $node
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Visit literal block markup</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#visitNode"><b>visitNode</b></a>(
+                                                                                    $root
+                                                    ,                                     $node
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Visit single AST node</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#visitParagraph"><b>visitParagraph</b></a>(
+                                                                                    $root
+                                                    ,                                     $node
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Visit paragraph markup</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#visitTag"><b>visitTag</b></a>(
+                                                                                    $root
+                                                    ,                                     $node
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Visit simple BBCode tag</div>          </td>
+        </tr></table><h3>Inherited Methods</h3>
+  <table class="summary"><thead><tr><th colspan="2">
+            From <span class="classname"><a href="ezcDocumentBBCodeVisitor.html">ezcDocumentBBCodeVisitor</a></span>
+          </th>
+        </tr></thead><tbody><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b><a href="ezcDocumentBBCodeVisitor.html#method__construct">ezcDocumentBBCodeVisitor::__construct()</a></b></code>
+              <br><div style="margin-left: 20px">Create visitor from BBCode document handler.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>array</em>            </td>
+            <td>
+              <code><b><a href="ezcDocumentBBCodeVisitor.html#methodgetErrors">ezcDocumentBBCodeVisitor::getErrors()</a></b></code>
+              <br><div style="margin-left: 20px">Return list of errors occured during visiting the document.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b><a href="ezcDocumentBBCodeVisitor.html#methodtriggerError">ezcDocumentBBCodeVisitor::triggerError()</a></b></code>
+              <br><div style="margin-left: 20px">Trigger visitor error</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>mixed</em>            </td>
+            <td>
+              <code><b><a href="ezcDocumentBBCodeVisitor.html#methodvisit">ezcDocumentBBCodeVisitor::visit()</a></b></code>
+              <br><div style="margin-left: 20px">Docarate BBCode AST</div>                          </td>
+          </tr><tr><td class="right">
+              <em>protected</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b><a href="ezcDocumentBBCodeVisitor.html#methodvisitText">ezcDocumentBBCodeVisitor::visitText()</a></b></code>
+              <br><div style="margin-left: 20px">Visit text node</div>                          </td>
+          </tr></tbody></table><a name="sec-methods"></a>
+  <h3>Methods</h3>
+  <a name="method_detail"></a>
+                  
+      <a name="methodvisit" id="visit"><!-- --></a>
+
+    <h4>visit</h4>
+
+    <div class="method-signature">
+      mixed
+      visit(
+                                  <a href="ezcDocumentBBCodeDocumentNode.html">ezcDocumentBBCodeDocumentNode</a>
+          $ast
+                        )
+    </div>
+
+    <p>Docarate BBCode AST</p><div><p>Visit the BBCode abstract syntax tree.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$ast</code></td>
+              <td><em><a href="ezcDocumentBBCodeDocumentNode.html">ezcDocumentBBCodeDocumentNode</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcDocumentBBCodeVisitor.html#methodvisit">ezcDocumentBBCodeVisitor::visit()</a></code></td>
+            <td>
+                              Docarate BBCode AST
+                          </td>
+          </tr></tbody></table><a name="methodvisitBulletList" id="visitBulletList"><!-- --></a>
+
+    <h4>visitBulletList</h4>
+
+    <div class="method-signature">
+      void
+      visitBulletList(
+                                  
+          $root
+                            ,           <a href="ezcDocumentBBCodeNode.html">ezcDocumentBBCodeNode</a>
+          $node
+                        )
+    </div>
+
+    <p>Visit bullet list</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$root</code></td>
+              <td><em>DOMNode</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$node</code></td>
+              <td><em><a href="ezcDocumentBBCodeNode.html">ezcDocumentBBCodeNode</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodvisitEnumeratedList" id="visitEnumeratedList"><!-- --></a>
+
+    <h4>visitEnumeratedList</h4>
+
+    <div class="method-signature">
+      void
+      visitEnumeratedList(
+                                  
+          $root
+                            ,           <a href="ezcDocumentBBCodeNode.html">ezcDocumentBBCodeNode</a>
+          $node
+                        )
+    </div>
+
+    <p>Visit enumerated list</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$root</code></td>
+              <td><em>DOMNode</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$node</code></td>
+              <td><em><a href="ezcDocumentBBCodeNode.html">ezcDocumentBBCodeNode</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodvisitInlineLiteral" id="visitInlineLiteral"><!-- --></a>
+
+    <h4>visitInlineLiteral</h4>
+
+    <div class="method-signature">
+      void
+      visitInlineLiteral(
+                                  
+          $root
+                            ,           <a href="ezcDocumentBBCodeNode.html">ezcDocumentBBCodeNode</a>
+          $node
+                        )
+    </div>
+
+    <p>Visit inlien literal markup</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$root</code></td>
+              <td><em>DOMNode</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$node</code></td>
+              <td><em><a href="ezcDocumentBBCodeNode.html">ezcDocumentBBCodeNode</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodvisitListItems" id="visitListItems"><!-- --></a>
+
+    <h4>visitListItems</h4>
+
+    <div class="method-signature">
+      void
+      visitListItems(
+                                  
+          $list
+                            ,           <a href="ezcDocumentBBCodeListNode.html">ezcDocumentBBCodeListNode</a>
+          $node
+                        )
+    </div>
+
+    <p>Visit list items in a list</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$list</code></td>
+              <td><em>DOMNode</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$node</code></td>
+              <td><em><a href="ezcDocumentBBCodeListNode.html">ezcDocumentBBCodeListNode</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodvisitLiteralBlock" id="visitLiteralBlock"><!-- --></a>
+
+    <h4>visitLiteralBlock</h4>
+
+    <div class="method-signature">
+      void
+      visitLiteralBlock(
+                                  
+          $root
+                            ,           <a href="ezcDocumentBBCodeNode.html">ezcDocumentBBCodeNode</a>
+          $node
+                        )
+    </div>
+
+    <p>Visit literal block markup</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$root</code></td>
+              <td><em>DOMNode</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$node</code></td>
+              <td><em><a href="ezcDocumentBBCodeNode.html">ezcDocumentBBCodeNode</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodvisitNode" id="visitNode"><!-- --></a>
+
+    <h4>visitNode</h4>
+
+    <div class="method-signature">
+      void
+      visitNode(
+                                  
+          $root
+                            ,           <a href="ezcDocumentBBCodeNode.html">ezcDocumentBBCodeNode</a>
+          $node
+                        )
+    </div>
+
+    <p>Visit single AST node</p><div><p>Visit a single AST node, may be called for each node found anywhere  as child. The current position in the DOMDocument is passed by a  reference to the current DOMNode, which is operated on.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$root</code></td>
+              <td><em>DOMNode</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$node</code></td>
+              <td><em><a href="ezcDocumentBBCodeNode.html">ezcDocumentBBCodeNode</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodvisitParagraph" id="visitParagraph"><!-- --></a>
+
+    <h4>visitParagraph</h4>
+
+    <div class="method-signature">
+      void
+      visitParagraph(
+                                  
+          $root
+                            ,           <a href="ezcDocumentBBCodeNode.html">ezcDocumentBBCodeNode</a>
+          $node
+                        )
+    </div>
+
+    <p>Visit paragraph markup</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$root</code></td>
+              <td><em>DOMNode</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$node</code></td>
+              <td><em><a href="ezcDocumentBBCodeNode.html">ezcDocumentBBCodeNode</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodvisitTag" id="visitTag"><!-- --></a>
+
+    <h4>visitTag</h4>
+
+    <div class="method-signature">
+      void
+      visitTag(
+                                  
+          $root
+                            ,           <a href="ezcDocumentBBCodeNode.html">ezcDocumentBBCodeNode</a>
+          $node
+                        )
+    </div>
+
+    <p>Visit simple BBCode tag</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$root</code></td>
+              <td><em>DOMNode</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$node</code></td>
+              <td><em><a href="ezcDocumentBBCodeNode.html">ezcDocumentBBCodeNode</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><div class="credit">
+      Documentation generated by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+    </div>
+  </div>
+  
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

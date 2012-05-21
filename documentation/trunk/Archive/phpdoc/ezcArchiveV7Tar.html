@@ -1,0 +1,958 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="PHP, apache, components, framework, quality" />
+	<meta name="author" content="dotxp" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Wed, 04 Aug 2010 13:07:12 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="ezcArchiveV7Tar.html" />
+	<meta name="DC.creator" content="dotxp" />
+	<meta name="DC.date" content="Wed, 04 Aug 2010 13:07:12 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/Archive/phpdoc/ezcArchiveV7Tar.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/Archive/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/trunk/Archive/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+
+</ul>
+
+		
+  <div class="phpdoc">
+    <h2>Apache Zeta Components Manual :: Docs For Class ezcArchiveV7Tar</h2>
+
+                  <h3>Archive::ezcArchiveV7Tar</h3>
+    
+<a name="sec-description"></a>
+<h3>Class ezcArchiveV7Tar</h3>
+
+<p>The ezcArchiveV7Tar class implements the Tar v7 archive format.</p><div><p>ezcArchiveV7Tar is a subclass from <a href="ezcArchive.html">ezcArchive</a> that provides the common interface.  Tar v7 algorithm specific methods are implemented in this class.</p><p>ezcArchiveV7Tar reads on creation only the first <a href="ezcArchiveEntry.html">ezcArchiveEntry</a> from the archive.  When needed next entries are read.</p><p>The V7 Tar algorithm is most basic implementation of Tar. This format has the following characteristics: </p><ul><li>Filenames up to 100 characters.</li><li>Stores the file permissions.</li><li>Stores the owner and group by ID.</li><li>Stores the last modification time.</li><li>Can archive: regular files and symbolic links.</li><li>Maximum file size: 8 Gygabyte.</li></ul></div>
+<p>Source for this file: <a href="http://fisheye6.atlassian.com/browse/zetacomponents/trunk/Archive/src/tar/v7.php?r=HEAD">/Archive/src/tar/v7.php</a></p>
+       
+
+
+<pre><a href="ezcArchive.html">ezcArchive</a>
+   |
+   --ezcArchiveV7Tar</pre>
+
+
+  <table><tr><td>
+            <strong>Version:</strong>&#8192;&#8192;
+          </td>
+          <td>//autogentag//</td>
+        </tr></table><a name="sec-descendants"></a>
+  <h3>Descendants</h3>
+  <table class="detail"><thead><tr><th>Child Class</th>
+        <th>Description</th>
+      </tr></thead><tbody><tr><td><a href="ezcArchiveUstarTar.html">ezcArchiveUstarTar</a></td>          <td>
+                          The ezcArchiveUstarTar class implements the Tar ustar archive format.
+                      </td>
+        </tr></tbody></table><a name="sec-const-summary"></a>
+  <h3>Constants</h3>
+  <table class="summary"><tr><td class="right">
+          <a name="const-BLOCK_SIZE" id=""></a>
+          <code>
+            <a href="#const-BLOCK_SIZE" title="details" class="const-name-summary">BLOCK_SIZE</a>
+             =  512
+          </code>
+        </td>
+        <td>
+          Amount of bytes in a block.                  </td>
+      </tr></table><a name="sec-inherited-consts"></a>
+  <h3>Inherited Constants</h3>
+  <table class="summary"><thead><tr><th colspan="2">
+              From <span class="classname"><a href="ezcArchive.html">ezcArchive</a></span>:
+            </th>
+          </tr></thead><tbody><tr><td class="right">
+                <code><a href="ezcArchive.html#constBZIP2">ezcArchive::BZIP2</a></code>
+              </td>
+              <td>
+                &#8192;&#8192;&#8192;BZIP2 compression format.              </td>
+            </tr><tr><td class="right">
+                <code><a href="ezcArchive.html#constGZIP">ezcArchive::GZIP</a></code>
+              </td>
+              <td>
+                &#8192;&#8192;&#8192;Gnu ZIP compression format.              </td>
+            </tr><tr><td class="right">
+                <code><a href="ezcArchive.html#constTAR">ezcArchive::TAR</a></code>
+              </td>
+              <td>
+                &#8192;&#8192;&#8192;Normal tar archive.              </td>
+            </tr><tr><td class="right">
+                <code><a href="ezcArchive.html#constTAR_GNU">ezcArchive::TAR_GNU</a></code>
+              </td>
+              <td>
+                &#8192;&#8192;&#8192;GNU tar archive.              </td>
+            </tr><tr><td class="right">
+                <code><a href="ezcArchive.html#constTAR_PAX">ezcArchive::TAR_PAX</a></code>
+              </td>
+              <td>
+                &#8192;&#8192;&#8192;PAX tar archive.              </td>
+            </tr><tr><td class="right">
+                <code><a href="ezcArchive.html#constTAR_USTAR">ezcArchive::TAR_USTAR</a></code>
+              </td>
+              <td>
+                &#8192;&#8192;&#8192;USTAR tar archive.              </td>
+            </tr><tr><td class="right">
+                <code><a href="ezcArchive.html#constTAR_V7">ezcArchive::TAR_V7</a></code>
+              </td>
+              <td>
+                &#8192;&#8192;&#8192;Tar version 7 archive.              </td>
+            </tr><tr><td class="right">
+                <code><a href="ezcArchive.html#constZIP">ezcArchive::ZIP</a></code>
+              </td>
+              <td>
+                &#8192;&#8192;&#8192;ZIP archive.              </td>
+            </tr></tbody></table><a name="sec-var-summary"></a>
+  <h3>Member Variables</h3>
+  <table class="summary"><tr><td class="right">
+            <em>protected</em>            <em>int</em>          </td>
+          <td>
+            <code>
+              $addedBlocks
+               = <span class="var-default"> 0</span>            </code>
+            <br><div style="margin-left: 20px">Stores the number of added blocks.</div>                      </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            <em>bool</em>          </td>
+          <td>
+            <code>
+              $addedBlocksNotReliable
+               = <span class="var-default"> false</span>            </code>
+            <br><div style="margin-left: 20px">Specifies if unreliable blocks were added.</div>                      </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            <em>int</em>          </td>
+          <td>
+            <code>
+              $blockFactor
+               = <span class="var-default"> 20</span>            </code>
+            <br><div style="margin-left: 20px">Tar archives have always $blockFactor of blocks.</div>                      </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            <em>bool</em>          </td>
+          <td>
+            <code>
+              $hasNullBlocks
+                          </code>
+            <br><div style="margin-left: 20px">Specifies if the archive contains null blocks.</div>                      </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            <em>array(int)</em>          </td>
+          <td>
+            <code>
+              $headerPositions
+                          </code>
+            <br><div style="margin-left: 20px">Stores the block number where the header starts.</div>            <br><div style="margin-left: 20px"><p>The fileNumber is the index of the array.</p></div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>            <em>array(ezcArchiveV7Header)</em>          </td>
+          <td>
+            <code>
+              $headers
+                          </code>
+            <br><div style="margin-left: 20px">Stores all the headers from the archive.</div>            <br><div style="margin-left: 20px"><p>The first header of the archive has index zero. The ezcArchiveV7Header or a subclass from this header  is stored in the array. <a href="ezcArchiveV7Tar.html#methodcreateTarHeader">createTarHeader()</a> will create the correct header.</p></div>          </td>
+        </tr></table><h3>Inherited Member Variables</h3>
+  <table class="summary"><thead><tr><th colspan="2">
+            From <span class="classname"><a href="ezcArchive.html">ezcArchive</a></span>         
+          </th>
+        </tr></thead><tbody><tr><td class="right">
+              <em>protected</em>                          </td>
+            <td>
+              <code><a href="ezcArchive.html#var%24completed">ezcArchive::$completed</a></code>
+              
+            </td>
+          </tr><tr><td class="right">
+              <em>protected</em>                          </td>
+            <td>
+              <code><a href="ezcArchive.html#var%24entries">ezcArchive::$entries</a></code>
+              
+            </td>
+          </tr><tr><td class="right">
+              <em>protected</em>                          </td>
+            <td>
+              <code><a href="ezcArchive.html#var%24entriesRead">ezcArchive::$entriesRead</a></code>
+              
+            </td>
+          </tr><tr><td class="right">
+              <em>protected</em>                          </td>
+            <td>
+              <code><a href="ezcArchive.html#var%24file">ezcArchive::$file</a></code>
+              
+            </td>
+          </tr><tr><td class="right">
+              <em>protected</em>                          </td>
+            <td>
+              <code><a href="ezcArchive.html#var%24fileNumber">ezcArchive::$fileNumber</a></code>
+              
+            </td>
+          </tr><tr><td class="right">
+              <em>protected</em>                          </td>
+            <td>
+              <code><a href="ezcArchive.html#var%24options">ezcArchive::$options</a></code>
+              
+            </td>
+          </tr></tbody></table><a name="sec-method-summary"></a>
+  <h3>Method Summary</h3>
+  <table class="summary"><tr><td class="right">
+            <em>public</em>                        <em>ezcArchiveV7Tar</em>          </td>
+          <td>
+            <code>
+              <a href="#__construct"><b>__construct</b></a>(
+                                                                                    $file
+                                                    ,                   [                  $blockFactor
+                   = 20]                               )
+            </code>
+            <br><div style="margin-left: 20px">Initializes the Tar and tries to read the first entry from the archive.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#__destruct"><b>__destruct</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Closes the archive.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>bool</em>          </td>
+          <td>
+            <code>
+              <a href="#algorithmCanWrite"><b>algorithmCanWrite</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns true because the TAR_V7 algorithm can write.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>bool</em>          </td>
+          <td>
+            <code>
+              <a href="#append"><b>append</b></a>(
+                                                                                    $files
+                                                    ,                                     $prefix
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Append a file or directory to the end of the archive. Multiple files or directory can  be added to the archive when an array is used as input parameter.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>bool</em>          </td>
+          <td>
+            <code>
+              <a href="#appendHeaderAndFileToCurrent"><b>appendHeaderAndFileToCurrent</b></a>(
+                                                                                    $entry
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Appends the given ezcArchiveBlockFile $file and <a href="ezcArchiveEntry.html">ezcArchiveEntry</a> $entry  to the archive file.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#appendNullBlocks"><b>appendNullBlocks</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Appends zero or more null blocks to the end of the archive, so that it matches the $blockFactor.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>bool</em>          </td>
+          <td>
+            <code>
+              <a href="#appendToCurrent"><b>appendToCurrent</b></a>(
+                                                                                    $files
+                                                    ,                                     $prefix
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Appends a file to the archive after the current entry.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#close"><b>close</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Closes the archive correctly.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>ezcArchiveV7Header</em>          </td>
+          <td>
+            <code>
+              <a href="#createTarHeader"><b>createTarHeader</b></a>(
+                                                                  [                  $file
+                   = null]                               )
+            </code>
+            <br><div style="margin-left: 20px">Creates the a new tar header for this class.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>int</em>          </td>
+          <td>
+            <code>
+              <a href="#getAlgorithm"><b>getAlgorithm</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Returns the value which specifies a TAR_V7 algorithm.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>bool</em>          </td>
+          <td>
+            <code>
+              <a href="#readCurrentFromArchive"><b>readCurrentFromArchive</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Read the current entry from the archive.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>bool</em>          </td>
+          <td>
+            <code>
+              <a href="#truncate"><b>truncate</b></a>(
+                                                                  [                  $fileNumber
+                   = 0]                               )
+            </code>
+            <br><div style="margin-left: 20px">Truncates the archive to $fileNumber of files.</div>          </td>
+        </tr><tr><td class="right">
+            <em>protected</em>                        <em>bool</em>          </td>
+          <td>
+            <code>
+              <a href="#writeCurrentDataToFile"><b>writeCurrentDataToFile</b></a>(
+                                                                                    $targetPath
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Writes the file data from the current entry to the given file.</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>                        <em>void</em>          </td>
+          <td>
+            <code>
+              <a href="#writeEnd"><b>writeEnd</b></a>(
+               )
+            </code>
+            <br><div style="margin-left: 20px">Writes the end of the archive.</div>          </td>
+        </tr></table><h3>Inherited Methods</h3>
+  <table class="summary"><thead><tr><th colspan="2">
+            From <span class="classname"><a href="ezcArchive.html">ezcArchive</a></span>
+          </th>
+        </tr></thead><tbody><tr><td class="right">
+              <em>public</em>              abstract                            <em>bool</em>            </td>
+            <td>
+              <code><b><a href="ezcArchive.html#methodalgorithmCanWrite">ezcArchive::algorithmCanWrite()</a></b></code>
+              <br><div style="margin-left: 20px">Returns true if writing to the archive is implemented, otherwise false.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>              abstract                            <em>bool</em>            </td>
+            <td>
+              <code><b><a href="ezcArchive.html#methodappend">ezcArchive::append()</a></b></code>
+              <br><div style="margin-left: 20px">Appends a file or directory to the end of the archive. Multiple files or directory can  be added to the archive when an array is used as input parameter.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>              abstract                            <em>bool</em>            </td>
+            <td>
+              <code><b><a href="ezcArchive.html#methodappendToCurrent">ezcArchive::appendToCurrent()</a></b></code>
+              <br><div style="margin-left: 20px">Appends a file to the archive after the current entry.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b><a href="ezcArchive.html#methodclose">ezcArchive::close()</a></b></code>
+              <br><div style="margin-left: 20px">Close the current archive.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>protected</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b><a href="ezcArchive.html#methodcreateDefaultDirectory">ezcArchive::createDefaultDirectory()</a></b></code>
+              <br><div style="margin-left: 20px">Creates all the directories needed to create the file $file.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>protected</em>                            static              <em><a href="ezcArchive.html">ezcArchive</a></em>            </td>
+            <td>
+              <code><b><a href="ezcArchive.html#methodcreateInstance">ezcArchive::createInstance()</a></b></code>
+              <br><div style="margin-left: 20px">Returns an instance of the archive with the given type.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em><a href="ezcArchiveEntry.html">ezcArchiveEntry</a></em>            </td>
+            <td>
+              <code><b><a href="ezcArchive.html#methodcurrent">ezcArchive::current()</a></b></code>
+              <br><div style="margin-left: 20px">Returns the current ezcArchiveEntry if it is valid, otherwise false is returned.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b><a href="ezcArchive.html#methodextract">ezcArchive::extract()</a></b></code>
+              <br><div style="margin-left: 20px">Extract entries from the archive to the target directory.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>bool</em>            </td>
+            <td>
+              <code><b><a href="ezcArchive.html#methodextractCurrent">ezcArchive::extractCurrent()</a></b></code>
+              <br><div style="margin-left: 20px">Extract the current entry to which the iterator points.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>              abstract                            <em>int</em>            </td>
+            <td>
+              <code><b><a href="ezcArchive.html#methodgetAlgorithm">ezcArchive::getAlgorithm()</a></b></code>
+              <br><div style="margin-left: 20px">Returns the algorithm that is used currently.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>protected</em>                                          <em><a href="ezcArchiveEntry.html">ezcArchiveEntry</a></em>            </td>
+            <td>
+              <code><b><a href="ezcArchive.html#methodgetEntries">ezcArchive::getEntries()</a></b></code>
+              <br><div style="margin-left: 20px">Get the file entries from the archive.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>array(string)</em>            </td>
+            <td>
+              <code><b><a href="ezcArchive.html#methodgetListing">ezcArchive::getListing()</a></b></code>
+              <br><div style="margin-left: 20px">Returns an array that lists the content of the archive.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                            static              <em><a href="ezcArchive.html">ezcArchive</a></em>            </td>
+            <td>
+              <code><b><a href="ezcArchive.html#methodgetTarInstance">ezcArchive::getTarInstance()</a></b></code>
+              <br><div style="margin-left: 20px">Open a tar instance.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                            static              <em><a href="ezcArchive.html">ezcArchive</a></em>            </td>
+            <td>
+              <code><b><a href="ezcArchive.html#methodgetZipInstance">ezcArchive::getZipInstance()</a></b></code>
+              <br><div style="margin-left: 20px">Open a zip instance. This method is made public for testing purposes, and  should not be used.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>bool</em>            </td>
+            <td>
+              <code><b><a href="ezcArchive.html#methodisEmpty">ezcArchive::isEmpty()</a></b></code>
+              <br><div style="margin-left: 20px">Returns true if the current archive is empty, otherwise false.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>int</em>            </td>
+            <td>
+              <code><b><a href="ezcArchive.html#methodkey">ezcArchive::key()</a></b></code>
+              <br><div style="margin-left: 20px">Returns the current key, entry number, if it is valid, otherwise false is returned.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em><a href="ezcArchiveEntry.html">ezcArchiveEntry</a></em>            </td>
+            <td>
+              <code><b><a href="ezcArchive.html#methodnext">ezcArchive::next()</a></b></code>
+              <br><div style="margin-left: 20px">Forwards the iterator to the next entry.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                            static              <em><a href="ezcArchive.html">ezcArchive</a></em>            </td>
+            <td>
+              <code><b><a href="ezcArchive.html#methodopen">ezcArchive::open()</a></b></code>
+              <br><div style="margin-left: 20px">Returns a new ezcArchive instance.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b><a href="ezcArchive.html#methodrewind">ezcArchive::rewind()</a></b></code>
+              <br><div style="margin-left: 20px">Rewinds the iterator to the first entry.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>bool</em>            </td>
+            <td>
+              <code><b><a href="ezcArchive.html#methodseek">ezcArchive::seek()</a></b></code>
+              <br><div style="margin-left: 20px">Search for the entry number.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>void</em>            </td>
+            <td>
+              <code><b><a href="ezcArchive.html#methodsetOptions">ezcArchive::setOptions()</a></b></code>
+              <br><div style="margin-left: 20px">This method associates a new $options object with this archive.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>              abstract                            <em>bool</em>            </td>
+            <td>
+              <code><b><a href="ezcArchive.html#methodtruncate">ezcArchive::truncate()</a></b></code>
+              <br><div style="margin-left: 20px">Truncates the archive to $fileNumber of files.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>bool</em>            </td>
+            <td>
+              <code><b><a href="ezcArchive.html#methodvalid">ezcArchive::valid()</a></b></code>
+              <br><div style="margin-left: 20px">Returns true if the iterator points to a valid entry, otherwise false.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>protected</em>              abstract                            <em>void</em>            </td>
+            <td>
+              <code><b><a href="ezcArchive.html#methodwriteCurrentDataToFile">ezcArchive::writeCurrentDataToFile()</a></b></code>
+              <br><div style="margin-left: 20px">Writes the file data from the current entry to the given file.</div>                          </td>
+          </tr><tr><td class="right">
+              <em>public</em>                                          <em>string</em>            </td>
+            <td>
+              <code><b><a href="ezcArchive.html#method__toString">ezcArchive::__toString()</a></b></code>
+              <br><div style="margin-left: 20px">Returns a string which represents all the entries from the archive.</div>                          </td>
+          </tr></tbody></table><a name="sec-methods"></a>
+  <h3>Methods</h3>
+  <a name="method_detail"></a>
+                            
+      <a name="method__construct" id="__construct"><!-- --></a>
+
+    <h4>__construct</h4>
+
+    <div class="method-signature">
+      ezcArchiveV7Tar
+      __construct(
+                                  
+          $file
+                            ,           [int
+          $blockFactor
+           = 20]              )
+    </div>
+
+    <p>Initializes the Tar and tries to read the first entry from the archive.</p><div><p>At initialization it sets the blockFactor to $blockFactor. Each tar archive  has always $blockFactor of blocks ( 0, $blockFactor, 2 * $blockFactor, etc ).</p><p>The Tar archive works with blocks, so therefore the first parameter expects  the archive as a blockFile.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$file</code></td>
+              <td><em>ezcArchiveBlockFile</em></td>
+              <td>
+                              </td>
+            </tr><tr><td><code>$blockFactor</code></td>
+              <td><em>int</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefined in descendants as:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcArchiveUstarTar.html#method__construct">ezcArchiveUstarTar::__construct()</a></code></td>
+              <td>
+                Initializes the Tar and tries to read the first entry from the archive.&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcArchiveGnuTar.html#method__construct">ezcArchiveGnuTar::__construct()</a></code></td>
+              <td>
+                Initializes the Tar and tries to read the first entry from the archive.&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcArchivePaxTar.html#method__construct">ezcArchivePaxTar::__construct()</a></code></td>
+              <td>
+                Initializes the Tar and tries to read the first entry from the archive.&#8192;
+              </td>
+            </tr></tbody></table><a name="method__destruct" id="__destruct"><!-- --></a>
+
+    <h4>__destruct</h4>
+
+    <div class="method-signature">
+      void
+      __destruct(
+      )
+    </div>
+
+    <p>Closes the archive.</p>
+    
+        
+
+    
+    
+    
+        <a name="methodalgorithmCanWrite" id="algorithmCanWrite"><!-- --></a>
+
+    <h4>algorithmCanWrite</h4>
+
+    <div class="method-signature">
+      bool
+      algorithmCanWrite(
+      )
+    </div>
+
+    <p>Returns true because the TAR_V7 algorithm can write.</p>
+    
+        
+
+          <h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcArchive.html#methodalgorithmCanWrite">ezcArchive::algorithmCanWrite()</a></code></td>
+            <td>
+                              Returns true if writing to the archive is implemented, otherwise false.
+                          </td>
+          </tr></tbody></table><h5>Redefined in descendants as:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcArchiveUstarTar.html#methodalgorithmCanWrite">ezcArchiveUstarTar::algorithmCanWrite()</a></code></td>
+              <td>
+                Returns true because the TAR_USTAR algorithm can write.&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcArchiveGnuTar.html#methodalgorithmCanWrite">ezcArchiveGnuTar::algorithmCanWrite()</a></code></td>
+              <td>
+                Returns false because the TAR_PAX algorithm cannot write (yet).&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcArchivePaxTar.html#methodalgorithmCanWrite">ezcArchivePaxTar::algorithmCanWrite()</a></code></td>
+              <td>
+                Returns false because the TAR_PAX algorithm cannot write (yet).&#8192;
+              </td>
+            </tr></tbody></table><a name="methodappend" id="append"><!-- --></a>
+
+    <h4>append</h4>
+
+    <div class="method-signature">
+      bool
+      append(
+                                  string|array(string)
+          $files
+                            ,           string
+          $prefix
+                        )
+    </div>
+
+    <p>Append a file or directory to the end of the archive. Multiple files or directory can  be added to the archive when an array is used as input parameter.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$files</code></td>
+              <td><em>string|array(string)</em></td>
+              <td>
+                                  Add the files and or directories to the archive.
+                              </td>
+            </tr><tr><td><code>$prefix</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  First part of the path used in $files.
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>ezcArchiveWriteException</code></td>
+              <td>
+                                  if one of the files cannot be written to the archive.
+                              </td>
+            </tr><tr><td><code>ezcFileReadException</code></td>
+              <td>
+                                  if one of the files cannot be read from the local filesystem.
+                              </td>
+            </tr><tr><td><code><a href="ezcArchiveException.html">ezcArchiveException</a></code></td>
+              <td>
+                                  if the archive is closed.
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcArchive.html#methodappend">ezcArchive::append()</a></code></td>
+            <td>
+                              Appends a file or directory to the end of the archive. Multiple files or directory can  be added to the archive when an array is used as input parameter.
+                          </td>
+          </tr></tbody></table><a name="methodappendHeaderAndFileToCurrent" id="appendHeaderAndFileToCurrent"><!-- --></a>
+
+    <h4>appendHeaderAndFileToCurrent</h4>
+
+    <div class="method-signature">
+      bool
+      appendHeaderAndFileToCurrent(
+                                  <a href="ezcArchiveEntry.html">ezcArchiveEntry</a>
+          $entry
+                        )
+    </div>
+
+    <p>Appends the given ezcArchiveBlockFile $file and <a href="ezcArchiveEntry.html">ezcArchiveEntry</a> $entry  to the archive file.</p><div><p>The $entry will be used to create the correct header, whereas the $file contains the raw data  that should be append to the archive.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$entry</code></td>
+              <td><em><a href="ezcArchiveEntry.html">ezcArchiveEntry</a></em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><a name="methodappendNullBlocks" id="appendNullBlocks"><!-- --></a>
+
+    <h4>appendNullBlocks</h4>
+
+    <div class="method-signature">
+      void
+      appendNullBlocks(
+      )
+    </div>
+
+    <p>Appends zero or more null blocks to the end of the archive, so that it matches the $blockFactor.</p><div><p>If the archive has already the correct size, no null blocks will be appended. Otherwise as many  null blocks are appended (up to $blockFactor - 1) so that it matches the $blockFactor.</p></div>
+    
+        
+
+    
+    
+    
+        <a name="methodappendToCurrent" id="appendToCurrent"><!-- --></a>
+
+    <h4>appendToCurrent</h4>
+
+    <div class="method-signature">
+      bool
+      appendToCurrent(
+                                  string|array(string)
+          $files
+                            ,           string
+          $prefix
+                        )
+    </div>
+
+    <p>Appends a file to the archive after the current entry.</p><div><p>One or multiple files can be added directly after the current file.  The remaining entries after the current are removed from the archive!</p><p>The $files can either be a string or an array of strings. Which, respectively, represents a  single file or multiple files.</p><p>$prefix specifies the begin part of the $files path that should not be included in the archive.  The files in the archive are always stored relatively.</p><p>Example:  </p><ol><li><div class="src-line">&#8192;<span class="src-var">$tar&#8192;</span>=&#8192;<span class="src-id"><a href="ezcArchive.html">ezcArchive</a></span><span class="src-sym">(&#8192;</span><span class="src-str">"/tmp/my_archive.tar"</span><span class="src-sym">,&#8192;</span><span class="src-id"><a href="ezcArchive.html">ezcArchive</a></span><span class="src-sym">::</span><span class="src-id">TAR&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<span class="src-comm">//&#8192;Append&#8192;two&#8192;files&#8192;to&#8192;the&#8192;end&#8192;of&#8192;the&#8192;archive.</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$tar</span><span class="src-sym">-&gt;</span><a href="ezcArchive.html#methodseek">seek</a><span class="src-sym">(&#8192;</span><span class="src-num">0</span><span class="src-sym">,&#8192;</span><span class="src-id">SEEK_END&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$tar</span><span class="src-sym">-&gt;</span><a href="ezcArchiveV7Tar.html#methodappendToCurrent">appendToCurrent</a><span class="src-sym">(&#8192;</span><span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-str">"/home/rb/file1.txt"</span><span class="src-sym">,&#8192;</span><span class="src-str">"/home/rb/file2.txt"&#8192;</span><span class="src-sym">)</span><span class="src-sym">,&#8192;</span><span class="src-str">"/home/rb/"&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol><p>When multiple files are added to the archive at the same time, thus using an array, does not  necessarily produce the same archive as repeatively adding one file to the archive.  For example, the Tar archive format, can detect that files hardlink to each other and will store  it in a more efficient way.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$files</code></td>
+              <td><em>string|array(string)</em></td>
+              <td>
+                                  Array or a single path to a file.
+                              </td>
+            </tr><tr><td><code>$prefix</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  First part of the path used in $files.
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>ezcArchiveWriteException</code></td>
+              <td>
+                                  if one of the files cannot be written to the archive.
+                              </td>
+            </tr><tr><td><code>ezcFileReadException</code></td>
+              <td>
+                                  if one of the files cannot be read from the local filesystem.
+                              </td>
+            </tr><tr><td><code><a href="ezcArchiveException.html">ezcArchiveException</a></code></td>
+              <td>
+                                  if the archive is closed.
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcArchive.html#methodappendToCurrent">ezcArchive::appendToCurrent()</a></code></td>
+            <td>
+                              Appends a file to the archive after the current entry.
+                          </td>
+          </tr></tbody></table><a name="methodclose" id="close"><!-- --></a>
+
+    <h4>close</h4>
+
+    <div class="method-signature">
+      void
+      close(
+      )
+    </div>
+
+    <p>Closes the archive correctly.</p>
+    
+        
+
+          <h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcArchive.html#methodclose">ezcArchive::close()</a></code></td>
+            <td>
+                              Close the current archive.
+                          </td>
+          </tr></tbody></table><a name="methodcreateTarHeader" id="createTarHeader"><!-- --></a>
+
+    <h4>createTarHeader</h4>
+
+    <div class="method-signature">
+      ezcArchiveV7Header
+      createTarHeader(
+                                  [string|null
+          $file
+           = null]              )
+    </div>
+
+    <p>Creates the a new tar header for this class.</p><div><p>Usually this class is reimplemented by other Tar algorithms, and therefore it returns another Tar  header.</p><p>This method expects an ezcArchiveBlockFile that points to the header that should be  read (and created). If null is given as  block file, an empty header will be created.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$file</code></td>
+              <td><em>string|null</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Redefined in descendants as:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcArchiveUstarTar.html#methodcreateTarHeader">ezcArchiveUstarTar::createTarHeader()</a></code></td>
+              <td>
+                Creates the a new ustar tar header for this class.&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcArchiveGnuTar.html#methodcreateTarHeader">ezcArchiveGnuTar::createTarHeader()</a></code></td>
+              <td>
+                Creates the a new pax tar header for this class.&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcArchivePaxTar.html#methodcreateTarHeader">ezcArchivePaxTar::createTarHeader()</a></code></td>
+              <td>
+                Creates the a new pax tar header for this class.&#8192;
+              </td>
+            </tr></tbody></table><a name="methodgetAlgorithm" id="getAlgorithm"><!-- --></a>
+
+    <h4>getAlgorithm</h4>
+
+    <div class="method-signature">
+      int
+      getAlgorithm(
+      )
+    </div>
+
+    <p>Returns the value which specifies a TAR_V7 algorithm.</p>
+    
+        
+
+          <h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcArchive.html#methodgetAlgorithm">ezcArchive::getAlgorithm()</a></code></td>
+            <td>
+                              Returns the algorithm that is used currently.
+                          </td>
+          </tr></tbody></table><h5>Redefined in descendants as:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcArchiveUstarTar.html#methodgetAlgorithm">ezcArchiveUstarTar::getAlgorithm()</a></code></td>
+              <td>
+                Returns the value which specifies a TAR_USTAR algorithm.&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcArchiveGnuTar.html#methodgetAlgorithm">ezcArchiveGnuTar::getAlgorithm()</a></code></td>
+              <td>
+                Returns the value which specifies a TAR_GNU algorithm.&#8192;
+              </td>
+            </tr><tr><td><code><a href="ezcArchivePaxTar.html#methodgetAlgorithm">ezcArchivePaxTar::getAlgorithm()</a></code></td>
+              <td>
+                Returns the value which specifies a TAR_PAX algorithm.&#8192;
+              </td>
+            </tr></tbody></table><a name="methodreadCurrentFromArchive" id="readCurrentFromArchive"><!-- --></a>
+
+    <h4>readCurrentFromArchive</h4>
+
+    <div class="method-signature">
+      bool
+      readCurrentFromArchive(
+      )
+    </div>
+
+    <p>Read the current entry from the archive.</p><div><p>The current entry from the archive is read, if possible. This method will set the <a href="ezcArchive.html#var%24completed">$completed</a>  to true, if the end of the archive is reached. The <a href="ezcArchive.html#var%24entriesRead">$entriesRead</a> will be increased, if the  entry is correctly read.</p></div>
+    
+          <h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcArchiveBlockSizeException.html">ezcArchiveBlockSizeException</a></code></td>
+              <td>
+                                  if the file is empty or if the file is not valid
+                              </td>
+            </tr></tbody></table><a name="methodtruncate" id="truncate"><!-- --></a>
+
+    <h4>truncate</h4>
+
+    <div class="method-signature">
+      bool
+      truncate(
+                                  [int
+          $fileNumber
+           = 0]              )
+    </div>
+
+    <p>Truncates the archive to $fileNumber of files.</p><div><p>The $fileNumber parameter specifies the amount of files that should remain.  If the default value, zero, is used then the entire archive file is cleared.</p></div>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$fileNumber</code></td>
+              <td><em>int</em></td>
+              <td>
+                              </td>
+            </tr></tbody></table><h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="/zetacomponents/documentation/trunk/Base/phpdoc/ezcBaseFilePermissionException.html">ezcBaseFilePermissionException</a></code></td>
+              <td>
+                                  if the file is read-only or if the current algorithm cannot write
+                              </td>
+            </tr><tr><td><code><a href="ezcArchiveException.html">ezcArchiveException</a></code></td>
+              <td>
+                                  if the archive is closed
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcArchive.html#methodtruncate">ezcArchive::truncate()</a></code></td>
+            <td>
+                              Truncates the archive to $fileNumber of files.
+                          </td>
+          </tr></tbody></table><a name="methodwriteCurrentDataToFile" id="writeCurrentDataToFile"><!-- --></a>
+
+    <h4>writeCurrentDataToFile</h4>
+
+    <div class="method-signature">
+      bool
+      writeCurrentDataToFile(
+                                  string
+          $targetPath
+                        )
+    </div>
+
+    <p>Writes the file data from the current entry to the given file.</p>
+          <h5>Parameters:</h5>
+      <table class="detail"><thead><tr><th>Name</th>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code>$targetPath</code></td>
+              <td><em>string</em></td>
+              <td>
+                                  The absolute or relative path of the target file.
+                              </td>
+            </tr></tbody></table><h5>Redefinition of:</h5>
+      <table class="detail"><thead><tr><th>Method</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcArchive.html#methodwriteCurrentDataToFile">ezcArchive::writeCurrentDataToFile()</a></code></td>
+            <td>
+                              Writes the file data from the current entry to the given file.
+                          </td>
+          </tr></tbody></table><a name="methodwriteEnd" id="writeEnd"><!-- --></a>
+
+    <h4>writeEnd</h4>
+
+    <div class="method-signature">
+      void
+      writeEnd(
+      )
+    </div>
+
+    <p>Writes the end of the archive.</p>
+    
+          <h5>Exceptions:</h5>
+      <table class="detail"><thead><tr><th>Type</th>
+            <th class="desc">Description</th>
+          </tr></thead><tbody><tr><td><code><a href="ezcArchiveException.html">ezcArchiveException</a></code></td>
+              <td>
+                                  if the archive is closed
+                              </td>
+            </tr></tbody></table><div class="credit">
+      Documentation generated by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+    </div>
+  </div>
+  
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

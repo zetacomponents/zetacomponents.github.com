@@ -1,0 +1,201 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="PHP, apache, components, framework, quality" />
+	<meta name="author" content="dotxp" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Wed, 04 Aug 2010 13:07:09 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="Tutorial" />
+	<meta name="DC.creator" content="dotxp" />
+	<meta name="DC.date" content="Wed, 04 Aug 2010 13:07:09 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/DatabaseSchema/tutorial.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li class="requested">
+	<a href="/zetacomponents/documentation/trunk/DatabaseSchema/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/trunk/DatabaseSchema/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+
+</ul>
+
+		<h2>eZ Components - DatabaseSchema</h2><div class="toc"><h3>Table of Contents</h3><ul><li><p><a href="#introduction">Introduction</a></p></li><li><p><a href="#class-overview">Class overview</a></p></li><li><p><a href="#usage">Usage</a></p><ul><li><p><a href="#creating-a-database-schema-definition">Creating a database schema definition</a></p></li><li><p><a href="#modifying-a-database-schema-definition">Modifying a database schema definition</a></p></li><li><p><a href="#saving-a-database-schema-definition">Saving a database schema definition</a></p></li><li><p><a href="#comparing-database-schemas">Comparing database schemas</a></p></li><li><p><a href="#validating-schemas">Validating schemas</a></p></li></ul></li><li><p><a href="#restrictions">Restrictions</a></p></li><li><p><a href="#data-types">Data Types</a></p></li></ul></div><a name="introduction"></a><a name="id1"></a><h3>Introduction</h3><p>The DatabaseSchema component provides a unified data structure to describe relational databases. DatabaseSchema can read and write the structure from and to several databases (such as MySQL, SQLite and Oracle) and also read and write in two web language files (XML and PHP).</p><p>The main intention of the component is to extract an already existing schema from a database, and compare it with either a predefined schema to check for any changes. Although the component does allow you to create the schema manually through the API, it is often easier to create the schema yourself in a database, and then extract the data from it.</p><p>DatabaseSchema can also generate PersistentObject definition files. For further information, please refer to the API documentation of <a href='/zetacomponents/documentation/trunk/DatabaseSchema/phpdoc/ezcPersistentObjectDefinition.html'>ezcPersistentObjectDefinition</a> and <a href='/zetacomponents/documentation/trunk/DatabaseSchema/phpdoc/ezcPersistentObjectSchemaGenerator.html'>ezcPersistentObjectSchemaGenerator</a>.</p><a name="class-overview"></a><a name="id2"></a><h3>Class overview</h3><p>This section gives you an overview of the main classes of the DatabaseSchema component.</p><dl><dt>ezcDbSchema</dt><dd>This contains the structure of a database. A <a href='/zetacomponents/documentation/trunk/DatabaseSchema/phpdoc/ezcDbSchema.html'>ezcDbSchema</a> object can be created from files containing a description or directly from the database. A <a href='/zetacomponents/documentation/trunk/DatabaseSchema/phpdoc/ezcDbSchema.html'>ezcDbSchema</a> object can also be written to a file in different formats and converted to SQL DDL. It is also possible to create a database structure directly from an <a href='/zetacomponents/documentation/trunk/DatabaseSchema/phpdoc/ezcDbSchema.html'>ezcDbSchema</a> object.</dd><dt>ezcDbSchemaComparator</dt><dd>This class provides an interface for comparing two database schema definitions that are stored in the <a href='/zetacomponents/documentation/trunk/DatabaseSchema/phpdoc/ezcDbSchema.html'>ezcDbSchema</a> class.</dd><dt>ezcDbSchemaDiff</dt><dd>The <a href='/zetacomponents/documentation/trunk/DatabaseSchema/phpdoc/ezcDbSchemaDiff.html#compareSchemas'>ezcDbSchemaDiff::compareSchemas</a>() method returns an object of this class. The object can be converted to SQL DDL, stored in a file or directly applied to a database.</dd><dt>ezcDbSchemaHandlerManager</dt><dd>This class can be used to register different handlers for reading and writing <a href='/zetacomponents/documentation/trunk/DatabaseSchema/phpdoc/ezcDbSchema.html'>ezcDbSchema</a> and <a href='/zetacomponents/documentation/trunk/DatabaseSchema/phpdoc/ezcDbSchemaDiff.html'>ezcDbSchemaDiff</a> objects. Its functions to create a reader or writer are used by the <a href='/zetacomponents/documentation/trunk/DatabaseSchema/phpdoc/ezcDbSchema.html'>ezcDbSchema</a> and <a href='/zetacomponents/documentation/trunk/DatabaseSchema/phpdoc/ezcDbSchemaDiff.html'>ezcDbSchemaDiff</a> classes, where the actual work occurs.</dd><dt>ezcDbSchemaValidator</dt><dd>This provides one method to validate a <a href='/zetacomponents/documentation/trunk/DatabaseSchema/phpdoc/ezcDbSchema.html'>ezcDbSchema</a> class. It checks whether indexes are on existing columns and if the types used are correct. It provides an easy-to-use API so that other validation checks can be added.</dd></dl><a name="usage"></a><a name="id3"></a><h3>Usage</h3><a name="creating-a-database-schema-definition"></a><a name="id4"></a><h4>Creating a database schema definition</h4><p>Databases can be generated from two different types of sources. The first source is the file, where there are multiple format handlers available. There is a format for reading and writing XML files, and one for reading and writing files that store the <a href='/zetacomponents/documentation/trunk/DatabaseSchema/phpdoc/ezcDbSchema.html'>ezcDbSchema</a> structure in a PHP array.</p><p>The second source is the database. With the <a href='/zetacomponents/documentation/trunk/DatabaseSchema/phpdoc/ezcDbSchema.html#createFromDb'>ezcDbSchema::createFromDb</a>() method, you can create an <a href='/zetacomponents/documentation/trunk/DatabaseSchema/phpdoc/ezcDbSchema.html'>ezcDbSchema</a> object directly from an existing database connection.</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #0000FF">require&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;create&nbsp;a&nbsp;database&nbsp;schema&nbsp;from&nbsp;an&nbsp;XML&nbsp;file:</span></li>
+<li><span style="color: #000000">$xmlSchema&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/DatabaseSchema/phpdoc/ezcDbSchema.html#createFromFile'>ezcDbSchema::createFromFile</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'xml'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'wanted-schema.xml'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;create&nbsp;a&nbsp;database&nbsp;schema&nbsp;from&nbsp;a&nbsp;database&nbsp;connection:</span></li>
+<li><span style="color: #000000">$db&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/DatabaseSchema/phpdoc/ezcDbFactory.html#create'>ezcDbFactory::create</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'mysql://user:password@host/database'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$dbSchema&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/DatabaseSchema/phpdoc/ezcDbSchema.html#createFromDb'>ezcDbSchema::createFromDb</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$db&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><p>This example shows how to create a database schema from the two different sources. With the first parameter in <a href='/zetacomponents/documentation/trunk/DatabaseSchema/phpdoc/ezcDbSchema.html#createFromFile'>ezcDbSchema::createFromFile</a>(), you define which type to use ('xml' or 'array'). The second parameter is the file that you are reading the schema definition from.</p><p>The <a href='/zetacomponents/documentation/trunk/DatabaseSchema/phpdoc/ezcDbSchema.html#createFromDb'>ezcDbSchema::createFromDb</a>() method has only one parameter. This parameter is an <a href='/zetacomponents/documentation/trunk/DatabaseSchema/phpdoc/ezcDbHandler.html'>ezcDbHandler</a> object that was created with <a href='/zetacomponents/documentation/trunk/DatabaseSchema/phpdoc/ezcDbFactory.html'>ezcDbFactory</a>.</p><p>In both cases, the methods will return an object of the class <a href='/zetacomponents/documentation/trunk/DatabaseSchema/phpdoc/ezcDbSchema.html'>ezcDbSchema</a>. The documentation for <a href='/zetacomponents/documentation/trunk/DatabaseSchema/phpdoc/ezcDbSchemaHandlerManager.html'>ezcDbSchemaHandlerManager</a> lists the supported types of readers and writers. The <a href='/zetacomponents/documentation/trunk/DatabaseSchema/phpdoc/ezcDbSchema.html#getSchema'>ezcDbSchema-&gt;getSchema</a>() method returns the schema as an array of <a href='/zetacomponents/documentation/trunk/DatabaseSchema/phpdoc/ezcDbSchemaTable.html'>ezcDbSchemaTable</a> objects. The <a href='/zetacomponents/documentation/trunk/DatabaseSchema/phpdoc/ezcDbSchemaTable.html'>ezcDbSchemaTable</a> object then contains, in two member variables, an array of <a href='/zetacomponents/documentation/trunk/DatabaseSchema/phpdoc/ezcDbSchemaField.html'>ezcDbSchemaField</a> objects to describe the fields and an array of <a href='/zetacomponents/documentation/trunk/DatabaseSchema/phpdoc/ezcDbSchemaIndex.html'>ezcDbSchemaIndex</a> objects to describe the indices.</p><a name="modifying-a-database-schema-definition"></a><a name="id5"></a><h4>Modifying a database schema definition</h4><p>Once a <a href='/zetacomponents/documentation/trunk/DatabaseSchema/phpdoc/ezcDbSchema.html'>ezcDbSchema</a> object has been created, its tables and fields can be manipulated in different ways. Tables can be created, edited and deleted. Fields can be added to tables, edited and deleted. See the example below:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #0000FF">require&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;create&nbsp;a&nbsp;database&nbsp;schema&nbsp;from&nbsp;an&nbsp;XML&nbsp;file</span></li>
+<li><span style="color: #000000">$xmlSchema&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/DatabaseSchema/phpdoc/ezcDbSchema.html#createFromFile'>ezcDbSchema::createFromFile</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'xml'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'enterprise.xml'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;get&nbsp;the&nbsp;tables&nbsp;schema&nbsp;from&nbsp;the&nbsp;database&nbsp;schema</span></li>
+<li><span style="color: #007700">//&nbsp;BY&nbsp;REFERENCE!&nbsp;-&nbsp;otherwise&nbsp;new/deleted&nbsp;tables&nbsp;are&nbsp;NOT&nbsp;updated&nbsp;in&nbsp;the&nbsp;schema</span></li>
+<li><span style="color: #000000">$schema&nbsp;</span><span style="color: #0000FF">=&amp;&nbsp;</span><span style="color: #000000">$xmlSchema</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">getSchema</span><span style="color: #0000FF">();</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;add&nbsp;a&nbsp;new&nbsp;table&nbsp;(employees)&nbsp;to&nbsp;the&nbsp;database</span></li>
+<li><span style="color: #000000">$schema</span><span style="color: #0000FF">[</span><span style="color: #335533">'employees'</span><span style="color: #0000FF">]&nbsp;=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/DatabaseSchema/phpdoc/ezcDbSchemaTable.html'>ezcDbSchemaTable</a></span><span style="color: #0000FF">(</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;array(</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #335533">'id'&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/DatabaseSchema/phpdoc/ezcDbSchemaField.html'>ezcDbSchemaField</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'integer'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">false</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">true</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">null</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">true&nbsp;</span><span style="color: #0000FF">),</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;),</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;array(</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #335533">'primary'&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/DatabaseSchema/phpdoc/ezcDbSchemaIndex.html'>ezcDbSchemaIndex</a></span><span style="color: #0000FF">(&nbsp;array(&nbsp;</span><span style="color: #335533">'id'&nbsp;</span><span style="color: #0000FF">=&gt;&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/DatabaseSchema/phpdoc/ezcDbSchemaIndexField.html'>ezcDbSchemaIndexField</a></span><span style="color: #0000FF">()&nbsp;),&nbsp;</span><span style="color: #000000">true&nbsp;</span><span style="color: #0000FF">),</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;)</span></li>
+<li><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;copy&nbsp;the&nbsp;schema&nbsp;of&nbsp;table&nbsp;employees&nbsp;to&nbsp;table&nbsp;persons</span></li>
+<li><span style="color: #000000">$schema</span><span style="color: #0000FF">[</span><span style="color: #335533">'persons'</span><span style="color: #0000FF">]&nbsp;=&nbsp;clone&nbsp;</span><span style="color: #000000">$schema</span><span style="color: #0000FF">[</span><span style="color: #335533">'employees'</span><span style="color: #0000FF">];</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;delete&nbsp;the&nbsp;table&nbsp;table2</span></li>
+<li><span style="color: #0000FF">unset(&nbsp;</span><span style="color: #000000">$schema</span><span style="color: #0000FF">[</span><span style="color: #335533">'table2'</span><span style="color: #0000FF">]&nbsp;);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;add&nbsp;the&nbsp;fields&nbsp;birthday&nbsp;and&nbsp;salary&nbsp;to&nbsp;the&nbsp;table&nbsp;employees</span></li>
+<li><span style="color: #000000">$schema</span><span style="color: #0000FF">[</span><span style="color: #335533">'employees'</span><span style="color: #0000FF">]-&gt;</span><span style="color: #000000">fields</span><span style="color: #0000FF">[</span><span style="color: #335533">'birthday'</span><span style="color: #0000FF">]&nbsp;=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/DatabaseSchema/phpdoc/ezcDbSchemaField.html'>ezcDbSchemaField</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'date'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$schema</span><span style="color: #0000FF">[</span><span style="color: #335533">'employees'</span><span style="color: #0000FF">]-&gt;</span><span style="color: #000000">fields</span><span style="color: #0000FF">[</span><span style="color: #335533">'salary'</span><span style="color: #0000FF">]&nbsp;=&nbsp;new&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/DatabaseSchema/phpdoc/ezcDbSchemaField.html'>ezcDbSchemaField</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'integer'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;modify&nbsp;the&nbsp;type&nbsp;of&nbsp;salary&nbsp;field&nbsp;to&nbsp;be&nbsp;float</span></li>
+<li><span style="color: #000000">$schema</span><span style="color: #0000FF">[</span><span style="color: #335533">'employees'</span><span style="color: #0000FF">]-&gt;</span><span style="color: #000000">fields</span><span style="color: #0000FF">[</span><span style="color: #335533">'salary'</span><span style="color: #0000FF">]-&gt;</span><span style="color: #000000">type&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #335533">'float'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;delete&nbsp;the&nbsp;field&nbsp;salary</span></li>
+<li><span style="color: #0000FF">unset(&nbsp;</span><span style="color: #000000">$schema</span><span style="color: #0000FF">[</span><span style="color: #335533">'employees'</span><span style="color: #0000FF">]-&gt;</span><span style="color: #000000">fields</span><span style="color: #0000FF">[</span><span style="color: #335533">'salary'</span><span style="color: #0000FF">]&nbsp;);</span></li>
+<li></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><a name="saving-a-database-schema-definition"></a><a name="id6"></a><h4>Saving a database schema definition</h4><p>Once a <a href='/zetacomponents/documentation/trunk/DatabaseSchema/phpdoc/ezcDbSchema.html'>ezcDbSchema</a> object has been created, it can be manipulated in any way. Then, there are different possible ways to save the database schema. The <a href='/zetacomponents/documentation/trunk/DatabaseSchema/phpdoc/ezcDbSchema.html#writeToFile'>ezcDbSchema-&gt;writeToFile</a>() method stores an <a href='/zetacomponents/documentation/trunk/DatabaseSchema/phpdoc/ezcDbSchema.html'>ezcDbSchema</a> object to a file on disk. As stated, you can use the XML and PHP array formats. This is shown in the first part of this example:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #0000FF">require&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;save&nbsp;a&nbsp;database&nbsp;schema&nbsp;to&nbsp;an&nbsp;XML&nbsp;file:</span></li>
+<li><span style="color: #000000">$schema</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">writeToFile</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'xml'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'saved-schema.xml'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;create&nbsp;a&nbsp;database&nbsp;from&nbsp;a&nbsp;database&nbsp;schema:</span></li>
+<li><span style="color: #000000">$db&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/DatabaseSchema/phpdoc/ezcDbFactory.html#create'>ezcDbFactory::create</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'mysql://user:password@host/database'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$schema</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">writeToDb</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$db&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;create&nbsp;SQL&nbsp;DDL&nbsp;for&nbsp;a&nbsp;specific&nbsp;database&nbsp;and&nbsp;echo&nbsp;it:</span></li>
+<li><span style="color: #000000">$db&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/DatabaseSchema/phpdoc/ezcDbFactory.html#create'>ezcDbFactory::create</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'mysql://user:password@host/database'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #0000FF">foreach&nbsp;(&nbsp;</span><span style="color: #000000">$schema</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">convertToDDL</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$db&nbsp;</span><span style="color: #0000FF">)&nbsp;as&nbsp;</span><span style="color: #000000">$sqlStatement&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #000000">$sqlStatement</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">"\n"</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">}</span></li>
+<li></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><p>The second and third methods both deal directly with a database. The second method in the example uses the database connection $db for creating a schema. This method only saves to the tables in the schema definition. The schemas that are defined will be overwritten.</p><p>The third method merely uses the database connection to determine which SQL DLL dialect to use for the query to create the schema in the database.</p><a name="comparing-database-schemas"></a><a name="id7"></a><h4>Comparing database schemas</h4><p>The <a href='/zetacomponents/documentation/trunk/DatabaseSchema/phpdoc/ezcDbSchemaComparator.html'>ezcDbSchemaComparator</a> class provides the <a href='/zetacomponents/documentation/trunk/DatabaseSchema/phpdoc/ezcDbSchemaComparator.html#compareSchemas'>ezcDbSchemaComparator::compareSchemas</a>() method to compare two different <a href='/zetacomponents/documentation/trunk/DatabaseSchema/phpdoc/ezcDbSchema.html'>ezcDbSchema</a> objects. The result of this operation is an <a href='/zetacomponents/documentation/trunk/DatabaseSchema/phpdoc/ezcDbSchemaDiff.html'>ezcDbSchemaDiff</a> object. The next example illustrates this:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #0000FF">require&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;create&nbsp;the&nbsp;two&nbsp;<a href='/zetacomponents/documentation/trunk/DatabaseSchema/phpdoc/ezcDbSchema.html'>ezcDbSchema</a>&nbsp;objects:</span></li>
+<li><span style="color: #000000">$xmlSchema&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/DatabaseSchema/phpdoc/ezcDbSchema.html#createFromFile'>ezcDbSchema::createFromFile</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'xml'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'wanted-schema.xml'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$db&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/DatabaseSchema/phpdoc/ezcDbFactory.html#create'>ezcDbFactory::create</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'mysql://user:password@host/database'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$dbSchema&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/DatabaseSchema/phpdoc/ezcDbSchema.html#createFromDb'>ezcDbSchema::createFromDb</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$db&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;compare&nbsp;the&nbsp;schemas:</span></li>
+<li><span style="color: #000000">$diffSchema&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/DatabaseSchema/phpdoc/ezcDbSchemaComparator.html#compareSchemas'>ezcDbSchemaComparator::compareSchemas</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$dbSchema</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #000000">$xmlSchema&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;return&nbsp;an&nbsp;array&nbsp;containing&nbsp;the&nbsp;differences&nbsp;as&nbsp;SQL&nbsp;DDL&nbsp;to&nbsp;upgrade&nbsp;$dbSchema</span></li>
+<li><span style="color: #007700">//&nbsp;to&nbsp;$xmlSchema:</span></li>
+<li><span style="color: #000000">$sqlArray&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000">$diffSchema</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">convertToDDL</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$db&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;write&nbsp;the&nbsp;differences&nbsp;to&nbsp;a&nbsp;file:</span></li>
+<li><span style="color: #000000">$diffSchema</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">writeToFile</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'array'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'differences.php'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #007700">//&nbsp;apply&nbsp;the&nbsp;differences&nbsp;to&nbsp;the&nbsp;database:</span></li>
+<li><span style="color: #000000">$diffSchema</span><span style="color: #0000FF">-&gt;</span><span style="color: #000000">applyToDB</span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$db&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><p>First, we create the two different schemas: one from the database, and one from a file. In line 10, we utilize the <a href='/zetacomponents/documentation/trunk/DatabaseSchema/phpdoc/ezcDbSchemaComparator.html#compareSchemas'>ezcDbSchemaComparator::compareSchemas</a>() function to compare the two schemas. This process returns the differences as the $diffSchema variable.</p><p>You can perform multiple actions with the generated differences. These three methods are explained in the inline comments in the above example.</p><a name="validating-schemas"></a><a name="id8"></a><h4>Validating schemas</h4><p>The last feature that the DatabaseSchema component offers is the validation of schemas. The <a href='/zetacomponents/documentation/trunk/DatabaseSchema/phpdoc/ezcDbSchemaValidator.html#validate'>ezcDbSchemaValidator::validate</a>() method accepts an <a href='/zetacomponents/documentation/trunk/DatabaseSchema/phpdoc/ezcDbSchema.html'>ezcDbSchema</a> object and returns an array of strings describing potential problems with the schema. This is shown in the following example:</p><ol class="code">
+<li><span style="color: #000000">&lt;?php</span></li>
+<li><span style="color: #0000FF">require&nbsp;</span><span style="color: #335533">'tutorial_autoload.php'</span><span style="color: #0000FF">;</span></li>
+<li></li>
+<li><span style="color: #000000">$xmlSchema&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/DatabaseSchema/phpdoc/ezcDbSchema.html#createFromFile'>ezcDbSchema::createFromFile</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #335533">'xml'</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">'wanted-schema.xml'&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #000000">$messages&nbsp;</span><span style="color: #0000FF">=&nbsp;</span><span style="color: #000000"><a href='/zetacomponents/documentation/trunk/DatabaseSchema/phpdoc/ezcDbSchemaValidator.html#validate'>ezcDbSchemaValidator::validate</a></span><span style="color: #0000FF">(&nbsp;</span><span style="color: #000000">$xmlSchema&nbsp;</span><span style="color: #0000FF">);</span></li>
+<li><span style="color: #0000FF">foreach&nbsp;(&nbsp;</span><span style="color: #000000">$messages&nbsp;</span><span style="color: #0000FF">as&nbsp;</span><span style="color: #000000">$message&nbsp;</span><span style="color: #0000FF">)</span></li>
+<li><span style="color: #0000FF">{</span></li>
+<li><span style="color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #000000">$message</span><span style="color: #0000FF">,&nbsp;</span><span style="color: #335533">"\n"</span><span style="color: #0000FF">;</span></li>
+<li><span style="color: #0000FF">}</span></li>
+<li><span style="color: #000000">?&gt;</span></li>
+
+</ol><a name="restrictions"></a><a name="id9"></a><h3>Restrictions</h3><p>To keep the compability between different relational database management systems, there are restrictions you have to cope with:</p><ul><li><p>Lowercase column names</p><p>As some RDBMS always do not store column names case sensitive, but return and store them completely as upper case letters, <a href='/zetacomponents/documentation/trunk/DatabaseSchema/phpdoc/ezcDatabase.html'>ezcDatabase</a> converts all column names to lower case to offer a uniform interface.</p></li><li><p>Field types</p><p>You are limited to an amount of field types common to all RDBMS, or for which at least some kind of mapping exists for all RDBMS.</p></li></ul><a name="data-types"></a><a name="id10"></a><h3>Data Types</h3><p>The DatabaseSchema component supports a limited set of data types in order to be sure that they are supported in all databases that the component supports. Below you can find a list of all the supported types with comments.</p><dl><dt>integer</dt><dd>Used for numerical values.</dd><dt>boolean</dt><dd>Used for boolean values - use only with <em>true</em> and <em>false</em>.</dd><dt>decimal</dt><dd>Numerical values with an optional fraction, fixed fraction size.</dd><dt>float</dt><dd>Numerical values with an optional fraction.</dd><dt>date</dt><dd>A database-specific date field.</dd><dt>timestamp</dt><dd>A database-independent date field that stores Unix timestamps.</dd><dt>text</dt><dd>Text strings, usually limited in field size.</dd><dt>blob</dt><dd>Binary data.</dd><dt>clob</dt><dd>Character data, not limited in field size.</dd></dl><!--Local Variables:
+mode: rst
+fill-column: 79
+End:
+vim: et syn=rst tw=79-->
+
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

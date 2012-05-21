@@ -1,0 +1,227 @@
+eZ Components - EventLog
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. contents:: Table of Contents
+
+Introduction
+============
+
+The EventLog component provides an API to log events and audit trails with log
+messages. These log messages are written to files or other storage elements.
+How and where the log messages are written depends on the log writer.
+
+The available log writers are:
+
+- ezcLogUnixFileWriter, which writes log messages to a file in a *Unix* file
+  format.
+- ezcLogSyslogWriter, which writes log messages to syslog.
+- ezcLogDatabaseWriter, which writes log messages to the database. This is
+  available in the EventLogDatabaseTieIn_ component.
+
+Each of these writers can be customized or extended.
+
+An incoming log message can be written with zero or more writers. The writers
+depend on the variables of the log message itself and the
+ezcLogMapper implementation. ezcLogMapper checks the
+severity, source and category from the log message and forwards the message
+to the appropriate writers.
+
+
+Class overview
+==============
+
+The following classes are most important to use, customize or extend:
+
+ezcLog
+  The ezcLog class is a singleton, meaning that only one instance of it can
+  exist. This class provides methods to configure and record log messages. The
+  recorded log messages are sent to an implementation of ezcLogMapper, which
+  forwards the messages to the appropriate log writers.
+
+ezcLogMapper
+  ezcLogMapper provides an interface for log message mapping. Log
+  messages are dispatched from ezcLog to a writer. The particular writer is
+  determined in the class that implements
+  ezcLogMapper and is assigned in ezcLog.
+
+ezcLogFilterSet
+  ezcLogFilterSet is an implementation of ezcLogMapper. ezcLogFilterSet
+  contains a set of rules in the form of objects of the class ezcLogFilterRule.
+  These rules are processed sequentially. In other words, the first assigned
+  rule will be processed first. Each rule determines whether the log message
+  matches the filter rule. If the log message matches, it calls the writer and
+  decide whether the filter set stops processing.
+
+  The ezcLogFilterSet class is inspired by modern mail application filter
+  settings. Normally these mail filter settings sort the incoming
+  mail and store it in the correct mail folder.
+
+ezcLogWriter
+  ezcLogWriter provides an interface for the writers. An implementation
+  of this interface is a valid writer and can be addressed by ezcLogMapper.
+  The writer itself determines how and where the log message is stored.
+
+ezcLogUnixFileWriter
+  ezcLogUnixFileWriter writes the log message to a file.
+
+ezcLogFilter
+  ezcLogFilter is a structure to specify which log messages are accepted in
+  a filter set.
+
+For more information about these classes, see the class documentation.
+
+
+Examples
+========
+
+Writing a log message to file
+-------------------------------
+
+This example creates a file writer and assigns it to the default log mapper.
+
+.. include:: tutorial_simple_file_writer.php
+   :literal:
+
+First, *tutorial_autoload.php* is included. This file loads the
+correct PHP files for the EventLog component.
+
+Then, the log is set up and a message is written to the log file
+*default.log*, to be placed in the */tmp/logs* directory.
+
+After execution, the file */tmp/logs/default.log* contains something like this::
+
+    Jan 24 14:39:57 [Warning] [default] [default] Could not connect with the payment server.
+
+The date, severity, source, category and message are shown. The
+source and category are both set to default, because they were not specified in
+the message.
+
+Writing a log message to a database
+-----------------------------------
+
+With the optional EventLogDatabaseTiein_ component it is also possible to write
+log messages to a database table. See the EventLogDatabaseTiein_ tutorial on
+how to use the ezcLogDatabaseWriter_ as writer instead of the
+ezcLogUnixFileWriter_ from this component. You can use both log writers
+at the same time. See the section `Assigning log messages to different files`_
+on how to use different writers simultaneously. 
+
+.. _EventLogDatabaseTiein: ../EventLogDatabaseTiein.html#introduction
+.. _ezcLogDatabaseWriter: ../EventLogDatabaseTiein/phpdoc/ezcLogDatabaseWriter.html
+.. _ezcLogUnixFileWriter: ../EventLog/phpdoc/ezcLogUnixFileWriter.html
+
+
+Assigning sources and categories
+--------------------------------
+
+The default source and category from ezcLog can be set via the properties
+*source* and *category*. The next example demonstrates how the default
+properties can be set and how extra variables can be added to the log.
+
+.. include:: tutorial_sources_categories.php
+   :literal:
+
+After execution, the file */tmp/logs/default.log* contains something like this::
+
+    Jan 24 15:45:04 [Warning] [Payment module] [Template] Could not find cache file: </var/cache/payment1234.cache>.
+    Jan 24 15:45:04 [Error] [Payment module] [SQL] Cannot execute query: <SELECT * FROM Orders WHERE ID = '123'>.
+    Jan 24 15:45:04 [Debug] [Payment module] Starting shutdown process. (file: /home/rb/php5/ezcomponents/packages/EventLog/trunk/docs/tutorial_sources_categories.php, line: 25)
+
+
+Adding log attributes automatically
+-----------------------------------
+
+In some cases, it is convenient to automatically add log attributes to the log
+message. For example:
+
+- Audit trails should include the current user.
+- A payment system should always include the order number.
+
+However, the log attributes appended to the log message are static. The
+value assigned to the attribute will be the same.
+
+The next example assigns two automatic attributes:
+
+.. include:: tutorial_auto_variables.php
+   :literal:
+
+After execution, the file */tmp/logs/default.log* contains this::
+
+    Jan 25 10:15:19 [Failed audit] [security] [login/logoff] Authentication failed (username: John Doe)
+    Jan 25 10:15:19 [Debug] [Payment] [external connections] Connecting with the server. (service: Paynet Terminal)
+    Jan 25 10:15:19 [Success audit] [Payment] [shop] Payed with creditcard. (username: John Doe, service: Paynet Terminal)
+
+
+Assigning log messages to different files
+-----------------------------------------
+
+Depending on the incoming log message, the message can be stored with different
+writers. This example handles the log message as follows:
+
+- Ignore all messages with the severity DEBUG.
+- Store the audit trails in the *audit_trails.log* file.
+- Store the logs with the Payment category in the *payment.log* file.
+- Store all the messages, except DEBUG, in the *general.log* file.
+
+The code is as follows:
+
+.. include:: tutorial_multiple_log_files.php
+   :literal:
+
+
+Using trigger_error()
+---------------------
+
+The EventLog component is designed so that it can also be used with the
+trigger_error_ PHP method. Instead of calling the ezcLog::getInstance()->log() method,
+trigger_error() can be called.  Using the trigger_error() method makes your code
+less dependent on the EventLog component and requires less overhead when
+logging is disabled.
+
+The function set_error_handler_ should set up a callback function (or method)
+that, in turn, calls EventLog. For more information, see the API documentation
+on the ezcLog::logHandler() method.
+
+.. _trigger_error: http://www.php.net/trigger_error
+.. _set_error_handler: http://www.php.net/set_error_handler
+
+Lazy initialization
+===================
+
+Lazy initialization is a mechanism to load and configure a component, only 
+when it is really used in your application. This mechanism saves time for 
+parsing the classes and configuration, when the component is not used at all
+during one request. You can find a description how you can use it for your 
+own components and how it works in the `ezcBase tutorial`__. The keyword for
+the event log component is *ezcInitLog*.
+
+__ introduction_Base.html#lazy-initialization
+
+.. include:: tutorial_lazy_initialization.php
+	:literal:
+
+The example shows a very simple event log setup with only one single logging
+rule. The main difference compared with earlier examples is, that we roll out 
+the configuration to an own class, and define a callback using 
+ezcBaseInit::setCallback to this class, which will be called with the 
+event log instance on the first request for a yet uninitialized log handler.
+
+ezcBaseInit::setCallback accepts as a first parameter a component specific key,
+which lets the component later request the right configuration callback. The
+second parameter is the name of the class to perform the static callback on.
+This class must implement the ezcBaseConfigurationInitializer class.
+Each component's lazy initialization calls the static method configureObject()
+on the referenced class.
+
+When the event log is really required in the application, like shown in line 
+19 of the example, the event log component will be configured by the code in
+the configureObject() method in line 6, which just add a general logging rule,
+writing all log messages to /tmp/logs/general.log.
+
+
+..
+   Local Variables:
+   mode: rst
+   fill-column: 79
+   End: 
+   vim: et syn=rst tw=79

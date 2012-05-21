@@ -1,0 +1,197 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en"
+	lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="Apache Zeta Components - reusable set of high quality PHP components to fasten your development." />
+	<meta name="keywords" content="PHP, apache, components, framework, quality" />
+	<meta name="author" content="dotxp" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Wed, 04 Aug 2010 13:08:02 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="ezcUrlTools.html" />
+	<meta name="DC.creator" content="dotxp" />
+	<meta name="DC.date" content="Wed, 04 Aug 2010 13:08:02 +0200" />
+	<meta name="DC.rights" content="Copyright" />
+
+	<link rel="meta" href="/zetacomponents/documentation/trunk/Url/phpdoc/ezcUrlTools.rdf" />
+	<link rel="icon" href="/zetacomponents/images/favicon.png" type="image/png" />
+
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/screen.css" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/zetacomponents/styles/print.css" media="print" />
+
+
+	<title>Apache Zeta Components - high quality PHP components</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+		<a id="header-png" href="/zetacomponents" title="Apache Zeta Components - high quality PHP components">
+			Apache Zeta Components - high quality PHP components
+		</a>
+	</h1>
+
+	<ul class="navigation">
+<li >
+	<a href="/zetacomponents/news.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/zetacomponents/community/index.html" title="Community">Community</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/overview.html" title="Documentation">Documentation</a>
+	</li>
+<li >
+	<a href="/zetacomponents/download/index.html" title="Download">Download</a>
+	</li>
+<li >
+	<a href="/zetacomponents/support.html" title="Support">Support</a>
+	</li>
+
+</ul>
+<ul class="subnavigation">
+<li >
+	<a href="/zetacomponents/documentation/overview.html" title="Overview">Overview</a>
+	</li>
+<li >
+	<a href="/zetacomponents/documentation/install.html" title="Installation">Installation</a>
+	</li>
+
+</ul>
+
+	<div class="content">
+    <ul class="tabs">
+    <li >
+	<a href="/zetacomponents/documentation/trunk/Url/tutorial.html" title="Tutorial">Tutorial</a>
+	</li>
+<li class="requested">
+	<a href="/zetacomponents/documentation/trunk/Url/phpdoc/classtrees.html" title="API">API</a>
+	</li>
+
+</ul>
+
+		
+  <div class="phpdoc">
+    <h2>Apache Zeta Components Manual :: Docs For Class ezcUrlTools</h2>
+
+                  <h3>Url::ezcUrlTools</h3>
+    
+<a name="sec-description"></a>
+<h3>Class ezcUrlTools</h3>
+
+<p>Class providing methods for URL parsing.</p><div><p>Static methods contained in this class: </p><ul><li>parseQueryString() - It implements the functionality of the PHP function
+    parse_str(), but without converting dots to underscores in parameter names.</li><li>getCurrentUrl() - Returns the current URL as a string from the provided
+    array (by default $_SERVER).</li></ul></div>
+<p>Source for this file: <a href="http://fisheye6.atlassian.com/browse/zetacomponents/trunk/Url/src/url_tools.php?r=HEAD">/Url/src/url_tools.php</a></p>
+       
+
+
+
+
+  <table><tr><td>
+            <strong>Version:</strong>&#8192;&#8192;
+          </td>
+          <td>//autogen//</td>
+        </tr></table><a name="sec-method-summary"></a>
+  <h3>Method Summary</h3>
+  <table class="summary"><tr><td class="right">
+            <em>public</em>            static
+                        <em>string</em>          </td>
+          <td>
+            <code>
+              <a href="#getCurrentUrl"><b>getCurrentUrl</b></a>(
+                                                                  [                  $source
+                   = null]                               )
+            </code>
+            <br><div style="margin-left: 20px">Returns the current URL as a string from the array $source  (by default $_SERVER).</div>          </td>
+        </tr><tr><td class="right">
+            <em>public</em>            static
+                        <em>array(string=&gt;mixed)</em>          </td>
+          <td>
+            <code>
+              <a href="#parseQueryString"><b>parseQueryString</b></a>(
+                                                                                    $str
+                                                 )
+            </code>
+            <br><div style="margin-left: 20px">Parses the provided string and returns an associative array structure.</div>          </td>
+        </tr></table><a name="sec-methods"></a>
+  <h3>Methods</h3>
+  <a name="method_detail"></a>
+      <a name="methodgetCurrentUrl" id="getCurrentUrl"><!-- --></a>
+
+    <h4>getCurrentUrl</h4>
+
+    <div class="method-signature">
+      static string
+      getCurrentUrl(
+                                  [
+          $source
+           = null]              )
+    </div>
+
+      <p>Returns the current URL as a string from the array $source  (by default $_SERVER).</p><div><p>The following fields are used in building the URL: </p><ul><li>HTTPS - determines the scheme ('http' or 'https'). 'https' only if
+    the 'HTTPS' field is set or if it is 'on' or '1'</li><li>SERVER_NAME</li><li>SERVER_PORT - determines if port is default (80 = do not include port)
+    or not default (other than 80 = include port)</li><li>REQUEST_URI</li></ul>  For example, if $_SERVER has these fields:  <ol><li><div class="src-line">&#8192;<span class="src-var">$_SERVER&#8192;</span>=&#8192;<span class="src-key">array</span><span class="src-sym">(</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'HTTPS'&#8192;</span>=&gt;&#8192;<span class="src-str">'1'</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'SERVER_NAME'&#8192;</span>=&gt;&#8192;<span class="src-str">'www.example.com'</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'SERVER_PORT'&#8192;</span>=&gt;&#8192;<span class="src-num">80</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&#8192;&#8192;&#8192;&#8192;&#8192;<span class="src-str">'REQUEST_URI'&#8192;</span>=&gt;&#8192;<span class="src-str">'/index.php'</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol><p>Then by calling this function (with no parameters), this URL will be  returned: 'http://www.example.com/index.php'.</p><p>The source of the URL parts can be changed to be other than $_SERVER by  specifying an array parameter when calling this function.</p></div>      
+              <h5>Parameters:</h5>
+        <table class="detail"><thead><tr><th>Name</th>
+              <th>Type</th>
+              <th class="desc">Description</th>
+            </tr></thead><tbody><tr><td><code>$source</code></td>
+                <td><em>array(string=&gt;mixed)</em></td>
+                <td>
+                                      The default array source, default $_SERVER
+                                  </td>
+              </tr></tbody></table><a name="methodparseQueryString" id="parseQueryString"><!-- --></a>
+
+    <h4>parseQueryString</h4>
+
+    <div class="method-signature">
+      static array(string=&gt;mixed)
+      parseQueryString(
+                                  array(string=&gt;mixed)
+          $str
+                        )
+    </div>
+
+      <p>Parses the provided string and returns an associative array structure.</p><div><p>It implements the functionality of the PHP function parse_str(), but  without converting dots to underscores in parameter names.</p><p>Example:  </p><ol><li><div class="src-line">&#8192;<span class="src-var">$str&#8192;</span>=&#8192;<span class="src-str">'foo[]=bar&amp;openid.nonce=123456'</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;</div></li>
+<li><div class="src-line">&#8192;<a href="http://www.php.net/parse_str">parse_str</a><span class="src-sym">(&#8192;</span><span class="src-var">$str</span><span class="src-sym">,&#8192;</span><span class="src-var">$params&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&#8192;<span class="src-var">$params&#8192;</span>=&#8192;<span class="src-id"><a href="ezcUrlTools.html">ezcUrlTools</a></span><span class="src-sym">::</span><a href="ezcUrlTools.html#methodparseQueryString">parseQueryString</a><span class="src-sym">(&#8192;</span><span class="src-var">$str&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol><p>In the first case (parse_str()), $params will be:  </p><ol><li><div class="src-line">&#8192;<span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-str">'foo'&#8192;</span>=&gt;&#8192;<span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-str">'bar'&#8192;</span><span class="src-sym">)</span><span class="src-sym">,&#8192;</span><span class="src-str">'openid_nonce'&#8192;</span>=&gt;&#8192;<span class="src-str">'123456'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol><p>In the second case (ezcUrlTools::parseQueryString()), $params will be:  </p><ol><li><div class="src-line">&#8192;<span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-str">'foo'&#8192;</span>=&gt;&#8192;<span class="src-key">array</span><span class="src-sym">(&#8192;</span><span class="src-str">'bar'&#8192;</span><span class="src-sym">)</span><span class="src-sym">,&#8192;</span><span class="src-str">'openid.nonce'&#8192;</span>=&gt;&#8192;<span class="src-str">'123456'&#8192;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol></div>      
+              <h5>Parameters:</h5>
+        <table class="detail"><thead><tr><th>Name</th>
+              <th>Type</th>
+              <th class="desc">Description</th>
+            </tr></thead><tbody><tr><td><code>$str</code></td>
+                <td><em>array(string=&gt;mixed)</em></td>
+                <td>
+                                      The string to parse
+                                  </td>
+              </tr></tbody></table><div class="credit">
+      Documentation generated by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+    </div>
+  </div>
+  
+	</div>
+
+	<div class="footer">
+	Copyright © 2010 <a href="http://apache.org">The Apache Software Foundation</a>
+</div>
+</div>
+</body>
+</html>

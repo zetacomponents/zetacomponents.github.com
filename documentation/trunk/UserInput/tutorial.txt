@@ -1,0 +1,107 @@
+eZ Components - UserInput
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. contents:: Table of Contents
+
+Introduction
+============
+
+The UserInput component facilitates the secure handling of input data. With a
+user-defined form definition, the component analyzes, filters and returns GET
+and POST data. The component will not render forms to HTML from its definition, but only
+handle incoming data. Filtering is done through PHP's filter_ extension;
+accordingly, UserInput supports all filters and flags that this extension supports.
+
+
+Class overview
+==============
+
+ezcInputForm
+  This class validates the definition, processes the form data and
+  provides functionality for accessing the submitted data.
+
+ezcInputFormDefinitionElement
+  This container class wraps around the definition for each form element.
+  It contains information about whether the field is optional or required, the
+  filter name and optional flags for the filter.
+
+
+Basic usage
+===========
+
+The example in this section is separated into multiple parts to allow for
+easier explanation. 
+
+.. include:: tutorial_example_01_def.php
+   :literal:
+
+In the lines above, we prepare a definition array that defines our form. A
+definition array consists of an associative array where the key is the input
+field name and the value is an object of the ezcInputFormDefinitionElement class. 
+
+The first parameter to the constructor is either
+ezcInputFormDefinitionElement::REQUIRED for fields that *must* be submitted
+(although they can be empty) or ezcInputFormDefinitionElement::OPTIONAL for
+optional fields. The second parameter is the filter to use for the input
+field. The filters are defined in PHP's filter_ extension, and can also be
+retrieved by the PHP function filter_list(). The third optional
+parameter contains flags to the filter. Those are documented in the 
+`filter documentation`_.
+
+In the definition above, we define four input fields that are all required.
+Two of them are strings (firstName and lastName), one is an integer (age) and
+the last one is an e-mail address (email).
+
+.. include:: tutorial_example_01_init.php
+   :literal:
+
+Here, we initialize the variables that are used to show the current value
+and whether invalid data was submitted to the form. This is used later to
+render the form.
+
+.. include:: tutorial_example_01_process.php
+   :literal:
+
+In line 2, we check whether there was GET data submitted to this script. Aside
+from the ezcInputForm::hasGetData() method to verify if there is GET data
+available, there is another method, ezcInputForm::hasPostData(), which does the
+same thing but for POST data. Upon instantiation of the ezcInputForm object in
+line 4, the component will parse the input data and make the input fields
+available through the object. In case one of the required input variables does
+not exist in the input data, this instantiation will throw an
+ezcInputFormFieldNotFoundException exception.
+
+In lines 6 to 20, we loop over all elements from the definition and check (in line
+10) whether the field has valid data. When there is valid data available, we
+retrieve the value from the $form object through a property (in line 12). In
+case the data for a field is invalid, we fetch the raw data with the
+ezcInputForm::getUnsafeRawData() function, encode that with htmlspecialchars_
+and set the parameter with the name "property\_<fieldname>" to the encoded raw
+data. We also record in the "warning\_<fieldname>" variable if the field has
+invalid data.
+
+
+.. include:: tutorial_example_01_form.php
+   :literal:
+
+The last part of this example renders the form. If previous data was submitted,
+it will be shown as the default value in the input fields. If the data for one of
+the fields is invalid, this will be shown next to the field.
+
+More information
+================
+
+The filters and their parameters are documented in the
+`filter documentation`_.
+
+.. _filter: http://pecl.php.net/filter
+.. _`filter documentation`: http://php.net/filter
+.. _htmlspecialchars: http://php.net/htmlspecialchars
+
+
+..
+   Local Variables:
+   mode: rst
+   fill-column: 79
+   End:
+   vim: et syn=rst tw=79
